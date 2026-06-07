@@ -1,0 +1,237 @@
+/* Andrew Van Ek Portfolio | Professional Redesign */
+
+/* 1. CSS Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 2. Header & Navigation */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+
+.headerimg {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    object-position: center 10%; /* Crop higher on face */
+    border-radius: 50%;
+    border: 2px solid #0056b3;
+    transform: scale(1.6); /* Further zoom in */
+}
+
+figcaption {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
+
+h1 {
+    font-size: 2.2em;
+    color: #0056b3;
+    margin: 10px 0;
+    text-align: center;
+}
+
+nav.tablet-desktop {
+    background-color: #002d5a;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    display: block !important;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #00ccff;
+}
+
+/* 3. Main Content */
+main {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+h2, h3 {
+    color: #002d5a;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    clear: both;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul, ol {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+/* 4. Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #002d5a;
+}
+
+/* 5. Footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #666;
+    font-size: 0.85em;
+    border-top: 1px solid #eee;
+}
+
+/* Education List 2-column */
+.edu-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 40px;
+    margin-bottom: 30px;
+}
+
+.edu-school {
+    font-weight: bold;
+    color: #002d5a;
+}
+
+.edu-grades {
+    color: #555;
+}
+
+/* 6. Mobile Styles & Hiding */
+.mobile-nav, .menu-icon, .mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav li {
+        margin: 5px 0;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .edu-list {
+        grid-template-columns: 1fr; /* Single column on very small mobile if needed, but keeping 2-col as requested */
+    }
+}
+
+/* Buttons */
+.btn, .videolinkonly, .resumelinkonly {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover, .videolinkonly:hover, .resumelinkonly:hover {
+    background-color: #003d80;
+}
+
+/* Grid Layouts */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.twocolumnlayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .twocolumnlayout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.itunesimg {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto;
+}
+
+#map iframe {
+    width: 100%;
+    border-radius: 8px;
+}
+
