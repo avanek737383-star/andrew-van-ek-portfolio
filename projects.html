@@ -36,7 +36,7 @@
 			</nav>
 			<h1>Projects</h1>
 			<main>
-				<section aria-labelledby="local-ai-title">
+				<section class="project-entry" aria-labelledby="local-ai-title">
 					<h2 id="local-ai-title">Private Local-AI Portfolio Assistant</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-20T15:03:00-04:00">September 20, 2026 at 3:03 PM EDT</time></span></p>
 					<p>I built the chatbot in the corner of this website and connected it to an AI model running on my own Windows PC. Visitor messages travel through my small Linux server and a private connection before reaching the model.</p>
@@ -56,10 +56,29 @@
 						</ul>
 					</div>
 				</section>
+
+				<section class="project-entry" aria-labelledby="smb-project-title">
+					<h2 id="smb-project-title">SMB over Tailscale: Windows USB Storage Investigation</h2>
+					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-18">September 18, 2026</time></span></p>
+					<p>I investigated why USB drives shared from a Windows PC could be discovered but not mounted from a Mac over my private Tailscale network. The work became a controlled troubleshooting project rather than a series of guesses.</p>
+					<p>I verified the network path, authentication, Windows sharing rules, firewall scope, drive permissions, and multiple SMB settings. I also compared two removable drives with a fixed folder on the same Windows PC.</p>
+					<div class="project-result" role="group" aria-label="Controlled test results">
+						<p><strong>Fixed Windows folder</strong><span>Mounted successfully</span></p>
+						<p><strong>Two removable USB drives</strong><span>Permission denied</span></p>
+					</div>
+					<p>That comparison isolated the behavior to Windows handling of removable storage on this host—not Tailscale routing, TCP port 445, credentials, share definitions, or a single filesystem or USB device.</p>
+					<ul>
+						<li>Used logs and Windows file-sharing traces to verify authenticated mount attempts.</li>
+						<li>Tested exFAT, NTFS, and FAT storage along with ACL, compression, and multichannel changes.</li>
+						<li>Restored temporary settings, removed diagnostic shares, and left Guest access disabled.</li>
+						<li>Selected SFTP over Tailscale as the reliable, authenticated workaround for removable storage.</li>
+					</ul>
+					<p class="project-evidence">Documented troubleshooting window: 11:04 AM–5:05 PM, with more than two hours of supported hands-on work.</p>
+				</section>
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-09-20T15:19:00-04:00">September 20, 2026 at 3:19 PM EDT</time></p>
+				<p>Website last modified: <time datetime="2026-09-20T15:29:00-04:00">September 20, 2026 at 3:29 PM EDT</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js"></script>

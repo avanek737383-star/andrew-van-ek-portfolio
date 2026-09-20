@@ -317,6 +317,45 @@ footer {
     display: none;
 }
 
+.project-entry + .project-entry {
+    margin-top: 46px;
+    padding-top: 38px;
+    border-top: 1px solid #d5e0eb;
+}
+
+.project-result {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.project-result p {
+    margin: 0;
+    padding: 14px;
+    border: 1px solid #d5e0eb;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.project-result strong,
+.project-result span {
+    display: block;
+}
+
+.project-result span {
+    margin-top: 4px;
+    color: #526170;
+}
+
+.project-evidence {
+    padding: 12px 14px;
+    border-left: 3px solid #0056b3;
+    background: #f2f7fc;
+    color: #526170;
+    font-size: 0.9rem;
+}
+
 .project-architecture {
     display: flex;
     flex-wrap: wrap;
@@ -693,6 +732,10 @@ footer {
 
     .project-mobile-summary {
         display: block;
+    }
+
+    .project-result {
+        grid-template-columns: 1fr;
     }
 
     .lab-intro {
