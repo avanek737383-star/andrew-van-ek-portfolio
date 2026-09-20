@@ -36,13 +36,14 @@ header {
 }
 
 .headerimg {
-    height: 100px;
-    width: 100px;
+    display: block;
+    height: 112px;
+    width: 112px;
+    flex-shrink: 0;
     object-fit: cover;
-    object-position: center 10%; /* Crop higher on face */
+    object-position: center;
     border-radius: 50%;
     border: 2px solid #0056b3;
-    transform: scale(1.6); /* Further zoom in */
 }
 
 figcaption {
