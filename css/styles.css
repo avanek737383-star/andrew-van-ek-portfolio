@@ -244,6 +244,10 @@ footer {
     background-color: #f8f9fa;
 }
 
+.resume-mobile-note {
+    display: none;
+}
+
 /* Grid Layouts */
 .grid {
     display: grid;
@@ -267,9 +271,25 @@ footer {
         flex-direction: column;
     }
 
+    .resume-mobile-note {
+        display: block;
+    }
+
+    .resume-desktop-intro {
+        display: none;
+    }
+
+    .resume-actions {
+        width: 100%;
+    }
+
+    .resume-actions .btn {
+        flex: 1 1 140px;
+        text-align: center;
+    }
+
     .resume-pdf {
-        height: 70vh;
-        min-height: 520px;
+        display: none;
     }
 }
 
