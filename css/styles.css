@@ -47,9 +47,20 @@ body {
 }
 
 figcaption {
-    font-style: italic;
     color: #666;
     font-size: 0.9em;
+}
+
+.hero-slogan,
+.hero-name {
+    display: block;
+}
+
+.hero-name {
+    margin-top: 6px;
+    color: #002d5a;
+    font-style: italic;
+    font-weight: 500;
 }
 
 h1 {
