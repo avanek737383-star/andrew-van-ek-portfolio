@@ -111,6 +111,10 @@ nav a:hover {
     color: #00ccff;
 }
 
+.nav-toggle {
+    display: none;
+}
+
 /* 3. Main Content */
 main {
     background: #ffffff;
@@ -700,6 +704,172 @@ footer {
     margin-bottom: 0;
 }
 
+/* Contact page */
+.contact-main {
+    display: grid;
+    gap: 34px;
+}
+
+.contact-intro {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-intro h2 {
+    margin-bottom: 14px;
+    border-bottom: 0;
+    font-size: clamp(1.7rem, 4vw, 2.25rem);
+}
+
+.contact-eyebrow,
+.contact-card-label {
+    color: #0056b3;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.contact-card {
+    padding: 22px;
+    border: 1px solid #d5e0eb;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.contact-card-primary {
+    grid-column: 1 / -1;
+    background: #f2f7fc;
+}
+
+.contact-card h3 {
+    margin: 8px 0 10px;
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.contact-email {
+    display: inline-block;
+    color: #0056b3;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.contact-link-list {
+    display: grid;
+    gap: 8px;
+}
+
+.contact-link-list a {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #d5e0eb;
+    color: #0056b3;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-location {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+    align-items: center;
+    gap: 24px;
+}
+
+.contact-location h2 {
+    border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+    nav.tablet-desktop {
+        padding: 8px 15px;
+    }
+
+    .nav-toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 6px;
+        background: transparent;
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .nav-toggle-icon {
+        display: grid;
+        gap: 4px;
+        width: 20px;
+    }
+
+    .nav-toggle-icon i {
+        display: block;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    nav.tablet-desktop.nav-open .nav-toggle-icon i:first-child {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    nav.tablet-desktop.nav-open .nav-toggle-icon i:nth-child(2) {
+        opacity: 0;
+    }
+
+    nav.tablet-desktop.nav-open .nav-toggle-icon i:last-child {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    nav.tablet-desktop > ul {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin: 8px 0 0;
+        padding: 4px 0;
+        overflow: visible;
+    }
+
+    nav.tablet-desktop.nav-open > ul {
+        display: flex;
+    }
+
+    nav.tablet-desktop li {
+        margin: 0;
+    }
+
+    nav.tablet-desktop li a {
+        display: block;
+        padding: 9px 10px;
+        border-radius: 5px;
+    }
+
+    nav.tablet-desktop li a:hover,
+    nav.tablet-desktop li a:focus-visible {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
 @media (max-width: 520px) {
     .portfolio-chat {
         right: 10px;
@@ -761,6 +931,20 @@ footer {
     .lab-charts {
         grid-template-columns: 1fr;
     }
+
+    .contact-grid,
+    .contact-location {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card-primary {
+        grid-column: auto;
+    }
+
+    .contact-actions .btn {
+        flex: 1 1 130px;
+        text-align: center;
+    }
 }
 
 /* Grid Layouts */
@@ -778,6 +962,10 @@ footer {
 }
 
 @media (max-width: 600px) {
+    main {
+        padding: 24px 18px;
+    }
+
     .twocolumnlayout {
         grid-template-columns: 1fr;
     }
@@ -816,5 +1004,6 @@ footer {
 
 #map iframe {
     width: 100%;
+    max-height: 260px;
     border-radius: 8px;
 }

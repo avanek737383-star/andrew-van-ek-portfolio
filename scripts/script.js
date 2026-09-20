@@ -1,16 +1,5 @@
 // Shared portfolio interactions
 
-function hamburger() {
-	var menu = document.getElementById("menu-links");
-	if (!menu) return;
-	if (menu.style.display === "block") {
-		menu.style.display = "none";
-	} else {
-		menu.style.display = "block";
-		menu.style.backgroundColor = "#e2eae2";
-	}
-}
-
 (function () {
 	"use strict";
 
@@ -18,6 +7,63 @@ function hamburger() {
 	var statusUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/stats";
 	var history = [];
 	var waiting = false;
+
+	function createResponsiveNavigation() {
+		var nav = document.querySelector("nav.tablet-desktop");
+		if (!nav) return;
+		var menu = nav.querySelector("ul");
+		if (!menu) return;
+		menu.id = "site-navigation";
+
+		var button = document.createElement("button");
+		button.className = "nav-toggle";
+		button.type = "button";
+		button.setAttribute("aria-expanded", "false");
+		button.setAttribute("aria-controls", menu.id);
+		button.innerHTML = '<span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>Menu</span>';
+		nav.insertBefore(button, menu);
+
+		function setOpen(open) {
+			nav.classList.toggle("nav-open", open);
+			button.setAttribute("aria-expanded", String(open));
+		}
+
+		button.addEventListener("click", function () {
+			setOpen(!nav.classList.contains("nav-open"));
+		});
+		menu.addEventListener("click", function (event) {
+			if (event.target.closest("a")) setOpen(false);
+		});
+		document.addEventListener("click", function (event) {
+			if (!nav.contains(event.target)) setOpen(false);
+		});
+		document.addEventListener("keydown", function (event) {
+			if (event.key === "Escape" && nav.classList.contains("nav-open")) {
+				setOpen(false);
+				button.focus();
+			}
+		});
+		window.addEventListener("resize", function () {
+			if (window.innerWidth > 900) setOpen(false);
+		});
+	}
+
+	function createContactTools() {
+		var copyButton = document.querySelector("[data-copy-email]");
+		if (!copyButton) return;
+		copyButton.addEventListener("click", async function () {
+			var original = copyButton.textContent;
+			try {
+				await navigator.clipboard.writeText(copyButton.getAttribute("data-copy-email"));
+				copyButton.textContent = "Copied";
+			} catch (error) {
+				copyButton.textContent = "Copy unavailable";
+			}
+			window.setTimeout(function () {
+				copyButton.textContent = original;
+			}, 1800);
+		});
+	}
 
 	function createChat() {
 		var wrapper = document.createElement("aside");
@@ -131,9 +177,15 @@ function hamburger() {
 		window.setInterval(checkAvailability, 30000);
 	}
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", createChat);
-	} else {
+	function initialize() {
+		createResponsiveNavigation();
+		createContactTools();
 		createChat();
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initialize);
+	} else {
+		initialize();
 	}
 }());
