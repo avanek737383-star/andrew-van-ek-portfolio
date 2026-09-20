@@ -168,6 +168,33 @@ footer {
     color: #555;
 }
 
+.certifications {
+    margin-top: 40px;
+}
+
+.certification-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.certification-list .experience-item {
+    padding: 20px;
+    border: 1px solid #d8dee6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background-color: #fff3cd;
+    color: #664d03;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
 /* 6. Mobile Styles & Hiding */
 .mobile-nav, .menu-icon, .mobile {
     display: none;
