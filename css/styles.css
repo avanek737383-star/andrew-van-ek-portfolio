@@ -204,6 +204,45 @@ footer {
     background-color: #003d80;
 }
 
+.btn-secondary {
+    background-color: #fff;
+    color: #0056b3 !important;
+    border: 1px solid #0056b3;
+}
+
+.btn-secondary:hover {
+    background-color: #eaf3ff;
+}
+
+/* Embedded resume */
+.resume-document {
+    margin-bottom: 40px;
+}
+
+.resume-document-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.resume-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.resume-pdf {
+    display: block;
+    width: 100%;
+    height: 80vh;
+    min-height: 700px;
+    border: 1px solid #d8dee6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
 /* Grid Layouts */
 .grid {
     display: grid;
@@ -222,6 +261,15 @@ footer {
     .twocolumnlayout {
         grid-template-columns: 1fr;
     }
+
+    .resume-document-heading {
+        flex-direction: column;
+    }
+
+    .resume-pdf {
+        height: 70vh;
+        min-height: 520px;
+    }
 }
 
 .itunesimg {
@@ -234,4 +282,3 @@ footer {
     width: 100%;
     border-radius: 8px;
 }
-
