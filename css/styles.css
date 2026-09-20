@@ -299,9 +299,18 @@ footer {
 }
 
 /* Local portfolio AI */
-.project-live {
+.project-completed {
     background: #d1e7dd;
     color: #0f5132;
+}
+
+.project-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    color: #526170;
+    font-size: 0.9rem;
 }
 
 .project-architecture {

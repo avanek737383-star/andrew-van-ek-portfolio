@@ -36,7 +36,7 @@ function hamburger() {
 			'    <input id="portfolio-chat-input" maxlength="1000" autocomplete="off" placeholder="Ask about Andrew..." required>',
 			'    <button type="submit">Send</button>',
 			'  </form>',
-			'  <p class="portfolio-chat-note">Local demo responses may be inaccurate. 10 messages/minute.</p>',
+			'  <p class="portfolio-chat-note">Local AI responses may be inaccurate. 10 messages/minute.</p>',
 			'</section>'
 		].join("");
 		document.body.appendChild(wrapper);
