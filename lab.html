@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Live AI Lab | Andrew Van Ek Portfolio</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Live, privacy-conscious system statistics for Andrew Van Ek's self-hosted portfolio AI.">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://andrewtvanekportfolio.online/lab.html">
+		<meta property="og:title" content="Live AI Lab | Andrew Van Ek Portfolio">
+		<meta property="og:description" content="Watch Andrew's self-hosted AI infrastructure respond in real time.">
+		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<nav class="tablet-desktop">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="job.html">Skills</a></li>
+					<li><a href="resume.html">Resume</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="lab.html">Live AI Lab</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+
+			<h1>Live AI Lab</h1>
+			<main class="lab-main">
+				<section class="lab-intro" aria-labelledby="lab-title">
+					<div>
+						<h2 id="lab-title">My Local AI, Live</h2>
+						<p>These statistics come from the Windows PC running this website's AI assistant. Open the chatbot and send a message to watch the model and GPU respond.</p>
+					</div>
+					<p class="lab-connection"><span id="lab-status-dot" class="lab-status-dot" aria-hidden="true"></span><strong id="lab-connection-text">Connecting…</strong><span id="lab-updated">Waiting for data</span></p>
+				</section>
+
+				<section id="lab-metrics" class="lab-metrics" aria-label="Live system metrics">
+					<article class="lab-card lab-card-model"><span>AI model</span><strong id="metric-model">Checking…</strong><small id="metric-model-name">Liquid LFM2.5 1.2B</small></article>
+					<article class="lab-card"><span>GPU load</span><strong id="metric-gpu">—</strong><small>NVIDIA RTX A2000</small></article>
+					<article class="lab-card"><span>Video memory</span><strong id="metric-vram">—</strong><small id="metric-vram-detail">—</small></article>
+					<article class="lab-card"><span>GPU temperature</span><strong id="metric-temperature">—</strong><small>Live sensor reading</small></article>
+					<article class="lab-card"><span>Windows CPU</span><strong id="metric-cpu">—</strong><small>Overall utilization</small></article>
+					<article class="lab-card"><span>Windows memory</span><strong id="metric-memory">—</strong><small>Overall utilization</small></article>
+					<article class="lab-card"><span>Last AI response</span><strong id="metric-latency">—</strong><small id="metric-tokens">No response measured yet</small></article>
+					<article class="lab-card"><span>Gateway activity</span><strong id="metric-requests">0</strong><small id="metric-active">No active requests</small></article>
+				</section>
+				<div id="lab-offline" class="lab-offline" hidden>
+					<strong>AI system offline</strong>
+					<p>The Windows AI computer is currently shut down or reconnecting. Live measurements and the chatbot will return automatically when it comes online.</p>
+				</div>
+
+				<section aria-labelledby="activity-title">
+					<h2 id="activity-title">Recent Activity</h2>
+					<div class="lab-charts">
+						<article class="lab-chart-card"><header><strong>GPU</strong><span id="chart-gpu-value">—</span></header><svg viewBox="0 0 300 90" role="img" aria-label="Recent GPU utilization"><polyline id="chart-gpu" points="" /></svg></article>
+						<article class="lab-chart-card"><header><strong>CPU</strong><span id="chart-cpu-value">—</span></header><svg viewBox="0 0 300 90" role="img" aria-label="Recent CPU utilization"><polyline id="chart-cpu" points="" /></svg></article>
+						<article class="lab-chart-card"><header><strong>VRAM</strong><span id="chart-vram-value">—</span></header><svg viewBox="0 0 300 90" role="img" aria-label="Recent video-memory utilization"><polyline id="chart-vram" points="" /></svg></article>
+					</div>
+				</section>
+
+				<section class="lab-privacy" aria-labelledby="privacy-title">
+					<h2 id="privacy-title">What You Are—and Aren't—Seeing</h2>
+					<p>This page publishes only a few read-only performance measurements. It does not expose visitor prompts, process names, usernames, private addresses, files, or remote controls.</p>
+				</section>
+			</main>
+			<footer>
+				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+				<p>Website last modified: <time datetime="2026-09-20T15:19:00-04:00">September 20, 2026 at 3:19 PM EDT</time></p>
+			</footer>
+		</div>
+		<script src="scripts/script.js"></script>
+		<script src="scripts/lab.js"></script>
+	</body>
+</html>

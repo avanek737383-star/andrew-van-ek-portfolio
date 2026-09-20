@@ -15,12 +15,14 @@ function hamburger() {
 	"use strict";
 
 	var apiUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat";
+	var statusUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/stats";
 	var history = [];
 	var waiting = false;
 
 	function createChat() {
 		var wrapper = document.createElement("aside");
 		wrapper.className = "portfolio-chat";
+		wrapper.hidden = true;
 		wrapper.innerHTML = [
 			'<button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask my local AI</button>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
@@ -51,7 +53,26 @@ function hamburger() {
 		function setOpen(open) {
 			panel.hidden = !open;
 			toggle.setAttribute("aria-expanded", String(open));
-			if (open) input.focus();
+			if (open) {
+				try {
+					input.focus({ preventScroll: true });
+				} catch (error) {
+					input.focus();
+				}
+			}
+		}
+
+		async function checkAvailability() {
+			try {
+				var response = await fetch(statusUrl, { cache: "no-store" });
+				var data = await response.json();
+				var available = response.ok && data.status === "online";
+				wrapper.hidden = !available;
+				if (!available) setOpen(false);
+			} catch (error) {
+				wrapper.hidden = true;
+				setOpen(false);
+			}
 		}
 
 		function addMessage(text, role) {
@@ -105,6 +126,9 @@ function hamburger() {
 				messages.scrollTop = messages.scrollHeight;
 			}
 		});
+
+		checkAvailability();
+		window.setInterval(checkAvailability, 30000);
 	}
 
 	if (document.readyState === "loading") {

@@ -29,6 +29,7 @@
 					<li><a href="job.html">Skills</a></li>
 					<li><a href="resume.html">Resume</a></li>
 					<li><a href="projects.html">Projects</a></li>
+					<li><a href="lab.html">Live AI Lab</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="contact.html">Contact</a></li>
 				</ul>
@@ -38,25 +39,27 @@
 				<section aria-labelledby="local-ai-title">
 					<h2 id="local-ai-title">Private Local-AI Portfolio Assistant</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-20T15:03:00-04:00">September 20, 2026 at 3:03 PM EDT</time></span></p>
-					<p>I designed and deployed the chatbot available in the corner of this website. It runs <strong>Liquid AI LFM2.5 1.2B</strong> locally in LM Studio on a Windows PC instead of sending prompts to a commercial model API.</p>
+					<p>I built the chatbot in the corner of this website and connected it to an AI model running on my own Windows PC. Visitor messages travel through my small Linux server and a private connection before reaching the model.</p>
+					<p class="project-mobile-summary">The result is a private, self-hosted assistant that can answer questions about my experience and projects. It starts with the computer, recovers from dropped connections, and limits repeated requests so one visitor cannot overload it.</p>
 					<div class="project-architecture" aria-label="Chatbot request architecture">
 						<span>Portfolio visitor</span><span aria-hidden="true">→</span>
 						<span>Alpine Linux NUC</span><span aria-hidden="true">→</span>
 						<span>Tailscale + SSH tunnel</span><span aria-hidden="true">→</span>
 						<span>LM Studio on Windows</span>
 					</div>
-					<p>The NUC provides a rate-limited FastAPI gateway through Tailscale Funnel. LM Studio stays bound to Windows localhost, and an automatically supervised SSH tunnel carries inference requests privately between the two computers.</p>
-					<ul>
-						<li>Local model inference with no third-party prompt processing</li>
-						<li>Passwordless Ed25519 SSH with a Windows OpenSSH compatibility configuration</li>
-						<li>Automatic recovery through Alpine OpenRC services</li>
-						<li>Origin restrictions, input limits, short conversation history, and per-IP throttling</li>
-					</ul>
+					<div class="project-technical-summary">
+						<p>The assistant uses Liquid AI LFM2.5 1.2B in LM Studio. The Linux NUC receives website messages and sends them through an encrypted Tailscale and SSH connection while the Windows model server remains private.</p>
+						<ul>
+							<li>Prompts are processed on my own hardware rather than by a paid cloud AI service.</li>
+							<li>The connection and website gateway restart automatically if either one stops.</li>
+							<li>Message length and request frequency are limited to prevent accidental or intentional overload.</li>
+						</ul>
+					</div>
 				</section>
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-09-20T15:04:00-04:00">September 20, 2026 at 3:04 PM EDT</time></p>
+				<p>Website last modified: <time datetime="2026-09-20T15:19:00-04:00">September 20, 2026 at 3:19 PM EDT</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js"></script>
