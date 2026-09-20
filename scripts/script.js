@@ -44,7 +44,7 @@
 			}
 		});
 		window.addEventListener("resize", function () {
-			if (window.innerWidth > 900) setOpen(false);
+			if (window.innerWidth > 1024) setOpen(false);
 		});
 	}
 
@@ -53,11 +53,26 @@
 		if (!copyButton) return;
 		copyButton.addEventListener("click", async function () {
 			var original = copyButton.textContent;
+			var email = copyButton.getAttribute("data-copy-email");
+			if (!window.confirm("Copy Andrew's email address to your clipboard?")) return;
 			try {
-				await navigator.clipboard.writeText(copyButton.getAttribute("data-copy-email"));
+				if (navigator.clipboard && window.isSecureContext) {
+					await navigator.clipboard.writeText(email);
+				} else {
+					var temporary = document.createElement("textarea");
+					temporary.value = email;
+					temporary.setAttribute("readonly", "");
+					temporary.style.position = "fixed";
+					temporary.style.opacity = "0";
+					document.body.appendChild(temporary);
+					temporary.select();
+					if (!document.execCommand("copy")) throw new Error("Copy failed");
+					document.body.removeChild(temporary);
+				}
 				copyButton.textContent = "Copied";
 			} catch (error) {
-				copyButton.textContent = "Copy unavailable";
+				window.prompt("Copy this email address:", email);
+				copyButton.textContent = "Select and copy";
 			}
 			window.setTimeout(function () {
 				copyButton.textContent = original;
