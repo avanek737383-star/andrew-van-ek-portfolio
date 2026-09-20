@@ -21,9 +21,9 @@ body {
 }
 
 /* 2. Header & Navigation */
-header {
+.home-hero {
     background-color: #fff;
-    padding: 20px 0;
+    padding: 32px 0;
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
 }
@@ -61,9 +61,15 @@ h1 {
 
 nav.tablet-desktop {
     background-color: #002d5a;
-    border-radius: 5px;
+    border-radius: 0;
     margin-bottom: 30px;
     display: block !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 nav ul {
@@ -71,10 +77,13 @@ nav ul {
     display: flex;
     justify-content: center;
     padding: 10px 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
 }
 
 nav li {
     margin: 0 15px;
+    flex-shrink: 0;
 }
 
 nav a {
@@ -171,12 +180,12 @@ footer {
     }
     
     nav ul {
-        flex-direction: column;
-        align-items: center;
+        justify-content: flex-start;
+        padding: 12px 15px;
     }
-    
+
     nav li {
-        margin: 5px 0;
+        margin: 0 12px 0 0;
     }
 
     .container {
