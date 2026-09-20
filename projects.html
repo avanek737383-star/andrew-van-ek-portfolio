@@ -34,7 +34,26 @@
 				</ul>
 			</nav>
 			<h1>Projects</h1>
-			<main></main>
+			<main>
+				<section aria-labelledby="local-ai-title">
+					<h2 id="local-ai-title">Private Local-AI Portfolio Assistant</h2>
+					<p><span class="status-badge project-live">Live Project</span></p>
+					<p>I designed and deployed the chatbot available in the corner of this website. It runs <strong>Liquid AI LFM2.5 1.2B</strong> locally in LM Studio on a Windows PC instead of sending prompts to a commercial model API.</p>
+					<div class="project-architecture" aria-label="Chatbot request architecture">
+						<span>Portfolio visitor</span><span aria-hidden="true">→</span>
+						<span>Alpine Linux NUC</span><span aria-hidden="true">→</span>
+						<span>Tailscale + SSH tunnel</span><span aria-hidden="true">→</span>
+						<span>LM Studio on Windows</span>
+					</div>
+					<p>The NUC provides a rate-limited FastAPI gateway through Tailscale Funnel. LM Studio stays bound to Windows localhost, and an automatically supervised SSH tunnel carries inference requests privately between the two computers.</p>
+					<ul>
+						<li>Local model inference with no third-party prompt processing</li>
+						<li>Passwordless Ed25519 SSH with a Windows OpenSSH compatibility configuration</li>
+						<li>Automatic recovery through Alpine OpenRC services</li>
+						<li>Origin restrictions, input limits, short conversation history, and per-IP throttling</li>
+					</ul>
+				</section>
+			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
 				<p>Last updated: <time datetime="2026-09-20">September 20, 2026</time></p>
