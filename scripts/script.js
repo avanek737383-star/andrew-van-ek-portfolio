@@ -54,7 +54,6 @@
 		copyButton.addEventListener("click", async function () {
 			var original = copyButton.textContent;
 			var email = copyButton.getAttribute("data-copy-email");
-			if (!window.confirm("Copy Andrew's email address to your clipboard?")) return;
 			try {
 				if (navigator.clipboard && window.isSecureContext) {
 					await navigator.clipboard.writeText(email);
