@@ -88,6 +88,20 @@
 					</ul>
 					<p class="project-evidence">Result: the image was internally verified, four source sectors remained unreadable, and the recovery limits were documented without claiming data that could not be recovered.</p>
 				</section>
+
+				<section class="project-entry" aria-labelledby="ftk-fat32-title">
+					<h2 id="ftk-fat32-title">FTK Imager and an Unexpected FAT32 Edge Case</h2>
+					<p class="project-status"><span class="status-badge project-completed">Troubleshooting Case Study</span> <span>Documented September 21, 2026</span></p>
+					<p>I investigated a repeatable FTK Imager crash triggered by selecting a small removable USB volume. The device was a roughly 1 GB FAT32 volume with ordinary folders, and Windows could browse it normally.</p>
+					<p>FTK Imager 8.3.0.27 repeatedly failed while selecting the volume, even after reinstalling the application and resetting its per-user settings. The Windows Error Reporting records showed application crashes in the FTK handling path rather than a simple missing-drive error.</p>
+					<ul>
+						<li>Confirmed that the volume was present, readable, and formatted as FAT32.</li>
+						<li>Ran a read-only CHKDSK scan; Windows reported no filesystem problems.</li>
+						<li>Verified that FTK could begin image acquisition from a different unusual USB device.</li>
+						<li>Reformatted the test USB as exFAT and observed that FTK proceeded normally.</li>
+					</ul>
+					<p class="project-evidence">Result: the evidence points to an observed compatibility or parser edge case involving this FAT32 removable volume and FTK Imager, rather than a general imaging-engine or hardware failure. The practical workaround was to use exFAT for the test media or acquire the device before browsing its filesystem.</p>
+				</section>
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
