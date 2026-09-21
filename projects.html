@@ -75,10 +75,23 @@
 					</ul>
 					<p class="project-evidence">Documented troubleshooting window: 11:04 AM–5:05 PM, with more than two hours of supported hands-on work.</p>
 				</section>
+
+				<section class="project-entry" aria-labelledby="heyboer-project-title">
+					<h2 id="heyboer-project-title">Forensic Disk Imaging and Targeted Recovery</h2>
+					<p class="project-status"><span class="status-badge project-completed">Documented Workflow</span> <span>Completed September 21, 2026</span></p>
+					<p>I built a careful recovery workflow for a failing hard drive, prioritizing evidence preservation and reproducibility over aggressive repeated reads. The work included forensic imaging, independent size checks, hash verification, bad-sector documentation, and a bounded recovery attempt.</p>
+					<ul>
+						<li>Created and verified a raw forensic image with FTK Imager, matching the reported MD5 and SHA-1 verification values.</li>
+						<li>Recorded source geometry, acquisition details, unreadable sectors, and the fact that FTK replaced those sectors with zeros.</li>
+						<li>Preserved the original image and used a separate Debian WSL and GNU ddrescue workflow for targeted sector reads.</li>
+						<li>Used read-only handling, bounded retries, separate map files, and a clean detach procedure to limit further stress on the failing disk.</li>
+					</ul>
+					<p class="project-evidence">Result: the image was internally verified, four source sectors remained unreadable, and the recovery limits were documented without claiming data that could not be recovered.</p>
+				</section>
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-09-20T15:43:00-04:00">September 20, 2026 at 3:43 PM EDT</time></p>
+				<p>Website last modified: <time datetime="2026-09-21T09:30:00-04:00">September 21, 2026 at 9:30 AM EDT</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20260920-2"></script>
