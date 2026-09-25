@@ -6,16 +6,16 @@
 		<link rel="stylesheet" href="css/styles.css?v=20260920-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Projects by Andrew Van Ek.">
+		<meta name="description" content="Hands-on infrastructure, cybersecurity, data recovery, and local-AI projects by Andrew Van Ek.">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://andrewtvanekportfolio.online/projects.html">
 		<meta property="og:title" content="Projects | Andrew Van Ek Portfolio">
-		<meta property="og:description" content="Projects by Andrew Van Ek.">
+		<meta property="og:description" content="Hands-on infrastructure, cybersecurity, data recovery, and local-AI projects by Andrew Van Ek.">
 		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
 		<meta property="twitter:card" content="summary_large_image">
 		<meta property="twitter:url" content="https://andrewtvanekportfolio.online/projects.html">
 		<meta property="twitter:title" content="Projects | Andrew Van Ek Portfolio">
-		<meta property="twitter:description" content="Projects by Andrew Van Ek.">
+		<meta property="twitter:description" content="Hands-on infrastructure, cybersecurity, data recovery, and local-AI projects by Andrew Van Ek.">
 		<meta property="twitter:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,27 @@
 			</nav>
 			<h1>Projects</h1>
 			<main>
+				<section class="project-entry" aria-labelledby="xp-samba-title">
+					<h2 id="xp-samba-title">Safely Bridging Windows XP to Modern Network Storage</h2>
+					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-25">September 25, 2026</time></span></p>
+					<p>I connected a legacy Windows XP laptop to USB storage hosted by my Alpine Linux NUC without exposing obsolete SMB1 service to the rest of the local network. The same drive remains available to modern devices through my private Tailscale network.</p>
+					<p>The project combined Samba protocol compatibility, layered access controls, persistent OpenRC service ordering, and packet-level troubleshooting. An exact-source firewall rule allows the XP laptop at <code>192.168.0.160</code> to reach TCP port 445 while dropping SMB traffic from every other LAN address.</p>
+					<div class="project-architecture" aria-label="Legacy file-sharing architecture">
+						<span>Windows XP</span><span aria-hidden="true">→</span>
+						<span>IP-scoped nftables rule</span><span aria-hidden="true">→</span>
+						<span>Alpine Linux Samba</span><span aria-hidden="true">→</span>
+						<span>ONEFIVE USB storage</span>
+					</div>
+					<ul>
+						<li>Enabled the legacy NT1 protocol required by Windows XP while retaining automatic SMB2/SMB3 negotiation for modern clients.</li>
+						<li>Created a separate guest-only <code>ONEFIVE-XP</code> share restricted to one LAN source address; the normal <code>ONEFIVE</code> share remains authenticated for Tailscale clients.</li>
+						<li>Used both Samba host controls and nftables filtering so the XP exception is enforced in two independent layers.</li>
+						<li>Made the firewall and Samba configuration persistent and ordered startup so Tailscale and the access-control rules initialize before file sharing.</li>
+						<li>Diagnosed a stalled XP authentication exchange with Samba logs, live sessions, firewall counters, and a narrowly filtered packet-capture workflow.</li>
+					</ul>
+					<p class="project-evidence">Result: the XP laptop can read and write files on ONEFIVE, all other LAN clients are denied, and modern remote access continues through Tailscale.</p>
+				</section>
+
 				<section class="project-entry" aria-labelledby="local-ai-title">
 					<h2 id="local-ai-title">Private Local-AI Portfolio Assistant</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-20T15:03:00-04:00">September 20, 2026 at 3:03 PM EDT</time></span></p>
@@ -105,7 +126,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-09-21T09:30:00-04:00">September 21, 2026 at 9:30 AM EDT</time></p>
+				<p>Website last modified: <time datetime="2026-09-25T18:51:00-04:00">September 25, 2026 at 6:51 PM EDT</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20260920-2"></script>
