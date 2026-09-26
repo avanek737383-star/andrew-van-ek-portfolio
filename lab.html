@@ -3,7 +3,7 @@
 	<head>
 		<title>Live AI Lab | Andrew Van Ek Portfolio</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20260920-1">
+		<link rel="stylesheet" href="css/styles.css?v=20260925-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Live, privacy-conscious system statistics for Andrew Van Ek's self-hosted portfolio AI.">
@@ -64,6 +64,35 @@
 					</div>
 				</section>
 
+				<section class="nuc-section" aria-labelledby="nuc-title">
+					<div class="nuc-heading">
+						<div>
+							<h2 id="nuc-title">NUC Infrastructure</h2>
+							<p>Live, sanitized measurements from the Alpine Linux NUC serving as this portfolio's always-on gateway and storage host.</p>
+						</div>
+						<p class="lab-connection"><span id="nuc-status-dot" class="lab-status-dot" aria-hidden="true"></span><strong id="nuc-connection-text">Connecting…</strong><span id="nuc-updated">Waiting for data</span></p>
+					</div>
+					<div class="project-architecture nuc-architecture" aria-label="Portfolio infrastructure architecture">
+						<span>Portfolio</span><span aria-hidden="true">→</span>
+						<span>Alpine Linux NUC</span><span aria-hidden="true">→</span>
+						<span>Tailscale</span><span aria-hidden="true">→</span>
+						<span>Windows AI PC</span>
+					</div>
+					<div id="nuc-metrics" class="lab-metrics nuc-metrics" aria-label="Live NUC system metrics">
+						<article class="lab-card"><span>NUC uptime</span><strong id="nuc-uptime">—</strong><small>Since the last restart</small></article>
+						<article class="lab-card"><span>CPU utilization</span><strong id="nuc-cpu">—</strong><small id="nuc-load">Load average unavailable</small></article>
+						<article class="lab-card"><span>Memory</span><strong id="nuc-memory">—</strong><small id="nuc-memory-detail">—</small></article>
+						<article class="lab-card"><span>NUC temperature</span><strong id="nuc-temperature">—</strong><small>Live thermal sensor</small></article>
+						<article class="lab-card"><span>System storage</span><strong id="nuc-system-disk">—</strong><small id="nuc-system-disk-detail">—</small></article>
+						<article class="lab-card"><span>ONEFIVE storage</span><strong id="nuc-onefive-disk">—</strong><small id="nuc-onefive-disk-detail">—</small></article>
+						<article class="lab-card nuc-services-card"><span>Infrastructure health</span><strong id="nuc-services">Checking…</strong><small id="nuc-services-detail">Gateway · Tailscale · Samba</small></article>
+					</div>
+					<div id="nuc-offline" class="lab-offline" hidden>
+						<strong>NUC telemetry unavailable</strong>
+						<p>The public metrics endpoint is temporarily unreachable. No remote controls are exposed by this panel.</p>
+					</div>
+				</section>
+
 				<section class="lab-privacy" aria-labelledby="privacy-title">
 					<h2 id="privacy-title">What You Are—and Aren't—Seeing</h2>
 					<p>This page publishes only a few read-only performance measurements. It does not expose visitor prompts, process names, usernames, private addresses, files, or remote controls.</p>
@@ -71,10 +100,10 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-09-20T15:43:00-04:00">September 20, 2026 at 3:43 PM EDT</time></p>
+				<p>Website last modified: <time datetime="2026-09-25T18:59:00-04:00">September 25, 2026 at 6:59 PM EDT</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20260920-2"></script>
-		<script src="scripts/lab.js?v=20260920-1"></script>
+		<script src="scripts/lab.js?v=20260925-1"></script>
 	</body>
 </html>

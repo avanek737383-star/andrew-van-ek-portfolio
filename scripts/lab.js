@@ -2,6 +2,7 @@
 	"use strict";
 
 	var endpoint = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/stats";
+	var nucEndpoint = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/nuc-stats";
 	var history = { gpu: [], cpu: [], vram: [] };
 	var maximumPoints = 24;
 
@@ -11,6 +12,21 @@
 
 	function percent(value) {
 		return typeof value === "number" ? Math.round(value) + "%" : "—";
+	}
+
+	function formatUptime(seconds) {
+		if (typeof seconds !== "number") return "—";
+		var days = Math.floor(seconds / 86400);
+		var hours = Math.floor(seconds % 86400 / 3600);
+		if (days > 0) return days + "d " + hours + "h";
+		var minutes = Math.floor(seconds % 3600 / 60);
+		return hours > 0 ? hours + "h " + minutes + "m" : minutes + "m";
+	}
+
+	function storageDetail(disk) {
+		return disk && typeof disk.used_gb === "number"
+			? disk.used_gb.toLocaleString() + " / " + disk.total_gb.toLocaleString() + " GB"
+			: "Unavailable";
 	}
 
 	function addPoint(series, value) {
@@ -82,6 +98,50 @@
 		byId("lab-metrics").classList.add("is-offline");
 	}
 
+	function updateNuc(data) {
+		var nuc = data.nuc || {};
+		var services = nuc.services || {};
+		var serviceValues = [services.gateway, services.tailscale, services.samba];
+		var onlineServices = serviceValues.filter(function (online) { return online === true; }).length;
+
+		byId("nuc-status-dot").classList.add("is-online");
+		byId("nuc-connection-text").textContent = "NUC online";
+		byId("nuc-updated").textContent = "Updated " + new Date((data.updated_at || Date.now() / 1000) * 1000).toLocaleTimeString();
+		byId("nuc-offline").hidden = true;
+		byId("nuc-metrics").classList.remove("is-offline");
+		byId("nuc-uptime").textContent = formatUptime(nuc.uptime_seconds);
+		byId("nuc-cpu").textContent = percent(nuc.cpu_percent);
+		byId("nuc-load").textContent = Array.isArray(nuc.load_average)
+			? "Load " + nuc.load_average.join(" · ")
+			: "Load average unavailable";
+		byId("nuc-memory").textContent = percent(nuc.memory_percent);
+		byId("nuc-memory-detail").textContent = typeof nuc.memory_used_mb === "number"
+			? nuc.memory_used_mb.toLocaleString() + " / " + nuc.memory_total_mb.toLocaleString() + " MB"
+			: "Unavailable";
+		byId("nuc-temperature").textContent = typeof nuc.cpu_temperature_c === "number"
+			? Math.round(nuc.cpu_temperature_c) + "°C"
+			: "—";
+		byId("nuc-system-disk").textContent = percent(nuc.system_disk && nuc.system_disk.percent);
+		byId("nuc-system-disk-detail").textContent = storageDetail(nuc.system_disk);
+		byId("nuc-onefive-disk").textContent = percent(nuc.onefive_disk && nuc.onefive_disk.percent);
+		byId("nuc-onefive-disk-detail").textContent = storageDetail(nuc.onefive_disk);
+		byId("nuc-services").textContent = onlineServices + " / 3 online";
+		byId("nuc-services").className = onlineServices === 3 ? "metric-loaded" : "metric-idle";
+		byId("nuc-services-detail").textContent = [
+			"Gateway " + (services.gateway ? "online" : "offline"),
+			"Tailscale " + (services.tailscale ? "online" : "offline"),
+			"Samba " + (services.samba ? "online" : "offline")
+		].join(" · ");
+	}
+
+	function showNucOffline() {
+		byId("nuc-status-dot").classList.remove("is-online");
+		byId("nuc-connection-text").textContent = "Telemetry unavailable";
+		byId("nuc-updated").textContent = "Waiting for the always-on NUC";
+		byId("nuc-offline").hidden = false;
+		byId("nuc-metrics").classList.add("is-offline");
+	}
+
 	async function refresh() {
 		try {
 			var response = await fetch(endpoint, { cache: "no-store" });
@@ -92,6 +152,18 @@
 		}
 	}
 
+	async function refreshNuc() {
+		try {
+			var response = await fetch(nucEndpoint, { cache: "no-store" });
+			if (!response.ok) throw new Error("NUC telemetry unavailable");
+			updateNuc(await response.json());
+		} catch (error) {
+			showNucOffline();
+		}
+	}
+
 	refresh();
+	refreshNuc();
 	window.setInterval(refresh, 5000);
+	window.setInterval(refreshNuc, 10000);
 }());
