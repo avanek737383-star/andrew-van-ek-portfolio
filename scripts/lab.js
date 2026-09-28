@@ -5,6 +5,7 @@
 	var nucEndpoint = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/nuc-stats";
 	var history = { gpu: [], cpu: [], vram: [] };
 	var maximumPoints = 24;
+	var ducoClientHistory = {};
 
 	function byId(id) {
 		return document.getElementById(id);
@@ -132,6 +133,83 @@
 			"Tailscale " + (services.tailscale ? "online" : "offline"),
 			"Samba " + (services.samba ? "online" : "offline")
 		].join(" · ");
+		updateDuco(data.duco || { status: "unavailable", miners: [] });
+	}
+
+	function formatHashrate(value) {
+		if (typeof value !== "number" || !isFinite(value)) return "—";
+		var units = ["H/s", "kH/s", "MH/s", "GH/s"];
+		var unit = 0;
+		var amount = Math.max(0, value);
+		while (amount >= 1000 && unit < units.length - 1) {
+			amount /= 1000;
+			unit++;
+		}
+		return (amount >= 100 ? Math.round(amount) : amount.toFixed(1)) + " " + units[unit];
+	}
+
+	function formatLastSeen(value) {
+		if (typeof value !== "number") return "No observation yet";
+		return "Last seen " + new Date(value * 1000).toLocaleString();
+	}
+
+	function drawDucoChart(svg, points) {
+		var values = (points || []).map(function (point) { return typeof point.hashrate === "number" ? point.hashrate : 0; });
+		if (!values.length) return;
+		var maximum = Math.max.apply(Math, values.concat([1]));
+		var step = values.length > 1 ? 300 / (values.length - 1) : 300;
+		var line = values.map(function (value, index) {
+			return (index * step).toFixed(1) + "," + (86 - value / maximum * 70).toFixed(1);
+		}).join(" ");
+		svg.setAttribute("points", line);
+	}
+
+	function updateDuco(duco) {
+		var container = byId("duco-miners");
+		var miners = duco && Array.isArray(duco.miners) ? duco.miners : [];
+		container.textContent = "";
+		byId("duco-status-dot").classList.toggle("is-online", duco && duco.status === "online");
+		byId("duco-connection-text").textContent = duco && duco.status === "online" ? "DUCO telemetry online" : "DUCO telemetry unavailable";
+		byId("duco-updated").textContent = duco && duco.updated_at ? "Updated " + new Date(duco.updated_at * 1000).toLocaleTimeString() : "Waiting for API";
+		miners.forEach(function (miner) {
+			var card = document.createElement("article");
+			card.className = "lab-card duco-miner-card";
+			var label = document.createElement("span");
+			label.textContent = miner.label || "DUCO miner";
+			var state = document.createElement("strong");
+			state.className = miner.online ? "metric-loaded" : "metric-idle";
+			state.textContent = miner.online ? "Online" : "Offline";
+			var rate = document.createElement("small");
+			rate.textContent = (miner.online ? formatHashrate(miner.hashrate) : "Not mining now") + " · " + formatLastSeen(miner.last_seen_at);
+			card.appendChild(label);
+			card.appendChild(state);
+			card.appendChild(rate);
+			container.appendChild(card);
+
+			var chartCard = document.createElement("div");
+			chartCard.className = "lab-chart-card duco-chart-card";
+			var header = document.createElement("header");
+			var title = document.createElement("strong");
+			title.textContent = (miner.label || "DUCO miner") + " hashrate";
+			var current = document.createElement("span");
+			current.textContent = miner.online ? formatHashrate(miner.hashrate) : "Offline";
+			header.appendChild(title);
+			header.appendChild(current);
+			var clientPoints = ducoClientHistory[miner.label] || [];
+			clientPoints.push({ hashrate: miner.online && typeof miner.hashrate === "number" ? miner.hashrate : 0 });
+			if (clientPoints.length > 48) clientPoints.shift();
+			ducoClientHistory[miner.label] = clientPoints;
+			var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			svg.setAttribute("viewBox", "0 0 300 90");
+			svg.setAttribute("role", "img");
+			svg.setAttribute("aria-label", (miner.label || "DUCO miner") + " recent hashrate");
+			var polyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+			drawDucoChart(polyline, clientPoints);
+			svg.appendChild(polyline);
+			chartCard.appendChild(header);
+			chartCard.appendChild(svg);
+			container.appendChild(chartCard);
+		});
 	}
 
 	function showNucOffline() {

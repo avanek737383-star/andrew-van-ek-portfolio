@@ -110,6 +110,20 @@
 					<p class="project-evidence">Result: the image was internally verified, four source sectors remained unreadable, and the recovery limits were documented without claiming data that could not be recovered.</p>
 				</section>
 
+				<section class="project-entry" aria-labelledby="ram-forensics-title">
+					<h2 id="ram-forensics-title">RAM-Disk Forensic Acquisition and Evidence Organization</h2>
+					<p class="project-status"><span class="status-badge project-completed">Documented Workflow</span> <span>Forensic imaging and recovery workflow</span></p>
+					<p>I acquired a RAM-disk image with FTK Imager and analyzed it on macOS using command-line forensic tooling. I was able to repeatedly extract multiple files while preserving a practical, repeatable workflow for working with a large evidence set.</p>
+					<p>The hardest part became organizing the extracted data. Large-folder compression with macOS <code>zip</code> and <code>ditto</code> took too long to finish reliably, so I divided the work into smaller folders. I also used Google Colab to develop snippets that created many smaller archives directly in Google Drive, avoiding repeated downloads and re-uploads.</p>
+					<ul>
+						<li>Acquired the RAM-disk evidence with FTK Imager and maintained a forensic-minded separation between the image and extracted working files.</li>
+						<li>Used persistence and repeated validation to extract multiple files from the image on macOS.</li>
+						<li>Tested multiple compression approaches, then adapted the plan when a single large archive became impractical.</li>
+						<li>Vibe-coded Google Colab automation to package many folders directly in Google Drive instead of repeatedly downloading the full dataset.</li>
+					</ul>
+					<p class="project-evidence">Result: a large RAM-disk evidence set became manageable through smaller, repeatable extraction and archiving steps. The work highlights persistence, troubleshooting, and practical automation under real-world time constraints.</p>
+				</section>
+
 				<section class="project-entry" aria-labelledby="ftk-fat32-title">
 					<h2 id="ftk-fat32-title">FTK Imager and an Unexpected FAT32 Edge Case</h2>
 					<p class="project-status"><span class="status-badge project-completed">Troubleshooting Case Study</span> <span>Documented September 21, 2026</span></p>

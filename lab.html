@@ -3,7 +3,7 @@
 	<head>
 		<title>Live AI Lab | Andrew Van Ek Portfolio</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20260925-1">
+		<link rel="stylesheet" href="css/styles.css?v=20260928-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Live, privacy-conscious system statistics for Andrew Van Ek's self-hosted portfolio AI.">
@@ -87,6 +87,18 @@
 						<article class="lab-card"><span>ONEFIVE storage</span><strong id="nuc-onefive-disk">—</strong><small id="nuc-onefive-disk-detail">—</small></article>
 						<article class="lab-card nuc-services-card"><span>Infrastructure health</span><strong id="nuc-services">Checking…</strong><small id="nuc-services-detail">Gateway · Tailscale · Samba</small></article>
 					</div>
+					<section class="duco-section" aria-labelledby="duco-title">
+						<div class="nuc-heading">
+							<div>
+								<h2 id="duco-title">Duino-Coin Miners</h2>
+								<p>Display-only mining telemetry. These miners are intentionally intermittent, so each card keeps the last observed time and recent hashrate history.</p>
+							</div>
+							<p class="lab-connection"><span id="duco-status-dot" class="lab-status-dot" aria-hidden="true"></span><strong id="duco-connection-text">Checking…</strong><span id="duco-updated">Waiting for data</span></p>
+						</div>
+						<div id="duco-miners" class="duco-miners" aria-label="Duino-Coin miner telemetry"></div>
+						<p class="duco-note">Only public miner activity is shown. Wallet balances, mining keys, device addresses, and remote controls stay private.</p>
+					</section>
+
 					<div id="nuc-offline" class="lab-offline" hidden>
 						<strong>NUC telemetry unavailable</strong>
 						<p>The public metrics endpoint is temporarily unreachable. No remote controls are exposed by this panel.</p>
@@ -104,6 +116,6 @@
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20260920-2"></script>
-		<script src="scripts/lab.js?v=20260925-1"></script>
+		<script src="scripts/lab.js?v=20260928-1"></script>
 	</body>
 </html>
