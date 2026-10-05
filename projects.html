@@ -36,6 +36,20 @@
 			</nav>
 			<h1>Projects</h1>
 			<main>
+				<section class="project-entry" aria-labelledby="powerpc-qemu-title">
+					<h2 id="powerpc-qemu-title">PowerPC Mac OS X Emulation: PearPC to QEMU Migration</h2>
+					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active emulation and legacy-platform workflow</span></p>
+					<p>I am working toward launching Mac OS X 10.3 Panther in a PowerPC emulator on Windows. The first approach used PearPC 0.5 with its JITC build and Panther disk media, but the configuration did not produce a working launch after troubleshooting the emulator files and startup path.</p>
+					<p>I documented the failed PearPC path, removed its temporary emulator folder and virtual disk, preserved the Panther disc folders, and moved to QEMU as the next emulator to evaluate. The current QEMU Windows installer was downloaded and its SHA-512 checksum verified; installation and guest-boot testing are the next checkpoints.</p>
+					<ul>
+						<li>Worked with legacy PowerPC emulation artifacts, including a PearPC JITC executable, configuration file, and Mac OS X Panther media.</li>
+						<li>Separated disposable PearPC runtime files from the original Panther disc folders before cleanup.</li>
+						<li>Verified the QEMU installer checksum before moving to the replacement emulator.</li>
+						<li>Kept the project status honest: PearPC was unsuccessful, while QEMU remains an active next-stage experiment.</li>
+					</ul>
+					<p class="project-evidence">Current result: the migration from PearPC to QEMU is prepared, with verified installer media and preserved Panther sources ready for the next boot and compatibility tests.</p>
+				</section>
+
 				<section class="project-entry" aria-labelledby="slax-busybox-title">
 					<h2 id="slax-busybox-title">Bootstrapping a Static BusyBox Environment on Legacy Slax</h2>
 					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active troubleshooting and recovery workflow</span></p>
