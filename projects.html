@@ -36,6 +36,15 @@
 			</nav>
 			<h1>Projects</h1>
 			<main>
+				<section class="project-entry" aria-labelledby="tahoe-iso-title">
+					<h2 id="tahoe-iso-title">macOS Tahoe Bootable ISO Builder</h2>
+					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Installation nearing completion</span></p>
+					<p>Created a bootable macOS Tahoe ISO from Apple’s official installer using a custom Python workflow developed with Codex. The project brought together installer downloads, executable signature checks, disk-image verification, bootable media creation, ISO conversion, and SHA-256 checksums in one repeatable process.</p>
+					<p>Getting there involved troubleshooting Apple installer signature errors, adapting verification to check the installer’s executables and payload directly, and managing limited disk space during the build. Apple’s createinstallmedia prepared the bootable installer, and hdiutil converted it into an ISO for use in a virtual machine.</p>
+					<p>The resulting ISO has now successfully booted in the target VM, and macOS Tahoe is progressing through setup, with installation nearing completion.</p>
+					<p>Tools &amp; skills: Python, macOS Terminal, softwareupdate, codesign, createinstallmedia, hdiutil, SHA-256 verification, virtualization, and troubleshooting with Codex.</p>
+				</section>
+
 				<section class="project-entry" aria-labelledby="powerpc-qemu-title">
 					<h2 id="powerpc-qemu-title">PowerPC Mac OS X Emulation: PearPC to QEMU Migration</h2>
 					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active emulation and legacy-platform workflow</span></p>
