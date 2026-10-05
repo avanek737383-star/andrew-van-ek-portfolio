@@ -308,6 +308,11 @@ footer {
     color: #0f5132;
 }
 
+.project-in-progress {
+    background: #fff3cd;
+    color: #664d03;
+}
+
 .project-status {
     display: flex;
     flex-wrap: wrap;

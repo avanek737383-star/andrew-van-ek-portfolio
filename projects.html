@@ -36,6 +36,41 @@
 			</nav>
 			<h1>Projects</h1>
 			<main>
+				<section class="project-entry" aria-labelledby="slax-busybox-title">
+					<h2 id="slax-busybox-title">Bootstrapping a Static BusyBox Environment on Legacy Slax</h2>
+					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active troubleshooting and recovery workflow</span></p>
+					<p>I am building a self-contained command environment on a remote Slax system whose older userspace cannot run modern Debian utilities. The first obstacle was a GLIBC mismatch: tools such as <code>base64</code> and OpenSSL were present but required a newer <code>libc.so.6</code> than the system provides. The investigation also separated shell capability from binary compatibility: <code>/dev/tcp</code> is a Bash feature rather than a generic <code>sh</code> feature, and changing <code>LD_LIBRARY_PATH</code> or invoking the dynamic linker can alter one command without repairing the underlying userspace.</p>
+					<p>Rather than overwrite the system libraries or make unsupported changes to the host, I selected the x86_64 musl-static BusyBox binary as a portable bootstrap. I downloaded it on Windows, prepared it in Debian WSL, and am reconstructing it on the remote machine while keeping the transfer auditable and append-only. The recovery notes also document safer alternatives that were evaluated—direct linker invocation, local network reads, and shell-level decoders—along with why each depended on tools or runtime libraries the target did not reliably have.</p>
+					<ul>
+						<li>Identified the failure as a runtime ABI mismatch rather than a missing command.</li>
+						<li>Selected a statically linked musl build to avoid depending on the remote GLIBC version.</li>
+						<li>Used shell-builtin <code>printf</code> with hexadecimal byte escapes after remote decoders proved incompatible.</li>
+						<li>Used ELF headers, file size, and execution behavior as validation checkpoints instead of assuming that a command which created a file had produced a valid executable.</li>
+						<li>Reset and rebuilt the target file carefully after catching a one-character path typo before validation.</li>
+					</ul>
+					<p class="project-evidence">Current result: the byte-transfer workflow is running successfully in small, paste-safe batches; final ELF validation and BusyBox execution remain the next checkpoints.</p>
+				</section>
+
+				<section class="project-entry" aria-labelledby="remote-transfer-title">
+					<h2 id="remote-transfer-title">Reliable Binary Transfer Through a Constrained Remote Shell</h2>
+					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active remote-systems troubleshooting</span></p>
+					<p>I designed a recovery path for moving a multi-megabyte executable into a remote shell when normal file-transfer tools were unavailable or unusable. The work required adapting the transport as the environment revealed its limits: modern utilities failed on old GLIBC, BusyBox was not yet available, and long pasted commands were truncated by the terminal. The transcript captures a useful troubleshooting pattern: test the shell primitive, inspect the exact runtime error, reduce assumptions, and keep the destination file append-only until validation.</p>
+					<div class="project-architecture" aria-label="Constrained binary transfer workflow">
+						<span>Windows download</span><span aria-hidden="true">→</span>
+						<span>Debian WSL preparation</span><span aria-hidden="true">→</span>
+						<span>Short printf batches</span><span aria-hidden="true">→</span>
+						<span>Remote Slax file</span>
+					</div>
+					<ul>
+						<li>Converted the binary into deterministic byte-oriented shell commands instead of relying on a compatible decoder at the destination.</li>
+						<li>Reduced payload size per command after observing terminal paste cutoffs and visible command corruption.</li>
+						<li>Used WSL, clipboard batching, append-only writes, and explicit reset points to make a fragile manual transfer repeatable.</li>
+						<li>Compared hex, Base64, and direct-stream approaches, then selected the format supported by the target’s actual shell rather than the format that was shortest on the source machine.</li>
+						<li>Kept the troubleshooting evidence-driven: test the shell primitive, inspect the exact error, change one transport assumption, and continue.</li>
+					</ul>
+					<p class="project-evidence">Result so far: the remote shell accepts hexadecimal byte escapes reliably, giving the recovery process a working transport even without usable <code>base64</code>, OpenSSL, or BusyBox on the destination.</p>
+				</section>
+
 				<section class="project-entry" aria-labelledby="xp-samba-title">
 					<h2 id="xp-samba-title">Safely Bridging Windows XP to Modern Network Storage</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-25">September 25, 2026</time></span></p>
@@ -140,7 +175,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-09-25T18:51:00-04:00">September 25, 2026 at 6:51 PM EDT</time></p>
+				<p>Website last modified: <time datetime="2026-10-05">October 5, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20260920-2"></script>
