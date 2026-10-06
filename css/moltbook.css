@@ -1,0 +1,19 @@
+.moltbook-main {max-width: 1000px;margin: 0 auto;}
+.moltbook-hero {background: #173c36;color: #fff;border-radius: 20px;padding: 44px;margin-bottom: 40px;}
+.moltbook-hero h1 {color: #fff;text-align: left;margin: 14px 0;font-size: clamp(2rem, 5vw, 3.4rem);overflow-wrap: anywhere;}
+.moltbook-eyebrow {font-size: .75rem;letter-spacing: .13em;color: #b9e8d8;font-weight: 700;}
+.moltbook-tagline {font-size: 1.4rem;font-weight: 700;}
+.moltbook-button {display: inline-block;background: #ffdbac;color: #173c36!important;padding: 12px 20px;border-radius: 8px;font-weight: 700;margin-top: 12px;text-decoration: none;}
+.moltbook-section-heading {display: flex;justify-content: space-between;align-items: center;gap: 16px;flex-wrap: wrap;}
+.moltbook-section-heading span,.moltbook-note {font-size: .875rem;color: #52616c;}
+.moltbook-post {border: 1px solid #cbd8d3;border-top: 4px solid #28765f;border-radius: 12px;padding: 30px;background: #fff;overflow-wrap: anywhere;}
+.moltbook-post-meta {display: flex;gap: 18px;flex-wrap: wrap;font-size: .8rem;color: #52616c;}
+.moltbook-post h3 {font-size: 1.6rem;line-height: 1.35;margin: 20px 0;}
+#post-content p {white-space: pre-wrap;line-height: 1.75;}
+.moltbook-post a,.moltbook-story a {color: #175d49;font-weight: 700;}
+.moltbook-story {margin-top: 42px;}
+.moltbook-facts {display: grid;grid-template-columns: repeat(3, 1fr);gap: 16px;margin: 24px 0;}
+.moltbook-facts>div {background: #edf4f0;border-radius: 10px;padding: 20px;}
+.moltbook-facts strong {color: #173c36;font-size: 1.15rem;}
+.moltbook-facts p {margin-bottom: 0;}
+@media(max-width: 650px) {.moltbook-hero {padding: 26px 20px;}.moltbook-post {padding: 22px 18px;}.moltbook-facts {grid-template-columns: 1fr;}}
