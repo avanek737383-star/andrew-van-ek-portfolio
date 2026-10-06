@@ -38,6 +38,22 @@
 			<h1>Projects</h1>
 			<main>
 
+                <section class="project-entry" aria-labelledby="portable-compute-title">
+                    <h2 id="portable-compute-title">Portable Windows Compute &amp; Mining Setup</h2>
+                    <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Packaging completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
+                    <p>I assembled portable Windows x64 distributions of Folding@home v8 and XMRig, with ready-to-run folders and ZIP archives. The project focused on extracting application binaries, migrating existing settings privately, packaging GPU dependencies, and creating convenient launchers without installing the applications as Windows services.</p>
+                    <ul>
+                        <li>Extracted Folding@home v8.5.6 client binaries from the official installer and prepared GPU configuration, console and background launchers, and access to the web controls.</li>
+                        <li>Packaged XMRig with its NVIDIA CUDA plugin, CUDA runtime dependencies, and OpenCL support, alongside the existing TLS pool configuration.</li>
+                        <li>Created launch presets for GPU workloads, combined GPU and CPU workloads, and light, medium, and heavy resource use.</li>
+                        <li>Migrated account and workload configuration while keeping account tokens, node authentication keys, and wallet details out of the public project description.</li>
+                        <li>Documented application portability, GPU driver prerequisites, SQLite locking risks in actively synchronized folders, and the permissions and monitoring constraints of managed Windows systems.</li>
+                    </ul>
+                    <p class="project-evidence">Result: both portable packages are prepared. Hardware-specific GPU detection, actual VRAM allocation, and sustained workload performance remain deployment validation steps. GPU launch presets do not imply zero CPU overhead, and portable packaging does not remove driver requirements or managed-device restrictions.</p>
+                    <p>Tools &amp; skills: Windows x64 application packaging, installer extraction, batch scripting, Folding@home, XMRig, CUDA, OpenCL, SQLite configuration, and credential handling.</p>
+                </section>
+
+
 				<section class="project-entry" aria-labelledby="local-council-title">
 					<h2 id="local-council-title">Local Council: Apple and Liquid AI Debate Chatroom</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
