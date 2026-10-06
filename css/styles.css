@@ -357,6 +357,16 @@ footer {
     color: #526170;
 }
 
+.slax-mirrors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+.slax-mirrors a {
+    display: inline-block;
+}
+
 .project-evidence {
     padding: 12px 14px;
     border-left: 3px solid #0056b3;
@@ -940,6 +950,12 @@ footer {
 
     .project-result {
         grid-template-columns: 1fr;
+    }
+
+    .slax-mirrors {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
     }
 
     .lab-intro {

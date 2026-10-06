@@ -60,24 +60,10 @@
 				</section>
 
 				<section class="project-entry" aria-labelledby="slax-busybox-title">
-					<h2 id="slax-busybox-title">Bootstrapping a Static BusyBox Environment on Legacy Slax</h2>
-					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active troubleshooting and recovery workflow</span></p>
-					<p>I am building a self-contained command environment on a remote Slax system whose older userspace cannot run modern Debian utilities. The first obstacle was a GLIBC mismatch: tools such as <code>base64</code> and OpenSSL were present but required a newer <code>libc.so.6</code> than the system provides. The investigation also separated shell capability from binary compatibility: <code>/dev/tcp</code> is a Bash feature rather than a generic <code>sh</code> feature, and changing <code>LD_LIBRARY_PATH</code> or invoking the dynamic linker can alter one command without repairing the underlying userspace.</p>
-					<p>Rather than overwrite the system libraries or make unsupported changes to the host, I selected the x86_64 musl-static BusyBox binary as a portable bootstrap. I downloaded it on Windows, prepared it in Debian WSL, and am reconstructing it on the remote machine while keeping the transfer auditable and append-only. The recovery notes also document safer alternatives that were evaluated—direct linker invocation, local network reads, and shell-level decoders—along with why each depended on tools or runtime libraries the target did not reliably have.</p>
-					<ul>
-						<li>Identified the failure as a runtime ABI mismatch rather than a missing command.</li>
-						<li>Selected a statically linked musl build to avoid depending on the remote GLIBC version.</li>
-						<li>Used shell-builtin <code>printf</code> with hexadecimal byte escapes after remote decoders proved incompatible.</li>
-						<li>Used ELF headers, file size, and execution behavior as validation checkpoints instead of assuming that a command which created a file had produced a valid executable.</li>
-						<li>Reset and rebuilt the target file carefully after catching a one-character path typo before validation.</li>
-					</ul>
-					<p class="project-evidence">Current result: the byte-transfer workflow is running successfully in small, paste-safe batches; final ELF validation and BusyBox execution remain the next checkpoints.</p>
-				</section>
-
-				<section class="project-entry" aria-labelledby="remote-transfer-title">
-					<h2 id="remote-transfer-title">Reliable Binary Transfer Through a Constrained Remote Shell</h2>
+					<h2 id="slax-busybox-title">Bootstrapping Static BusyBox on Legacy Slax Through a Constrained Remote Shell</h2>
 					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active remote-systems troubleshooting</span></p>
-					<p>I designed a recovery path for moving a multi-megabyte executable into a remote shell when normal file-transfer tools were unavailable or unusable. The work required adapting the transport as the environment revealed its limits: modern utilities failed on old GLIBC, BusyBox was not yet available, and long pasted commands were truncated by the terminal. The transcript captures a useful troubleshooting pattern: test the shell primitive, inspect the exact runtime error, reduce assumptions, and keep the destination file append-only until validation.</p>
+					<p>I am building a self-contained command environment on a remote Slax system whose older userspace cannot run modern Debian utilities. The first obstacle was a GLIBC mismatch: tools such as <code>base64</code> and OpenSSL were present but required a newer <code>libc.so.6</code> than the system provides. The investigation also separated shell capability from binary compatibility: <code>/dev/tcp</code> is a Bash feature rather than a generic <code>sh</code> feature, and changing <code>LD_LIBRARY_PATH</code> or invoking the dynamic linker can alter one command without repairing the underlying userspace.</p>
+					<p>Rather than overwrite the system libraries or make unsupported changes to the host, I selected the x86_64 musl-static BusyBox binary as a portable bootstrap. I designed a recovery path for moving that multi-megabyte executable into the remote shell when normal transfer tools were unavailable or unusable. I downloaded it on Windows, prepared it in Debian WSL, and am reconstructing it on the remote machine while keeping the transfer auditable and append-only.</p>
 					<div class="project-architecture" aria-label="Constrained binary transfer workflow">
 						<span>Windows download</span><span aria-hidden="true">→</span>
 						<span>Debian WSL preparation</span><span aria-hidden="true">→</span>
@@ -85,13 +71,38 @@
 						<span>Remote Slax file</span>
 					</div>
 					<ul>
+						<li>Identified the failure as a runtime ABI mismatch rather than a missing command, then selected a statically linked musl build to avoid depending on the remote GLIBC version.</li>
 						<li>Converted the binary into deterministic byte-oriented shell commands instead of relying on a compatible decoder at the destination.</li>
 						<li>Reduced payload size per command after observing terminal paste cutoffs and visible command corruption.</li>
 						<li>Used WSL, clipboard batching, append-only writes, and explicit reset points to make a fragile manual transfer repeatable.</li>
-						<li>Compared hex, Base64, and direct-stream approaches, then selected the format supported by the target’s actual shell rather than the format that was shortest on the source machine.</li>
-						<li>Kept the troubleshooting evidence-driven: test the shell primitive, inspect the exact error, change one transport assumption, and continue.</li>
+						<li>Compared hex, Base64, and direct-stream approaches, then selected shell-builtin <code>printf</code> with hexadecimal byte escapes because it matched the target’s actual capabilities.</li>
+						<li>Used ELF headers, file size, and execution behavior as validation checkpoints, resetting and rebuilding after catching a one-character path typo.</li>
 					</ul>
-					<p class="project-evidence">Result so far: the remote shell accepts hexadecimal byte escapes reliably, giving the recovery process a working transport even without usable <code>base64</code>, OpenSSL, or BusyBox on the destination.</p>
+					<p class="project-evidence">Current result: the remote shell accepts hexadecimal byte escapes reliably in small, paste-safe batches, giving the recovery process a working transport even without usable <code>base64</code>, OpenSSL, or BusyBox on the destination. Final ELF validation and BusyBox execution remain the next checkpoints.</p>
+				</section>
+
+				<section class="project-entry" aria-labelledby="slax-build-title">
+					<h2 id="slax-build-title">Custom Persistent Slax Live Environments</h2>
+					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
+					<p>I built and published two custom 64-bit Slax live environments for computers that may not have an internal hard drive. Both images boot directly from USB, provide a full working desktop without an installation step, and use Slax's persistent-changes workflow so user data and configuration can survive reboots on writable media.</p>
+					<p>The Debian XFCE build packages a lightweight desktop with Python, Perl, multiple shells, Chrome, VS Code, Homebrew, OnlyOffice, Wireshark, rclone, gdebi, and Eza-compatible command-line tooling. The Slackware build keeps the stack native to Slackware where practical, including Chromium, Python, Perl, Zsh, Tcsh, Fish, Eza, rclone, OnlyOffice, Rust, CMake/Ninja, and development tools.</p>
+					<div class="project-architecture" aria-label="Persistent Slax workflow">
+						<span>Custom modules</span><span aria-hidden="true">→</span>
+						<span>Bootable ISO</span><span aria-hidden="true">→</span>
+						<span>Writable USB</span><span aria-hidden="true">→</span>
+						<span>Persistent changes across reboots</span>
+					</div>
+					<ul>
+						<li>Rebuilt the Slackware application layer as an integrated <code>07-slackware-tools.sb</code> module instead of relying on a fragile foreign-runtime overlay.</li>
+						<li>Diagnosed the original broken installation as a GLIBC and persistence-state problem, then rebuilt the USB baseline from clean Slax modules.</li>
+						<li>Configured the standard Slax boot menu with <code>perchdir=resume</code> as the default, alongside new-session and session-selection options.</li>
+						<li>Published primary archival mirrors on Internet Archive and secondary Google Drive mirrors, with SHA-256 checksums for reproducible verification.</li>
+					</ul>
+					<div class="project-result" role="group" aria-label="Published Slax images">
+						<p><strong>Debian XFCE Custom</strong><span class="slax-mirrors"><a href="https://archive.org/details/slax-64bit-debian-xfce-custom" target="_blank" rel="noopener">Mirror 1: Internet Archive</a><a href="https://drive.google.com/file/d/16Sfdz5oF-x8S0C16v43Qfgdm_O9jA8kI/view?usp=sharing" target="_blank" rel="noopener">Mirror 2: Google Drive</a></span><code>SHA-256: 11ebc0d834fed01c9425e53ca920b76232572627f9e9a75a6b87d8cc2e131ec5</code></p>
+						<p><strong>Slackware Custom</strong><span class="slax-mirrors"><a href="https://archive.org/details/slax-64bit-slackware-custom" target="_blank" rel="noopener">Mirror 1: Internet Archive</a><a href="https://drive.google.com/file/d/1-1ZKhIkkeGOFZTnde30SQ8dTum0ULATY/view?usp=sharing" target="_blank" rel="noopener">Mirror 2: Google Drive</a></span><code>SHA-256: 55C996F40F5D8EDD64CC5949D3F15BDA858D288B6FB5F9E185BE91AEA2A1F126</code></p>
+					</div>
+					<p class="project-evidence">Result: two reproducible, publicly downloadable Slax environments are available for experimentation, recovery work, and no-internal-drive hardware while retaining a clear separation between immutable base modules and writable user changes.</p>
 				</section>
 
 				<section class="project-entry" aria-labelledby="xp-samba-title">
