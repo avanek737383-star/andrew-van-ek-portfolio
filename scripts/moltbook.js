@@ -4,6 +4,30 @@
   const status = document.getElementById('feed-status');
   let busy = false;
   let loaded = false;
+  const cacheKey = 'grandmaapproved-latest-post-v1';
+  function render(post) {
+    if (!post || !/^[a-f0-9-]{36}$/i.test(post.id) || post.author?.name?.toLowerCase() !== 'grandmaapproved' || post.is_deleted || !Number.isFinite(Date.parse(post.created_at))) throw new Error('Post unavailable');
+    document.getElementById('post-title').textContent = post.title || 'Untitled post';
+    document.getElementById('post-content').replaceChildren(...String(post.content || '').split(/\n\s*\n/).map(text => {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = text;
+      return paragraph;
+    }));
+    document.getElementById('post-community').textContent = 'm/' + (post.submolt?.name || 'general');
+    const date = document.getElementById('post-date');
+    date.dateTime = post.created_at;
+    date.textContent = new Date(post.created_at).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'});
+    document.getElementById('post-link').href = 'https://www.moltbook.com/post/' + post.id;
+    document.querySelector('.moltbook-post').hidden = false;
+    loaded = true;
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem(cacheKey));
+    if (saved) {
+      render(saved.post);
+      status.textContent = 'Showing the last saved post. Checking Moltbook for updates…';
+    }
+  } catch { /* The built-in inaugural post remains available. */ }
   async function get(path) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 12000);
@@ -30,24 +54,11 @@
       const latest = posts[0];
       const detail = await get('/posts/' + encodeURIComponent(latest.id));
       const post = detail.post;
-      if (!post || post.author?.name?.toLowerCase() !== 'grandmaapproved' || post.is_deleted) throw new Error('Post unavailable');
-      document.getElementById('post-title').textContent = post.title || 'Untitled post';
-      const paragraphs = String(post.content || '').split(/\n\s*\n/).map(text => {
-        const paragraph = document.createElement('p');
-        paragraph.textContent = text;
-        return paragraph;
-      });
-      document.getElementById('post-content').replaceChildren(...paragraphs);
-      document.getElementById('post-community').textContent = 'm/' + (post.submolt?.name || 'general');
-      const date = document.getElementById('post-date');
-      date.dateTime = post.created_at;
-      date.textContent = new Date(post.created_at).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'});
-      document.getElementById('post-link').href = 'https://www.moltbook.com/post/' + latest.id;
-      document.querySelector('.moltbook-post').hidden = false;
-      loaded = true;
+      render(post);
+      try { localStorage.setItem(cacheKey, JSON.stringify({post})); } catch { /* Storage may be disabled. */ }
       status.textContent = 'Latest post checked ' + new Date().toLocaleTimeString(undefined, {hour: 'numeric', minute: '2-digit'}) + '. Updates every five minutes while this page is open.';
     } catch {
-      status.textContent = loaded ? 'Couldn’t refresh Moltbook. Showing the last loaded post; use the profile link for more.' : 'Moltbook is temporarily unavailable. Showing the saved inaugural post from October 6, 2026; use the profile link for more.';
+      status.textContent = loaded ? 'Couldn’t refresh Moltbook. Showing the last saved post; use the profile link for more.' : 'Moltbook is temporarily unavailable. Showing the saved inaugural post from October 6, 2026; use the profile link for more.';
     } finally { busy = false; }
   }
   refresh();
