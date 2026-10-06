@@ -36,6 +36,29 @@
 			</nav>
 			<h1>Projects</h1>
 			<main>
+
+				<section class="project-entry" aria-labelledby="local-council-title">
+					<h2 id="local-council-title">Local Council: Apple and Liquid AI Debate Chatroom</h2>
+					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
+					<p>I built a chatroom that lets two AI models running on my Mac discuss the same question. Apple's on-device Foundation Model proposes an approach, Liquid AI LFM2.5 critiques it, and they take turns refining their ideas before producing a practical recommendation. The project turns a pair of local assistants into an interactive discussion I can watch and steer.</p>
+					<p class="project-mobile-summary">A Desktop launcher opens the room, and a responsive interface lets me use it from my phone over my private Tailscale network. I can choose one to five debate rounds, stop a discussion, copy the transcript, ask a follow-up using the last recommendation, or start a new topic.</p>
+					<div class="project-architecture" aria-label="Local AI discussion workflow">
+						<span>Mac or phone question</span><span aria-hidden="true">→</span>
+						<span>Python chatroom server</span><span aria-hidden="true">→</span>
+						<span>Apple ↔ Liquid discussion</span><span aria-hidden="true">→</span>
+						<span>Recommendation and next steps</span>
+					</div>
+					<ul>
+						<li>Connected Apple's <code>fm serve</code> and LM Studio through their local Chat Completions APIs, keeping model inference on my own hardware.</li>
+						<li>Built a turn-taking discussion loop with proposal, critique, refinement, and final-recommendation stages, rather than treating agreement between models as proof of correctness.</li>
+						<li>Adapted the discussion history to Apple's smaller context window and verified Liquid running with a 32,768-token context.</li>
+						<li>Created a shared browser chatroom with live status updates, distinct model replies, follow-up context, cancellation, and a macOS Desktop launcher.</li>
+						<li>Configured automatic startup with launchd and private phone access through a Tailscale IP and port, without requiring MagicDNS.</li>
+					</ul>
+					<p class="project-evidence">Result: a complete proposal-and-critique discussion produced a visible recommendation in the chatroom, and remote access was verified from another Tailscale machine. The room is for discussion: it does not execute commands or inspect files, and model claims still require judgment and verification.</p>
+					<p>Tools &amp; skills: Python, HTML/CSS/JavaScript, Apple Foundation Models, Liquid AI, LM Studio, local API integration, launchd, Tailscale, and development with Codex.</p>
+				</section>
+
 				<section class="project-entry" aria-labelledby="tahoe-iso-title">
 					<h2 id="tahoe-iso-title">macOS Tahoe Bootable ISO Builder</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-05">October 5, 2026</time></span></p>
@@ -209,7 +232,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-05">October 5, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-06">October 6, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20260920-2"></script>
