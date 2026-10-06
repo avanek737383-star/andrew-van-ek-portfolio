@@ -95,10 +95,10 @@
 			'  </div>',
 			'  <form class="portfolio-chat-form">',
 			'    <label class="sr-only" for="portfolio-chat-input">Message</label>',
-			'    <input id="portfolio-chat-input" maxlength="1000" autocomplete="off" placeholder="Ask about Andrew..." required>',
+			'    <textarea id="portfolio-chat-input" rows="1" maxlength="1000" autocomplete="off" placeholder="Ask about Andrew..." aria-describedby="portfolio-chat-help" required></textarea>',
 			'    <button type="submit">Send</button>',
 			'  </form>',
-			'  <p class="portfolio-chat-note">Local AI responses may be inaccurate. 10 messages/minute.</p>',
+			'  <p id="portfolio-chat-help" class="portfolio-chat-note">Enter to send · Shift+Enter for a new line.<br>Local AI responses may be inaccurate. 10 messages/minute.</p>',
 			'</section>'
 		].join("");
 		document.body.appendChild(wrapper);
@@ -112,6 +112,7 @@
 
 		function setOpen(open) {
 			panel.hidden = !open;
+			toggle.hidden = open;
 			toggle.setAttribute("aria-expanded", String(open));
 			if (open) {
 				try {
@@ -135,14 +136,54 @@
 			}
 		}
 
+		function replyParagraphs(text) {
+			return String(text).replace(/\r\n?/g, "\n").trim().split(/\n\s*\n/).flatMap(function (block) {
+				if (block.includes("\n") || block.length < 240 || !window.Intl || !Intl.Segmenter) return [block];
+				var segments = Array.from(new Intl.Segmenter("en", { granularity: "sentence" }).segment(block), function (part) { return part.segment; });
+				var paragraphs = [], group = "", count = 0;
+				segments.forEach(function (sentence) {
+					group += sentence;
+					count++;
+					if (count >= 2 || group.length >= 280) {
+						paragraphs.push(group.trim()); group = ""; count = 0;
+					}
+				});
+				if (group.trim()) paragraphs.push(group.trim());
+				return paragraphs;
+			});
+		}
+
+		function renderMessage(message, text, role) {
+			message.replaceChildren();
+			if (role !== "assistant") { message.textContent = text; return; }
+			replyParagraphs(text).forEach(function (paragraph) {
+				var part = document.createElement("p");
+				part.className = "chat-paragraph";
+				part.textContent = paragraph;
+				message.appendChild(part);
+			});
+		}
+
 		function addMessage(text, role) {
-			var message = document.createElement("p");
+			var message = document.createElement("div");
 			message.className = "chat-message chat-" + role;
-			message.textContent = text;
+			renderMessage(message, text, role);
 			messages.appendChild(message);
 			messages.scrollTop = messages.scrollHeight;
 			return message;
 		}
+
+		function resizeInput() {
+			input.style.height = "auto";
+			input.style.height = Math.min(input.scrollHeight, 140) + "px";
+		}
+		input.addEventListener("input", resizeInput);
+		input.addEventListener("keydown", function (event) {
+			if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
+				event.preventDefault();
+				form.requestSubmit();
+			}
+		});
 
 		toggle.addEventListener("click", function () {
 			setOpen(panel.hidden);
@@ -162,6 +203,7 @@
 			addMessage(text, "user");
 			history.push({ role: "user", content: text });
 			input.value = "";
+			resizeInput();
 			waiting = true;
 			form.querySelector("button").disabled = true;
 			var pending = addMessage("Thinking locally…", "assistant");
@@ -174,10 +216,10 @@
 				});
 				var data = await response.json();
 				if (!response.ok) throw new Error(data.error || "The assistant is unavailable.");
-				pending.textContent = data.reply;
+				renderMessage(pending, data.reply, "assistant");
 				history.push({ role: "assistant", content: data.reply });
 			} catch (error) {
-				pending.textContent = error.message || "The local assistant is temporarily offline.";
+				renderMessage(pending, error.message || "The local assistant is temporarily offline.", "assistant");
 				pending.classList.add("chat-error");
 			} finally {
 				waiting = false;

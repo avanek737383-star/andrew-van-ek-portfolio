@@ -1,0 +1,62 @@
+/* Local Council follows the shared portfolio shell and color palette. */
+.council-main { color: #333; }
+.council-main .council-intro p { max-width: 760px; color: #555; }
+.council-main [hidden] { display: none !important; }
+.council-main button, .council-main input, .council-main select, .council-main textarea { font: inherit; }
+.council-main button { cursor: pointer; min-height: 44px; }
+.council-main button:disabled { opacity: .55; cursor: default; }
+.council-main .models, .council-main .examples { display: flex; flex-wrap: wrap; gap: 10px; }
+.council-main .models { margin-bottom: 24px; }
+.council-main .chip { padding: 6px 12px; border: 1px solid #d5e0eb; border-radius: 999px; background: #f0f6fc; color: #002d5a; font-size: .85rem; }
+.council-main .dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: #0056b3; }
+.council-main .purple .dot { background: #7447a8; }
+.council-main .login { max-width: 640px; padding: 24px; margin: 20px 0; border: 1px solid #d5e0eb; border-radius: 8px; background: #f8f9fa; }
+.council-main .login > strong { display: block; color: #002d5a; margin-bottom: 10px; font-size: 1.15rem; }
+.council-main .login p { color: #555; margin: 10px 0 18px; }
+.council-main .login form { max-width: none; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none; text-align: left; }
+.council-main .login label { display: block; font-weight: 600; color: #002d5a; margin: 14px 0 6px; }
+.council-main .login input { display: block; width: 100%; max-width: none; padding: 11px 12px; margin: 0 0 14px; border: 1px solid #bdcddd; border-radius: 6px; background: #fff; color: #333; font-size: 16px; }
+.council-main .primary, .council-main .stop, .council-main .quiet, .council-main .example { border-radius: 6px; padding: 10px 16px; font-weight: 600; }
+.council-main .primary { border: 1px solid #0056b3; background: #0056b3; color: #fff; }
+.council-main .primary:hover { background: #003d80; }
+.council-main .quiet { border: 1px solid #bdcddd; background: #fff; color: #0056b3; font-size: .85rem; }
+.council-main .quiet:hover, .council-main .example:hover { background: #eaf3fc; }
+.council-main .stop { border: 1px solid #b34a4a; background: #fff5f5; color: #963434; }
+.council-main .toolbar { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin: 8px 0 20px; }
+.council-main .chat { min-height: 180px; }
+.council-main .empty { padding: 24px; margin: 12px 0 24px; border: 1px dashed #bdcddd; border-radius: 8px; background: #f8f9fa; color: #555; }
+.council-main .empty strong { display: block; color: #002d5a; margin-bottom: 8px; font-size: 1.05rem; }
+.council-main .examples { margin-top: 16px; }
+.council-main .example { border: 1px solid #d5e0eb; background: #fff; color: #0056b3; text-align: left; font-size: .85rem; }
+.council-main .card { margin: 16px 0; padding: 20px; border: 1px solid #d5e0eb; border-left: 4px solid #0056b3; border-radius: 8px; background: #f5f9fd; }
+.council-main .card.liquid { border-left-color: #7447a8; background: #faf7fd; }
+.council-main .card.you { border-left-color: #8d6527; background: #fffcf5; }
+.council-main .card.recommendation { border-left-color: #28764c; background: #f0f8f3; }
+.council-main .card.council { border-left-color: #687587; background: #f8f9fa; }
+.council-main .name { margin-bottom: 10px; color: #0056b3; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.council-main .liquid .name { color: #7447a8; }
+.council-main .you .name { color: #8d6527; }
+.council-main .recommendation .name { color: #28764c; }
+.council-main .council .name { color: #687587; }
+.council-main .text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.7; }
+.council-main .composer { margin-top: 24px; }
+.council-main .composebox { max-width: none; margin: 0; padding: 18px; border: 1px solid #bdcddd; border-radius: 8px; background: #f8f9fa; box-shadow: none; text-align: left; }
+.council-main textarea { display: block; width: 100%; min-height: 100px; max-height: 280px; margin: 0; padding: 12px; resize: vertical; border: 1px solid #bdcddd; border-radius: 6px; background: #fff; color: #333; font-size: 16px; line-height: 1.5; }
+.council-main textarea::placeholder { color: #687587; }
+.council-main .actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.council-main select { max-width: 100%; padding: 9px 12px; border: 1px solid #bdcddd; border-radius: 6px; background: #fff; color: #333; }
+.council-main .status { min-height: 20px; margin: 12px 0 6px; color: #555; font-size: .85rem; }
+.council-main .note { margin: 0; color: #666; font-size: .8rem; }
+.council-main #loginstatus, .council-main #mfastatus { font-size: .9rem; }
+.council-main #offline { max-width: none; background: #fff8e6; border-color: #ebd398; }
+.council-main :is(button, input, textarea, select):focus-visible { outline: 3px solid #78afe9; outline-offset: 3px; }
+.council-main .spinner::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: #0056b3; animation: council-pulse 1s infinite; }
+@keyframes council-pulse { 50% { opacity: .3; } }
+@media (max-width: 600px) {
+    .council-main .login, .council-main .card, .council-main .empty { padding: 18px; }
+    .council-main .composebox { padding: 14px; }
+    .council-main .toolbar { justify-content: flex-start; }
+    .council-main .actions { align-items: stretch; }
+    .council-main .actions select { flex: 1 1 150px; min-width: 0; }
+    .council-main .actions button { flex: 1 1 140px; }
+}
