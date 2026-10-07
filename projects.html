@@ -3,7 +3,7 @@
 	<head>
 		<title>Andrew Van Ek Portfolio | Projects</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261006-2">
+		<link rel="stylesheet" href="css/styles.css?v=20261007-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Hands-on infrastructure, cybersecurity, data recovery, and local-AI projects by Andrew Van Ek.">
@@ -38,240 +38,158 @@
 			</nav>
 			<h1>Projects</h1>
 			<main>
+<p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="fishbeck-copilot-title">
+<h2 id="fishbeck-copilot-title">Fishbeck: Learning &amp; Development Copilot Agent</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span></p>
+<p>I designed a custom Microsoft Copilot agent for Learning &amp; Development (L&amp;D) at Fishbeck. It took three versions of the overall agent to get the foundation right for what was wanted. I kept working through the problems and was able to demo the agent twice to an executive.</p>
+<p>I used true-or-false conditions to guide decisions through the agent’s steps and conversation flows. I also organized related steps into separate topics so they could be reused, similar to functions in a program. I created multiple Power Automate flows, including automation to retrieve L&amp;D calendar data.</p>
+<p>I worked alongside a programmer through peer programming and used AI to help refine how the agent classified a person’s input and chose the next response or action. This project taught me a lot about testing decisions, organizing a flow, and sticking with a problem through several iterations.</p>
+</section>
+<section class="project-entry" aria-labelledby="fishbeck-invgate-title">
+<h2 id="fishbeck-invgate-title">Fishbeck: IT Support &amp; InvGate Tickets</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Work</span></p>
+<p>At Fishbeck, I closed more than 99 support tickets and at one point earned over one million ticket points in InvGate, our IT ticketing system. The work involved persistence, problem solving, and following issues through to a resolution.</p>
+<p>I was also willing to go to someone’s cubicle and work through an issue in person. Helping people directly was part of the support work, alongside managing and closing tickets.</p>
+</section>
+<section class="project-entry" aria-labelledby="fishbeck-sketchup-title">
+<h2 id="fishbeck-sketchup-title">Fishbeck: SketchUp 2026 Deployment with Tanium</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span></p>
+<p>I used Tanium, a tool for managing software on company computers, to set up a silent installation and deployment of SketchUp 2026. A silent install runs without requiring someone to click through the setup screens.</p>
+<p>I tested the installation against the requirements, including creating shortcuts in <code>C:\FTCH\Windows\Applications</code> after the program was installed. I got the deployment working with little to no hiccups by thinking through the constraints and testing the solution.</p>
+</section>
+<section class="project-entry" aria-labelledby="mission-https-title">
+<h2 id="mission-https-title">Mission Design &amp; Automation: HTTPS for Buddy System Apps</h2>
+<p class="project-status"><span class="status-badge project-completed">Internship Project</span></p>
+<p>I worked on getting apps used in Mission Design &amp; Automation’s buddy system to launch successfully with HTTPS. I used mkcert to generate certificates for local development, which let the services use encrypted browser connections.</p>
+<p>I used AI and several AI tools to help troubleshoot the setup. It took a lot of persistence: I kept testing and working through issues until more of the apps and services could launch with HTTPS.</p>
+</section>
+<section class="project-entry" aria-labelledby="mission-parts-title">
+<h2 id="mission-parts-title">Mission Design &amp; Automation: Parts Database Cleanup</h2>
+<p class="project-status"><span class="status-badge project-completed">Internship Project</span></p>
+<p>I worked with SQL in SQL Server Management Studio (SSMS) and AutoCAD Electrical to test changes before committing them to our parts database.</p>
+<p>I also helped consolidate parts stored on a drive under different names for the same manufacturer—for example, AB and ALLENBRADLEY. After working through the naming differences, I tested the parts in AutoCAD Electrical to make sure they worked. This required attention to detail and checking the results before making database changes.</p>
+</section>
+<section class="project-entry" aria-labelledby="mission-vba-title">
+<h2 id="mission-vba-title">Mission Design &amp; Automation: Weekly Spreadsheet Automation</h2>
+<p class="project-status"><span class="status-badge project-completed">Internship Project</span></p>
+<p>I used AI to help write VBA, the programming language behind Excel macros, for several managerial spreadsheets. The work involved checking the date when a workbook opened and keeping weekly columns aligned with the current week.</p>
+<p>The goal was to have the first weekly column represent this week, followed by the next 51 weeks. I worked through how the workbook should handle those dates and columns so the spreadsheets were easier to keep current.</p>
+</section>
+<section class="project-entry" aria-labelledby="mission-plc-title">
+<h2 id="mission-plc-title">Mission Design &amp; Automation: PLC &amp; HMI Programming</h2>
+<p class="project-status"><span class="status-badge project-completed">Internship Project</span></p>
+<p>I programmed at least two programmable logic controllers (PLCs) using ladder logic, a visual programming language used to control industrial equipment.</p>
+<p>I also programmed an application for a test human-machine interface (HMI), the screen an operator uses to interact with a machine. These projects gave me hands-on practice with industrial controls and with connecting control logic to an operator interface.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="grandmaapproved-title">
-<h2 id="grandmaapproved-title">GrandmaApproved: An AI Agent That Shares My Project Stories</h2>
+<h2 id="grandmaapproved-title">GrandmaApproved: An AI Agent That Shares My Projects</h2>
 <p class="project-status"><span class="status-badge project-completed">Built &amp; Running</span> <span>October 6, 2026</span></p>
-<p>I built an AI agent that shares stories about my projects and experiments, with a little grandma energy and friendly teasing. Its automation runs locally on my Mac, starts at login, and publishes a queued project story once a day while the Mac is running.</p>
-<ul><li>Registered and claimed @grandmaapproved on Moltbook, with the philosophy: “If it isn't broke, do fix it.”</li><li>Diagnosed school Wi-Fi DNS filtering and restored access using Cloudflare DNS.</li><li>Published the inaugural post in m/blesstheirhearts by solving Moltbook’s verification challenge.</li><li>Built a native macOS LaunchAgent that checks account activity and platform announcements every 30 minutes.</li><li>Indexed my portfolio into a local knowledge base and queued stories about BusyBox recovery, local AI debates, and Windows XP security.</li><li>Added a 24-hour posting cooldown, an automated challenge solver, persistent state, logs, and a native moltbook CLI.</li></ul>
-<p>The agent publishes prepared stories from its local queue; the heartbeat checks and logs new activity. A dedicated page on this portfolio displays its latest post and links directly to its public profile on Moltbook.</p>
-<p><strong>Project progression:</strong> I started by registering the agent and publishing its first post. Next, I added local scheduling, a portfolio knowledge base, and a queue of prepared stories. The project now includes a portfolio feed that shows the latest post, with a simpler introduction and a direct link to the agent’s profile.</p>
+<p>I built an AI agent that shares stories about my projects on Moltbook, with a little grandma energy and friendly teasing. It runs on my Mac and posts a prepared story once a day while the computer is running.</p>
+<p>I used AI to help build the Python automation, organize project information, and set up automatic startup. I also worked through a school Wi-Fi connection problem and added checks to keep the agent from posting too often.</p>
 <p><a href="moltbook.html">Read the latest from @grandmaapproved →</a></p>
-<p>Tools &amp; skills: Python, REST APIs, macOS launchd, DNS diagnostics, persistent JSON state, scheduling, and command-line tooling.</p>
 </section>
 
                 <section class="project-entry" aria-labelledby="portable-compute-title">
                     <h2 id="portable-compute-title">Portable Windows Compute &amp; Mining Setup</h2>
-                    <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Packaging completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
-                    <p>I assembled portable Windows x64 distributions of Folding@home v8 and XMRig, with ready-to-run folders and ZIP archives. The project focused on extracting application binaries, migrating existing settings privately, packaging GPU dependencies, and creating convenient launchers without installing the applications as Windows services.</p>
-                    <ul>
-                        <li>Extracted Folding@home v8.5.6 client binaries from the official installer and prepared GPU configuration, console and background launchers, and access to the web controls.</li>
-                        <li>Packaged XMRig with its NVIDIA CUDA plugin, CUDA runtime dependencies, and OpenCL support, alongside the existing TLS pool configuration.</li>
-                        <li>Created launch presets for GPU workloads, combined GPU and CPU workloads, and light, medium, and heavy resource use.</li>
-                        <li>Migrated account and workload configuration while keeping account tokens, node authentication keys, and wallet details out of the public project description.</li>
-                        <li>Documented application portability, GPU driver prerequisites, SQLite locking risks in actively synchronized folders, and the permissions and monitoring constraints of managed Windows systems.</li>
-                    </ul>
-                    <p class="project-evidence">Result: both portable packages are prepared. Hardware-specific GPU detection, actual VRAM allocation, and sustained workload performance remain deployment validation steps. GPU launch presets do not imply zero CPU overhead, and portable packaging does not remove driver requirements or managed-device restrictions.</p>
-                    <p>Tools &amp; skills: Windows x64 application packaging, installer extraction, batch scripting, Folding@home, XMRig, CUDA, OpenCL, SQLite configuration, and credential handling.</p>
-                </section>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Packaging completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
+<p>I put together ready-to-run Windows folders and ZIP files for Folding@home, which contributes computing power to scientific research, and XMRig, a cryptocurrency mining program.</p>
+<p>I worked through extracting the programs from installers, carrying over settings, including the files needed for graphics-card support, and creating launchers for different levels of computer use.</p>
+<p>The packages are prepared. Testing graphics-card detection and sustained performance on the target hardware is still a next step. The programs still need compatible drivers.</p>
+</section>
 
 
 				<section class="project-entry" aria-labelledby="local-council-title">
-					<h2 id="local-council-title">Local Council: Apple and Liquid AI Debate Chatroom</h2>
-					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
-					<p>I built a chatroom that lets two AI models running on my Mac discuss the same question. Apple's on-device Foundation Model proposes an approach, Liquid AI LFM2.5 critiques it, and they take turns refining their ideas before producing a practical recommendation. The project turns a pair of local assistants into an interactive discussion I can watch and steer.</p>
-					<p class="project-mobile-summary">A Desktop launcher opens the private room, while a dedicated portfolio page provides authenticated public access from a phone or browser. Discussions adapt to the question and can conclude early when a usable answer is ready, user input is needed, or progress stalls. Auto allows up to seven rounds, with quick, short, and extended options capped at one, three, and ten rounds. Follow-ups retain the original question and recent user messages. Replies appear slowly for readability, and follow-ups stay locked during debate and reply playback. Only the person who started an active discussion can stop it. One discussion runs at a time.</p>
-					<p><strong>Project progression:</strong> The first version used a Desktop launcher and a fixed number of back-and-forth rounds. I then added private phone access, an authenticated public page, portfolio styling, and slower reply playback. After testing follow-ups, I improved context retention and replaced the fixed discussion length with adaptive conclusions, bounded rounds, accurate playback status, and protection against mid-debate interruptions.</p>
-					<div class="project-architecture" aria-label="Authenticated local AI discussion workflow">
-						<span>Browser or phone</span><span aria-hidden="true">→</span>
-						<span>Authenticated NUC gateway</span><span aria-hidden="true">→</span>
-						<span>Apple ↔ Liquid on my Mac</span><span aria-hidden="true">→</span>
-						<span>Recommendation and next steps</span>
-					</div>
-					<ul>
-						<li>Connected Apple's <code>fm serve</code> and LM Studio through their local Chat Completions APIs, keeping model inference on my own hardware.</li>
-						<li>Built proposal, critique, refinement, and final-recommendation stages, with bounded discussion history for Apple's smaller context window and a verified 32,768-token Liquid context.</li>
-						<li>Protected public access with salted PBKDF2 password hashes and standard time-based authenticator codes compatible with Duo Mobile, without an SMS service.</li>
-						<li>Added expiring login challenges and sessions, rejection of reused authenticator codes, one-use recovery codes, and limits on repeated authentication attempts.</li>
-						<li>Restricted browser request origins and kept the gateway's authentication configuration outside the website repository.</li>
-						<li>Configured launchd on the Mac and OpenRC on the NUC for automatic service startup. Private Tailscale access works by IP and port without MagicDNS; public access uses an HTTPS gateway.</li>
-						<li>Added an offline message and automatic status retries when the Mac is asleep, shut down, or reconnecting.</li>
-					</ul>
-					<p><strong>Iteration through testing:</strong> Real conversation transcripts exposed context drift, repeated clarification requests, premature completion messages, and playful questions turning into technical advice. I revised the prompts and discussion flow, replayed the examples, checked what improved, and kept testing the remaining misses. Later passes focused on first-person replies, explicit agreement before the conclusion, and keeping practical advice separate from imaginary debates. The work demonstrates persistence through small, testable improvements; natural conversation is still being refined.</p>
-<details class="project-evidence"><summary>Conversation testing: two memorable examples</summary>
-<div class="project-result">
-<p><strong>Who gets the last byte of RAM?</strong><span>An early attempt turned the joke into RAM-allocation advice and suggested checking application activity. After clearer playful framing, a later reply stayed in the imaginary contest: <q>I’ll take it, and you can keep the puns coming!</q> The next challenge was making the verdict answer the exact question.</span></p>
-<p><strong>How do you learn a new skill?</strong><span>Early replies repeatedly demanded a specific skill. Later tests gave a useful general approach: focused practice, small goals, and feedback. A closing exchange then named the shared plan: <q>Liquid, I agree—pairing focused hands-on practice with structured feedback is the shared approach.</q></span></p>
-</div><p>These are individual test outcomes, not a guarantee. Agreement, context, tone, and concrete recommendations remain part of ongoing regression testing.</p></details>
-<p><a href="council.html">Open the AI chatroom</a> — password and authenticator code required.</p>
-					<p class="project-evidence">Result: the deployed login flow requires both a password and an authenticator code, and a complete authenticated debate produces replies from both models and a final recommendation. Tests cover authentication failures, code replay, recovery codes, concurrent-start rejection, and offline handling.</p>
-					<p>The public room is for discussion only: it does not execute commands or inspect files. Signed-in users share the same room, and model agreement is not proof that a recommendation is correct.</p>
-					<p>Tools &amp; skills: Python, HTML/CSS/JavaScript, Apple Foundation Models, Liquid AI, LM Studio, local API integration, PBKDF2, TOTP, launchd, OpenRC, Tailscale, and development with Codex.</p>
-				</section>
+					<h2 id="local-council-title">Local Council: Two AI Models Discuss a Question</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
+<p>I built a chatroom where two AI models running on my Mac take turns discussing the same question. One suggests an approach, the other responds, and they work toward a recommendation I can read and follow up on.</p>
+<p>I connected Apple’s on-device model and a Liquid AI model through LM Studio, an app for running AI models locally. I added a browser page, a password and authenticator-code login, and automatic startup.</p>
+<p>Testing showed me where the conversation lost track of the question, repeated itself, or took a joke too seriously. With AI’s help, I kept adjusting the instructions and conversation flow and replaying examples to see what improved. Natural conversation is still being refined.</p>
+<p><a href="council.html">Open the AI chatroom</a> — password and authenticator code required. The room discusses questions; it does not run commands. Two models agreeing does not guarantee a correct answer.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="tahoe-iso-title">
-					<h2 id="tahoe-iso-title">macOS Tahoe Bootable ISO Builder</h2>
-					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-05">October 5, 2026</time></span></p>
-					<p>Created a bootable macOS Tahoe ISO from Apple’s official installer using a custom Python workflow developed with Codex. The project brought together installer downloads, executable signature checks, disk-image verification, bootable media creation, ISO conversion, and SHA-256 checksums in one repeatable process.</p>
-					<p>Getting there involved troubleshooting Apple installer signature errors, adapting verification to check the installer’s executables and payload directly, and managing limited disk space during the build. Apple’s createinstallmedia prepared the bootable installer, and hdiutil converted it into an ISO for use in a virtual machine.</p>
-					<p>The resulting ISO successfully booted in the target VM, and macOS Tahoe is now running on the Windows PC. I have also created two VM snapshots, giving the environment safe rollback points for continued testing.</p>
-					<p>Tools &amp; skills: Python, macOS Terminal, softwareupdate, codesign, createinstallmedia, hdiutil, SHA-256 verification, virtualization, and troubleshooting with Codex.</p>
-				</section>
+					<h2 id="tahoe-iso-title">macOS Tahoe Bootable Installer</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-05">October 5, 2026</time></span></p>
+<p>I used Codex to help build a Python workflow that turns Apple’s official macOS Tahoe installer into an ISO, a disk-image file that a virtual machine can boot from.</p>
+<p>I worked through installer verification errors and limited disk space, then used Apple’s tools to create and convert the bootable installer. The ISO successfully booted in the virtual machine on my Windows PC, where Tahoe is now running. I also created two snapshots so I could return to an earlier state while testing.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="powerpc-qemu-title">
-					<h2 id="powerpc-qemu-title">PowerPC Mac OS X Emulation: PearPC to QEMU Migration</h2>
-					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active emulation and legacy-platform workflow</span></p>
-					<p>I am working toward launching Mac OS X 10.3 Panther in a PowerPC emulator on Windows. The first approach used PearPC 0.5 with its JITC build and Panther disk media, but the configuration did not produce a working launch after troubleshooting the emulator files and startup path.</p>
-					<p>I documented the failed PearPC path, removed its temporary emulator folder and virtual disk, preserved the Panther disc folders, and moved to QEMU as the next emulator to evaluate. The current QEMU Windows installer was downloaded and its SHA-512 checksum verified; installation and guest-boot testing are the next checkpoints.</p>
-					<ul>
-						<li>Worked with legacy PowerPC emulation artifacts, including a PearPC JITC executable, configuration file, and Mac OS X Panther media.</li>
-						<li>Separated disposable PearPC runtime files from the original Panther disc folders before cleanup.</li>
-						<li>Verified the QEMU installer checksum before moving to the replacement emulator.</li>
-						<li>Kept the project status honest: PearPC was unsuccessful, while QEMU remains an active next-stage experiment.</li>
-					</ul>
-					<p class="project-evidence">Current result: the migration from PearPC to QEMU is prepared, with verified installer media and preserved Panther sources ready for the next boot and compatibility tests.</p>
-				</section>
+					<h2 id="powerpc-qemu-title">Running Older Mac OS X in an Emulator</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active emulation and legacy-platform workflow</span></p>
+<p>I am working toward running Mac OS X 10.3 Panther on Windows using an emulator, software that imitates older computer hardware.</p>
+<p>My first attempt with PearPC did not launch successfully. After troubleshooting, I kept the original Panther disc files and moved on to QEMU as another option. I downloaded the QEMU installer and checked its checksum, a value used to check that a file matches the expected download. Installation and boot testing are still next steps.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="slax-busybox-title">
-					<h2 id="slax-busybox-title">Bootstrapping Static BusyBox on Legacy Slax Through a Constrained Remote Shell</h2>
-					<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active remote-systems troubleshooting</span></p>
-					<p>I am building a self-contained command environment on a remote Slax system whose older userspace cannot run modern Debian utilities. The first obstacle was a GLIBC mismatch: tools such as <code>base64</code> and OpenSSL were present but required a newer <code>libc.so.6</code> than the system provides. The investigation also separated shell capability from binary compatibility: <code>/dev/tcp</code> is a Bash feature rather than a generic <code>sh</code> feature, and changing <code>LD_LIBRARY_PATH</code> or invoking the dynamic linker can alter one command without repairing the underlying userspace.</p>
-					<p>Rather than overwrite the system libraries or make unsupported changes to the host, I selected the x86_64 musl-static BusyBox binary as a portable bootstrap. I designed a recovery path for moving that multi-megabyte executable into the remote shell when normal transfer tools were unavailable or unusable. I downloaded it on Windows, prepared it in Debian WSL, and am reconstructing it on the remote machine while keeping the transfer auditable and append-only.</p>
-					<div class="project-architecture" aria-label="Constrained binary transfer workflow">
-						<span>Windows download</span><span aria-hidden="true">→</span>
-						<span>Debian WSL preparation</span><span aria-hidden="true">→</span>
-						<span>Short printf batches</span><span aria-hidden="true">→</span>
-						<span>Remote Slax file</span>
-					</div>
-					<ul>
-						<li>Identified the failure as a runtime ABI mismatch rather than a missing command, then selected a statically linked musl build to avoid depending on the remote GLIBC version.</li>
-						<li>Converted the binary into deterministic byte-oriented shell commands instead of relying on a compatible decoder at the destination.</li>
-						<li>Reduced payload size per command after observing terminal paste cutoffs and visible command corruption.</li>
-						<li>Used WSL, clipboard batching, append-only writes, and explicit reset points to make a fragile manual transfer repeatable.</li>
-						<li>Compared hex, Base64, and direct-stream approaches, then selected shell-builtin <code>printf</code> with hexadecimal byte escapes because it matched the target’s actual capabilities.</li>
-						<li>Used ELF headers, file size, and execution behavior as validation checkpoints, resetting and rebuilding after catching a one-character path typo.</li>
-					</ul>
-					<p class="project-evidence">Current result: the remote shell accepts hexadecimal byte escapes reliably in small, paste-safe batches, giving the recovery process a working transport even without usable <code>base64</code>, OpenSSL, or BusyBox on the destination. Final ELF validation and BusyBox execution remain the next checkpoints.</p>
-				</section>
+					<h2 id="slax-busybox-title">Getting Useful Commands onto an Older Slax System</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active remote-systems troubleshooting</span></p>
+<p>I am working on an older Slax Linux system where several newer command-line tools will not run because they require newer system libraries. Normal file-transfer options were also unavailable or unusable.</p>
+<p>I chose a self-contained version of BusyBox, a program that bundles many useful commands, and worked out how to transfer it using short shell commands. I prepared the file in Debian through Windows Subsystem for Linux (WSL), which lets me use Linux tools on Windows.</p>
+<p>Large pasted commands were getting cut off, so I reduced the size of each batch and checked the file as I went. The small batches work reliably; checking the finished file and successfully running BusyBox remain the next steps.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="slax-build-title">
 					<h2 id="slax-build-title">Custom Persistent Slax Live Environments</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
-					<p>I built and published two custom 64-bit Slax live environments for computers that may not have an internal hard drive. Both images boot directly from USB, provide a full working desktop without an installation step, and use Slax's persistent-changes workflow so user data and configuration can survive reboots on writable media.</p>
-					<p>The Debian XFCE build packages a lightweight desktop with Python, Perl, multiple shells, Chrome, VS Code, Homebrew, OnlyOffice, Wireshark, rclone, gdebi, and Eza-compatible command-line tooling. The Slackware build keeps the stack native to Slackware where practical, including Chromium, Python, Perl, Zsh, Tcsh, Fish, Eza, rclone, OnlyOffice, Rust, CMake/Ninja, and development tools.</p>
-					<div class="project-architecture" aria-label="Persistent Slax workflow">
-						<span>Custom modules</span><span aria-hidden="true">→</span>
-						<span>Bootable ISO</span><span aria-hidden="true">→</span>
-						<span>Writable USB</span><span aria-hidden="true">→</span>
-						<span>Persistent changes across reboots</span>
-					</div>
-					<ul>
-						<li>Rebuilt the Slackware application layer as an integrated <code>07-slackware-tools.sb</code> module instead of relying on a fragile foreign-runtime overlay.</li>
-						<li>Diagnosed the original broken installation as a GLIBC and persistence-state problem, then rebuilt the USB baseline from clean Slax modules.</li>
-						<li>Configured the standard Slax boot menu with <code>perchdir=resume</code> as the default, alongside new-session and session-selection options.</li>
-						<li>Published primary archival mirrors on Internet Archive and secondary Google Drive mirrors, with SHA-256 checksums for reproducible verification.</li>
-					</ul>
-					<div class="project-result" role="group" aria-label="Published Slax images">
+					<p>I built and published two customized Slax Linux environments that boot from USB without installing an operating system on the computer. They can be used on a computer without an internal hard drive. On writable USB media, the setup can save files and settings between restarts.</p>
+<p>One version uses Debian with XFCE, a lightweight desktop, and the other uses Slackware. I included browsers, office software, programming tools, and utilities for network troubleshooting and file transfers.</p>
+<p>I worked through problems with incompatible system libraries and saved session data, rebuilt the application packages, and set up the boot menu to resume saved changes. Both versions are available below. A SHA-256 checksum is a file fingerprint you can compare after downloading to check that your copy matches the published image.</p>
+<div class="project-result" role="group" aria-label="Published Slax images">
 						<p><strong>Debian XFCE Custom</strong><span class="slax-mirrors"><a href="https://archive.org/details/slax-64bit-debian-xfce-custom" target="_blank" rel="noopener">Mirror 1: Internet Archive</a><a href="https://drive.google.com/file/d/16Sfdz5oF-x8S0C16v43Qfgdm_O9jA8kI/view?usp=sharing" target="_blank" rel="noopener">Mirror 2: Google Drive</a></span><code>SHA-256: 11ebc0d834fed01c9425e53ca920b76232572627f9e9a75a6b87d8cc2e131ec5</code></p>
 						<p><strong>Slackware Custom</strong><span class="slax-mirrors"><a href="https://archive.org/details/slax-64bit-slackware-custom" target="_blank" rel="noopener">Mirror 1: Internet Archive</a><a href="https://drive.google.com/file/d/1-1ZKhIkkeGOFZTnde30SQ8dTum0ULATY/view?usp=sharing" target="_blank" rel="noopener">Mirror 2: Google Drive</a></span><code>SHA-256: 55C996F40F5D8EDD64CC5949D3F15BDA858D288B6FB5F9E185BE91AEA2A1F126</code></p>
-					</div>
-					<p class="project-evidence">Result: two reproducible, publicly downloadable Slax environments are available for experimentation, recovery work, and no-internal-drive hardware while retaining a clear separation between immutable base modules and writable user changes.</p>
-				</section>
+					</div></section>
 
 				<section class="project-entry" aria-labelledby="xp-samba-title">
-					<h2 id="xp-samba-title">Safely Bridging Windows XP to Modern Network Storage</h2>
-					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-25">September 25, 2026</time></span></p>
-					<p>I connected a legacy Windows XP laptop to USB storage hosted by my Alpine Linux NUC without exposing obsolete SMB1 service to the rest of the local network. The same drive remains available to modern devices through my private Tailscale network.</p>
-					<p>The project combined Samba protocol compatibility, layered access controls, persistent OpenRC service ordering, and packet-level troubleshooting. An exact-source firewall rule allows the XP laptop at <code>192.168.0.160</code> to reach TCP port 445 while dropping SMB traffic from every other LAN address.</p>
-					<div class="project-architecture" aria-label="Legacy file-sharing architecture">
-						<span>Windows XP</span><span aria-hidden="true">→</span>
-						<span>IP-scoped nftables rule</span><span aria-hidden="true">→</span>
-						<span>Alpine Linux Samba</span><span aria-hidden="true">→</span>
-						<span>ONEFIVE USB storage</span>
-					</div>
-					<ul>
-						<li>Enabled the legacy NT1 protocol required by Windows XP while retaining automatic SMB2/SMB3 negotiation for modern clients.</li>
-						<li>Created a separate guest-only <code>ONEFIVE-XP</code> share restricted to one LAN source address; the normal <code>ONEFIVE</code> share remains authenticated for Tailscale clients.</li>
-						<li>Used both Samba host controls and nftables filtering so the XP exception is enforced in two independent layers.</li>
-						<li>Made the firewall and Samba configuration persistent and ordered startup so Tailscale and the access-control rules initialize before file sharing.</li>
-						<li>Diagnosed a stalled XP authentication exchange with Samba logs, live sessions, firewall counters, and a narrowly filtered packet-capture workflow.</li>
-					</ul>
-					<p class="project-evidence">Result: the XP laptop can read and write files on ONEFIVE, all other LAN clients are denied, and modern remote access continues through Tailscale.</p>
-				</section>
+					<h2 id="xp-samba-title">Connecting Windows XP to My Network Storage</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-25">September 25, 2026</time></span></p>
+<p>I connected an older Windows XP laptop to a USB drive on my small Linux server. XP needs an older file-sharing protocol, so I limited that access to the XP laptop’s network address using both firewall and file-sharing rules.</p>
+<p>I used Samba, which lets Linux share files with Windows computers, and worked through connection problems using logs and network traffic checks. I also made the setup start automatically. The XP laptop can read and write files, while my modern devices continue to use my private Tailscale network.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="local-ai-title">
 					<h2 id="local-ai-title">Private Local-AI Portfolio Assistant</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-20T15:03:00-04:00">September 20, 2026 at 3:03 PM EDT</time></span></p>
 					<p>I built the chatbot in the corner of this website and connected it to an AI model running on my own Windows PC. Visitor messages travel through my small Linux server and a private connection before reaching the model.</p>
-					<p class="project-mobile-summary">The result is a private, self-hosted assistant that can answer questions about my experience and projects. It starts with the computer, recovers from dropped connections, and limits repeated requests so one visitor cannot overload it.</p>
-					<div class="project-architecture" aria-label="Chatbot request architecture">
-						<span>Portfolio visitor</span><span aria-hidden="true">→</span>
-						<span>Alpine Linux NUC</span><span aria-hidden="true">→</span>
-						<span>Tailscale + SSH tunnel</span><span aria-hidden="true">→</span>
-						<span>LM Studio on Windows</span>
-					</div>
-					<div class="project-technical-summary">
-						<p>The assistant uses Liquid AI LFM2.5 1.2B in LM Studio. The Linux NUC receives website messages and sends them through an encrypted Tailscale and SSH connection while the Windows model server remains private.</p>
-						<ul>
-							<li>Prompts are processed on my own hardware rather than by a paid cloud AI service.</li>
-							<li>The connection and website gateway restart automatically if either one stops.</li>
-							<li>Message length and request frequency are limited to prevent accidental or intentional overload.</li>
-						</ul>
-					</div>
+					<p>The result is a self-hosted assistant that can answer questions about my experience and projects. It starts with the computer, recovers from dropped connections, and limits repeated requests so one visitor cannot overload it.</p>
+
+					<p>I use LM Studio, an app for running AI models locally, and Tailscale, a private network connection, to connect the computers. I worked through startup and connection problems so the assistant could stay available without exposing the model server directly to visitors.</p>
 				</section>
 
 				<section class="project-entry" aria-labelledby="smb-project-title">
-					<h2 id="smb-project-title">SMB over Tailscale: Windows USB Storage Investigation</h2>
-					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-18">September 18, 2026</time></span></p>
-					<p>I investigated why USB drives shared from a Windows PC could be discovered but not mounted from a Mac over my private Tailscale network. The work became a controlled troubleshooting project rather than a series of guesses.</p>
-					<p>I verified the network path, authentication, Windows sharing rules, firewall scope, drive permissions, and multiple SMB settings. I also compared two removable drives with a fixed folder on the same Windows PC.</p>
-					<div class="project-result" role="group" aria-label="Controlled test results">
-						<p><strong>Fixed Windows folder</strong><span>Mounted successfully</span></p>
-						<p><strong>Two removable USB drives</strong><span>Permission denied</span></p>
-					</div>
-					<p>That comparison isolated the behavior to Windows handling of removable storage on this host—not Tailscale routing, TCP port 445, credentials, share definitions, or a single filesystem or USB device.</p>
-					<ul>
-						<li>Used logs and Windows file-sharing traces to verify authenticated mount attempts.</li>
-						<li>Tested exFAT, NTFS, and FAT storage along with ACL, compression, and multichannel changes.</li>
-						<li>Restored temporary settings, removed diagnostic shares, and left Guest access disabled.</li>
-						<li>Selected SFTP over Tailscale as the reliable, authenticated workaround for removable storage.</li>
-					</ul>
-					<p class="project-evidence">Documented troubleshooting window: 11:04 AM–5:05 PM, with more than two hours of supported hands-on work.</p>
-				</section>
+					<h2 id="smb-project-title">Troubleshooting Windows USB File Sharing</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-18">September 18, 2026</time></span></p>
+<p>I investigated why my Mac could find USB drives shared by a Windows PC over Tailscale, my private network connection, but could not open them.</p>
+<p>I checked the connection, login, firewall, and file permissions, then compared two USB drives with a regular folder on the same PC. The regular folder worked and the USB drives did not, which narrowed the problem to how that Windows computer handled removable storage.</p>
+<p>After testing different drive formats and sharing settings, I restored the temporary changes and chose SFTP, an encrypted way to transfer files, as a working alternative.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="heyboer-project-title">
-					<h2 id="heyboer-project-title">Forensic Disk Imaging and Targeted Recovery</h2>
-					<p class="project-status"><span class="status-badge project-completed">Documented Workflow</span> <span>Completed September 21, 2026</span></p>
-					<p>I built a careful recovery workflow for a failing hard drive, prioritizing evidence preservation and reproducibility over aggressive repeated reads. The work included forensic imaging, independent size checks, hash verification, bad-sector documentation, and a bounded recovery attempt.</p>
-					<ul>
-						<li>Created and verified a raw forensic image with FTK Imager, matching the reported MD5 and SHA-1 verification values.</li>
-						<li>Recorded source geometry, acquisition details, unreadable sectors, and the fact that FTK replaced those sectors with zeros.</li>
-						<li>Preserved the original image and used a separate Debian WSL and GNU ddrescue workflow for targeted sector reads.</li>
-						<li>Used read-only handling, bounded retries, separate map files, and a clean detach procedure to limit further stress on the failing disk.</li>
-					</ul>
-					<p class="project-evidence">Result: the image was internally verified, four source sectors remained unreadable, and the recovery limits were documented without claiming data that could not be recovered.</p>
-				</section>
+					<h2 id="heyboer-project-title">Making a Copy of a Failing Hard Drive</h2>
+<p class="project-status"><span class="status-badge project-completed">Documented Workflow</span> <span>Completed September 21, 2026</span></p>
+<p>I built a careful workflow for copying a failing hard drive before trying to recover its files. I used FTK Imager, a disk-imaging tool, and checked the resulting image’s size and verification values.</p>
+<p>I kept the original image separate and used GNU ddrescue, a recovery tool, for limited attempts to read damaged areas. Four sectors remained unreadable. I documented that limit and the areas that FTK had filled with zeros rather than claiming that everything had been recovered.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="ram-forensics-title">
-					<h2 id="ram-forensics-title">RAM-Disk Forensic Acquisition and Evidence Organization</h2>
-					<p class="project-status"><span class="status-badge project-completed">Documented Workflow</span> <span>Forensic imaging and recovery workflow</span></p>
-					<p>I acquired a RAM-disk image with FTK Imager and analyzed it on macOS using command-line forensic tooling. I was able to repeatedly extract multiple files while preserving a practical, repeatable workflow for working with a large evidence set.</p>
-					<p>The hardest part became organizing the extracted data. Large-folder compression with macOS <code>zip</code> and <code>ditto</code> took too long to finish reliably, so I divided the work into smaller folders. I also used Google Colab to develop snippets that created many smaller archives directly in Google Drive, avoiding repeated downloads and re-uploads.</p>
-					<ul>
-						<li>Acquired the RAM-disk evidence with FTK Imager and maintained a forensic-minded separation between the image and extracted working files.</li>
-						<li>Used persistence and repeated validation to extract multiple files from the image on macOS.</li>
-						<li>Tested multiple compression approaches, then adapted the plan when a single large archive became impractical.</li>
-						<li>Vibe-coded Google Colab automation to package many folders directly in Google Drive instead of repeatedly downloading the full dataset.</li>
-					</ul>
-					<p class="project-evidence">Result: a large RAM-disk evidence set became manageable through smaller, repeatable extraction and archiving steps. The work highlights persistence, troubleshooting, and practical automation under real-world time constraints.</p>
-				</section>
+					<h2 id="ram-forensics-title">Extracting &amp; Organizing Files from a RAM-Disk Image</h2>
+<p class="project-status"><span class="status-badge project-completed">Documented Workflow</span> <span>Forensic imaging and recovery workflow</span></p>
+<p>I used FTK Imager to copy a RAM disk, a drive held in memory, and extracted files from the image on my Mac. I kept the source image separate from the files I was working with.</p>
+<p>Compressing everything into one large archive took too long to finish reliably. I tried different approaches, then split the work into smaller folders. I also used Google Colab, a browser-based Python workspace, to help automate creating smaller archives directly in Google Drive. Persistence and changing the approach made the data easier to manage.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="ftk-fat32-title">
-					<h2 id="ftk-fat32-title">FTK Imager and an Unexpected FAT32 Edge Case</h2>
-					<p class="project-status"><span class="status-badge project-completed">Troubleshooting Case Study</span> <span>Documented September 21, 2026</span></p>
-					<p>I investigated a repeatable FTK Imager crash triggered by selecting a small removable USB volume. The device was a roughly 1 GB FAT32 volume with ordinary folders, and Windows could browse it normally.</p>
-					<p>FTK Imager 8.3.0.27 repeatedly failed while selecting the volume, even after reinstalling the application and resetting its per-user settings. The Windows Error Reporting records showed application crashes in the FTK handling path rather than a simple missing-drive error.</p>
-					<ul>
-						<li>Confirmed that the volume was present, readable, and formatted as FAT32.</li>
-						<li>Ran a read-only CHKDSK scan; Windows reported no filesystem problems.</li>
-						<li>Verified that FTK could begin image acquisition from a different unusual USB device.</li>
-						<li>Reformatted the test USB as exFAT and observed that FTK proceeded normally.</li>
-					</ul>
-					<p class="project-evidence">Result: the evidence points to an observed compatibility or parser edge case involving this FAT32 removable volume and FTK Imager, rather than a general imaging-engine or hardware failure. The practical workaround was to use exFAT for the test media or acquire the device before browsing its filesystem.</p>
-				</section>
+					<h2 id="ftk-fat32-title">Troubleshooting an FTK Imager Crash</h2>
+<p class="project-status"><span class="status-badge project-completed">Troubleshooting Case Study</span> <span>Documented September 21, 2026</span></p>
+<p>I investigated an FTK Imager crash that happened repeatedly when I selected a small FAT32 USB drive. Windows could browse the drive normally, and its disk check reported no filesystem problems.</p>
+<p>Reinstalling FTK and resetting its settings did not fix the crash. I compared another USB device and then reformatted the test drive as exFAT, another drive format. FTK worked with exFAT. That gave me a practical workaround and pointed to a compatibility issue with this particular FAT32 drive, though it did not prove the exact cause.</p>
+</section>
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-06">October 6, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-07">October 7, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261006-3"></script>

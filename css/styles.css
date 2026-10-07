@@ -1087,3 +1087,9 @@ footer {
     max-height: 260px;
     border-radius: 8px;
 }
+
+/* Keep long checksums and paths inside project cards at every screen size. */
+.project-entry { min-width: 0; overflow-wrap: anywhere; }
+.project-result > p { min-width: 0; }
+.project-entry code { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
+.project-result code { display: block; margin-top: 10px; font-size: 0.85em; }
