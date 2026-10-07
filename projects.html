@@ -86,7 +86,13 @@
 						<li>Configured launchd on the Mac and OpenRC on the NUC for automatic service startup. Private Tailscale access works by IP and port without MagicDNS; public access uses an HTTPS gateway.</li>
 						<li>Added an offline message and automatic status retries when the Mac is asleep, shut down, or reconnecting.</li>
 					</ul>
-					<p><a href="council.html">Open the AI chatroom</a> — password and authenticator code required.</p>
+					<p><strong>Iteration through testing:</strong> Real conversation transcripts exposed context drift, repeated clarification requests, premature completion messages, and playful questions turning into technical advice. I revised the prompts and discussion flow, replayed the examples, checked what improved, and kept testing the remaining misses. Later passes focused on first-person replies, explicit agreement before the conclusion, and keeping practical advice separate from imaginary debates. The work demonstrates persistence through small, testable improvements; natural conversation is still being refined.</p>
+<details class="project-evidence"><summary>Conversation testing: two memorable examples</summary>
+<div class="project-result">
+<p><strong>Who gets the last byte of RAM?</strong><span>An early attempt turned the joke into RAM-allocation advice and suggested checking application activity. After clearer playful framing, a later reply stayed in the imaginary contest: <q>I’ll take it, and you can keep the puns coming!</q> The next challenge was making the verdict answer the exact question.</span></p>
+<p><strong>How do you learn a new skill?</strong><span>Early replies repeatedly demanded a specific skill. Later tests gave a useful general approach: focused practice, small goals, and feedback. A closing exchange then named the shared plan: <q>Liquid, I agree—pairing focused hands-on practice with structured feedback is the shared approach.</q></span></p>
+</div><p>These are individual test outcomes, not a guarantee. Agreement, context, tone, and concrete recommendations remain part of ongoing regression testing.</p></details>
+<p><a href="council.html">Open the AI chatroom</a> — password and authenticator code required.</p>
 					<p class="project-evidence">Result: the deployed login flow requires both a password and an authenticator code, and a complete authenticated debate produces replies from both models and a final recommendation. Tests cover authentication failures, code replay, recovery codes, concurrent-start rejection, and offline handling.</p>
 					<p>The public room is for discussion only: it does not execute commands or inspect files. Signed-in users share the same room, and model agreement is not proof that a recommendation is correct.</p>
 					<p>Tools &amp; skills: Python, HTML/CSS/JavaScript, Apple Foundation Models, Liquid AI, LM Studio, local API integration, PBKDF2, TOTP, launchd, OpenRC, Tailscale, and development with Codex.</p>
