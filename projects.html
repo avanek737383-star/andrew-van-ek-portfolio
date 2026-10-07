@@ -142,6 +142,14 @@
 						<p><strong>Slackware Custom</strong><span class="slax-mirrors"><a href="https://archive.org/details/slax-64bit-slackware-custom" target="_blank" rel="noopener">Mirror 1: Internet Archive</a><a href="https://drive.google.com/file/d/1-1ZKhIkkeGOFZTnde30SQ8dTum0ULATY/view?usp=sharing" target="_blank" rel="noopener">Mirror 2: Google Drive</a></span><code>SHA-256: 55C996F40F5D8EDD64CC5949D3F15BDA858D288B6FB5F9E185BE91AEA2A1F126</code></p>
 					</div></section>
 
+				<section class="project-entry" aria-labelledby="nuc-storage-title">
+<h2 id="nuc-storage-title">Persistent Network Storage on My Intel NUC</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span></p>
+<p>I set up a USB drive on my Intel NUC as shared network storage that I can access from both Windows and Mac. The NUC runs Alpine Linux and uses Samba, software that lets Linux provide a shared drive to other computers.</p>
+<p>I worked through the drive mounting, login permissions, and automatic startup so the storage stays available without rebuilding the setup each time the NUC restarts. The drive mounts automatically, and Samba and Tailscale start with the server.</p>
+<p>Tailscale connects my computers through a private network, so I can reach the same shared storage remotely as well. The result is one persistent place for my files that I can connect to from Windows or macOS, including when I am away from the NUC.</p>
+</section>
+
 				<section class="project-entry" aria-labelledby="xp-samba-title">
 					<h2 id="xp-samba-title">Connecting Windows XP to My Network Storage</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-25">September 25, 2026</time></span></p>
