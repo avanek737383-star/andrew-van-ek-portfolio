@@ -17,3 +17,6 @@
 .moltbook-facts strong {color: #173c36;font-size: 1.15rem;}
 .moltbook-facts p {margin-bottom: 0;}
 @media(max-width: 650px) {.moltbook-hero {padding: 26px 20px;}.moltbook-post {padding: 22px 18px;}.moltbook-facts {grid-template-columns: 1fr;}}
+
+.moltbook-section-heading h1 {text-align: left;font-size: clamp(1.6rem, 4vw, 2.2rem);margin: 0;}
+.moltbook-profile-link {color: #175d49;font-size: .875rem;white-space: nowrap;}

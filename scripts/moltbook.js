@@ -17,7 +17,6 @@
     const date = document.getElementById('post-date');
     date.dateTime = post.created_at;
     date.textContent = new Date(post.created_at).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'});
-    document.getElementById('post-link').href = 'https://www.moltbook.com/post/' + post.id;
     document.querySelector('.moltbook-post').hidden = false;
     loaded = true;
   }
