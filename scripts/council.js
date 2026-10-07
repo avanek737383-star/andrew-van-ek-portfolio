@@ -6,6 +6,8 @@ let token=sessionStorage.getItem('council-token')||'',revision=-1,messages=[],ru
 const $=id=>document.getElementById(id);
 let challenge='';
 let visibleMessages=[], revealTimer=null, activeReveal=null;
+let backendStatus='Connecting…';
+function updateStatus(){const pending=activeReveal||visibleMessages.length<messages.length;const presenting=!running&&pending&&backendStatus.startsWith('Discussion complete');$('status').textContent=presenting?'Showing remaining replies…':backendStatus;$('status').classList.toggle('spinner',running||presenting)}
 const revealButton=document.createElement('button');
 revealButton.type='button';revealButton.className='quiet';revealButton.textContent='Show remaining replies';revealButton.hidden=true;
 $('copy').before(revealButton);
@@ -14,21 +16,21 @@ function addCard(m,text){const card=document.createElement('article');card.class
 function followReading(){if(window.innerHeight+window.scrollY>=document.body.scrollHeight-180)window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
 function revealNext(){
  if(revealTimer&&!activeReveal)return;
- if(activeReveal||visibleMessages.length>=messages.length){revealButton.hidden=!activeReveal&&visibleMessages.length>=messages.length;return}
+ if(activeReveal||visibleMessages.length>=messages.length){revealButton.hidden=!activeReveal&&visibleMessages.length>=messages.length;updateStatus();return}
  const m=messages[visibleMessages.length];
  if(m.speaker.toLowerCase()==='you'||m.speaker.toLowerCase()==='council'){addCard(m,m.text);visibleMessages.push(m);revealNext();return}
  const parts=m.text.match(/\S+\s*|\s+/g)||[];const body=addCard(m,'');activeReveal={body,parts,index:0,text:''};revealButton.hidden=false;
  function tick(){if(!activeReveal)return;const nearBottom=window.innerHeight+window.scrollY>=document.body.scrollHeight-180;activeReveal.text+=parts[activeReveal.index++]||'';body.textContent=activeReveal.text;if(nearBottom)followReading();if(activeReveal.index<parts.length){revealTimer=setTimeout(tick,200)}else{visibleMessages.push(m);activeReveal=null;revealTimer=setTimeout(()=>{revealTimer=null;revealNext()},2000)}}
  tick();
 }
-revealButton.onclick=()=>{cancelReveal();$('chat').replaceChildren();messages.forEach(m=>addCard(m,m.text));visibleMessages=messages.slice()};
-function render(s){$('offline').hidden=true;running=s.running;$('status').textContent=s.status;$('status').classList.toggle('spinner',running);$('start').disabled=running;$('question').disabled=running;$('rounds').disabled=running;$('new').disabled=running;$('stop').hidden=!running;$('start').hidden=running;$('start').textContent=s.recommendation?'Ask follow-up ↗':'Start debate ↗';if(s.revision===revision)return;
+revealButton.onclick=()=>{cancelReveal();$('chat').replaceChildren();messages.forEach(m=>addCard(m,m.text));visibleMessages=messages.slice();updateStatus()};
+function render(s){$('offline').hidden=true;running=s.running;backendStatus=s.status;updateStatus();$('start').disabled=running;$('question').disabled=running;$('rounds').disabled=running;$('new').disabled=running;$('stop').hidden=!running;$('start').hidden=running;$('start').textContent=s.recommendation?'Ask follow-up ↗':'Start debate ↗';if(s.revision===revision)return;
  const first=revision===-1;revision=s.revision;
  const samePrefix=messages.length<=s.messages.length&&messages.every((m,i)=>m.speaker===s.messages[i].speaker&&m.text===s.messages[i].text);
  messages=s.messages;
  if(first||!samePrefix){cancelReveal();visibleMessages=[];$('chat').replaceChildren();if(first){messages.forEach(m=>addCard(m,m.text));visibleMessages=messages.slice()}}
  if(!messages.length){cancelReveal();visibleMessages=[];return showEmpty()}
- const emptyCard=$('chat').querySelector('.empty');if(emptyCard)emptyCard.remove();revealNext();
+ const emptyCard=$('chat').querySelector('.empty');if(emptyCard)emptyCard.remove();revealNext();updateStatus();
 }
 const empty=$('chat').innerHTML;
 function showEmpty(){if(!$('chat').querySelector('.empty')){$('chat').innerHTML=empty;bindExamples()}}
