@@ -39,12 +39,12 @@
 			<h1>Projects</h1>
 			<main>
 <section class="project-entry" aria-labelledby="grandmaapproved-title">
-<h2 id="grandmaapproved-title">GrandmaApproved: My Autonomous Moltbook Agent 🦞</h2>
+<h2 id="grandmaapproved-title">GrandmaApproved: An AI Agent That Shares My Project Stories</h2>
 <p class="project-status"><span class="status-badge project-completed">Built &amp; Running</span> <span>October 6, 2026</span></p>
-<p>I brought a dedicated, autonomous agent to life on the agent internet to talk friendly smack about my hardcore tinkering habits. Its automation runs locally on my Mac, starts at login, and publishes a queued project story once a day while the Mac is running.</p>
+<p>I built an AI agent that shares stories about my projects and experiments, with a little grandma energy and friendly teasing. Its automation runs locally on my Mac, starts at login, and publishes a queued project story once a day while the Mac is running.</p>
 <ul><li>Registered and claimed @grandmaapproved on Moltbook, with the philosophy: “If it isn't broke, do fix it.”</li><li>Diagnosed school Wi-Fi DNS filtering and restored access using Cloudflare DNS.</li><li>Published the inaugural post in m/blesstheirhearts by solving Moltbook’s verification challenge.</li><li>Built a native macOS LaunchAgent that checks account activity and platform announcements every 30 minutes.</li><li>Indexed my portfolio into a local knowledge base and queued stories about BusyBox recovery, local AI debates, and Windows XP security.</li><li>Added a 24-hour posting cooldown, an automated challenge solver, persistent state, logs, and a native moltbook CLI.</li></ul>
-<p>The current chronicler publishes prepared stories from its local queue; the heartbeat checks and logs new activity. Moltbook hosts the public profile and posts.</p>
-<p><a href="moltbook.html">Meet GrandmaApproved &amp; read the latest post →</a></p>
+<p>The agent publishes prepared stories from its local queue; the heartbeat checks and logs new activity. A dedicated page on this portfolio displays its latest post and links directly to its public profile on Moltbook.</p>
+<p><a href="moltbook.html">Read the latest from @grandmaapproved →</a></p>
 <p>Tools &amp; skills: Python, REST APIs, macOS launchd, DNS diagnostics, persistent JSON state, scheduling, and command-line tooling.</p>
 </section>
 
@@ -68,7 +68,7 @@
 					<h2 id="local-council-title">Local Council: Apple and Liquid AI Debate Chatroom</h2>
 					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-06">October 6, 2026</time></span></p>
 					<p>I built a chatroom that lets two AI models running on my Mac discuss the same question. Apple's on-device Foundation Model proposes an approach, Liquid AI LFM2.5 critiques it, and they take turns refining their ideas before producing a practical recommendation. The project turns a pair of local assistants into an interactive discussion I can watch and steer.</p>
-					<p class="project-mobile-summary">A Desktop launcher opens the private room, while a dedicated portfolio page provides authenticated public access from a phone or browser. I can choose one to five debate rounds, stop a discussion, copy the transcript, ask a follow-up using the last recommendation, or start a new topic. One discussion runs at a time.</p>
+					<p class="project-mobile-summary">A Desktop launcher opens the private room, while a dedicated portfolio page provides authenticated public access from a phone or browser. Discussions adapt to the question and can conclude early when a usable answer is ready, user input is needed, or progress stalls. Auto allows up to seven rounds, with quick, short, and extended options capped at one, three, and ten rounds. Follow-ups retain the original question and recent user messages. Replies appear slowly for readability, and follow-ups stay locked during debate and reply playback. Only the person who started an active discussion can stop it. One discussion runs at a time.</p>
 					<div class="project-architecture" aria-label="Authenticated local AI discussion workflow">
 						<span>Browser or phone</span><span aria-hidden="true">→</span>
 						<span>Authenticated NUC gateway</span><span aria-hidden="true">→</span>
