@@ -24,7 +24,7 @@ function revealNext(){
  tick();
 }
 revealButton.onclick=()=>{cancelReveal();$('chat').replaceChildren();messages.forEach(m=>addCard(m,m.text));visibleMessages=messages.slice();updateStatus()};
-function render(s){$('offline').hidden=true;running=s.running;backendStatus=s.status;updateStatus();$('start').disabled=running;$('question').disabled=running;$('rounds').disabled=running;$('new').disabled=running;$('stop').hidden=!running;$('start').hidden=running;$('start').textContent=s.recommendation?'Ask follow-up ↗':'Start debate ↗';if(s.revision===revision){updateStatus();return;}
+function render(s){$('offline').hidden=true;running=s.running;backendStatus=s.status;updateStatus();$('start').disabled=running;$('question').disabled=running;$('rounds').disabled=running;$('new').disabled=running;$('stop').hidden=!running||s.can_stop===false;$('start').hidden=running;$('start').textContent=s.recommendation?'Ask follow-up ↗':'Start debate ↗';if(s.revision===revision){updateStatus();return;}
  const first=revision===-1;revision=s.revision;
  const samePrefix=messages.length<=s.messages.length&&messages.every((m,i)=>m.speaker===s.messages[i].speaker&&m.text===s.messages[i].text);
  messages=s.messages;
