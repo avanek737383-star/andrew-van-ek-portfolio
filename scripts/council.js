@@ -6,8 +6,8 @@ let token=sessionStorage.getItem('council-token')||'',revision=-1,messages=[],ru
 const $=id=>document.getElementById(id);
 let challenge='';
 let visibleMessages=[], revealTimer=null, activeReveal=null;
-let backendStatus='Connecting…';
-function updateStatus(){const pending=activeReveal||visibleMessages.length<messages.length;const presenting=!running&&pending&&backendStatus.startsWith('Discussion complete');$('status').textContent=presenting?'Showing remaining replies…':backendStatus;$('status').classList.toggle('spinner',running||presenting)}
+let backendStatus='Connecting…',submitting=false;
+function updateStatus(){const pending=activeReveal||visibleMessages.length<messages.length;const presenting=!running&&pending&&backendStatus.startsWith('Discussion complete');const busy=running||!!pending||submitting;$('status').textContent=presenting?'Showing remaining replies…':backendStatus;$('status').classList.toggle('spinner',running||presenting);$('start').disabled=busy;$('question').disabled=busy;$('rounds').disabled=busy;$('new').disabled=busy}
 const revealButton=document.createElement('button');
 revealButton.type='button';revealButton.className='quiet';revealButton.textContent='Show remaining replies';revealButton.hidden=true;
 $('copy').before(revealButton);
@@ -24,7 +24,7 @@ function revealNext(){
  tick();
 }
 revealButton.onclick=()=>{cancelReveal();$('chat').replaceChildren();messages.forEach(m=>addCard(m,m.text));visibleMessages=messages.slice();updateStatus()};
-function render(s){$('offline').hidden=true;running=s.running;backendStatus=s.status;updateStatus();$('start').disabled=running;$('question').disabled=running;$('rounds').disabled=running;$('new').disabled=running;$('stop').hidden=!running;$('start').hidden=running;$('start').textContent=s.recommendation?'Ask follow-up ↗':'Start debate ↗';if(s.revision===revision)return;
+function render(s){$('offline').hidden=true;running=s.running;backendStatus=s.status;updateStatus();$('start').disabled=running;$('question').disabled=running;$('rounds').disabled=running;$('new').disabled=running;$('stop').hidden=!running;$('start').hidden=running;$('start').textContent=s.recommendation?'Ask follow-up ↗':'Start debate ↗';if(s.revision===revision){updateStatus();return;}
  const first=revision===-1;revision=s.revision;
  const samePrefix=messages.length<=s.messages.length&&messages.every((m,i)=>m.speaker===s.messages[i].speaker&&m.text===s.messages[i].text);
  messages=s.messages;
@@ -42,7 +42,7 @@ $('loginform').onsubmit=async e=>{e.preventDefault();$('loginbutton').disabled=t
 $('mfaform').onsubmit=async e=>{e.preventDefault();$('verifybutton').disabled=true;try{const r=await fetch(API+'/api/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({challenge,code:$('code').value.trim()})});const data=await r.json();if(!r.ok)throw Error(data.error||'Verification failed');token=data.token;sessionStorage.setItem('council-token',token);$('code').value='';challenge='';$('mfaform').hidden=true;$('loginform').hidden=false;signedIn(true);await poll()}catch(e){$('mfastatus').textContent=e.message}finally{$('verifybutton').disabled=false}};
 $('backlogin').onclick=()=>{challenge='';$('code').value='';$('mfaform').hidden=true;$('loginform').hidden=false};
 $('logout').onclick=async()=>{try{await action('logout')}catch(e){}signedIn(false)};
-$('form').onsubmit=async e=>{e.preventDefault();const q=$('question').value.trim();if(!q||running)return;$('start').disabled=true;try{await action('start',{question:q,rounds:Number($('rounds').value)});$('question').value=''}catch(e){$('status').textContent=e.message;$('start').disabled=false}};
+$('form').onsubmit=async e=>{e.preventDefault();const q=$('question').value.trim();if(!q||running||submitting||activeReveal||visibleMessages.length<messages.length)return;submitting=true;updateStatus();try{await action('start',{question:q,rounds:Number($('rounds').value)});$('question').value=''}catch(e){backendStatus=e.message}finally{submitting=false;updateStatus()}};
 $('stop').onclick=async()=>{try{await action('stop')}catch(e){$('status').textContent=e.message}};
 $('new').onclick=async()=>{try{await action('new');$('question').value='';$('question').focus()}catch(e){$('status').textContent=e.message}};
 $('copy').onclick=async()=>{const text=messages.map(m=>m.speaker+': '+m.text).join('\n\n');try{await navigator.clipboard.writeText(text);$('status').textContent='Chat copied.'}catch(e){$('status').textContent='Select the chat text to copy it.'}};
