@@ -39,6 +39,16 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="ace-step-title">
+<h2 id="ace-step-title">ACE-Step: Local AI Music Training &amp; Cover Comparisons</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Seven training epochs completed; song comparisons underway</span></p>
+<p>I worked with AI to train ACE-Step 1.5 on my Windows computer and explore Christian hard-rock arrangements. I used 89 labeled, roughly 30-second audio clips to train a LoRA, a small add-on that adapts the base music model. My laptop's 4 GB graphics memory meant I had to work carefully with precision settings and move parts of the model into system memory.</p>
+<p>The early runs produced invalid loss values even though the graphics card was busy. I worked through the logs and checked the saved training data instead of assuming the run was working. The problem was traced to invalid conditioning values, the information that connects the lyrics and musical description to the audio. I rebuilt that conditioning with BF16 precision and a different attention implementation, then checked all 89 samples for finite values before resuming training.</p>
+<p>I completed seven epochs, or passes through the dataset, and kept a separate checkpoint after each one. The average training loss fell from 1.4179 in epoch one to 1.0406 in epoch seven. Saving the model, optimizer, and progress let me continue in reviewed increments rather than restarting from scratch.</p>
+<p>I am comparing one cover from each epoch using the same hymn lyrics, source recording, random seed, duration, and adapter strength. The source audio gives the model a guide for the melody, held notes, phrase spacing, and instrumental breaks. I also checked the transcription against the recording and restored a verse that the original transcription had missed. Keeping the settings fixed helps me judge what changes between checkpoints.</p>
+<p>This project has taken patience, endurance, and persistence: diagnosing failed runs, validating data, waiting through training and full-length generation, and fixing compatibility issues along the way. Lower training loss does not automatically mean a better song. I am checking the generated audio for clipping and dropouts and listening for clear lyrics, recognizable phrasing, musical coherence, and the intended rock sound before choosing a preferred checkpoint.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="fishbeck-copilot-title">
 <h2 id="fishbeck-copilot-title">Fishbeck: Learning &amp; Development Copilot Agent</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span></p>
