@@ -83,6 +83,21 @@
 <p>I also programmed an application for a test human-machine interface (HMI), the screen an operator uses to interact with a machine. These projects gave me hands-on practice with industrial controls and with connecting control logic to an operator interface.</p>
 </section>
 
+<section class="project-entry" aria-labelledby="xp-remote-title">
+<h2 id="xp-remote-title">Windows XP Remote Administration</h2>
+<p class="project-status"><span class="status-badge project-completed">RDP &amp; Audio Troubleshooting Completed</span> <span class="status-badge project-in-progress">SSH In Progress</span></p>
+<p>I established Remote Desktop access from my Mac to a Windows XP computer. I used Nmap and Netcat to check network connectivity and service ports, worked through Windows Firewall settings, and verified that the Remote Desktop service was available before connecting.</p>
+<p>After connecting, music played through my Mac instead of the speakers attached to the XP computer. I traced this to Remote Desktop audio redirection and changed the client’s audio setting to play sound on the remote PC. That kept playback on the XP computer’s own speakers.</p>
+<p>I also installed freeSSHd and verified that it was listening on TCP port 22. Remote SSH connection attempts were still blocked or filtered in my last tests, so command-line access through SSH remains unfinished.</p>
+</section>
+
+<section class="project-entry" aria-labelledby="remote-wake-title">
+<h2 id="remote-wake-title">Remote Windows Wake &amp; Access</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span></p>
+<p>I configured my Intel NUC running Alpine Linux and connected my devices through Tailscale so I could SSH into the NUC from other networks. From there, I sent Wake-on-LAN magic packets to wake my Windows PC remotely.</p>
+<p>I adjusted the Windows PC’s Ethernet adapter settings in Device Manager to support waking over the network and configured automatic sleep so the computer could return to a low-power state after use. This gave me a way to wake the PC when I needed remote access without leaving it running all the time.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="grandmaapproved-title">
 <h2 id="grandmaapproved-title">GrandmaApproved: An AI Agent That Shares My Projects</h2>
 <p class="project-status"><span class="status-badge project-completed">Built &amp; Running</span> <span>October 6, 2026</span></p>
@@ -197,7 +212,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-07">October 7, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-09">October 9, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261006-3"></script>
