@@ -83,6 +83,15 @@
 <p>I also programmed an application for a test human-machine interface (HMI), the screen an operator uses to interact with a machine. These projects gave me hands-on practice with industrial controls and with connecting control logic to an operator interface.</p>
 </section>
 
+<section class="project-entry" aria-labelledby="nuc-remote-desktop-title">
+<h2 id="nuc-remote-desktop-title" style="scroll-margin-top: 5rem;">Alpine Linux NUC: Remote Desktop &amp; Docker Maintenance</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-09">October 9, 2026</time></span></p>
+<p>I worked with AI to make remote access and the development tools on my Intel NUC more reliable. My two VNC connections were supposed to show the same desktop at different sizes, but they were actually running separate desktops. Firefox was already open on one, which caused a browser-profile conflict when I tried to open it from the other.</p>
+<p>I consolidated the connections onto one shared desktop, with a smaller scaled view and a larger view. I reduced Openbox to one workspace, fixed the dock's app icons, and corrected browser launchers. I also adjusted startup settings and configured a persistent VNC certificate. Both connections now show the same windows.</p>
+<p>I updated my Codex and Homebrew Docker containers, including their system packages and installed tools. I worked through an outdated repository signing key, checked for remaining updates and missing dependencies, and saved updated local images while keeping the mounted data. I also installed Antigravity CLI directly on the host and replaced an old launcher that pointed to a missing container.</p>
+<p>For a fallback if OpenSSH fails, I set up a separate Dropbear SSH server restricted to my private Tailscale network. The NUC's hard drive made the updates and image saves slow, so this took patience, persistence, and endurance. I kept checking the logs and testing the results until the remote desktop, browser launches, and updated tools were working.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="xp-remote-title">
 <h2 id="xp-remote-title">Windows XP Remote Administration</h2>
 <p class="project-status"><span class="status-badge project-completed">RDP &amp; Audio Troubleshooting Completed</span> <span class="status-badge project-in-progress">SSH In Progress</span></p>
