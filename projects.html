@@ -106,6 +106,15 @@
 <p>I also programmed an application for a test human-machine interface (HMI), the screen an operator uses to interact with a machine. These projects gave me hands-on practice with industrial controls and with connecting control logic to an operator interface.</p>
 </section>
 
+<section class="project-entry" aria-labelledby="glpi-inventory-title">
+<h2 id="glpi-inventory-title">GLPI: Personal Computer &amp; Software Inventory</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Inventory agents installed on Linux Mint, Alpine Linux, and persistent USB Slax; central dashboard deployment underway</span></p>
+<p>I am building a free inventory system for the computers I manage, inspired by the asset management tools I used during my Fishbeck internship. Tailscale helps me connect to my machines and see when they were last online; this project adds a central view of their operating systems, hardware, and installed software.</p>
+<p>I worked with AI to deploy GLPI and a MariaDB database in Docker on my always-on Alpine Linux Intel NUC. The setup uses persistent storage and automatic startup, with private browser access through Tailscale planned for my laptop and phone. I am configuring authenticated inventory uploads and database backups as part of the deployment.</p>
+<p>I installed GLPI Agent 1.21 on my Linux Mint laptop and my Debian-based Slax computer, which runs from a USB drive. On Alpine, I used the official source release with native Perl dependencies and an OpenRC startup service. A local test collected 691 software entries from the NUC. For Slax, I am checking the persistent session and flushing changes to the USB so the agent and its configuration survive reboot.</p>
+<p>The next steps are to verify all three machines in the central dashboard and extend the rollout to my other Debian computers, Windows, and macOS. This project focuses on keeping an accurate inventory; managing software updates centrally is a possible future addition.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="nuc-remote-desktop-title">
 <h2 id="nuc-remote-desktop-title" style="scroll-margin-top: 5rem;">Alpine Linux NUC: Remote Desktop &amp; Docker Maintenance</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-10">October 10, 2026</time></span></p>
