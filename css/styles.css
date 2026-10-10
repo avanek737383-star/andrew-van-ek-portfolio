@@ -1093,3 +1093,32 @@ footer {
 .project-result > p { min-width: 0; }
 .project-entry code { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
 .project-result code { display: block; margin-top: 10px; font-size: 0.85em; }
+
+/* About page: local 4K image experiment. */
+.oceanscape-render {
+    margin: 24px 0;
+}
+.oceanscape-render figcaption {
+    display: block;
+    color: inherit;
+    font-size: 1em;
+    margin-bottom: 16px;
+}
+.oceanscape-render__preview {
+    display: block;
+}
+.oceanscape-render__preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.oceanscape-render__link {
+    margin-top: 12px;
+    font-size: 0.9em;
+}
+@media (max-width: 760px) {
+    .oceanscape-render__preview {
+        display: none;
+    }
+}
