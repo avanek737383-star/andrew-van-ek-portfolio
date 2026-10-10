@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">63 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
+<p class="maintenance-updated">65 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
@@ -67,6 +67,7 @@
 <li>Took ownership of files transferred to Windows with my administrator account and adjusted NT AUTHORITY\SYSTEM access to complete the setup.</li>
 <li>Installed the Windows inventory agent with administrator elevation, then verified its inventory upload and automatic service startup.</li>
 <li>Configured a separate Dropbear SSH service on the NUC as a fallback, restricted to the private Tailscale network.</li>
+<li>Prepared SSH public-key access for a Windows VM. OpenSSH Server installation was still in progress when documented; connection and automatic startup verification remain pending.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
@@ -84,6 +85,7 @@
 <li>With assistance from Antigravity CLI, diagnosed an Alpine file-manager error when running autoclicker.py: PCManFM/libfm attempted to launch xterm, which was not installed.</li>
 <li>Configured libfm to use lxterminal, installed xterm as a fallback, and added an x-terminal-emulator compatibility link with assistance from Antigravity CLI.</li>
 <li>Verified that the auto-clicker launches from the file manager using Execute in Terminal, with a draggable Click Target window and Ctrl+C available to stop it.</li>
+<li>Resolved a Windows Terminal duplicate-profile GUID warning by removing a manually defined PowerShell 7 profile that duplicated an automatically discovered profile, while retaining PowerShell 7 as the default.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="startup"><h2 id="startup">USB Persistence, Startup &amp; Power Settings</h2>
 <ul class="maintenance-list">
