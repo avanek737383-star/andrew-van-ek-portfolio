@@ -51,8 +51,8 @@
 			<main class="maintenance-main">
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
-<p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I work with AI to explore solutions and troubleshoot, then check the resulting settings and behavior. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">51 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
+<p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
+<p class="maintenance-updated">60 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
@@ -77,6 +77,10 @@
 <li>Reduced Openbox to one workspace to simplify the shared remote desktop.</li>
 <li>Added panel indicators for network connectivity and download/upload activity, with speeds shown in megabits per second.</li>
 <li>Added hard-drive activity indicators with separate read/write information and explanatory tooltips.</li>
+<li>Configured two persistent x11vnc endpoints over Tailscale on my Debian Mac and checked that both services start at boot and restart automatically.</li>
+<li>Removed stale duplicate Ethernet and network tray entries on the Debian Mac.</li>
+<li>Restored Trayscale to the Debian Mac&#x27;s XFCE tray.</li>
+<li>Changed the Debian Mac&#x27;s top-panel clock to persistent analog mode.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="startup"><h2 id="startup">USB Persistence, Startup &amp; Power Settings</h2>
 <ul class="maintenance-list">
@@ -87,6 +91,7 @@
 <li>Configured inventory agents as systemd services on Linux Mint, Debian, Slax, and Kali, and as an OpenRC service on Alpine.</li>
 <li>Configured the NUC's Docker services and GLPI containers to start again at boot with persistent database and application storage.</li>
 <li>Adjusted the HP laptop's automatic suspend, lid-close, and display power settings to support long-running work and remote reconnection.</li>
+<li>Disabled AnyDesk startup on the Debian Mac while keeping the application installed.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
@@ -97,6 +102,10 @@
 <li>Saved updated local container images while preserving mounted data.</li>
 <li>Installed Antigravity CLI directly on Alpine and replaced a launcher that pointed to a missing container.</li>
 <li>Checked the installed Tailscale clients against the current stable release during remote-access maintenance.</li>
+<li>Updated all 16 outdated Homebrew formulae on the Debian Mac during this maintenance session.</li>
+<li>Confirmed that the Debian Mac&#x27;s installed Tailscale client was version 1.104.1 during the October 10 maintenance session.</li>
+<li>Updated both Debian Mac Monero desktop launchers to use the selected MoneroOcean pool and saved a local note documenting the change.</li>
+<li>Configured persistent XMRig MSR device permissions with an msr group and a udev rule using root:msr ownership and group read/write access. The rule is intended to allow tuning after reboot; the existing miner session may require a restart or fresh login.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="inventory"><h2 id="inventory">Inventory, Authentication &amp; Backups</h2>
 <ul class="maintenance-list">
