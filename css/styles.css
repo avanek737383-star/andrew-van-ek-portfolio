@@ -1140,3 +1140,16 @@ footer {
     overflow-wrap: normal;
     word-break: normal;
 }
+
+/* Maintenance log: grouped tasks with readable mobile spacing. */
+.maintenance-eyebrow { color: #0056b3; font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; }
+.maintenance-updated { color: #667788; font-size: .9rem; }
+.maintenance-index { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 32px; }
+.maintenance-index a { padding: 7px 12px; border: 1px solid #d5e0eb; border-radius: 6px; background: #f2f7fc; color: #0056b3; font-size: .9rem; text-decoration: none; }
+.maintenance-index a:hover, .maintenance-index a:focus-visible { background: #e0edf9; text-decoration: underline; }
+.maintenance-category { margin: 32px 0; }
+.maintenance-category h2, #oceanscape-experiment { scroll-margin-top: 9rem; }
+.maintenance-list { margin-left: 22px; }
+.maintenance-list li { margin-bottom: 12px; padding-left: 4px; overflow-wrap: anywhere; }
+nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
+@media (max-width: 600px) { .maintenance-index a { flex: 1 1 100%; } .maintenance-category { margin: 26px 0; } }

@@ -4,7 +4,7 @@
 	<head>
 		<title>About Andrew Van Ek | IT Specialist</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261010-automation">
+		<link rel="stylesheet" href="css/styles.css?v=20261010-maintenance-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,6 +37,7 @@
 					<li><a href="job.html">Skills</a></li>
 					<li><a href="resume.html">Resume</a></li>
 					<li><a href="projects.html">Projects</a></li>
+                    <li><a href="maintenance.html">Maintenance</a></li>
 					<li><a href="lab.html">Live AI Lab</a></li>
 					<li><a href="council.html">AI Chatroom</a></li>
 					<li><a href="moltbook.html">Moltbook Agent</a></li>
@@ -64,7 +65,7 @@
 					<p>Keeping this collection useful is an ongoing project. I update software, upgrade systems, maintain their configurations, and work through problems as they come up. It gives me hands-on practice caring for a mix of older and newer hardware across Windows, macOS, and Linux.</p>
 
                     <h2>Linux &amp; Everyday Automation</h2>
-                    <p>I enjoy tinkering with Linux and finding ways to keep older computers useful. One current experiment is a customized Debian-based Slax installation running from a USB drive: preserving its settings between boots, setting up Tailscale for remote access, and sharing the same desktop through x11vnc at 720p and 1080p.</p>
+                    <p>I enjoy tinkering with Linux, keeping older computers useful, and finding small ways to make everyday technology easier to use. My <a href="maintenance.html">Maintenance &amp; Experiments page</a> records the remote-access fixes, Windows permission troubleshooting, USB setups, and local AI experiments along the way.</p>
                     <p>I also love creating email rules to keep a highly organized inbox. Working with AI, I built a Google Apps Script that moves Gmail spam threads to Trash automatically every 30 minutes. The <a href="projects.html#gmail-spam-title">project and code snippet</a> show how a small automation can take care of a repetitive task.</p>
 
 					<h2>Community & Communication</h2>
@@ -73,8 +74,7 @@
 
 					<h2>Experimenting with AI &amp; Computing</h2>
 					<p>I enjoy working with a variety of AI chatbots to explore ideas and solve problems. I also experiment with AI image generation on my 2011 Intel Mac, sometimes using around 48 GB of swap, and with local AI music generation and model training through ACE-Step. I describe that ongoing work on my <a href="projects.html#ace-step-title">projects page</a>.</p>
-					<p><strong>Two seconds of video, hours of patience:</strong> I also worked with AI to turn a portrait of myself into a short animation using Realistic Vision and AnimateDiff locally on my HP laptop. The two-second, eight-frame clip took about four hours and 37 minutes to finish. Running the model in the background and checking its progress let me keep using the computer while it rendered&mdash;another experiment in what older hardware can do with enough patience.</p>
-                    <figure class="oceanscape-render">
+                    <figure class="oceanscape-render" id="oceanscape-experiment">
                         <figcaption><strong>A 19-hour image experiment:</strong> This 4K underwater image took my HP laptop 19 hours, 24 minutes, and 31 seconds to generate locally with Realistic Vision. After an earlier attempt ran out of memory, tiled decoding—converting the result into pixels in small, overlapping sections—finally got it across the finish line.</figcaption>
                         <a class="oceanscape-render__preview" href="images/oceanscape-4k.png" aria-label="Open the full 4K underwater image">
                             <picture>
