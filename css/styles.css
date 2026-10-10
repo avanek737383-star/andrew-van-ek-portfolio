@@ -1122,3 +1122,21 @@ footer {
         display: none;
     }
 }
+
+/* Readable Apps Script example on the Projects page. */
+.gmail-script {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 16px;
+    margin: 16px 0;
+    background: #f1f4f7;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+.project-entry .gmail-script code {
+    display: block;
+    white-space: pre;
+    overflow-wrap: normal;
+    word-break: normal;
+}

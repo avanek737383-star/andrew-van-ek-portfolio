@@ -49,6 +49,19 @@
 <p>This project has taken patience, endurance, and persistence: diagnosing failed runs, validating data, waiting through training and full-length generation, and fixing compatibility issues along the way. Lower training loss does not automatically mean a better song. I am checking the generated audio for clipping and dropouts and listening for clear lyrics, recognizable phrasing, musical coherence, and the intended rock sound before choosing a preferred checkpoint.</p>
 </section>
 
+<section class="project-entry" aria-labelledby="gmail-spam-title">
+<h2 id="gmail-spam-title">Gmail Spam Cleanup with Google Apps Script</h2>
+<p class="project-status"><span class="status-badge project-completed">Personal Automation</span> <span>Scheduled every 30 minutes</span></p>
+<p>I like keeping a neat inbox and creating email rules to organize incoming messages. I worked with AI to build this small Google Apps Script, which retrieves threads already in Gmail's Spam folder and moves them to Trash. It does not decide which messages are spam or immediately delete them permanently.</p>
+<p>A time-driven trigger runs <code>emptySpamFolder</code> every 30 minutes. I checked both the script and its trigger settings to document the actual behavior and schedule.</p>
+<pre class="gmail-script"><code>function emptySpamFolder() {
+  var threads = GmailApp.getSpamThreads();
+  for (var i = 0; i &lt; threads.length; i++) {
+    GmailApp.moveThreadToTrash(threads[i]);
+  }
+}</code></pre>
+</section>
+
 <section class="project-entry" aria-labelledby="fishbeck-copilot-title">
 <h2 id="fishbeck-copilot-title">Fishbeck: Learning &amp; Development Copilot Agent</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span></p>
@@ -95,7 +108,7 @@
 
 <section class="project-entry" aria-labelledby="nuc-remote-desktop-title">
 <h2 id="nuc-remote-desktop-title" style="scroll-margin-top: 5rem;">Alpine Linux NUC: Remote Desktop &amp; Docker Maintenance</h2>
-<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-09">October 9, 2026</time></span></p>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-10">October 10, 2026</time></span></p>
 <p>I worked with AI to make remote access and the development tools on my Intel NUC more reliable. My two VNC connections were supposed to show the same desktop at different sizes, but they were actually running separate desktops. Firefox was already open on one, which caused a browser-profile conflict when I tried to open it from the other.</p>
 <p>I consolidated the connections onto one shared desktop, with a smaller view that keeps the correct proportions and a larger view. After testing the smaller connection, I added 150% text scaling and enlarged the panel controls to make it easier to read. I reduced Openbox to one workspace, fixed the dock's app icons, and corrected browser launchers. I also adjusted startup settings and configured a persistent VNC certificate. Both connections now show the same windows.</p>
 <p>I also added persistent status indicators to the bottom panel: the network link, download and upload speeds when traffic is active, and hard-drive read/write activity with book and pencil icons. Network speeds use megabits per second, like Speedtest, while disk speeds use megabytes per second; the units are explained in tooltips to keep the panel compact. I installed GNOME Software with Alpine's package backend and added an update indicator that checks the host's package repositories hourly. It shows whether updates are available, everything is current, or a fresh check is needed, and opens the software centre when clicked. These settings load with the shared desktop at startup.</p>
@@ -232,7 +245,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-09">October 9, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-10">October 10, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261006-3"></script>
