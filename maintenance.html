@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">65 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
+<p class="maintenance-updated">66 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
@@ -67,7 +67,7 @@
 <li>Took ownership of files transferred to Windows with my administrator account and adjusted NT AUTHORITY\SYSTEM access to complete the setup.</li>
 <li>Installed the Windows inventory agent with administrator elevation, then verified its inventory upload and automatic service startup.</li>
 <li>Configured a separate Dropbear SSH service on the NUC as a fallback, restricted to the private Tailscale network.</li>
-<li>Prepared SSH public-key access for a Windows VM. OpenSSH Server installation was still in progress when documented; connection and automatic startup verification remain pending.</li>
+<li>Configured public-key SSH access to a Windows 11 VM and verified passwordless administrator access, with OpenSSH Server running and set to start automatically.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
@@ -120,10 +120,11 @@
 <li>Configured a separate inventory credential for authenticated agent uploads.</li>
 <li>Installed the official GLPI Agent source release with native Perl dependencies on Alpine so it reports the host's APK packages.</li>
 <li>Installed the official Intel macOS inventory agent, configured authenticated HTTPS uploads, and enabled its launch daemon at boot with recovery after unexpected exits.</li>
-<li>Verified seven computers in the dashboard: Linux Mint, Alpine, Slax, Debian, Kali and macOS VMs, and Windows.</li>
+<li>Verified eight computers in the dashboard: Linux Mint, Alpine, Slax, Debian, Kali and macOS VMs, a Windows computer, and a Windows 11 VM.</li>
 <li>Checked saved software records: the first enrolled computers reported more than 11,000 installation entries in total.</li>
 <li>Configured daily database and application-file backups, completed the first backup, and checked its archive integrity.</li>
 <li>Verified the administrator login over HTTPS and checked startup settings for the agents and containers.</li>
+<li>Installed the Windows 11 VM inventory agent remotely, verified its first authenticated upload, and confirmed that its service is running with automatic startup.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
