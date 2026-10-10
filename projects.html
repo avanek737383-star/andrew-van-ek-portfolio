@@ -170,10 +170,13 @@
 </section>
 
 				<section class="project-entry" aria-labelledby="tahoe-iso-title">
-					<h2 id="tahoe-iso-title">macOS Tahoe Bootable Installer</h2>
-<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-10-05">October 5, 2026</time></span></p>
+					<h2 id="tahoe-iso-title">macOS Tahoe Installer &amp; VM Setup</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Bootable installer and VM running; Apple Account sign-in troubleshooting continues</span></p>
 <p>I used Codex to help build a Python workflow that turns Apple’s official macOS Tahoe installer into an ISO, a disk-image file that a virtual machine can boot from.</p>
 <p>I worked through installer verification errors and limited disk space, then used Apple’s tools to create and convert the bootable installer. The ISO successfully booted in the virtual machine on my Windows PC, where Tahoe is now running. I also created two snapshots so I could return to an earlier state while testing.</p>
+<p>The VM now also has passwordless SSH, administrator access for maintenance, and a GLPI inventory agent configured to start at boot. Its first hardware and software inventory reached the dashboard successfully.</p>
+<p>Apple Account sign-in in System Settings remains unresolved. With assistance from Antigravity CLI, I investigated the verification error and reviewed notes reporting AuthKit provisioning and device-attestation failures. The VM's virtual hardware identity is a possible factor under investigation; the proposed configuration changes have not yet been tested or confirmed to fix sign-in.</p>
+<p>Next steps are to review the VM configuration and authentication logs, test an appropriate fix, and verify whether Apple Account services work afterward. The installer creation, successful boot, snapshots, remote access, and inventory setup remain completed milestones.</p>
 </section>
 
 				<section class="project-entry" aria-labelledby="powerpc-qemu-title">
