@@ -52,12 +52,15 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I work with AI to explore solutions and troubleshoot, then check the resulting settings and behavior. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">46 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
+<p class="maintenance-updated">51 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
 <li>Set up passwordless SSH with dedicated Ed25519 keys for remote maintenance across Linux and Windows computers.</li>
 <li>Matched SSH identities to their hosts so connections automatically select the correct key.</li>
+<li>Confirmed that the macOS VM user belongs to the permitted Remote Login group, com.apple.access_ssh.</li>
+<li>Checked sudo privileges on the macOS VM so remote maintenance can use administrator elevation.</li>
+<li>Verified passwordless SSH access to the macOS VM through Tailscale after configuring its public key.</li>
 <li>Checked authorized keys on the NUC and removed a duplicated MacBook Air key while preserving the intended access.</li>
 <li>Worked through Windows OpenSSH's different authorized-key locations for standard users and administrator accounts.</li>
 <li>Corrected Windows SSH key-file permissions after a PowerShell permissions operation failed.</li>
@@ -79,6 +82,7 @@
 <ul class="maintenance-list">
 <li>Checked that Slax stores its configuration changes in a persistent filesystem backed by the USB drive.</li>
 <li>Configured the Slax boot menu to resume the existing session automatically.</li>
+<li>Enabled macOS Remote Login with its native OpenSSH launch daemon and verified that it remains enabled for startup.</li>
 <li>Flushed Slax installation and configuration changes to the USB after remote-access and inventory-agent setup.</li>
 <li>Configured inventory agents as systemd services on Linux Mint, Debian, Slax, and Kali, and as an OpenRC service on Alpine.</li>
 <li>Configured the NUC's Docker services and GLPI containers to start again at boot with persistent database and application storage.</li>
@@ -101,8 +105,9 @@
 <li>Changed the default administrator password and disabled unused default GLPI accounts.</li>
 <li>Configured a separate inventory credential for authenticated agent uploads.</li>
 <li>Installed the official GLPI Agent source release with native Perl dependencies on Alpine so it reports the host's APK packages.</li>
-<li>Verified six computers in the dashboard: Linux Mint, Alpine, Slax, Debian, a Kali VM, and Windows.</li>
-<li>Checked saved software records: the first six inventories contained more than 11,000 installation entries in total.</li>
+<li>Installed the official Intel macOS inventory agent, configured authenticated HTTPS uploads, and enabled its launch daemon at boot with recovery after unexpected exits.</li>
+<li>Verified seven computers in the dashboard: Linux Mint, Alpine, Slax, Debian, Kali and macOS VMs, and Windows.</li>
+<li>Checked saved software records: the first enrolled computers reported more than 11,000 installation entries in total.</li>
 <li>Configured daily database and application-file backups, completed the first backup, and checked its archive integrity.</li>
 <li>Verified the administrator login over HTTPS and checked startup settings for the agents and containers.</li>
 </ul></section>
