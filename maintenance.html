@@ -52,12 +52,13 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">67 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
+<p class="maintenance-updated">72 documented tasks across seven areas &middot; Updated <time datetime="2026-10-10">October 10, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
 <li>Set up passwordless SSH with dedicated Ed25519 keys for remote maintenance across Linux and Windows computers.</li>
 <li>Matched SSH identities to their hosts so connections automatically select the correct key.</li>
+<li>Configured and verified a dedicated Ed25519 SSH key from Slax to the Alpine NUC over Tailscale for passwordless website maintenance.</li>
 <li>Confirmed that the macOS VM user belongs to the permitted Remote Login group, com.apple.access_ssh.</li>
 <li>Checked sudo privileges on the macOS VM so remote maintenance can use administrator elevation.</li>
 <li>Verified passwordless SSH access to the macOS VM through Tailscale after configuring its public key.</li>
@@ -81,6 +82,8 @@
 <li>Configured two persistent x11vnc endpoints over Tailscale on my Debian Mac and checked that both services start at boot and restart automatically.</li>
 <li>Removed stale duplicate Ethernet and network tray entries on the Debian Mac.</li>
 <li>Restored Trayscale to the Debian Mac&#x27;s XFCE tray.</li>
+<li>Added a labeled Trayscale shortcut to the right side of the Slax XFCE panel, enabled startup in the tray, and verified that closing its window keeps the tray icon running.</li>
+<li>Added a persistent Google Chrome desktop launcher shared by both Slax VNC connections, which mirror the same desktop session.</li>
 <li>Changed the Debian Mac&#x27;s top-panel clock to persistent analog mode.</li>
 <li>With assistance from Antigravity CLI, diagnosed an Alpine file-manager error when running autoclicker.py: PCManFM/libfm attempted to launch xterm, which was not installed.</li>
 <li>Configured libfm to use lxterminal, installed xterm as a fallback, and added an x-terminal-emulator compatibility link with assistance from Antigravity CLI.</li>
@@ -93,6 +96,7 @@
 <li>Configured the Slax boot menu to resume the existing session automatically.</li>
 <li>Enabled macOS Remote Login with its native OpenSSH launch daemon and verified that it remains enabled for startup.</li>
 <li>Flushed Slax installation and configuration changes to the USB after remote-access and inventory-agent setup.</li>
+<li>Saved the Slax Trayscale repair, panel and startup settings, Chrome launcher, and SSH configuration to USB-backed persistent storage and flushed the changes.</li>
 <li>Configured inventory agents as systemd services on Linux Mint, Debian, Slax, and Kali, and as an OpenRC service on Alpine.</li>
 <li>Configured the NUC's Docker services and GLPI containers to start again at boot with persistent database and application storage.</li>
 <li>Adjusted the HP laptop's automatic suspend, lid-close, and display power settings to support long-running work and remote reconnection.</li>
@@ -107,6 +111,7 @@
 <li>Saved updated local container images while preserving mounted data.</li>
 <li>Installed Antigravity CLI directly on Alpine and replaced a launcher that pointed to a missing container.</li>
 <li>Checked the installed Tailscale clients against the current stable release during remote-access maintenance.</li>
+<li>With assistance from Codex, diagnosed a Trayscale notification request rejected by the newer Tailscale daemon, built the corrected client from current upstream source, and passed the project tests and vet checks. Verified the live connection switch and online peer list, then removed the temporary build tools.</li>
 <li>Updated all 16 outdated Homebrew formulae on the Debian Mac during this maintenance session.</li>
 <li>Confirmed that the Debian Mac&#x27;s installed Tailscale client was version 1.104.1 during the October 10 maintenance session.</li>
 <li>Updated both Debian Mac Monero desktop launchers to use the selected MoneroOcean pool and saved a local note documenting the change.</li>
