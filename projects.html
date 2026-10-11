@@ -40,6 +40,15 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="scam-defense-title">
+<h2 id="scam-defense-title">Scam Defense Dashboard: Local AI Phone Conversations</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Local voice loop tested; live self-test call pending &middot; Updated <time datetime="2026-10-11">October 11, 2026</time></span></p>
+<p>I am building a private phone dashboard to explore how an AI character responds to simulated scam calls. I worked with AI to recover an earlier prototype, consolidate the project files, restore desktop launch controls, and connect Twilio telephone audio to a local conversation loop on my Mac. The next milestone is a successful test call to my own number before evaluating the system further.</p>
+<p>The conversation loop uses Whisper for local speech recognition, Apple's on-device model for dialogue, and macOS speech synthesis for spoken replies. The fictional character, Arthur, receives the call and asks brief, sometimes confused questions. I removed the larger Qwen model fallback to avoid heavy memory use. The dialogue model has no tools to open websites, install software, or carry out requests. If Apple declines a response or is unavailable, the dashboard uses a short scripted clarification while keeping the model's safeguards enabled.</p>
+<p>I added live listening, AI pause and resume controls, optional microphone takeover, call termination, and an emergency stop. Caller speech cancels unfinished replies and clears queued AI audio to reduce interruptions. The dashboard requires authentication, separates private controls from Twilio callbacks, and verifies callback signatures. Live speech processing requires approval; persistent call recording and transcript storage are not implemented.</p>
+<p>Ten automated checks passed, including audio conversion, speech endpoint detection, interruption cancellation, takeover, scripted clarification, and a server integration test with mocked Twilio calls. A synthetic local recognition-to-response test completed in approximately 4.5 seconds, excluding telephone network delay and the pause used to detect the end of speech. These checks did not place a real call. The project remains in progress while I verify telephone audio, response timing, live listening, and conversation behavior through the self-test.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="ace-step-title">
 <h2 id="ace-step-title">ACE-Step: Local AI Music Training &amp; Cover Comparisons</h2>
 <p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Twelve training epochs; twelve comparison covers; three epoch-12 generation trials</span></p>
