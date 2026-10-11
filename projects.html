@@ -220,14 +220,23 @@
 <p>I used Samba, which lets Linux share files with Windows computers, and worked through connection problems using logs and network traffic checks. I also made the setup start automatically. The XP laptop can read and write files, while my modern devices continue to use my private Tailscale network.</p>
 </section>
 
-				<section class="project-entry" aria-labelledby="local-ai-title">
-					<h2 id="local-ai-title">Private Local-AI Portfolio Assistant</h2>
-					<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Completed <time datetime="2026-09-20T15:03:00-04:00">September 20, 2026 at 3:03 PM EDT</time></span></p>
-					<p>I built the chatbot in the corner of this website and connected it to an AI model running on my own Windows PC. Visitor messages travel through my small Linux server and a private connection before reaching the model.</p>
-					<p>The result is a self-hosted assistant that can answer questions about my experience and projects. It starts with the computer, recovers from dropped connections, and limits repeated requests so one visitor cannot overload it.</p>
+<section class="project-entry" aria-labelledby="local-ai-title">
+<h2 id="local-ai-title">Private Local-AI Portfolio Assistant</h2>
+<p class="project-status"><span class="status-badge project-completed">Local Chatbot Built</span> <span class="status-badge project-in-progress">Guardrail Improvements In Progress</span></p>
+<p>I built the chatbot in the corner of this website to answer questions about my experience, skills, and projects. It runs a Liquid AI model locally on my Windows PC through LM Studio. Visitor messages pass through my Alpine Linux Intel NUC and an encrypted private connection using Tailscale and SSH. The website assistant has no cloud fallback.</p>
+<p>I worked through startup and connection problems so the service could recover when a connection drops. The model API stays on the computer's local interface instead of being exposed directly to visitors. The chatbot has no tools to read files, run commands, download videos, or control devices.</p>
+<p>Testing with a family member showed that instructions alone did not reliably keep answers within the portfolio's purpose. The model could adopt a requested role, answer unrelated questions, or invent possible file contents without actually reading a file. I reproduced an unrelated-answer failure and reviewed the bridge's validation, request limits, conversation history, and logging.</p>
+<p>I am using that review to plan stronger scope checks, a maximum of five chat requests per minute per visitor IP, bounded conversation and response sizes, and restricted prompt audit logs. These improvements still need implementation and testing. Keeping the model local and removing action tools does not by itself make its answers accurate or keep them on topic.</p>
+<p><a href="lab.html">View the Live AI Lab</a> for read-only system activity.</p>
+</section>
 
-					<p>I use LM Studio, an app for running AI models locally, and Tailscale, a private network connection, to connect the computers. I worked through startup and connection problems so the assistant could stay available without exposing the model server directly to visitors.</p>
-				</section>
+<section class="project-entry" aria-labelledby="phone-ai-title">
+<h2 id="phone-ai-title">Phone AI Gateway: Local &amp; Cloud Conversations</h2>
+<p class="project-status"><span class="status-badge project-in-progress">Personal Prototype</span> <span>Current routing and access controls under review</span></p>
+<p>I built a separate personal project for talking to AI over a phone call. The intended flow uses Twilio to receive a call, ask for a PIN, and offer a choice between Google Gemini in the cloud and models on my Linux HP computer. Twilio turns the caller's speech into text and reads the model's response aloud.</p>
+<p>This project explores phone menus, speech transcription, local model selection, and cloud inference. It serves a different purpose from the portfolio chatbot, which uses only my Windows-hosted local model.</p>
+<p>A review found that the two projects currently share gateway code and that the phone project's local routing needs rechecking. I am reviewing how PIN verification and signed phone requests protect each step before describing the current deployment as complete.</p>
+</section>
 
 				<section class="project-entry" aria-labelledby="smb-project-title">
 					<h2 id="smb-project-title">Troubleshooting Windows USB File Sharing</h2>
