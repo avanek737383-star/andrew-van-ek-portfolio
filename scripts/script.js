@@ -5,7 +5,6 @@
 
 	var apiUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat";
 	var statusUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/stats";
-	var history = [];
 	var waiting = false;
 
 	function createResponsiveNavigation() {
@@ -98,7 +97,7 @@
 			'    <textarea id="portfolio-chat-input" rows="1" maxlength="1000" autocomplete="off" placeholder="Ask about Andrew..." aria-describedby="portfolio-chat-help" required></textarea>',
 			'    <button type="submit">Send</button>',
 			'  </form>',
-			'  <p id="portfolio-chat-help" class="portfolio-chat-note">Enter to send · Shift+Enter for a new line.<br>Local AI responses may be inaccurate. 10 messages/minute.</p>',
+			'  <p id="portfolio-chat-help" class="portfolio-chat-note">Enter to send · Shift+Enter for a new line.<br>Portfolio questions only. 5 messages/minute per IP.<br>Prompts are logged privately for abuse review; avoid sharing sensitive information.</p>',
 			'</section>'
 		].join("");
 		document.body.appendChild(wrapper);
@@ -199,9 +198,7 @@
 			var text = input.value.trim();
 			if (!text) return;
 
-			var requestHistory = history.slice(-8);
 			addMessage(text, "user");
-			history.push({ role: "user", content: text });
 			input.value = "";
 			resizeInput();
 			waiting = true;
@@ -212,12 +209,11 @@
 				var response = await fetch(apiUrl, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ message: text, history: requestHistory })
+					body: JSON.stringify({ message: text })
 				});
 				var data = await response.json();
 				if (!response.ok) throw new Error(data.error || "The assistant is unavailable.");
 				renderMessage(pending, data.reply, "assistant");
-				history.push({ role: "assistant", content: data.reply });
 			} catch (error) {
 				renderMessage(pending, error.message || "The local assistant is temporarily offline.", "assistant");
 				pending.classList.add("chat-error");
