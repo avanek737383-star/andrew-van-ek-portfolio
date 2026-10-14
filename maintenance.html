@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">88 documented tasks across seven areas &middot; Updated <time datetime="2026-10-13">October 13, 2026</time></p>
+<p class="maintenance-updated">89 documented tasks across seven areas &middot; Updated <time datetime="2026-10-13">October 13, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
@@ -120,6 +120,7 @@
 <li>Resolved an outdated repository signing key during container maintenance.</li>
 <li>Saved updated local container images while preserving mounted data.</li>
 <li>Installed Antigravity CLI directly on Alpine and replaced a launcher that pointed to a missing container.</li>
+<li id="antigravity-permissions">With assistance from Codex, configured Antigravity CLI on my Mac and Alpine NUC to start future chats with persistent automatic tool and artifact approval, terminal sandboxing disabled, and file access outside the active project enabled. Saved the settings in each user&#x27;s global configuration and backed up the previous settings. This allows the CLI to operate without its own approval prompts while retaining the operating system&#x27;s account permissions.</li>
 <li>Checked the installed Tailscale clients against the current stable release during remote-access maintenance.</li>
 <li>With assistance from Codex, diagnosed a Trayscale notification request rejected by the newer Tailscale daemon, built the corrected client from current upstream source, and passed the project tests and vet checks. Verified the live connection switch and online peer list, then removed the temporary build tools.</li>
 <li>Updated all 16 outdated Homebrew formulae on the Debian Mac during this maintenance session.</li>
