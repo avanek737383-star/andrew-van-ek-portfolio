@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">94 documented tasks across seven areas &middot; Updated <time datetime="2026-10-14">October 14, 2026</time></p>
+<p class="maintenance-updated">102 documented tasks across seven areas &middot; Updated <time datetime="2026-10-14">October 14, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
@@ -71,6 +71,8 @@
 <li>Configured public-key SSH access to a Windows 11 VM and verified passwordless administrator access, with OpenSSH Server running and set to start automatically.</li>
 <li>With assistance from Codex, checked Slax remote access over the local network and Tailscale after a desktop-session problem. Confirmed that the host remained online, but SSH accepted connections and closed them before authentication, separating the connection failure from a login-password problem.</li>
 <li>Verified passwordless Ed25519 SSH access from my Mac to the Alpine NUC (100.87.81.52) over Tailscale for automated git operations and remote portfolio maintenance.</li>
+<li>With assistance from Codex, installed Tailscale on my Kali Linux VM, signed it into my private tailnet, and verified that its daemon is running and enabled at boot.</li>
+<li>Created a dedicated Ed25519 SSH key on Kali for website maintenance on the Alpine NUC. Copied the public key with <code>ssh-copy-id -i ~/.ssh/id_ed25519_website.pub avanek@100.87.81.52</code>, configured a host-specific identity and the <code>maintenance-site</code> alias, and verified passwordless SSH. The private key stays on Kali.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
@@ -94,6 +96,7 @@
 <li>Added a Slax desktop shortcut and file-manager bookmarks for the full USB partition, making ordinary storage accessible separately from the system persistence container.</li>
 <li>Saved a Slax Conky configuration and startup entry showing CPU, RAM, USB activity, system persistence usage, and full-drive capacity; live desktop visibility still needs verification.</li>
 <li>With assistance from Codex, investigated a Slax VNC reconnection failure after a terminal window repeatedly opened and closed. Verified that both Tailscale VNC endpoints responded, but each rejected the expected VNC password with a server-side authentication error. Remote recovery remains unresolved; an on-site hard reboot is planned, with SSH and VNC access still to be checked afterward.</li>
+<li>With assistance from Codex, configured x11vnc on Kali to share my existing XFCE/X11 desktop through a private Tailscale Serve TCP endpoint. Set a VNC password, verified authentication and desktop initialization, and connected successfully from another device. The user service restarts on failure and launches at desktop login, importing the current display and X authority; after reboot, the graphical session must be running before it can be shared.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="startup"><h2 id="startup">USB Persistence, Startup &amp; Power Settings</h2>
 <ul class="maintenance-list">
@@ -128,6 +131,9 @@
 <li>Confirmed that the Debian Mac&#x27;s installed Tailscale client was version 1.104.1 during the October 10 maintenance session.</li>
 <li>Updated both Debian Mac Monero desktop launchers to use the selected MoneroOcean pool and saved a local note documenting the change.</li>
 <li>Configured persistent XMRig MSR device permissions with an msr group and a udev rule using root:msr ownership and group read/write access. The rule is intended to allow tuning after reboot; the existing miner session may require a restart or fresh login.</li>
+<li>Installed Google Antigravity CLI 1.3.5 natively on Kali with its official installer and SHA512 verification, and configured the <code>agy</code> command in my shell PATH.</li>
+<li>Installed Homebrew 7.0.9 on Kali under <code>/home/linuxbrew/.linuxbrew</code>, added its shell environment to Bash and Zsh startup files, and verified <code>brew</code> in a new shell.</li>
+<li>Configured persistent Codex defaults on Kali with <code>sandbox_mode = &quot;danger-full-access&quot;</code> and <code>approval_policy = &quot;never&quot;</code>, backed up the previous configuration, and confirmed my passwordless sudo setup. Future local sessions use these defaults unless an app or managed policy overrides them.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="inventory"><h2 id="inventory">Inventory, Authentication &amp; Backups</h2>
 <ul class="maintenance-list">
@@ -161,6 +167,8 @@
 <li>Added live BANANO wallet and unpaid MoneroOcean pool balances to my <a href="about.html#computing-title">About page</a>, with USD estimates, update timestamps, and coin logos visible on desktop and mobile.</li>
 <li>Audited the Moltbook @grandmaapproved LaunchAgent daemon (com.avanek.grandmaapproved), confirmed healthy 30-minute executions, and expanded the local knowledge base from 6 to 51 autonomous project stories.</li>
 <li>Verified automated AI verification challenge handling in Moltbook, ensuring obfuscated arithmetic puzzles are parsed and verified autonomously on post creation.</li>
+<li>With assistance from Codex, installed Folding@home 8.5.6 on Kali, enabled its systemd service at boot, and started CPU folding on one of the VM's two CPUs. Verified that a work unit entered RUN state and resumed after a service restart. This installation currently folds anonymously with team 0; boot persistence is configured, but a full reboot was not performed during verification.</li>
+<li>Saved a setup summary in my Kali Downloads folder documenting the installed tools, private remote-access endpoint, service commands, configuration backups, and the difference between boot services and desktop-login startup.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="automation"><h2 id="automation">Inbox Rules &amp; Small Automations</h2>
 <ul class="maintenance-list">
