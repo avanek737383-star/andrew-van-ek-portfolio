@@ -1144,6 +1144,7 @@ footer {
 /* Maintenance log: grouped tasks with readable mobile spacing. */
 .maintenance-eyebrow { color: #0056b3; font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; }
 .maintenance-updated { color: #667788; font-size: .9rem; }
+.maintenance-repeat-note { color: #667788; font-size: .9rem; margin: 12px 0 0; }
 .maintenance-index { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 32px; }
 .maintenance-index a { padding: 7px 12px; border: 1px solid #d5e0eb; border-radius: 6px; background: #f2f7fc; color: #0056b3; font-size: .9rem; text-decoration: none; }
 .maintenance-index a:hover, .maintenance-index a:focus-visible { background: #e0edf9; text-decoration: underline; }
