@@ -4,7 +4,7 @@
 	<head>
 		<title>About Andrew Van Ek | IT Specialist</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261010-maintenance-1">
+		<link rel="stylesheet" href="css/styles.css?v=20261013-computing-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -85,15 +85,45 @@
                         <p class="oceanscape-render__link"><a href="images/oceanscape-4k.png">View the full 4K underwater image (PNG, 15 MB)</a></p>
                     </figure>
 
-					<p>Outside of work, I also enjoy experimenting with Monero (XMR) and Duino-Coin (DUCO) mining. These experiments give me more opportunities to try different tools and learn how my computers perform.</p>
+					<section class="computing-experiments" aria-labelledby="computing-title">
+                        <h2 id="computing-title">Computing for Research &amp; Experimentation</h2>
+                        <p>I contribute spare computing power to <a href="https://foldingathome.org/" target="_blank" rel="noopener">Folding@Home</a>, helping researchers simulate how proteins behave and study diseases. Through BananoMiner, that work also earns small BANANO rewards. Getting back into folding gave me a chance to trace payout records, restore my existing wallet, and learn how pending transfers are received.</p>
+                        <p>I also experiment with Monero mining to learn about hardware performance, resource use, and mining pools. It is a hands-on computing experiment I enjoy maintaining across my computer fleet.</p>
+                        <div class="computing-balances">
+                            <article class="computing-card" aria-labelledby="ban-title">
+                                <div class="computing-card-heading"><img src="images/banano-logo.svg" width="40" height="40" alt=""><h3 id="ban-title">BANANO</h3></div>
+                                <p class="computing-label">Wallet balance</p>
+                                <p class="computing-amount" id="ban-balance">Loading&hellip;</p>
+                                <p class="computing-usd" id="ban-usd">Checking USD estimate&hellip;</p>
+                                <p class="computing-detail" id="ban-pending">Checking receivable transfers&hellip;</p>
+                                <p class="computing-update" id="ban-updated">Waiting for live data</p>
+                                <a href="https://creeper.banano.cc/explorer/account/ban_1r7wzga4npq5ijscq6pz517wcim6s6gwjpyw8pjoy1pgsqb8xrpt6me5rux8/history" target="_blank" rel="noopener">View public wallet &rarr;</a>
+                            </article>
+                            <article class="computing-card" aria-labelledby="xmr-title">
+                                <div class="computing-card-heading"><img src="images/monero-logo.png" width="40" height="40" alt=""><h3 id="xmr-title">Monero</h3></div>
+                                <p class="computing-label">Unpaid MoneroOcean pool balance</p>
+                                <p class="computing-amount" id="xmr-balance">Loading&hellip;</p>
+                                <p class="computing-usd" id="xmr-usd">Checking USD estimate&hellip;</p>
+                                <p class="computing-detail" id="xmr-hashrate">Checking pool hashrate&hellip;</p>
+                                <p class="computing-update" id="xmr-updated">Waiting for live data</p>
+                                <a href="https://moneroocean.stream/#/wallet/4A1dBvvq5vGR9MDYsoagdn3EKuQzqkh2wJPtjyAvu3nBEhos2X6LfCYWaxtUHgiRdXAYc9bUrWNh4ZdsQKyar2oR6ArEYjd/overview" target="_blank" rel="noopener">View mining statistics &rarr;</a>
+                            </article>
+                        </div>
+                        <div class="computing-refresh"><button type="button" class="btn btn-secondary" id="computing-refresh">Refresh balances</button><p role="status" id="computing-status">Loading live balances&hellip;</p></div>
+                        <p class="computing-note">Balances refresh every two minutes while this page is open. USD estimates use CoinGecko market prices and refresh every 15 minutes. The XMR figure is held by the mining pool until payout; it is separate from my private wallet balance.</p>
+                        <p class="computing-note" id="computing-price-updated">Market prices: waiting for data.</p>
+                        <p><a href="maintenance.html#banano-recovery">Read the Folding@Home and wallet troubleshooting log</a> &middot; <a href="lab.html#duco-title">Explore my Live AI Lab and DUCO miners</a></p>
+                        <noscript><p>Live balances require JavaScript. Use the public wallet and mining statistics links above to view them directly.</p></noscript>
+                    </section>
 				</section>
 			</main>
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-11">October 11, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-13">October 13, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261011-guardrails-1"></script>
+		<script src="scripts/computing.js?v=20261013-computing-1" defer></script>
 	</body>
 </html>

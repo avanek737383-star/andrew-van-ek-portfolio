@@ -1153,3 +1153,40 @@ footer {
 .maintenance-list li { margin-bottom: 12px; padding-left: 4px; overflow-wrap: anywhere; }
 nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 @media (max-width: 600px) { .maintenance-index a { flex: 1 1 100%; } .maintenance-category { margin: 26px 0; } }
+
+/* About: research contributions and live public coin statistics. */
+.computing-experiments { margin-top: 32px; }
+.computing-card-heading img { display: block; flex: 0 0 auto; object-fit: contain; }
+.computing-balances { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }
+.computing-card { min-width: 0; padding: 24px; border: 1px solid #d5e0eb; border-radius: 10px; background: #f8fafc; }
+.computing-card-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.computing-card-heading h3 { margin: 0; padding: 0; border: 0; font-size: 1.25rem; }
+.computing-label { margin-bottom: 5px; color: #526170; font-size: .85rem; }
+.computing-amount { margin-bottom: 3px; color: #002d5a; font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; overflow-wrap: anywhere; }
+.computing-usd { color: #0056b3; font-weight: 600; }
+.computing-detail, .computing-update, .computing-note { color: #526170; font-size: .85rem; }
+.computing-update { font-size: .75rem; }
+.computing-card > a { color: #0056b3; font-size: .9rem; font-weight: 600; }
+.computing-refresh { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 16px; }
+.computing-refresh p { margin: 0; color: #526170; font-size: .85rem; }
+.computing-refresh button { font: inherit; font-size: .9rem; }
+.computing-refresh button:disabled { opacity: .6; cursor: wait; }
+#banano-recovery, #computing-title { scroll-margin-top: 9rem; }
+.resume-document-heading { display: block; }
+.resume-actions { margin-bottom: 22px; }
+@media (max-width: 600px) {
+    .computing-balances { grid-template-columns: 1fr; }
+    .computing-card { padding: 20px; }
+}
+
+.duco-brand { display: flex; align-items: center; gap: 12px; }
+.duco-brand img { display: block; flex: 0 0 auto; object-fit: contain; }
+
+.duco-balance-card { margin: 20px 0; }
+.duco-balance-card h3 { border: 0; padding: 0; margin-bottom: 10px; }
+.duco-balance-card .computing-note { margin: 0; }
+@media (max-width: 600px) {
+    .computing-card-heading { justify-content: center; }
+    .duco-brand { justify-content: center; text-align: center; }
+}
+#duco-title { scroll-margin-top: 9rem; }
