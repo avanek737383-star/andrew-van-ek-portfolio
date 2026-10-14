@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">105 documented tasks across seven areas &middot; Updated <time datetime="2026-10-14">October 14, 2026</time></p>
+<p class="maintenance-updated">108 documented tasks across seven areas &middot; Updated <time datetime="2026-10-14">October 14, 2026</time></p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
@@ -98,6 +98,10 @@
 <li>With assistance from Codex, investigated a Slax VNC reconnection failure after a terminal window repeatedly opened and closed. Verified that both Tailscale VNC endpoints responded, but each rejected the expected VNC password with a server-side authentication error. Remote recovery remains unresolved; an on-site hard reboot is planned, with SSH and VNC access still to be checked afterward.</li>
 <li>With assistance from Codex, configured x11vnc on Kali to share my existing XFCE/X11 desktop through a private Tailscale Serve TCP endpoint. Set a VNC password, verified authentication and desktop initialization, and connected successfully from another device. The user service restarts on failure and launches at desktop login, importing the current display and X authority; after reboot, the graphical session must be running before it can be shared.</li>
 <li>Configured persistent Windows 11-style snap layouts and edge-drag window snapping across both Alpine shared VNC endpoints (720p and 1080p). Built a lightweight Python snapping daemon with live X11 pointer monitoring and translucent Fluent-style preview overlays, configured Openbox keybindings for half, quarter, and three-column tiling, and enabled autostart persistence.</li>
+<li>Integrated TigerVNC Viewer into the Alpine bottom tint2 taskbar with an application launcher and desktop entry for rapid remote connection management.</li>
+<li>Configured a persistent real-time CPU desklet in Conky for both VNC endpoints, featuring a high-visibility 4-core live workload graph, per-core utilization meters, and 1.0-second telemetry updates.</li>
+<li>Installed and configured <code>autocutsel</code> on the Alpine desktop to provide persistent bidirectional clipboard synchronization across VNC, bridging X11 CLIPBOARD, PRIMARY selection, and cut buffers for seamless <kbd>Ctrl</kbd>+<kbd>C</kbd> and <kbd>Ctrl</kbd>+<kbd>V</kbd> operations.</li>
+<li>Diagnosed and resolved a clipboard paste failure on the Debian Mac where <code>Ctrl+V</code> failed with &ldquo;no supported clipboard tool found (install wl-clipboard or xclip)&rdquo;; installed <code>xclip</code>, <code>xsel</code>, and <code>python3-pyperclip</code> via APT, restoring X11 clipboard synchronization and keyboard pasting across desktop applications and CLI tools.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="startup"><h2 id="startup">USB Persistence, Startup &amp; Power Settings</h2>
 <ul class="maintenance-list">
@@ -179,6 +183,8 @@
 <li>Checked the actual script and trigger settings and confirmed the schedule is every 30 minutes; <a href="projects.html#gmail-spam-title">see the project and code snippet</a>.</li>
 <li>Built and deployed a Python-based draggable target autoclicker on my Linux Mint desktop with an on-screen Cairo target overlay, countdown progress ring, mouse pointer restoration, and a double-clickable desktop launcher configured for Nemo and terminal-based Ctrl+C control.</li>
 <li>Upgraded the Python draggable target auto-clicker in Downloads to support multiple concurrent instances, introducing non-blocking IPC lock discovery for automatic slot allocation (staggered window offsets, distinct titles, and unique color themes), click mutex synchronization, and pointer coordinate restoration via <code>xdotool</code>.</li>
+<li>Built and deployed an automated Python draggable target auto-clicker in <code>~/Downloads</code> on the Debian Mac featuring an always-on-top Tkinter crosshair reticle, an automatic 15-second countdown timer, a visual click flash, and automatic pointer coordinate restoration via <code>xdotool</code>.</li>
+<li>Configured a dedicated <code>xfce4-terminal</code> dashboard controller and executable shell launcher for the Debian Mac auto-clicker, displaying live reticle coordinates and click statistics with instant process teardown on <code>Ctrl+C</code>.</li>
 </ul></section>
 </main>
 
