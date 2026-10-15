@@ -63,7 +63,7 @@
 		byId("lab-updated").textContent = "Updated " + new Date((data.updated_at || Date.now() / 1000) * 1000).toLocaleTimeString();
 		byId("metric-model").textContent = modelLoaded ? "Loaded" : model.state === "not-loaded" ? "Idle" : "Unknown";
 		byId("metric-model").className = modelLoaded ? "metric-loaded" : "metric-idle";
-		byId("metric-model-name").textContent = model.name || "Liquid LFM2.5 1.2B";
+		byId("metric-model-name").textContent = model.name || "NVIDIA Nemotron 3 Nano 4B";
 		byId("metric-gpu").textContent = percent(system.gpu_percent);
 		byId("metric-vram").textContent = typeof vramPercent === "number" ? Math.round(vramPercent) + "%" : "—";
 		byId("metric-vram-detail").textContent = typeof system.gpu_memory_used_mb === "number"

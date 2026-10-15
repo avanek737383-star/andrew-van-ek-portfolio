@@ -86,7 +86,7 @@
 			'<button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask my local AI</button>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
 			'  <header class="portfolio-chat-header">',
-			'    <div><strong>Andrew\'s Local AI</strong><span>Liquid LFM2.5 · privately hosted</span></div>',
+			'    <div><strong>Andrew\'s Local AI</strong><span>NVIDIA Nemotron 3 Nano 4B · privately hosted</span></div>',
 			'    <button class="portfolio-chat-close" type="button" aria-label="Close chat">&times;</button>',
 			'  </header>',
 			'  <div class="portfolio-chat-messages" role="log" aria-live="polite">',
