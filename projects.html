@@ -40,6 +40,20 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="tiger-vm-title">
+<h2 id="tiger-vm-title">Mac OS X Tiger: Preparing a Retro VMware Experiment</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Intel installer prepared; Windows VM boot test pending &middot; Started <time datetime="2026-10-15">October 15, 2026</time></span></p>
+<p>I wanted to explore an early 2000s Mac desktop without needing a PowerPC computer. That led to Mac OS X Tiger, the release that brought Mac OS X to Intel Macs beginning with version 10.4.4 in January 2006. My target is a Windows x64 PC running VMware Workstation Pro.</p>
+<h3>Choosing installation media for the VM</h3>
+<p>The first distinction was between the earliest Intel-compatible release and the first release to drop PowerPC entirely. Tiger fits the first goal; Snow Leopard 10.6 fits the second. Choosing Tiger also meant finding Intel installation media, since the original Tiger retail DVD was for PowerPC.</p>
+<p>I initially looked at an archived early Intel Tiger ISO, then changed to a 2007 MacBook Pro restore disc containing Tiger 10.4.10. A documented VMware experiment found that older Tiger discs could stall waiting for the boot device, while this later disc had the storage support needed for that setup. The archive already provided an ISO, so a DMG-to-ISO conversion was unnecessary.</p>
+<h3>Preparing the image and recording the limits</h3>
+<p>Working with Codex, I downloaded the archived disc image locally and checked its size and SHA-1 against the archive's published values. That checks that the downloaded file matches the archived copy; it does not establish that a community upload is an authenticated Apple release. The installer is kept off this website.</p>
+<p>The next step is to configure and test the VM on the Windows PC. Intel compatibility alone does not make Tiger a supported VMware Workstation guest: its old firmware, CPU assumptions, and installer hardware checks may need additional work. I have not yet verified a successful boot, installation, or working desktop. This entry records the preparation stage, and I will update it with the actual results.</p>
+<p>Codex helped research the release history, select the image, automate the download checks, and document the project. I chose Tiger and the Windows VMware target. The useful lesson so far is that CPU architecture, installer format, and VM hardware compatibility are separate checks.</p>
+<p><a href="https://www.apple.com/ie/newsroom/2006/01/10Apple-Unveils-New-iMac-with-Intel-Core-Duo-Processor/" target="_blank" rel="noopener">Apple's Intel Tiger announcement</a> &middot; <a href="https://www.downtowndougbrown.com/2017/10/virtualizing-mac-os-x-10-4-with-vmware/" target="_blank" rel="noopener">VMware Tiger compatibility research</a></p>
+</section>
+
 <section class="project-entry" aria-labelledby="tailscale-router-title">
 <h2 id="tailscale-router-title">Private Router Management with Tailscale &amp; an Alpine Linux Subnet Router</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Remote access verified; public router management disabled &middot; Completed <time datetime="2026-10-15">October 15, 2026</time></span></p>
