@@ -52,11 +52,12 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">141 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
+<p class="maintenance-updated">150 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
+<li id="fah-linux-maintenance-ssh">With assistance from Codex, configured an Ed25519 SSH key on my Ubuntu folding VM for maintenance of the Alpine NUC over Tailscale, installed its public key, and verified passwordless remote shell access. The private key stays on the source VM.</li>
 <li>Set up passwordless SSH with dedicated Ed25519 keys for remote maintenance across Linux and Windows computers.</li>
 <li>Matched SSH identities to their hosts so connections automatically select the correct key.</li>
 <li>Configured and verified a dedicated Ed25519 SSH key from Slax to the Alpine NUC over Tailscale for passwordless website maintenance.</li>
@@ -83,6 +84,9 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
+<li id="fah-linux-desktop">With assistance from Codex, corrected an unavailable XFCE icon theme by selecting installed Adwaita icons, enlarged desktop icons to 64 pixels and labels to 12 points, and enlarged dock icons to 48 pixels. Installed missing Thunar so the Home and File System desktop icons open folders.</li>
+<li id="fah-linux-firefox-dock">With assistance from Codex, made the XFCE dock persistently visible and reserved screen space so maximized windows stop above it. Replaced its generic browser launcher with a Firefox icon and a window-aware launcher; verified that clicking minimizes a focused Firefox window and restores an existing window.</li>
+<li id="fah-linux-eastern-clock">With assistance from Codex, changed the Ubuntu VM system and panel clock from UTC to America/New_York, with a readable date, 12-hour time, and timezone label. Network time synchronization remains active; Eastern Standard and Daylight Time switch automatically.</li>
 <li id="nomachine-display-manager">With assistance from Codex, investigated a failed Connect GUI / NoMachine connection while SSH remained available. Found that the desktop login service was stopped, started LightDM, and restarted NoMachine. The saved maintenance record confirms that the services were running; a successful visual GUI connection was still awaiting user confirmation.</li>
 <li id="vnc-persistent-xfce">With assistance from Codex, investigated TigerVNC disconnecting because the display previously shared by x11vnc no longer existed. Created a separate XFCE desktop for VNC, added a persistent systemd user service, and enabled user lingering so it could start after reboot without an SSH login, while keeping NoMachine running. The saved record reports a successful TigerVNC connection, a successful service restart, and a VNC handshake through the private Tailscale connection. Reboot startup was configured; the record does not show a full reboot test.</li>
 <li>Configured x11vnc connections at 720p and 1080p to show the same active desktop session.</li>
@@ -116,6 +120,7 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="startup"><h2 id="startup">USB Persistence, Startup &amp; Power Settings</h2>
 <ul class="maintenance-list">
+<li id="fah-linux-folding-boot">With assistance from Codex, verified that the Ubuntu VM's Folding@home service is enabled at boot and actively processing a work unit without requiring desktop login. Confirmed Web Control as the account-management entry point; account linking was left to my browser sign-in.</li>
 <li>Investigated options for reliable file transfers to Windows XP after a 1 TB exFAT drive appeared in Disk Management but was unavailable in Explorer.</li>
 <li>Compared the partition map and filesystem as separate compatibility checks. The 1 TB drive used exFAT, which first raised a filesystem question, but XP Disk Management showed a GPT Protective Partition. That was the stronger clue: XP could see the physical disk and its capacity but did not mount a supported volume, so the barrier came before Explorer and before exFAT. A different file manager would not fix a partition map XP could not read. <a href="https://learn.microsoft.com/en-us/troubleshoot/windows-server/backup-and-storage/guid-partitioning-table-disk-faq">Microsoft documents the GPT limitation in 32-bit Windows XP</a>.</li>
 <li>On macOS, Disk Utility did not display the test USB consistently, but the lower-level <code>diskutil list</code> command still identified the device. That distinction kept a GUI display issue from being mistaken for a missing USB drive.</li>
@@ -135,6 +140,8 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="fah-linux-resources">With assistance from Codex, installed Flatpak and Resources from Flathub on the Ubuntu VM, added a trusted desktop shortcut, and verified that the system-monitor window opens. Resources can also be launched with <code>flatpak run net.nokyan.Resources</code>.</li>
+<li id="fah-linux-cli-defaults">With assistance from Codex, configured persistent command-execution defaults for my local AI CLIs: Codex uses <code>approval_policy = &quot;never&quot;</code> and <code>sandbox_mode = &quot;danger-full-access&quot;</code>; Bash startup adds <code>--dangerously-skip-permissions</code> to normal Antigravity CLI launches. Backed up the prior startup files and checked configuration loading and shell syntax. Linux account permissions and platform rules still apply.</li>
 <li>Installed GNOME Software with Alpine's package backend to make installed software and updates easier to manage.</li>
 <li>Added an hourly package-update indicator that opens the NUC's software centre.</li>
 <li>Updated system packages and tools inside the NUC's Homebrew and Codex Docker containers.</li>
@@ -180,6 +187,8 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
+<li id="fah-linux-image-generator">With assistance from Codex, installed the CPU build of stable-diffusion.cpp with a roughly 1.5 GB Stable Diffusion 1.5 Q4_0 model on my Ubuntu folding VM, which has about 8 GB RAM, two CPU threads, and no usable GPU detected. Added a trusted <strong>Image Generator</strong> desktop shortcut that starts a terminal and opens the local browser interface at <code>http://127.0.0.1:1234/</code>. Pressing <code>Ctrl+C</code> in that terminal stops the server; closing only the browser leaves it running. The generator starts manually, rather than at boot.</li>
+<li id="fah-linux-image-smoke-test">With assistance from Codex, verified the local image-generation API end to end and saved a 256&times;256, four-step smoke-test PNG in <code>~/Pictures/AI/first-test.png</code>. Generation took about 7 minutes 32 seconds while Folding@home and installation work also ran. The result was very rough and did not establish useful image quality; larger images and more steps still need a quality check. Documented 512&times;512, batch one, and 20 steps as a starting configuration with a substantially longer expected wait.</li>
 <li id="ai-music-style">With assistance from Codex, compared three AI-generated music tracks using a locally run audio classifier and samples from multiple sections. Documented tentative style matches: saxophone-led jazz for &ldquo;Lazy Bones,&rdquo; progressive/psychedelic instrumental rock for &ldquo;Lluvia de Ideas&rdquo; (091823), and surf rock with jazz influences for version 809312. This small experiment explored using AI to describe instrumentation and compare creative outputs, while treating genre labels as estimates.</li>
 <li>Worked through an out-of-memory failure during 4K image decoding and enabled tiled decoding to process the result in smaller sections.</li>
 <li>Overhauled the local image generator GUI with a tabbed workflow for multiple jobs, a scrollable layout that keeps Generate reachable at small window sizes, and a repaired Plank launcher backed by a CPU-only PyTorch/Diffusers environment.</li>
