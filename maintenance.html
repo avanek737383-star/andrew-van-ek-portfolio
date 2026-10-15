@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">119 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
+<p class="maintenance-updated">120 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -75,6 +75,7 @@
 <li><strong>Follow-up / verification:</strong> Added my Debian Mac to the website-maintenance SSH path on the Alpine NUC over my private Tailscale connection, then verified passwordless Ed25519 authentication over Tailscale with the device's local key.</li>
 <li>With assistance from Codex, installed Tailscale on my Kali Linux VM, signed it into my private tailnet, and verified that its daemon is running and enabled at boot.</li>
 <li>Created a dedicated Ed25519 SSH key on Kali for website maintenance on the Alpine NUC. Copied its public key, configured a host-specific identity and a local maintenance alias, and verified passwordless SSH. The private key stays on Kali.</li>
+<li>With assistance from Antigravity CLI, audited the <code>B:\</code> network share for exposed remote-access configurations, located two legacy OpenVPN client configuration profiles (<code>TP-Link-Route-LAN.ovpn</code> and <code>TP-Link-Router-VPN-Recent.ovpn</code>) containing external gateway endpoints and embedded cryptographic certificates, and permanently removed both files to ensure credential hygiene.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
