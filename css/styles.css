@@ -1191,3 +1191,13 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
     .duco-brand { justify-content: center; text-align: center; }
 }
 #duco-title { scroll-margin-top: 9rem; }
+
+/* iPod restoration long-form project */
+.ipod-case-study { max-width: 78ch; }
+.ipod-case-study h3 { margin-top: 2rem; scroll-margin-top: 8rem; }
+#ipod-restoration-title { scroll-margin-top: 8rem; }
+.ipod-chapters { margin: 1.5rem 0 2rem; padding: 0; background: none; box-shadow: none; position: static; }
+.ipod-chapters ul { display: block; list-style: disc; margin-left: 1.4rem; padding: 0; }
+.ipod-chapters li { display: list-item; margin: .3rem 0; }
+.ipod-chapters a { color: #0056b3; padding: 0; text-decoration: underline; background: none; }
+@media (max-width: 600px) { .ipod-case-study h3 { scroll-margin-top: 2rem; } }

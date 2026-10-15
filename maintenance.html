@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">117 documented tasks across seven areas &middot; Updated <time datetime="2026-10-14">October 14, 2026</time></p>
+<p class="maintenance-updated">119 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -71,13 +71,15 @@
 <li>Configured a separate Dropbear SSH service on the NUC as a fallback, restricted to the private Tailscale network.</li>
 <li>Configured public-key SSH access to a Windows 11 VM and verified passwordless administrator access, with OpenSSH Server running and set to start automatically.</li>
 <li>With assistance from Codex, checked Slax remote access over the local network and Tailscale after a desktop-session problem. Confirmed that the host remained online, but SSH accepted connections and closed them before authentication, separating the connection failure from a login-password problem.</li>
-<li>Verified passwordless Ed25519 SSH access from my Mac to the Alpine NUC (100.87.81.52) over Tailscale for automated git operations and remote portfolio maintenance.</li>
-<li><strong>Follow-up / verification:</strong> Added this Debian Mac (<code>andrews2011DebianMac</code>) to the website-maintenance SSH path on the Alpine NUC at <code>avanek@100.87.81.52</code>, then verified passwordless Ed25519 authentication over Tailscale with the device's local key.</li>
+<li>Verified passwordless Ed25519 SSH access from my Mac to the Alpine NUC over Tailscale for automated git operations and remote portfolio maintenance.</li>
+<li><strong>Follow-up / verification:</strong> Added my Debian Mac to the website-maintenance SSH path on the Alpine NUC over my private Tailscale connection, then verified passwordless Ed25519 authentication over Tailscale with the device's local key.</li>
 <li>With assistance from Codex, installed Tailscale on my Kali Linux VM, signed it into my private tailnet, and verified that its daemon is running and enabled at boot.</li>
-<li>Created a dedicated Ed25519 SSH key on Kali for website maintenance on the Alpine NUC. Copied the public key with <code>ssh-copy-id -i ~/.ssh/id_ed25519_website.pub avanek@100.87.81.52</code>, configured a host-specific identity and the <code>maintenance-site</code> alias, and verified passwordless SSH. The private key stays on Kali.</li>
+<li>Created a dedicated Ed25519 SSH key on Kali for website maintenance on the Alpine NUC. Copied its public key, configured a host-specific identity and a local maintenance alias, and verified passwordless SSH. The private key stays on Kali.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
+<li id="nomachine-display-manager">With assistance from Codex, investigated a failed Connect GUI / NoMachine connection while SSH remained available. Found that the desktop login service was stopped, started LightDM, and restarted NoMachine. The saved maintenance record confirms that the services were running; a successful visual GUI connection was still awaiting user confirmation.</li>
+<li id="vnc-persistent-xfce">With assistance from Codex, investigated TigerVNC disconnecting because the display previously shared by x11vnc no longer existed. Created a separate XFCE desktop for VNC, added a persistent systemd user service, and enabled user lingering so it could start after reboot without an SSH login, while keeping NoMachine running. The saved record reports a successful TigerVNC connection, a successful service restart, and a VNC handshake through the private Tailscale connection. Reboot startup was configured; the record does not show a full reboot test.</li>
 <li>Configured x11vnc connections at 720p and 1080p to show the same active desktop session.</li>
 <li>Consolidated the NUC's separate VNC desktops into one shared desktop to resolve Firefox profile conflicts.</li>
 <li>Increased desktop text scaling to 150% and enlarged panel controls to make remote sessions easier to read.</li>
@@ -197,7 +199,7 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-14">October 14, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-15">October 15, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261011-guardrails-1"></script>
