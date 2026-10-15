@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">128 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
+<p class="maintenance-updated">134 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -72,6 +72,7 @@
 <li>Configured public-key SSH access to a Windows 11 VM and verified passwordless administrator access, with OpenSSH Server running and set to start automatically.</li>
 <li>With assistance from Codex, checked Slax remote access over the local network and Tailscale after a desktop-session problem. Confirmed that the host remained online, but SSH accepted connections and closed them before authentication, separating the connection failure from a login-password problem.</li>
 <li>Verified passwordless Ed25519 SSH access from my Mac to the Alpine NUC over Tailscale for automated git operations and remote portfolio maintenance.</li>
+<li>Worked on an Azure VM, setting up a browser-viewable desktop environment and SSH access for remote administration.</li>
 <li><strong>Follow-up / verification:</strong> Added my Debian Mac to the website-maintenance SSH path on the Alpine NUC over my private Tailscale connection, then verified passwordless Ed25519 authentication over Tailscale with the device's local key.</li>
 <li>With assistance from Codex, installed Tailscale on my Kali Linux VM, signed it into my private tailnet, and verified that its daemon is running and enabled at boot.</li>
 <li>Created a dedicated Ed25519 SSH key on Kali for website maintenance on the Alpine NUC. Copied its public key, configured a host-specific identity and a local maintenance alias, and verified passwordless SSH. The private key stays on Kali.</li>
@@ -90,6 +91,7 @@
 <li>Added panel indicators for network connectivity and download/upload activity, with speeds shown in megabits per second.</li>
 <li>Added hard-drive activity indicators with separate read/write information and explanatory tooltips.</li>
 <li>Configured two persistent x11vnc endpoints over Tailscale on my Debian Mac and checked that both services start at boot and restart automatically.</li>
+<li>Added a persistent Conky dashboard to the Debian Mac's shared XFCE desktop with live CPU, RAM, and network in/out graphs, so the same resource view is visible through both VNC endpoints.</li>
 <li>Removed stale duplicate Ethernet and network tray entries on the Debian Mac.</li>
 <li>Restored Trayscale to the Debian Mac&#x27;s XFCE tray.</li>
 <li>Added a labeled Trayscale shortcut to the right side of the Slax XFCE panel, enabled startup in the tray, and verified that closing its window keeps the tray icon running.</li>
@@ -144,6 +146,10 @@
 <li>Updated all 16 outdated Homebrew formulae on the Debian Mac during this maintenance session.</li>
 <li>Confirmed that the Debian Mac&#x27;s installed Tailscale client was version 1.104.1 during the October 10 maintenance session.</li>
 <li>Updated both Debian Mac Monero desktop launchers to use the selected MoneroOcean pool and saved a local note documenting the change.</li>
+<li>Completed a Debian Mac maintenance pass: refreshed APT repositories, upgraded Chromium and Opera GX, updated Homebrew formulae, updated npm to a Node-compatible release, and checked Flatpak updates.</li>
+<li>Removed Azahar and Dolphin emulator packages and Flatpaks from the Debian Mac after confirming they were no longer wanted.</li>
+<li>Added a Medium Monero Miner desktop shortcut using all four logical CPU threads at intermediate <code>nice 5</code> priority between the existing heavy and light presets.</li>
+<li>Installed Folding@home 8.5.6 on the Debian Mac without NVIDIA extras, kept its service disabled at boot, and added a desktop shortcut that starts the service on demand and opens Web Control.</li>
 <li>Configured persistent XMRig MSR device permissions with an msr group and a udev rule using root:msr ownership and group read/write access. The rule is intended to allow tuning after reboot; the existing miner session may require a restart or fresh login.</li>
 <li>Installed Google Antigravity CLI 1.3.5 natively on Kali with its official installer and SHA512 verification, and configured the <code>agy</code> command in my shell PATH.</li>
 <li>Installed Homebrew 7.0.9 on Kali under <code>/home/linuxbrew/.linuxbrew</code>, added its shell environment to Bash and Zsh startup files, and verified <code>brew</code> in a new shell.</li>
@@ -172,6 +178,7 @@
 <ul class="maintenance-list">
 <li id="ai-music-style">With assistance from Codex, compared three AI-generated music tracks using a locally run audio classifier and samples from multiple sections. Documented tentative style matches: saxophone-led jazz for &ldquo;Lazy Bones,&rdquo; progressive/psychedelic instrumental rock for &ldquo;Lluvia de Ideas&rdquo; (091823), and surf rock with jazz influences for version 809312. This small experiment explored using AI to describe instrumentation and compare creative outputs, while treating genre labels as estimates.</li>
 <li>Worked through an out-of-memory failure during 4K image decoding and enabled tiled decoding to process the result in smaller sections.</li>
+<li>Overhauled the local image generator GUI with a tabbed workflow for multiple jobs, a scrollable layout that keeps Generate reachable at small window sizes, and a repaired Plank launcher backed by a CPU-only PyTorch/Diffusers environment.</li>
 <li>Completed a local 4K underwater image after 19 hours, 24 minutes, and 31 seconds; <a href="about.html#oceanscape-experiment">view the image and its story</a>.</li>
 <li>Used Realistic Vision and AnimateDiff to turn a portrait of myself into a two-second, eight-frame animation on the HP laptop. The render finished in about four hours and 36 minutes.</li>
 <li>Ran the portrait render as a background service and checked sampling and decoding progress while continuing to use the computer.</li>
