@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">122 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
+<p class="maintenance-updated">123 documented tasks across seven areas &middot; Updated <time datetime="2026-10-15">October 15, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -126,6 +126,7 @@
 <li>Disabled AnyDesk startup on the Debian Mac while keeping the application installed.</li>
 <li>Checked that the USB partition spans the full 57.3 GiB drive and identified the separate 16 GB Slax persistence limit.</li>
 <li>With assistance from Codex, backed up the Slax boot configuration, saved a 48 GB persistence setting that resumes session 1, and flushed it to USB. The host command completed successfully; expansion and retained settings still need verification after the next normal reboot.</li>
+<li>With assistance from Antigravity CLI, resolved a Slax Linux boot failure where the Live Kit init script halted before executing <code>init</code> due to a missing <code>chroot</code> executable in the target union filesystem. Populated <code>/slax/rootcopy/</code> with 64-bit <code>chroot</code> and <code>busybox</code> binaries along with an executable <code>preinit.sh</code> hook, and patched <code>lib/livekitlib</code> inside <code>initrfs.img</code> with an automatic BusyBox fallback to prevent <code>change_root</code> halts.</li>
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">

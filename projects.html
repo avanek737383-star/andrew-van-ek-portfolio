@@ -370,10 +370,10 @@
 
 				<section class="project-entry" aria-labelledby="slax-busybox-title">
 					<h2 id="slax-busybox-title">Getting Useful Commands onto an Older Slax System</h2>
-<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Active remote-systems troubleshooting</span></p>
-<p>I am working on an older Slax Linux system where several newer command-line tools will not run because they require newer system libraries. Normal file-transfer options were also unavailable or unusable.</p>
-<p>I chose a self-contained version of BusyBox, a program that bundles many useful commands, and worked out how to transfer it using short shell commands. I prepared the file in Debian through Windows Subsystem for Linux (WSL), which lets me use Linux tools on Windows.</p>
-<p>Large pasted commands were getting cut off, so I reduced the size of each batch and checked the file as I went. The small batches work reliably; checking the finished file and successfully running BusyBox remain the next steps.</p>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Updated <time datetime="2026-10-15">October 15, 2026</time></span></p>
+<p>I worked on a customized Slax Linux system where several newer command-line tools would not run because they require newer system libraries. Normal network file-transfer options were also unavailable during troubleshooting.</p>
+<p>I selected a self-contained version of BusyBox, a program that bundles dozens of core utilities into a single executable, and prepared the binary files in Debian through Windows Subsystem for Linux (WSL). When the Live Kit init script halted at startup because it could not find an executable <code>chroot</code> command in the merged filesystem union, I integrated the standalone BusyBox and 64-bit <code>chroot</code> binaries directly into <code>/slax/rootcopy/</code> and patched <code>lib/livekitlib</code> inside <code>initrfs.img</code> with an automatic fallback.</p>
+<p>This bypassed the startup halt, restored normal boot into the persistent desktop session, and made BusyBox and standard Linux admin utilities immediately available across the environment.</p>
 </section>
 
 				<section class="project-entry" aria-labelledby="slax-build-title">
