@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">162 documented tasks across seven areas &middot; Updated <time datetime="2026-10-16">October 16, 2026</time></p>
+<p class="maintenance-updated">164 documented tasks across seven areas &middot; Updated <time datetime="2026-10-16">October 16, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -122,6 +122,7 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="startup"><h2 id="startup">USB Persistence, Startup &amp; Power Settings</h2>
 <ul class="maintenance-list">
+<li id="nuc-fan-cooling-100">With assistance from Antigravity, investigated hardware thermal management and fan speed control on the Intel NUC (NUC5PPYH). Identified the embedded ITE IT8607E Super I/O controller and verified that standard Linux userspace PWM utilities (<code>lm-sensors</code> / <code>pwmconfig</code>) do not expose software fan curves on NUC hardware because the cooling fan header is governed directly by the motherboard's Embedded Controller (EC). Tested ACPI active cooling states on <code>cooling_device4</code> (<code>PNP0C0B:00</code>) and documented the BIOS configuration path (setting Fan Control Mode to Fixed 100% or Minimum Duty Cycle to 100% under Advanced &gt; Cooling in Intel Visual BIOS) to permanently lock the fan at maximum speed across reboots.</li>
 <li id="kali-oct16-anydesk">With assistance from Codex, stopped AnyDesk on my Kali VM and disabled its systemd service at boot. Added a per-user desktop autostart override so the AnyDesk tray does not launch at login; verified that the service is disabled and inactive.</li>
 <li id="ubuntu-gnome-vm-lock-power">With assistance from Codex, disabled the lock screen, automatic locking, locking after suspend, idle screen blanking, and automatic suspend on my Ubuntu GNOME VM so it stays available for remote work. Saved the settings for my desktop account and read them back to verify the configured values; a reboot test was not performed.</li>
 <li id="fah-linux-folding-boot">With assistance from Codex, verified that the Ubuntu VM's Folding@home service is enabled at boot and actively processing a work unit without requiring desktop login. Confirmed Web Control as the account-management entry point; account linking was left to my browser sign-in.</li>
@@ -145,6 +146,7 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="alpine-nuc-oct16-updates">With assistance from Antigravity, completed an October 16, 2026 maintenance pass on the Alpine Linux NUC: upgraded 36 APK packages including the LTS Linux kernel (6.18.57-r0), Intel and Realtek firmware packages, Docker (29.9.1), containerd (2.4.2), and Node.js. Rebuilt the initramfs using <code>mkinitfs</code> and regenerated GRUB EFI configurations. Upgraded Google Chrome via Flatpak, verified Homebrew packages inside the Linux container, and confirmed all running Docker containers (GLPI web, MariaDB, Homebrew, and Codex) remained healthy throughout.</li>
 <li id="kali-oct16-updates">With assistance from Codex, completed an October 16, 2026 maintenance pass on my Kali VM: refreshed APT repositories and upgraded installed system packages and applications, updated Homebrew packages including .NET, OpenSSL, and PowerShell, and updated globally installed npm applications. Codex CLI reached 0.163.0 and Antigravity CLI reached 1.4.0 with updater verification. Confirmed no pending APT or Homebrew upgrades, a clean package audit, and no failed systemd units; SSH, VNC, and Tailscale services remained active.</li>
 <li id="kali-oct16-cli-defaults"><strong>Follow-up / verification:</strong> With assistance from Codex, saved persistent Codex defaults using <code>approval_policy = &quot;never&quot;</code> and <code>sandbox_mode = &quot;danger-full-access&quot;</code>, backed up the prior Codex configuration, and added Bash and Zsh aliases that pass <code>--dangerously-skip-permissions</code> to normal Antigravity launches. These settings apply to future launches; an existing session retains its current access restrictions.</li>
 <li id="kali-oct16-postgresql">With assistance from Codex, repaired PostgreSQL 18 collation-version warnings after the Kali upgrade changed the system collation version from 2.42 to 2.43. Temporarily started the previously stopped cluster, reindexed the postgres and template1 databases, refreshed their collation metadata, and verified both recorded versions match 2.43. Returned the cluster to its previous stopped state.</li>
@@ -242,7 +244,7 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-15">October 15, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-16">October 16, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261015-nemotron-dynamic-1"></script>
