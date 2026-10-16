@@ -83,14 +83,17 @@
 		wrapper.className = "portfolio-chat";
 		wrapper.hidden = true;
 		wrapper.innerHTML = [
-			'<button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask my local AI</button>',
+			'<button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask Nemo (Local AI)</button>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
 			'  <header class="portfolio-chat-header">',
-			'    <div><strong>Andrew\'s Local AI</strong><span>NVIDIA Nemotron 3 Nano 4B · privately hosted</span></div>',
+			'    <div><strong>Nemo · Andrew\'s Local AI</strong><span>NVIDIA Nemotron 3 Nano 4B · privately hosted</span></div>',
 			'    <button class="portfolio-chat-close" type="button" aria-label="Close chat">&times;</button>',
 			'  </header>',
 			'  <div class="portfolio-chat-messages" role="log" aria-live="polite">',
-			'    <p class="chat-message chat-assistant">Hi! Ask me about Andrew\'s experience, skills, or this local-AI project.</p>',
+			'    <div class="chat-message chat-assistant">',
+'      <div class="chat-sender">Nemo</div>',
+'      <div class="chat-content"><p class="chat-paragraph">Hi! I\'m Nemo, Andrew\'s local AI. Ask me about Andrew\'s experience, skills, or this local-AI project.</p></div>',
+'    </div>',
 			'  </div>',
 			'  <form class="portfolio-chat-form">',
 			'    <label class="sr-only" for="portfolio-chat-input">Message</label>',
@@ -152,21 +155,38 @@
 			});
 		}
 
-		function renderMessage(message, text, role) {
+		function renderMessage(message, text, role, isPending) {
 			message.replaceChildren();
-			if (role !== "assistant") { message.textContent = text; return; }
-			replyParagraphs(text).forEach(function (paragraph) {
-				var part = document.createElement("p");
-				part.className = "chat-paragraph";
-				part.textContent = paragraph;
-				message.appendChild(part);
-			});
+			var sender = document.createElement("div");
+			sender.className = "chat-sender";
+			sender.textContent = role === "user" ? "You" : "Nemo";
+			message.appendChild(sender);
+
+			var content = document.createElement("div");
+			content.className = "chat-content";
+
+			if (isPending) {
+				var thinking = document.createElement("div");
+				thinking.className = "chat-thinking";
+				thinking.innerHTML = '<span class="chat-thinking-label">Nemo is thinking</span><span class="chat-dots" aria-hidden="true"><span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span></span>';
+				content.appendChild(thinking);
+			} else if (role !== "assistant") {
+				content.textContent = text;
+			} else {
+				replyParagraphs(text).forEach(function (paragraph) {
+					var part = document.createElement("p");
+					part.className = "chat-paragraph";
+					part.textContent = paragraph;
+					content.appendChild(part);
+				});
+			}
+			message.appendChild(content);
 		}
 
-		function addMessage(text, role) {
+		function addMessage(text, role, isPending) {
 			var message = document.createElement("div");
 			message.className = "chat-message chat-" + role;
-			renderMessage(message, text, role);
+			renderMessage(message, text, role, isPending);
 			messages.appendChild(message);
 			messages.scrollTop = messages.scrollHeight;
 			return message;
@@ -174,7 +194,9 @@
 
 		function resizeInput() {
 			input.style.height = "auto";
-			input.style.height = Math.min(input.scrollHeight, 140) + "px";
+			var newHeight = Math.min(input.scrollHeight, 140);
+			input.style.height = newHeight + "px";
+			input.style.overflowY = input.scrollHeight > 140 ? "auto" : "hidden";
 		}
 		input.addEventListener("input", resizeInput);
 		input.addEventListener("keydown", function (event) {
@@ -203,7 +225,7 @@
 			resizeInput();
 			waiting = true;
 			form.querySelector("button").disabled = true;
-			var pending = addMessage("Thinking locally…", "assistant");
+			var pending = addMessage("", "assistant", true);
 
 			try {
 				var response = await fetch(apiUrl, {
@@ -213,9 +235,9 @@
 				});
 				var data = await response.json();
 				if (!response.ok) throw new Error(data.error || "The assistant is unavailable.");
-				renderMessage(pending, data.reply, "assistant");
+				renderMessage(pending, data.reply, "assistant", false);
 			} catch (error) {
-				renderMessage(pending, error.message || "The local assistant is temporarily offline.", "assistant");
+				renderMessage(pending, error.message || "The local assistant is temporarily offline.", "assistant", false);
 				pending.classList.add("chat-error");
 			} finally {
 				waiting = false;
