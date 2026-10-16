@@ -56,6 +56,27 @@
 <h3>App management and network verification</h3>
 <p>The TP-Link Tether app allows me to manage the Archer AX3000 directly from my phone, streamlining tasks like monitoring connected clients, adjusting Wi-Fi settings, configuring guest access, and troubleshooting without needing a browser session on a desktop computer. I verified Gigabit link negotiation across both switches, validated DHCP lease assignment, and confirmed stable, low-latency throughput across both wired and wireless devices.</p>
 </section>
+
+<section class="project-entry" aria-labelledby="lofi-visualizer-title">
+<h2 id="lofi-visualizer-title">Lo-Fi Beat Audio Visualizer: Organic Damping, Ambient Lamp Breathing &amp; Hardware VideoToolbox Rendering</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Full-track 1080p 30fps MP4 render; STFT audio-reactive ribbon; warm ambient lamp breathing &middot; Completed <time datetime="2026-10-16">October 16, 2026</time></span></p>
+<p>Following my earlier high-energy EDM visualizer experiments, I wanted to create a dedicated visualizer workflow tailored specifically for chillout, lo-fi hip-hop beats. While EDM demands aggressive transient snaps, radial spiky frequency bars, and electric neon contrast, lo-fi calls for an entirely different aesthetic: warmth, nostalgic texture, and slow, organic movement. I developed a Python and Pycairo rendering pipeline to produce a 1080p music video for the chill study track <em>&ldquo;Midnight Pages&rdquo;</em> (2 minutes 22 seconds / 4,286 frames).</p>
+<h3>Adapting the STFT mechanics for mellow audio dynamics</h3>
+<p>To capture the relaxed feel of a lo-fi track without erratic flickering or strobing, I reworked the Short-Time Fourier Transform (STFT) spectral analysis parameters. Using a 2,048-point Hanning window on the 44.1 kHz decoded PCM stream, I isolated sub-bass and kick transients between 30 Hz and 160 Hz while mapping mid and upper musical content across 64 logarithmically spaced frequency bands from 60 Hz to 7,000 Hz.</p>
+<p>Instead of the fast 0.35s attack and 0.84s release used for dance music, I implemented an organic envelope follower with a gentle 0.20 rise and an elongated 0.92 warm release decay. This transforms the kick response into a slow, rhythmic &ldquo;breathing&rdquo; pulse that feels natural rather than jarring.</p>
+<h3>Scene composition and audio-reactive layers</h3>
+<p>I paired the music with a 16:9 widescreen anime-style late-night study scene: an open notebook on a wooden desk beside a rain-streaked window overlooking a midnight city skyline. The pipeline composites several reactive elements over this scene:</p>
+<ul>
+<li><strong>Ambient Lamp Breathing:</strong> A multi-stop radial amber gradient centered directly on the vintage brass desk lamp bulb (x=1220, y=260) that gently expands and brightens across the desk surface in synchrony with the low-frequency envelope.</li>
+<li><strong>Floating Atmospheric Particles:</strong> A system of 70 floating dust motes with randomized drift vectors and phases that subtly glow in response to sub-bass intensity.</li>
+<li><strong>Upper-Left Frosted HUD Player:</strong> A translucent dark charcoal slate card positioned over the rainy window pane, keeping the notebook and desktop scenery visible. It features a spinning vinyl/cassette spool graphic rotating smoothly at constant RPM, clean Courier and Helvetica typography, live elapsed/total timestamps, and a pulsing red recording status indicator.</li>
+<li><strong>Undulating Audio Ribbon:</strong> Inside the HUD card, an audio-reactive ribbon renders a continuous, smoothly interpolated waveform curve across a baseline with a live progress dot, filled with a warm golden-to-peach gradient reflecting real-time frequency changes.</li>
+<li><strong>Analog Scanlines:</strong> Subtle horizontal scanlines with 3.5% opacity and a soft vignette add authentic retro CRT warmth.</li>
+</ul>
+<h3>Pipeline efficiency and Apple Silicon encoding</h3>
+<p>The complete video comprises 4,286 individual uncompressed 1080p ARGB frames. Streaming raw 32-bit BGRA frame buffers directly from Cairo memory into FFmpeg over standard input eliminated intermediary disk writes. FFmpeg encoded the video using Apple's hardware-accelerated <code>h264_videotoolbox</code> encoder at 14 Mbps with 320 kbps AAC stereo audio, rendering the entire 2.3-minute video cleanly in just over 7 minutes.</p>
+<p><a href="https://pycairo.readthedocs.io/" target="_blank" rel="noopener">Pycairo graphics documentation</a> &middot; <a href="https://ffmpeg.org/ffmpeg-codecs.html#VideoToolbox" target="_blank" rel="noopener">FFmpeg VideoToolbox hardware encoding</a> &middot; <a href="https://docs.scipy.org/doc/scipy/reference/signal.html" target="_blank" rel="noopener">SciPy Signal Processing</a></p>
+</section>
 <section class="project-entry" aria-labelledby="ncs-visualizer-title">
 <h2 id="ncs-visualizer-title">AI-Powered NCS Circular Audio Visualizer: STFT Spectral Analysis &amp; Apple Silicon VideoToolbox</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Dual EDM visualizer videos rendered; 1080p 30fps VideoToolbox encoding; sub-bass pulse &amp; radial FFT &middot; Completed <time datetime="2026-10-15">October 15, 2026</time></span></p>
