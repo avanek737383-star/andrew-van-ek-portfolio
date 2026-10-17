@@ -322,10 +322,52 @@
 		window.setInterval(checkAvailability, 30000);
 	}
 
+	function initHomeTelemetry() {
+		var tokenEl = document.getElementById("stat-tokens");
+		var promptEl = document.getElementById("stat-prompts");
+		var trafficEl = document.getElementById("stat-traffic");
+		var boincEl = document.getElementById("stat-boinc");
+		if (!tokenEl && !promptEl && !trafficEl && !boincEl) return;
+
+		async function refreshStats() {
+			try {
+				var res = await fetch(statusUrl, { cache: "no-store" });
+				if (res.ok) {
+					var data = await res.json();
+					if (data.chat) {
+						if (promptEl && typeof data.chat.requests === "number") {
+							promptEl.textContent = (118 + data.chat.requests).toLocaleString();
+						}
+						if (tokenEl && typeof data.chat.last_tokens_per_second === "number") {
+							var sub = document.getElementById("stat-tokens-sub");
+							if (sub) sub.textContent = data.chat.last_tokens_per_second + " tok/s · Nemotron 3 Nano";
+						}
+					}
+				}
+			} catch (e) {}
+
+			try {
+				var nucRes = await fetch("https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/nuc-stats", { cache: "no-store" });
+				if (nucRes.ok) {
+					var nucData = await nucRes.json();
+					if (nucData.nuc && trafficEl && typeof nucData.nuc.uptime_seconds === "number") {
+						var days = Math.floor(nucData.nuc.uptime_seconds / 86400);
+						var subTraffic = document.getElementById("stat-traffic-sub");
+						if (subTraffic) subTraffic.textContent = days + "d uptime · Alpine edge relay";
+					}
+				}
+			} catch (e) {}
+		}
+
+		refreshStats();
+		window.setInterval(refreshStats, 30000);
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
 		createChat();
+		initHomeTelemetry();
 	}
 
 	if (document.readyState === "loading") {
