@@ -327,7 +327,20 @@
 		var promptEl = document.getElementById("stat-prompts");
 		var trafficEl = document.getElementById("stat-traffic");
 		var boincEl = document.getElementById("stat-boinc");
-		if (!tokenEl && !promptEl && !trafficEl && !boincEl) return;
+		var chatBtn = document.getElementById("telemetry-open-chat");
+		if (!tokenEl && !promptEl && !trafficEl && !boincEl && !chatBtn) return;
+
+		if (chatBtn) {
+			chatBtn.addEventListener("click", function (e) {
+				e.preventDefault();
+				var toggle = document.querySelector(".portfolio-chat-toggle");
+				if (toggle && !toggle.hidden) {
+					toggle.click();
+				} else {
+					window.location.href = "council.html";
+				}
+			});
+		}
 
 		async function refreshStats() {
 			try {
@@ -340,7 +353,7 @@
 						}
 						if (tokenEl && typeof data.chat.last_tokens_per_second === "number") {
 							var sub = document.getElementById("stat-tokens-sub");
-							if (sub) sub.textContent = data.chat.last_tokens_per_second + " tok/s · Nemotron 3 Nano";
+							if (sub) sub.textContent = data.chat.last_tokens_per_second + " tok/s · Local GPU";
 						}
 					}
 				}
@@ -363,11 +376,354 @@
 		window.setInterval(refreshStats, 30000);
 	}
 
+	var TECH_ANALOGIES = {
+		"gigabit-ethernet": {
+			title: "Gigabit Ethernet (1 Gbps)",
+			analogy: "A dedicated multi-lane private highway directly connecting two buildings with a 1,000 mph speed limit. Unlike Wi-Fi (which acts like shouting across a noisy, crowded cafeteria), Ethernet is a physical cord completely immune to walls, weather, or radio interference.",
+			techFact: "A physical wired standard delivering up to 1,000 Megabits (~125 MB) per second with continuous sub-millisecond local latency."
+		},
+		"tailscale": {
+			title: "Tailscale Mesh VPN",
+			analogy: "An encrypted walkie-talkie channel that lets all your personal devices talk directly to each other from anywhere in the world as if they were sitting in the same living room—without needing to leave your front door unlocked or open holes in your home router.",
+			techFact: "A zero-config peer-to-peer overlay network built on WireGuard that securely links devices across NATs and firewalls."
+		},
+		"wake-on-lan": {
+			title: "Wake-on-LAN (WoL)",
+			analogy: "Tossing a small pebble at your friend's bedroom window at night to wake them up only when you need them, saving electricity instead of keeping them standing outside with the lights on 24/7.",
+			techFact: "A network broadcast packet containing a 'magic packet' (target MAC address) that prompts a sleeping motherboard to power up remotely."
+		},
+		"unmanaged-switch": {
+			title: "Unmanaged Network Switch",
+			analogy: "A heavy-duty power strip, but for internet cables instead of power plugs. You plug one internet cord into the wall, and suddenly you have 5 or 8 fast wired jacks to plug servers and PCs into—with zero setup or menus needed.",
+			techFact: "A plug-and-play Layer-2 hardware device that inspects MAC addresses to direct network frames between local ports at full wire speed."
+		},
+		"subnet-router": {
+			title: "Subnet Router",
+			analogy: "A designated concierge standing at the entrance of a private apartment building. Once you call the concierge on your secure phone line, they can walk over and deliver messages to any apartment down the hallway that doesn't have an outside mailbox.",
+			techFact: "A designated gateway device on a VPN that exposes an entire physical local subnet (like 192.168.0.0/24) to remote nodes without installing VPN clients on each peripheral."
+		},
+		"boinc": {
+			title: "BOINC Distributed Science",
+			analogy: "A 10-million-piece puzzle. Instead of one scientist sitting in a lab trying to assemble it alone over 50 years, thousands of volunteers worldwide each solve 5 puzzle pieces in the background while their computers are sitting idle.",
+			techFact: "An open-source grid computing framework that harnesses idle CPU and GPU compute cycles from volunteer computers globally to analyze scientific datasets (like pulsar gamma rays)."
+		},
+		"geysermc": {
+			title: "GeyserMC Protocol Bridge",
+			analogy: "An instantaneous real-time translator sitting between a Spanish speaker (Bedrock edition on phones and tablets) and an English speaker (Java edition on PCs), letting them play together in the same world as if they spoke the same language.",
+			techFact: "A proxy bridge translating Minecraft Bedrock UDP packets (RakNet gaming protocol) into Minecraft Java TCP packets on the fly."
+		},
+		"stft": {
+			title: "Short-Time Fourier Transform (STFT)",
+			analogy: "A high-speed digital camera that takes rapid snapshots of a complex song 60 times a second and instantly writes out the exact musical notes being played—separating the heavy kick bass, melodic piano chords, and vocal highs.",
+			techFact: "A digital signal processing algorithm that breaks continuous audio signals into overlapping time windows to calculate frequency spectrums over time."
+		},
+		"ram-disk": {
+			title: "RAM Disk",
+			analogy: "Laying all your active project folders out across a massive, spotless desk instead of walking to the filing cabinet in the basement every time you need to read a page. It is blindingly fast, but anything not put away is wiped clean when you go home.",
+			techFact: "A virtual storage volume mounted in high-speed system RAM, delivering read/write throughput exceeding 5,000 MB/s, but volatile upon system reboot."
+		},
+		"reverse-proxy": {
+			title: "Reverse Proxy Gateway",
+			analogy: "A security receptionist in the lobby of a high-rise. Visitors tell the receptionist what they need, the receptionist walks to the back office, gets the answer from the staff, and hands it back—keeping the private offices safe and locked.",
+			techFact: "An intermediary server that receives external requests, terminates SSL, enforces security policies, and routes traffic to backend applications."
+		},
+		"cat6": {
+			title: "Cat6 Ethernet Cabling",
+			analogy: "A thick, well-insulated copper pipe with internal plastic dividers that prevent wires from talking over each other (crosstalk), allowing clean high-speed traffic even when running right alongside electrical cords.",
+			techFact: "Twisted-pair cabling rated up to 250 MHz frequency and 10 Gbps speeds with tighter twists and physical spline separation to minimize electromagnetic crosstalk."
+		},
+		"cat5e": {
+			title: "Cat5e Ethernet Cabling",
+			analogy: "A reliable two-lane paved road that comfortably handles 60 mph traffic for everyday driving over reasonable distances, perfect for standard peripherals and accessories.",
+			techFact: "Enhanced Category 5 twisted-pair cable rated up to 100 MHz, reliably delivering 1 Gbps Ethernet up to 100 meters."
+		},
+		"nemotron": {
+			title: "Local AI Language Model (Nemotron)",
+			analogy: "Having an expert technical assistant living locally in your own office who knows your entire resume by heart and answers immediately—without ever having to call an expensive outsourced call center that logs and records your conversations.",
+			techFact: "A 4-billion parameter language model running on local hardware (NVIDIA RTX GPU) using quantized neural network weights to perform private inference on-premise."
+		},
+		"quantization": {
+			title: "Model Quantization (4-Bit)",
+			analogy: "Converting an uncompressed, massive 100 GB movie file into a crisp, high-definition compressed file. It takes up 75% less storage on your hard drive, yet looks virtually identical to the human eye.",
+			techFact: "Reducing the mathematical precision of neural network weights from 16-bit floating point down to 4-bit integers, drastically lowering RAM usage while preserving reasoning capability."
+		},
+		"openrc": {
+			title: "OpenRC Service Manager",
+			analogy: "The pre-flight checklist and flight control system on an airplane. The moment you turn the key, it boots up all engines and sensors in the exact correct sequence, and immediately restarts any system that ever hiccups.",
+			techFact: "A lightweight, dependency-based init system used by Linux distributions like Alpine to manage background daemons, boot services, and runlevels."
+		},
+		"musl": {
+			title: "Musl libc vs Glibc",
+			analogy: "A minimalist hiking multitool that has only the essential screwdrivers and blades you actually need, weighing 2 ounces, compared to a giant 50-pound mechanic's toolbox with every specialty socket ever made.",
+			techFact: "A compact, clean C standard library standard in Alpine Linux, prioritizing simplicity, lightweight memory usage, and security over legacy binary bloat."
+		},
+		"jailbreak": {
+			title: "Jailbreaking (iOS / Devices)",
+			analogy: "Getting the master key to your own house after the previous owner told you that you were only allowed to enter the living room and were forbidden from painting the walls.",
+			techFact: "Exploiting security flaws in a closed operating system kernel to disable mandatory code signing and sandbox restrictions, granting root administrative access."
+		},
+		"plc-hmi": {
+			title: "Industrial Automation (PLC & HMI)",
+			analogy: "An automated car's engine computer and steering wheel. The PLC is the rugged computer under the hood making split-second decisions (like firing fuel injectors), while the HMI is the touchscreen dashboard allowing the human driver to tap buttons and see speed.",
+			techFact: "Programmable Logic Controllers (hard real-time industrial microcomputers) coupled with Human-Machine Interfaces (operator touchscreens and SCADA visual controls)."
+		},
+		"vnc": {
+			title: "Virtual Network Computing (VNC)",
+			analogy: "A secure, private live video feed of your home TV screen paired with an invisible wireless mouse that lets you control your living room computer while sitting at a diner three towns over.",
+			techFact: "A graphical desktop-sharing system based on the Remote Framebuffer (RFB) protocol to transmit display updates, keyboard strokes, and mouse clicks across a network."
+		},
+		"docker": {
+			title: "Docker Containerization",
+			analogy: "Standardized steel shipping containers. Everything an application needs to run (code, libraries, configuration) is sealed inside the container, so it can be dropped onto any computer in the world and run exactly the same.",
+			techFact: "OS-level virtualization using Linux cgroups and namespaces to isolate processes and their dependencies into immutable software images."
+		},
+		"socat": {
+			title: "Socat Bidirectional Relay",
+			analogy: "A heavy-duty brass pipe fitting connecting two water hoses together across a fence, allowing water to flow freely back and forth between two properties without anyone having to rebuild the plumbing.",
+			techFact: "A versatile command-line utility that creates two bidirectional byte streams and transfers data between sockets, ports, or files."
+		},
+		"playit": {
+			title: "Playit.gg Zero-Config Tunnel",
+			analogy: "A secure private shipping tunnel under the mountain that delivers your game packets directly to your friends anywhere on Earth, without you having to knock holes through your home's security fence.",
+			techFact: "A global tunnel agent establishing outbound encrypted connections to anycast edge proxies, forwarding public game traffic to internal LAN IP addresses without router port-forwarding."
+		}
+	};
+
+	function initTechAnalogies() {
+		var terms = document.querySelectorAll(".tech-term");
+		if (!terms.length) return;
+
+		var tooltip = document.getElementById("tech-tooltip");
+		if (!tooltip) {
+			tooltip = document.createElement("div");
+			tooltip.id = "tech-tooltip";
+			tooltip.className = "tech-tooltip";
+			tooltip.setAttribute("role", "tooltip");
+			tooltip.setAttribute("aria-hidden", "true");
+			tooltip.innerHTML = [
+				'<div class="tech-tooltip-header">',
+				'  <div class="tech-tooltip-title-wrap">',
+				'    <span class="tech-tooltip-icon" aria-hidden="true">&#128161;</span>',
+				'    <strong class="tech-tooltip-title"></strong>',
+				'  </div>',
+				'  <span class="tech-tooltip-pill">Analogy</span>',
+				'</div>',
+				'<div class="tech-tooltip-analogy-box">',
+				'  <span class="tech-tooltip-label">Think of it like:</span>',
+				'  <p class="tech-tooltip-text"></p>',
+				'</div>',
+				'<div class="tech-tooltip-fact-box">',
+				'  <span class="tech-tooltip-fact-label">In tech terms:</span>',
+				'  <p class="tech-tooltip-fact"></p>',
+				'</div>'
+			].join("");
+			document.body.appendChild(tooltip);
+		}
+
+		var tipTitle = tooltip.querySelector(".tech-tooltip-title");
+		var tipText = tooltip.querySelector(".tech-tooltip-text");
+		var tipFact = tooltip.querySelector(".tech-tooltip-fact");
+
+		var modal = document.getElementById("tech-modal");
+		if (!modal) {
+			modal = document.createElement("div");
+			modal.id = "tech-modal";
+			modal.className = "tech-modal-overlay";
+			modal.setAttribute("role", "dialog");
+			modal.setAttribute("aria-modal", "true");
+			modal.setAttribute("aria-hidden", "true");
+			modal.hidden = true;
+			modal.innerHTML = [
+				'<div class="tech-modal-backdrop" aria-hidden="true"></div>',
+				'<div class="tech-modal-dialog">',
+				'  <div class="tech-modal-header">',
+				'    <div class="tech-modal-title-group">',
+				'      <span class="tech-modal-icon" aria-hidden="true">&#128161;</span>',
+				'      <h3 class="tech-modal-title"></h3>',
+				'    </div>',
+				'    <button type="button" class="tech-modal-close" aria-label="Close dialog">&times;</button>',
+				'  </div>',
+				'  <div class="tech-modal-body">',
+				'    <div class="tech-modal-analogy-box">',
+				'      <strong class="tech-modal-label">Think of it like:</strong>',
+				'      <p class="tech-modal-text"></p>',
+				'    </div>',
+				'    <div class="tech-modal-fact-box">',
+				'      <strong class="tech-modal-fact-label">In tech terms:</strong>',
+				'      <p class="tech-modal-fact"></p>',
+				'    </div>',
+				'  </div>',
+				'  <div class="tech-modal-footer">',
+				'    <button type="button" class="tech-modal-btn-dismiss">Got it! Return to content</button>',
+				'  </div>',
+				'</div>'
+			].join("");
+			document.body.appendChild(modal);
+		}
+
+		var modalTitle = modal.querySelector(".tech-modal-title");
+		var modalText = modal.querySelector(".tech-modal-text");
+		var modalFact = modal.querySelector(".tech-modal-fact");
+		var modalClose = modal.querySelector(".tech-modal-close");
+		var modalDismiss = modal.querySelector(".tech-modal-btn-dismiss");
+		var modalBackdrop = modal.querySelector(".tech-modal-backdrop");
+
+		var activeTarget = null;
+		var hideTimer = null;
+
+		function getEntry(el) {
+			var key = el.getAttribute("data-term");
+			if (!key) {
+				var txt = (el.textContent || "").trim().toLowerCase();
+				for (var k in TECH_ANALOGIES) {
+					if (txt.indexOf(k) !== -1 || k.indexOf(txt) !== -1) {
+						key = k;
+						break;
+					}
+				}
+			}
+			return TECH_ANALOGIES[key] || null;
+		}
+
+		function showTooltip(el) {
+			var entry = getEntry(el);
+			if (!entry) return;
+
+			clearTimeout(hideTimer);
+			activeTarget = el;
+
+			tipTitle.textContent = entry.title;
+			tipText.textContent = entry.analogy;
+			tipFact.textContent = entry.techFact;
+
+			tooltip.classList.add("visible");
+			tooltip.setAttribute("aria-hidden", "false");
+
+			var rect = el.getBoundingClientRect();
+			var tipWidth = tooltip.offsetWidth;
+			var tipHeight = tooltip.offsetHeight;
+
+			var top = rect.top + window.scrollY - tipHeight - 12;
+			if (rect.top - tipHeight < 14) {
+				top = rect.bottom + window.scrollY + 12;
+			}
+
+			var left = rect.left + window.scrollX + (rect.width / 2) - (tipWidth / 2);
+			var maxLeft = window.innerWidth - tipWidth - 14;
+			if (left < 14) left = 14;
+			if (left > maxLeft) left = maxLeft;
+
+			tooltip.style.top = Math.max(8, top) + "px";
+			tooltip.style.left = left + "px";
+		}
+
+		function scheduleHide() {
+			clearTimeout(hideTimer);
+			hideTimer = setTimeout(function () {
+				tooltip.classList.remove("visible");
+				tooltip.setAttribute("aria-hidden", "true");
+				activeTarget = null;
+			}, 200);
+		}
+
+		function cancelHide() {
+			clearTimeout(hideTimer);
+		}
+
+		tooltip.addEventListener("mouseenter", cancelHide);
+		tooltip.addEventListener("mouseleave", scheduleHide);
+
+		function openModal(el) {
+			var entry = getEntry(el);
+			if (!entry) return;
+
+			tooltip.classList.remove("visible");
+			tooltip.setAttribute("aria-hidden", "true");
+
+			modalTitle.textContent = entry.title;
+			modalText.textContent = entry.analogy;
+			modalFact.textContent = entry.techFact;
+
+			modal.hidden = false;
+			modal.setAttribute("aria-hidden", "false");
+			requestAnimationFrame(function () {
+				modal.classList.add("open");
+				modalClose.focus();
+			});
+			activeTarget = el;
+		}
+
+		function closeModal() {
+			modal.classList.remove("open");
+			modal.setAttribute("aria-hidden", "true");
+			setTimeout(function () {
+				modal.hidden = true;
+				if (activeTarget && typeof activeTarget.focus === "function") {
+					activeTarget.focus();
+				}
+			}, 200);
+		}
+
+		modalClose.addEventListener("click", closeModal);
+		modalDismiss.addEventListener("click", closeModal);
+		modalBackdrop.addEventListener("click", closeModal);
+
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape") {
+				if (!modal.hidden) closeModal();
+				else scheduleHide();
+			}
+		});
+
+		terms.forEach(function (el) {
+			if (!el.getAttribute("tabindex") && el.tagName !== "BUTTON" && el.tagName !== "A") {
+				el.setAttribute("tabindex", "0");
+				el.setAttribute("role", "button");
+			}
+			el.setAttribute("aria-haspopup", "dialog");
+
+			el.addEventListener("mouseenter", function () {
+				if (window.matchMedia("(hover: hover)").matches) {
+					showTooltip(el);
+				}
+			});
+
+			el.addEventListener("mouseleave", function () {
+				if (window.matchMedia("(hover: hover)").matches) {
+					scheduleHide();
+				}
+			});
+
+			el.addEventListener("focus", function () {
+				if (window.matchMedia("(hover: hover)").matches) {
+					showTooltip(el);
+				}
+			});
+
+			el.addEventListener("blur", function () {
+				scheduleHide();
+			});
+
+			el.addEventListener("click", function (e) {
+				e.preventDefault();
+				openModal(el);
+			});
+
+			el.addEventListener("keydown", function (e) {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					openModal(el);
+				}
+			});
+		});
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
 		createChat();
 		initHomeTelemetry();
+		initTechAnalogies();
 	}
 
 	if (document.readyState === "loading") {

@@ -1292,68 +1292,100 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 .ipod-chapters a { color: #0056b3; padding: 0; text-decoration: underline; background: none; }
 @media (max-width: 600px) { .ipod-case-study h3 { scroll-margin-top: 2rem; } }
 
-/* Homepage live telemetry card strip */
+/* Homepage live telemetry dashboard */
 .home-telemetry {
-    margin: 36px 0 24px;
-    padding: 24px;
-    border: 1px solid #d5e0eb;
-    border-radius: 12px;
-    background: #f8fafc;
+    margin: 40px 0 28px;
+    padding: 26px;
+    border: 1px solid #c8d7e6;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow: 0 4px 18px rgba(0, 45, 90, 0.05);
 }
 
 .telemetry-header {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.telemetry-title-group {
+    max-width: 680px;
+}
+
+.telemetry-eyebrow {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0056b3;
 }
 
 .telemetry-header h3 {
     margin: 0;
     color: #002d5a;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
+    font-weight: 700;
 }
 
 .telemetry-desc {
-    margin: 4px 0 0;
+    margin: 6px 0 0;
     color: #526170;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.telemetry-status-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
 }
 
 .telemetry-live-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 12px;
+    padding: 6px 14px;
+    border: 1px solid #bbf7d0;
     border-radius: 999px;
-    background: #e8f5e9;
-    color: #1b5e20;
-    font-size: 0.8rem;
+    background: #f0fdf4;
+    color: #166534;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.02em;
+    box-shadow: 0 1px 3px rgba(22, 101, 52, 0.08);
 }
 
 .telemetry-pulse {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: #2e7d32;
-    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+    background: #16a34a;
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
     animation: telemetry-pulse 2s infinite;
 }
 
 @keyframes telemetry-pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
     }
     70% {
-        box-shadow: 0 0 0 6px rgba(46, 125, 50, 0);
+        box-shadow: 0 0 0 7px rgba(22, 163, 74, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
     }
+}
+
+.telemetry-refresh-tag {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
 }
 
 .telemetry-grid {
@@ -1366,66 +1398,557 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 120px;
-    padding: 16px;
+    min-height: 200px;
+    padding: 18px;
     border: 1px solid #d5e0eb;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 45, 90, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 45, 90, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .telemetry-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 45, 90, 0.09);
+    transform: translateY(-3px);
+    border-color: #0056b3;
+    box-shadow: 0 8px 22px rgba(0, 45, 90, 0.1);
 }
 
 .telemetry-card-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
+    gap: 8px;
+}
+
+.telemetry-type-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.telemetry-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #eef4fb;
+    color: #0056b3;
+    flex-shrink: 0;
 }
 
 .telemetry-label {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
-    color: #667788;
+    color: #475569;
 }
 
 .telemetry-chip {
-    padding: 2px 6px;
-    border-radius: 4px;
-    background: #eef4fb;
+    padding: 3px 8px;
+    border: 1px solid #d0e1f3;
+    border-radius: 6px;
+    background: #f0f7ff;
     color: #0056b3;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 600;
+    white-space: nowrap;
+}
+
+.telemetry-value-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 14px 0 6px;
 }
 
 .telemetry-value {
-    display: block;
-    margin: 10px 0 2px;
     color: #002d5a;
-    font-size: 1.65rem;
-    font-weight: 700;
-    line-height: 1.15;
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.telemetry-unit {
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.telemetry-meter {
+    width: 100%;
+    height: 4px;
+    margin-bottom: 12px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.telemetry-meter-bar {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.bar-ai {
+    width: 85%;
+    background: linear-gradient(90deg, #0056b3, #38bdf8);
+}
+
+.bar-chat {
+    width: 75%;
+    background: linear-gradient(90deg, #0284c7, #22c55e);
+}
+
+.bar-net {
+    width: 95%;
+    background: linear-gradient(90deg, #16a34a, #10b981);
+}
+
+.bar-boinc {
+    width: 80%;
+    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+}
+
+.telemetry-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .telemetry-sub {
-    font-size: 0.76rem;
-    color: #667788;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0056b3;
 }
 
-@media (max-width: 900px) {
+.telemetry-explainer {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #64748b;
+    line-height: 1.38;
+}
+
+/* Dashboard footer toolbar */
+.telemetry-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid #d5e0eb;
+}
+
+.telemetry-nodes-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.node-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: #e9eff5;
+    color: #334155;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.node-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #16a34a;
+}
+
+.telemetry-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.telemetry-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid #c5d7ea;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #0056b3 !important;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.telemetry-btn:hover {
+    background: #0056b3;
+    color: #ffffff !important;
+    border-color: #0056b3;
+    text-decoration: none;
+}
+
+.telemetry-btn-chat {
+    background: #0056b3;
+    color: #ffffff !important;
+    border-color: #0056b3;
+}
+
+.telemetry-btn-chat:hover {
+    background: #004494;
+    border-color: #004494;
+}
+
+@media (max-width: 960px) {
     .telemetry-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .telemetry-status-box {
+        align-items: flex-start;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
     .telemetry-grid {
         grid-template-columns: 1fr;
     }
+    .home-telemetry {
+        padding: 18px;
+    }
+    .telemetry-header {
+        flex-direction: column;
+    }
+    .telemetry-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .telemetry-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    .telemetry-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   Interactive "Think of it like" Tech Analogy Tooltips & Mobile Popups
+   ========================================================================== */
+
+.tech-term {
+    display: inline;
+    position: relative;
+    color: #004b99;
+    background: rgba(0, 86, 179, 0.05);
+    border: none;
+    border-bottom: 2px dotted #0056b3;
+    padding: 1px 4px;
+    margin: 0 1px;
+    border-radius: 4px;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: help;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.tech-term:hover,
+.tech-term:focus-visible {
+    background: rgba(0, 86, 179, 0.14);
+    color: #002d5a;
+    border-bottom-style: solid;
+    outline: none;
+}
+
+/* Desktop Floating Tooltip */
+.tech-tooltip {
+    position: absolute;
+    z-index: 100000;
+    width: 340px;
+    max-width: 92vw;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: #002244;
+    color: #f1f5f9;
+    border: 1px solid rgba(147, 197, 253, 0.35);
+    box-shadow: 0 18px 42px rgba(0, 25, 55, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+}
+
+.tech-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.tech-tooltip-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tech-tooltip-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tech-tooltip-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.tech-tooltip-title {
+    color: #ffffff;
+    font-size: 0.94rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.tech-tooltip-pill {
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(56, 189, 248, 0.18);
+    color: #38bdf8;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tech-tooltip-analogy-box {
+    margin-bottom: 10px;
+}
+
+.tech-tooltip-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #f59e0b;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.tech-tooltip-text {
+    margin: 0;
+    color: #e2e8f0;
+    font-size: 0.84rem;
+    line-height: 1.48;
+}
+
+.tech-tooltip-fact-box {
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tech-tooltip-fact-label {
+    display: block;
+    margin-bottom: 2px;
+    color: #94a3b8;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tech-tooltip-fact {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+/* Mobile Analogy Modal / Pop-up Dialog */
+.tech-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.tech-modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tech-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 20, 45, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.tech-modal-dialog {
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 24px 50px rgba(0, 20, 50, 0.35);
+    border: 1px solid #d5e0eb;
+    padding: 24px;
+    transform: scale(0.95);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-modal-overlay.open .tech-modal-dialog {
+    transform: scale(1);
+}
+
+.tech-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tech-modal-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tech-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #eef4fb;
+    font-size: 1.25rem;
+}
+
+.tech-modal-title {
+    margin: 0;
+    color: #002d5a;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.tech-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 1.3rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tech-modal-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.tech-modal-analogy-box {
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+}
+
+.tech-modal-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #b45309;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.tech-modal-text {
+    margin: 0;
+    color: #78350f;
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.tech-modal-fact-box {
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.tech-modal-fact-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #475569;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tech-modal-fact {
+    margin: 0;
+    color: #334155;
+    font-size: 0.85rem;
+    line-height: 1.48;
+}
+
+.tech-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tech-modal-btn-dismiss {
+    padding: 9px 18px;
+    border-radius: 8px;
+    border: none;
+    background: #0056b3;
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.tech-modal-btn-dismiss:hover {
+    background: #004494;
 }
