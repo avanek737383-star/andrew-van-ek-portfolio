@@ -78,6 +78,10 @@
 		});
 	}
 
+	var STORAGE_KEY = "nemo_chat_history";
+	var STORAGE_OPEN_KEY = "nemo_chat_open";
+	var DEFAULT_WELCOME = "Hi! I'm Nemo, Andrew's local AI. Ask me about Andrew's experience, skills, or this local-AI project.";
+
 	function createChat() {
 		var wrapper = document.createElement("aside");
 		wrapper.className = "portfolio-chat";
@@ -87,14 +91,12 @@
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
 			'  <header class="portfolio-chat-header">',
 			'    <div><strong>Nemo · Andrew\'s Local AI</strong><span>NVIDIA Nemotron 3 Nano 4B · privately hosted</span></div>',
-			'    <button class="portfolio-chat-close" type="button" aria-label="Close chat">&times;</button>',
+			'    <div class="portfolio-chat-controls">',
+			'      <button class="portfolio-chat-clear" type="button" aria-label="Clear chat" title="Clear chat history">Clear</button>',
+			'      <button class="portfolio-chat-close" type="button" aria-label="Close chat">&times;</button>',
+			'    </div>',
 			'  </header>',
-			'  <div class="portfolio-chat-messages" role="log" aria-live="polite">',
-			'    <div class="chat-message chat-assistant">',
-'      <div class="chat-sender">Nemo</div>',
-'      <div class="chat-content"><p class="chat-paragraph">Hi! I\'m Nemo, Andrew\'s local AI. Ask me about Andrew\'s experience, skills, or this local-AI project.</p></div>',
-'    </div>',
-			'  </div>',
+			'  <div class="portfolio-chat-messages" role="log" aria-live="polite"></div>',
 			'  <form class="portfolio-chat-form">',
 			'    <label class="sr-only" for="portfolio-chat-input">Message</label>',
 			'    <textarea id="portfolio-chat-input" rows="1" maxlength="1000" autocomplete="off" placeholder="Ask about Andrew..." aria-describedby="portfolio-chat-help" required></textarea>',
@@ -108,19 +110,50 @@
 		var toggle = wrapper.querySelector(".portfolio-chat-toggle");
 		var panel = wrapper.querySelector(".portfolio-chat-panel");
 		var close = wrapper.querySelector(".portfolio-chat-close");
+		var clear = wrapper.querySelector(".portfolio-chat-clear");
 		var form = wrapper.querySelector(".portfolio-chat-form");
 		var input = wrapper.querySelector("#portfolio-chat-input");
 		var messages = wrapper.querySelector(".portfolio-chat-messages");
+		var initialCheckDone = false;
 
-		function setOpen(open) {
+		function getSavedHistory() {
+			try {
+				var raw = localStorage.getItem(STORAGE_KEY);
+				if (raw) {
+					var parsed = JSON.parse(raw);
+					if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+				}
+			} catch (e) {}
+			return null;
+		}
+
+		function saveHistory(list) {
+			try {
+				localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+			} catch (e) {}
+		}
+
+		function recordMessage(text, role, isError) {
+			var hist = getSavedHistory() || [{ role: "assistant", text: DEFAULT_WELCOME }];
+			hist.push({ role: role, text: text, error: Boolean(isError) });
+			saveHistory(hist);
+		}
+
+		function setOpen(open, shouldFocus) {
 			panel.hidden = !open;
 			toggle.hidden = open;
 			toggle.setAttribute("aria-expanded", String(open));
+			try {
+				localStorage.setItem(STORAGE_OPEN_KEY, String(open));
+			} catch (e) {}
 			if (open) {
-				try {
-					input.focus({ preventScroll: true });
-				} catch (error) {
-					input.focus();
+				messages.scrollTop = messages.scrollHeight;
+				if (shouldFocus) {
+					try {
+						input.focus({ preventScroll: true });
+					} catch (error) {
+						input.focus();
+					}
 				}
 			}
 		}
@@ -131,10 +164,22 @@
 				var data = await response.json();
 				var available = response.ok && data.status === "online";
 				wrapper.hidden = !available;
-				if (!available) setOpen(false);
+				if (!available) {
+					panel.hidden = true;
+					toggle.hidden = true;
+				} else if (!initialCheckDone) {
+					var wasOpen = false;
+					try {
+						wasOpen = localStorage.getItem(STORAGE_OPEN_KEY) === "true";
+					} catch (e) {}
+					if (wasOpen) setOpen(true, false);
+				}
 			} catch (error) {
 				wrapper.hidden = true;
-				setOpen(false);
+				panel.hidden = true;
+				toggle.hidden = true;
+			} finally {
+				initialCheckDone = true;
 			}
 		}
 
@@ -192,6 +237,20 @@
 			return message;
 		}
 
+		function renderHistory() {
+			messages.replaceChildren();
+			var hist = getSavedHistory();
+			if (!hist || hist.length === 0) {
+				addMessage(DEFAULT_WELCOME, "assistant", false);
+			} else {
+				hist.forEach(function (item) {
+					var m = addMessage(item.text, item.role, false);
+					if (item.error) m.classList.add("chat-error");
+				});
+			}
+			messages.scrollTop = messages.scrollHeight;
+		}
+
 		function resizeInput() {
 			input.style.height = "auto";
 			var newHeight = Math.min(input.scrollHeight, 140);
@@ -207,11 +266,18 @@
 		});
 
 		toggle.addEventListener("click", function () {
-			setOpen(panel.hidden);
+			setOpen(panel.hidden, true);
 		});
 		close.addEventListener("click", function () {
-			setOpen(false);
+			setOpen(false, false);
 			toggle.focus();
+		});
+		clear.addEventListener("click", function () {
+			try {
+				localStorage.removeItem(STORAGE_KEY);
+			} catch (e) {}
+			renderHistory();
+			input.focus();
 		});
 
 		form.addEventListener("submit", async function (event) {
@@ -221,6 +287,7 @@
 			if (!text) return;
 
 			addMessage(text, "user");
+			recordMessage(text, "user", false);
 			input.value = "";
 			resizeInput();
 			waiting = true;
@@ -236,9 +303,12 @@
 				var data = await response.json();
 				if (!response.ok) throw new Error(data.error || "The assistant is unavailable.");
 				renderMessage(pending, data.reply, "assistant", false);
+				recordMessage(data.reply, "assistant", false);
 			} catch (error) {
-				renderMessage(pending, error.message || "The local assistant is temporarily offline.", "assistant", false);
+				var errMsg = error.message || "The local assistant is temporarily offline.";
+				renderMessage(pending, errMsg, "assistant", false);
 				pending.classList.add("chat-error");
+				recordMessage(errMsg, "assistant", true);
 			} finally {
 				waiting = false;
 				form.querySelector("button").disabled = false;
@@ -247,6 +317,7 @@
 			}
 		});
 
+		renderHistory();
 		checkAvailability();
 		window.setInterval(checkAvailability, 30000);
 	}
