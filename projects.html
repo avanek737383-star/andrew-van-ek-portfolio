@@ -40,6 +40,30 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="minecraft-crossplay-tunnel-title">
+<h2 id="minecraft-crossplay-tunnel-title">Cross-Platform Minecraft Server &amp; Zero-Config Global Tunneling: PaperMC 26.3, GeyserMC &amp; Playit.gg Relay</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Setup</span> <span>PaperMC 26.3 &middot; GeyserMC Bedrock Bridge &middot; Playit.gg Tunneling &middot; Ultra-Light BOINC Worker &middot; Completed <time datetime="2026-10-17">October 17, 2026</time></span></p>
+<p>I wanted to set up a dependable private Minecraft server so my girlfriend and I could play together from anywhere in the world, regardless of what hardware we were on. She plays on Pocket Edition (mobile/tablet), while I play on PC Java Edition or via emulator. Achieving this meant solving two core challenges: bridging two fundamentally different multiplayer protocols (Bedrock vs. Java) and providing friction-free global connectivity without forcing non-technical players to install VPN clients or exposing my home router to open public ports.</p>
+<h3>Hardware allocation: Matching workloads to the right machine</h3>
+<p>I initially considered hosting everything on my always-on Intel NUC (a 6W TDP Intel Pentium N3700 running Alpine Linux). However, modern Minecraft world generation and entity ticking are heavily single-thread bound. An older, low-clocked Braswell Atom core would drop ticks and lag when players explore new areas.</p>
+<p>Instead, I designed a distributed setup across my local network:</p>
+<ul>
+<li><strong>Compute Host (Windows Gaming Rig):</strong> Offloaded the actual server to my higher-performance PC featuring an 8-core / 16-thread Intel Core i7-11800H, 64-bit Eclipse Adoptium Java 25 LTS, and an NVIDIA RTX A2000 Laptop GPU. This machine easily maintains a solid 20 TPS and has the horsepower for client-side ray-traced shaders.</li>
+<li><strong>Always-On Network Relay (Alpine NUC):</strong> Kept the low-power NUC dedicated to what it does best: 24/7 background networking, encrypted Tailscale routing, and a lightweight distributed computing node.</li>
+<li><strong>Lightweight Scientific Computing (BOINC):</strong> While evaluating Folding@home, I determined that CPU folding on a weak 1.6 GHz Braswell chip risks failing strict work unit deadlines without AVX instructions. Instead of wasting power, I deployed an ultra-lightweight BOINC instance on the NUC capped to 1 CPU core and 370 MB of RAM with idle-only process priority, safely donating spare compute to research without slowing down my home lab.</li>
+</ul>
+<h3>PaperMC &amp; the GeyserMC cross-platform bridge</h3>
+<p>To eliminate gameplay stutter, I deployed <strong>PaperMC 26.3</strong> instead of the default vanilla server jar for its optimized tick loop and asynchronous chunk loading. I also added the <strong>Chunky</strong> plugin to pre-render the world radius, ensuring that rapid exploration never triggers on-the-fly terrain lag.</p>
+<p>To unite mobile and PC players in the exact same world, I integrated <strong>GeyserMC</strong>:</p>
+<ul>
+<li><strong>The Protocol Difference:</strong> Minecraft Java communicates over TCP port 25565 using standard Java networking. Minecraft Bedrock / Pocket Edition communicates over UDP port 19132 using the specialized RakNet gaming protocol. Standard Minecraft servers cannot talk to Bedrock clients.</li>
+<li><strong>Real-Time Packet Translation:</strong> Geyser runs directly inside the server process, listening on UDP port 19132. It acts as an active interpreter, translating Bedrock packets into Java packets on the fly. This enables phones, tablets, and BlueStacks emulators to join alongside Java PC players seamlessly.</li>
+</ul>
+<h3>Zero-config global connectivity with Playit.gg on Alpine</h3>
+<p>While I can easily access my local servers over Tailscale, asking friends or family to install, authenticate, and configure a mesh VPN client on their phones creates friction. Traditional router port forwarding also carries security risks and requires managing dynamic DNS.</p>
+<p>To solve this, I deployed the <strong>Playit.gg</strong> tunnel daemon on my Alpine Linux NUC as a persistent background OpenRC service (<code>/etc/init.d/playit</code>) configured to start automatically on boot. Playit establishes an encrypted outbound tunnel to Anycast edge servers. When my girlfriend opens Pocket Edition, she simply adds the generated Playit domain and port—traffic flows through the tunnel, across my internal Tailscale mesh to the gaming PC, and into Geyser with zero configuration required on her end.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="home-network-upgrade-title">
 <h2 id="home-network-upgrade-title">Home Network Upgrade: TP-Link Archer AX3000, Tether App Management &amp; Multi-Switch Wired Extension</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Router and modem migration; mobile app administration; multi-switch wired infrastructure &middot; Completed <time datetime="2026-10-16">October 16, 2026</time></span></p>
@@ -589,7 +613,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-16">October 16, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-17">October 17, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261015-nemotron-dynamic-1"></script>
