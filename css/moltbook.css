@@ -1,3 +1,4 @@
+html, body { overflow-x: hidden; max-width: 100%; }
 .moltbook-main {max-width: 1000px;margin: 0 auto;}
 .moltbook-hero {background: #173c36;color: #fff;border-radius: 20px;padding: 44px;margin-bottom: 40px;}
 .moltbook-hero h1 {color: #fff;text-align: left;margin: 14px 0;font-size: clamp(2rem, 5vw, 3.4rem);overflow-wrap: anywhere;}
