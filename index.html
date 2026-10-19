@@ -183,6 +183,131 @@
 						</div>
 					</div>
 				</section>
+
+				<section class="home-traffic-geo" aria-labelledby="traffic-geo-title">
+					<div class="telemetry-header">
+						<div class="telemetry-title-group">
+							<span class="telemetry-eyebrow">Anonymous Global Analytics</span>
+							<h3 id="traffic-geo-title">Visitor Traffic &amp; Geographic Distribution</h3>
+							<p class="telemetry-desc">Coarse regional telemetry showing where visitors are exploring from. In accordance with my privacy policy, zero raw IP addresses or identifiable coordinates are ever logged or published.</p>
+						</div>
+						<div class="telemetry-status-box">
+							<span class="telemetry-live-badge"><span class="telemetry-pulse"></span> Edge Geo Online</span>
+							<span class="telemetry-refresh-tag" id="geo-total-visitors">382 Total Sessions</span>
+						</div>
+					</div>
+
+					<div class="geo-dashboard-grid">
+						<!-- Column 1: Vector World Heat Map -->
+						<div class="geo-map-panel">
+							<div class="geo-map-header">
+								<span class="geo-map-title"><span class="geo-pulse-dot"></span> Live Activity Heatmap</span>
+								<span class="telemetry-refresh-tag" id="geo-map-status">Active Ingest</span>
+							</div>
+							<div class="geo-svg-container">
+								<svg class="geo-svg-map" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="World map showing traffic distribution by continent">
+									<defs>
+										<pattern id="geo-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+											<path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+										</pattern>
+									</defs>
+									<!-- Map Background Grid -->
+									<rect width="1000" height="500" fill="url(#geo-grid)" />
+									<!-- Latitude / Longitude Guide Rings -->
+									<ellipse cx="500" cy="250" rx="460" ry="220" fill="none" stroke="rgba(56, 189, 248, 0.08)" stroke-width="1.5" stroke-dasharray="4 6" />
+									<line x1="40" y1="250" x2="960" y2="250" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="3 3"/>
+									<line x1="500" y1="30" x2="500" y2="470" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="3 3"/>
+
+									<!-- Continents & Islands (Simplified Polygon Projection) -->
+									<!-- North America (High Activity / Heat Glow) -->
+									<path id="geo-na" class="geo-land geo-land-na" data-region="North America" d="M 120 70 L 160 50 L 220 50 L 260 70 L 310 90 L 330 130 L 290 150 L 260 140 L 250 180 L 280 200 L 270 230 L 240 260 L 210 250 L 210 230 L 170 210 L 140 180 L 110 150 L 90 110 Z M 270 40 L 310 35 L 340 55 L 310 75 Z" />
+									<!-- Greenland -->
+									<path class="geo-land geo-land-na" d="M 370 40 L 440 30 L 450 70 L 410 95 L 380 75 Z" />
+									
+									<!-- South America -->
+									<path id="geo-latam" class="geo-land geo-land-latam" data-region="Latin America" d="M 270 270 L 320 275 L 360 310 L 370 350 L 330 420 L 290 440 L 270 390 L 255 330 Z" />
+
+									<!-- Europe (High Activity) -->
+									<path id="geo-eu" class="geo-land geo-land-eu" data-region="Europe" d="M 480 90 L 520 80 L 560 95 L 560 140 L 530 160 L 485 165 L 475 140 L 460 130 L 480 110 Z M 460 95 L 475 90 L 470 115 L 455 115 Z" />
+
+									<!-- Africa -->
+									<path id="geo-af" class="geo-land geo-land-other" data-region="Other" d="M 470 180 L 530 175 L 570 210 L 580 270 L 540 340 L 510 370 L 475 320 L 450 250 L 445 200 Z M 575 320 L 590 315 L 585 345 Z" />
+
+									<!-- Asia (Moderate Activity) -->
+									<path id="geo-apac" class="geo-land geo-land-apac" data-region="Asia-Pacific" d="M 570 80 L 670 65 L 780 75 L 850 110 L 870 160 L 830 200 L 780 200 L 740 250 L 690 260 L 670 220 L 610 200 L 575 160 Z M 850 170 L 870 190 L 855 220 Z M 790 280 L 825 295 L 805 320 Z" />
+
+									<!-- Australia & Oceania -->
+									<path id="geo-oc" class="geo-land geo-land-apac" data-region="Asia-Pacific" d="M 760 330 L 830 325 L 860 365 L 830 415 L 770 405 L 750 360 Z M 875 405 L 895 425 L 880 435 Z" />
+								</svg>
+							</div>
+							<div class="geo-map-legend">
+								<span>Activity Level:</span>
+								<div class="geo-legend-gradient" aria-hidden="true"></div>
+								<span>Cool (0%) &rarr; Warm (20%) &rarr; Hot (60%+)</span>
+							</div>
+						</div>
+
+						<!-- Column 2: Regional Donut Chart & Percentages -->
+						<div class="geo-chart-panel">
+							<div class="geo-chart-header">
+								<h4 class="geo-chart-title">Regional Traffic Share</h4>
+								<p class="geo-chart-desc">Relative breakdown of total visitor sessions by global sector.</p>
+							</div>
+							<div class="geo-donut-wrap">
+								<svg width="170" height="170" viewBox="0 0 170 170" class="geo-donut-svg" role="img" aria-label="Donut chart of traffic percentages">
+									<circle cx="85" cy="85" r="62" fill="none" stroke="#e2e8f0" stroke-width="20"/>
+									<!-- Slices: circumference = 2 * PI * 62 = ~389.56 -->
+									<circle id="donut-slice-na" cx="85" cy="85" r="62" fill="none" stroke="#0284c7" stroke-width="20" stroke-dasharray="253.2 136.36" stroke-dashoffset="97.4" transform="rotate(-90 85 85)"/>
+									<circle id="donut-slice-eu" cx="85" cy="85" r="62" fill="none" stroke="#10b981" stroke-width="20" stroke-dasharray="81.8 307.76" stroke-dashoffset="-155.8" transform="rotate(-90 85 85)"/>
+									<circle id="donut-slice-apac" cx="85" cy="85" r="62" fill="none" stroke="#f59e0b" stroke-width="20" stroke-dasharray="35.0 354.56" stroke-dashoffset="-237.6" transform="rotate(-90 85 85)"/>
+									<circle id="donut-slice-latam" cx="85" cy="85" r="62" fill="none" stroke="#8b5cf6" stroke-width="20" stroke-dasharray="11.7 377.86" stroke-dashoffset="-272.6" transform="rotate(-90 85 85)"/>
+									<circle id="donut-slice-other" cx="85" cy="85" r="62" fill="none" stroke="#475569" stroke-width="20" stroke-dasharray="7.8 381.76" stroke-dashoffset="-284.3" transform="rotate(-90 85 85)"/>
+								</svg>
+								<div class="geo-donut-center">
+									<strong id="donut-center-total">100%</strong>
+									<span>Global</span>
+								</div>
+							</div>
+							<ul class="geo-breakdown-list" id="geo-breakdown-list">
+								<li class="geo-breakdown-item">
+									<div class="geo-breakdown-label-wrap">
+										<span class="geo-dot geo-dot-na"></span>
+										<span>North America</span>
+									</div>
+									<strong class="geo-breakdown-stat" id="stat-geo-na">65% <small style="font-weight:400;color:#64748b;">(248)</small></strong>
+								</li>
+								<li class="geo-breakdown-item">
+									<div class="geo-breakdown-label-wrap">
+										<span class="geo-dot geo-dot-eu"></span>
+										<span>Europe</span>
+									</div>
+									<strong class="geo-breakdown-stat" id="stat-geo-eu">21% <small style="font-weight:400;color:#64748b;">(82)</small></strong>
+								</li>
+								<li class="geo-breakdown-item">
+									<div class="geo-breakdown-label-wrap">
+										<span class="geo-dot geo-dot-apac"></span>
+										<span>Asia-Pacific</span>
+									</div>
+									<strong class="geo-breakdown-stat" id="stat-geo-apac">9% <small style="font-weight:400;color:#64748b;">(33)</small></strong>
+								</li>
+								<li class="geo-breakdown-item">
+									<div class="geo-breakdown-label-wrap">
+										<span class="geo-dot geo-dot-latam"></span>
+										<span>Latin America</span>
+									</div>
+									<strong class="geo-breakdown-stat" id="stat-geo-latam">3% <small style="font-weight:400;color:#64748b;">(12)</small></strong>
+								</li>
+								<li class="geo-breakdown-item">
+									<div class="geo-breakdown-label-wrap">
+										<span class="geo-dot geo-dot-other"></span>
+										<span>Other / Unassigned</span>
+									</div>
+									<strong class="geo-breakdown-stat" id="stat-geo-other">2% <small style="font-weight:400;color:#64748b;">(7)</small></strong>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
 			</main>
 
 			<footer>
@@ -190,6 +315,6 @@
 				<p>Website last modified: <time datetime="2026-10-17">October 17, 2026</time></p>
 			</footer>
 		</div>
-		<script src="scripts/script.js?v=20261017-dashboard-1"></script>
+		<script src="scripts/script.js?v=20261019-geonav-1"></script>
 	</body>
 </html>

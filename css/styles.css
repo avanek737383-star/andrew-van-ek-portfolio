@@ -1415,15 +1415,18 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 
 .telemetry-card-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .telemetry-type-wrap {
     display: flex;
     align-items: center;
     gap: 8px;
+    min-width: 0;
+    flex: 1 1 auto;
 }
 
 .telemetry-icon-box {
@@ -1455,6 +1458,8 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
     font-size: 0.72rem;
     font-weight: 600;
     white-space: nowrap;
+    max-width: 100%;
+    margin-left: auto;
 }
 
 .telemetry-value-wrap {
@@ -1611,7 +1616,7 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
     border-color: #004494;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1120px) {
     .telemetry-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1951,4 +1956,256 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 
 .tech-modal-btn-dismiss:hover {
     background: #004494;
+}
+
+/* Duino-Coin Dual Wallet Layout */
+.duco-overview-container { margin: 20px 0; }
+.duco-total-card { margin-bottom: 18px; border-left: 4px solid #0056b3; }
+.duco-total-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 10px; }
+.duco-wallets-grid { margin-bottom: 18px; }
+.duco-wallet-card { display: flex; flex-direction: column; justify-content: space-between; }
+.duco-wallet-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.duco-wallet-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #0056b3; background: #e0edf9; padding: 3px 8px; border-radius: 4px; }
+.duco-subtle-link { font-size: 0.8rem; font-weight: 600; color: #0056b3; text-decoration: none; }
+.duco-subtle-link:hover { text-decoration: underline; }
+.duco-wallet-user { margin: 0 0 10px; font-size: 1.2rem; color: #002d5a; }
+.duco-devices-block { margin-top: 14px; padding-top: 12px; border-top: 1px solid #e2e8f0; }
+.duco-devices-title { display: block; font-size: 0.76rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 8px; }
+.duco-device-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.duco-device-list li { font-size: 0.82rem; color: #334155; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.duco-badge { font-size: 0.7rem; font-family: monospace; font-weight: 600; padding: 2px 6px; border-radius: 4px; background: #e2e8f0; color: #0f172a; }
+
+/* ==========================================================================
+   Homepage: Global Audience Traffic & Regional Geo Distribution
+   ========================================================================== */
+
+.home-traffic-geo {
+    margin: 40px 0 28px;
+    padding: 26px;
+    border: 1px solid #c8d7e6;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow: 0 4px 20px rgba(0, 45, 90, 0.05);
+}
+
+.geo-dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 24px;
+    margin-top: 20px;
+    align-items: start;
+}
+
+.geo-map-panel {
+    background: #001e3d;
+    border: 1px solid #003366;
+    border-radius: 12px;
+    padding: 20px;
+    color: #f8fafc;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.geo-map-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.geo-map-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #93c5fd;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.geo-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+    animation: geo-pulse 2s infinite;
+}
+
+@keyframes geo-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.geo-svg-container {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.geo-svg-map {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+.geo-land {
+    fill: #1e293b;
+    stroke: #334155;
+    stroke-width: 1;
+    transition: fill 0.25s ease, filter 0.25s ease;
+}
+
+.geo-land-na {
+    fill: #0284c7;
+    filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.6));
+}
+
+.geo-land-eu {
+    fill: #10b981;
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.5));
+}
+
+.geo-land-apac {
+    fill: #f59e0b;
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.5));
+}
+
+.geo-land-latam {
+    fill: #8b5cf6;
+}
+
+.geo-land-other {
+    fill: #475569;
+}
+
+.geo-map-legend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.72rem;
+    color: #94a3b8;
+}
+
+.geo-legend-gradient {
+    height: 6px;
+    width: 140px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #334155 0%, #8b5cf6 30%, #10b981 60%, #0284c7 85%, #38bdf8 100%);
+}
+
+.geo-chart-panel {
+    background: #ffffff;
+    border: 1px solid #d5e0eb;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0, 45, 90, 0.04);
+}
+
+.geo-chart-header {
+    margin-bottom: 16px;
+}
+
+.geo-chart-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #002d5a;
+    margin: 0 0 4px;
+}
+
+.geo-chart-desc {
+    font-size: 0.76rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.geo-donut-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 10px 0;
+}
+
+.geo-donut-center {
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+}
+
+.geo-donut-center strong {
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #002d5a;
+    line-height: 1.1;
+}
+
+.geo-donut-center span {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.04em;
+}
+
+.geo-breakdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.geo-breakdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #334155;
+    padding: 4px 6px;
+    border-radius: 6px;
+    background: #f8fafc;
+}
+
+.geo-breakdown-label-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.geo-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.geo-dot-na { background: #0284c7; }
+.geo-dot-eu { background: #10b981; }
+.geo-dot-apac { background: #f59e0b; }
+.geo-dot-latam { background: #8b5cf6; }
+.geo-dot-other { background: #475569; }
+
+.geo-breakdown-stat {
+    font-weight: 700;
+    color: #002d5a;
+}
+
+@media (max-width: 860px) {
+    .geo-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 }

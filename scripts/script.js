@@ -80,6 +80,7 @@
 
 	var STORAGE_KEY = "nemo_chat_history";
 	var STORAGE_OPEN_KEY = "nemo_chat_open";
+	var STORAGE_PENDING_KEY = "nemo_chat_pending";
 	var DEFAULT_WELCOME = "Hi! I'm Nemo, Andrew's local AI. Ask me about Andrew's experience, skills, or this local-AI project.";
 
 	function createChat() {
@@ -280,19 +281,10 @@
 			input.focus();
 		});
 
-		form.addEventListener("submit", async function (event) {
-			event.preventDefault();
-			if (waiting) return;
-			var text = input.value.trim();
-			if (!text) return;
-
-			addMessage(text, "user");
-			recordMessage(text, "user", false);
-			input.value = "";
-			resizeInput();
+		async function processPrompt(text, existingPendingEl) {
 			waiting = true;
 			form.querySelector("button").disabled = true;
-			var pending = addMessage("", "assistant", true);
+			var pending = existingPendingEl || addMessage("", "assistant", true);
 
 			try {
 				var response = await fetch(apiUrl, {
@@ -304,20 +296,60 @@
 				if (!response.ok) throw new Error(data.error || "The assistant is unavailable.");
 				renderMessage(pending, data.reply, "assistant", false);
 				recordMessage(data.reply, "assistant", false);
+				try { localStorage.removeItem(STORAGE_PENDING_KEY); } catch (e) {}
 			} catch (error) {
 				var errMsg = error.message || "The local assistant is temporarily offline.";
 				renderMessage(pending, errMsg, "assistant", false);
 				pending.classList.add("chat-error");
 				recordMessage(errMsg, "assistant", true);
+				try { localStorage.removeItem(STORAGE_PENDING_KEY); } catch (e) {}
 			} finally {
 				waiting = false;
 				form.querySelector("button").disabled = false;
 				input.focus();
 				messages.scrollTop = messages.scrollHeight;
 			}
+		}
+
+		form.addEventListener("submit", async function (event) {
+			event.preventDefault();
+			if (waiting) return;
+			var text = input.value.trim();
+			if (!text) return;
+
+			addMessage(text, "user");
+			recordMessage(text, "user", false);
+			input.value = "";
+			resizeInput();
+			try {
+				localStorage.setItem(STORAGE_PENDING_KEY, JSON.stringify({ prompt: text, at: Date.now() }));
+			} catch (e) {}
+			await processPrompt(text);
 		});
 
+		function checkPendingPrompt() {
+			try {
+				var raw = localStorage.getItem(STORAGE_PENDING_KEY);
+				if (!raw) return;
+				var item = JSON.parse(raw);
+				if (item && item.prompt && (Date.now() - item.at < 90000)) {
+					setOpen(true, false);
+					var hist = getSavedHistory() || [];
+					var last = hist[hist.length - 1];
+					if (!last || last.role !== "assistant") {
+						var pending = addMessage("", "assistant", true);
+						processPrompt(item.prompt, pending);
+					} else {
+						localStorage.removeItem(STORAGE_PENDING_KEY);
+					}
+				} else {
+					localStorage.removeItem(STORAGE_PENDING_KEY);
+				}
+			} catch (e) {}
+		}
+
 		renderHistory();
+		checkPendingPrompt();
 		checkAvailability();
 		window.setInterval(checkAvailability, 30000);
 	}
@@ -742,11 +774,77 @@
 		});
 	}
 
+
+	function initTrafficGeo() {
+		var geoTotalEl = document.getElementById("geo-total-visitors");
+		if (!geoTotalEl) return;
+
+		async function refreshGeo() {
+			try {
+				var res = await fetch("https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/traffic-geo", { cache: "no-store" });
+				if (!res.ok) return;
+				var data = await res.json();
+				if (!data || !data.regions || typeof data.total !== "number") return;
+
+				var total = data.total;
+				geoTotalEl.textContent = total.toLocaleString() + " Total Sessions";
+
+				var regions = data.regions;
+				var naCount = regions["North America"] || 0;
+				var euCount = regions["Europe"] || 0;
+				var apacCount = regions["Asia-Pacific"] || 0;
+				var latamCount = regions["Latin America"] || 0;
+				var otherCount = regions["Other"] || 0;
+
+				var naPct = total > 0 ? Math.round((naCount / total) * 100) : 0;
+				var euPct = total > 0 ? Math.round((euCount / total) * 100) : 0;
+				var apacPct = total > 0 ? Math.round((apacCount / total) * 100) : 0;
+				var latamPct = total > 0 ? Math.round((latamCount / total) * 100) : 0;
+				var otherPct = Math.max(0, 100 - (naPct + euPct + apacPct + latamPct));
+
+				var statNa = document.getElementById("stat-geo-na");
+				if (statNa) statNa.innerHTML = naPct + '% <small style="font-weight:400;color:#64748b;">(' + naCount + ')</small>';
+				var statEu = document.getElementById("stat-geo-eu");
+				if (statEu) statEu.innerHTML = euPct + '% <small style="font-weight:400;color:#64748b;">(' + euCount + ')</small>';
+				var statApac = document.getElementById("stat-geo-apac");
+				if (statApac) statApac.innerHTML = apacPct + '% <small style="font-weight:400;color:#64748b;">(' + apacCount + ')</small>';
+				var statLatam = document.getElementById("stat-geo-latam");
+				if (statLatam) statLatam.innerHTML = latamPct + '% <small style="font-weight:400;color:#64748b;">(' + latamCount + ')</small>';
+				var statOther = document.getElementById("stat-geo-other");
+				if (statOther) statOther.innerHTML = otherPct + '% <small style="font-weight:400;color:#64748b;">(' + otherCount + ')</small>';
+
+				var circ = 2 * Math.PI * 62;
+				var slices = [
+					{ id: "donut-slice-na", pct: naPct },
+					{ id: "donut-slice-eu", pct: euPct },
+					{ id: "donut-slice-apac", pct: apacPct },
+					{ id: "donut-slice-latam", pct: latamPct },
+					{ id: "donut-slice-other", pct: otherPct }
+				];
+
+				var currentOffset = 0;
+				slices.forEach(function (slice) {
+					var el = document.getElementById(slice.id);
+					if (!el) return;
+					var strokeLen = (slice.pct / 100) * circ;
+					var strokeGap = circ - strokeLen;
+					el.setAttribute("stroke-dasharray", strokeLen.toFixed(1) + " " + strokeGap.toFixed(1));
+					el.setAttribute("stroke-dashoffset", (-currentOffset).toFixed(1));
+					currentOffset += strokeLen;
+				});
+			} catch (e) {}
+		}
+
+		refreshGeo();
+		window.setInterval(refreshGeo, 45000);
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
 		createChat();
 		initHomeTelemetry();
+		initTrafficGeo();
 		initTechAnalogies();
 	}
 

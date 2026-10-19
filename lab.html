@@ -98,14 +98,60 @@
 							</div>
 							<p class="lab-connection"><span id="duco-status-dot" class="lab-status-dot" aria-hidden="true"></span><strong id="duco-connection-text">Checking…</strong><span id="duco-updated">Waiting for data</span></p>
 						</div>
-						<article class="computing-card duco-balance-card" aria-labelledby="duco-balance-title">
-                            <h3 id="duco-balance-title">Public account balance</h3>
-                            <p class="computing-amount" id="duco-balance">Loading&hellip;</p>
-                            <p class="computing-usd" id="duco-usd">Checking USD reference&hellip;</p>
-                            <p class="computing-update" id="duco-balance-updated">Waiting for live data</p>
-                            <div class="computing-refresh"><button class="btn btn-secondary" type="button" id="duco-refresh">Refresh DUCO balance</button><a href="https://explorer.duinocoin.com/?search=avanek737383" target="_blank" rel="noopener">View public account &rarr;</a></div>
-                            <p class="computing-note">Balance refreshes every two minutes. The USD reference uses the wrapped DUCO price reported for PancakeSwap by the Duino-Coin API.</p>
-                        </article>
+						<div class="duco-overview-container">
+							<div class="computing-card duco-total-card">
+								<div class="duco-total-header">
+									<div>
+										<span class="computing-label">Total Combined Fleet Holdings (2 Wallets)</span>
+										<p class="computing-amount" id="duco-total-balance">Loading&hellip;</p>
+										<p class="computing-usd" id="duco-total-usd">Checking USD reference&hellip;</p>
+									</div>
+									<div class="computing-refresh">
+										<button class="btn btn-secondary" type="button" id="duco-refresh">Refresh DUCO Balances</button>
+										<p class="computing-update" id="duco-balance-updated">Waiting for live data</p>
+									</div>
+								</div>
+								<p class="computing-note">Balances refresh automatically every two minutes. USD translation uses wrapped DUCO pricing reported by PancakeSwap.</p>
+							</div>
+
+							<div class="computing-balances duco-wallets-grid">
+								<!-- Wallet 1: Fleet Mining -->
+								<article class="computing-card duco-wallet-card" aria-labelledby="duco-w1-title">
+									<div class="duco-wallet-top">
+										<span class="duco-wallet-tag">Wallet 1 · Fleet Mining</span>
+										<a class="duco-subtle-link" href="https://explorer.duinocoin.com/?search=avanek737383" target="_blank" rel="noopener">Duino Explorer &rarr;</a>
+									</div>
+									<h3 id="duco-w1-title" class="duco-wallet-user">avanek737383</h3>
+									<p class="computing-amount" id="duco-w1-balance">Loading&hellip;</p>
+									<p class="computing-usd" id="duco-w1-usd">Checking USD&hellip;</p>
+									<div class="duco-devices-block">
+										<span class="duco-devices-title">Assigned Mining Hardware:</span>
+										<ul class="duco-device-list">
+											<li><span class="duco-badge">CircuitPlayground</span> Adafruit Bluefruit (USB Controller)</li>
+											<li><span class="duco-badge">Windows-Light</span> Windows 11 PC (Python Miner Light)</li>
+											<li><span class="duco-badge">Alpine-Light</span> Alpine Linux NUC (1 Core)</li>
+										</ul>
+									</div>
+								</article>
+
+								<!-- Wallet 2: Mobile Mining -->
+								<article class="computing-card duco-wallet-card" aria-labelledby="duco-w2-title">
+									<div class="duco-wallet-top">
+										<span class="duco-wallet-tag">Wallet 2 · Mobile Node</span>
+										<a class="duco-subtle-link" href="https://explorer.duinocoin.com/?search=avanek2005" target="_blank" rel="noopener">Duino Explorer &rarr;</a>
+									</div>
+									<h3 id="duco-w2-title" class="duco-wallet-user">avanek2005</h3>
+									<p class="computing-amount" id="duco-w2-balance">Loading&hellip;</p>
+									<p class="computing-usd" id="duco-w2-usd">Checking USD&hellip;</p>
+									<div class="duco-devices-block">
+										<span class="duco-devices-title">Assigned Mining Hardware:</span>
+										<ul class="duco-device-list">
+											<li><span class="duco-badge">iOS Web Miner</span> Apple iPhone</li>
+										</ul>
+									</div>
+								</article>
+							</div>
+						</div>
                         <div id="duco-miners" class="duco-miners" aria-label="Duino-Coin miner telemetry"></div>
 						<p class="duco-note">The account balance and miner activity above are public read-only data. Mining keys, passwords, device addresses, and remote controls stay private.</p>
 					</section>
@@ -128,6 +174,6 @@
 		</div>
 		<script src="scripts/script.js?v=20261017-dashboard-1"></script>
 		<script src="scripts/lab.js?v=20261015-nemotron-dynamic-1"></script>
-		<script src="scripts/duco-balance.js?v=20261013-computing-1" defer></script>
+		<script src="scripts/duco-balance.js?v=20261019-dualwallet-1" defer></script>
 	</body>
 </html>
