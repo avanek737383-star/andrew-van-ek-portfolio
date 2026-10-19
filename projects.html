@@ -40,6 +40,40 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="tailscale-printer-relay-title">
+<h2 id="tailscale-printer-relay-title">Secure Out-of-Network Printing &amp; Device Reverse Proxy via Tailscale on Alpine Linux</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Remote IPP/RAW print relay &amp; trusted HTTPS management verified &middot; Completed <time datetime="2026-10-19">October 19, 2026</time></span></p>
+<p>I engineered persistent out-of-network printing to my home HP OfficeJet 5200 series all-in-one printer and eliminated browser security warnings for my TP-Link Archer AX3000 router management using an always-on Alpine Linux NUC over Tailscale. The solution enables seamless printing and trusted administrative access from macOS, Windows, Linux, and iOS without exposing internal devices to the public internet or requiring open WAN ports.</p>
+<div class="project-architecture" aria-label="Secure remote printing and device reverse proxy workflow">
+	<span>Remote client on Tailscale</span><span aria-hidden="true">&rarr;</span>
+	<span>Alpine NUC (100.87.81.52)</span><span aria-hidden="true">&rarr;</span>
+	<span>SNI TLS &amp; Header Rewrite</span><span aria-hidden="true">&rarr;</span>
+	<span>LAN Printer / Router (192.168.0.x)</span>
+</div>
+
+<h3>The Discovery &amp; Routing Breakdown</h3>
+<p>While my home router was accessible remotely via an existing Tailscale subnet route (<code>192.168.0.0/24</code>), printing away from home consistently failed. Investigating the network exchange revealed two structural barriers: Windows installs printers by default using Web Services for Devices (WSD), and Apple devices rely on AirPrint (mDNS / Bonjour). Both protocols depend on link-local multicast (UDP 3702 and 5353) which cannot cross VPN subnet boundaries, causing remote clients to flag the printer as offline.</p>
+<p>Furthermore, traveling to guest networks or hotels that also utilize <code>192.168.0.0/24</code> causes local subnet collisions where outbound traffic never enters the Tailscale tunnel. To achieve deterministic access anywhere in the world, the printer and management services needed to be directly anchored to the NUC's static CGNAT Tailscale address (<code>100.87.81.52</code>).</p>
+
+<h3>Building the Persistent Multi-Protocol Relay</h3>
+<p>On the Alpine Linux NUC, I implemented an asynchronous Python relay service (<code>printer-relay</code>) supervised under OpenRC with <code>supervise-daemon</code>. To prevent public internet exposure, all listeners bind strictly to the private Tailscale interface:</p>
+<ul>
+	<li><strong>Port 9100 (RAW / JetDirect):</strong> Direct socket streaming for high-speed, driver-native printing across Windows, macOS, and Linux.</li>
+	<li><strong>Port 631 (IPP / IPPS):</strong> Standard Internet Printing Protocol relay supporting modern IPP Everywhere print queues and mobile printing apps.</li>
+	<li><strong>Port 9080 (HTTP) &amp; Port 9444 (HTTPS):</strong> Reverse proxy for the HP Embedded Web Server (EWS), enabling remote ink telemetry, diagnostics, and scanner access.</li>
+	<li><strong>Port 9445 (Router HTTPS):</strong> Dedicated reverse proxy for the TP-Link router management portal.</li>
+	<li><strong>Dynamic LAN Failover:</strong> Rather than relying solely on a hardcoded IP, the relay actively queries the home LAN over mDNS (<code>_ipp._tcp.local</code>) to track the printer dynamically if its DHCP lease rotates.</li>
+</ul>
+
+<h3>Overcoming DNS Rebinding &amp; Self-Signed Certificate Warnings</h3>
+<p>Accessing the printer's Embedded Web Server revealed an upstream firmware defense: HP's internal nginx server enforces strict DNS Rebinding protection, returning <code>403 Forbidden</code> whenever incoming HTTP <code>Host</code> headers do not match the printer's local address. The relay transparently rewrites the HTTP <code>Host</code> header to <code>192.168.0.181</code> and rewrites downstream <code>Location</code> redirects back to the client.</p>
+<p>Similarly, the TP-Link router defaults to a self-signed certificate issued to <code>CN=tplinkwifi.net</code>. Browsing to <code>https://192.168.0.1/</code> caused browsers (Firefox, Chrome, Safari) to strike a red line through HTTPS and display persistent &ldquo;Your connection is not private&rdquo; warnings, forcing tedious manual bypasses whenever cache cleared.</p>
+<p>I eliminated all browser security warnings by provisioning trusted TLS using Tailscale's Let's Encrypt certificates with Server Name Indication (SNI) on ports 9444 and 9445. Navigating to <code>https://nucwol2-0--hdd.taile72a68.ts.net:9444</code> (printer) and <code>https://nucwol2-0--hdd.taile72a68.ts.net:9445</code> (router) delivers a verified green padlock with zero SSL warnings, allowing administrative updates, firmware checks, and router configuration without security prompts.</p>
+
+<h3>Client Verification</h3>
+<p>I verified end-to-end printing and telemetry across multiple client operating systems by mapping standard TCP/IP queues to <code>100.87.81.52:9100</code> on Windows and macOS. The OpenRC service was added to the default boot runlevel, confirming full persistence across system reboots.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="retro-computing-xp-title">
 <h2 id="retro-computing-xp-title">Homelab / Retro computing!</h2>
 <p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Vintage Windows XP Integration &middot; Updated <time datetime="2026-10-19">October 19, 2026</time></span></p>
