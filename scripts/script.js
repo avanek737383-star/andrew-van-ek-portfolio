@@ -779,6 +779,85 @@
 		var geoTotalEl = document.getElementById("geo-total-visitors");
 		if (!geoTotalEl) return;
 
+		var centerVal = document.getElementById("donut-center-val");
+		var centerSub = document.getElementById("donut-center-sub");
+		var breakdownItems = document.querySelectorAll(".geo-breakdown-item");
+		var donutSlices = document.querySelectorAll(".donut-slice");
+
+		function highlightRegion(regionName, pct, count) {
+			if (centerVal && pct) centerVal.textContent = pct;
+			if (centerSub && regionName) centerSub.textContent = regionName;
+
+			donutSlices.forEach(function (s) {
+				if (s.getAttribute("data-region") === regionName) {
+					s.classList.remove("dimmed");
+					s.style.opacity = "1";
+				} else {
+					s.classList.add("dimmed");
+					s.style.opacity = "0.35";
+				}
+			});
+
+			breakdownItems.forEach(function (b) {
+				if (b.getAttribute("data-region") === regionName) {
+					b.classList.add("active");
+				} else {
+					b.classList.remove("active");
+				}
+			});
+		}
+
+		function resetHighlight() {
+			if (centerVal) centerVal.textContent = "100%";
+			if (centerSub) centerSub.textContent = "Global";
+
+			donutSlices.forEach(function (s) {
+				s.classList.remove("dimmed");
+				s.style.opacity = "1";
+			});
+
+			breakdownItems.forEach(function (b) {
+				b.classList.remove("active");
+			});
+		}
+
+		donutSlices.forEach(function (slice) {
+			slice.addEventListener("mouseenter", function () {
+				highlightRegion(slice.getAttribute("data-region"), slice.getAttribute("data-pct"), slice.getAttribute("data-count"));
+			});
+			slice.addEventListener("mouseleave", resetHighlight);
+		});
+
+		breakdownItems.forEach(function (item) {
+			item.addEventListener("mouseenter", function () {
+				var region = item.getAttribute("data-region");
+				var slice = Array.from(donutSlices).find(function (s) { return s.getAttribute("data-region") === region; });
+				if (slice) {
+					highlightRegion(region, slice.getAttribute("data-pct"), slice.getAttribute("data-count"));
+				}
+			});
+			item.addEventListener("mouseleave", resetHighlight);
+		});
+
+		function makeDonutSlice(cx, cy, r_in, r_out, start_deg, end_deg, gap_deg) {
+			gap_deg = gap_deg || 2.0;
+			var s = (start_deg + gap_deg / 2) * (Math.PI / 180);
+			var e = (end_deg - gap_deg / 2) * (Math.PI / 180);
+			var large_arc = (end_deg - start_deg - gap_deg) > 180 ? 1 : 0;
+			var x1 = cx + r_out * Math.cos(s);
+			var y1 = cy + r_out * Math.sin(s);
+			var x2 = cx + r_out * Math.cos(e);
+			var y2 = cy + r_out * Math.sin(e);
+			var x3 = cx + r_in * Math.cos(e);
+			var y3 = cy + r_in * Math.sin(e);
+			var x4 = cx + r_in * Math.cos(s);
+			var y4 = cy + r_in * Math.sin(s);
+			return "M " + x1.toFixed(2) + " " + y1.toFixed(2) +
+				" A " + r_out + " " + r_out + " 0 " + large_arc + " 1 " + x2.toFixed(2) + " " + y2.toFixed(2) +
+				" L " + x3.toFixed(2) + " " + y3.toFixed(2) +
+				" A " + r_in + " " + r_in + " 0 " + large_arc + " 0 " + x4.toFixed(2) + " " + y4.toFixed(2) + " Z";
+		}
+
 		async function refreshGeo() {
 			try {
 				var res = await fetch("https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/traffic-geo", { cache: "no-store" });
@@ -813,24 +892,25 @@
 				var statOther = document.getElementById("stat-geo-other");
 				if (statOther) statOther.innerHTML = otherPct + '% <small style="font-weight:400;color:#64748b;">(' + otherCount + ')</small>';
 
-				var circ = 2 * Math.PI * 62;
-				var slices = [
-					{ id: "donut-slice-na", pct: naPct },
-					{ id: "donut-slice-eu", pct: euPct },
-					{ id: "donut-slice-apac", pct: apacPct },
-					{ id: "donut-slice-latam", pct: latamPct },
-					{ id: "donut-slice-other", pct: otherPct }
+				var sliceDefs = [
+					{ id: "donut-slice-na", pct: naPct, count: naCount, region: "North America" },
+					{ id: "donut-slice-eu", pct: euPct, count: euCount, region: "Europe" },
+					{ id: "donut-slice-apac", pct: apacPct, count: apacCount, region: "Asia-Pacific" },
+					{ id: "donut-slice-latam", pct: latamPct, count: latamCount, region: "Latin America" },
+					{ id: "donut-slice-other", pct: otherPct, count: otherCount, region: "Other / Unassigned" }
 				];
 
-				var currentOffset = 0;
-				slices.forEach(function (slice) {
-					var el = document.getElementById(slice.id);
+				var currentAngle = -90;
+				sliceDefs.forEach(function (item) {
+					var el = document.getElementById(item.id);
 					if (!el) return;
-					var strokeLen = (slice.pct / 100) * circ;
-					var strokeGap = circ - strokeLen;
-					el.setAttribute("stroke-dasharray", strokeLen.toFixed(1) + " " + strokeGap.toFixed(1));
-					el.setAttribute("stroke-dashoffset", (-currentOffset).toFixed(1));
-					currentOffset += strokeLen;
+					var sliceSpan = (item.pct / 100) * 360;
+					if (sliceSpan < 1) sliceSpan = 1;
+					var nextAngle = currentAngle + sliceSpan;
+					el.setAttribute("d", makeDonutSlice(85, 85, 46, 68, currentAngle, nextAngle, 2.0));
+					el.setAttribute("data-pct", item.pct + "%");
+					el.setAttribute("data-count", item.count);
+					currentAngle = nextAngle;
 				});
 			} catch (e) {}
 		}
