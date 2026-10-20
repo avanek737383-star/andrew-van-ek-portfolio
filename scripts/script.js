@@ -1130,12 +1130,433 @@
 		window.setInterval(refreshGeo, 45000);
 	}
 
+	function initWeatherWidget() {
+		var weatherSec = document.getElementById("home-weather-section");
+		if (!weatherSec) return;
+
+		var DEFAULT_LOC = {
+			name: "Cupertino, CA",
+			isDefault: true,
+			lat: 37.3230,
+			lon: -122.0322
+		};
+
+		var currentUnit = localStorage.getItem("portfolio_weather_unit") || "F";
+		var currentLoc = DEFAULT_LOC;
+		var savedLoc = localStorage.getItem("portfolio_weather_loc");
+		if (savedLoc) {
+			try {
+				var parsed = JSON.parse(savedLoc);
+				if (parsed && typeof parsed.lat === "number" && typeof parsed.lon === "number") {
+					currentLoc = parsed;
+				}
+			} catch (e) {}
+		}
+
+		var cityLabel = document.getElementById("weather-city-label");
+		var cityTag = document.getElementById("weather-loc-tag");
+		var geoBtn = document.getElementById("weather-geo-btn");
+		var geoBtnText = document.getElementById("weather-geo-btn-text");
+		var unitToggle = document.getElementById("weather-unit-toggle");
+		var unitFLabel = document.getElementById("unit-f-label");
+		var unitCLabel = document.getElementById("unit-c-label");
+
+		var currentTempEl = document.getElementById("weather-current-temp");
+		var currentConditionEl = document.getElementById("weather-current-condition");
+		var currentFeelsEl = document.getElementById("weather-current-feels");
+		var currentIconEl = document.getElementById("weather-current-icon");
+		var currentHiLowEl = document.getElementById("weather-current-hilow");
+		var currentHumidityEl = document.getElementById("weather-current-humidity");
+		var currentWindEl = document.getElementById("weather-current-wind");
+		var currentPrecipEl = document.getElementById("weather-current-precip");
+
+		var hourlyTrack = document.getElementById("weather-hourly-track");
+		var dailyList = document.getElementById("weather-daily-list");
+
+		var tabs = document.querySelectorAll(".weather-tab");
+		var slides = document.querySelectorAll(".weather-slide");
+		var dots = document.querySelectorAll(".weather-dot");
+		var carousel = document.getElementById("weather-carousel");
+
+		function updateLocationUI() {
+			if (cityLabel) cityLabel.textContent = currentLoc.name;
+			if (cityTag) {
+				cityTag.textContent = currentLoc.isDefault ? "Default" : "Local";
+				cityTag.style.color = currentLoc.isDefault ? "#0284c7" : "#10b981";
+				cityTag.style.background = currentLoc.isDefault ? "#e0f2fe" : "#d1fae5";
+			}
+			if (geoBtnText) {
+				geoBtnText.textContent = currentLoc.isDefault ? "Use My Location" : "Reset to Cupertino";
+			}
+		}
+
+		function updateUnitUI() {
+			if (unitFLabel && unitCLabel) {
+				if (currentUnit === "F") {
+					unitFLabel.classList.add("active");
+					unitCLabel.classList.remove("active");
+				} else {
+					unitFLabel.classList.remove("active");
+					unitCLabel.classList.add("active");
+				}
+			}
+		}
+
+		function getWeatherInfo(code, isDay) {
+			if (code === 0) return { label: isDay ? "Clear Sky" : "Clear Night", icon: isDay ? "sun" : "moon" };
+			if (code === 1 || code === 2) return { label: "Partly Cloudy", icon: isDay ? "partly-cloudy" : "cloudy-night" };
+			if (code === 3) return { label: "Overcast", icon: "cloudy" };
+			if (code === 45 || code === 48) return { label: "Foggy", icon: "fog" };
+			if (code >= 51 && code <= 57) return { label: "Drizzle", icon: "drizzle" };
+			if (code >= 61 && code <= 67) return { label: "Rain", icon: "rain" };
+			if (code >= 71 && code <= 77) return { label: "Snow", icon: "snow" };
+			if (code >= 80 && code <= 82) return { label: "Rain Showers", icon: "rain" };
+			if (code >= 85 && code <= 86) return { label: "Snow Showers", icon: "snow" };
+			if (code >= 95) return { label: "Thunderstorm", icon: "thunderstorm" };
+			return { label: "Fair", icon: "sun" };
+		}
+
+		function getWeatherIconSvg(iconName, size) {
+			size = size || 48;
+			switch(iconName) {
+				case "sun":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-sun" aria-hidden="true">' +
+						'<circle cx="32" cy="32" r="14" fill="#f59e0b"/>' +
+						'<g stroke="#fbbf24" stroke-width="3" stroke-linecap="round">' +
+						'<line x1="32" y1="6" x2="32" y2="12"/>' +
+						'<line x1="32" y1="52" x2="32" y2="58"/>' +
+						'<line x1="6" y1="32" x2="12" y2="32"/>' +
+						'<line x1="52" y1="32" x2="58" y2="32"/>' +
+						'<line x1="13.6" y1="13.6" x2="17.8" y2="17.8"/>' +
+						'<line x1="46.2" y1="46.2" x2="50.4" y2="50.4"/>' +
+						'<line x1="13.6" y1="50.4" x2="17.8" y2="46.2"/>' +
+						'<line x1="46.2" y1="17.8" x2="50.4" y2="13.6"/>' +
+						'</g></svg>';
+				case "moon":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-moon" aria-hidden="true">' +
+						'<path d="M 40 12 A 22 22 0 1 1 20 48 A 18 18 0 0 0 40 12 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.5"/>' +
+						'<circle cx="48" cy="18" r="1.5" fill="#e0f2fe"/><circle cx="52" cy="30" r="1" fill="#e0f2fe"/>' +
+						'</svg>';
+				case "partly-cloudy":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-partly-cloudy" aria-hidden="true">' +
+						'<circle cx="26" cy="24" r="11" fill="#f59e0b"/>' +
+						'<g stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round">' +
+						'<line x1="26" y1="6" x2="26" y2="10"/>' +
+						'<line x1="12" y1="24" x2="16" y2="24"/>' +
+						'<line x1="15" y1="13" x2="18" y2="16"/>' +
+						'<line x1="37" y1="13" x2="34" y2="16"/>' +
+						'</g>' +
+						'<path d="M 24 48 A 12 12 0 0 1 24 28 A 15 15 0 0 1 48 26 A 11 11 0 0 1 56 40 A 9 9 0 0 1 52 48 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>' +
+						'</svg>';
+				case "cloudy-night":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-cloudy-night" aria-hidden="true">' +
+						'<path d="M 32 10 A 14 14 0 1 1 18 32 A 12 12 0 0 0 32 10 Z" fill="#38bdf8"/>' +
+						'<path d="M 22 48 A 10 10 0 0 1 22 30 A 13 13 0 0 1 46 28 A 10 10 0 0 1 54 40 A 8 8 0 0 1 50 48 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>' +
+						'</svg>';
+				case "cloudy":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-cloudy" aria-hidden="true">' +
+						'<path d="M 18 38 A 10 10 0 0 1 26 22 A 14 14 0 0 1 48 24 A 10 10 0 0 1 54 36 A 8 8 0 0 1 50 44 L 18 44 A 6 6 0 0 1 18 38 Z" fill="#94a3b8"/>' +
+						'<path d="M 14 48 A 9 9 0 0 1 20 34 A 13 13 0 0 1 42 34 A 9 9 0 0 1 48 44 A 7 7 0 0 1 44 50 L 14 50 A 5 5 0 0 1 14 48 Z" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>' +
+						'</svg>';
+				case "fog":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-fog" aria-hidden="true">' +
+						'<path d="M 16 30 A 10 10 0 0 1 24 16 A 14 14 0 0 1 44 18 A 9 9 0 0 1 50 28 Z" fill="#94a3b8" opacity="0.6"/>' +
+						'<line x1="12" y1="36" x2="52" y2="36" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>' +
+						'<line x1="16" y1="42" x2="48" y2="42" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>' +
+						'<line x1="20" y1="48" x2="44" y2="48" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>' +
+						'</svg>';
+				case "drizzle":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-drizzle" aria-hidden="true">' +
+						'<path d="M 16 36 A 9 9 0 0 1 22 22 A 13 13 0 0 1 44 22 A 9 9 0 0 1 50 32 A 7 7 0 0 1 46 38 L 16 38 Z" fill="#94a3b8"/>' +
+						'<line x1="22" y1="44" x2="20" y2="50" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>' +
+						'<line x1="32" y1="44" x2="30" y2="50" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>' +
+						'<line x1="42" y1="44" x2="40" y2="50" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>' +
+						'</svg>';
+				case "rain":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-rain" aria-hidden="true">' +
+						'<path d="M 16 32 A 10 10 0 0 1 24 18 A 14 14 0 0 1 46 18 A 10 10 0 0 1 52 30 A 8 8 0 0 1 48 36 L 16 36 Z" fill="#475569"/>' +
+						'<line x1="20" y1="42" x2="16" y2="52" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>' +
+						'<line x1="30" y1="42" x2="26" y2="52" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>' +
+						'<line x1="40" y1="42" x2="36" y2="52" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>' +
+						'<line x1="50" y1="42" x2="46" y2="52" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>' +
+						'</svg>';
+				case "snow":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-snow" aria-hidden="true">' +
+						'<path d="M 16 32 A 10 10 0 0 1 24 18 A 14 14 0 0 1 46 18 A 10 10 0 0 1 52 30 A 8 8 0 0 1 48 36 L 16 36 Z" fill="#64748b"/>' +
+						'<circle cx="20" cy="46" r="2" fill="#e0f2fe"/><circle cx="32" cy="48" r="2" fill="#e0f2fe"/><circle cx="44" cy="46" r="2" fill="#e0f2fe"/>' +
+						'<circle cx="26" cy="54" r="1.5" fill="#e0f2fe"/><circle cx="38" cy="54" r="1.5" fill="#e0f2fe"/>' +
+						'</svg>';
+				case "thunderstorm":
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon svg-thunderstorm" aria-hidden="true">' +
+						'<path d="M 16 30 A 10 10 0 0 1 24 16 A 14 14 0 0 1 46 16 A 10 10 0 0 1 52 28 A 8 8 0 0 1 48 34 L 16 34 Z" fill="#1e293b"/>' +
+						'<polygon points="34,34 26,45 32,45 28,56 40,43 33,43" fill="#facc15" stroke="#eab308" stroke-width="1"/>' +
+						'</svg>';
+				default:
+					return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 64 64" class="weather-svg-icon" aria-hidden="true">' +
+						'<circle cx="32" cy="32" r="12" fill="#f59e0b"/>' +
+						'</svg>';
+			}
+		}
+
+		async function fetchWeather() {
+			try {
+				var tempUnitParam = currentUnit === "F" ? "fahrenheit" : "celsius";
+				var windUnitParam = currentUnit === "F" ? "mph" : "kmh";
+				var precipUnitParam = currentUnit === "F" ? "inch" : "mm";
+
+				var url = "https://api.open-meteo.com/v1/forecast?latitude=" + currentLoc.lat +
+					"&longitude=" + currentLoc.lon +
+					"&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,is_day" +
+					"&hourly=temperature_2m,precipitation_probability,weather_code,is_day" +
+					"&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
+					"&temperature_unit=" + tempUnitParam +
+					"&wind_speed_unit=" + windUnitParam +
+					"&precipitation_unit=" + precipUnitParam +
+					"&timezone=auto";
+
+				var res = await fetch(url);
+				if (!res.ok) return;
+				var data = await res.json();
+				if (!data || !data.current) return;
+
+				var current = data.current;
+				var hourly = data.hourly;
+				var daily = data.daily;
+
+				// 1. Current Hero
+				var curTemp = Math.round(current.temperature_2m);
+				if (currentTempEl) currentTempEl.textContent = curTemp + "°";
+				var curFeels = Math.round(current.apparent_temperature);
+				if (currentFeelsEl) currentFeelsEl.textContent = "Feels like " + curFeels + "°" + currentUnit;
+
+				var weatherInfo = getWeatherInfo(current.weather_code, current.is_day);
+				if (currentConditionEl) currentConditionEl.textContent = weatherInfo.label;
+				if (currentIconEl) currentIconEl.innerHTML = getWeatherIconSvg(weatherInfo.icon, 72);
+
+				// Parameters
+				var todayHigh = Math.round(daily.temperature_2m_max[0]);
+				var todayLow = Math.round(daily.temperature_2m_min[0]);
+				if (currentHiLowEl) currentHiLowEl.textContent = "H: " + todayHigh + "° • L: " + todayLow + "°";
+
+				if (currentHumidityEl) currentHumidityEl.textContent = current.relative_humidity_2m + "%";
+				if (currentWindEl) currentWindEl.textContent = Math.round(current.wind_speed_10m) + (currentUnit === "F" ? " mph" : " km/h");
+				if (currentPrecipEl) currentPrecipEl.textContent = current.precipitation.toFixed(1) + (currentUnit === "F" ? " in" : " mm");
+
+				// 2. 24-Hour Hourly Timeline
+				if (hourlyTrack && hourly && hourly.time) {
+					var nowIso = current.time.slice(0, 13);
+					var startIdx = hourly.time.findIndex(function(t) { return t.slice(0, 13) === nowIso; });
+					if (startIdx === -1) startIdx = 0;
+
+					var hourlyHtml = "";
+					var endIdx = Math.min(hourly.time.length, startIdx + 24);
+					for (var i = startIdx; i < endIdx; i++) {
+						var tStr = hourly.time[i];
+						var hourNum = parseInt(tStr.slice(11, 13), 10);
+						var ampm = hourNum >= 12 ? "PM" : "AM";
+						var displayHour = hourNum % 12;
+						if (displayHour === 0) displayHour = 12;
+						var timeLabel = (i === startIdx) ? "Now" : (displayHour + " " + ampm);
+
+						var hTemp = Math.round(hourly.temperature_2m[i]);
+						var hCode = hourly.weather_code[i];
+						var hIsDay = hourly.is_day ? hourly.is_day[i] : 1;
+						var hInfo = getWeatherInfo(hCode, hIsDay);
+						var hPrecip = hourly.precipitation_probability ? hourly.precipitation_probability[i] : 0;
+
+						hourlyHtml += '<div class="weather-hourly-pill">' +
+							'<span class="weather-hourly-time">' + timeLabel + '</span>' +
+							'<div class="weather-hourly-icon">' + getWeatherIconSvg(hInfo.icon, 30) + '</div>' +
+							'<strong class="weather-hourly-temp">' + hTemp + '°</strong>' +
+							'<span class="weather-hourly-precip">' + (hPrecip > 0 ? ('💧 ' + hPrecip + '%') : '&nbsp;') + '</span>' +
+							'</div>';
+					}
+					hourlyTrack.innerHTML = hourlyHtml;
+				}
+
+				// 3. 7-Day Extended Outlook
+				if (dailyList && daily && daily.time) {
+					var weekMin = Math.min.apply(null, daily.temperature_2m_min);
+					var weekMax = Math.max.apply(null, daily.temperature_2m_max);
+					var tempSpan = Math.max(1, weekMax - weekMin);
+
+					var dailyHtml = "";
+					var dayCount = Math.min(7, daily.time.length);
+					var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+					for (var d = 0; d < dayCount; d++) {
+						var dDate = new Date(daily.time[d] + "T12:00:00");
+						var dayName = (d === 0) ? "Today" : dayNames[dDate.getDay()];
+						var dCode = daily.weather_code[d];
+						var dInfo = getWeatherInfo(dCode, 1);
+						var dMin = Math.round(daily.temperature_2m_min[d]);
+						var dMax = Math.round(daily.temperature_2m_max[d]);
+						var dPrecip = daily.precipitation_probability_max ? daily.precipitation_probability_max[d] : 0;
+
+						var leftPct = Math.round(((dMin - weekMin) / tempSpan) * 100);
+						var widthPct = Math.max(12, Math.round(((dMax - dMin) / tempSpan) * 100));
+
+						dailyHtml += '<div class="weather-daily-row">' +
+							'<strong class="weather-daily-day">' + dayName + '</strong>' +
+							'<div class="weather-daily-condition">' +
+							'<div class="weather-daily-icon">' + getWeatherIconSvg(dInfo.icon, 22) + '</div>' +
+							'<span>' + dInfo.label + '</span>' +
+							'</div>' +
+							'<span class="weather-daily-precip">' + (dPrecip > 0 ? ('💧 ' + dPrecip + '%') : '') + '</span>' +
+							'<span class="weather-daily-min">' + dMin + '°</span>' +
+							'<div class="weather-daily-bar-track">' +
+							'<div class="weather-daily-bar-fill" style="margin-left:' + leftPct + '%; width:' + widthPct + '%;"></div>' +
+							'</div>' +
+							'<strong class="weather-daily-max">' + dMax + '°</strong>' +
+							'</div>';
+					}
+					dailyList.innerHTML = dailyHtml;
+				}
+			} catch (e) {}
+		}
+
+		// Tab and slide switching
+		function setActiveSlide(index) {
+			tabs.forEach(function(t, i) {
+				var isActive = (i === index);
+				t.classList.toggle("active", isActive);
+				t.setAttribute("aria-selected", isActive ? "true" : "false");
+			});
+			slides.forEach(function(s, i) {
+				s.classList.toggle("active", i === index);
+			});
+			dots.forEach(function(d, i) {
+				d.classList.toggle("active", i === index);
+			});
+
+			if (carousel && window.innerWidth <= 860) {
+				carousel.scrollTo({
+					left: index * carousel.offsetWidth,
+					behavior: "smooth"
+				});
+			}
+		}
+
+		tabs.forEach(function(tab, idx) {
+			tab.addEventListener("click", function() {
+				setActiveSlide(idx);
+			});
+		});
+
+		dots.forEach(function(dot, idx) {
+			dot.addEventListener("click", function() {
+				setActiveSlide(idx);
+			});
+		});
+
+		if (carousel) {
+			var isScrolling = null;
+			carousel.addEventListener("scroll", function() {
+				if (window.innerWidth > 860) return;
+				window.clearTimeout(isScrolling);
+				isScrolling = setTimeout(function() {
+					var slideWidth = carousel.offsetWidth || 1;
+					var activeIdx = Math.round(carousel.scrollLeft / slideWidth);
+					activeIdx = Math.max(0, Math.min(2, activeIdx));
+					dots.forEach(function(d, i) {
+						d.classList.toggle("active", i === activeIdx);
+					});
+					tabs.forEach(function(t, i) {
+						var isActive = (i === activeIdx);
+						t.classList.toggle("active", isActive);
+						t.setAttribute("aria-selected", isActive ? "true" : "false");
+					});
+				}, 60);
+			});
+		}
+
+		// Geolocation toggle & reverse geocode
+		if (geoBtn) {
+			geoBtn.addEventListener("click", function() {
+				if (!currentLoc.isDefault) {
+					// Reset to Cupertino
+					currentLoc = DEFAULT_LOC;
+					localStorage.removeItem("portfolio_weather_loc");
+					updateLocationUI();
+					fetchWeather();
+					return;
+				}
+
+				if (!navigator.geolocation) {
+					alert("Geolocation is not supported by your browser.");
+					return;
+				}
+
+				if (geoBtnText) geoBtnText.textContent = "Locating...";
+
+				navigator.geolocation.getCurrentPosition(
+					async function(pos) {
+						var lat = pos.coords.latitude;
+						var lon = pos.coords.longitude;
+						var cityName = "Local Coordinates";
+
+						try {
+							var geoUrl = "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" + lat + "&longitude=" + lon + "&localityLanguage=en";
+							var geoRes = await fetch(geoUrl);
+							if (geoRes.ok) {
+								var geoData = await geoRes.json();
+								var city = geoData.locality || geoData.city || geoData.principalSubdivision;
+								var state = geoData.principalSubdivisionCode ? geoData.principalSubdivisionCode.split("-").pop() : (geoData.countryCode || "");
+								if (city) {
+									cityName = city + (state ? (", " + state) : "");
+								}
+							}
+						} catch(err) {}
+
+						currentLoc = {
+							name: cityName,
+							isDefault: false,
+							lat: lat,
+							lon: lon
+						};
+						localStorage.setItem("portfolio_weather_loc", JSON.stringify(currentLoc));
+						updateLocationUI();
+						fetchWeather();
+					},
+					function(err) {
+						updateLocationUI();
+						if (cityTag) {
+							cityTag.textContent = "Denied";
+							cityTag.style.color = "#ef4444";
+							cityTag.style.background = "#fee2e2";
+							setTimeout(function() {
+								updateLocationUI();
+							}, 3500);
+						}
+					},
+					{ timeout: 10000, maximumAge: 300000 }
+				);
+			});
+		}
+
+		// Unit toggle (°F / °C)
+		if (unitToggle) {
+			unitToggle.addEventListener("click", function() {
+				currentUnit = currentUnit === "F" ? "C" : "F";
+				localStorage.setItem("portfolio_weather_unit", currentUnit);
+				updateUnitUI();
+				fetchWeather();
+			});
+		}
+
+		updateLocationUI();
+		updateUnitUI();
+		fetchWeather();
+		window.setInterval(fetchWeather, 300000); // 5 min interval
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
 		createChat();
 		initHomeTelemetry();
 		initTrafficGeo();
+		initWeatherWidget();
 		initTechAnalogies();
 	}
 

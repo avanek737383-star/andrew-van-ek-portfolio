@@ -4,7 +4,7 @@
 	<head>
 		<title>Andrew Van Ek Portfolio | IT Specialist | Home</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261020-zoom-1">
+		<link rel="stylesheet" href="css/styles.css?v=20261020-weather-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
@@ -306,6 +306,117 @@
 						</div>
 					</div>
 				</section>
+
+				<section class="home-weather-section" id="home-weather-section" aria-labelledby="weather-widget-title">
+					<div class="telemetry-header">
+						<div class="telemetry-title-group">
+							<span class="telemetry-eyebrow">Atmospheric Observations</span>
+							<h3 id="weather-widget-title">Hyperlocal Atmospheric Telemetry</h3>
+							<p class="telemetry-desc">Live meteorological observations, 24-hour barometric trends, and 7-day extended forecasts powered by Open-Meteo. Defaults to Cupertino, CA with opt-in browser geolocation.</p>
+						</div>
+						<div class="weather-header-actions">
+							<div class="weather-location-pill" id="weather-location-pill">
+								<span class="weather-loc-pin" aria-hidden="true">📍</span>
+								<span class="weather-loc-name" id="weather-city-label">Cupertino, CA</span>
+								<span class="weather-loc-tag" id="weather-loc-tag">Default</span>
+							</div>
+							<div class="weather-btn-group">
+								<button type="button" class="weather-action-btn" id="weather-geo-btn" aria-label="Use current location">
+									<span class="weather-btn-icon" aria-hidden="true">🎯</span>
+									<span id="weather-geo-btn-text">Use My Location</span>
+								</button>
+								<button type="button" class="weather-unit-btn" id="weather-unit-toggle" aria-label="Toggle temperature unit" data-unit="F">
+									<span class="weather-unit-opt active" id="unit-f-label">&deg;F</span>
+									<span class="weather-unit-sep">/</span>
+									<span class="weather-unit-opt" id="unit-c-label">&deg;C</span>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="weather-card-panel">
+						<!-- Desktop View Tabs -->
+						<div class="weather-tab-bar" role="tablist" aria-label="Weather view tabs">
+							<button type="button" class="weather-tab active" role="tab" aria-selected="true" data-tab="0">
+								Current Conditions
+							</button>
+							<button type="button" class="weather-tab" role="tab" aria-selected="false" data-tab="1">
+								24-Hour Hourly
+							</button>
+							<button type="button" class="weather-tab" role="tab" aria-selected="false" data-tab="2">
+								7-Day Forecast
+							</button>
+						</div>
+
+						<!-- Mobile Carousel / Desktop Panes -->
+						<div class="weather-carousel" id="weather-carousel">
+							<!-- Slide 1: Current -->
+							<div class="weather-slide weather-slide-current active" id="weather-slide-current" role="tabpanel">
+								<div class="weather-current-grid">
+									<div class="weather-hero-wrap">
+										<div class="weather-hero-icon" id="weather-current-icon">
+											<svg width="64" height="64" viewBox="0 0 64 64" class="weather-svg-icon svg-sun" aria-hidden="true"><circle cx="32" cy="32" r="14" fill="#f59e0b"/></svg>
+										</div>
+										<div class="weather-hero-meta">
+											<div class="weather-hero-temp-row">
+												<span class="weather-hero-temp" id="weather-current-temp">--&deg;</span>
+											</div>
+											<strong class="weather-hero-condition" id="weather-current-condition">Gathering atmospheric data...</strong>
+											<span class="weather-hero-feels" id="weather-current-feels">Feels like --&deg;</span>
+										</div>
+									</div>
+									<div class="weather-params-grid">
+										<div class="weather-param-tile">
+											<span class="weather-param-label">Today's Range</span>
+											<strong class="weather-param-val" id="weather-current-hilow">H: --&deg; &bull; L: --&deg;</strong>
+										</div>
+										<div class="weather-param-tile">
+											<span class="weather-param-label">Relative Humidity</span>
+											<strong class="weather-param-val" id="weather-current-humidity">--%</strong>
+										</div>
+										<div class="weather-param-tile">
+											<span class="weather-param-label">Surface Wind</span>
+											<strong class="weather-param-val" id="weather-current-wind">-- mph</strong>
+										</div>
+										<div class="weather-param-tile">
+											<span class="weather-param-label">Precipitation (24h)</span>
+											<strong class="weather-param-val" id="weather-current-precip">-- in</strong>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Slide 2: Hourly -->
+							<div class="weather-slide weather-slide-hourly" id="weather-slide-hourly" role="tabpanel">
+								<div class="weather-slide-subhead">
+									<span>24-Hour Barometric Timeline</span>
+									<small style="color: #64748b; font-weight: 400;">(Scroll or swipe to explore)</small>
+								</div>
+								<div class="weather-hourly-track" id="weather-hourly-track">
+									<div style="color: #94a3b8; font-size: 0.85rem; padding: 12px;">Loading hourly timeline...</div>
+								</div>
+							</div>
+
+							<!-- Slide 3: Daily -->
+							<div class="weather-slide weather-slide-daily" id="weather-slide-daily" role="tabpanel">
+								<div class="weather-slide-subhead">
+									<span>7-Day Synoptic Outlook</span>
+									<small style="color: #64748b; font-weight: 400;">(Expected temperature envelope)</small>
+								</div>
+								<div class="weather-daily-list" id="weather-daily-list">
+									<div style="color: #94a3b8; font-size: 0.85rem; padding: 12px;">Loading 7-day outlook...</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Mobile Indicator Dots -->
+						<div class="weather-carousel-dots" id="weather-carousel-dots" aria-hidden="true">
+							<button type="button" class="weather-dot active" data-index="0" aria-label="Go to Current conditions"></button>
+							<button type="button" class="weather-dot" data-index="1" aria-label="Go to Hourly forecast"></button>
+							<button type="button" class="weather-dot" data-index="2" aria-label="Go to 7-Day forecast"></button>
+						</div>
+					</div>
+				</section>
 			</main>
 
 			<footer>
@@ -313,6 +424,6 @@
 				<p>Website last modified: <time datetime="2026-10-20">October 20, 2026</time></p>
 			</footer>
 		</div>
-		<script src="scripts/script.js?v=20261020-zoom-1"></script>
+		<script src="scripts/script.js?v=20261020-weather-1"></script>
 	</body>
 </html>
