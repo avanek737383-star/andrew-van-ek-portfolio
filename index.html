@@ -4,7 +4,7 @@
 	<head>
 		<title>Andrew Van Ek Portfolio | IT Specialist | Home</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261019-precision-4">
+		<link rel="stylesheet" href="css/styles.css?v=20261020-zoom-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
@@ -202,9 +202,17 @@
 						<div class="geo-map-panel">
 							<div class="geo-map-header">
 								<span class="geo-map-title"><span class="geo-pulse-dot"></span> Live Activity Heatmap</span>
-								<span class="telemetry-refresh-tag" id="geo-map-status">Natural Earth 110m Ingest</span>
+								<div class="geo-map-controls">
+									<button id="geo-map-reset-btn" class="geo-map-reset-btn" type="button" aria-label="Reset world map zoom">
+										<span class="geo-reset-x">&times;</span> Reset World View
+									</button>
+									<span class="telemetry-refresh-tag" id="geo-map-status">Natural Earth 110m Ingest</span>
+								</div>
 							</div>
-														<div class="geo-svg-container">
+							<div class="geo-svg-container">
+								<button id="geo-map-overlay-reset" class="geo-map-overlay-reset" type="button" aria-label="Reset world map zoom">
+									<span class="geo-reset-x">&times;</span> Reset World View
+								</button>
 								<svg class="geo-svg-map" viewBox="0 15 1000 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Detailed world map showing visitor distribution by region">
 									<defs>
 										<pattern id="geo-grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -242,7 +250,7 @@
 						<div class="geo-chart-panel">
 							<div class="geo-chart-header">
 								<h4 class="geo-chart-title">Regional Traffic Share</h4>
-								<p class="geo-chart-desc">Hover over any slice or category to inspect details.</p>
+								<p class="geo-chart-desc">Hover or click any region, slice, or category to inspect and zoom.</p>
 							</div>
 							<div class="geo-donut-wrap">
 								<svg width="170" height="170" viewBox="0 0 170 170" class="geo-donut-svg" role="img" aria-label="Interactive Donut chart of traffic percentages">
@@ -302,9 +310,9 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-17">October 17, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-20">October 20, 2026</time></p>
 			</footer>
 		</div>
-		<script src="scripts/script.js?v=20261019-precision-4"></script>
+		<script src="scripts/script.js?v=20261020-zoom-1"></script>
 	</body>
 </html>

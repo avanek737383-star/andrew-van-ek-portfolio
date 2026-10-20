@@ -783,42 +783,203 @@
 		var centerSub = document.getElementById("donut-center-sub");
 		var breakdownItems = document.querySelectorAll(".geo-breakdown-item");
 		var donutSlices = document.querySelectorAll(".donut-slice");
+		var geoLands = document.querySelectorAll(".geo-land");
+		var svgMap = document.querySelector(".geo-svg-map");
+		var resetBtn = document.getElementById("geo-map-reset-btn");
+		var overlayResetBtn = document.getElementById("geo-map-overlay-reset");
+		var geoMapStatus = document.getElementById("geo-map-status");
 
-		function highlightRegion(regionName, pct, count) {
+		var DEFAULT_VIEWBOX = [0, 15, 1000, 420];
+		var REGION_VIEWBOXES = {
+			"North America": [25, 15, 500, 210],
+			"Europe": [340, 20, 381, 160],
+			"Asia-Pacific": [420, 90, 702, 295],
+			"Latin America": [50, 195, 524, 220],
+			"Other / Unassigned": [255, 140, 607, 255]
+		};
+
+		var selectedRegion = null;
+		var currentVb = DEFAULT_VIEWBOX.slice();
+		var animId = null;
+
+		function normalizeRegion(r) {
+			if (!r) return "";
+			var s = r.toLowerCase();
+			if (s.indexOf("north") !== -1) return "North America";
+			if (s.indexOf("europ") !== -1) return "Europe";
+			if (s.indexOf("asia") !== -1 || s.indexOf("apac") !== -1) return "Asia-Pacific";
+			if (s.indexOf("latin") !== -1 || s.indexOf("south") !== -1) return "Latin America";
+			if (s.indexOf("other") !== -1 || s.indexOf("africa") !== -1 || s.indexOf("unassigned") !== -1) return "Other / Unassigned";
+			return r;
+		}
+
+		function getSliceForRegion(normName) {
+			return Array.from(donutSlices).find(function (s) {
+				return normalizeRegion(s.getAttribute("data-region")) === normName;
+			});
+		}
+
+		function animateViewBox(toVb, duration) {
+			if (!svgMap) return;
+			duration = duration || 450;
+			if (animId) cancelAnimationFrame(animId);
+			var startVb = currentVb.slice();
+			var startTime = performance.now();
+
+			function step(now) {
+				var elapsed = now - startTime;
+				var progress = Math.min(1, elapsed / duration);
+				var ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+				var cur = [
+					startVb[0] + (toVb[0] - startVb[0]) * ease,
+					startVb[1] + (toVb[1] - startVb[1]) * ease,
+					startVb[2] + (toVb[2] - startVb[2]) * ease,
+					startVb[3] + (toVb[3] - startVb[3]) * ease
+				];
+				currentVb = cur;
+				svgMap.setAttribute("viewBox", cur[0].toFixed(2) + " " + cur[1].toFixed(2) + " " + cur[2].toFixed(2) + " " + cur[3].toFixed(2));
+
+				if (progress < 1) {
+					animId = requestAnimationFrame(step);
+				} else {
+					currentVb = toVb.slice();
+					svgMap.setAttribute("viewBox", toVb.join(" "));
+					animId = null;
+				}
+			}
+			animId = requestAnimationFrame(step);
+		}
+
+		function highlightRegion(rawRegionName, optPct, optCount) {
+			var normName = normalizeRegion(rawRegionName);
+			var slice = getSliceForRegion(normName);
+			var pct = optPct || (slice ? slice.getAttribute("data-pct") : "");
+			var count = optCount || (slice ? slice.getAttribute("data-count") : "");
+
 			if (centerVal && pct) centerVal.textContent = pct;
-			if (centerSub && regionName) centerSub.textContent = regionName;
+			if (centerSub) centerSub.textContent = normName === "Other / Unassigned" ? "Other / Africa" : normName;
 
 			donutSlices.forEach(function (s) {
-				if (s.getAttribute("data-region") === regionName) {
+				if (normalizeRegion(s.getAttribute("data-region")) === normName) {
 					s.classList.remove("dimmed");
+					s.classList.add("hovered");
 					s.style.opacity = "1";
 				} else {
+					s.classList.remove("hovered");
 					s.classList.add("dimmed");
-					s.style.opacity = "0.35";
+					s.style.opacity = "0.32";
 				}
 			});
 
 			breakdownItems.forEach(function (b) {
-				if (b.getAttribute("data-region") === regionName) {
+				if (normalizeRegion(b.getAttribute("data-region")) === normName) {
 					b.classList.add("active");
 				} else {
 					b.classList.remove("active");
 				}
 			});
+
+			geoLands.forEach(function (l) {
+				if (normalizeRegion(l.getAttribute("data-region")) === normName) {
+					l.classList.add("land-hovered");
+					l.classList.remove("land-dimmed");
+				} else {
+					l.classList.remove("land-hovered");
+					l.classList.add("land-dimmed");
+				}
+			});
+		}
+
+		function applySelectedRegion(normName) {
+			var slice = getSliceForRegion(normName);
+			var pct = slice ? slice.getAttribute("data-pct") : "";
+			var count = slice ? slice.getAttribute("data-count") : "";
+
+			if (centerVal && pct) centerVal.textContent = pct;
+			if (centerSub) centerSub.textContent = normName === "Other / Unassigned" ? "Other / Africa" : normName;
+
+			donutSlices.forEach(function (s) {
+				if (normalizeRegion(s.getAttribute("data-region")) === normName) {
+					s.classList.remove("dimmed", "hovered");
+					s.classList.add("expanded");
+					s.style.opacity = "1";
+				} else {
+					s.classList.remove("expanded", "hovered");
+					s.classList.add("dimmed");
+					s.style.opacity = "0.32";
+				}
+			});
+
+			breakdownItems.forEach(function (b) {
+				if (normalizeRegion(b.getAttribute("data-region")) === normName) {
+					b.classList.add("active");
+				} else {
+					b.classList.remove("active");
+				}
+			});
+
+			geoLands.forEach(function (l) {
+				if (normalizeRegion(l.getAttribute("data-region")) === normName) {
+					l.classList.add("zoomed-active");
+					l.classList.remove("land-dimmed", "land-hovered");
+				} else {
+					l.classList.remove("zoomed-active", "land-hovered");
+					l.classList.add("land-dimmed");
+				}
+			});
+
+			if (resetBtn) resetBtn.style.display = "inline-flex";
+			if (overlayResetBtn) overlayResetBtn.style.display = "inline-flex";
+			if (geoMapStatus) geoMapStatus.textContent = "Zoomed: " + (normName === "Other / Unassigned" ? "Other / Africa" : normName);
 		}
 
 		function resetHighlight() {
+			if (selectedRegion) {
+				applySelectedRegion(selectedRegion);
+				return;
+			}
+
 			if (centerVal) centerVal.textContent = "100%";
 			if (centerSub) centerSub.textContent = "Global";
 
 			donutSlices.forEach(function (s) {
-				s.classList.remove("dimmed");
+				s.classList.remove("dimmed", "hovered", "expanded");
 				s.style.opacity = "1";
 			});
 
 			breakdownItems.forEach(function (b) {
 				b.classList.remove("active");
 			});
+
+			geoLands.forEach(function (l) {
+				l.classList.remove("land-hovered", "land-dimmed", "zoomed-active");
+			});
+		}
+
+		function selectRegion(rawRegionName) {
+			var normName = normalizeRegion(rawRegionName);
+			if (selectedRegion === normName) {
+				resetView();
+				return;
+			}
+
+			selectedRegion = normName;
+			applySelectedRegion(normName);
+
+			var targetVb = REGION_VIEWBOXES[normName] || DEFAULT_VIEWBOX;
+			animateViewBox(targetVb, 450);
+		}
+
+		function resetView() {
+			selectedRegion = null;
+			animateViewBox(DEFAULT_VIEWBOX, 420);
+
+			if (resetBtn) resetBtn.style.display = "none";
+			if (overlayResetBtn) overlayResetBtn.style.display = "none";
+			if (geoMapStatus) geoMapStatus.textContent = "Natural Earth 110m Ingest";
+
+			resetHighlight();
 		}
 
 		donutSlices.forEach(function (slice) {
@@ -826,17 +987,63 @@
 				highlightRegion(slice.getAttribute("data-region"), slice.getAttribute("data-pct"), slice.getAttribute("data-count"));
 			});
 			slice.addEventListener("mouseleave", resetHighlight);
+			slice.addEventListener("click", function (e) {
+				e.stopPropagation();
+				selectRegion(slice.getAttribute("data-region"));
+			});
 		});
 
 		breakdownItems.forEach(function (item) {
 			item.addEventListener("mouseenter", function () {
 				var region = item.getAttribute("data-region");
-				var slice = Array.from(donutSlices).find(function (s) { return s.getAttribute("data-region") === region; });
-				if (slice) {
-					highlightRegion(region, slice.getAttribute("data-pct"), slice.getAttribute("data-count"));
-				}
+				var slice = getSliceForRegion(normalizeRegion(region));
+				highlightRegion(region, slice ? slice.getAttribute("data-pct") : "", slice ? slice.getAttribute("data-count") : "");
 			});
 			item.addEventListener("mouseleave", resetHighlight);
+			item.addEventListener("click", function (e) {
+				e.stopPropagation();
+				selectRegion(item.getAttribute("data-region"));
+			});
+		});
+
+		geoLands.forEach(function (land) {
+			land.addEventListener("mouseenter", function () {
+				highlightRegion(land.getAttribute("data-region"));
+			});
+			land.addEventListener("mouseleave", resetHighlight);
+			land.addEventListener("click", function (e) {
+				e.stopPropagation();
+				selectRegion(land.getAttribute("data-region"));
+			});
+		});
+
+		if (resetBtn) {
+			resetBtn.addEventListener("click", function (e) {
+				e.stopPropagation();
+				resetView();
+			});
+		}
+
+		if (overlayResetBtn) {
+			overlayResetBtn.addEventListener("click", function (e) {
+				e.stopPropagation();
+				resetView();
+			});
+		}
+
+		if (svgMap) {
+			svgMap.addEventListener("click", function (e) {
+				if (e.target.closest(".geo-land")) return;
+				if (selectedRegion) {
+					resetView();
+				}
+			});
+		}
+
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && selectedRegion) {
+				resetView();
+			}
 		});
 
 		function makeDonutSlice(cx, cy, r_in, r_out, start_deg, end_deg, gap_deg) {
@@ -912,6 +1119,10 @@
 					el.setAttribute("data-count", item.count);
 					currentAngle = nextAngle;
 				});
+
+				if (selectedRegion) {
+					applySelectedRegion(selectedRegion);
+				}
 			} catch (e) {}
 		}
 
