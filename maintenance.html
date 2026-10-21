@@ -52,7 +52,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">226 documented tasks across seven areas &middot; Updated <time datetime="2026-10-20">October 20, 2026</time></p>
+<p class="maintenance-updated">227 documented tasks across seven areas &middot; Updated <time datetime="2026-10-21">October 21, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -241,6 +241,7 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
+<li id="blu3-a1-youtube-channel-branding">With assistance from Codex in Safari, refreshed my BlueAI video channel as <strong>BLU3 A1</strong>, set the handle to <a href="https://www.youtube.com/@BLEWArt1">@BLEWArt1</a>, and added an A.1. sauce bottle profile picture. Collaborated with Codex on a playful channel description highlighting AI-powered stories, unexpected twists, and a little extra sauce; published and verified the saved channel settings.</li>
 <li id="xmrig-randomx-hardware-benchmarking">With assistance from Antigravity CLI, benchmarked and tuned XMRig CPU mining for Monero (RandomX) on an 11th Gen Intel Core i7-11800H running Windows 11. Investigated GPU vs. CPU Proof-of-Work efficiency against an NVIDIA RTX A2000 Laptop GPU, evaluating RandomX's deliberate ASIC/GPU resistance through memory latency and L3 cache constraints. Tuned thread affinity to respect the processor's 24 MB L3 cache ceiling (capping execution at 10&ndash;12 threads to prevent cache eviction thrashing and thermal throttling), audited Administrator privilege requirements for Windows 1GB/2MB Huge Pages and MSR register locks, and analyzed thermal dissipation trade-offs on mobile laptop hardware.</li>
 <li id="debian-mac-sdxl-turbo-redownload-verified"><strong>Follow-up / verification:</strong> With help from Codex, completed and verified a fresh SDXL-Turbo model snapshot for the CPU-only Wallpaper Generator. Confirmed all snapshot symlinks resolve without broken files, including the full-precision and FP16 model assets; the shared Hugging Face blob cache is approximately 52 GiB because it retains multiple model formats and revisions. The repaired generator is byte-compiled and ready for a serialized single-job generation test.</li>
 <li id="debian-mac-wallpaper-generator-shared-model-queue"><strong>Follow-up / verification:</strong> With help from Codex, repaired the CPU-only SDXL-Turbo Wallpaper Generator after three concurrent jobs failed during model loading and left memory in swap. Quarantined and removed incomplete model-cache blobs, initiated a clean model redownload, added a shared in-memory pipeline cache so jobs reuse one loaded model, serialized inference so queued tabs run one at a time, and improved exception reporting so future failures include their actual exception type and traceback instead of <code>Generation failed: None</code>. Python byte-compilation passed.</li>
@@ -306,7 +307,7 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-10-20">October 20, 2026</time></p>
+				<p>Website last modified: <time datetime="2026-10-21">October 21, 2026</time></p>
 			</footer>
 		</div>
 		<script src="scripts/script.js?v=20261019-precision-3"></script>
