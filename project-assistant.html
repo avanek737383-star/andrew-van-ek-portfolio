@@ -16,21 +16,52 @@
 </head>
 <body>
 <div class="container">
-  <nav class="tablet-desktop">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="job.html">Skills</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="projects.html" aria-current="page">Projects</a></li>
-      <li><a href="maintenance.html">Maintenance</a></li>
-      <li><a href="lab.html">Live AI Lab</a></li>
-      <li><a href="council.html">AI Chatroom</a></li>
-      <li><a href="chat.html">Class & Service Desk Bot</a></li>
-      <li><a href="moltbook.html">Moltbook Agent</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  		<nav class="tablet-desktop">
+			<ul id="site-navigation">
+				<li><a href="index.html">Home</a></li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Projects <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="projects.html">All Projects</a></li>
+						<li><a href="project-assistant.html" aria-current="page">One Assistant, Two Brains</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+						<li><a href="lab.html">Live AI Lab</a></li>
+						<li><a href="council.html">AI Chatroom</a></li>
+						<li><a href="moltbook.html">Moltbook Agent</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="stats.html">Stats for Nerds</a></li>
+						<li><a href="maintenance.html">Maintenance Log</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="job.html">Skills &amp; Toolkit</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
   <main>
     <article style="max-width: 800px; margin: 0 auto; padding: 10px 10px 48px;">
   <p><a class="back" href="projects.html" style="font-size: 14.5px; font-weight: 500; color: #0056b3; text-decoration: none;">&larr; Back to Projects</a></p>

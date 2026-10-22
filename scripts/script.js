@@ -22,28 +22,75 @@
 		button.innerHTML = '<span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>Menu</span>';
 		nav.insertBefore(button, menu);
 
+		function closeAllDropdowns() {
+			nav.querySelectorAll(".nav-item-dropdown.dropdown-open").forEach(function (el) {
+				el.classList.remove("dropdown-open");
+				var t = el.querySelector(".nav-dropdown-toggle");
+				if (t) t.setAttribute("aria-expanded", "false");
+			});
+		}
+
 		function setOpen(open) {
 			nav.classList.toggle("nav-open", open);
 			button.setAttribute("aria-expanded", String(open));
+			if (!open) {
+				closeAllDropdowns();
+			}
 		}
 
 		button.addEventListener("click", function () {
 			setOpen(!nav.classList.contains("nav-open"));
 		});
+
+		// Wire up dropdown buttons for click / touch
+		var dropdownToggles = nav.querySelectorAll(".nav-dropdown-toggle");
+		dropdownToggles.forEach(function (toggle) {
+			toggle.addEventListener("click", function (e) {
+				e.stopPropagation();
+				var parentItem = toggle.closest(".nav-item-dropdown");
+				if (!parentItem) return;
+				var wasOpen = parentItem.classList.contains("dropdown-open");
+
+				// Close other dropdowns
+				nav.querySelectorAll(".nav-item-dropdown.dropdown-open").forEach(function (other) {
+					if (other !== parentItem) {
+						other.classList.remove("dropdown-open");
+						var otherBtn = other.querySelector(".nav-dropdown-toggle");
+						if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+					}
+				});
+
+				parentItem.classList.toggle("dropdown-open", !wasOpen);
+				toggle.setAttribute("aria-expanded", String(!wasOpen));
+			});
+		});
+
 		menu.addEventListener("click", function (event) {
-			if (event.target.closest("a")) setOpen(false);
-		});
-		document.addEventListener("click", function (event) {
-			if (!nav.contains(event.target)) setOpen(false);
-		});
-		document.addEventListener("keydown", function (event) {
-			if (event.key === "Escape" && nav.classList.contains("nav-open")) {
+			if (event.target.closest("a")) {
 				setOpen(false);
+			}
+		});
+
+		document.addEventListener("click", function (event) {
+			if (!nav.contains(event.target)) {
+				setOpen(false);
+				closeAllDropdowns();
+			}
+		});
+
+		document.addEventListener("keydown", function (event) {
+			if (event.key === "Escape") {
+				setOpen(false);
+				closeAllDropdowns();
 				button.focus();
 			}
 		});
+
 		window.addEventListener("resize", function () {
-			if (window.innerWidth > 1024) setOpen(false);
+			if (window.innerWidth > 1024) {
+				setOpen(false);
+				closeAllDropdowns();
+			}
 		});
 	}
 
