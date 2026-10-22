@@ -84,61 +84,135 @@
 
 										<!-- Live Performance Tachometer Instrument -->
 										<!-- Automotive Performance Instrument Cluster (Cockpit Dashboard) -->
+										<!-- Automotive Performance Cockpit Dashboard -->
 					<div class="telemetry-instrument-cluster" id="home-instrument-cluster" aria-label="Homelab Cockpit Instrument Cluster">
-						<!-- Dial 1: Page Load Speed Tachometer -->
-						<div class="instrument-card instrument-tach">
-							<div class="instrument-card-header">
-								<span class="instrument-eyebrow">Client Engine RPM</span>
-								<span class="tach-new-record-badge" id="tach-new-record-badge" hidden>🏆 NEW RECORD!</span>
-							</div>
-							<h4 class="instrument-title">Page Load Tachometer</h4>
-							<div class="tach-gauge-wrap">
-								<svg class="tach-svg" viewBox="0 0 240 150" aria-hidden="true">
-									<path class="tach-track-bg" d="M 30 135 A 90 90 0 1 1 210 135" fill="none" stroke="#e2e8f0" stroke-width="13" stroke-linecap="round"/>
-									<path class="tach-arc-green" d="M 30 135 A 90 90 0 0 1 76 51" fill="none" stroke="#10b981" stroke-width="13" stroke-linecap="round"/>
-									<path class="tach-arc-yellow" d="M 76 51 A 90 90 0 0 1 164 51" fill="none" stroke="#f59e0b" stroke-width="13"/>
-									<path class="tach-arc-red" d="M 164 51 A 90 90 0 0 1 210 135" fill="none" stroke="#ef4444" stroke-width="13" stroke-linecap="round"/>
-									
-									<line x1="33" y1="135" x2="43" y2="130" stroke="#64748b" stroke-width="2"/>
-									<line x1="68" y1="62" x2="74" y2="71" stroke="#64748b" stroke-width="2"/>
-									<line x1="120" y1="31" x2="120" y2="43" stroke="#64748b" stroke-width="2.5"/>
-									<line x1="172" y1="62" x2="166" y2="71" stroke="#64748b" stroke-width="2"/>
-									<line x1="207" y1="135" x2="197" y2="130" stroke="#64748b" stroke-width="2"/>
+						<!-- Twin Dials Row: Side-by-Side -->
+						<div class="cockpit-dials-row">
+							<!-- Dial 1: Page Load Tachometer -->
+							<div class="cockpit-gauge-card">
+								<div class="gauge-header">
+									<div class="gauge-title-wrap">
+										<span class="gauge-eyebrow">Client Engine RPM</span>
+										<h4 class="gauge-title">Page Load Tachometer</h4>
+									</div>
+									<span class="tach-new-record-badge" id="tach-new-record-badge" hidden>🏆 RECORD!</span>
+								</div>
 
-									<text x="24" y="147" class="tach-tick-lbl">0</text>
-									<text x="56" y="47" class="tach-tick-lbl">300</text>
-									<text x="120" y="24" class="tach-tick-lbl" text-anchor="middle">750</text>
-									<text x="176" y="47" class="tach-tick-lbl">1200</text>
-									<text x="210" y="147" class="tach-tick-lbl">1500+</text>
+								<div class="gauge-svg-wrap">
+									<svg class="cockpit-svg" viewBox="0 0 260 145" aria-hidden="true">
+										<!-- Track background -->
+										<path class="tach-track-bg" d="M 38 115 A 76 76 0 1 1 222 115" fill="none" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round"/>
+										<!-- Color Zones: Green (0-300ms), Yellow (300-750ms), Red (750-1500ms) -->
+										<path class="tach-arc-green" d="M 38 115 A 76 76 0 0 1 77 44" fill="none" stroke="#10b981" stroke-width="12" stroke-linecap="round"/>
+										<path class="tach-arc-yellow" d="M 77 44 A 76 76 0 0 1 183 44" fill="none" stroke="#f59e0b" stroke-width="12"/>
+										<path class="tach-arc-red" d="M 183 44 A 76 76 0 0 1 222 115" fill="none" stroke="#ef4444" stroke-width="12" stroke-linecap="round"/>
+										
+										<!-- Tick Marks -->
+										<line x1="41" y1="115" x2="49" y2="111" stroke="#64748b" stroke-width="2"/>
+										<line x1="72" y1="53" x2="77" y2="60" stroke="#64748b" stroke-width="2"/>
+										<line x1="130" y1="28" x2="130" y2="38" stroke="#64748b" stroke-width="2.5"/>
+										<line x1="188" y1="53" x2="183" y2="60" stroke="#64748b" stroke-width="2"/>
+										<line x1="219" y1="115" x2="211" y2="111" stroke="#64748b" stroke-width="2"/>
 
-									<g id="tach-needle-group" class="tach-needle-group">
-										<line id="tach-needle" x1="120" y1="135" x2="120" y2="42" stroke="#dc2626" stroke-width="3.5" stroke-linecap="round"/>
-										<circle cx="120" cy="135" r="9" fill="#002d5a"/>
-										<circle cx="120" cy="135" r="3.5" fill="#ffffff"/>
-									</g>
-								</svg>
+										<!-- Tick Labels with text-anchor to prevent clipping -->
+										<text x="24" y="125" class="tach-tick-lbl" text-anchor="start">0</text>
+										<text x="56" y="46" class="tach-tick-lbl" text-anchor="middle">300</text>
+										<text x="130" y="24" class="tach-tick-lbl" text-anchor="middle">750</text>
+										<text x="204" y="46" class="tach-tick-lbl" text-anchor="middle">1200</text>
+										<text x="248" y="125" class="tach-tick-lbl" text-anchor="end">1500+</text>
+
+										<!-- Rotating Needle Group around (130, 115) -->
+										<g id="tach-needle-group" class="cockpit-needle-group" style="transform-origin: 130px 115px;">
+											<line id="tach-needle" x1="130" y1="115" x2="130" y2="38" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+											<circle cx="130" cy="115" r="8" fill="#002d5a"/>
+											<circle cx="130" cy="115" r="3" fill="#ffffff"/>
+										</g>
+									</svg>
+								</div>
+
+								<div class="gauge-metrics-box">
+									<div class="gauge-digital-display">
+										<span class="gauge-digital-val" id="tach-current-ms">--</span>
+										<span class="gauge-digital-unit">ms</span>
+										<span class="tach-badge zone-green" id="tach-status-badge">Clocking...</span>
+									</div>
+									<div class="gauge-sub-row">
+										<span class="gauge-stat-pill">🏆 Record: <strong id="tach-record-ms">-- ms</strong></span>
+										<span class="gauge-stat-pill">Visits: <strong id="tach-visits-count">1</strong></span>
+										<button type="button" class="cockpit-action-btn" id="tach-rev-btn" title="Re-test page render latency">Rev Dial</button>
+									</div>
+								</div>
 							</div>
-							<div class="instrument-readout">
-								<span class="instrument-main-val" id="tach-current-ms">--</span>
-								<span class="instrument-main-unit">ms</span>
-								<span class="tach-badge zone-green" id="tach-status-badge">Clocking...</span>
-							</div>
-							<div class="instrument-meta-row">
-								<span class="meta-item">🏆 Record: <strong id="tach-record-ms">-- ms</strong></span>
-								<button type="button" class="cockpit-btn" id="tach-rev-btn" title="Re-test page render latency">Rev</button>
+
+							<!-- Dial 2: Tailscale Mesh Speedometer -->
+							<div class="cockpit-gauge-card">
+								<div class="gauge-header">
+									<div class="gauge-title-wrap">
+										<span class="gauge-eyebrow">Homelab Mesh Velocity</span>
+										<h4 class="gauge-title">Tailscale Speedometer</h4>
+									</div>
+									<span class="speedo-badge" id="speedo-status-badge">Probing...</span>
+								</div>
+
+								<div class="gauge-svg-wrap">
+									<svg class="cockpit-svg" viewBox="0 0 260 145" aria-hidden="true">
+										<!-- Speedometer Track: 0 to 120 MPH -->
+										<path class="speedo-track-bg" d="M 38 115 A 76 76 0 1 1 222 115" fill="none" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round"/>
+										<path class="speedo-arc-active" id="speedo-arc-active" d="M 38 115 A 76 76 0 0 1 210 75" fill="none" stroke="#0284c7" stroke-width="12" stroke-linecap="round"/>
+										
+										<!-- Ticks: 0, 30, 60, 80, 100, 120 MPH -->
+										<line x1="41" y1="115" x2="49" y2="111" stroke="#64748b" stroke-width="2"/>
+										<line x1="58" y1="75" x2="66" y2="80" stroke="#64748b" stroke-width="2"/>
+										<line x1="94" y1="46" x2="99" y2="53" stroke="#64748b" stroke-width="2"/>
+										<line x1="130" y1="28" x2="130" y2="38" stroke="#64748b" stroke-width="2.5"/>
+										<line x1="166" y1="46" x2="161" y2="53" stroke="#64748b" stroke-width="2"/>
+										<line x1="202" y1="75" x2="194" y2="80" stroke="#64748b" stroke-width="2"/>
+										<line x1="219" y1="115" x2="211" y2="111" stroke="#64748b" stroke-width="2"/>
+
+										<!-- Labels with text-anchor to prevent clipping -->
+										<text x="24" y="125" class="tach-tick-lbl" text-anchor="start">0</text>
+										<text x="50" y="68" class="tach-tick-lbl" text-anchor="middle">30</text>
+										<text x="88" y="38" class="tach-tick-lbl" text-anchor="middle">60</text>
+										<text x="130" y="24" class="tach-tick-lbl" text-anchor="middle">80</text>
+										<text x="172" y="38" class="tach-tick-lbl" text-anchor="middle">100</text>
+										<text x="248" y="125" class="tach-tick-lbl" text-anchor="end">120</text>
+
+										<!-- Rotating Needle Group around (130, 115) -->
+										<g id="speedo-needle-group" class="cockpit-needle-group" style="transform-origin: 130px 115px;">
+											<line id="speedo-needle" x1="130" y1="115" x2="130" y2="38" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+											<circle cx="130" cy="115" r="8" fill="#002d5a"/>
+											<circle cx="130" cy="115" r="3" fill="#ffffff"/>
+										</g>
+									</svg>
+								</div>
+
+								<div class="gauge-metrics-box">
+									<div class="gauge-digital-display">
+										<span class="gauge-digital-val" id="speedo-mph-val">--</span>
+										<span class="gauge-digital-unit">MPH</span>
+										<span class="speedo-ms-chip" id="speedo-ms-display">-- ms RTT</span>
+									</div>
+									<div class="gauge-sub-row">
+										<span class="gauge-stat-pill">Endpoint: <strong>Alpine NUC</strong></span>
+										<span class="gauge-stat-pill">Tunnel: <strong>Tailscale</strong></span>
+										<button type="button" class="cockpit-action-btn" id="speedo-test-btn" title="Ping the Tailscale NUC Gateway">Ping Mesh</button>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<!-- Module 2: AI Brain Synced Documents Analog Odometer -->
-						<div class="instrument-card instrument-odometer">
-							<div class="instrument-card-header">
-								<span class="instrument-eyebrow">Corpus Mileage</span>
-								<span class="odometer-live-pill"><span class="os-pulse"></span> Nightly 3AM</span>
+						<!-- Center Console: Analog Mechanical Odometer -->
+						<div class="cockpit-odometer-card">
+							<div class="odometer-header">
+								<div class="odometer-title-group">
+									<span class="odometer-eyebrow">Corpus Mileage</span>
+									<h4 class="odometer-title">AI Brain Synced Documents</h4>
+								</div>
+								<span class="odometer-live-pill"><span class="os-pulse"></span> Auto-Syncs 3:00 AM Nightly</span>
 							</div>
-							<h4 class="instrument-title">AI Brain Synced Documents</h4>
-							
-							<!-- Mechanical Rolling Odometer Drums -->
-							<div class="odometer-housing" title="Total documents indexed across Service Desk & Classes brains">
+
+							<div class="odometer-display-strip">
+								<!-- Mechanical Rolling Odometer Drums -->
 								<div class="odometer-bevel">
 									<div class="odometer-drum-group" id="odometer-drum-group">
 										<div class="odo-wheel"><span class="odo-digit" id="odo-d5">0</span></div>
@@ -148,72 +222,27 @@
 										<div class="odo-wheel"><span class="odo-digit" id="odo-d1">7</span></div>
 										<div class="odo-wheel odo-wheel-tenths"><span class="odo-digit" id="odo-d0">3</span></div>
 									</div>
-									<span class="odometer-unit-label">DOCS INDEXED</span>
+									<span class="odometer-unit-label">DOCUMENTS INDEXED</span>
 								</div>
-							</div>
 
-							<!-- Trip Meter / Sub-stats -->
-							<div class="odometer-trip-meter">
-								<div class="trip-item">
-									<span class="trip-label">Trip A (Classes)</span>
-									<strong class="trip-val">1,024 OneDrive</strong>
+								<!-- Trip Meters -->
+								<div class="odometer-trips-container">
+									<div class="odometer-trip-chip">
+										<span class="trip-tag">Trip A &bull; Coursework</span>
+										<strong class="trip-number">1,024</strong>
+										<span class="trip-detail">OneDrive Class Files</span>
+									</div>
+									<div class="odometer-trip-chip">
+										<span class="trip-tag">Trip B &bull; Service Desk</span>
+										<strong class="trip-number">649</strong>
+										<span class="trip-detail">GVSU KB Articles</span>
+									</div>
+									<div class="odometer-trip-chip trip-chip-status">
+										<span class="trip-tag">Automated Pipeline</span>
+										<strong class="trip-number" style="color: #059669;">100%</strong>
+										<span class="trip-detail">403 Folders &bull; 0 Errors</span>
+									</div>
 								</div>
-								<div class="trip-item">
-									<span class="trip-label">Trip B (Support)</span>
-									<strong class="trip-val">649 GVSU KB</strong>
-								</div>
-							</div>
-							
-							<div class="instrument-meta-row">
-								<span class="meta-item" style="font-size: 0.72rem; color: #64748b;">403 Folders &middot; 1,937 Files Walked &middot; 0 Errors</span>
-								<a href="project-assistant.html" class="cockpit-link">Pipeline &rarr;</a>
-							</div>
-						</div>
-
-						<!-- Dial 3: Tailscale Mesh Speedometer -->
-						<div class="instrument-card instrument-speedo">
-							<div class="instrument-card-header">
-								<span class="instrument-eyebrow">Homelab Mesh Velocity</span>
-								<span class="speedo-badge" id="speedo-status-badge">Probing...</span>
-							</div>
-							<h4 class="instrument-title">Tailscale Speedometer</h4>
-							<div class="tach-gauge-wrap">
-								<svg class="speedo-svg" viewBox="0 0 240 150" aria-hidden="true">
-									<!-- Speedometer track: 0 to 120 MPH -->
-									<path class="speedo-track-bg" d="M 30 135 A 90 90 0 1 1 210 135" fill="none" stroke="#e2e8f0" stroke-width="13" stroke-linecap="round"/>
-									<path class="speedo-arc-active" id="speedo-arc-active" d="M 30 135 A 90 90 0 0 1 195 90" fill="none" stroke="#0284c7" stroke-width="13" stroke-linecap="round"/>
-									
-									<!-- Ticks for 0, 20, 40, 60, 80, 100, 120 MPH -->
-									<line x1="33" y1="135" x2="43" y2="130" stroke="#64748b" stroke-width="2"/>
-									<line x1="52" y1="88" x2="61" y2="93" stroke="#64748b" stroke-width="2"/>
-									<line x1="86" y1="52" x2="93" y2="60" stroke="#64748b" stroke-width="2"/>
-									<line x1="120" y1="31" x2="120" y2="43" stroke="#64748b" stroke-width="2.5"/>
-									<line x1="154" y1="52" x2="147" y2="60" stroke="#64748b" stroke-width="2"/>
-									<line x1="188" y1="88" x2="179" y2="93" stroke="#64748b" stroke-width="2"/>
-									<line x1="207" y1="135" x2="197" y2="130" stroke="#64748b" stroke-width="2"/>
-
-									<text x="24" y="147" class="tach-tick-lbl">0</text>
-									<text x="44" y="78" class="tach-tick-lbl">30</text>
-									<text x="82" y="42" class="tach-tick-lbl">60</text>
-									<text x="120" y="24" class="tach-tick-lbl" text-anchor="middle">80</text>
-									<text x="156" y="42" class="tach-tick-lbl">100</text>
-									<text x="208" y="147" class="tach-tick-lbl">120</text>
-
-									<g id="speedo-needle-group" class="speedo-needle-group">
-										<line id="speedo-needle" x1="120" y1="135" x2="120" y2="42" stroke="#0284c7" stroke-width="3.5" stroke-linecap="round"/>
-										<circle cx="120" cy="135" r="9" fill="#002d5a"/>
-										<circle cx="120" cy="135" r="3.5" fill="#ffffff"/>
-									</g>
-								</svg>
-							</div>
-							<div class="instrument-readout">
-								<span class="instrument-main-val" id="speedo-mph-val">--</span>
-								<span class="instrument-main-unit">MPH</span>
-								<span class="speedo-ms-chip" id="speedo-ms-display">-- ms RTT</span>
-							</div>
-							<div class="instrument-meta-row">
-								<span class="meta-item">NUC Gateway Ping</span>
-								<button type="button" class="cockpit-btn" id="speedo-test-btn" title="Ping the Tailscale NUC Gateway">Ping</button>
 							</div>
 						</div>
 					</div>
