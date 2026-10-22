@@ -65,6 +65,16 @@
 			});
 		});
 
+		// Mark dropdown toggle as active if a child link is aria-current="page"
+		nav.querySelectorAll(".nav-item-dropdown").forEach(function (dropdown) {
+			if (dropdown.querySelector('[aria-current="page"]')) {
+				var toggle = dropdown.querySelector(".nav-dropdown-toggle");
+				if (toggle) {
+					toggle.classList.add("nav-dropdown-active");
+				}
+			}
+		});
+
 		menu.addEventListener("click", function (event) {
 			if (event.target.closest("a")) {
 				setOpen(false);
@@ -85,6 +95,17 @@
 				button.focus();
 			}
 		});
+
+		// Auto-collapse mobile drawer if the page is scrolled
+		var lastScrollY = window.scrollY;
+		window.addEventListener("scroll", function () {
+			if (nav.classList.contains("nav-open")) {
+				if (Math.abs(window.scrollY - lastScrollY) > 25) {
+					setOpen(false);
+				}
+			}
+			lastScrollY = window.scrollY;
+		}, { passive: true });
 
 		window.addEventListener("resize", function () {
 			if (window.innerWidth > 1024) {
