@@ -88,7 +88,7 @@
 		wrapper.className = "portfolio-chat";
 		wrapper.hidden = true;
 		wrapper.innerHTML = [
-			'<button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask Nemo (Local AI)</button>',
+			'<button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask Nemo</button>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
 			'  <header class="portfolio-chat-header">',
 			'    <div><strong>Nemo · Andrew\'s Local AI</strong><span>NVIDIA Nemotron 3 Nano 4B · privately hosted</span></div>',
@@ -366,10 +366,21 @@
 			chatBtn.addEventListener("click", function (e) {
 				e.preventDefault();
 				var toggle = document.querySelector(".portfolio-chat-toggle");
-				if (toggle && !toggle.hidden) {
-					toggle.click();
-				} else {
-					window.location.href = "council.html";
+				var panel = document.querySelector(".portfolio-chat-panel");
+				var input = document.getElementById("portfolio-chat-input");
+				var wrapper = document.querySelector(".portfolio-chat");
+
+				if (wrapper) wrapper.hidden = false;
+				if (panel) panel.hidden = false;
+				if (toggle) {
+					toggle.hidden = true;
+					toggle.setAttribute("aria-expanded", "true");
+				}
+				try { localStorage.setItem("nemo_chat_open", "true"); } catch (err) {}
+				if (input) {
+					setTimeout(function () {
+						try { input.focus({ preventScroll: true }); } catch (err) { input.focus(); }
+					}, 150);
 				}
 			});
 		}
@@ -1689,6 +1700,33 @@
 		}
 	}
 
+	
+	function initOsTracker() {
+		var tracker = document.getElementById("home-os-tracker");
+		if (!tracker) return;
+
+		var dateEl = document.getElementById("os-tracker-timestamp");
+		if (dateEl) {
+			var now = new Date();
+			dateEl.textContent = now.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+		}
+
+		// Fetch live kernel releases from kernel.org API
+		try {
+			fetch("https://www.kernel.org/releases.json", { cache: "default" })
+				.then(function (res) { return res.json(); })
+				.then(function (data) {
+					if (data && data.latest_stable && data.latest_stable.version) {
+						var linuxVer = document.getElementById("os-ver-linux");
+						var channel = document.getElementById("os-linux-channel");
+						if (linuxVer) linuxVer.textContent = "v" + data.latest_stable.version;
+						if (channel) channel.textContent = "Latest Stable (kernel.org)";
+					}
+				})
+				.catch(function () {});
+		} catch (e) {}
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
@@ -1698,6 +1736,7 @@
 		initWeatherWidget();
 		initTechAnalogies();
 		initPageLoadTachometer();
+		initOsTracker();
 	}
 
 	if (document.readyState === "loading") {

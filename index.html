@@ -373,6 +373,150 @@
 					</div>
 				</section>
 
+				
+				<!-- Public Operating Systems & Kernel Version Tracker -->
+				<section class="home-os-tracker" id="home-os-tracker" aria-labelledby="os-tracker-title">
+					<div class="os-tracker-header">
+						<div class="os-tracker-title-group">
+							<span class="os-tracker-eyebrow">Public Software Ecosystem</span>
+							<h3 id="os-tracker-title">Latest Operating System &amp; Kernel Releases</h3>
+							<p class="os-tracker-desc">Automated telemetry tracking current stable releases across primary desktop, mobile, and homelab server platforms. Updated daily from official public feeds.</p>
+						</div>
+						<div class="os-tracker-badge-box">
+							<span class="os-tracker-live-pill"><span class="os-pulse"></span> Daily Public Sync</span>
+							<span class="os-tracker-date-tag" id="os-tracker-timestamp">October 22, 2026</span>
+						</div>
+					</div>
+
+					<div class="os-tracker-grid">
+						<!-- Windows -->
+						<div class="os-card">
+							<div class="os-card-header">
+								<div class="os-icon os-icon-windows" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 88 88" fill="currentColor"><path d="M0 12.5 35.7 7.6v34.8H0V12.5zm35.7 34.1v34.8L0 76.5V46.6h35.7zM40.3 7v35.4H88V0L40.3 7zm47.7 39.6H40.3V82L88 88.6V46.6z"/></svg>
+								</div>
+								<div>
+									<h4 class="os-name">Windows</h4>
+									<span class="os-distro">Microsoft</span>
+								</div>
+							</div>
+							<div class="os-version-wrap">
+								<strong class="os-version" id="os-ver-windows">11 24H2</strong>
+								<span class="os-channel">Current Stable (Build 26100)</span>
+							</div>
+							<div class="os-footer-meta">
+								<span>Legacy: 10 22H2</span>
+								<a href="https://learn.microsoft.com/en-us/windows/release-health/release-information" target="_blank" rel="noopener noreferrer" class="os-link">Changelog &rarr;</a>
+							</div>
+						</div>
+
+						<!-- Linux Kernel -->
+						<div class="os-card">
+							<div class="os-card-header">
+								<div class="os-icon os-icon-linux" aria-hidden="true">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"/><path d="M7 10v4a5 5 0 0 0 10 0v-4"/><path d="M12 17v5"/><path d="M8 22h8"/></svg>
+								</div>
+								<div>
+									<h4 class="os-name">Linux Kernel</h4>
+									<span class="os-distro">kernel.org</span>
+								</div>
+							</div>
+							<div class="os-version-wrap">
+								<strong class="os-version" id="os-ver-linux">v6.18.x</strong>
+								<span class="os-channel" id="os-linux-channel">Mainline / Active Stable</span>
+							</div>
+							<div class="os-footer-meta">
+								<span>LTS: 6.6.x / 6.1.x</span>
+								<a href="https://www.kernel.org" target="_blank" rel="noopener noreferrer" class="os-link">kernel.org &rarr;</a>
+							</div>
+						</div>
+
+						<!-- macOS -->
+						<div class="os-card">
+							<div class="os-card-header">
+								<div class="os-icon os-icon-apple" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.74 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.6-7.71-11.71-14.01-6.19-9.52-11.1-20.91-14.74-34.18-3.64-13.26-5.46-25.59-5.46-37 0-16.19 4.38-29.41 13.13-39.67 8.76-10.26 19.34-15.53 31.76-15.82 4.47 0 9.71 1.25 15.71 3.75 6.01 2.5 10.15 3.81 12.44 3.93 1.99-.24 6.39-1.63 13.2-4.17 6.81-2.54 12.38-3.7 16.71-3.48 12.63.74 22.75 5.34 30.34 13.79-11.04 6.72-16.42 15.93-16.14 27.63.29 9.38 3.97 17.26 11.03 23.63 7.07 6.38 15.35 10.02 24.84 10.93-2.31 6.84-4.87 13.59-7.68 20.26zM119.22 31.84c0-7.39 2.65-14.4 7.96-21.03 5.31-6.63 11.89-10.81 19.74-12.54.51 1.08.77 2.21.77 3.39 0 7.39-2.73 14.47-8.19 21.24-5.46 6.77-12.06 10.82-19.8 12.15-.12-1.08-.48-2.15-.48-3.21z"/></svg>
+								</div>
+								<div>
+									<h4 class="os-name">macOS</h4>
+									<span class="os-distro">Apple Inc.</span>
+								</div>
+							</div>
+							<div class="os-version-wrap">
+								<strong class="os-version" id="os-ver-macos">Sequoia 15.x</strong>
+								<span class="os-channel">Current Production</span>
+							</div>
+							<div class="os-footer-meta">
+								<span>Prior: Sonoma 14.x</span>
+								<a href="https://support.apple.com/en-us/HT201222" target="_blank" rel="noopener noreferrer" class="os-link">Apple Support &rarr;</a>
+							</div>
+						</div>
+
+						<!-- iOS / iPadOS -->
+						<div class="os-card">
+							<div class="os-card-header">
+								<div class="os-icon os-icon-ios" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+								</div>
+								<div>
+									<h4 class="os-name">iOS &amp; iPadOS</h4>
+									<span class="os-distro">Apple Mobile</span>
+								</div>
+							</div>
+							<div class="os-version-wrap">
+								<strong class="os-version" id="os-ver-ios">iOS 18.x</strong>
+								<span class="os-channel">Public Release</span>
+							</div>
+							<div class="os-footer-meta">
+								<span>Security: 17.7.x</span>
+								<a href="https://support.apple.com/en-us/HT201222" target="_blank" rel="noopener noreferrer" class="os-link">Release Notes &rarr;</a>
+							</div>
+						</div>
+
+						<!-- Android -->
+						<div class="os-card">
+							<div class="os-card-header">
+								<div class="os-icon os-icon-android" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1-.449 1-1 1m-11.046 0c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1-.449 1-1 1m11.405-6.02l1.997-3.46a.416.416 0 00-.152-.567.416.416 0 00-.568.152l-2.022 3.503c-1.428-.65-3.045-1.01-4.767-1.01s-3.339.36-4.767 1.01l-2.022-3.503a.417.417 0 00-.568-.152.416.416 0 00-.152.567l1.997 3.46C3.255 10.74 1.5 13.68 1.5 17.1h21c0-3.42-1.755-6.36-4.618-7.779"/></svg>
+								</div>
+								<div>
+									<h4 class="os-name">Android</h4>
+									<span class="os-distro">Google / AOSP</span>
+								</div>
+							</div>
+							<div class="os-version-wrap">
+								<strong class="os-version" id="os-ver-android">Android 15</strong>
+								<span class="os-channel">Vanilla Ice Cream</span>
+							</div>
+							<div class="os-footer-meta">
+								<span>API Level 35</span>
+								<a href="https://source.android.com/docs/setup/about/build-numbers" target="_blank" rel="noopener noreferrer" class="os-link">AOSP Builds &rarr;</a>
+							</div>
+						</div>
+
+						<!-- FreeBSD -->
+						<div class="os-card">
+							<div class="os-card-header">
+								<div class="os-icon os-icon-freebsd" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor"><path d="M84.7 15.3C75.4 6 62.9 1.1 50 1.1S24.6 6 15.3 15.3C6 24.6 1.1 37.1 1.1 50s4.9 25.4 14.2 34.7C24.6 94 37.1 98.9 50 98.9s25.4-4.9 34.7-14.2C94 75.4 98.9 62.9 98.9 50s-4.9-25.4-14.2-34.7zM36.2 30.6c3.2-3.2 8.4-3.2 11.6 0l2.2 2.2 2.2-2.2c3.2-3.2 8.4-3.2 11.6 0 3.2 3.2 3.2 8.4 0 11.6L50 56 36.2 42.2c-3.2-3.2-3.2-8.4 0-11.6zm28.8 45.2c-8.3 8.3-21.7 8.3-30 0-8.3-8.3-8.3-21.7 0-30l3.8 3.8c-6.2 6.2-6.2 16.2 0 22.4 6.2 6.2 16.2 6.2 22.4 0l3.8 3.8z"/></svg>
+								</div>
+								<div>
+									<h4 class="os-name">FreeBSD</h4>
+									<span class="os-distro">The FreeBSD Project</span>
+								</div>
+							</div>
+							<div class="os-version-wrap">
+								<strong class="os-version" id="os-ver-freebsd">14.2-RELEASE</strong>
+								<span class="os-channel">Production STABLE</span>
+							</div>
+							<div class="os-footer-meta">
+								<span>Legacy: 13.4-RELEASE</span>
+								<a href="https://www.freebsd.org/releases/" target="_blank" rel="noopener noreferrer" class="os-link">FreeBSD.org &rarr;</a>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				<section class="home-weather-section" id="home-weather-section" aria-labelledby="weather-widget-title">
 					<div class="telemetry-header">
 						<div class="telemetry-title-group">
@@ -486,7 +630,7 @@
 			</main>
 
 			<footer>
-				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
 				<p>Website last modified: <time datetime="2026-10-20">October 20, 2026</time></p>
 			</footer>
 		</div>

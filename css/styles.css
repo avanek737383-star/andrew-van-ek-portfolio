@@ -25,7 +25,7 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
-    overflow-x: clip;
+    overflow-x: visible;
 }
 
 /* 2. Header & Navigation */
@@ -3058,3 +3058,268 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 .cta { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px;
        padding: 18px 22px; margin-top: 24px; box-shadow: 0 4px 16px rgba(0,45,90,.06); }
 .credit { color: #64748b; font-size: 0.95rem; margin-top: 22px; }
+
+
+/* Ensure sticky navigation works across mobile and desktop */
+nav.tablet-desktop {
+    background-color: #002d5a;
+    border-radius: 0;
+    margin-bottom: 30px;
+    display: block !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+@media (max-width: 1024px) {
+    nav.tablet-desktop {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 9999 !important;
+        padding: 8px 15px;
+    }
+
+    nav.tablet-desktop.nav-open > ul {
+        display: flex !important;
+        max-height: calc(100vh - 65px);
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+
+/* ==========================================================================
+   Public Operating Systems & Kernel Version Tracker
+   ========================================================================== */
+.home-os-tracker {
+    margin: 36px 0 28px;
+    padding: 24px 26px;
+    border: 1px solid #c8d7e6;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow: 0 4px 18px rgba(0, 45, 90, 0.05);
+}
+
+.os-tracker-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.os-tracker-title-group {
+    max-width: 680px;
+}
+
+.os-tracker-eyebrow {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0056b3;
+}
+
+.os-tracker-header h3 {
+    margin: 0 0 6px;
+    color: #002d5a;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.os-tracker-desc {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.os-tracker-badge-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.os-tracker-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.os-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulseDot 2s infinite;
+}
+
+.os-tracker-date-tag {
+    font-size: 0.74rem;
+    color: #64748b;
+}
+
+.os-tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.os-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 165px;
+    padding: 16px 18px;
+    border: 1px solid #d5e0eb;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 45, 90, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.os-card:hover {
+    transform: translateY(-2px);
+    border-color: #0056b3;
+    box-shadow: 0 8px 22px rgba(0, 45, 90, 0.09);
+}
+
+.os-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.os-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.os-icon-windows { background: #e0f2fe; color: #0284c7; }
+.os-icon-linux { background: #fef3c7; color: #b45309; }
+.os-icon-apple { background: #f1f5f9; color: #1e293b; }
+.os-icon-ios { background: #f3e8ff; color: #7e22ce; }
+.os-icon-android { background: #dcfce7; color: #15803d; }
+.os-icon-freebsd { background: #fee2e2; color: #b91c1c; }
+
+.os-name {
+    margin: 0;
+    color: #002d5a;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.os-distro {
+    font-size: 0.74rem;
+    color: #64748b;
+}
+
+.os-version-wrap {
+    margin-bottom: 12px;
+}
+
+.os-version {
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #002d5a;
+    line-height: 1.2;
+}
+
+.os-channel {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #0056b3;
+    margin-top: 2px;
+}
+
+.os-footer-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #64748b;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 8px;
+}
+
+.os-link {
+    color: #0056b3;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.os-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .os-tracker-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 580px) {
+    .os-tracker-grid {
+        grid-template-columns: 1fr;
+    }
+    .home-os-tracker {
+        padding: 18px;
+    }
+    .os-tracker-header {
+        flex-direction: column;
+    }
+    .os-tracker-badge-box {
+        align-items: flex-start;
+    }
+}
+
+/* Mobile Ask Nemo floating fixes */
+.portfolio-chat {
+    pointer-events: none !important;
+}
+
+.portfolio-chat-toggle,
+.portfolio-chat-panel {
+    pointer-events: auto !important;
+}
+
+@media (max-width: 520px) {
+    .portfolio-chat {
+        right: 12px !important;
+        bottom: max(12px, env(safe-area-inset-bottom)) !important;
+        left: 12px !important;
+        z-index: 10001 !important;
+    }
+    .portfolio-chat-panel {
+        max-height: calc(100dvh - 80px) !important;
+        width: 100% !important;
+        box-shadow: 0 12px 40px rgba(0, 25, 55, 0.4) !important;
+    }
+}
