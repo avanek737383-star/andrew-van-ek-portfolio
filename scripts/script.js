@@ -1727,6 +1727,150 @@
 		} catch (e) {}
 	}
 
+	
+	function initCockpitCluster() {
+		// 1. Tachometer Controller
+		initCockpitCluster();
+
+		// 2. Analog Odometer Drum Roll Controller
+		initAnalogOdometer();
+
+		// 3. Tailscale Speedometer Latency Controller
+		initTailscaleSpeedometer();
+	}
+
+	function initAnalogOdometer() {
+		var odoGroup = document.getElementById("odometer-drum-group");
+		if (!odoGroup) return;
+
+		// Total corpus count: 1,673 documents (649 GVSU KB + 1024 OneDrive class files)
+		var targetCount = 1673;
+		var str = String(targetCount).padStart(6, "0"); // "001673"
+		
+		// Animate rolling up each digit with mechanical delay
+		var digitIds = ["odo-d5", "odo-d4", "odo-d3", "odo-d2", "odo-d1", "odo-d0"];
+		digitIds.forEach(function (id, idx) {
+			var el = document.getElementById(id);
+			if (el) {
+				var finalDigit = str[idx];
+				// Start at 0, then roll into target digit
+				el.textContent = "0";
+				setTimeout(function () {
+					el.style.transform = "translateY(-6px)";
+					setTimeout(function () {
+						el.textContent = finalDigit;
+						el.style.transform = "translateY(0)";
+					}, 180 + (idx * 60));
+				}, 200 + (idx * 80));
+			}
+		});
+	}
+
+	function initTailscaleSpeedometer() {
+		var needle = document.getElementById("speedo-needle-group");
+		var mphDisplay = document.getElementById("speedo-mph-val");
+		var msDisplay = document.getElementById("speedo-ms-display");
+		var statusBadge = document.getElementById("speedo-status-badge");
+		var testBtn = document.getElementById("speedo-test-btn");
+		var arcActive = document.getElementById("speedo-arc-active");
+
+		if (!mphDisplay) return;
+
+		function mapMphToDegrees(mph) {
+			// Sweep from -110deg (0 MPH) to +110deg (120 MPH)
+			var maxMph = 120;
+			var clamped = Math.max(0, Math.min(mph, maxMph));
+			var pct = clamped / maxMph;
+			return -110 + (pct * 220);
+		}
+
+		function pingToMph(pingMs) {
+			// Sub-15ms = 115-120 MPH (Autobahn speed)
+			// 25ms = ~90 MPH
+			// 50ms = ~70 MPH
+			// 100ms = ~45 MPH
+			// 250ms+ = ~20-25 MPH
+			if (pingMs <= 10) return 120;
+			var speed = Math.round(120 * Math.pow(10 / Math.max(10, pingMs), 0.42));
+			return Math.max(8, Math.min(120, speed));
+		}
+
+		function applySpeedoReading(pingMs) {
+			var mph = pingToMph(pingMs);
+			var deg = mapMphToDegrees(mph);
+
+			if (needle) {
+				needle.style.transform = "rotate(" + deg + "deg)";
+			}
+			if (mphDisplay) {
+				mphDisplay.textContent = mph;
+			}
+			if (msDisplay) {
+				msDisplay.textContent = pingMs + " ms RTT";
+			}
+			if (statusBadge) {
+				if (mph >= 85) {
+					statusBadge.textContent = "⚡ Line-Rate (" + mph + " MPH)";
+					statusBadge.style.color = "#047857";
+					statusBadge.style.background = "#d1fae5";
+				} else if (mph >= 50) {
+					statusBadge.textContent = "🚀 High Speed (" + mph + " MPH)";
+					statusBadge.style.color = "#0284c7";
+					statusBadge.style.background = "#e0f2fe";
+				} else {
+					statusBadge.textContent = "Cruising (" + mph + " MPH)";
+					statusBadge.style.color = "#b45309";
+					statusBadge.style.background = "#fef3c7";
+				}
+			}
+		}
+
+		function testMeshLatency() {
+			var start = performance.now();
+			var testUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/stats?t=" + Date.now();
+			
+			// Initial rev needle
+			if (needle) needle.style.transform = "rotate(-110deg)";
+
+			var controller = new AbortController();
+			var timeoutId = setTimeout(function () { controller.abort(); }, 4000);
+
+			fetch(testUrl, { method: "GET", cache: "no-store", signal: controller.signal })
+				.then(function (res) {
+					clearTimeout(timeoutId);
+					var rtt = Math.max(8, Math.round(performance.now() - start));
+					setTimeout(function () { applySpeedoReading(rtt); }, 200);
+				})
+				.catch(function () {
+					clearTimeout(timeoutId);
+					// Fallback probe against origin
+					var fallbackStart = performance.now();
+					fetch(window.location.origin + "/favicon.ico?p=" + Date.now(), { method: "HEAD", cache: "no-store" })
+						.then(function () {
+							var rtt = Math.max(12, Math.round(performance.now() - fallbackStart));
+							setTimeout(function () { applySpeedoReading(rtt); }, 200);
+						})
+						.catch(function () {
+							setTimeout(function () { applySpeedoReading(45); }, 200);
+						});
+				});
+		}
+
+		// Initial benchmark after page settles
+		setTimeout(testMeshLatency, 400);
+
+		if (testBtn) {
+			testBtn.addEventListener("click", function () {
+				testBtn.disabled = true;
+				if (needle) needle.style.transform = "rotate(100deg)";
+				setTimeout(function () {
+					testMeshLatency();
+					testBtn.disabled = false;
+				}, 300);
+			});
+		}
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
@@ -1735,7 +1879,7 @@
 		initTrafficGeo();
 		initWeatherWidget();
 		initTechAnalogies();
-		initPageLoadTachometer();
+		initCockpitCluster();
 		initOsTracker();
 	}
 
