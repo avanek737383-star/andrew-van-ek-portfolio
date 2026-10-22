@@ -1563,7 +1563,7 @@
 
 	
 	function initPageLoadTachometer() {
-		var cluster = document.getElementById("home-tachometer-cluster");
+		var cluster = document.getElementById("home-instrument-cluster") || document.getElementById("home-tachometer-cluster");
 		if (!cluster) return;
 
 		var needle = document.getElementById("tach-needle-group");
@@ -1730,7 +1730,7 @@
 	
 	function initCockpitCluster() {
 		// 1. Tachometer Controller
-		initCockpitCluster();
+		initPageLoadTachometer();
 
 		// 2. Analog Odometer Drum Roll Controller
 		initAnalogOdometer();
@@ -1801,6 +1801,11 @@
 
 			if (needle) {
 				needle.style.transform = "rotate(" + deg + "deg)";
+			}
+			if (arcActive) {
+				var fraction = Math.max(0, Math.min(1, mph / 120));
+				var offset = Math.round(288 * (1 - fraction));
+				arcActive.style.strokeDashoffset = String(offset);
 			}
 			if (mphDisplay) {
 				mphDisplay.textContent = mph;
