@@ -1550,6 +1550,145 @@
 		window.setInterval(fetchWeather, 300000); // 5 min interval
 	}
 
+	
+	function initPageLoadTachometer() {
+		var cluster = document.getElementById("home-tachometer-cluster");
+		if (!cluster) return;
+
+		var needle = document.getElementById("tach-needle-group");
+		var curDisplay = document.getElementById("tach-current-ms");
+		var recDisplay = document.getElementById("tach-record-ms");
+		var statusBadge = document.getElementById("tach-status-badge");
+		var newRecordBadge = document.getElementById("tach-new-record-badge");
+		var countDisplay = document.getElementById("tach-visits-count");
+		var revBtn = document.getElementById("tach-rev-btn");
+
+		var STORAGE_RECORD_KEY = "vanek_tach_fastest_record_ms";
+		var STORAGE_COUNT_KEY = "vanek_tach_load_count";
+
+		var savedRecord = parseInt(localStorage.getItem(STORAGE_RECORD_KEY), 10);
+		var visitCount = parseInt(localStorage.getItem(STORAGE_COUNT_KEY), 10) || 0;
+		visitCount += 1;
+		localStorage.setItem(STORAGE_COUNT_KEY, visitCount);
+		if (countDisplay) countDisplay.textContent = visitCount;
+
+		if (savedRecord && !isNaN(savedRecord) && savedRecord > 0) {
+			if (recDisplay) recDisplay.textContent = savedRecord + " ms";
+		} else {
+			if (recDisplay) recDisplay.textContent = "-- ms";
+		}
+
+		function mapMsToDegrees(ms) {
+			// Sweep from -110deg (0 ms) to +110deg (1500+ ms)
+			var maxMs = 1500;
+			var clamped = Math.max(0, Math.min(ms, maxMs));
+			var pct = clamped / maxMs;
+			return -110 + (pct * 220);
+		}
+
+		function applySpeedReading(ms, isInteractive) {
+			var deg = mapMsToDegrees(ms);
+			if (needle) {
+				needle.style.transform = "rotate(" + deg + "deg)";
+			}
+			if (curDisplay) {
+				curDisplay.textContent = ms;
+			}
+
+			if (statusBadge) {
+				statusBadge.className = "tach-badge";
+				if (ms <= 300) {
+					statusBadge.classList.add("zone-green");
+					statusBadge.textContent = "⚡ Blazing Fast (" + ms + "ms)";
+				} else if (ms <= 750) {
+					statusBadge.classList.add("zone-yellow");
+					statusBadge.textContent = "🚀 Optimal Response (" + ms + "ms)";
+				} else {
+					statusBadge.classList.add("zone-red");
+					statusBadge.textContent = "⚠️ Heavy Traffic (" + ms + "ms)";
+				}
+			}
+
+			var currentBest = parseInt(localStorage.getItem(STORAGE_RECORD_KEY), 10);
+			if (!currentBest || isNaN(currentBest) || ms < currentBest) {
+				localStorage.setItem(STORAGE_RECORD_KEY, ms);
+				if (recDisplay) recDisplay.textContent = ms + " ms";
+				if (newRecordBadge) {
+					newRecordBadge.hidden = false;
+				}
+			} else {
+				if (newRecordBadge && !isInteractive) newRecordBadge.hidden = true;
+			}
+		}
+
+		function measurePageLoad() {
+			var loadMs = 0;
+			try {
+				var navEntries = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
+				if (navEntries && navEntries.length > 0) {
+					var nav = navEntries[0];
+					if (nav.loadEventEnd > 0) {
+						loadMs = Math.round(nav.loadEventEnd - nav.startTime);
+					} else if (nav.domContentLoadedEventEnd > 0) {
+						loadMs = Math.round(nav.domContentLoadedEventEnd - nav.startTime);
+					} else if (nav.responseEnd > 0) {
+						loadMs = Math.round(nav.responseEnd - nav.startTime);
+					}
+				}
+				if (loadMs <= 0 && window.performance && performance.timing) {
+					var t = performance.timing;
+					if (t.loadEventEnd > 0) {
+						loadMs = Math.max(1, Math.round(t.loadEventEnd - t.navigationStart));
+					} else if (t.domContentLoadedEventEnd > 0) {
+						loadMs = Math.max(1, Math.round(t.domContentLoadedEventEnd - t.navigationStart));
+					}
+				}
+			} catch (e) {}
+
+			if (loadMs <= 0) {
+				loadMs = Math.round(performance.now());
+			}
+
+			setTimeout(function() {
+				applySpeedReading(loadMs, false);
+			}, 300);
+		}
+
+		if (document.readyState === "complete") {
+			setTimeout(measurePageLoad, 100);
+		} else {
+			window.addEventListener("load", function() {
+				setTimeout(measurePageLoad, 100);
+			});
+		}
+
+		if (revBtn) {
+			revBtn.addEventListener("click", function() {
+				revBtn.disabled = true;
+				if (newRecordBadge) newRecordBadge.hidden = true;
+				if (needle) {
+					needle.style.transform = "rotate(105deg)";
+				}
+				var start = performance.now();
+				fetch(window.location.href + "?tach=" + Date.now(), { method: "HEAD", cache: "no-store" })
+					.then(function() {
+						var pingMs = Math.max(8, Math.round(performance.now() - start));
+						setTimeout(function() {
+							applySpeedReading(pingMs, true);
+							revBtn.disabled = false;
+						}, 350);
+					})
+					.catch(function() {
+						var fallbackMs = Math.max(15, Math.round(performance.now() - start));
+						setTimeout(function() {
+							applySpeedReading(fallbackMs, true);
+							revBtn.disabled = false;
+						}, 350);
+					});
+			});
+		}
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
@@ -1558,6 +1697,7 @@
 		initTrafficGeo();
 		initWeatherWidget();
 		initTechAnalogies();
+		initPageLoadTachometer();
 	}
 
 	if (document.readyState === "loading") {

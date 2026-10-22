@@ -40,6 +40,7 @@
                     <li><a href="maintenance.html">Maintenance</a></li>
 					<li><a href="lab.html">Live AI Lab</a></li>
 					<li><a href="council.html">AI Chatroom</a></li>
+					<li><a href="chat.html">AI Assistant</a></li>
 					<li><a href="moltbook.html">Moltbook Agent</a></li>
 <li><a href="about.html">About</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -78,6 +79,71 @@
 						<div class="telemetry-status-box">
 							<span class="telemetry-live-badge"><span class="telemetry-pulse"></span> Systems Online</span>
 							<span class="telemetry-refresh-tag" id="telemetry-refresh-tag">Auto-refresh 30s</span>
+						</div>
+					</div>
+
+										<!-- Live Performance Tachometer Instrument -->
+					<div class="telemetry-tach-cluster" id="home-tachometer-cluster" aria-label="Page Load Speed Tachometer">
+						<div class="tach-container">
+							<div class="tach-gauge-wrap">
+								<svg class="tach-svg" viewBox="0 0 240 160" aria-hidden="true">
+									<!-- Track background -->
+									<path class="tach-track-bg" d="M 30 140 A 90 90 0 1 1 210 140" fill="none" stroke="#e2e8f0" stroke-width="14" stroke-linecap="round"/>
+									<!-- Color Zones: Green (0-300ms), Yellow (300-750ms), Red (750-1500ms) -->
+									<path class="tach-arc-green" d="M 30 140 A 90 90 0 0 1 76 56" fill="none" stroke="#10b981" stroke-width="14" stroke-linecap="round"/>
+									<path class="tach-arc-yellow" d="M 76 56 A 90 90 0 0 1 164 56" fill="none" stroke="#f59e0b" stroke-width="14"/>
+									<path class="tach-arc-red" d="M 164 56 A 90 90 0 0 1 210 140" fill="none" stroke="#ef4444" stroke-width="14" stroke-linecap="round"/>
+									
+									<!-- Tick Marks -->
+									<line x1="33" y1="140" x2="43" y2="135" stroke="#64748b" stroke-width="2"/>
+									<line x1="68" y1="67" x2="74" y2="76" stroke="#64748b" stroke-width="2"/>
+									<line x1="120" y1="36" x2="120" y2="48" stroke="#64748b" stroke-width="2.5"/>
+									<line x1="172" y1="67" x2="166" y2="76" stroke="#64748b" stroke-width="2"/>
+									<line x1="207" y1="140" x2="197" y2="135" stroke="#64748b" stroke-width="2"/>
+
+									<!-- Tick Labels -->
+									<text x="24" y="154" class="tach-tick-lbl">0</text>
+									<text x="56" y="52" class="tach-tick-lbl">300</text>
+									<text x="120" y="28" class="tach-tick-lbl" text-anchor="middle">750</text>
+									<text x="176" y="52" class="tach-tick-lbl">1200</text>
+									<text x="210" y="154" class="tach-tick-lbl">1500+</text>
+
+									<!-- Needle Group (Rotates around 120, 140) -->
+									<g id="tach-needle-group" class="tach-needle-group">
+										<line id="tach-needle" x1="120" y1="140" x2="120" y2="44" stroke="#dc2626" stroke-width="3.5" stroke-linecap="round"/>
+										<circle cx="120" cy="140" r="10" fill="#002d5a"/>
+										<circle cx="120" cy="140" r="4" fill="#ffffff"/>
+									</g>
+								</svg>
+							</div>
+
+							<div class="tach-data-panel">
+								<div class="tach-title-row">
+									<span class="tach-eyebrow">Client &amp; CDN Telemetry</span>
+									<span class="tach-new-record-badge" id="tach-new-record-badge" hidden>🏆 NEW FASTEST RECORD!</span>
+								</div>
+								<div class="tach-main-speed">
+									<span class="tach-speed-num" id="tach-current-ms">--</span>
+									<span class="tach-speed-unit">ms</span>
+									<span class="tach-badge zone-green" id="tach-status-badge">Clocking Speed...</span>
+								</div>
+								<p class="tach-desc">Time to First Interactive Render measured live in your browser via the Navigation Timing API.</p>
+								
+								<div class="tach-stats-row">
+									<div class="tach-stat-item">
+										<span class="tach-stat-label">🏆 Fastest Record (High Score)</span>
+										<strong class="tach-stat-val" id="tach-record-ms">-- ms</strong>
+									</div>
+									<div class="tach-stat-item">
+										<span class="tach-stat-label">🏎️ Visits Clocked</span>
+										<strong class="tach-stat-val" id="tach-visits-count">1</strong>
+									</div>
+									<button type="button" class="tach-rev-btn" id="tach-rev-btn" title="Click to ping the server and rev the tachometer live">
+										<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+										Rev / Re-Test
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 

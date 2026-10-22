@@ -32,6 +32,7 @@
                     <li><a href="maintenance.html">Maintenance</a></li>
 					<li><a href="lab.html">Live AI Lab</a></li>
 					<li><a href="council.html">AI Chatroom</a></li>
+					<li><a href="chat.html">AI Assistant</a></li>
 					<li><a href="moltbook.html">Moltbook Agent</a></li>
 <li><a href="about.html">About</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -40,6 +41,74 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="assistant-two-brains-title">
+<h2 id="assistant-two-brains-title">One Assistant, Two Brains: Self-Updating AI Assistant on Google Cloud</h2>
+<p class="project-status"><span class="status-badge project-completed">Live &amp; Deployed</span> <span>Cloud Run &middot; Vertex AI Agent Builder &middot; SharePoint REST API &middot; Updated <time datetime="2026-10-22">October 22, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How a &ldquo;can I just add a bot in Teams?&rdquo; idea became a self-updating AI assistant on Google Cloud &mdash; conceived on a Tuesday, live by Wednesday night.</p>
+
+<h3>The idea</h3>
+<p>It started with a simple want: a chatbot I could message like a person. I work at the GVSU IT Service Desk, where I answer the same questions over and over &mdash; how to register a game console on the dorm network, where a form lives, what laptop a computing student should buy &mdash; and my &ldquo;system&rdquo; for that knowledge was a stack of bookmarks and KB articles I could never find fast enough. At the same time I&rsquo;m a student, and my coursework lived in a OneDrive folder of hundreds of files: lecture notes, transcripts, screenshots, worksheets, study guides. None of it searchable as a whole.</p>
+<p>So: one assistant with two brains. My service-desk knowledge for work, my class materials for studying &mdash; and a switch to choose which brain answers. I designed the switch to sit right by the message input, like ChatGPT&rsquo;s model picker: <strong>Service Desk / Classes / Everything.</strong></p>
+
+<h3>First direction: Microsoft Teams (and why it died)</h3>
+<p>The original plan was a Teams bot I could add like a contact. Research killed it quickly: personal Teams can&rsquo;t sideload custom bots as contacts, and Zoom bots aren&rsquo;t contacts either. I also already had a half-built Teams bot sitting in Google Cloud from an earlier attempt &mdash; it answered every message with a 503 error, because its Microsoft credentials were never configured. On October 21 I scrapped Teams and Azure entirely: <strong>Google Cloud would be the brain, a simple web page would be the face.</strong> The simplest thing that could possibly work.</p>
+
+<h3>What got built</h3>
+<ul>
+  <li>A web chat app (Python/Flask on Google Cloud Run) with the mode switcher by the input, and answers that cite their sources</li>
+  <li>A Vertex AI Agent Builder (Discovery Engine) search engine combining two data stores, with generative summaries</li>
+  <li><strong>Brain one &mdash; Service Desk:</strong> 649 GVSU IT knowledge-base documents</li>
+  <li><strong>Brain two &mdash; Classes:</strong> ~977 documents synced from my OneDrive class folders to Cloud Storage, updated automatically</li>
+  <li>A daily sync job (Cloud Run Job triggered by Cloud Scheduler at 3 AM) that walks the OneDrive folder tree via SharePoint&rsquo;s REST API, downloads new/changed files, generates a dynamic course-list index, and replaces the corpus in Cloud Storage</li>
+</ul>
+
+<h3>The problems that made it interesting</h3>
+<ul class="timeline">
+  <li><span class="t">The 1-store limit</span>
+  Agent Builder can search multiple data stores in one engine &mdash; but <em>only if</em> you choose &ldquo;Generic&rdquo; at engine-creation time. Pick anything else and it silently locks the engine to a single store forever. Caught this before writing code by testing the console first; rebuilt the engine as Generic so Service Desk and Classes could share one brain.</li>
+  <li><span class="t">The OneDrive sync marathon</span>
+  Connecting to GVSU OneDrive without admin consent (which would make the official routes painful) meant using the folder&rsquo;s anyone-with-the-link sharing through SharePoint&rsquo;s REST API directly &mdash; proven with a server-side test first. The sync then failed in stages, each diagnosed from logs: deep folder recursion hit SharePoint errors; the folder walk had to be hardened (loop protection, depth caps, per-folder error recording); then it ran out of memory at Cloud Run&rsquo;s default; then it outgrew the 15-minute web-request timeout &mdash; so it was re-platformed from a web service into a background job with an hour-long window. That run succeeded: <strong>403 folders, 1,937 files walked, 1,024 documents transferred, zero errors.</strong></li>
+  <li><span class="t">The apostrophe bug</span>
+  Two folders kept failing. Root cause: their names contain apostrophes (&ldquo;THis Week&rsquo;s Lecture Screenshots&rdquo;), which break the single-quoted path format in SharePoint&rsquo;s API. Escaping the quotes fixed the last two folders.</li>
+  <li><span class="t">The martial-arts incident</span>
+  With coursework imported, I asked the bot &ldquo;What classes am I taking?&rdquo; &mdash; and it confidently described a Martial Arts Academy&rsquo;s schedule. Kids 6&ndash;12, adults 13+, black-belt instructors. It had retrieved my CIS 460 coursework, which is full of a textbook case study <em>about</em> a martial arts academy &mdash; and no document in the pile actually listed my courses. Retrieval was working; the corpus had a hole in it. The fix became a design principle: the sync now <strong>generates the course list from my actual folder names every night</strong>, so the answer is derived from reality and can&rsquo;t rot.</li>
+  <li><span class="t">The silent summarizer</span>
+  Even then, Classes mode wouldn&rsquo;t produce summaries &mdash; just Google&rsquo;s canned &ldquo;A summary could not be generated.&rdquo; Controlled API probes (same question against different stores, same store with different request shapes) isolated it: the platform&rsquo;s summarizer classifies my classes store as &ldquo;out of domain&rdquo; and refuses, full stop. Rather than fight it, the chat app now detects a skipped summary and composes the answer from the documents&rsquo; own text excerpts &mdash; arguably more trustworthy, since it&rsquo;s quoting my files. (A parser bug in that fallback was caught by testing against realistic data objects instead of friendly mocks &mdash; a lesson that stuck.)</li>
+  <li><span class="t">The guardrail</span>
+  The chat is public by design, so the last piece was the $10 budget alert: if the project ever spends $5 in a month, I get an email. It normally spends $0.00.</li>
+</ul>
+
+<h3>What it does today</h3>
+<p>Ask it what classes I&rsquo;m taking: &ldquo;CIS 430, CIS 450, CIS 457, CIS 460&rdquo; &mdash; from the generated course list. Ask what my study guide says to focus on: it quotes my own notes (probable cause, the third-party doctrine&hellip;). Ask how to register a device on the dorm network: the full service-desk walkthrough, help-desk number included, KB articles cited. Every night at 3 AM it re-syncs itself, so this week&rsquo;s lecture screenshots are just&hellip; in there. Total running cost so far: <strong>$0.00</strong>, against a $1,000 trial credit.</p>
+
+<h3>What I took from it</h3>
+<ul>
+  <li>Platform constraints are design inputs, not surprises &mdash; if you probe them early (single-store engines, tenant restrictions, timeout ceilings).</li>
+  <li>Derive indexes from reality. Hand-maintained pointer documents rot; a course list regenerated from the folder tree nightly can&rsquo;t.</li>
+  <li>Debug with receipts: change one variable, read the platform&rsquo;s own error, write it down. Every failure above had a specific, boring, fixable cause.</li>
+  <li>Security is a dial, not a switch: public + monitored + budget-capped was the right setting for a tool whose whole value is zero-friction access at work.</li>
+</ul>
+
+<h3>Stack</h3>
+<ul class="chips">
+  <li>Google Cloud Run</li>
+  <li>Cloud Scheduler</li>
+  <li>Cloud Storage</li>
+  <li>Vertex AI Agent Builder / Discovery Engine</li>
+  <li>Python (Flask)</li>
+  <li>SharePoint REST API</li>
+  <li>HTML/CSS</li>
+  <li>GitHub + Cloudflare (this site)</li>
+</ul>
+
+<div class="cta">
+  <p><strong>Try it live:</strong> The assistant is active on this site &mdash;
+  <a href="chat.html">open the AI assistant chat</a> or read the <a href="project-assistant.html">standalone project write-up</a>.</p>
+</div>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Built with Muse, Meta&rsquo;s AI assistant, as a pair-programming and infrastructure partner across two very long days in October 2026.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="gvsu-chatbot-testing-title">
 <h2 id="gvsu-chatbot-testing-title">GVSU IT Service Desk: AI-Assisted Chatbot Workflow Testing</h2>
 <p class="project-status"><span class="status-badge project-in-progress">Follow-up in Progress</span> <span>Initial testing &amp; documentation complete &middot; Six test runs &middot; Updated <time datetime="2026-10-20">October 20, 2026</time></span></p>
