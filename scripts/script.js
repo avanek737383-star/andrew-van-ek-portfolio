@@ -1675,6 +1675,7 @@
 
 		if (revBtn) {
 			revBtn.addEventListener("click", function() {
+				if (revBtn.disabled) return;
 				revBtn.disabled = true;
 				if (newRecordBadge) newRecordBadge.hidden = true;
 				if (needle) {
@@ -1686,16 +1687,27 @@
 						var pingMs = Math.max(8, Math.round(performance.now() - start));
 						setTimeout(function() {
 							applySpeedReading(pingMs, true);
-							revBtn.disabled = false;
 						}, 350);
 					})
 					.catch(function() {
 						var fallbackMs = Math.max(15, Math.round(performance.now() - start));
 						setTimeout(function() {
 							applySpeedReading(fallbackMs, true);
-							revBtn.disabled = false;
 						}, 350);
 					});
+
+				var cooldown = 3;
+				revBtn.textContent = "Revving (" + cooldown + "s)";
+				var timer = setInterval(function () {
+					cooldown--;
+					if (cooldown <= 0) {
+						clearInterval(timer);
+						revBtn.disabled = false;
+						revBtn.textContent = "Rev Dial";
+					} else {
+						revBtn.textContent = "Revving (" + cooldown + "s)";
+					}
+				}, 1000);
 			});
 		}
 	}
@@ -1866,12 +1878,25 @@
 
 		if (testBtn) {
 			testBtn.addEventListener("click", function () {
+				if (testBtn.disabled) return;
 				testBtn.disabled = true;
 				if (needle) needle.style.transform = "rotate(100deg)";
 				setTimeout(function () {
 					testMeshLatency();
-					testBtn.disabled = false;
-				}, 300);
+				}, 200);
+
+				var cooldown = 4;
+				testBtn.textContent = "Cooldown (" + cooldown + "s)";
+				var timer = setInterval(function () {
+					cooldown--;
+					if (cooldown <= 0) {
+						clearInterval(timer);
+						testBtn.disabled = false;
+						testBtn.textContent = "Ping Mesh";
+					} else {
+						testBtn.textContent = "Cooldown (" + cooldown + "s)";
+					}
+				}, 1000);
 			});
 		}
 	}
