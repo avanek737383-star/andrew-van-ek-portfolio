@@ -4,7 +4,7 @@
 		<title>Nemo Sudoku Vision &amp; AI Solver | Andrew Van Ek Portfolio</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/styles.css?v=20261022-nav-fix-1">
-		<link rel="stylesheet" href="css/sudoku.css?v=20261023-2">
+		<link rel="stylesheet" href="css/sudoku.css?v=20261023-3">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Upload a photo or newspaper clipping of any Sudoku puzzle to watch Nemo extract digits, mark candidates, and stream real-time pedagogical AI reasoning.">
@@ -174,30 +174,35 @@
 								<span class="terminal-pulse" id="terminal-pulse" aria-hidden="true"></span>
 								<span id="terminal-title">Nemo Live Cognitive Stream</span>
 							</div>
-							<span class="terminal-badge" id="terminal-status">Idle</span>
+							<div style="display:flex; align-items:center; gap:8px;">
+								<span class="terminal-badge" id="terminal-status">Idle</span>
+								<button type="button" class="mobile-collapse-btn" id="mobile-collapse-btn" aria-expanded="false">Log History ▾</button>
+							</div>
 						</header>
 
-						<div class="terminal-metrics">
-							<div class="metric-box">
-								<span>Deductions</span>
-								<strong id="metric-deductions">0</strong>
+						<div class="terminal-collapsible-body" id="terminal-collapsible-body">
+							<div class="terminal-metrics">
+								<div class="metric-box">
+									<span>Deductions</span>
+									<strong id="metric-deductions">0</strong>
+								</div>
+								<div class="metric-box">
+									<span>Backtracks</span>
+									<strong id="metric-backtracks">0</strong>
+								</div>
+								<div class="metric-box">
+									<span>Remaining</span>
+									<strong id="metric-remaining">0</strong>
+								</div>
+								<div class="metric-box">
+									<span>Time</span>
+									<strong id="metric-time">0.0s</strong>
+								</div>
 							</div>
-							<div class="metric-box">
-								<span>Backtracks</span>
-								<strong id="metric-backtracks">0</strong>
-							</div>
-							<div class="metric-box">
-								<span>Remaining</span>
-								<strong id="metric-remaining">0</strong>
-							</div>
-							<div class="metric-box">
-								<span>Time</span>
-								<strong id="metric-time">0.0s</strong>
-							</div>
-						</div>
 
-						<div class="terminal-feed-container">
-							<div class="terminal-log-feed" id="terminal-log-feed" role="log" aria-live="polite"></div>
+							<div class="terminal-feed-container">
+								<div class="terminal-log-feed" id="terminal-log-feed" role="log" aria-live="polite"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -209,7 +214,7 @@
 			</footer>
 		</div>
 
-		<script src="scripts/sudoku.js?v=20261023-2"></script>
+		<script src="scripts/sudoku.js?v=20261023-3"></script>
 		<script src="scripts/script.js?v=20261022-nav-fix-1"></script>
 	</body>
 </html>

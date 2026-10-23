@@ -197,6 +197,21 @@
         mindState = document.getElementById("nemo-mind-state");
         mindText = document.getElementById("nemo-mind-text");
 
+        const mobileCollapseBtn = document.getElementById("mobile-collapse-btn");
+        const terminalCollapsibleBody = document.getElementById("terminal-collapsible-body");
+
+        if (window.innerWidth <= 980 && terminalCollapsibleBody) {
+            terminalCollapsibleBody.classList.add("mobile-collapsed");
+        }
+
+        if (mobileCollapseBtn && terminalCollapsibleBody) {
+            mobileCollapseBtn.addEventListener("click", () => {
+                const isCollapsed = terminalCollapsibleBody.classList.toggle("mobile-collapsed");
+                mobileCollapseBtn.textContent = isCollapsed ? "Log History ▾" : "Hide Log ▴";
+                mobileCollapseBtn.setAttribute("aria-expanded", !isCollapsed);
+            });
+        }
+
         createGridDOM();
         bindEvents();
         loadPreset("newspaper");
