@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Nemo Sudoku Vision &amp; AI Solver | Andrew Van Ek Portfolio</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css?v=20261022-nav-fix-1">
+		<link rel="stylesheet" href="css/sudoku.css?v=20261023-1">
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Upload a photo or newspaper clipping of any Sudoku puzzle to watch Nemo extract digits, mark candidates, and stream real-time pedagogical AI reasoning.">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://andrewtvanekportfolio.online/sudoku.html">
+		<meta property="og:title" content="Nemo Sudoku Vision &amp; AI Solver | Andrew Van Ek Portfolio">
+		<meta property="og:description" content="Watch Nemo, Andrew's on-premise AI, extract and solve Sudoku puzzles with live reasoning logs and candidate visualization.">
+		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<nav class="tablet-desktop">
+				<ul id="site-navigation">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+							<li><a href="lab.html">Live AI Lab</a></li>
+							<li><a href="council.html">AI Chatroom</a></li>
+							<li><a href="moltbook.html">Moltbook Agent</a></li>
+							<li><a href="sudoku.html" aria-current="page">Nemo Sudoku Solver</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="stats.html">Stats for Nerds</a></li>
+							<li><a href="maintenance.html">Maintenance Log</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="job.html">Skills &amp; Toolkit</a></li>
+							<li><a href="resume.html">Resume</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li><a href="privacy.html">Privacy Policy</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="sudoku-container">
+				<!-- Hero -->
+				<header class="sudoku-hero">
+					<span class="sudoku-hero-eyebrow">Cognitive AI &amp; Computer Vision</span>
+					<h1>Nemo Sudoku Vision &amp; Reasoning Engine</h1>
+					<p class="sudoku-hero-desc">
+						Upload an image or screenshot of any Sudoku puzzle—from a morning newspaper, paperback book, or phone app—or select a sample below. Watch <strong>Nemo</strong> (the AI personality behind this portfolio) analyze the board, pencil-mark candidates, and stream its step-by-step cognitive deduction in real time.
+					</p>
+					<div class="sudoku-pills">
+						<span class="sudoku-pill"><span class="sudoku-pill-dot"></span> Event-Driven · 0% Idle Compute</span>
+						<span class="sudoku-pill"><span class="sudoku-pill-dot"></span> Pedagogical Deduction Rules</span>
+						<span class="sudoku-pill"><span class="sudoku-pill-dot"></span> Minimum Remaining Values (MRV)</span>
+						<span class="sudoku-pill"><span class="sudoku-pill-dot"></span> Live Candidate Pencil Marks</span>
+					</div>
+				</header>
+
+				<!-- Image Upload & Presets Card -->
+				<section class="sudoku-input-card" aria-labelledby="input-title">
+					<h2 id="input-title" class="sudoku-section-title">Step 1: Provide a Sudoku Puzzle</h2>
+					<p class="sudoku-section-subtitle">Drop a photo or screenshot from your computer, or click a pre-scanned sample to begin.</p>
+
+					<div class="sudoku-dropzone" id="sudoku-dropzone">
+						<input type="file" id="sudoku-file-input" class="sudoku-file-input" accept="image/*" aria-label="Upload Sudoku image">
+						<span class="sudoku-drop-icon" aria-hidden="true">📷</span>
+						<div class="sudoku-drop-text">Drag &amp; drop a Sudoku photo here, or click to browse</div>
+						<div class="sudoku-drop-hint">Supports PNG, JPG, and WebP clippings or camera photos</div>
+					</div>
+
+					<div class="sudoku-samples-row">
+						<span class="sudoku-samples-label">Or Select a Sample:</span>
+						<button type="button" class="sudoku-sample-btn active" data-preset="newspaper">📰 Newspaper (Easy)</button>
+						<button type="button" class="sudoku-sample-btn" data-preset="mobile">📱 Phone App (Medium)</button>
+						<button type="button" class="sudoku-sample-btn" data-preset="puzzlebook">✍️ Puzzle Book (Hard)</button>
+						<button type="button" class="sudoku-sample-btn" data-preset="evil">⚡ Diabolical Escargot</button>
+					</div>
+				</section>
+
+				<!-- Workspace: Visual Image + Digital Interactive Board -->
+				<section class="sudoku-workspace" aria-label="Sudoku Workspace">
+					<!-- Left: Visual Image / Scan -->
+					<div class="sudoku-board-card">
+						<h3 class="sudoku-section-title">Input Scan &amp; Grid Slicing</h3>
+						<p class="sudoku-section-subtitle">Optical scan preview with bounding alignment grid.</p>
+						<div class="sudoku-image-container">
+							<canvas id="sudoku-image-canvas" class="sudoku-image-preview" width="440" height="440"></canvas>
+						</div>
+					</div>
+
+					<!-- Right: Digital Board & Controls -->
+					<div class="sudoku-board-card">
+						<h3 class="sudoku-section-title">Digital Grid &amp; Solver Controls</h3>
+						<p class="sudoku-section-subtitle">Click any cell to edit clues (1–9, Backspace to clear), or watch Nemo deduce the solution.</p>
+
+						<div class="sudoku-grid-wrapper">
+							<div class="sudoku-grid" id="sudoku-grid" role="grid" aria-label="Sudoku 9 by 9 Grid"></div>
+						</div>
+
+						<div class="sudoku-controls">
+							<div class="sudoku-btn-group">
+								<button type="button" class="sudoku-btn sudoku-btn-primary" id="btn-solve-play">
+									<span aria-hidden="true">&#9654;</span> Watch Nemo Solve
+								</button>
+								<button type="button" class="sudoku-btn sudoku-btn-secondary" id="btn-solve-step">
+									<span aria-hidden="true">&#9654;&#10073;</span> Step
+								</button>
+								<button type="button" class="sudoku-btn sudoku-btn-secondary" id="btn-solve-reset">
+									Reset
+								</button>
+								<button type="button" class="sudoku-btn sudoku-btn-secondary" id="btn-solve-clear">
+									Clear
+								</button>
+							</div>
+
+							<div class="sudoku-speed-control">
+								<label for="speed-slider">Speed:</label>
+								<input type="range" id="speed-slider" class="sudoku-slider" min="1" max="5" value="2">
+								<span id="speed-label">Normal</span>
+							</div>
+
+							<div style="display:flex; align-items:center; gap:6px; font-size:0.85rem; color:#475569;">
+								<input type="checkbox" id="toggle-candidates" checked>
+								<label for="toggle-candidates">Show Pencil Marks</label>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Nemo Live Thought Feed -->
+				<section class="sudoku-terminal-card" aria-labelledby="terminal-title">
+					<header class="terminal-header">
+						<div class="terminal-header-title">
+							<span class="terminal-pulse" id="terminal-pulse" aria-hidden="true"></span>
+							<span id="terminal-title">Nemo Live Cognitive Thought Stream</span>
+						</div>
+						<span class="terminal-badge" id="terminal-status">Idle</span>
+					</header>
+
+					<div class="terminal-metrics">
+						<div class="metric-box">
+							<span>Deductions</span>
+							<strong id="metric-deductions">0</strong>
+						</div>
+						<div class="metric-box">
+							<span>Backtracks</span>
+							<strong id="metric-backtracks">0</strong>
+						</div>
+						<div class="metric-box">
+							<span>Remaining Cells</span>
+							<strong id="metric-remaining">0</strong>
+						</div>
+						<div class="metric-box">
+							<span>Time</span>
+							<strong id="metric-time">0.0s</strong>
+						</div>
+					</div>
+
+					<div class="terminal-log-feed" id="terminal-log-feed" role="log" aria-live="polite"></div>
+				</section>
+			</div>
+
+			<footer>
+				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+				<p>Website last modified: <time datetime="2026-10-23">October 23, 2026</time></p>
+			</footer>
+		</div>
+
+		<script src="scripts/sudoku.js?v=20261023-1"></script>
+		<script src="scripts/script.js?v=20261022-nav-fix-1"></script>
+	</body>
+</html>

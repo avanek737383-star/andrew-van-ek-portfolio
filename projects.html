@@ -36,6 +36,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
+						<li><a href="sudoku.html">Nemo Sudoku Solver</a></li>
 					</ul>
 				</li>
 				<li class="nav-item-dropdown">
@@ -802,6 +803,25 @@
 <p>The gateway retains five requests per rolling minute per visitor IP, request and answer size limits, one website inference at a time, and screening for unrelated or instruction-changing requests. Client-supplied conversation history is rejected, so each question should stand on its own. Private, rotated prompt logs use pseudonymous client identifiers and redact common credential patterns; the chat interface discloses logging.</p>
 <p>I tested distinct generated answers to portfolio questions and checked that unrelated and instruction-changing requests were refused. The separate phone assistant shares the same Windows model but has its own general-purpose prompt and spoken-response pipeline. Both request a thirty-minute idle unload timer; the gateway allows additional time for loading and generation. I will continue checking answer quality and portfolio coverage as projects change.</p>
 <p><a href="lab.html">View the Live AI Lab</a> for read-only system activity.</p>
+</section>
+
+<section class="project-entry" aria-labelledby="nemo-sudoku-title">
+<h2 id="nemo-sudoku-title">Nemo Sudoku Vision &amp; Cognitive Reasoning Engine</h2>
+<p class="project-status"><span class="status-badge project-completed">Live &amp; Interactive</span> <span>Computer Vision &middot; Heuristic Deduction &middot; Zero-Idle Architecture &middot; <time datetime="2026-10-23">October 23, 2026</time></span></p>
+
+<h3>The Concept</h3>
+<p>Inspired by interactive browser-based portfolio demos, I wanted to showcase my AI persona (<strong>Nemo</strong>) performing an active, visible problem-solving task rather than just answering static questions in a chat widget. While game bots like Connect 4 are typically driven by canned minimax tree searches, Sudoku provides a compelling stage for true cognitive reasoning: constraint propagation, candidate elimination, pedagogical rule explanation, and search-tree backtracking.</p>
+
+<h3>What Got Built</h3>
+<ul>
+  <li><strong>Optical Scan &amp; Grid Ingestion:</strong> A client-side drag-and-drop upload zone that accepts photos and screenshots of Sudoku puzzles (from morning newspapers, paperback puzzle books, or mobile screens) and renders an optical alignment grid overlay onto HTML5 Canvas. Includes four authentic pre-rendered styles (Newspaper, Modern Mobile App, Puzzle Book, and Diabolical Escargot).</li>
+  <li><strong>Interactive 9&times;9 Digital Verification Grid:</strong> A responsive, keyboard-navigable 9&times;9 board with 3&times;3 box demarcations, arrow-key navigation, candidate pencil marking, and manual digit override before initiating solving.</li>
+  <li><strong>Pedagogical Cognitive Engine:</strong> A human-like deduction engine that evaluates candidate numbers (1&ndash;9) per cell, prioritizes deterministic logical rules (Naked Singles and Hidden Singles across rows, columns, and 3&times;3 boxes), and falls back to Minimum Remaining Values (MRV) heuristic branching when pure deduction is exhausted.</li>
+  <li><strong>Live Cognitive Thought Stream:</strong> A dark terminal-style telemetry panel streaming Nemo&rsquo;s natural-language deductions in real time, with color-coded classification tags (<code>NAKED SINGLE</code>, <code>HIDDEN SINGLE</code>, <code>BRANCH CHOICE</code>, <code>BACKTRACK</code>), real-time deduction/backtrack counters, remaining cell tallies, and variable execution speeds ranging from pedagogical slow-step up to Turbo.</li>
+  <li><strong>Zero-Idle Compute Architecture:</strong> Because Sudoku extraction and heuristic solving are purely event-driven, the engine operates client-side with zero continuous GPU VRAM or CPU overhead on the backend infrastructure when idle.</li>
+</ul>
+
+<p><a href="sudoku.html">Try the Live Nemo Sudoku Solver &rarr;</a></p>
 </section>
 
 <section class="project-entry" aria-labelledby="phone-ai-title">
