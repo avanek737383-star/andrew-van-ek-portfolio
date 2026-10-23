@@ -1,12 +1,13 @@
 /**
- * Nemo Sudoku Vision & AI Cognitive Reasoning Engine
+ * Nemo Sudoku Vision & Cognitive Reasoning Engine
  * Part of Andrew Van Ek's Portfolio (andrewtvanekportfolio.online)
  * 
- * Demonstrates:
- * 1. Image extraction & canvas procedural rendering of authentic puzzles
- * 2. Visual constraint propagation with candidate pencil marks
- * 3. Human-like pedagogical deduction (Naked/Hidden singles, MRV backtracking)
- * 4. Nemo's live natural-language thought stream
+ * Features:
+ * 1. Human-like internal cognitive monologue generator
+ * 2. Side-by-side synchronized board & auto-scrolling thought stream
+ * 3. Prominent Nemo Mind HUD speech bubble directly above the grid
+ * 4. Realistic thinking pace (Story 2.5s to Turbo)
+ * 5. Procedural authentic puzzle styles + custom image upload
  */
 
 (function () {
@@ -87,7 +88,7 @@
     let solveSteps = [];
     let currentStepIndex = 0;
     let solveTimer = null;
-    let solveDelay = 180;
+    let solveDelay = 2500; // Default slow story pace
     let deductionCount = 0;
     let backtrackCount = 0;
     let solveStartTime = 0;
@@ -98,6 +99,73 @@
     let toggleCandidates, speedSlider, speedLabel;
     let logFeed, terminalPulse, terminalStatus;
     let metricDeductions, metricBacktracks, metricRemaining, metricTime;
+    let tabGrid, tabScan, gridPanel, scanPanel;
+    let mindBubble, mindState, mindText;
+
+    // Human Internal Self-Dialogue Library
+    function generateThoughtDialogue(type, info) {
+        const r1 = info.r + 1;
+        const c1 = info.c + 1;
+        const v = info.val;
+
+        if (type === "naked_single") {
+            const templates = [
+                `"Wait a second... look at row ${r1}, col ${c1}. Literally every other number 1 through 9 is already blocked. ${v} is the only survivor here. In you go!"`,
+                `"Scanning around (${r1}, ${c1})... aha! Row ${r1} and col ${c1} already have their digits filled out. ${v} has zero competition left in this cell."`,
+                `"Hold on, look at cell (${r1}, ${c1}). That's a pure naked single. All peer constraints are met—only a ${v} can legally fit here."`,
+                `"Nice! All other candidates for cell (${r1}, ${c1}) just evaporated. Locking in ${v} right now."`,
+                `"Oh, easy pickings! Cell (${r1}, ${c1}) has no other possible moves remaining. Dropping the ${v} down."`,
+                `"Check that out—cell (${r1}, ${c1}) was quietly waiting for us. Only a ${v} works here. Clean deduction!"`
+            ];
+            return templates[Math.floor(Math.random() * templates.length)];
+        }
+
+        if (type === "hidden_single") {
+            const templates = [
+                `"Hold up, let me inspect ${info.unit}... where on earth can a ${v} go? The other lines are blocked. Aha! Only cell (${r1}, ${c1}) can take it!"`,
+                `"Check out ${info.unit}! Look where the ${v} can fit. Every other open square in this unit is blocked by another ${v}. (${r1}, ${c1}) it is!"`,
+                `"Sneaky! In ${info.unit}, the number ${v} was trying to hide, but (${r1}, ${c1}) is the only legal square left. Locking that down."`,
+                `"Wait, let me double-check ${info.unit}... yep! None of the other open cells can legally take a ${v}. Forced move into (${r1}, ${c1})!"`,
+                `"Ooh, found a hidden single! In ${info.unit}, ${v} has nowhere else in the universe to go except (${r1}, ${c1}). That's a huge unlock."`
+            ];
+            return templates[Math.floor(Math.random() * templates.length)];
+        }
+
+        if (type === "branch_choice") {
+            const cList = (info.candidates || []).join(", ");
+            const templates = [
+                `"Alright, pure obvious logic has run a bit dry. Time to make an educated assumption so we don't stare at the wall. Cell (${r1}, ${c1}) is down to just [${cList}]. Let's test a branch..."`,
+                `"No immediate naked singles in sight. Let's look at cell (${r1}, ${c1})—it has the minimum remaining choices: [${cList}]. Let's explore one path!"`,
+                `"Time for some strategic search. Cell (${r1}, ${c1}) is a clean fork between [${cList}]. Following this branch down to see if it holds."`
+            ];
+            return templates[Math.floor(Math.random() * templates.length)];
+        }
+
+        if (type === "guess") {
+            const templates = [
+                `"Hypothesizing ${v} at cell (${r1}, ${c1}). Let's see if this creates a contradiction or opens up a path..."`,
+                `"Testing branch: What if cell (${r1}, ${c1}) is ${v}? Tracing constraint consequences forward..."`,
+                `"Taking a calculated gamble on ${v} at (${r1}, ${c1}). Fingers crossed this doesn't bite us in 3 steps..."`
+            ];
+            return templates[Math.floor(Math.random() * templates.length)];
+        }
+
+        if (type === "backtrack") {
+            const templates = [
+                `"Oof! Hit a brick wall. That hypothesis just starved another cell or caused a duplicate! Good thing I kept receipts—rewinding back and tossing out ${v} at (${r1}, ${c1})."`,
+                `"Nope, nope, contradiction! That ${v} was a dead end. Rolling back cell (${r1}, ${c1}) to test the alternate candidate."`,
+                `"Wait a minute... that doesn't work. The board just collided down this path. Erasing ${v} at (${r1}, ${c1}) and taking the other fork."`,
+                `"Dead end hit! My assumption was wrong. Reverting cell (${r1}, ${c1}) and eliminating ${v}. Back to solid ground!"`
+            ];
+            return templates[Math.floor(Math.random() * templates.length)];
+        }
+
+        if (type === "solved") {
+            return `"BOOM! Every single row, column, and 3×3 box checks out 100% clean. Zero contradictions. That was super satisfying!"`;
+        }
+
+        return info.explanation || "Analyzing constraints...";
+    }
 
     // Initialize
     function init() {
@@ -120,10 +188,19 @@
         metricRemaining = document.getElementById("metric-remaining");
         metricTime = document.getElementById("metric-time");
 
+        tabGrid = document.getElementById("tab-view-grid");
+        tabScan = document.getElementById("tab-view-scan");
+        gridPanel = document.getElementById("grid-view-panel");
+        scanPanel = document.getElementById("scan-view-panel");
+
+        mindBubble = document.getElementById("nemo-mind-bubble");
+        mindState = document.getElementById("nemo-mind-state");
+        mindText = document.getElementById("nemo-mind-text");
+
         createGridDOM();
         bindEvents();
         loadPreset("newspaper");
-        addLog("system", "Nemo Sudoku Cognitive Visualizer initialized. Ready for puzzle image input.");
+        addLog("system", "Nemo Cognitive Engine ready. Pick a puzzle preset or drop your own image above!");
     }
 
     // Build 9x9 DOM elements
@@ -137,12 +214,10 @@
                 cell.dataset.col = c;
                 cell.tabIndex = 0;
 
-                // Value span
                 const valSpan = document.createElement("span");
                 valSpan.className = "cell-val";
                 cell.appendChild(valSpan);
 
-                // Candidates 3x3
                 const candGrid = document.createElement("div");
                 candGrid.className = "sudoku-candidates-grid";
                 for (let n = 1; n <= 9; n++) {
@@ -161,6 +236,23 @@
 
     // Bind event listeners
     function bindEvents() {
+        // Tab switching (Grid vs Photo Scan)
+        if (tabGrid && tabScan) {
+            tabGrid.addEventListener("click", () => {
+                tabGrid.classList.add("active");
+                tabScan.classList.remove("active");
+                gridPanel.style.display = "block";
+                scanPanel.style.display = "none";
+            });
+
+            tabScan.addEventListener("click", () => {
+                tabScan.classList.add("active");
+                tabGrid.classList.remove("active");
+                gridPanel.style.display = "none";
+                scanPanel.style.display = "block";
+            });
+        }
+
         gridEl.addEventListener("click", (e) => {
             const cell = e.target.closest(".sudoku-cell");
             if (!cell || isSolving) return;
@@ -270,8 +362,9 @@
 
         speedSlider.addEventListener("input", (e) => {
             const val = parseInt(e.target.value, 10);
-            const delays = [500, 250, 120, 45, 5];
-            const labels = ["Slow", "Normal", "Fast", "Hyper", "Turbo"];
+            // 1: Story (2.5s) -> 2: Relaxed (1.4s) -> 3: Brisk (0.6s) -> 4: Fast (0.15s) -> 5: Turbo (10ms)
+            const delays = [2500, 1400, 600, 150, 10];
+            const labels = ["Story (2.5s)", "Relaxed (1.4s)", "Brisk (0.6s)", "Fast (0.15s)", "Turbo (Instant)"];
             solveDelay = delays[val - 1];
             speedLabel.textContent = labels[val - 1];
         });
@@ -308,7 +401,17 @@
         updateAllCandidates();
         renderAllCandidates();
         updateRemainingMetric();
-        addLog("system", `Loaded preset: ${preset.name}. Digital grid synchronized.`);
+
+        // Switch to grid view
+        if (tabGrid && tabScan) {
+            tabGrid.classList.add("active");
+            tabScan.classList.remove("active");
+            gridPanel.style.display = "block";
+            scanPanel.style.display = "none";
+        }
+
+        addLog("system", `Loaded preset: ${preset.name}. Digital grid synchronized and ready.`);
+        updateMindBubble("Ready", `"Loaded ${preset.name}! Look over the initial clues, then hit 'Watch Nemo Solve' when you're ready."`);
     }
 
     function handleFileUpload(file) {
@@ -335,7 +438,16 @@
                 updateAllCandidates();
                 renderAllCandidates();
                 updateRemainingMetric();
-                addLog("system", "OCR grid extraction complete. Review recognized numbers on the right; tap any cell to adjust if needed, then click 'Watch Nemo Solve'!");
+
+                if (tabGrid && tabScan) {
+                    tabGrid.classList.add("active");
+                    tabScan.classList.remove("active");
+                    gridPanel.style.display = "block";
+                    scanPanel.style.display = "none";
+                }
+
+                addLog("system", "OCR grid extraction complete. Review recognized numbers on the left; tap any cell to adjust if needed, then click 'Watch Nemo Solve'!");
+                updateMindBubble("Scanned", `"I've ingested your image and aligned the 9×9 grid! You can click any cell to make tweaks or hit 'Watch Nemo Solve' to let me at it."`);
             };
             img.src = e.target.result;
         };
@@ -558,7 +670,7 @@
         metricRemaining.textContent = count;
     }
 
-    // Pedagogical Step Solver
+    // Step-by-Step Pedagogical Solver Engine
     function prepareSolveSteps() {
         solveSteps = [];
         const g = initialGrid.map(row => [...row]);
@@ -630,20 +742,14 @@
                 const ns = findNakedSingle(grid);
                 if (ns) {
                     grid[ns.r][ns.c] = ns.val;
-                    solveSteps.push({
-                        ...ns,
-                        explanation: `Cell (${ns.r + 1}, ${ns.c + 1}) has only 1 remaining candidate: locked in ${ns.val}.`
-                    });
+                    solveSteps.push(ns);
                     progressed = true;
                     continue;
                 }
                 const hs = findHiddenSingle(grid);
                 if (hs) {
                     grid[hs.r][hs.c] = hs.val;
-                    solveSteps.push({
-                        ...hs,
-                        explanation: `In ${hs.unit}, candidate ${hs.val} can only exist in (${hs.r + 1}, ${hs.c + 1}). Placed.`
-                    });
+                    solveSteps.push(hs);
                     progressed = true;
                     continue;
                 }
@@ -666,16 +772,14 @@
 
             solveSteps.push({
                 type: "branch_choice",
-                r: minR, c: minC, candidates: minCands,
-                explanation: `Pure logic exhausted. Minimum Remaining Values heuristic selecting (${minR + 1}, ${minC + 1}) with [${minCands.join(", ")}].`
+                r: minR, c: minC, candidates: minCands
             });
 
             for (const cand of minCands) {
                 grid[minR][minC] = cand;
                 solveSteps.push({
                     type: "guess",
-                    r: minR, c: minC, val: cand,
-                    explanation: `Branch exploration: testing hypothesis ${cand} at (${minR + 1}, ${minC + 1}).`
+                    r: minR, c: minC, val: cand
                 });
 
                 const clone = grid.map(row => [...row]);
@@ -687,8 +791,7 @@
                 grid[minR][minC] = 0;
                 solveSteps.push({
                     type: "backtrack",
-                    r: minR, c: minC, val: cand,
-                    explanation: `Contradiction detected down candidate branch ${cand}. Reverting cell (${minR + 1}, ${minC + 1}).`
+                    r: minR, c: minC, val: cand
                 });
             }
             return false;
@@ -708,7 +811,7 @@
         terminalPulse.classList.add("active");
         terminalStatus.textContent = "Nemo Reasoning";
         updateControlsUI();
-        addLog("system", `Beginning automated deduction stream (${solveSteps.length} planned operations)...`);
+        addLog("system", `Beginning deduction stream (${solveSteps.length} planned operations)...`);
         runStepLoop();
     }
 
@@ -733,11 +836,13 @@
         const step = solveSteps[currentStepIndex];
         currentStepIndex++;
 
+        // Clear previous cell highlights
         document.querySelectorAll(".sudoku-cell").forEach(cell => {
             cell.classList.remove("highlight-scan", "highlight-deduction", "highlight-backtrack");
         });
 
         const targetCell = getCellElement(step.r, step.c);
+        const monologue = generateThoughtDialogue(step.type, step);
 
         if (step.type === "naked_single" || step.type === "hidden_single" || step.type === "guess") {
             currentGrid[step.r][step.c] = step.val;
@@ -747,7 +852,7 @@
             if (targetCell) {
                 targetCell.classList.add("highlight-deduction");
             }
-            addLog(step.type, step.explanation);
+            addLog(step.type, monologue);
 
         } else if (step.type === "backtrack") {
             currentGrid[step.r][step.c] = 0;
@@ -757,13 +862,13 @@
             if (targetCell) {
                 targetCell.classList.add("highlight-backtrack");
             }
-            addLog("backtrack", step.explanation);
+            addLog("backtrack", monologue);
 
         } else if (step.type === "branch_choice") {
             if (targetCell) {
                 targetCell.classList.add("highlight-scan");
             }
-            addLog("branch_choice", step.explanation);
+            addLog("branch_choice", monologue);
         }
 
         updateCellDisplay(step.r, step.c);
@@ -781,6 +886,7 @@
         terminalPulse.classList.remove("active");
         terminalStatus.textContent = "Paused";
         updateControlsUI();
+        updateMindBubble("Paused", `"Taking a breather! Hit 'Resume' or 'Step' whenever you want me to keep going."`);
         addLog("system", "Reasoning paused by user.");
     }
 
@@ -807,7 +913,9 @@
 
         const elapsed = ((Date.now() - solveStartTime) / 1000).toFixed(2);
         metricTime.textContent = elapsed + "s";
-        addLog("solved", `🎉 Puzzle successfully validated! ${deductionCount} deductions completed with ${backtrackCount} backtracks in ${elapsed}s.`);
+        const victoryMsg = generateThoughtDialogue("solved", {});
+        addLog("solved", victoryMsg);
+        updateMindBubble("Solved", victoryMsg);
     }
 
     function resetBoard() {
@@ -822,7 +930,8 @@
         updateAllCandidates();
         renderAllCandidates();
         updateRemainingMetric();
-        addLog("system", "Board reset to initial puzzle clues.");
+        addLog("system", "Board reset to initial clues.");
+        updateMindBubble("Reset", `"Board reset to the start! Ready whenever you are."`);
     }
 
     function clearBoard() {
@@ -838,7 +947,8 @@
         updateAllCandidates();
         renderAllCandidates();
         updateRemainingMetric();
-        addLog("system", "Grid cleared. You can manually enter clues or upload an image.");
+        addLog("system", "Grid cleared. Manually enter numbers or upload an image.");
+        updateMindBubble("Cleared", `"Blank slate! Feel free to click cells and type your own numbers, or drop an image above."`);
     }
 
     function resetState() {
@@ -872,22 +982,54 @@
         }
     }
 
+    function updateMindBubble(state, text) {
+        if (mindState) mindState.textContent = state;
+        if (mindText) mindText.textContent = text;
+        if (mindBubble) {
+            mindBubble.classList.add("highlight");
+            setTimeout(() => mindBubble.classList.remove("highlight"), 350);
+        }
+    }
+
     function addLog(tag, message) {
+        // Remove previous latest active styling
+        document.querySelectorAll(".log-entry.active-latest").forEach(el => el.classList.remove("active-latest"));
+
         const entry = document.createElement("div");
-        entry.className = "log-entry";
+        entry.className = "log-entry active-latest";
+
+        const meta = document.createElement("div");
+        meta.className = "log-meta";
 
         const badge = document.createElement("span");
         badge.className = `log-tag ${tag}`;
         badge.textContent = tag.replace("_", " ");
 
-        const text = document.createElement("span");
+        const time = document.createElement("span");
+        time.className = "log-time";
+        const now = new Date();
+        time.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+
+        meta.appendChild(badge);
+        meta.appendChild(time);
+
+        const text = document.createElement("div");
         text.className = "log-text";
         text.textContent = message;
 
-        entry.appendChild(badge);
+        entry.appendChild(meta);
         entry.appendChild(text);
         logFeed.appendChild(entry);
-        logFeed.scrollTop = logFeed.scrollHeight;
+
+        // Guaranteed auto-scroll to the bottom of the thought stream!
+        requestAnimationFrame(() => {
+            logFeed.scrollTop = logFeed.scrollHeight;
+            entry.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+
+        // Also update Nemo Mind Bubble directly above the grid
+        const cleanState = tag.replace("_", " ").toUpperCase();
+        updateMindBubble(cleanState, message);
     }
 
     if (document.readyState === "loading") {
