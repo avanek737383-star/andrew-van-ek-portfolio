@@ -260,7 +260,7 @@
 							<div class="inspector-stats-grid">
 								<div class="inspector-stat-pill">
 									<span class="pill-eyebrow">Signal Speed (MPH)</span>
-									<strong class="pill-value" id="pill-rtt-val">16.2 ms</strong>
+									<strong class="pill-value" id="pill-rtt-val">~415M MPH (16ms)</strong>
 								</div>
 								<div class="inspector-stat-pill">
 									<span class="pill-eyebrow">IPv6 Adoption</span>
@@ -343,7 +343,7 @@
 					<div class="telemetry-instrument-cluster" id="home-instrument-cluster" aria-label="Homelab Cockpit Instrument Cluster">
 						<!-- Twin Dials Row: Side-by-Side -->
 						<div class="cockpit-dials-row">
-							<!-- Dial 1: Page Load Tachometer -->
+							<!-- Dial 1: Page Load Tachometer & Edge Velocity -->
 							<div class="cockpit-gauge-card">
 								<div class="gauge-header">
 									<div class="gauge-title-wrap">
@@ -356,13 +356,12 @@
 								<div class="gauge-svg-wrap">
 									<svg class="cockpit-svg" viewBox="0 0 260 160" aria-hidden="true">
 										<defs>
-											<!-- Continuous Smooth Gradient Arc (Zero Wavy Lines) -->
+											<!-- Continuous Smooth Gradient Arc: Red (low velocity) to Amber to Emerald Green (optical fiber line-rate) -->
 											<linearGradient id="tach-smooth-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-												<stop offset="0%" stop-color="#10b981" />
-												<stop offset="42%" stop-color="#10b981" />
-												<stop offset="65%" stop-color="#f59e0b" />
-												<stop offset="85%" stop-color="#ef4444" />
-												<stop offset="100%" stop-color="#dc2626" />
+												<stop offset="0%" stop-color="#ef4444" />
+												<stop offset="30%" stop-color="#f59e0b" />
+												<stop offset="60%" stop-color="#10b981" />
+												<stop offset="100%" stop-color="#059669" />
 											</linearGradient>
 										</defs>
 
@@ -370,7 +369,7 @@
 										<path class="tach-track-bg" d="M 59.5 140.7 A 75 75 0 1 1 200.5 140.7" fill="none" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round"/>
 										<path class="tach-arc-smooth" d="M 59.5 140.7 A 75 75 0 1 1 200.5 140.7" fill="none" stroke="url(#tach-smooth-grad)" stroke-width="12" stroke-linecap="round"/>
 										
-										<!-- Ticks: 0, 300, 750, 1200, 1500+ -->
+										<!-- Ticks: 0, 150M, 300M, 450M, 600M+ MPH -->
 										<line x1="66" y1="138" x2="53" y2="143" stroke="#64748b" stroke-width="2"/>
 										<line x1="74" y1="76" x2="63" y2="68" stroke="#64748b" stroke-width="2"/>
 										<line x1="130" y1="47" x2="130" y2="33" stroke="#64748b" stroke-width="2.5"/>
@@ -379,14 +378,14 @@
 
 										<!-- Labels: Fully Padded to Eliminate Text Clipping -->
 										<text x="42" y="152" class="tach-tick-lbl" text-anchor="middle">0</text>
-										<text x="54" y="60" class="tach-tick-lbl" text-anchor="middle">300</text>
-										<text x="130" y="24" class="tach-tick-lbl" text-anchor="middle">750</text>
-										<text x="206" y="60" class="tach-tick-lbl" text-anchor="middle">1200</text>
-										<text x="218" y="152" class="tach-tick-lbl" text-anchor="middle">1500+</text>
+										<text x="54" y="60" class="tach-tick-lbl" text-anchor="middle">150M</text>
+										<text x="130" y="24" class="tach-tick-lbl" text-anchor="middle">300M</text>
+										<text x="206" y="60" class="tach-tick-lbl" text-anchor="middle">450M</text>
+										<text x="218" y="152" class="tach-tick-lbl" text-anchor="middle">600M+</text>
 
 										<!-- Rotating Needle Group around (130, 115) -->
 										<g id="tach-needle-group" class="cockpit-needle-group" style="transform-origin: 130px 115px;">
-											<line id="tach-needle" x1="130" y1="115" x2="130" y2="38" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+											<line id="tach-needle" x1="130" y1="115" x2="130" y2="38" stroke="#002d5a" stroke-width="3" stroke-linecap="round"/>
 											<circle cx="130" cy="115" r="8" fill="#002d5a"/>
 											<circle cx="130" cy="115" r="3" fill="#ffffff"/>
 										</g>
@@ -394,15 +393,19 @@
 								</div>
 
 								<div class="gauge-metrics-box">
-									<div class="gauge-digital-display">
-										<span class="gauge-digital-val" id="tach-current-ms">--</span>
-										<span class="gauge-digital-unit">ms</span>
+									<div class="gauge-digital-display" style="flex-wrap: wrap;">
+										<span class="gauge-digital-val" id="tach-mph-val">--</span>
+										<span class="gauge-digital-unit">M MPH</span>
+										<span class="speedo-ms-chip" id="tach-current-ms" style="color:#059669;background:#ecfdf5;border-color:#a7f3d0;">-- ms</span>
 										<span class="tach-badge zone-green" id="tach-status-badge">Clocking...</span>
 									</div>
+									<div class="tach-distance-bar" style="font-size: 0.74rem; color: #475569; text-align: center; margin: 4px 0 6px;">
+										Fiber Transit: <strong id="tach-dist-val" style="color: #002d5a;">~2,485 miles</strong> &bull; <strong id="tach-light-pct" style="color: #10b981;">--% c</strong>
+									</div>
 									<div class="gauge-sub-row">
-										<span class="gauge-stat-pill">🏆 Record: <strong id="tach-record-ms">-- ms</strong></span>
+										<span class="gauge-stat-pill">🏆 Record: <strong id="tach-record-ms">-- M MPH</strong></span>
 										<span class="gauge-stat-pill">Visits: <strong id="tach-visits-count">1</strong></span>
-										<button type="button" class="cockpit-action-btn" id="tach-rev-btn" title="Re-test page render latency">Rev Dial</button>
+										<button type="button" class="cockpit-action-btn" id="tach-rev-btn" title="Re-test edge throughput and signal velocity">Rev Dial</button>
 									</div>
 								</div>
 							</div>

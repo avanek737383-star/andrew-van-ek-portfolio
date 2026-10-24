@@ -1729,7 +1729,10 @@
 		if (!cluster) return;
 
 		var needle = document.getElementById("tach-needle-group");
+		var mphDisplay = document.getElementById("tach-mph-val");
 		var curDisplay = document.getElementById("tach-current-ms");
+		var distDisplay = document.getElementById("tach-dist-val");
+		var lightDisplay = document.getElementById("tach-light-pct");
 		var recDisplay = document.getElementById("tach-record-ms");
 		var statusBadge = document.getElementById("tach-status-badge");
 		var newRecordBadge = document.getElementById("tach-new-record-badge");
@@ -1738,6 +1741,7 @@
 
 		var STORAGE_RECORD_KEY = "vanek_tach_fastest_record_ms";
 		var STORAGE_COUNT_KEY = "vanek_tach_load_count";
+		var DIST_MILES = 2485; // Continental fiber round-trip loop in miles
 
 		var savedRecord = parseInt(localStorage.getItem(STORAGE_RECORD_KEY), 10);
 		var visitCount = parseInt(localStorage.getItem(STORAGE_COUNT_KEY), 10) || 0;
@@ -1746,50 +1750,72 @@
 		if (countDisplay) countDisplay.textContent = visitCount;
 
 		if (savedRecord && !isNaN(savedRecord) && savedRecord > 0) {
-			if (recDisplay) recDisplay.textContent = savedRecord + " ms";
+			var initSec = Math.max(0.004, savedRecord / 1000);
+			var initMph = Math.round(DIST_MILES / (initSec / 3600));
+			var initMillionMph = Math.min(670, Math.max(8, Math.round(initMph / 1000000)));
+			if (recDisplay) recDisplay.textContent = initMillionMph + "M MPH (" + savedRecord + " ms)";
 		} else {
-			if (recDisplay) recDisplay.textContent = "-- ms";
+			if (recDisplay) recDisplay.textContent = "-- M MPH";
 		}
 
-		function mapMsToDegrees(ms) {
-			// Sweep from -110deg (0 ms) to +110deg (1500+ ms)
-			var maxMs = 1500;
-			var clamped = Math.max(0, Math.min(ms, maxMs));
-			var pct = clamped / maxMs;
+		function mapMphToDegrees(millionMph) {
+			// Sweep from -110deg (0 M MPH) to +110deg (600M+ MPH)
+			var maxMph = 600;
+			var clamped = Math.max(0, Math.min(millionMph, maxMph));
+			var pct = clamped / maxMph;
 			return -110 + (pct * 220);
 		}
 
 		function applySpeedReading(ms, isInteractive) {
-			var deg = mapMsToDegrees(ms);
+			var elapsedSec = Math.max(0.004, ms / 1000);
+			var speedMph = Math.round(DIST_MILES / (elapsedSec / 3600));
+			// Physical speed of light c = 670,616,629 MPH; typical silica glass fiber velocity is ~67% c (~449,300,000 MPH)
+			var millionMph = Math.min(670, Math.max(8, Math.round(speedMph / 1000000)));
+			var pctLight = Math.min(99, Math.max(5, Math.round((speedMph / 670616629) * 100)));
+
+			var deg = mapMphToDegrees(millionMph);
 			if (needle) {
 				needle.style.transform = "rotate(" + deg + "deg)";
 			}
+			if (mphDisplay) {
+				mphDisplay.textContent = millionMph;
+			}
 			if (curDisplay) {
-				curDisplay.textContent = ms;
+				curDisplay.textContent = ms + " ms";
+			}
+			if (distDisplay) {
+				distDisplay.textContent = "~" + DIST_MILES.toLocaleString() + " miles";
+			}
+			if (lightDisplay) {
+				lightDisplay.textContent = pctLight + "% c";
 			}
 
 			if (statusBadge) {
 				statusBadge.className = "tach-badge";
-				if (ms <= 300) {
+				if (ms <= 25 || millionMph >= 350) {
 					statusBadge.classList.add("zone-green");
-					statusBadge.textContent = "⚡ Blazing Fast (" + ms + "ms)";
-				} else if (ms <= 750) {
+					statusBadge.textContent = "⚡ " + pctLight + "% Light Speed (" + millionMph + "M MPH)";
+				} else if (ms <= 100 || millionMph >= 90) {
 					statusBadge.classList.add("zone-yellow");
-					statusBadge.textContent = "🚀 Optimal Response (" + ms + "ms)";
+					statusBadge.textContent = "🚀 High Velocity (" + millionMph + "M MPH)";
 				} else {
 					statusBadge.classList.add("zone-red");
-					statusBadge.textContent = "⚠️ Heavy Traffic (" + ms + "ms)";
+					statusBadge.textContent = "⚠️ Cruising (" + millionMph + "M MPH)";
 				}
 			}
 
 			var currentBest = parseInt(localStorage.getItem(STORAGE_RECORD_KEY), 10);
 			if (!currentBest || isNaN(currentBest) || ms < currentBest) {
 				localStorage.setItem(STORAGE_RECORD_KEY, ms);
-				if (recDisplay) recDisplay.textContent = ms + " ms";
+				if (recDisplay) recDisplay.textContent = millionMph + "M MPH (" + ms + " ms)";
 				if (newRecordBadge) {
 					newRecordBadge.hidden = false;
 				}
 			} else {
+				var recSec = Math.max(0.004, currentBest / 1000);
+				var recMph = Math.round(DIST_MILES / (recSec / 3600));
+				var recMillionMph = Math.min(670, Math.max(8, Math.round(recMph / 1000000)));
+				if (recDisplay) recDisplay.textContent = recMillionMph + "M MPH (" + currentBest + " ms)";
 				if (newRecordBadge && !isInteractive) newRecordBadge.hidden = true;
 			}
 		}
