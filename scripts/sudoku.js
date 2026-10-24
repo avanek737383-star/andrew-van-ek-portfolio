@@ -88,7 +88,7 @@
     let solveSteps = [];
     let currentStepIndex = 0;
     let solveTimer = null;
-    let solveDelay = 4500; // Default reading pace (4.5s)
+    let solveDelay = 8500; // Default deep study pace (8.5s)
     let isHoverPaused = false;
     let deductionCount = 0;
     let backtrackCount = 0;
@@ -103,31 +103,63 @@
     let tabGrid, tabScan, gridPanel, scanPanel;
     let mindBubble, mindState, mindText;
 
-    // Human Internal Self-Dialogue Library
+    // Human Internal Self-Dialogue & Observational Stream
     function generateThoughtDialogue(type, info) {
         const r1 = info.r + 1;
         const c1 = info.c + 1;
         const v = info.val;
+        const b = Math.floor(info.r / 3) * 3 + Math.floor(info.c / 3);
+        const b1 = b + 1;
+
+        // Gather real grid observations around this target cell
+        let rowFilled = [], colFilled = [], boxFilled = [];
+        if (typeof currentGrid !== "undefined" && currentGrid && currentGrid[info.r]) {
+            rowFilled = currentGrid[info.r].filter(n => n > 0 && n !== v);
+            colFilled = currentGrid.map(row => row[info.c]).filter(n => n > 0 && n !== v);
+            const br = Math.floor(info.r / 3) * 3;
+            const bc = Math.floor(info.c / 3) * 3;
+            for (let dr = 0; dr < 3; dr++) {
+                for (let dc = 0; dc < 3; dc++) {
+                    const val = currentGrid[br + dr][bc + dc];
+                    if (val > 0 && val !== v) boxFilled.push(val);
+                }
+            }
+        }
+
+        const sampleRow = rowFilled.length > 0 ? rowFilled[Math.floor(Math.random() * rowFilled.length)] : null;
+        const sampleCol = colFilled.length > 0 ? colFilled[Math.floor(Math.random() * colFilled.length)] : null;
+        const sampleBox = boxFilled.length > 0 ? boxFilled[Math.floor(Math.random() * boxFilled.length)] : null;
 
         if (type === "naked_single") {
+            const obsSnippets = [];
+            if (sampleCol) obsSnippets.push(`there is already a ${sampleCol} down column ${c1}`);
+            if (sampleRow) obsSnippets.push(`I see a ${sampleRow} sitting in row ${r1}`);
+            if (!boxFilled.includes(v)) obsSnippets.push(`there is no ${v} in quadrant ${b1} yet`);
+
+            const obsPhrase = obsSnippets.length > 0 ? `Oh, ${obsSnippets.join(", and ")}. ` : "";
+
             const templates = [
-                `"Wait a second... look at row ${r1}, col ${c1}. Literally every other number 1 through 9 is already blocked. ${v} is the only survivor here. In you go!"`,
-                `"Scanning around (${r1}, ${c1})... aha! Row ${r1} and col ${c1} already have their digits filled out. ${v} has zero competition left in this cell."`,
-                `"Hold on, look at cell (${r1}, ${c1}). That's a pure sole candidate. All peer constraints are met—only a ${v} can legally fit here."`,
-                `"Nice! All other candidates for cell (${r1}, ${c1}) just evaporated. Locking in ${v} right now."`,
-                `"Oh, easy pickings! Cell (${r1}, ${c1}) has no other possible moves remaining. Dropping the ${v} down."`,
-                `"Check that out—cell (${r1}, ${c1}) was quietly waiting for us. Only a ${v} works here. Clean deduction!"`
+                `"Wait a second... look at cell (${r1}, ${c1}). ${obsPhrase}Literally every other number 1 through 9 is blocked across this row, column, and quadrant. ${v} is the sole survivor here. In you go!"`,
+                `"Scanning around (${r1}, ${c1})... ${obsPhrase}That eliminates all other candidates. ${v} has zero competition left in this square!"`,
+                `"Hold on, look at cell (${r1}, ${c1}). ${obsPhrase}All peer constraints are satisfied—only a ${v} can legally fit here. Clean sole candidate deduction!"`,
+                `"Nice! ${obsPhrase}All other possibilities for cell (${r1}, ${c1}) just evaporated. Locking in ${v} right now."`,
+                `"I'm observing cell (${r1}, ${c1}). ${obsPhrase}With row ${r1} and col ${c1} blocking the rest, only a ${v} works here!"`
             ];
             return templates[Math.floor(Math.random() * templates.length)];
         }
 
         if (type === "hidden_single") {
+            const obsSnippets = [];
+            if (sampleCol) obsSnippets.push(`column ${c1} has a ${sampleCol}`);
+            if (!boxFilled.includes(v)) obsSnippets.push(`quadrant ${b1} is searching for its ${v}`);
+
+            const obsPhrase = obsSnippets.length > 0 ? `Notice ${obsSnippets.join(", while ")}. ` : "";
+
             const templates = [
-                `"Hold up, let me inspect ${info.unit}... where on earth can a ${v} go? The other lines are blocked. Aha! Only cell (${r1}, ${c1}) can take it!"`,
-                `"Check out ${info.unit}! Look where the ${v} can fit. Every other open square in this unit is blocked by another ${v}. (${r1}, ${c1}) it is!"`,
-                `"Sneaky! In ${info.unit}, the number ${v} was trying to hide, but (${r1}, ${c1}) is the only legal square left. Locking that down."`,
-                `"Wait, let me double-check ${info.unit}... yep! None of the other open cells can legally take a ${v}. Forced move into (${r1}, ${c1})!"`,
-                `"Ooh, found a hidden single! In ${info.unit}, ${v} has nowhere else in the universe to go except (${r1}, ${c1}). That's a huge unlock."`
+                `"Hold up, let me inspect ${info.unit}... ${obsPhrase}Where on earth can a ${v} go? The other open spots in this unit are blocked by intersecting lines. Only cell (${r1}, ${c1}) can take it!"`,
+                `"Check out ${info.unit}! ${obsPhrase}Every other empty cell in this unit is blocked by another ${v} along its line. (${r1}, ${c1}) is the only legal haven!"`,
+                `"Sneaky! In ${info.unit}, the number ${v} was trying to hide. ${obsPhrase}Cell (${r1}, ${c1}) is the only legal square left. Locking that down!"`,
+                `"Wait, double-checking ${info.unit}... ${obsPhrase}Yep! None of the other cells can legally accept a ${v}. Forced hidden single into (${r1}, ${c1})!"`
             ];
             return templates[Math.floor(Math.random() * templates.length)];
         }
@@ -135,34 +167,34 @@
         if (type === "branch_choice") {
             const cList = (info.candidates || []).join(", ");
             const templates = [
-                `"Alright, pure obvious logic has run a bit dry. Time to make an educated assumption so we don't stare at the wall. Cell (${r1}, ${c1}) is down to just [${cList}]. Let's test a branch..."`,
-                `"No immediate sole candidates in sight. Let's look at cell (${r1}, ${c1})—it has the minimum remaining choices: [${cList}]. Let's explore one path!"`,
-                `"Time for some strategic search. Cell (${r1}, ${c1}) is a clean fork between [${cList}]. Following this branch down to see if it holds."`
+                `"Alright, pure deterministic deduction has run dry for a moment. Looking at cell (${r1}, ${c1})—quadrant ${b1} is missing [${cList}]. Let's test a branch on one candidate to see if constraints hold..."`,
+                `"No immediate sole candidates in sight. Observing cell (${r1}, ${c1}): it has the minimum remaining choices: [${cList}]. Following this branch..."`,
+                `"Time for some strategic search. Notice cell (${r1}, ${c1}) is down to just [${cList}]. Let's explore one path and trace consequences forward."`
             ];
             return templates[Math.floor(Math.random() * templates.length)];
         }
 
         if (type === "guess") {
             const templates = [
-                `"Hypothesizing ${v} at cell (${r1}, ${c1}). Let's see if this creates a contradiction or opens up a path..."`,
-                `"Testing branch: What if cell (${r1}, ${c1}) is ${v}? Tracing constraint consequences forward..."`,
-                `"Taking a calculated gamble on ${v} at (${r1}, ${c1}). Fingers crossed this doesn't bite us in 3 steps..."`
+                `"Hypothesizing ${v} at cell (${r1}, ${c1}) in quadrant ${b1}. Let's see if this creates a contradiction or opens up a path..."`,
+                `"Testing branch: What if cell (${r1}, ${c1}) is ${v}? Tracing constraint consequences across row ${r1} and col ${c1}..."`,
+                `"Taking a calculated step with ${v} at (${r1}, ${c1}). Checking downstream peer constraints..."`
             ];
             return templates[Math.floor(Math.random() * templates.length)];
         }
 
         if (type === "backtrack") {
             const templates = [
-                `"Oof! Hit a brick wall. That hypothesis just starved another cell or caused a duplicate! Good thing I kept receipts—rewinding back and tossing out ${v} at (${r1}, ${c1})."`,
-                `"Nope, nope, contradiction! That ${v} was a dead end. Rolling back cell (${r1}, ${c1}) to test the alternate candidate."`,
-                `"Wait a minute... that doesn't work. The board just collided down this path. Erasing ${v} at (${r1}, ${c1}) and taking the other fork."`,
+                `"Oof! Hit a contradiction down this branch. That hypothesis caused a duplicate or starved an empty cell in quadrant ${b1}. Rewinding back and discarding ${v} at (${r1}, ${c1})!"`,
+                `"Nope, contradiction detected! That ${v} at (${r1}, ${c1}) was a dead end. Reverting cell (${r1}, ${c1}) to test the alternate candidate."`,
+                `"Wait a minute... that doesn't work. Constraint collision along row ${r1} or col ${c1}. Erasing ${v} at (${r1}, ${c1}) and taking the other fork."`,
                 `"Dead end hit! My assumption was wrong. Reverting cell (${r1}, ${c1}) and eliminating ${v}. Back to solid ground!"`
             ];
             return templates[Math.floor(Math.random() * templates.length)];
         }
 
         if (type === "solved") {
-            return `"BOOM! Every single row, column, and 3×3 box checks out 100% clean. Zero contradictions. That was super satisfying!"`;
+            return `"BOOM! Every single row, column, and 3×3 quadrant checks out 100% clean. Zero contradictions. All 81 cells solved!"`;
         }
 
         return info.explanation || "Analyzing constraints...";
@@ -378,9 +410,18 @@
 
         speedSlider.addEventListener("input", (e) => {
             const val = parseInt(e.target.value, 10);
-            // 1: Reading (4.5s) -> 2: Story (3.0s) -> 3: Relaxed (1.8s) -> 4: Brisk (0.8s) -> 5: Fast (0.2s) -> 6: Turbo (Instant)
-            const delays = [4500, 3000, 1800, 800, 200, 10];
-            const labels = ["Reading (4.5s)", "Story (3.0s)", "Relaxed (1.8s)", "Brisk (0.8s)", "Fast (0.2s)", "Turbo (Instant)"];
+            // 1: Deep Study (8.5s) -> 2: Contemplative (6.0s) -> 3: Reading (4.0s) -> 4: Story (2.5s) -> 5: Relaxed (1.5s) -> 6: Brisk (0.6s) -> 7: Fast (0.2s) -> 8: Turbo (Instant)
+            const delays = [8500, 6000, 4000, 2500, 1500, 600, 200, 10];
+            const labels = [
+                "Deep Study (8.5s)",
+                "Contemplative (6.0s)",
+                "Reading (4.0s)",
+                "Story (2.5s)",
+                "Relaxed (1.5s)",
+                "Brisk (0.6s)",
+                "Fast (0.2s)",
+                "Turbo (Instant)"
+            ];
             solveDelay = delays[val - 1];
             speedLabel.textContent = labels[val - 1];
         });
