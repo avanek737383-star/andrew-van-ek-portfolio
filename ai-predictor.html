@@ -398,7 +398,7 @@
     <span style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Verified Benchmark Checkpoints</span>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:20px;">
+  <div class="diag-grid">
     <!-- Confusion Matrix Card -->
     <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
       <h4 style="margin:0 0 12px; font-size:1.05rem; color:#002d5a;">
@@ -480,7 +480,8 @@
         Synthetic label corruption simulates noisy sensor readings and accidental bit-flips to measure how gracefully the model resists background interference.
       </p>
 
-      <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
+      <div class="table-responsive-wrap">
+        <table style="width:100%; min-width:380px; border-collapse:collapse; font-size:0.82rem; text-align:left;">
         <thead>
           <tr style="border-bottom:2px solid #cbd5e1; color:#334155;">
             <th style="padding:6px 0;">Noise Injected</th>
@@ -500,6 +501,7 @@
           <tr><td><strong>50%</strong> (White Noise)</td><td><code>0.0 dB</code></td><td><strong>48.83%</strong></td><td><code>0.7502</code></td><td style="color:#ef4444; font-weight:700;">-1.17%</td></tr>
         </tbody>
       </table>
+      </div>
       <p style="font-size:0.75rem; color:#64748b; margin:10px 0 0;">
         <strong>Key Observation:</strong> The neural network maintains a positive predictive edge up to 30% sequence corruption, only dropping below 50% when exposed to 50% pure white noise ($SNR = 0.0\text{ dB}$).
       </p>
