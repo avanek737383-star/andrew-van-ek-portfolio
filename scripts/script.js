@@ -530,7 +530,7 @@
 		},
 		"confusion-matrix": {
 			title: "Confusion Matrix (Decision Tally Sheet)",
-			analogy: "Like an airport security checkpoint tally sheet: it doesn't just grade whether the scanner was 'right or wrong', it breaks down every single decision into four specific piles—spotting real keys, waving through safe travelers, sounding false alarms on belt buckles, and missed pocketknives.",
+			analogy: "Like an automated optical quality-control scanner inspecting smartphones on an assembly line: it doesn't just grade whether the camera was 'right or wrong', it breaks down every single decision into four specific piles—catching real cracked screens before shipping (True Positives), waving through flawless phones to packaging (True Negatives), sounding false alarms on a harmless speck of dust (False Positives), and loose buttons that accidentally slipped past (False Negatives).",
 			techFact: "A 2x2 contingency table tabulating True Positives (TP), False Positives (FP), True Negatives (TN), and False Negatives (FN) to expose classification blindspots."
 		},
 		"precision-score": {
