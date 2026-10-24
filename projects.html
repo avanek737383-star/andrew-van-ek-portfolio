@@ -900,6 +900,59 @@
 <p><a href="sudoku.html">Try the Live Nemo Sudoku Solver &rarr;</a></p>
 </section>
 
+
+<section class="project-entry" aria-labelledby="mind-reader-ai-title">
+<h2 id="mind-reader-ai-title">Mind Reader AI: In-Browser Human Randomness &amp; Choice Predictor</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Active Development</span> <span>Custom ML Architecture &middot; ONNX Web &middot; Shannon Entropy Telemetry &middot; Launching Tomorrow &middot; <time datetime="2026-10-24">October 24, 2026</time></span></p>
+
+<h3>The Concept</h3>
+<p>Humans are notoriously incapable of producing true mathematical randomness. When asked to simulate a random sequence of coin flips (Heads vs. Tails) or rapid keystrokes, cognitive biases&mdash;such as alternation bias (over-switching between choices), clustering aversion (avoiding long streaks), and subconscious rhythmic cadences&mdash;leave distinct probabilistic fingerprints. Collaborating with <strong>Antigravity CLI</strong>, I am engineering a real-time machine learning prediction engine (&ldquo;Mind Reader&rdquo;) that analyzes human input patterns on the fly to predict the visitor's next choice with statistically significant advantage over 50/50 baseline chance.</p>
+
+<h3>Architecture &amp; Technical Specifications</h3>
+<p>To ensure high throughput and zero latency without exposing backend infrastructure to compute exhaustion, the engine executes entirely within the visitor&rsquo;s web browser. It combines higher-order Markov transition matrices with a compact neural sequence classifier exported directly to ONNX Web format.</p>
+
+<div style="overflow-x:auto; margin:18px 0;">
+  <table style="width:100%; border-collapse:collapse; font-size:0.88rem; background:#0f172a; border:1px solid #1e293b; border-radius:8px; overflow:hidden;">
+    <thead>
+      <tr style="background:#1e293b; color:#94a3b8; text-align:left;">
+        <th style="padding:10px 14px; border-bottom:1px solid #334155;">Component</th>
+        <th style="padding:10px 14px; border-bottom:1px solid #334155;">Implementation Spec</th>
+        <th style="padding:10px 14px; border-bottom:1px solid #334155;">Performance Metric / Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
+        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Inference Runtime</td>
+        <td style="padding:9px 14px;">ONNX Runtime Web (Wasm / SIMD edge execution)</td>
+        <td style="padding:9px 14px; color:#10b981;">&lt; 3.5 ms per choice (zero network hops)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
+        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Model Architecture</td>
+        <td style="padding:9px 14px;">Higher-Order Markov (k=3 to 5) + Bi-LSTM / FFNN Sequence Head</td>
+        <td style="padding:9px 14px; color:#10b981;">Target 68%&ndash;78% accuracy vs. humans (50% chance)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
+        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Information Theory</td>
+        <td style="padding:9px 14px;">Real-time Shannon Entropy: <code>H(X) = -&Sigma; P(x) log2 P(x)</code></td>
+        <td style="padding:9px 14px; color:#10b981;">Quantifies non-randomness deviation from 1.000 bit</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
+        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Visual Telemetry</td>
+        <td style="padding:9px 14px;">Running Loss Curve, Confusion Matrix, and Confidence Bar</td>
+        <td style="padding:9px 14px; color:#10b981;">Dual-axis Loss vs. Rounds vector graph</td>
+      </tr>
+      <tr style="color:#f1f5f9;">
+        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Server Resource Cost</td>
+        <td style="padding:9px 14px;">Zero-Idle / Client-Side WebAssembly sandbox</td>
+        <td style="padding:9px 14px; color:#10b981;">0 MB Server VRAM &bull; 0% Host CPU Utilization</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p><em>Development is actively underway with Antigravity CLI. A dedicated interactive demonstration page with real-time prediction gameplay, running loss graphs, and interactive telemetry dials will deploy tomorrow.</em></p>
+</section>
+
 <section class="project-entry" aria-labelledby="phone-ai-title">
 <h2 id="phone-ai-title">Phone AI Gateway: PIN-Free Calls to Local Nemotron</h2>
 <p class="project-status"><span class="status-badge project-in-progress">Personal Prototype</span> <span>PIN-free flow deployed and smoke-tested; real incoming-call verification pending</span></p>
