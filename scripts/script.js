@@ -2526,7 +2526,12 @@
 			if (ulValEl) ulValEl.textContent = data.ul.toFixed(1) + " Mbps";
 			if (ulFillEl) ulFillEl.style.width = Math.min(100, Math.round((data.ul / 100) * 100)) + "%";
 
-			if (rttValEl) rttValEl.textContent = data.rtt.toFixed(1) + " ms";
+			if (rttValEl) {
+				var rtMiles = Math.round((data.distKm * 2) * 0.621371);
+				var estMph = Math.round(rtMiles / ((data.rtt / 1000) / 3600));
+				var mMph = (estMph / 1000000).toFixed(0);
+				rttValEl.textContent = "~" + mMph + "M MPH (" + data.rtt.toFixed(0) + "ms)";
+			}
 			if (ipv6ValEl) ipv6ValEl.textContent = data.ipv6.toFixed(1) + "%";
 			if (peakValEl) peakValEl.textContent = data.peak;
 
@@ -2623,13 +2628,25 @@
 				var elapsed = Math.round(t1 - t0);
 				if (elapsed <= 0) elapsed = 14;
 
-				// Fiber speed of light calculations (approx 200,000 km/s in glass)
+				// Signal velocity calculations in Miles Per Hour (MPH)
 				var distKm = data.distKm || 2000;
-				var minFiberMs = Math.round((2 * distKm / 200000) * 1000);
-				var efficiency = Math.min(96, Math.max(72, Math.round((minFiberMs / elapsed) * 100)));
+				var roundTripMiles = Math.round((distKm * 2) * 0.621371);
+				var elapsedSeconds = Math.max(0.005, elapsed / 1000);
+				var speedMph = Math.round(roundTripMiles / (elapsedSeconds / 3600));
+				var millionMph = (speedMph / 1000000).toFixed(1);
+				var pctLight = Math.min(98, Math.max(35, Math.round((speedMph / 670616629) * 100)));
 
 				if (probeResultEl) {
-					probeResultEl.innerHTML = '<span class="probe-metric-highlight">⚡ RTT: ' + elapsed + ' ms</span> &bull; Optical Efficiency: <strong style="color:#38bdf8;">' + efficiency + '%</strong> (Route: ~' + distKm.toLocaleString() + ' km fiber arc)';
+					probeResultEl.innerHTML =
+						'<div style="display:flex;flex-direction:column;gap:5px;">' +
+							'<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">' +
+								'<span class="probe-metric-highlight" style="font-size:1.05rem;color:#38bdf8;">🚀 Signal Speed: ' + millionMph + ' Million MPH</span>' +
+								'<span style="font-size:0.75rem;color:#10b981;font-weight:700;">(' + pctLight + '% the speed of light!)</span>' +
+							'</div>' +
+							'<span style="font-size:0.73rem;color:#cbd5e1;line-height:1.4;">' +
+								'Your connection beamed a data pulse across <strong>' + roundTripMiles.toLocaleString() + ' miles</strong> of glass fiber to ' + activeRegion + ' and back in <strong>' + elapsed + ' milliseconds</strong>.' +
+							'</span>' +
+						'</div>';
 				}
 				probeBtn.disabled = false;
 				probeBtn.textContent = "Re-Probe Edge";

@@ -5596,3 +5596,40 @@ nav.tablet-desktop > ul#site-navigation {
         max-width: 250px;
     }
 }
+
+
+/* Responsive Weather Tab Bar (Prevents 7-Day Forecast cutoff on mobile portrait) */
+.tab-label-short {
+    display: none;
+}
+.tab-label-full {
+    display: inline;
+}
+
+@media (max-width: 600px) {
+    .weather-tab-bar {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+        padding-bottom: 10px !important;
+        margin-bottom: 14px !important;
+    }
+    .weather-tab {
+        padding: 8px 4px !important;
+        font-size: 0.74rem !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        width: 100% !important;
+    }
+    .tab-label-full {
+        display: none !important;
+    }
+    .tab-label-short {
+        display: inline !important;
+    }
+    .weather-card-panel {
+        padding: 14px 12px !important;
+    }
+}
