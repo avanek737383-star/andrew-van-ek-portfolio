@@ -523,6 +523,11 @@
 			analogy: "A dedicated multi-lane private highway directly connecting two buildings with a 1,000 mph speed limit. Unlike Wi-Fi (which acts like shouting across a noisy, crowded cafeteria), Ethernet is a physical cord completely immune to walls, weather, or radio interference.",
 			techFact: "A physical wired standard delivering up to 1,000 Megabits (~125 MB) per second with continuous sub-millisecond local latency."
 		},
+				"encrypted-mesh": {
+			title: "Encrypted Mesh Network (Tailscale / WireGuard)",
+			analogy: "Think of an invisible, private underground tunnel connecting only your own personal devices. Even if your phone is in a coffee shop in Chicago, your laptop is in a hotel, and your server is in your home in Michigan, they whisper to each other through scrambled codes that no outsider, ISP, or hacker can intercept or eavesdrop on.",
+			techFact: "A peer-to-peer overlay network built on modern WireGuard cryptography (ChaCha20-Poly1305 authentication). Nodes establish direct, authenticated UDP links across NATs and firewalls without routing traffic through vulnerable public ports."
+		},
 		"tailscale": {
 			title: "Tailscale Mesh VPN",
 			analogy: "An encrypted walkie-talkie channel that lets all your personal devices talk directly to each other from anywhere in the world as if they were sitting in the same living room—without needing to leave your front door unlocked or open holes in your home router.",
@@ -2015,251 +2020,167 @@
 
 	
 	// ==========================================================================
-	// Interactive Navbar: Kinetic Particle Mesh & M365 Copilot Confetti Easter Egg
+	// Interactive Navbar: Fluid Plasma Wave Aura (Electric Glow)
 	// ==========================================================================
-	function initNavKineticLinesAndCopilotEasterEgg() {
+	function initNavPlasmaWaves() {
 		var nav = document.querySelector("nav.tablet-desktop");
 		if (!nav) return;
 
-		// 1. Create and attach kinetic canvas inside nav
+		// Clean up any old canvas if present
+		var oldCanvas = document.getElementById("nav-kinetic-canvas");
+		if (oldCanvas && oldCanvas.parentNode) {
+			oldCanvas.parentNode.removeChild(oldCanvas);
+		}
+
 		var canvas = document.createElement("canvas");
-		canvas.id = "nav-kinetic-canvas";
+		canvas.id = "nav-plasma-canvas";
+		canvas.className = "nav-plasma-canvas";
 		canvas.setAttribute("aria-hidden", "true");
-		canvas.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.42;";
-		nav.style.position = "sticky";
-		nav.style.overflow = "visible"; // allow confetti to burst outwards
+		canvas.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;";
 		nav.insertBefore(canvas, nav.firstChild);
 
 		var ctx = canvas.getContext("2d");
-		var width = 0, height = 0;
-		var nodes = [];
-		var nodeCount = 24;
-		var mousePos = { x: -9999, y: -9999, active: false };
+		if (!ctx) return;
+
+		var width = 0;
+		var height = 0;
+		var plasmaX = 300;
+		var plasmaY = 28;
+		var currentX = plasmaX;
+		var currentY = plasmaY;
+		var hasInteracted = false;
 		var isWindowActive = true;
 
 		function resizeCanvas() {
-			width = nav.offsetWidth;
-			height = nav.offsetHeight;
+			var rect = nav.getBoundingClientRect();
+			width = rect.width;
+			// Constrain height on mobile so drawer expansion never stretches canvas
+			var isNavOpen = nav.classList.contains("nav-open");
+			height = isNavOpen ? 56 : (rect.height || 56);
 			canvas.width = width;
 			canvas.height = height;
+			if (!hasInteracted) {
+				plasmaX = width / 2;
+				plasmaY = height / 2;
+				currentX = plasmaX;
+				currentY = plasmaY;
+			}
 		}
+
 		resizeCanvas();
-		window.addEventListener("resize", resizeCanvas);
+		window.addEventListener("resize", resizeCanvas, { passive: true });
 
-		// Initialize floating kinetic nodes
-		for (var i = 0; i < nodeCount; i++) {
-			nodes.push({
-				x: Math.random() * (width || 1200),
-				y: Math.random() * (height || 50),
-				vx: (Math.random() - 0.5) * 0.7,
-				vy: (Math.random() - 0.5) * 0.5,
-				radius: Math.random() * 1.5 + 1.2,
-				baseColor: i % 3 === 0 ? "rgba(56, 189, 248, " : (i % 3 === 1 ? "rgba(16, 185, 129, " : "rgba(168, 85, 247, ")
-			});
-		}
-
-		// Animation loop
-		function renderMesh() {
-			if (!isWindowActive) {
-				requestAnimationFrame(renderMesh);
-				return;
-			}
-
-			ctx.clearRect(0, 0, width, height);
-
-			for (var i = 0; i < nodes.length; i++) {
-				var n = nodes[i];
-				n.x += n.vx;
-				n.y += n.vy;
-
-				// Boundary wrap / bounce
-				if (n.x < 0) n.x = width;
-				if (n.x > width) n.x = 0;
-				if (n.y < 0) n.y = height;
-				if (n.y > height) n.y = 0;
-
-				// Mouse magnetic attractor & interaction
-				if (mousePos.active) {
-					var dx = mousePos.x - n.x;
-					var dy = mousePos.y - n.y;
-					var dist = Math.sqrt(dx * dx + dy * dy);
-					if (dist < 110) {
-						// Gentle gravitational spring pull towards cursor
-						n.x += dx * 0.02;
-						n.y += dy * 0.02;
-
-						// Glowing interactive tether line to cursor!
-						var cursorAlpha = (1 - dist / 110) * 0.5;
-						ctx.beginPath();
-						ctx.moveTo(n.x, n.y);
-						ctx.lineTo(mousePos.x, mousePos.y);
-						ctx.strokeStyle = "rgba(56, 189, 248, " + cursorAlpha + ")";
-						ctx.lineWidth = 1.2;
-						ctx.stroke();
-					}
-				}
-
-				// Draw node
-				ctx.beginPath();
-				ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-				ctx.fillStyle = n.baseColor + "0.75)";
-				ctx.fill();
-
-				// Connect pairs
-				for (var j = i + 1; j < nodes.length; j++) {
-					var n2 = nodes[j];
-					var ndx = n.x - n2.x;
-					var ndy = n.y - n2.y;
-					var ndist = Math.sqrt(ndx * ndx + ndy * ndy);
-					if (ndist < 85) {
-						var lineAlpha = (1 - ndist / 85) * 0.35;
-						ctx.beginPath();
-						ctx.moveTo(n.x, n.y);
-						ctx.lineTo(n2.x, n2.y);
-						ctx.strokeStyle = "rgba(147, 197, 253, " + lineAlpha + ")";
-						ctx.lineWidth = 0.8;
-						ctx.stroke();
-					}
-				}
-			}
-
-			requestAnimationFrame(renderMesh);
-		}
-		requestAnimationFrame(renderMesh);
-
-		// Track mouse position within nav
+		// Desktop mouse movement
 		nav.addEventListener("mousemove", function (e) {
 			var rect = nav.getBoundingClientRect();
-			mousePos.x = e.clientX - rect.left;
-			mousePos.y = e.clientY - rect.top;
-			mousePos.active = true;
+			plasmaX = e.clientX - rect.left;
+			plasmaY = Math.min(e.clientY - rect.top, 56);
+			hasInteracted = true;
 		});
 
-		nav.addEventListener("mouseleave", function () {
-			mousePos.active = false;
-		});
-
-		// Mobile touch ripple wave: scatter nodes on tap then glide back!
+		// Mobile touch handling: tracks finger smoothly and REMEMBERS last location on release
 		nav.addEventListener("touchstart", function (e) {
 			if (e.touches && e.touches[0]) {
 				var rect = nav.getBoundingClientRect();
-				var tx = e.touches[0].clientX - rect.left;
-				var ty = e.touches[0].clientY - rect.top;
-				for (var k = 0; k < nodes.length; k++) {
-					var kx = nodes[k].x - tx;
-					var ky = nodes[k].y - ty;
-					var kdist = Math.sqrt(kx * kx + ky * ky);
-					if (kdist < 150) {
-						// Scatter impulse away from tap point
-						var angle = Math.atan2(ky, kx);
-						nodes[k].vx += Math.cos(angle) * 3;
-						nodes[k].vy += Math.sin(angle) * 3;
-					}
-				}
+				plasmaX = e.touches[0].clientX - rect.left;
+				plasmaY = Math.min(e.touches[0].clientY - rect.top, 56);
+				hasInteracted = true;
 			}
 		}, { passive: true });
+
+		nav.addEventListener("touchmove", function (e) {
+			if (e.touches && e.touches[0]) {
+				var rect = nav.getBoundingClientRect();
+				plasmaX = e.touches[0].clientX - rect.left;
+				plasmaY = Math.min(e.touches[0].clientY - rect.top, 56);
+				hasInteracted = true;
+			}
+		}, { passive: true });
+
+		// On touchend: does NOT scatter! Remembers plasmaX and plasmaY right where the finger left off.
 
 		document.addEventListener("visibilitychange", function () {
 			isWindowActive = !document.hidden;
 		});
 
-		// 2. M365 Copilot Logo Confetti Easter Egg
-		var lastCopilotBurst = 0;
-		var BURST_COOLDOWN = 6000; // 6-second cooldown between entry bursts so it doesn't spam
+		// Smooth 60fps Plasma Animation Loop
+		function renderPlasma() {
+			if (!isWindowActive) {
+				requestAnimationFrame(renderPlasma);
+				return;
+			}
 
-		// Authentic 4-color Microsoft 365 Copilot ribbon loop SVG
-		function createCopilotSvg() {
-			var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-			svg.setAttribute("viewBox", "0 0 32 32");
-			svg.setAttribute("width", "22");
-			svg.setAttribute("height", "22");
-			svg.setAttribute("aria-hidden", "true");
-			svg.innerHTML = '<defs><linearGradient id="copilot-ribbon" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#0078d4"/><stop offset="35%" stop-color="#7f3b8c"/><stop offset="70%" stop-color="#e05298"/><stop offset="100%" stop-color="#00a4ef"/></linearGradient></defs>' +
-				'<path d="M16 3C8.82 3 3 8.82 3 16c0 4.49 2.29 8.44 5.79 10.77l2.3-3.98C8.81 21.22 7.5 18.77 7.5 16c0-4.69 3.81-8.5 8.5-8.5s8.5 3.81 8.5 8.5c0 2.92-1.35 5.48-3.46 7.12l2.3 3.98C26.71 24.44 29 20.49 29 16c0-7.18-5.82-13-13-13z" fill="url(#copilot-ribbon)"/>' +
-				'<circle cx="16" cy="16" r="4.2" fill="#00a4ef"/>';
-			return svg;
-		}
+			// Fluid lerp tracking
+			currentX += (plasmaX - currentX) * 0.08;
+			currentY += (plasmaY - currentY) * 0.08;
 
-		function triggerCopilotConfetti(originX, originY) {
-			var container = document.createElement("div");
-			container.className = "copilot-confetti-container";
-			container.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:999999;overflow:hidden;";
-			document.body.appendChild(container);
+			ctx.clearRect(0, 0, width, height);
 
-			var particleCount = 18;
-			for (var p = 0; p < particleCount; p++) {
-				var particle = document.createElement("div");
-				particle.className = "copilot-confetti-particle";
+			var t = performance.now() * 0.0022;
 
-				var angle = (Math.PI * 2 * (p / particleCount)) + (Math.random() - 0.5) * 0.5;
-				var velocity = Math.random() * 8 + 5;
-				var vx = Math.cos(angle) * velocity;
-				var vy = Math.sin(angle) * velocity - 3; // slight upward bias
-				var rot = Math.random() * 360;
-				var rotSpeed = (Math.random() - 0.5) * 20;
+			// 1. Ambient Radial Plasma Core Glow
+			var coreRadius = 140;
+			var grad = ctx.createRadialGradient(currentX, currentY, 0, currentX, currentY, coreRadius);
+			grad.addColorStop(0, "rgba(56, 189, 248, 0.35)"); // electric cyan
+			grad.addColorStop(0.35, "rgba(139, 92, 246, 0.22)"); // plasma violet
+			grad.addColorStop(0.7, "rgba(2, 132, 199, 0.10)"); // sapphire blue
+			grad.addColorStop(1, "rgba(2, 132, 199, 0)"); // transparent
 
-				// Mix of Copilot logo icons and sparkling star crystals
-				if (p % 2 === 0) {
-					particle.appendChild(createCopilotSvg());
-				} else {
-					var star = document.createElement("span");
-					star.textContent = p % 4 === 1 ? "✦" : "✧";
-					star.style.fontSize = (Math.random() * 12 + 14) + "px";
-					star.style.color = p % 3 === 0 ? "#38bdf8" : (p % 3 === 1 ? "#ec4899" : "#fbbf24");
-					particle.appendChild(star);
-				}
+			ctx.fillStyle = grad;
+			ctx.beginPath();
+			ctx.arc(currentX, currentY, coreRadius, 0, Math.PI * 2);
+			ctx.fill();
 
-				particle.style.cssText = "position:absolute;left:" + originX + "px;top:" + originY + "px;transform:translate(-50%,-50%);opacity:1;";
-				container.appendChild(particle);
+			// 2. Harmonic Undulating Plasma Wave Rings (Cyan, Violet, Emerald)
+			var rings = [
+				{ baseR: 26, speed: 2.2, color: "rgba(56, 189, 248, 0.55)", width: 1.6 },
+				{ baseR: 54, speed: 1.6, color: "rgba(168, 85, 247, 0.40)", width: 1.3 },
+				{ baseR: 88, speed: 1.2, color: "rgba(16, 185, 129, 0.25)", width: 1.0 }
+			];
 
-				// Animate single particle
-				(function (el, curVx, curVy, curRot, curRotSpeed) {
-					var posX = originX;
-					var posY = originY;
-					var opacity = 1.0;
-					var life = 0;
-					var maxLife = 70 + Math.random() * 20;
+			for (var r = 0; r < rings.length; r++) {
+				var ring = rings[r];
+				var pulse = 1 + 0.12 * Math.sin(t * 1.8 + r * 1.4);
+				var rEff = ring.baseR * pulse;
 
-					function stepParticle() {
-						life++;
-						posX += curVx;
-						posY += curVy;
-						curVy += 0.22; // gravity
-						curVx *= 0.98; // air resistance
-						curRot += curRotSpeed;
-						opacity = Math.max(0, 1 - (life / maxLife));
-
-						el.style.left = posX + "px";
-						el.style.top = posY + "px";
-						el.style.transform = "translate(-50%,-50%) rotate(" + curRot + "deg) scale(" + (0.7 + opacity * 0.4) + ")";
-						el.style.opacity = opacity;
-
-						if (life < maxLife) {
-							requestAnimationFrame(stepParticle);
-						}
+				ctx.beginPath();
+				var steps = 36;
+				for (var s = 0; s <= steps; s++) {
+					var angle = (s / steps) * Math.PI * 2;
+					var distortion = 3.5 * Math.sin(5 * angle + t * ring.speed + r) + 2.0 * Math.cos(3 * angle - t * 1.5);
+					var radius = rEff + distortion;
+					var px = currentX + Math.cos(angle) * radius;
+					var py = currentY + Math.sin(angle) * radius;
+					if (s === 0) {
+						ctx.moveTo(px, py);
+					} else {
+						ctx.lineTo(px, py);
 					}
-					requestAnimationFrame(stepParticle);
-				})(particle, vx, vy, rot, rotSpeed);
+				}
+				ctx.closePath();
+				ctx.strokeStyle = ring.color;
+				ctx.lineWidth = ring.width;
+				ctx.stroke();
 			}
 
-			// Clean up container after particles fade
-			setTimeout(function () {
-				if (container.parentNode) {
-					container.parentNode.removeChild(container);
-				}
-			}, 2200);
+			// 3. Subtle Horizontal Energy Wave Filament along top/bottom
+			ctx.beginPath();
+			var filamentY = height - 1;
+			ctx.moveTo(0, filamentY);
+			for (var x = 0; x <= width; x += 15) {
+				var dist = Math.abs(x - currentX);
+				var influence = Math.exp(-Math.pow(dist / 140, 2));
+				var waveY = filamentY - (2.5 * Math.sin(x * 0.04 + t * 2.5) * influence);
+				ctx.lineTo(x, waveY);
+			}
+			ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+			ctx.lineWidth = 1.0;
+			ctx.stroke();
+
+			requestAnimationFrame(renderPlasma);
 		}
 
-		// Trigger Copilot confetti ONLY when mouse enters navbar from outside
-		nav.addEventListener("mouseenter", function (e) {
-			var now = Date.now();
-			if (now - lastCopilotBurst > BURST_COOLDOWN) {
-				lastCopilotBurst = now;
-				var x = e.clientX || (nav.offsetWidth / 2);
-				var y = e.clientY || 30;
-				triggerCopilotConfetti(x, y);
-			}
-		});
+		requestAnimationFrame(renderPlasma);
 	}
 
 	
@@ -2872,7 +2793,7 @@
 		initTechAnalogies();
 		initCockpitCluster();
 		initOsTracker();
-		initNavKineticLinesAndCopilotEasterEgg();
+		initNavPlasmaWaves();
 		initEstAnalogClock();
 		initGlobalInternetRadar();
 		initDedicatedDeskClock();

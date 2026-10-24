@@ -5633,3 +5633,73 @@ nav.tablet-desktop > ul#site-navigation {
         padding: 14px 12px !important;
     }
 }
+
+
+/* ==========================================================================
+   High-Contrast Dark Surface Text & Plasma Wave Navbar Styling
+   ========================================================================== */
+/* Fix grey text on dark radar and telemetry surfaces to crisp white / light slate */
+.radar-map-panel .radar-panel-title {
+    color: #38bdf8 !important;
+    font-weight: 800;
+}
+.radar-map-panel .radar-legend-chips {
+    color: #e2e8f0 !important; /* was murky grey #94a3b8 */
+    font-weight: 600;
+}
+.radar-probe-instrument .probe-result-box {
+    color: #f8fafc !important; /* was murky grey #94a3b8 */
+    font-weight: 500;
+}
+.radar-probe-instrument .probe-ready-hint {
+    color: #e2e8f0 !important;
+}
+.radar-card-eyebrow {
+    color: #1e293b !important;
+    font-weight: 800 !important;
+}
+.radar-card-delta {
+    color: #0369a1 !important;
+    font-weight: 600 !important;
+}
+.subsea-corridor-card strong {
+    color: #0f172a !important;
+}
+.subsea-corridor-card span {
+    color: #334155 !important; /* was #64748b */
+    font-weight: 500;
+}
+.gauge-stat-pill {
+    color: #1e293b !important;
+    font-weight: 600;
+}
+.gauge-stat-pill strong {
+    color: #0284c7 !important;
+}
+.clock-homelab-ribbon {
+    color: #1e293b !important;
+}
+.clock-homelab-ribbon strong {
+    color: #0f172a !important;
+}
+
+/* Navbar Plasma Wave Canvas */
+nav.tablet-desktop {
+    position: relative;
+}
+.nav-plasma-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+/* Ensure canvas NEVER stretches over extended mobile drawer */
+@media (max-width: 859px) {
+    nav.tablet-desktop.nav-open .nav-plasma-canvas {
+        height: 56px !important;
+    }
+}
