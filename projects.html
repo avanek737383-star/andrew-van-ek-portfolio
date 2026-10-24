@@ -955,7 +955,16 @@
 
 <section class="project-entry" aria-labelledby="phone-ai-title">
 <h2 id="phone-ai-title">Phone AI Gateway: PIN-Free Calls to Local Nemotron</h2>
-<p class="project-status"><span class="status-badge project-in-progress">Personal Prototype</span> <span>PIN-free flow deployed and smoke-tested; real incoming-call verification pending</span></p>
+<p class="project-status"><span class="status-badge project-in-progress">Live Prototype Hotline</span> <span>PIN-free telephony bridge &middot; Twilio PSTN Gateway &middot; NVIDIA Nemotron 4B &middot; Rate Limited</span></p>
+
+<div class="phone-hotline-card" style="background:#0f172a; border:1px solid #1e293b; border-left:4px solid #38bdf8; border-radius:10px; padding:16px 20px; margin:18px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; box-shadow:0 4px 14px rgba(0,0,0,0.25);">
+  <div>
+    <span style="font-size:0.75rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.05em;">Interactive Telephone Hotline Demo</span>
+    <h4 style="margin:4px 0; font-size:1.25rem; color:#f8fafc; font-family:monospace; letter-spacing:0.03em;">📞 +1 (912) 915-3851</h4>
+    <p style="margin:0; font-size:0.85rem; color:#94a3b8;">Call from any phone to converse aloud with Nemo powered by local Nemotron 4B &bull; <strong>Guardrails:</strong> 5-minute session limit &bull; 1 call per 15 min per caller ID &bull; Deferral during active GPU training.</p>
+  </div>
+  <a href="tel:+19129153851" class="btn" style="padding:9px 18px; font-size:0.88rem; font-weight:600; text-decoration:none;">Call Hotline &rarr;</a>
+</div>
 <p>I built a separate personal project for talking to AI over a phone call. The original design used Twilio to receive calls, ask for a PIN, and offer Google Gemini in the cloud or a choice of models on a Linux HP computer. It connected phone menus, speech transcription, AI inference, and spoken responses.</p>
 <p>The current flow connects incoming calls directly to one local model: NVIDIA <span class="tech-term" data-term="nemotron">Nemotron 3 Nano</span> 4B on my Windows PC, without asking the caller for a PIN. Twilio transcribes the caller's question, the PC generates an answer, and Twilio reads it aloud. This phone AI remains general-purpose and does not use the website chatbot's portfolio-grounded instructions.</p>
 <p>Callers finish by hanging up. I removed the spoken &ldquo;Done&rdquo;, &ldquo;goodbye&rdquo;, and &ldquo;bye&rdquo; exit commands, so those words are treated as ordinary speech rather than commands to terminate the call. Phone inference requests set a thirty-minute idle timer in LM Studio. When the model stops receiving requests, it unloads automatically from memory; continued phone or website use of the shared model resets the idle period.</p>
