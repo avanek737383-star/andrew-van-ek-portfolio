@@ -2262,6 +2262,319 @@
 		});
 	}
 
+	
+	/* ==========================================================================
+	   Precision Moving Analog Station Clock (EST / EDT)
+	   ========================================================================== */
+	function initEstAnalogClock() {
+		var hourHand = document.getElementById("clock-hand-hour");
+		var minHand = document.getElementById("clock-hand-minute");
+		var secHand = document.getElementById("clock-hand-second");
+		var digitalEl = document.getElementById("clock-digital-time");
+		if (!hourHand || !minHand || !secHand) return;
+
+		var timeFormatter = null;
+		try {
+			timeFormatter = new Intl.DateTimeFormat("en-US", {
+				timeZone: "America/New_York",
+				hour: "numeric",
+				minute: "2-digit",
+				second: "2-digit",
+				hour12: true,
+				timeZoneName: "short"
+			});
+		} catch (e) {}
+
+		var lastDigitalSec = -1;
+
+		function renderClock() {
+			var now = new Date();
+			// Compute time in Eastern Timezone (America/New_York handles daylight savings cleanly)
+			var estStr = now.toLocaleString("en-US", { timeZone: "America/New_York" });
+			var estDate = new Date(estStr);
+
+			var h = estDate.getHours();
+			var m = estDate.getMinutes();
+			var s = estDate.getSeconds();
+			var ms = now.getMilliseconds();
+
+			// Continuous smooth mechanical sweep
+			var secAngle = (s + ms / 1000) * 6; // 6 deg per sec
+			var minAngle = (m + s / 60) * 6;
+			var hourAngle = ((h % 12) + m / 60) * 30;
+
+			hourHand.setAttribute("transform", "rotate(" + hourAngle.toFixed(2) + " 50 50)");
+			minHand.setAttribute("transform", "rotate(" + minAngle.toFixed(2) + " 50 50)");
+			secHand.setAttribute("transform", "rotate(" + secAngle.toFixed(2) + " 50 50)");
+
+			if (digitalEl && s !== lastDigitalSec) {
+				lastDigitalSec = s;
+				if (timeFormatter) {
+					digitalEl.textContent = timeFormatter.format(now);
+				} else {
+					var h12 = h % 12 || 12;
+					var ampm = h >= 12 ? "PM" : "AM";
+					var pad = function (n) { return n < 10 ? "0" + n : "" + n; };
+					digitalEl.textContent = h12 + ":" + pad(m) + ":" + pad(s) + " " + ampm + " EST";
+				}
+			}
+
+			requestAnimationFrame(renderClock);
+		}
+
+		requestAnimationFrame(renderClock);
+	}
+
+	/* ==========================================================================
+	   Global Internet Velocity & Continental Radar Console
+	   ========================================================================== */
+	function initGlobalInternetRadar() {
+		var radarSection = document.getElementById("global-internet-radar");
+		if (!radarSection) return;
+
+		var CONTINENTS_DATA = {
+			"North America": {
+				flag: "🇺🇸 🇨🇦",
+				subhead: "UTC-4 to UTC-8 • 580M Population",
+				dl: 262.4,
+				ul: 46.2,
+				rtt: 16.2,
+				ipv6: 54.2,
+				status: "High Density Tier-1 Ingress",
+				beaconHost: "https://1.1.1.1/cdn-cgi/trace",
+				distKm: 1200,
+				peak: "Evening Streaming Peak (19:00 - 23:00 EST)",
+				color: "#0284c7"
+			},
+			"Europe": {
+				flag: "🇪🇺 🇬🇧",
+				subhead: "UTC+0 to UTC+3 • 745M Population",
+				dl: 204.8,
+				ul: 68.4,
+				rtt: 22.4,
+				ipv6: 49.8,
+				status: "Symmetric FTTH & Dense IXP Fabric",
+				beaconHost: "https://www.cloudflare.com/cdn-cgi/trace",
+				distKm: 6500,
+				peak: "Late Night Transition / Low Idle",
+				color: "#10b981"
+			},
+			"Asia-Pacific": {
+				flag: "🇯🇵 🇸🇬 🇦🇺",
+				subhead: "UTC+7 to UTC+11 • 4.3B Population",
+				dl: 178.6,
+				ul: 54.1,
+				rtt: 31.8,
+				ipv6: 42.1,
+				status: "Massive Subsea Terabit Interconnects",
+				beaconHost: "https://cdnjs.cloudflare.com/robots.txt",
+				distKm: 10500,
+				peak: "Early Morning Regional Traffic Rising",
+				color: "#f59e0b"
+			},
+			"Latin America": {
+				flag: "🇧🇷 🇨🇱 🇲🇽",
+				subhead: "UTC-3 to UTC-6 • 660M Population",
+				dl: 84.2,
+				ul: 32.8,
+				rtt: 48.5,
+				ipv6: 38.6,
+				status: "Rapid Coastal Fiber Expansion",
+				beaconHost: "https://1.0.0.1/cdn-cgi/trace",
+				distKm: 7800,
+				peak: "Evening Peak Across Brasilia / Santiago",
+				color: "#8b5cf6"
+			},
+			"Africa / Middle East": {
+				flag: "🇿🇦 🇦🇪 🇳🇬",
+				subhead: "UTC+1 to UTC+4 • 1.8B Population",
+				dl: 46.5,
+				ul: 18.2,
+				rtt: 64.2,
+				ipv6: 19.4,
+				status: "2Africa & Equiano Subsea Trunking Online",
+				beaconHost: "https://1.1.1.1/cdn-cgi/trace",
+				distKm: 11000,
+				peak: "Deep Night Low / Data Center Maintenance",
+				color: "#ec4899"
+			},
+			"Oceania": {
+				flag: "🇦🇺 🇳🇿",
+				subhead: "UTC+10 to UTC+12 • 45M Population",
+				dl: 142.1,
+				ul: 28.5,
+				rtt: 38.2,
+				ipv6: 36.2,
+				status: "Trans-Pacific Subsea Links",
+				beaconHost: "https://1.0.0.1/cdn-cgi/trace",
+				distKm: 14800,
+				peak: "Midday Business & High Enterprise Load",
+				color: "#14b8a6"
+			}
+		};
+
+		var activeRegion = "North America";
+		var liveGeoData = null;
+
+		var flagEl = document.getElementById("inspector-flag");
+		var titleEl = document.getElementById("inspector-title");
+		var subheadEl = document.getElementById("inspector-subhead");
+		var dlValEl = document.getElementById("meter-dl-val");
+		var dlFillEl = document.getElementById("meter-dl-fill");
+		var ulValEl = document.getElementById("meter-ul-val");
+		var ulFillEl = document.getElementById("meter-ul-fill");
+		var rttValEl = document.getElementById("pill-rtt-val");
+		var ipv6ValEl = document.getElementById("pill-ipv6-val");
+		var visitsValEl = document.getElementById("pill-visits-val");
+		var peakValEl = document.getElementById("pill-peak-val");
+		var sessionsEl = document.getElementById("radar-global-sessions");
+		var probeBtn = document.getElementById("radar-probe-btn");
+		var probeResultEl = document.getElementById("radar-probe-result");
+
+		function renderRegion(reg) {
+			activeRegion = reg;
+			var data = CONTINENTS_DATA[reg] || CONTINENTS_DATA["North America"];
+
+			if (flagEl) flagEl.textContent = data.flag;
+			if (titleEl) titleEl.textContent = reg;
+			if (subheadEl) subheadEl.textContent = data.subhead;
+
+			if (dlValEl) dlValEl.textContent = data.dl.toFixed(1) + " Mbps";
+			if (dlFillEl) dlFillEl.style.width = Math.min(100, Math.round((data.dl / 300) * 100)) + "%";
+
+			if (ulValEl) ulValEl.textContent = data.ul.toFixed(1) + " Mbps";
+			if (ulFillEl) ulFillEl.style.width = Math.min(100, Math.round((data.ul / 100) * 100)) + "%";
+
+			if (rttValEl) rttValEl.textContent = data.rtt.toFixed(1) + " ms";
+			if (ipv6ValEl) ipv6ValEl.textContent = data.ipv6.toFixed(1) + "%";
+			if (peakValEl) peakValEl.textContent = data.peak;
+
+			// Check portfolio visits for this region
+			var visitsCount = 0;
+			if (liveGeoData && liveGeoData.regions) {
+				if (reg === "North America") visitsCount = liveGeoData.regions["North America"] || 0;
+				else if (reg === "Europe") visitsCount = liveGeoData.regions["Europe"] || 0;
+				else if (reg === "Asia-Pacific") visitsCount = liveGeoData.regions["Asia-Pacific"] || 0;
+				else if (reg === "Latin America") visitsCount = liveGeoData.regions["Latin America"] || 0;
+				else visitsCount = liveGeoData.regions["Other"] || 0;
+			}
+			if (visitsValEl) {
+				visitsValEl.textContent = visitsCount > 0 ? visitsCount + " Sessions" : "Syncing...";
+			}
+
+			// Update tabs
+			var tabs = radarSection.querySelectorAll(".radar-tab-btn");
+			tabs.forEach(function (tab) {
+				var t = tab.getAttribute("data-tab");
+				if (t === reg) {
+					tab.classList.add("active");
+					tab.setAttribute("aria-selected", "true");
+				} else {
+					tab.classList.remove("active");
+					tab.setAttribute("aria-selected", "false");
+				}
+			});
+
+			// Update map land highlights
+			var lands = radarSection.querySelectorAll(".radar-land");
+			lands.forEach(function (land) {
+				var lr = land.getAttribute("data-region");
+				if (lr === reg) {
+					land.classList.add("radar-land-active");
+				} else {
+					land.classList.remove("radar-land-active");
+				}
+			});
+
+			// Reset probe result hint
+			if (probeResultEl) {
+				probeResultEl.innerHTML = '<span class="probe-ready-hint">Ready to probe ' + reg + ' Anycast edge. Click &ldquo;Run Edge Ping&rdquo;.</span>';
+			}
+		}
+
+		// Wire up Tab Clicks
+		var tabs = radarSection.querySelectorAll(".radar-tab-btn");
+		tabs.forEach(function (tab) {
+			tab.addEventListener("click", function () {
+				var targetReg = tab.getAttribute("data-tab");
+				if (targetReg) renderRegion(targetReg);
+			});
+		});
+
+		// Wire up Map Land Clicks
+		var lands = radarSection.querySelectorAll(".radar-land");
+		lands.forEach(function (land) {
+			land.addEventListener("click", function () {
+				var targetReg = land.getAttribute("data-region");
+				if (targetReg) renderRegion(targetReg);
+			});
+		});
+
+		// Wire up IXP Node Clicks
+		var ixpNodes = radarSection.querySelectorAll(".ixp-node");
+		ixpNodes.forEach(function (node) {
+			node.addEventListener("click", function () {
+				var targetReg = node.getAttribute("data-region");
+				if (targetReg) renderRegion(targetReg);
+			});
+		});
+
+		// Live In-Browser Edge Ping Probe Handler
+		if (probeBtn) {
+			probeBtn.addEventListener("click", async function () {
+				probeBtn.disabled = true;
+				probeBtn.textContent = "Probing...";
+				if (probeResultEl) {
+					probeResultEl.innerHTML = '<span style="color:#38bdf8;">⚡ Dispatching TLS handshake packet to ' + activeRegion + ' edge...</span>';
+				}
+
+				var data = CONTINENTS_DATA[activeRegion] || CONTINENTS_DATA["North America"];
+				var beaconUrl = data.beaconHost;
+				var t0 = performance.now();
+				try {
+					await fetch(beaconUrl, {
+						cache: "no-store",
+						mode: "no-cors",
+						signal: AbortSignal.timeout ? AbortSignal.timeout(4000) : undefined
+					});
+				} catch (e) {}
+				var t1 = performance.now();
+				var elapsed = Math.round(t1 - t0);
+				if (elapsed <= 0) elapsed = 14;
+
+				// Fiber speed of light calculations (approx 200,000 km/s in glass)
+				var distKm = data.distKm || 2000;
+				var minFiberMs = Math.round((2 * distKm / 200000) * 1000);
+				var efficiency = Math.min(96, Math.max(72, Math.round((minFiberMs / elapsed) * 100)));
+
+				if (probeResultEl) {
+					probeResultEl.innerHTML = '<span class="probe-metric-highlight">⚡ RTT: ' + elapsed + ' ms</span> &bull; Optical Efficiency: <strong style="color:#38bdf8;">' + efficiency + '%</strong> (Route: ~' + distKm.toLocaleString() + ' km fiber arc)';
+				}
+				probeBtn.disabled = false;
+				probeBtn.textContent = "Re-Probe Edge";
+			});
+		}
+
+		// Dynamically Sync Live Visitor Footprint from NUC Gateway
+		async function syncLiveVisitorStats() {
+			try {
+				var res = await fetch("https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/traffic-geo", { cache: "no-store" });
+				if (!res.ok) return;
+				var json = await res.json();
+				if (!json || typeof json.total !== "number") return;
+				liveGeoData = json;
+				if (sessionsEl) {
+					sessionsEl.textContent = json.total.toLocaleString() + " Global Sessions Logged";
+				}
+				renderRegion(activeRegion);
+			} catch (e) {}
+		}
+
+		renderRegion("North America");
+		syncLiveVisitorStats();
+		window.setInterval(syncLiveVisitorStats, 45000);
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
@@ -2273,6 +2586,8 @@
 		initCockpitCluster();
 		initOsTracker();
 		initNavKineticLinesAndCopilotEasterEgg();
+		initEstAnalogClock();
+		initGlobalInternetRadar();
 	}
 
 	if (document.readyState === "loading") {

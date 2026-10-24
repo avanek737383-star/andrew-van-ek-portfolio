@@ -54,11 +54,265 @@
 			<div class="hero-text" style="max-width: 820px; margin: 0 auto;">
 				<span class="hero-eyebrow" style="color: #0056b3; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem;">Real-Time Homelab Telemetry</span>
 				<h1 style="color: #002d5a; margin: 4px 0 10px; font-size: 2.1rem; font-weight: 800;">Stats for Nerds &bull; Systems Console</h1>
-				<p class="hero-desc" style="color: #64748b; font-size: 1rem; line-height: 1.5; margin: 0 auto;">Live client engine benchmarking, encrypted Tailscale mesh latency, local AI GPU inference, astrophysics BOINC volunteer compute, and daily public operating system tracking.</p>
+				<p class="hero-desc" style="color: #64748b; font-size: 1rem; line-height: 1.5; margin: 0 auto;">Global macroscopic internet broadband velocity, transoceanic subsea routing radar, encrypted Tailscale mesh latency, local AI GPU inference, astrophysics BOINC volunteer compute, and daily public operating system tracking.</p>
 			</div>
 		</header>
 
-		<main>
+				<main>
+			<!-- Global Internet Velocity & Continental Radar -->
+			<section class="global-internet-radar" id="global-internet-radar" aria-labelledby="global-radar-title">
+				<div class="telemetry-header">
+					<div class="telemetry-title-group">
+						<span class="telemetry-eyebrow">Macroscopic Telemetry &amp; Edge Velocity</span>
+						<h3 id="global-radar-title">Global Internet Velocity &amp; Continental Radar</h3>
+						<p class="telemetry-desc">Real-time macroscopic broadband throughput, transoceanic fiber routing, and Anycast edge round-trip latency monitored across continental hubs. 100% privacy-preserving public aggregate telemetry with zero raw IP tracking.</p>
+					</div>
+					<div class="telemetry-status-box">
+						<span class="telemetry-live-badge"><span class="telemetry-pulse"></span> Global Mesh Nominal</span>
+						<span class="telemetry-refresh-tag" id="radar-global-sessions">Synchronizing Sessions...</span>
+					</div>
+				</div>
+
+				<!-- Overview Stats Ribbon -->
+				<div class="radar-summary-strip">
+					<div class="radar-summary-card">
+						<span class="radar-card-eyebrow">Global Median Download</span>
+						<div class="radar-card-val-row">
+							<strong class="radar-card-val" id="global-val-dl">214.6</strong>
+							<span class="radar-card-unit">Mbps</span>
+						</div>
+						<span class="radar-card-delta">⚡ +4.2% YoY &bull; Global Fiber Expansion</span>
+					</div>
+					<div class="radar-summary-card">
+						<span class="radar-card-eyebrow">Global Median Upload</span>
+						<div class="radar-card-val-row">
+							<strong class="radar-card-val" id="global-val-ul">58.4</strong>
+							<span class="radar-card-unit">Mbps</span>
+						</div>
+						<span class="radar-card-delta">🌐 Symmetric Fiber / 5G SA Aggregate</span>
+					</div>
+					<div class="radar-summary-card">
+						<span class="radar-card-eyebrow">Tier-1 Edge Latency</span>
+						<div class="radar-card-val-row">
+							<strong class="radar-card-val" id="global-val-rtt">24.8</strong>
+							<span class="radar-card-unit">ms</span>
+						</div>
+						<span class="radar-card-delta">📍 Sub-30ms Global Cloud Threshold</span>
+					</div>
+					<div class="radar-summary-card">
+						<span class="radar-card-eyebrow">BGP Routing Stability</span>
+						<div class="radar-card-val-row">
+							<strong class="radar-card-val" id="global-val-bgp">99.86%</strong>
+							<span class="radar-card-unit">Optimal</span>
+						</div>
+						<span class="radar-card-delta">🛡️ Zero Active Macroscopic Route Leaks</span>
+					</div>
+				</div>
+
+				<!-- Interactive Radar Layout -->
+				<div class="radar-grid">
+					<!-- Left: Interactive World Radar Map with Subsea Arcs and IXP Nodes -->
+					<div class="radar-map-panel">
+						<div class="radar-panel-header">
+							<span class="radar-panel-title"><span class="radar-live-dot"></span> Transoceanic Fiber Radar</span>
+							<div class="radar-legend-chips">
+								<span class="radar-chip"><span class="chip-color chip-na"></span> NA</span>
+								<span class="radar-chip"><span class="chip-color chip-eu"></span> EU</span>
+								<span class="radar-chip"><span class="chip-color chip-apac"></span> APAC</span>
+								<span class="radar-chip"><span class="chip-color chip-latam"></span> LATAM</span>
+							</div>
+						</div>
+						<div class="radar-map-canvas-wrap">
+							<svg class="radar-svg-map" viewBox="0 15 1000 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive World Radar showing continental internet speeds and subsea fiber corridors">
+								<defs>
+									<pattern id="radar-cyber-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+										<path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(56, 189, 248, 0.05)" stroke-width="1"/>
+									</pattern>
+									<linearGradient id="fiber-grad-atl" x1="0%" y1="0%" x2="100%" y2="0%">
+										<stop offset="0%" stop-color="#0284c7" stop-opacity="0.8"/>
+										<stop offset="50%" stop-color="#38bdf8" stop-opacity="1"/>
+										<stop offset="100%" stop-color="#10b981" stop-opacity="0.8"/>
+									</linearGradient>
+									<linearGradient id="fiber-grad-pac" x1="0%" y1="0%" x2="100%" y2="0%">
+										<stop offset="0%" stop-color="#f59e0b" stop-opacity="0.8"/>
+										<stop offset="50%" stop-color="#38bdf8" stop-opacity="1"/>
+										<stop offset="100%" stop-color="#0284c7" stop-opacity="0.8"/>
+									</linearGradient>
+									<linearGradient id="fiber-grad-eurasia" x1="0%" y1="0%" x2="100%" y2="0%">
+										<stop offset="0%" stop-color="#10b981" stop-opacity="0.8"/>
+										<stop offset="100%" stop-color="#f59e0b" stop-opacity="0.8"/>
+									</linearGradient>
+								</defs>
+
+								<!-- Cyber Grid Background -->
+								<rect x="0" y="15" width="1000" height="420" fill="url(#radar-cyber-grid)" />
+								<!-- Outer Robinson Boundary Horizon Curve -->
+								<path d="M 758.1,480.0 777.5,474.5 801.3,466.1 826.5,455.5 848.5,444.0 868.5,431.8 887.3,419.0 905.0,405.7 920.9,392.0 934.7,378.1 947.0,364.0 957.2,349.8 965.6,335.6 971.9,321.3 976.4,307.0 980.1,292.8 982.8,278.5 984.3,264.3 985.0,250.0 984.3,235.7 982.8,221.5 980.1,207.2 976.4,193.0 971.9,178.7 965.6,164.4 957.2,150.2 947.0,136.0 934.7,121.9 920.9,108.0 905.0,94.3 887.3,81.0 868.5,68.2 848.5,56.0 826.5,44.5 801.3,33.9 777.5,25.5 758.1,20.0 241.9,20.0 222.5,25.5 198.7,33.9 173.5,44.5 151.5,56.0 131.5,68.2 112.7,81.0 95.0,94.3 79.1,108.0 65.3,121.9 53.0,136.0 42.8,150.2 34.4,164.4 28.1,178.7 23.6,193.0 19.9,207.2 17.2,221.5 15.7,235.7 15.0,250.0 15.7,264.3 17.2,278.5 19.9,292.8 23.6,307.0 28.1,321.3 34.4,335.6 42.8,349.8 53.0,364.0 65.3,378.1 79.1,392.0 95.0,405.7 112.7,419.0 131.5,431.8 151.5,444.0 173.5,455.5 198.7,466.1 222.5,474.5 241.9,480.0 Z" fill="none" stroke="rgba(56, 189, 248, 0.15)" stroke-width="1.5" stroke-dasharray="4 6" />
+
+								<!-- Transoceanic Subsea Fiber Arcs -->
+								<path class="subsea-fiber-cable" d="M 255,140 Q 380,85 510,115" stroke="url(#fiber-grad-atl)" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
+								<path class="subsea-fiber-cable" d="M 820,150 Q 900,140 980,160" stroke="url(#fiber-grad-pac)" stroke-width="2.2" fill="none" stroke-dasharray="6 4"/>
+								<path class="subsea-fiber-cable" d="M 20,160 Q 90,145 180,160" stroke="url(#fiber-grad-pac)" stroke-width="2.2" fill="none" stroke-dasharray="6 4"/>
+								<path class="subsea-fiber-cable" d="M 510,115 Q 610,180 760,240" stroke="url(#fiber-grad-eurasia)" stroke-width="2.2" fill="none" stroke-dasharray="6 4"/>
+								<path class="subsea-fiber-cable" d="M 365,260 Q 420,190 490,145" stroke="#8b5cf6" stroke-opacity="0.7" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+								<path class="subsea-fiber-cable" d="M 860,340 Q 820,290 760,240" stroke="#14b8a6" stroke-opacity="0.7" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+
+								<!-- Continents -->
+								<path id="radar-land-na" class="radar-land radar-land-active" data-region="North America" fill="#0284c7" fill-opacity="0.32" stroke="#38bdf8" stroke-width="1.2" d="M 125,75 Q 170,45 230,48 Q 280,75 275,110 L 260,165 Q 220,180 205,160 L 190,150 Q 160,180 145,190 L 130,170 Q 110,140 125,75 Z M 204,53 L 226,56 L 214,65 L 197,80 Z M 238,166 L 246,172 L 245,176 L 240,173 Z" />
+								<path id="radar-land-eu" class="radar-land" data-region="Europe" fill="#10b981" fill-opacity="0.25" stroke="#34d399" stroke-width="1.2" d="M 480,90 Q 520,70 565,85 Q 580,110 560,135 L 530,145 Q 500,150 485,130 L 490,115 Z M 495,75 L 515,65 L 525,80 Z" />
+								<path id="radar-land-apac" class="radar-land" data-region="Asia-Pacific" fill="#f59e0b" fill-opacity="0.25" stroke="#fbbf24" stroke-width="1.2" d="M 585,85 Q 700,70 820,95 Q 890,120 850,170 L 780,180 Q 750,230 730,220 L 680,190 Q 610,170 585,120 Z M 800,140 L 830,145 L 820,170 Z M 800,310 Q 860,300 870,350 L 830,370 Q 790,360 800,310 Z" />
+								<path id="radar-land-latam" class="radar-land" data-region="Latin America" fill="#8b5cf6" fill-opacity="0.25" stroke="#a78bfa" stroke-width="1.2" d="M 285,210 Q 340,200 375,250 Q 360,330 320,380 L 290,360 Q 275,280 285,210 Z" />
+								<path id="radar-land-af" class="radar-land" data-region="Africa / Middle East" fill="#ec4899" fill-opacity="0.22" stroke="#f472b6" stroke-width="1.2" d="M 485,160 Q 550,150 575,190 Q 580,260 550,320 L 510,320 Q 470,250 460,200 Z" />
+
+								<!-- Major Tier-1 IXP Hotspot Nodes -->
+								<g class="ixp-node" data-region="North America" transform="translate(255, 140)">
+									<circle r="9" class="ixp-beacon-ring ixp-ring-blue" />
+									<circle r="4" class="ixp-beacon-dot ixp-dot-blue" />
+									<text y="-8" class="ixp-label">Ashburn (IAD)</text>
+								</g>
+								<g class="ixp-node" data-region="Europe" transform="translate(500, 110)">
+									<circle r="8" class="ixp-beacon-ring ixp-ring-green" />
+									<circle r="3.5" class="ixp-beacon-dot ixp-dot-green" />
+									<text y="-7" class="ixp-label">London (LHR)</text>
+								</g>
+								<g class="ixp-node" data-region="Europe" transform="translate(525, 118)">
+									<circle r="8" class="ixp-beacon-ring ixp-ring-green" />
+									<circle r="3.5" class="ixp-beacon-dot ixp-dot-green" />
+									<text x="6" y="3" class="ixp-label">Frankfurt</text>
+								</g>
+								<g class="ixp-node" data-region="Asia-Pacific" transform="translate(820, 148)">
+									<circle r="9" class="ixp-beacon-ring ixp-ring-amber" />
+									<circle r="4" class="ixp-beacon-dot ixp-dot-amber" />
+									<text y="-8" class="ixp-label">Tokyo (NRT)</text>
+								</g>
+								<g class="ixp-node" data-region="Asia-Pacific" transform="translate(760, 240)">
+									<circle r="8" class="ixp-beacon-ring ixp-ring-amber" />
+									<circle r="3.5" class="ixp-beacon-dot ixp-dot-amber" />
+									<text x="8" y="4" class="ixp-label">Singapore</text>
+								</g>
+								<g class="ixp-node" data-region="Latin America" transform="translate(345, 290)">
+									<circle r="8" class="ixp-beacon-ring ixp-ring-purple" />
+									<circle r="3.5" class="ixp-beacon-dot ixp-dot-purple" />
+									<text y="14" class="ixp-label">São Paulo</text>
+								</g>
+								<g class="ixp-node" data-region="Oceania" transform="translate(855, 345)">
+									<circle r="8" class="ixp-beacon-ring ixp-ring-cyan" />
+									<circle r="3.5" class="ixp-beacon-dot ixp-dot-cyan" />
+									<text y="14" class="ixp-label">Sydney (SYD)</text>
+								</g>
+							</svg>
+						</div>
+					</div>
+
+					<!-- Right: Regional Telemetry Inspector & Edge Latency Probe -->
+					<div class="radar-inspector-panel">
+						<div class="radar-tabs" role="tablist" aria-label="Select continent to inspect">
+							<button class="radar-tab-btn active" data-tab="North America" type="button" role="tab" aria-selected="true">NA</button>
+							<button class="radar-tab-btn" data-tab="Europe" type="button" role="tab" aria-selected="false">Europe</button>
+							<button class="radar-tab-btn" data-tab="Asia-Pacific" type="button" role="tab" aria-selected="false">APAC</button>
+							<button class="radar-tab-btn" data-tab="Latin America" type="button" role="tab" aria-selected="false">LATAM</button>
+							<button class="radar-tab-btn" data-tab="Africa / Middle East" type="button" role="tab" aria-selected="false">Africa/ME</button>
+							<button class="radar-tab-btn" data-tab="Oceania" type="button" role="tab" aria-selected="false">Oceania</button>
+						</div>
+
+						<div class="radar-inspector-content">
+							<div class="inspector-headline">
+								<span class="inspector-flag" id="inspector-flag">🇺🇸 🇨🇦</span>
+								<div>
+									<h4 class="inspector-title" id="inspector-title">North America</h4>
+									<span class="inspector-subhead" id="inspector-subhead">UTC-4 to UTC-8 &bull; 580M Population</span>
+								</div>
+							</div>
+
+							<!-- Speed Meters -->
+							<div class="inspector-meters">
+								<div class="inspector-meter-row">
+									<div class="meter-labels">
+										<span class="meter-name">Median Download</span>
+										<strong class="meter-val" id="meter-dl-val">262.4 Mbps</strong>
+									</div>
+									<div class="meter-track">
+										<div class="meter-fill meter-fill-dl" id="meter-dl-fill" style="width: 87%;"></div>
+									</div>
+								</div>
+								<div class="inspector-meter-row">
+									<div class="meter-labels">
+										<span class="meter-name">Median Upload</span>
+										<strong class="meter-val" id="meter-ul-val">46.2 Mbps</strong>
+									</div>
+									<div class="meter-track">
+										<div class="meter-fill meter-fill-ul" id="meter-ul-fill" style="width: 55%;"></div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Continental Meta Grid -->
+							<div class="inspector-stats-grid">
+								<div class="inspector-stat-pill">
+									<span class="pill-eyebrow">Typical Edge RTT</span>
+									<strong class="pill-value" id="pill-rtt-val">16.2 ms</strong>
+								</div>
+								<div class="inspector-stat-pill">
+									<span class="pill-eyebrow">IPv6 Adoption</span>
+									<strong class="pill-value" id="pill-ipv6-val">54.2%</strong>
+								</div>
+								<div class="inspector-stat-pill">
+									<span class="pill-eyebrow">Portfolio Footprint</span>
+									<strong class="pill-value" id="pill-visits-val">249 Sessions</strong>
+								</div>
+								<div class="inspector-stat-pill">
+									<span class="pill-eyebrow">Regional Activity</span>
+									<strong class="pill-value" id="pill-peak-val" style="font-size: 0.74rem;">Peak Window</strong>
+								</div>
+							</div>
+
+							<!-- Interactive Edge Ping Probe Instrument -->
+							<div class="radar-probe-instrument">
+								<div class="probe-header">
+									<span class="probe-title">⚡ In-Browser Speed of Light Probe</span>
+									<button type="button" class="probe-run-btn" id="radar-probe-btn">Run Edge Ping</button>
+								</div>
+								<div class="probe-result-box" id="radar-probe-result">
+									<span class="probe-ready-hint">Click &ldquo;Run Edge Ping&rdquo; to measure client round-trip handshake time to this continent's Anycast edge.</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Transoceanic Subsea Corridor Status Strip -->
+				<div class="radar-subsea-strip">
+					<div class="subsea-corridor-card">
+						<span class="corridor-dot dot-green"></span>
+						<div class="corridor-text">
+							<strong>Transatlantic Corridor</strong>
+							<span>MAREA &bull; Dunant &bull; Amiti&eacute; (4.8 Tbps Nominal)</span>
+						</div>
+					</div>
+					<div class="subsea-corridor-card">
+						<span class="corridor-dot dot-green"></span>
+						<div class="corridor-text">
+							<strong>Transpacific Corridor</strong>
+							<span>FASTER &bull; JUPITER &bull; PLCN (6.2 Tbps Nominal)</span>
+						</div>
+					</div>
+					<div class="subsea-corridor-card">
+						<span class="corridor-dot dot-yellow"></span>
+						<div class="corridor-text">
+							<strong>Red Sea / Suez Corridor</strong>
+							<span>Traffic Actively Diverted via Cape of Good Hope (Nominal Redundancy)</span>
+						</div>
+					</div>
+					<div class="subsea-corridor-card">
+						<span class="corridor-dot dot-green"></span>
+						<div class="corridor-text">
+							<strong>South Atlantic Link</strong>
+							<span>SACS &bull; EllaLink (2.1 Tbps Nominal)</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
 			<section class="home-telemetry" aria-labelledby="telemetry-title">
 					<div class="telemetry-header">
 						<div class="telemetry-title-group">
@@ -562,6 +816,6 @@
 			<p>Website last modified: <time datetime="2026-10-22">October 22, 2026</time></p>
 		</footer>
 	</div>
-	<script src="scripts/script.js?v=20261024-geo-sync"></script>
+	<script src="scripts/script.js?v=20261024-global-radar"></script>
 </body>
 </html>

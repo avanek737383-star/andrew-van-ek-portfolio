@@ -4671,3 +4671,537 @@ nav.tablet-desktop > ul#site-navigation {
     justify-content: center;
     filter: drop-shadow(0 2px 8px rgba(0, 120, 212, 0.4));
 }
+
+/* ==========================================================================
+   Precision Moving Analog Station Clock (EST / EDT)
+   ========================================================================== */
+.home-est-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 8px 12px 6px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+}
+.home-est-clock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.09);
+    border-color: #cbd5e1;
+}
+.clock-dial-wrapper {
+    width: 82px;
+    height: 82px;
+    position: relative;
+}
+.clock-dial-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+.clock-bezel {
+    fill: #f8fafc;
+    stroke: #cbd5e1;
+    stroke-width: 2.5;
+}
+.clock-face {
+    fill: #ffffff;
+}
+.clock-tick {
+    stroke-linecap: round;
+}
+.clock-tick-major {
+    stroke: #0f172a;
+    stroke-width: 2.5;
+}
+.clock-tick-minor {
+    stroke: #94a3b8;
+    stroke-width: 1.2;
+}
+.clock-dial-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 6.5px;
+    font-weight: 800;
+    fill: #0056b3;
+    text-anchor: middle;
+    letter-spacing: 0.08em;
+}
+.clock-dial-sub {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 5px;
+    font-weight: 700;
+    fill: #94a3b8;
+    text-anchor: middle;
+    letter-spacing: 0.12em;
+}
+.clock-hand {
+    stroke-linecap: round;
+}
+.clock-hand-hour {
+    stroke: #0f172a;
+    stroke-width: 3.2;
+}
+.clock-hand-minute {
+    stroke: #334155;
+    stroke-width: 2.2;
+}
+.clock-hand-second {
+    stroke: #e11d48;
+    stroke-width: 1.4;
+}
+.clock-center-cap {
+    fill: #e11d48;
+}
+.clock-center-dot {
+    fill: #ffffff;
+}
+.clock-digital-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    border: 1px solid #e2e8f0;
+}
+.clock-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    animation: clock-pulse 1.8s infinite;
+}
+@keyframes clock-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+.clock-digital-time {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: -0.01em;
+}
+@media (max-width: 640px) {
+    .home-est-clock {
+        margin: 12px auto 0;
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* ==========================================================================
+   Global Internet Velocity & Continental Radar Section
+   ========================================================================== */
+.global-internet-radar {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+}
+.radar-summary-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 20px 0 24px;
+}
+.radar-summary-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.radar-card-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.radar-card-val-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+.radar-card-val {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #0f172a;
+    font-family: ui-monospace, monospace;
+}
+.radar-card-unit {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0284c7;
+}
+.radar-card-delta {
+    font-size: 0.72rem;
+    color: #64748b;
+    font-weight: 500;
+}
+.radar-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+@media (max-width: 1050px) {
+    .radar-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.radar-map-panel {
+    background: #090d16;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+.radar-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.radar-panel-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #38bdf8;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.radar-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+    animation: clock-pulse 1.8s infinite;
+}
+.radar-legend-chips {
+    display: flex;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: #94a3b8;
+}
+.chip-color {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+.chip-na { background: #0284c7; }
+.chip-eu { background: #10b981; }
+.chip-apac { background: #f59e0b; }
+.chip-latam { background: #8b5cf6; }
+
+.radar-map-canvas-wrap {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.radar-svg-map {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.subsea-fiber-cable {
+    animation: fiber-stream 10s linear infinite;
+}
+@keyframes fiber-stream {
+    to { stroke-dashoffset: -100; }
+}
+.radar-land {
+    cursor: pointer;
+    transition: fill-opacity 0.25s ease, stroke-width 0.25s ease, stroke 0.25s ease;
+}
+.radar-land:hover, .radar-land-active {
+    fill-opacity: 0.65 !important;
+    stroke-width: 2 !important;
+}
+.ixp-node {
+    cursor: pointer;
+}
+.ixp-beacon-ring {
+    fill: none;
+    stroke-width: 1.5;
+    animation: ixp-beacon-pulse 2.2s infinite;
+}
+.ixp-ring-blue { stroke: #38bdf8; }
+.ixp-ring-green { stroke: #34d399; }
+.ixp-ring-amber { stroke: #fbbf24; }
+.ixp-ring-purple { stroke: #a78bfa; }
+.ixp-ring-cyan { stroke: #2dd4bf; }
+.ixp-dot-blue { fill: #38bdf8; }
+.ixp-dot-green { fill: #34d399; }
+.ixp-dot-amber { fill: #fbbf24; }
+.ixp-dot-purple { fill: #a78bfa; }
+.ixp-dot-cyan { fill: #2dd4bf; }
+.ixp-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    fill: #cbd5e1;
+    text-anchor: middle;
+    pointer-events: none;
+}
+@keyframes ixp-beacon-pulse {
+    0% { r: 4; opacity: 1; stroke-width: 2; }
+    100% { r: 16; opacity: 0; stroke-width: 0.5; }
+}
+
+/* Radar Inspector Panel */
+.radar-inspector-panel {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+.radar-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+.radar-tab-btn {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.radar-tab-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+.radar-tab-btn.active {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+}
+.radar-inspector-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.inspector-headline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.inspector-flag {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+.inspector-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+.inspector-subhead {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+}
+.inspector-meters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+}
+.inspector-meter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+}
+.meter-name {
+    font-weight: 600;
+    color: #475569;
+}
+.meter-val {
+    font-weight: 800;
+    color: #0f172a;
+    font-family: ui-monospace, monospace;
+}
+.meter-track {
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+.meter-fill {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.4s ease;
+}
+.meter-fill-dl { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+.meter-fill-ul { background: linear-gradient(90deg, #10b981, #34d399); }
+
+.inspector-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.inspector-stat-pill {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.pill-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+}
+.pill-value {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #0f172a;
+    font-family: ui-monospace, monospace;
+}
+
+/* In-Browser Probe Instrument */
+.radar-probe-instrument {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.probe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.probe-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.probe-run-btn {
+    background: #0284c7;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+.probe-run-btn:hover {
+    background: #0369a1;
+}
+.probe-run-btn:active {
+    transform: scale(0.97);
+}
+.probe-result-box {
+    font-size: 0.74rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+}
+.probe-metric-highlight {
+    color: #34d399;
+    font-weight: 700;
+    font-family: ui-monospace, monospace;
+}
+
+/* Subsea Corridor Status Strip */
+.radar-subsea-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+}
+.subsea-corridor-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+.corridor-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+.dot-green {
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+.dot-yellow {
+    background: #f59e0b;
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+}
+.corridor-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.corridor-text strong {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+.corridor-text span {
+    font-size: 0.7rem;
+    color: #64748b;
+    line-height: 1.3;
+}
