@@ -216,7 +216,7 @@
         createGridDOM();
         bindEvents();
         loadPreset("newspaper");
-        addLog("system", "Nemo Cognitive Engine ready. Pick a puzzle preset or drop your own image above!");
+        addLog("system", "Sudoku Deduction Engine ready. Pick a puzzle preset or drop your own image above!");
     }
 
     // Build 9x9 DOM elements
@@ -446,7 +446,7 @@
         }
 
         addLog("system", `Loaded preset: ${preset.name}. Digital grid synchronized and ready.`);
-        updateMindBubble("Ready", `"Loaded ${preset.name}! Look over the initial clues, then hit 'Watch Nemo Solve' when you're ready."`);
+        updateMindBubble("Ready", `"Loaded ${preset.name}! Look over the initial clues, then hit 'Start Solving' when you're ready."`);
     }
 
     function handleFileUpload(file) {
@@ -481,8 +481,8 @@
                     scanPanel.style.display = "none";
                 }
 
-                addLog("system", "OCR grid extraction complete. Review recognized numbers on the left; tap any cell to adjust if needed, then click 'Watch Nemo Solve'!");
-                updateMindBubble("Scanned", `"I've ingested your image and aligned the 9×9 grid! You can click any cell to make tweaks or hit 'Watch Nemo Solve' to let me at it."`);
+                addLog("system", "OCR grid extraction complete. Review recognized numbers on the left; tap any cell to adjust if needed, then click 'Start Solving'!");
+                updateMindBubble("Scanned", `"I've ingested your image and aligned the 9×9 grid! You can click any cell to make tweaks or hit 'Start Solving' to begin deductions."`);
             };
             img.src = e.target.result;
         };
@@ -844,7 +844,7 @@
         isPaused = false;
         solveStartTime = Date.now();
         terminalPulse.classList.add("active");
-        terminalStatus.textContent = "Nemo Reasoning";
+        terminalStatus.textContent = "Solving Logic";
         updateControlsUI();
         addLog("system", `Beginning deduction stream (${solveSteps.length} planned operations)...`);
         runStepLoop();
@@ -930,7 +930,7 @@
     function resumeSolve() {
         isPaused = false;
         terminalPulse.classList.add("active");
-        terminalStatus.textContent = "Nemo Reasoning";
+        terminalStatus.textContent = "Solving Logic";
         updateControlsUI();
         addLog("system", "Resuming deduction stream...");
         runStepLoop();
@@ -1007,7 +1007,7 @@
 
     function updateControlsUI() {
         if (!isSolving) {
-            btnPlay.innerHTML = '<span aria-hidden="true">&#9654;</span> Watch Nemo Solve';
+            btnPlay.innerHTML = '<span aria-hidden="true">&#9654;</span> Start Solving';
             btnPlay.classList.add("sudoku-btn-primary");
             btnPlay.classList.remove("sudoku-btn-secondary");
         } else if (isPaused) {
