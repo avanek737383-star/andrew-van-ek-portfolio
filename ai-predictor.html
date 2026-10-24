@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Neural Coin Predictor | From-Scratch AI Binary Sequence Lab | Andrew Van Ek</title>
+	<meta name="description" content="Interactive from-scratch deep neural network trained on CPU to classify sequential Bernoulli trials, detect human cognitive alternation bias, and model Diaconis physical coin dynamics.">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" href="css/styles.css?v=20261024-plasma-nav">
+	<link rel="stylesheet" href="css/coin-predictor.css?v=20261024-coin-1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<nav class="tablet-desktop">
+			<ul id="site-navigation">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+						<li><a href="lab.html">Live AI Lab</a></li>
+						<li><a href="council.html">AI Chatroom</a></li>
+						<li><a href="moltbook.html">Moltbook Agent</a></li>
+						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="ai-predictor.html" aria-current="page">Neural Coin Predictor</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="stats.html">Stats for Nerds</a></li>
+						<li><a href="maintenance.html">Maintenance Log</a></li>
+						<li><a href="clock.html">Homelab Desk Clock</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="job.html">Skills &amp; Toolkit</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<main class="predictor-container">
+			<!-- Hero & Spec Banner -->
+			<header class="predictor-hero">
+				<h1>Neural Sequence &amp; Coin Predictor</h1>
+				<p class="predictor-subtitle">
+					An end-to-end deep neural network trained on CPU using PyTorch 2.13 and executed client-side via a lightweight JavaScript tensor engine. Evaluates rolling sequence history, human alternation patterns, and Diaconis physical precession dynamics to predict the next binary outcome.
+				</p>
+				<div class="model-spec-ribbon">
+					<span class="spec-chip">⚙️ <strong>Architecture:</strong> <span class="spec-chip-highlight">14-dim Input &rarr; Dense(32) &rarr; Dense(16) &rarr; Sigmoid(1)</span></span>
+					<span class="spec-sep">&bull;</span>
+					<span class="spec-chip">💻 <strong>Training Platform:</strong> <span class="spec-chip-highlight">PyTorch 2.13 (CPU)</span></span>
+					<span class="spec-sep">&bull;</span>
+					<span class="spec-chip">📉 <strong>Objective:</strong> <span class="spec-chip-highlight">Binary Cross-Entropy Loss</span></span>
+					<span class="spec-sep">&bull;</span>
+					<span class="spec-chip">⚡ <strong>Inference:</strong> <span class="spec-chip-highlight">0ms Client-Side Tensor Math</span></span>
+					<span class="spec-sep">&bull;</span>
+					<span class="spec-chip">🎯 <strong>Evaluation Accuracy:</strong> <span class="spec-chip-highlight">54.65% (+4.65% vs Random 50/50 Baseline)</span></span>
+				</div>
+			</header>
+
+			<!-- Main Interactive Arena -->
+			<div class="predictor-grid">
+				<!-- Coin Toss Stage -->
+				<section class="coin-stage-card" aria-labelledby="stage-title">
+					<h2 id="stage-title" style="margin:0; font-size:1.15rem; color:#002d5a; font-weight:700;">🪙 Interactive Coin Toss Arena</h2>
+					<p style="font-size:0.8rem; color:#64748b; margin:4px 0 16px;">Toss a single coin or trigger high-speed sequence simulations to test the neural network live.</p>
+
+					<div class="coin-viewport" id="coin-viewport">
+						<div class="coin-disc" id="coin-disc" title="Click to toss coin">
+							<!-- Heads Face -->
+							<div class="coin-face coin-face-heads">
+								<span class="coin-emblem" aria-hidden="true">🦅</span>
+								<span class="coin-label">Heads</span>
+								<span class="coin-motto">LIBERTY &bull; 2026</span>
+							</div>
+							<!-- Tails Face -->
+							<div class="coin-face coin-face-tails">
+								<span class="coin-emblem" aria-hidden="true">🛡️</span>
+								<span class="coin-label">Tails</span>
+								<span class="coin-motto">IN AI WE TRUST</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="coin-controls">
+						<button type="button" class="btn-flip-primary" id="btn-flip-primary">
+							Toss Coin (Single)
+						</button>
+						<div class="sim-btn-row">
+							<button type="button" class="btn-sim-secondary" id="btn-sim-10">Toss 10</button>
+							<button type="button" class="btn-sim-secondary" id="btn-sim-50">Toss 50</button>
+							<button type="button" class="btn-sim-secondary" id="btn-sim-100">Toss 100</button>
+						</div>
+						<button type="button" class="btn-auto-stream" id="btn-auto-stream">
+							<span>⚡ Auto-Stream (5/sec)</span>
+						</button>
+					</div>
+				</section>
+
+				<!-- Real-Time AI HUD -->
+				<section class="hud-card" aria-labelledby="hud-title">
+					<div class="hud-top-bar">
+						<h2 id="hud-title" class="hud-title">
+							<span>🧠 Live Neural Inference HUD</span>
+						</h2>
+						<span class="hud-live-badge"><span class="hud-pulse-dot"></span> Active Inference</span>
+					</div>
+
+					<div class="hud-metrics-grid">
+						<!-- Next Prediction -->
+						<div class="metric-box">
+							<div class="metric-label">Next Predicted Outcome</div>
+							<div class="metric-val-large metric-val-heads" id="hud-next-pred">HEADS</div>
+							<div class="metric-sub">Forward-pass evaluation of rolling 10-step sequence dynamics</div>
+						</div>
+
+						<!-- Model Confidence -->
+						<div class="metric-box">
+							<div class="metric-label">
+								<span>Model Confidence</span>
+								<span id="hud-conf-val">68.2%</span>
+							</div>
+							<div class="confidence-bar-bg">
+								<div class="confidence-bar-fill" id="hud-conf-bar" style="width: 36%;"></div>
+							</div>
+							<div class="metric-sub" style="margin-top:8px;">Sigmoid activation output y-hat on current feature vector</div>
+						</div>
+
+						<!-- Empirical Win-Rate -->
+						<div class="metric-box">
+							<div class="metric-label">Empirical Win-Rate</div>
+							<div class="metric-val-large" id="hud-acc-val">54.8%</div>
+							<div class="metric-sub" id="hud-acc-sub"><strong>+4.8%</strong> vs 50.0% random chance baseline</div>
+						</div>
+
+						<!-- Sequence Entropy & Streaks -->
+						<div class="metric-box">
+							<div class="metric-label">Shannon Information Entropy</div>
+							<div class="metric-val-large" id="hud-entropy-val">0.974 bits</div>
+							<div class="metric-sub" id="hud-streak-val">Streak: 2 Heads (Best: 5)</div>
+						</div>
+					</div>
+
+					<div style="background:rgba(255,255,255,0.03); border:1px solid #1e293b; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#94a3b8; display:flex; justify-content:space-between; align-items:center;">
+						<span>State Features: <code>Window: 10 flips</code> &bull; <code>Streak Length</code> &bull; <code>Alternation Rate</code> &bull; <code>P(H|H)</code></span>
+						<span style="color:#38bdf8; font-weight:600;">Zero-Latency Local Web Worker</span>
+					</div>
+				</section>
+			</div>
+
+			<!-- Sequential History Ribbon -->
+			<section class="sequence-tape-card" aria-labelledby="tape-heading">
+				<div class="tape-header">
+					<h3 id="tape-heading" class="tape-title">
+						<span>📜 Sequence Tape &amp; Prediction Verification</span>
+					</h3>
+					<span style="font-size:0.75rem; color:#64748b;">(Last 30 flips &bull; Green check = AI predicted correctly)</span>
+				</div>
+				<div class="tape-stream" id="sequence-tape-stream">
+					<!-- Filled dynamically by JavaScript -->
+				</div>
+			</section>
+
+			<!-- Interactive Telemetry Charts -->
+			<div class="charts-grid">
+				<!-- Training Loss Convergence Curve -->
+				<section class="chart-card" aria-labelledby="chart-loss-title">
+					<div class="chart-header">
+						<div>
+							<h3 id="chart-loss-title" class="chart-title">CPU Training Loss Convergence Curve</h3>
+							<span class="chart-subtitle">Binary Cross-Entropy Loss vs. 100 Training Epochs</span>
+						</div>
+						<span style="font-size:0.75rem; background:rgba(56,189,248,0.15); color:#38bdf8; padding:3px 8px; border-radius:999px; font-weight:700;">PyTorch 2.13 (CPU)</span>
+					</div>
+					<div class="canvas-container">
+						<canvas id="canvas-loss"></canvas>
+					</div>
+				</section>
+
+				<!-- Cumulative Accuracy vs Random Baseline -->
+				<section class="chart-card" aria-labelledby="chart-acc-title">
+					<div class="chart-header">
+						<div>
+							<h3 id="chart-acc-title" class="chart-title">Cumulative Predictive Edge vs. Baseline</h3>
+							<span class="chart-subtitle">AI Hit Rate vs. Theoretical 50.0% Random Coin Toss</span>
+						</div>
+						<span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#34d399; padding:3px 8px; border-radius:999px; font-weight:700;">Live Empirical Accuracy</span>
+					</div>
+					<div class="canvas-container">
+						<canvas id="canvas-accuracy"></canvas>
+					</div>
+				</section>
+			</div>
+
+			<!-- In-Browser CPU Training Lab Deck -->
+			<section class="training-deck" aria-labelledby="deck-heading">
+				<h3 id="deck-heading">
+					<span>🔬 CPU Training Lab: Train &amp; Adapt Live in Your Browser</span>
+				</h3>
+				<p style="font-size:0.88rem; color:#475569; margin:0 0 16px; line-height:1.5;">
+					Execute custom backpropagation and parameter updates directly on your computer's CPU. Select sequence generation dynamics, learning rate, and epochs to watch the model learn non-linear patterns and observe the live loss curve adapt!
+				</p>
+
+				<div class="deck-controls-row">
+					<div class="deck-field">
+						<label for="deck-mode">Target Sequence Dynamics</label>
+						<select id="deck-mode">
+							<option value="human">Human Alternation Bias &amp; Gambler's Fallacy</option>
+							<option value="physical">Physical Diaconis Precession (52.5% persistence)</option>
+							<option value="fair">Pure Fair Bernoulli Trials (50/50 control)</option>
+						</select>
+					</div>
+					<div class="deck-field">
+						<label for="deck-epochs">Training Epochs</label>
+						<select id="deck-epochs">
+							<option value="25">25 Epochs</option>
+							<option value="50" selected>50 Epochs (Balanced)</option>
+							<option value="100">100 Epochs (Deep Convergence)</option>
+						</select>
+					</div>
+					<div class="deck-field">
+						<label for="deck-lr">Learning Rate (Alpha)</label>
+						<select id="deck-lr">
+							<option value="0.002">0.002 (Conservative)</option>
+							<option value="0.005" selected>0.005 (Recommended)</option>
+							<option value="0.010">0.010 (Aggressive)</option>
+							<option value="0.020">0.020 (Fast Step)</option>
+						</select>
+					</div>
+					<div style="display:flex; gap:8px;">
+						<button type="button" class="btn-deck-train" id="btn-deck-train">
+							⚡ Train on CPU
+						</button>
+						<button type="button" class="btn-sim-secondary" id="btn-deck-reset" title="Reload original PyTorch baseline weights">
+							↺ Reset
+						</button>
+					</div>
+				</div>
+
+				<div class="training-progress-bar" id="training-progress-bar">
+					<div class="training-progress-fill" id="training-progress-fill"></div>
+				</div>
+			</section>
+
+			<!-- Mathematical Theory & Foundations -->
+			<section class="theory-section" aria-labelledby="theory-heading">
+				<h3 id="theory-heading">Mathematical Foundations &amp; Research Context</h3>
+				<div class="theory-grid">
+					<div class="theory-card">
+						<h4>1. The 50% Theoretical Ceiling</h4>
+						<p>
+							In pure probability theory, an ideal Bernoulli trial with <em>p = 0.50</em> is independent and memoryless. Its Shannon information entropy is exactly <em>H(X) = 1.0 bit</em>. Under pure mathematical randomness, no algorithm can achieve greater than 50% long-term predictive accuracy.
+						</p>
+					</div>
+					<div class="theory-card">
+						<h4>2. Human Cognitive Alternation Bias</h4>
+						<p>
+							Extensive psychological research demonstrates that humans are systematically poor random number generators. Subjects exhibit severe <em>Gambler's Fallacy</em>: after 2 or 3 identical choices, they switch outcomes with <em>p &gt; 0.70</em>. Neural networks exploit this multi-step autocorrelation to achieve 65%–72% accuracy.
+						</p>
+					</div>
+					<div class="theory-card">
+						<h4>3. Diaconis Physical Precession</h4>
+						<p>
+							In 2007, Stanford mathematicians Persi Diaconis, Susan Holmes, and Richard Montgomery proved that natural coin tosses precess in 3D space during flight. Due to tumbling physics, flipped coins spend more time with the starting face upward, landing on the same face roughly <strong>51%&ndash;53%</strong> of the time.
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+			<p>Website last modified: <time datetime="2026-10-24">October 24, 2026</time></p>
+		</footer>
+	</div>
+
+	<script src="scripts/script.js?v=20261024-plasma-nav"></script>
+	<script src="scripts/coin-predictor.js?v=20261024-coin-1"></script>
+</body>
+</html>

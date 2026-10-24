@@ -1,0 +1,731 @@
+/* ==========================================================================
+   Neural Coin Predictor & Binary Sequence Classifier Styles
+   ========================================================================== */
+
+.predictor-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+}
+
+/* Hero & Architecture Banner */
+.predictor-hero {
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.predictor-hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    color: #002d5a;
+    margin-bottom: 8px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.predictor-subtitle {
+    font-size: 1.05rem;
+    color: #475569;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.model-spec-ribbon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 12px 16px;
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    border: 1px solid #1e293b;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.spec-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.spec-chip-highlight {
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+.spec-sep {
+    color: #475569;
+}
+
+/* Main Interactive Layout Grid */
+.predictor-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 860px) {
+    .predictor-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Coin Toss Stage */
+.coin-stage-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 6px 16px rgba(0, 45, 90, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.coin-viewport {
+    width: 170px;
+    height: 170px;
+    perspective: 800px;
+    margin: 16px auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coin-disc {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    cursor: pointer;
+}
+
+.coin-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+.coin-face-heads {
+    background: radial-gradient(circle at 35% 30%, #fef08a 0%, #eab308 55%, #ca8a04 100%);
+    border: 3px solid #a16207;
+    color: #713f12;
+}
+
+.coin-face-tails {
+    background: radial-gradient(circle at 35% 30%, #f1f5f9 0%, #cbd5e1 55%, #94a3b8 100%);
+    border: 3px solid #64748b;
+    color: #1e293b;
+    transform: rotateY(180deg);
+}
+
+.coin-emblem {
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.coin-label {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.coin-motto {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+}
+
+/* Coin Flip Animations */
+@keyframes spinToHeads {
+    0% { transform: rotateY(0deg) scale(1); }
+    30% { transform: rotateY(720deg) scale(1.18); }
+    70% { transform: rotateY(1440deg) scale(1.12); }
+    100% { transform: rotateY(2160deg) scale(1); }
+}
+
+@keyframes spinToTails {
+    0% { transform: rotateY(0deg) scale(1); }
+    30% { transform: rotateY(720deg) scale(1.18); }
+    70% { transform: rotateY(1440deg) scale(1.12); }
+    100% { transform: rotateY(2340deg) scale(1); }
+}
+
+.coin-spinning-heads {
+    animation: spinToHeads 1.0s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.coin-spinning-tails {
+    animation: spinToTails 1.0s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.coin-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-flip-primary {
+    background: #0056b3;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.25);
+    transition: all 0.15s ease;
+}
+
+.btn-flip-primary:hover:not(:disabled) {
+    background: #004494;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 86, 179, 0.35);
+}
+
+.btn-flip-primary:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+.sim-btn-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.btn-sim-secondary {
+    background: #f1f5f9;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-sim-secondary:hover:not(:disabled) {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+.btn-auto-stream {
+    background: #0f172a;
+    color: #38bdf8;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.15s ease;
+}
+
+.btn-auto-stream.streaming {
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #b91c1c;
+}
+
+/* Real-Time Prediction & Telemetry HUD */
+.hud-card {
+    background: #0a0f1d;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 22px;
+    color: #f8fafc;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hud-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hud-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hud-live-badge {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.hud-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: hudPulse 1.8s infinite;
+}
+
+@keyframes hudPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.hud-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 540px) {
+    .hud-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.metric-box {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 14px;
+}
+
+.metric-label {
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.metric-val-large {
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #f8fafc;
+    margin-bottom: 6px;
+}
+
+.metric-val-heads {
+    color: #facc15;
+    text-shadow: 0 0 16px rgba(250, 204, 21, 0.35);
+}
+
+.metric-val-tails {
+    color: #38bdf8;
+    text-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+}
+
+.metric-sub {
+    font-size: 0.75rem;
+    color: #cbd5e1;
+}
+
+/* Confidence Bar */
+.confidence-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #1e293b;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.confidence-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8 0%, #10b981 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Sequence Tape */
+.sequence-tape-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.tape-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.tape-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tape-stream {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 6px 2px 10px;
+    min-height: 48px;
+    align-items: center;
+}
+
+.tape-chip {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    position: relative;
+    user-select: none;
+}
+
+.tape-chip-heads {
+    background: #fef08a;
+    color: #854d0e;
+    border: 1px solid #facc15;
+}
+
+.tape-chip-tails {
+    background: #e2e8f0;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+}
+
+.tape-chip-correct::after {
+    content:  ✓;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #10b981;
+    color: #ffffff;
+    font-size: 0.55rem;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ffffff;
+}
+
+.tape-chip-missed::after {
+    content: ✕;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ef4444;
+    color: #ffffff;
+    font-size: 0.55rem;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ffffff;
+}
+
+/* Interactive Charts Section */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-card {
+    background: #0a0f1d;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    color: #f8fafc;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.chart-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.chart-subtitle {
+    font-size: 0.78rem;
+    color: #94a3b8;
+}
+
+.canvas-container {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    margin-top: 8px;
+}
+
+.canvas-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* CPU Training Lab Deck */
+.training-deck {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 36px;
+    box-shadow: 0 6px 20px rgba(0, 45, 90, 0.05);
+}
+
+.training-deck h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: #002d5a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deck-controls-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: 16px;
+    align-items: flex-end;
+    margin: 20px 0;
+}
+
+@media (max-width: 800px) {
+    .deck-controls-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .deck-controls-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.deck-field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 6px;
+}
+
+.deck-field select, .deck-field input {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.btn-deck-train {
+    background: #059669;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    transition: all 0.15s ease;
+    height: 42px;
+}
+
+.btn-deck-train:hover:not(:disabled) {
+    background: #047857;
+}
+
+.btn-deck-train:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.training-progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 14px;
+    display: none;
+}
+
+.training-progress-fill {
+    height: 100%;
+    background: #059669;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Theory & Architecture Breakdown */
+.theory-section {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 40px;
+}
+
+.theory-section h3 {
+    margin-top: 0;
+    color: #002d5a;
+    font-size: 1.25rem;
+}
+
+.theory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 16px;
+}
+
+@media (max-width: 800px) {
+    .theory-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.theory-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.theory-card h4 {
+    margin: 0 0 8px;
+    color: #0056b3;
+    font-size: 0.95rem;
+}
+
+.theory-card p {
+    margin: 0;
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.5;
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+    .coin-stage-card, .sequence-tape-card, .training-deck, .theory-card {
+        background: #0f172a;
+        border-color: #1e293b;
+        color: #f8fafc;
+    }
+
+    .predictor-hero h1, .training-deck h3, .theory-section h3 {
+        color: #f8fafc;
+    }
+
+    .predictor-subtitle, .theory-card p {
+        color: #94a3b8;
+    }
+
+    .tape-title {
+        color: #f8fafc;
+    }
+
+    .tape-chip-tails {
+        background: #1e293b;
+        color: #e2e8f0;
+        border-color: #334155;
+    }
+
+    .theory-section {
+        background: #0b1120;
+        border-color: #1e293b;
+    }
+
+    .deck-field label {
+        color: #cbd5e1;
+    }
+
+    .deck-field select, .deck-field input {
+        background: #1e293b;
+        border-color: #334155;
+        color: #f8fafc;
+    }
+
+    .btn-sim-secondary {
+        background: #1e293b;
+        border-color: #334155;
+        color: #e2e8f0;
+    }
+
+    .btn-sim-secondary:hover:not(:disabled) {
+        background: #334155;
+    }
+}
