@@ -316,55 +316,7 @@
 				</section>
 			</div>
 
-			<!-- In-Browser CPU Training Lab Deck -->
-			<section class="training-deck" aria-labelledby="deck-heading">
-				<h3 id="deck-heading">
-					<span>🔬 CPU Training Lab: Train &amp; Adapt Live in Your Browser</span>
-				</h3>
-				<p style="font-size:0.88rem; color:#475569; margin:0 0 16px; line-height:1.5;">
-					Execute custom backpropagation and parameter updates directly on your computer's CPU. Select sequence generation dynamics, learning rate, and epochs to watch the model learn non-linear patterns and observe the live loss curve adapt!
-				</p>
-
-				<div class="deck-controls-row">
-					<div class="deck-field">
-						<label for="deck-mode">Target Sequence Dynamics</label>
-						<select id="deck-mode">
-							<option value="human">Human Alternation Bias &amp; Gambler's Fallacy</option>
-							<option value="physical">Physical Diaconis Precession (52.5% persistence)</option>
-							<option value="fair">Pure Fair Bernoulli Trials (50/50 control)</option>
-						</select>
-					</div>
-					<div class="deck-field">
-						<label for="deck-epochs">Training Epochs</label>
-						<select id="deck-epochs">
-							<option value="25">25 Epochs</option>
-							<option value="50" selected>50 Epochs (Balanced)</option>
-							<option value="100">100 Epochs (Deep Convergence)</option>
-						</select>
-					</div>
-					<div class="deck-field">
-						<label for="deck-lr">Learning Rate (Alpha)</label>
-						<select id="deck-lr">
-							<option value="0.002">0.002 (Conservative)</option>
-							<option value="0.005" selected>0.005 (Recommended)</option>
-							<option value="0.010">0.010 (Aggressive)</option>
-							<option value="0.020">0.020 (Fast Step)</option>
-						</select>
-					</div>
-					<div style="display:flex; gap:8px;">
-						<button type="button" class="btn-deck-train" id="btn-deck-train">
-							⚡ Train on CPU
-						</button>
-						<button type="button" class="btn-sim-secondary" id="btn-deck-reset" title="Reload original PyTorch baseline weights">
-							↺ Reset
-						</button>
-					</div>
-				</div>
-
-				<div class="training-progress-bar" id="training-progress-bar">
-					<div class="training-progress-fill" id="training-progress-fill"></div>
-				</div>
-			</section>
+			
 
 			<!-- Diagnostics, Confusion Matrix & Noise Telemetry -->
 <section class="theory-section" aria-labelledby="diagnostics-heading" style="margin-top:32px;">
