@@ -2273,6 +2273,21 @@
 		var digitalEl = document.getElementById("clock-digital-time");
 		if (!hourHand || !minHand || !secHand) return;
 
+		var clockContainer = document.getElementById("home-est-clock");
+		if (clockContainer) {
+			clockContainer.setAttribute("role", "button");
+			clockContainer.setAttribute("tabindex", "0");
+			clockContainer.addEventListener("click", function () {
+				window.location.href = "clock.html";
+			});
+			clockContainer.addEventListener("keydown", function (e) {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					window.location.href = "clock.html";
+				}
+			});
+		}
+
 		var timeFormatter = null;
 		try {
 			timeFormatter = new Intl.DateTimeFormat("en-US", {
@@ -2641,6 +2656,195 @@
 		window.setInterval(syncLiveVisitorStats, 45000);
 	}
 
+	
+	/* ==========================================================================
+	   Dedicated Desk Clock & Screen Wake Lock Controller (clock.html)
+	   ========================================================================== */
+	function initDedicatedDeskClock() {
+		var deskCard = document.getElementById("desk-clock-card");
+		if (!deskCard) return;
+
+		var hourHand = document.getElementById("big-hand-hour");
+		var minHand = document.getElementById("big-hand-minute");
+		var secHand = document.getElementById("big-hand-second");
+		var dateEl = document.getElementById("desk-clock-date");
+		var timeValEl = document.getElementById("desk-clock-time");
+		var ampmEl = document.getElementById("desk-clock-ampm");
+		var zoneEl = document.getElementById("desk-clock-zone");
+		var offsetEl = document.getElementById("desk-clock-offset");
+		var dialTzEl = document.getElementById("big-dial-tz");
+
+		var wakeBtn = document.getElementById("wake-lock-toggle");
+		var wakeIcon = document.getElementById("wake-icon");
+		var wakeLabel = document.getElementById("wake-label");
+		var wakeHint = document.getElementById("wake-status-hint");
+
+		var dimmerBtn = document.getElementById("dimmer-toggle");
+		var tzBtn = document.getElementById("tz-toggle");
+		var tzLabel = document.getElementById("tz-label");
+		var fsBtn = document.getElementById("fullscreen-toggle");
+
+		// Timezone modes: "est", "local", "utc"
+		var tzModes = ["est", "local", "utc"];
+		var tzIndex = 0;
+
+		// 1. Screen Wake Lock Implementation
+		var wakeLockObj = null;
+
+		async function acquireWakeLock() {
+			if ("wakeLock" in navigator) {
+				try {
+					wakeLockObj = await navigator.wakeLock.request("screen");
+					wakeLockObj.addEventListener("release", function () {
+						wakeLockObj = null;
+						updateWakeUI(false);
+					});
+					updateWakeUI(true);
+				} catch (err) {
+					console.warn("Wake lock request failed:", err);
+					updateWakeUI(false, "Device battery saver blocked wake lock");
+				}
+			} else {
+				updateWakeUI(false, "Wake Lock API not supported on this browser");
+			}
+		}
+
+		async function releaseWakeLock() {
+			if (wakeLockObj) {
+				try {
+					await wakeLockObj.release();
+				} catch (e) {}
+				wakeLockObj = null;
+				updateWakeUI(false);
+			}
+		}
+
+		function updateWakeUI(active, errMsg) {
+			if (active) {
+				if (wakeBtn) {
+					wakeBtn.classList.add("wake-active");
+					wakeBtn.setAttribute("aria-pressed", "true");
+				}
+				if (wakeIcon) wakeIcon.textContent = "🔆";
+				if (wakeLabel) wakeLabel.textContent = "Always Keep Screen Awake: ON";
+				if (wakeHint) wakeHint.innerHTML = '<span style="color:#059669;font-weight:700;">🔆 Screen Wake Lock is ACTIVE.</span> Display will remain fully illuminated without sleeping or timing out.';
+			} else {
+				if (wakeBtn) {
+					wakeBtn.classList.remove("wake-active");
+					wakeBtn.setAttribute("aria-pressed", "false");
+				}
+				if (wakeIcon) wakeIcon.textContent = "💤";
+				if (wakeLabel) wakeLabel.textContent = "Always Keep Screen Awake: OFF";
+				if (wakeHint) {
+					wakeHint.textContent = errMsg || "Display will follow device's normal screen timeout. Tap to keep screen illuminated indefinitely.";
+				}
+			}
+		}
+
+		if (wakeBtn) {
+			wakeBtn.addEventListener("click", function () {
+				if (wakeLockObj) {
+					releaseWakeLock();
+				} else {
+					acquireWakeLock();
+				}
+			});
+		}
+
+		// Re-acquire lock if user switches away and returns
+		document.addEventListener("visibilitychange", function () {
+			if (wakeLockObj !== null && document.visibilityState === "visible") {
+				acquireWakeLock();
+			}
+		});
+
+		// 2. Nightstand Dimmer Mode
+		if (dimmerBtn) {
+			dimmerBtn.addEventListener("click", function () {
+				deskCard.classList.toggle("dimmer-active");
+				var isActive = deskCard.classList.contains("dimmer-active");
+				dimmerBtn.setAttribute("aria-pressed", String(isActive));
+			});
+		}
+
+		// 3. Timezone Cycle
+		if (tzBtn) {
+			tzBtn.addEventListener("click", function () {
+				tzIndex = (tzIndex + 1) % tzModes.length;
+				var curMode = tzModes[tzIndex];
+				if (curMode === "est") {
+					tzLabel.textContent = "EST (Homelab)";
+					if (dialTzEl) dialTzEl.textContent = "EASTERN TIME • MICHIGAN";
+				} else if (curMode === "local") {
+					tzLabel.textContent = "Local Device Time";
+					if (dialTzEl) dialTzEl.textContent = "LOCAL DEVICE TIME";
+				} else {
+					tzLabel.textContent = "UTC (Universal)";
+					if (dialTzEl) dialTzEl.textContent = "COORDINATED UNIVERSAL TIME";
+				}
+			});
+		}
+
+		// 4. Fullscreen
+		if (fsBtn) {
+			fsBtn.addEventListener("click", function () {
+				if (!document.fullscreenElement) {
+					document.documentElement.requestFullscreen().catch(function () {});
+				} else {
+					document.exitFullscreen().catch(function () {});
+				}
+			});
+		}
+
+		// 5. Continuous Clock Render Loop
+		function renderDeskClock() {
+			var now = new Date();
+			var curMode = tzModes[tzIndex];
+			var targetTz = curMode === "est" ? "America/New_York" : (curMode === "utc" ? "UTC" : undefined);
+
+			var dateObj;
+			if (targetTz) {
+				var str = now.toLocaleString("en-US", { timeZone: targetTz });
+				dateObj = new Date(str);
+			} else {
+				dateObj = now;
+			}
+
+			var h = dateObj.getHours();
+			var m = dateObj.getMinutes();
+			var s = dateObj.getSeconds();
+			var ms = now.getMilliseconds();
+
+			// 60fps mechanical sweep
+			var secAngle = (s + ms / 1000) * 6;
+			var minAngle = (m + s / 60) * 6;
+			var hourAngle = ((h % 12) + m / 60) * 30;
+
+			if (hourHand) hourHand.setAttribute("transform", "rotate(" + hourAngle.toFixed(2) + " 100 100)");
+			if (minHand) minHand.setAttribute("transform", "rotate(" + minAngle.toFixed(2) + " 100 100)");
+			if (secHand) secHand.setAttribute("transform", "rotate(" + secAngle.toFixed(2) + " 100 100)");
+
+			// Digital Readouts
+			if (timeValEl) {
+				var h12 = h % 12 || 12;
+				var pad = function (n) { return n < 10 ? "0" + n : "" + n; };
+				timeValEl.textContent = pad(h12) + ":" + pad(m) + ":" + pad(s);
+				if (ampmEl) ampmEl.textContent = h >= 12 ? "PM" : "AM";
+				if (zoneEl) zoneEl.textContent = curMode === "est" ? "EDT" : (curMode === "utc" ? "UTC" : "LOCAL");
+			}
+
+			if (dateEl) {
+				var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+				var months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+				dateEl.textContent = days[dateObj.getDay()] + ", " + months[dateObj.getMonth()] + " " + dateObj.getDate() + ", " + dateObj.getFullYear();
+			}
+
+			requestAnimationFrame(renderDeskClock);
+		}
+
+		requestAnimationFrame(renderDeskClock);
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
@@ -2654,6 +2858,7 @@
 		initNavKineticLinesAndCopilotEasterEgg();
 		initEstAnalogClock();
 		initGlobalInternetRadar();
+		initDedicatedDeskClock();
 	}
 
 	if (document.readyState === "loading") {

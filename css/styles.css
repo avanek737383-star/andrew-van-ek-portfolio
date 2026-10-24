@@ -4790,11 +4790,15 @@ nav.tablet-desktop > ul#site-navigation {
     color: #1e293b;
     letter-spacing: -0.01em;
 }
-@media (max-width: 640px) {
+/* Hide compact homepage clock on mobile & tablet devices (< 860px) to prevent hero crowding */
+@media (max-width: 859px) {
     .home-est-clock {
-        margin: 12px auto 0;
-        width: 100%;
-        max-width: 200px;
+        display: none !important;
+    }
+}
+@media (min-width: 860px) {
+    .home-est-clock {
+        cursor: pointer;
     }
 }
 
@@ -5256,4 +5260,339 @@ nav.tablet-desktop > ul#site-navigation {
 .radar-reset-x {
     font-size: 0.95rem;
     line-height: 1;
+}
+
+
+/* ==========================================================================
+   Dedicated Homelab Precision Desk Clock (clock.html)
+   ========================================================================== */
+.clock-page-body {
+    min-height: 100vh;
+    background: #f8fafc;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+.clock-page-container {
+    max-width: 900px;
+}
+.clock-main {
+    padding: 20px 0 40px;
+}
+.desk-clock-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+
+/* Dimmer / Nightstand Mode */
+.desk-clock-card.dimmer-active {
+    background: #090d16 !important;
+    border-color: #1e293b !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+}
+.desk-clock-card.dimmer-active .big-clock-face {
+    fill: #0d131f !important;
+}
+.desk-clock-card.dimmer-active .big-clock-bezel {
+    fill: #090d16 !important;
+    stroke: #1e293b !important;
+}
+.desk-clock-card.dimmer-active .big-clock-rim {
+    stroke: #334155 !important;
+}
+.desk-clock-card.dimmer-active .tick-hour {
+    stroke: #e2e8f0 !important;
+}
+.desk-clock-card.dimmer-active .tick-dot,
+.desk-clock-card.dimmer-active .tick-dot-min {
+    fill: #64748b !important;
+}
+.desk-clock-card.dimmer-active .big-dial-brand {
+    fill: #38bdf8 !important;
+}
+.desk-clock-card.dimmer-active .big-dial-sub,
+.desk-clock-card.dimmer-active .big-dial-tz {
+    fill: #64748b !important;
+}
+.desk-clock-card.dimmer-active .big-hand-hour {
+    stroke: #f1f5f9 !important;
+}
+.desk-clock-card.dimmer-active .big-hand-minute {
+    stroke: #cbd5e1 !important;
+}
+.desk-clock-card.dimmer-active .digital-time-val,
+.desk-clock-card.dimmer-active .digital-time-ampm {
+    color: #f8fafc !important;
+}
+.desk-clock-card.dimmer-active .digital-date-badge {
+    color: #94a3b8 !important;
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+.desk-clock-card.dimmer-active .clock-sync-pill {
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+}
+.desk-clock-card.dimmer-active .clock-offset-tag {
+    color: #64748b !important;
+}
+.desk-clock-card.dimmer-active .clock-tool-btn {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #cbd5e1 !important;
+}
+.desk-clock-card.dimmer-active .wake-status-hint {
+    color: #64748b !important;
+}
+.desk-clock-card.dimmer-active .clock-homelab-ribbon {
+    border-color: #1e293b !important;
+    color: #64748b !important;
+}
+
+/* Toolbar */
+.clock-toolbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.toolbar-left, .toolbar-right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.clock-tool-btn {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+.clock-tool-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+.wake-lock-btn {
+    background: #f8fafc;
+    border-color: #0284c7;
+    color: #0369a1;
+}
+.wake-lock-btn.wake-active {
+    background: #10b981 !important;
+    border-color: #059669 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+}
+.wake-status-hint {
+    font-size: 0.74rem;
+    color: #64748b;
+    margin-bottom: 24px;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.4;
+}
+
+/* Big Analog Dial */
+.big-clock-wrap {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 24px;
+    position: relative;
+}
+.big-clock-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+.big-clock-bezel {
+    fill: #f8fafc;
+    stroke: #e2e8f0;
+    stroke-width: 2;
+}
+.big-clock-rim {
+    fill: none;
+    stroke: #cbd5e1;
+    stroke-width: 1.5;
+}
+.tick-hour {
+    stroke: #0f172a;
+    stroke-width: 3.2;
+    stroke-linecap: round;
+}
+.tick-dot {
+    fill: #0056b3;
+}
+.tick-dot-min {
+    fill: #94a3b8;
+}
+.big-dial-brand {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 7.2px;
+    font-weight: 800;
+    fill: #0056b3;
+    text-anchor: middle;
+    letter-spacing: 0.12em;
+}
+.big-dial-sub {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 4.8px;
+    font-weight: 700;
+    fill: #94a3b8;
+    text-anchor: middle;
+    letter-spacing: 0.16em;
+}
+.big-dial-tz {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 5.5px;
+    font-weight: 700;
+    fill: #64748b;
+    text-anchor: middle;
+    letter-spacing: 0.14em;
+}
+
+.big-hand {
+    stroke-linecap: round;
+}
+.big-hand-hour {
+    stroke: #0f172a;
+    stroke-width: 4.8;
+}
+.big-hand-minute {
+    stroke: #334155;
+    stroke-width: 3.2;
+}
+.big-hand-second {
+    stroke: #e11d48;
+    stroke-width: 1.8;
+}
+.big-second-counterweight {
+    fill: #e11d48;
+}
+.big-pinion-outer {
+    fill: #0f172a;
+}
+.big-pinion-inner {
+    fill: #e11d48;
+}
+.big-pinion-dot {
+    fill: #ffffff;
+}
+
+/* Digital Readout */
+.clock-digital-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.digital-date-badge {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.digital-time-display {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+.digital-time-val {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+.digital-time-ampm {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #64748b;
+}
+.digital-time-zone {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0284c7;
+    margin-left: 4px;
+}
+.digital-sub-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+.clock-sync-pill {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    padding: 2px 10px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.clock-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 6px #10b981;
+    animation: clock-pulse 1.8s infinite;
+}
+
+/* Homelab Ribbon */
+.clock-homelab-ribbon {
+    width: 100%;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.76rem;
+    color: #64748b;
+}
+.ribbon-sep {
+    color: #cbd5e1;
+}
+
+@media (max-width: 600px) {
+    .clock-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .toolbar-left, .toolbar-right {
+        justify-content: center;
+    }
+    .digital-time-val {
+        font-size: 2.3rem;
+    }
+    .big-clock-wrap {
+        max-width: 250px;
+    }
 }

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homelab Precision Desk Clock | Andrew Van Ek</title>
+	<meta name="description" content="Full-screen precision desk chronometer displaying synchronized Michigan Eastern Time (EST/EDT) with Screen Wake Lock to keep phone or tablet displays awake indefinitely.">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" href="css/styles.css?v=20261024-clock-wake">
+</head>
+<body class="clock-page-body">
+	<div class="container clock-page-container">
+		<nav class="tablet-desktop">
+			<ul id="site-navigation">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+						<li><a href="lab.html">Live AI Lab</a></li>
+						<li><a href="council.html">AI Chatroom</a></li>
+						<li><a href="moltbook.html">Moltbook Agent</a></li>
+						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="stats.html">Stats for Nerds</a></li>
+						<li><a href="maintenance.html">Maintenance Log</a></li>
+						<li><a href="clock.html" aria-current="page">Homelab Desk Clock</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="job.html">Skills &amp; Toolkit</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<main class="clock-main">
+			<div class="desk-clock-card" id="desk-clock-card">
+				<!-- Control Toolbar -->
+				<div class="clock-toolbar">
+					<div class="toolbar-left">
+						<button type="button" class="clock-tool-btn wake-lock-btn" id="wake-lock-toggle" aria-pressed="false" title="Keep screen illuminated without sleeping">
+							<span class="wake-icon" id="wake-icon">💤</span>
+							<span id="wake-label">Always Keep Screen Awake: OFF</span>
+						</button>
+					</div>
+					<div class="toolbar-right">
+						<button type="button" class="clock-tool-btn" id="dimmer-toggle" title="Toggle soft nightstand dimmer mode">
+							<span aria-hidden="true">🌙</span> <span id="dimmer-label">Nightstand Dim</span>
+						</button>
+						<button type="button" class="clock-tool-btn" id="tz-toggle" title="Cycle between Eastern, Local, and UTC time">
+							<span aria-hidden="true">🌐</span> <span id="tz-label">EST (Homelab)</span>
+						</button>
+						<button type="button" class="clock-tool-btn" id="fullscreen-toggle" title="Enter fullscreen mode">
+							<span aria-hidden="true">⛶</span> Fullscreen
+						</button>
+					</div>
+				</div>
+
+				<div class="wake-status-hint" id="wake-status-hint">
+					Device screen will use standard sleep timeout. Click &ldquo;Always Keep Screen Awake&rdquo; to hold screen illuminated indefinitely on desk or nightstand.
+				</div>
+
+				<!-- Big Precision Chronometer Dial -->
+				<div class="big-clock-wrap">
+					<svg class="big-clock-svg" id="big-clock-svg" viewBox="0 0 200 200" aria-label="Precision analog desk clock">
+						<defs>
+							<radialGradient id="clock-glass-grad" cx="40%" cy="30%" r="70%">
+								<stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+								<stop offset="100%" stop-color="#f1f5f9" stop-opacity="1"/>
+							</radialGradient>
+							<filter id="clock-drop-shadow" x="-10%" y="-10%" width="130%" height="130%">
+								<feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.12"/>
+							</filter>
+						</defs>
+
+						<!-- Outer Bezel Rings -->
+						<circle cx="100" cy="100" r="97" class="big-clock-bezel" filter="url(#clock-drop-shadow)"/>
+						<circle cx="100" cy="100" r="93" class="big-clock-rim" />
+						<circle cx="100" cy="100" r="90" class="big-clock-face" fill="url(#clock-glass-grad)"/>
+
+						<!-- 60 Minute / Second Tick Ring -->
+						<!-- 12 Major Hour Markers (Baton style) -->
+						<g class="big-clock-ticks">
+							<!-- 12 --> <line x1="100" y1="14" x2="100" y2="26" class="tick-hour" />
+							<!-- 1 -->  <line x1="143" y1="25.5" x2="137" y2="35.9" class="tick-hour" />
+							<!-- 2 -->  <line x1="174.5" y1="57" x2="164.1" y2="63" class="tick-hour" />
+							<!-- 3 -->  <line x1="186" y1="100" x2="174" y2="100" class="tick-hour" />
+							<!-- 4 -->  <line x1="174.5" y1="143" x2="164.1" y2="137" class="tick-hour" />
+							<!-- 5 -->  <line x1="143" y1="174.5" x2="137" y2="164.1" class="tick-hour" />
+							<!-- 6 -->  <line x1="100" y1="186" x2="100" y2="174" class="tick-hour" />
+							<!-- 7 -->  <line x1="57" y1="174.5" x2="63" y2="164.1" class="tick-hour" />
+							<!-- 8 -->  <line x1="25.5" y1="143" x2="35.9" y2="137" class="tick-hour" />
+							<!-- 9 -->  <line x1="14" y1="100" x2="26" y2="100" class="tick-hour" />
+							<!-- 10 --> <line x1="25.5" y1="57" x2="35.9" y2="63" class="tick-hour" />
+							<!-- 11 --> <line x1="57" y1="25.5" x2="63" y2="35.9" class="tick-hour" />
+
+							<!-- Minor Minute Ticks -->
+							<!-- Every 6 degrees (samples for crisp precision) -->
+							<circle cx="100" cy="18" r="1.2" class="tick-dot" />
+							<circle cx="109.4" cy="18.5" r="0.8" class="tick-dot-min" />
+							<circle cx="118.8" cy="20" r="0.8" class="tick-dot-min" />
+							<circle cx="128" cy="22.5" r="0.8" class="tick-dot-min" />
+							<circle cx="137" cy="25.8" r="0.8" class="tick-dot-min" />
+							<circle cx="154.5" cy="35.5" r="0.8" class="tick-dot-min" />
+							<circle cx="162.5" cy="42" r="0.8" class="tick-dot-min" />
+							<circle cx="169.5" cy="49.5" r="0.8" class="tick-dot-min" />
+							<circle cx="175" cy="58" r="0.8" class="tick-dot-min" />
+							<circle cx="182" cy="78" r="0.8" class="tick-dot-min" />
+							<circle cx="184" cy="88" r="0.8" class="tick-dot-min" />
+							<circle cx="184" cy="112" r="0.8" class="tick-dot-min" />
+							<circle cx="182" cy="122" r="0.8" class="tick-dot-min" />
+							<circle cx="175" cy="142" r="0.8" class="tick-dot-min" />
+							<circle cx="169.5" cy="150.5" r="0.8" class="tick-dot-min" />
+							<circle cx="162.5" cy="158" r="0.8" class="tick-dot-min" />
+							<circle cx="154.5" cy="164.5" r="0.8" class="tick-dot-min" />
+							<circle cx="137" cy="174.2" r="0.8" class="tick-dot-min" />
+							<circle cx="128" cy="177.5" r="0.8" class="tick-dot-min" />
+							<circle cx="118.8" cy="180" r="0.8" class="tick-dot-min" />
+							<circle cx="109.4" cy="181.5" r="0.8" class="tick-dot-min" />
+							<circle cx="90.6" cy="181.5" r="0.8" class="tick-dot-min" />
+							<circle cx="81.2" cy="180" r="0.8" class="tick-dot-min" />
+							<circle cx="72" cy="177.5" r="0.8" class="tick-dot-min" />
+							<circle cx="63" cy="174.2" r="0.8" class="tick-dot-min" />
+							<circle cx="45.5" cy="164.5" r="0.8" class="tick-dot-min" />
+							<circle cx="37.5" cy="158" r="0.8" class="tick-dot-min" />
+							<circle cx="30.5" cy="150.5" r="0.8" class="tick-dot-min" />
+							<circle cx="25" cy="142" r="0.8" class="tick-dot-min" />
+							<circle cx="18" cy="122" r="0.8" class="tick-dot-min" />
+							<circle cx="16" cy="112" r="0.8" class="tick-dot-min" />
+							<circle cx="16" cy="88" r="0.8" class="tick-dot-min" />
+							<circle cx="18" cy="78" r="0.8" class="tick-dot-min" />
+							<circle cx="25" cy="58" r="0.8" class="tick-dot-min" />
+							<circle cx="30.5" cy="49.5" r="0.8" class="tick-dot-min" />
+							<circle cx="37.5" cy="42" r="0.8" class="tick-dot-min" />
+							<circle cx="45.5" cy="35.5" r="0.8" class="tick-dot-min" />
+							<circle cx="63" cy="25.8" r="0.8" class="tick-dot-min" />
+							<circle cx="72" cy="22.5" r="0.8" class="tick-dot-min" />
+							<circle cx="81.2" cy="20" r="0.8" class="tick-dot-min" />
+							<circle cx="90.6" cy="18.5" r="0.8" class="tick-dot-min" />
+						</g>
+
+						<!-- Dial Branding Typography -->
+						<text x="100" y="65" class="big-dial-brand">ANDREW VAN EK</text>
+						<text x="100" y="73" class="big-dial-sub">HOMELAB CHRONOMETER</text>
+						<text x="100" y="142" class="big-dial-tz" id="big-dial-tz">EASTERN TIME &bull; MICHIGAN</text>
+
+						<!-- Hands (Rendered with transform rotate from JS) -->
+						<!-- Hour Hand -->
+						<line x1="100" y1="108" x2="100" y2="48" id="big-hand-hour" class="big-hand big-hand-hour" />
+						<!-- Minute Hand -->
+						<line x1="100" y1="112" x2="100" y2="28" id="big-hand-minute" class="big-hand big-hand-minute" />
+						<!-- Smooth Sweeping Second Hand (Swiss Station Red) -->
+						<line x1="100" y1="120" x2="100" y2="22" id="big-hand-second" class="big-hand big-hand-second" />
+						<!-- Second Hand Counterweight -->
+						<circle cx="100" cy="118" r="4.5" class="big-second-counterweight" />
+
+						<!-- Center Pinion -->
+						<circle cx="100" cy="100" r="6.5" class="big-pinion-outer" />
+						<circle cx="100" cy="100" r="4" class="big-pinion-inner" />
+						<circle cx="100" cy="100" r="1.5" class="big-pinion-dot" />
+					</svg>
+				</div>
+
+				<!-- Prominent Digital Telemetry Readout -->
+				<div class="clock-digital-section">
+					<div class="digital-date-badge" id="desk-clock-date">SATURDAY, OCTOBER 24, 2026</div>
+					<div class="digital-time-display">
+						<span class="digital-time-val" id="desk-clock-time">04:15:00</span>
+						<span class="digital-time-ampm" id="desk-clock-ampm">PM</span>
+						<span class="digital-time-zone" id="desk-clock-zone">EDT</span>
+					</div>
+					<div class="digital-sub-row">
+						<span class="clock-sync-pill"><span class="clock-pulse-dot"></span> NIST Reference Sync</span>
+						<span class="clock-offset-tag" id="desk-clock-offset">UTC-04:00 (Eastern Daylight Time)</span>
+					</div>
+				</div>
+
+				<!-- Homelab Telemetry Ribbon -->
+				<div class="clock-homelab-ribbon">
+					<span class="ribbon-item">🖥️ <strong>NUC Gateway:</strong> <span style="color:#10b981;">Online (Alpine Linux)</span></span>
+					<span class="ribbon-sep">&bull;</span>
+					<span class="ribbon-item">⚡ <strong>Telemetry:</strong> Tailscale Encrypted Mesh</span>
+					<span class="ribbon-sep">&bull;</span>
+					<span class="ribbon-item">📍 <strong>Base:</strong> West Michigan</span>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+			<p>Website last modified: <time datetime="2026-10-24">October 24, 2026</time></p>
+		</footer>
+	</div>
+
+	<script src="scripts/script.js?v=20261024-clock-wake"></script>
+</body>
+</html>
