@@ -528,6 +528,51 @@
 			analogy: "Think of an invisible, private underground tunnel connecting only your own personal devices. Even if your phone is in a coffee shop in Chicago, your laptop is in a hotel, and your server is in your home in Michigan, they whisper to each other through scrambled codes that no outsider, ISP, or hacker can intercept or eavesdrop on.",
 			techFact: "A peer-to-peer overlay network built on modern WireGuard cryptography (ChaCha20-Poly1305 authentication). Nodes establish direct, authenticated UDP links across NATs and firewalls without routing traffic through vulnerable public ports."
 		},
+		"confusion-matrix": {
+			title: "Confusion Matrix (Decision Tally Sheet)",
+			analogy: "Like an airport security checkpoint tally sheet: it doesn't just grade whether the scanner was 'right or wrong', it breaks down every single decision into four specific piles—spotting real keys, waving through safe travelers, sounding false alarms on belt buckles, and missed pocketknives.",
+			techFact: "A 2x2 contingency table tabulating True Positives (TP), False Positives (FP), True Negatives (TN), and False Negatives (FN) to expose classification blindspots."
+		},
+		"precision-score": {
+			title: "Precision (The 'Wolf Cry / Trust' Score)",
+			analogy: "Like a spam filter: when it flags an email as Spam, how often is it truly junk versus accidentally throwing away an urgent note from your boss? High precision means when the AI sounds an alarm, you can bet money it's right.",
+			techFact: "TP / (TP + FP). Measures the ratio of true positive outcomes among all positive predictions made by the model."
+		},
+		"recall-score": {
+			title: "Recall / Sensitivity (The 'Safety Net / Catch' Score)",
+			analogy: "Like a smoke detector in your home: out of all the fires that could break out, how many does the detector successfully catch without sleeping through a single one? High recall means virtually nothing slips past.",
+			techFact: "TP / (TP + FN). Also known as the True Positive Rate (TPR), measuring the proportion of actual positives that were correctly discovered."
+		},
+		"specificity-score": {
+			title: "Specificity (The 'Calm Guard Dog' Score)",
+			analogy: "Like a well-trained guard dog: out of all the harmless neighborhood mail carriers who walk past the house, how good is the dog at staying calm and NOT barking? High specificity means low false alarms.",
+			techFact: "TN / (TN + FP). The True Negative Rate (TNR), evaluating how effectively a classifier avoids incorrectly flagging negative instances."
+		},
+		"f1-score": {
+			title: "F1-Score (The Balanced Gold Standard)",
+			analogy: "Like evaluating a baseball hitter by both home runs AND avoiding strikeouts: a player who only steps up to bat once a season and hits one home run has a 1.000 average, but is useless to the team. The F1-score prevents the AI from cheating by taking the harmonic mean of aggressive catching (Recall) and cautious accuracy (Precision).",
+			techFact: "Harmonic mean 2 * (Precision * Recall) / (Precision + Recall). Punishes extreme imbalances between false positives and false negatives."
+		},
+		"mcc-score": {
+			title: "Matthews Correlation Coefficient (The 'No-Cheating' Report Card)",
+			analogy: "Like a test grader that penalizes blind guessing: even if a true/false exam is 95% 'True' and a lazy student writes 'True' on every single answer, MCC gives them a 0. It runs on a scale from -1.0 to +1.0, where 0 is random guessing and +1.0 is a 100% genuine psychic.",
+			techFact: "Balanced correlation coefficient taking all four quadrants of the confusion matrix into account; robust against severe class imbalances."
+		},
+		"shannon-entropy": {
+			title: "Shannon Information Entropy (The 'Surprise / Chaos' Meter)",
+			analogy: "Like the weather forecast in the Sahara desert versus Michigan in April: predicting sunshine in the Sahara has zero surprise (0 bits entropy). But predicting Michigan weather has maximum chaos and high surprise (~1.0 bit entropy). High entropy means the coin flips are pure wild chaos; low entropy means there is an obvious pattern.",
+			techFact: "H(X) = - sum(p * log2(p)). Formulated by Claude Shannon in 1948 to quantify fundamental uncertainty in information theory, capped at 1.0 bit for fair coins."
+		},
+		"bce-loss": {
+			title: "Binary Cross-Entropy Loss (The 'Shock & Penalty' Score)",
+			analogy: "Like betting money with your friends: if you bet $100 with supreme confidence that a coin will land Heads, and it lands Tails, you lose your shirt (huge loss penalty). But if you say 'I think it might be Heads, but I'm only 52% sure', the penalty for missing is gentle. Loss measures how shocked and punished the AI is when its predictions miss reality.",
+			techFact: "L = - [y * log(yHat) + (1-y) * log(1 - yHat)]. The foundational logarithmic loss function for training binary classification neural networks."
+		},
+		"snr-db": {
+			title: "Signal-to-Noise Ratio (The 'Car Radio in a Tunnel' Test)",
+			analogy: "Like driving your car through a tunnel while listening to your favorite radio station: when the music is clear, SNR is high (clean signal). As static and fuzz creep in, you can still hum the melody until the static completely overpowers the music (0 dB). This test proves our AI still hears the coin pattern through 20% static!",
+			techFact: "Decibel ratio 10 * log10(Signal / Noise). Quantifies how much useful underlying pattern remains audible over corrupt random distortion."
+		},
 		"tailscale": {
 			title: "Tailscale Mesh VPN",
 			analogy: "An encrypted walkie-talkie channel that lets all your personal devices talk directly to each other from anywhere in the world as if they were sitting in the same living room—without needing to leave your front door unlocked or open holes in your home router.",

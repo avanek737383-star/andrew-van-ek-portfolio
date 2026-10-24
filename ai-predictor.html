@@ -135,7 +135,7 @@
 						<!-- Model Confidence -->
 						<div class="metric-box">
 							<div class="metric-label">
-								<span>Model Confidence</span>
+								<span><span class="tech-term" data-term="bce-loss">Model Confidence</span> (Probability)</span>
 								<span id="hud-conf-val">68.2%</span>
 							</div>
 							<div class="confidence-bar-bg">
@@ -153,7 +153,7 @@
 
 						<!-- Sequence Entropy & Streaks -->
 						<div class="metric-box">
-							<div class="metric-label">Shannon Information Entropy</div>
+							<div class="metric-label"><span class="tech-term" data-term="shannon-entropy">Shannon Entropy</span> (Chaos Meter)</div>
 							<div class="metric-val-large" id="hud-entropy-val">0.974 bits</div>
 							<div class="metric-sub" id="hud-streak-val">Streak: 2 Heads (Best: 5)</div>
 						</div>
@@ -323,38 +323,44 @@
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px;">
     <div>
       <h3 id="diagnostics-heading" style="margin:0; font-size:1.3rem; color:#002d5a;">📊 Statistical Diagnostics &amp; Noise Perturbation</h3>
-      <span style="font-size:0.85rem; color:#475569;">1,200 Holdout Test Samples &bull; Extended 120-Epoch CPU Verification Suite</span>
+      <span style="font-size:0.85rem; color:#475569;">1,200 Holdout Test Samples &bull; Extended 120-Epoch CPU Verification Suite &bull; Hover or tap highlighted terms for analogies</span>
     </div>
-    <span style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Verified Finite Checkpoints</span>
+    <span style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Verified Benchmark Checkpoints</span>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:20px;">
     <!-- Confusion Matrix Card -->
     <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-      <h4 style="margin:0 0 12px; font-size:1.05rem; color:#002d5a;">Confusion Matrix (1,200 Holdout Samples)</h4>
-      <div style="display:grid; grid-template-columns:80px 1fr 1fr; gap:8px; text-align:center; font-size:0.85rem; margin-bottom:14px;">
+      <h4 style="margin:0 0 12px; font-size:1.05rem; color:#002d5a;">
+        <span class="tech-term" data-term="confusion-matrix">Confusion Matrix</span> (1,200 Holdout Samples)
+      </h4>
+      <div style="display:grid; grid-template-columns:85px 1fr 1fr; gap:8px; text-align:center; font-size:0.85rem; margin-bottom:14px;">
         <div></div>
         <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px;">Pred. Heads</div>
         <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px;">Pred. Tails</div>
 
         <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center;">Act. Heads</div>
-        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:12px; border-radius:6px;">
-          <div style="font-size:1.2rem; font-weight:800; color:#047857;">361</div>
-          <span style="font-size:0.72rem; color:#065f46;">True Positive (TP)</span>
+        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:10px 6px; border-radius:6px;">
+          <div style="font-size:1.25rem; font-weight:800; color:#047857;">361</div>
+          <strong style="font-size:0.75rem; color:#065f46; display:block;">True Positive (TP)</strong>
+          <span style="font-size:0.68rem; color:#047857; opacity:0.9;">Hit! (Called Heads &amp; was Heads)</span>
         </div>
-        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:12px; border-radius:6px;">
-          <div style="font-size:1.2rem; font-weight:800; color:#b91c1c;">247</div>
-          <span style="font-size:0.72rem; color:#991b1b;">False Negative (FN)</span>
+        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:10px 6px; border-radius:6px;">
+          <div style="font-size:1.25rem; font-weight:800; color:#b91c1c;">247</div>
+          <strong style="font-size:0.75rem; color:#991b1b; display:block;">False Negative (FN)</strong>
+          <span style="font-size:0.68rem; color:#b91c1c; opacity:0.9;">Miss! (Called Tails, was Heads)</span>
         </div>
 
         <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center;">Act. Tails</div>
-        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:12px; border-radius:6px;">
-          <div style="font-size:1.2rem; font-weight:800; color:#b91c1c;">322</div>
-          <span style="font-size:0.72rem; color:#991b1b;">False Positive (FP)</span>
+        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:10px 6px; border-radius:6px;">
+          <div style="font-size:1.25rem; font-weight:800; color:#b91c1c;">322</div>
+          <strong style="font-size:0.75rem; color:#991b1b; display:block;">False Positive (FP)</strong>
+          <span style="font-size:0.68rem; color:#b91c1c; opacity:0.9;">False Alarm! (Called Heads, was Tails)</span>
         </div>
-        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:12px; border-radius:6px;">
-          <div style="font-size:1.2rem; font-weight:800; color:#047857;">270</div>
-          <span style="font-size:0.72rem; color:#065f46;">True Negative (TN)</span>
+        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:10px 6px; border-radius:6px;">
+          <div style="font-size:1.25rem; font-weight:800; color:#047857;">270</div>
+          <strong style="font-size:0.75rem; color:#065f46; display:block;">True Negative (TN)</strong>
+          <span style="font-size:0.68rem; color:#047857; opacity:0.9;">Clear! (Called Tails &amp; was Tails)</span>
         </div>
       </div>
 
@@ -362,24 +368,34 @@
       <table style="width:100%; border-collapse:collapse; font-size:0.82rem;">
         <tbody>
           <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:5px 0; color:#475569;">Precision (Positive Predictive Value)</td>
-            <td style="padding:5px 0; font-weight:700; text-align:right; color:#0f172a;">52.86%</td>
+            <td style="padding:6px 0; color:#475569;">
+              <span class="tech-term" data-term="precision-score"><strong>Precision</strong></span> (The &ldquo;Wolf Cry / Trust&rdquo; Score)
+            </td>
+            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">52.86%</td>
           </tr>
           <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:5px 0; color:#475569;">Recall / Sensitivity (True Positive Rate)</td>
-            <td style="padding:5px 0; font-weight:700; text-align:right; color:#0f172a;">59.38%</td>
+            <td style="padding:6px 0; color:#475569;">
+              <span class="tech-term" data-term="recall-score"><strong>Recall / Sensitivity</strong></span> (The &ldquo;Safety Net / Catch&rdquo; Score)
+            </td>
+            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">59.38%</td>
           </tr>
           <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:5px 0; color:#475569;">Specificity (True Negative Rate)</td>
-            <td style="padding:5px 0; font-weight:700; text-align:right; color:#0f172a;">45.61%</td>
+            <td style="padding:6px 0; color:#475569;">
+              <span class="tech-term" data-term="specificity-score"><strong>Specificity</strong></span> (The &ldquo;Calm Guard Dog&rdquo; Score)
+            </td>
+            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">45.61%</td>
           </tr>
           <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:5px 0; color:#475569;">F1-Score (Harmonic Mean)</td>
-            <td style="padding:5px 0; font-weight:700; text-align:right; color:#059669;">55.93%</td>
+            <td style="padding:6px 0; color:#475569;">
+              <span class="tech-term" data-term="f1-score"><strong>F1-Score</strong></span> (The Balanced Gold Standard)
+            </td>
+            <td style="padding:6px 0; font-weight:700; text-align:right; color:#059669;">55.93%</td>
           </tr>
           <tr>
-            <td style="padding:5px 0; color:#475569;">Matthews Correlation Coefficient (MCC)</td>
-            <td style="padding:5px 0; font-weight:700; text-align:right; color:#0284c7;">+0.0503</td>
+            <td style="padding:6px 0; color:#475569;">
+              <span class="tech-term" data-term="mcc-score"><strong>Matthews Correlation (MCC)</strong></span> (The &ldquo;No-Cheating&rdquo; Report Card)
+            </td>
+            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0284c7;">+0.0503</td>
           </tr>
         </tbody>
       </table>
@@ -387,70 +403,61 @@
 
     <!-- Noise Perturbation & SNR Sweep Card -->
     <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-      <h4 style="margin:0 0 8px; font-size:1.05rem; color:#002d5a;">Noise Perturbation &amp; Signal-to-Noise Ratio (SNR)</h4>
+      <h4 style="margin:0 0 8px; font-size:1.05rem; color:#002d5a;">
+        Noise Perturbation &amp; <span class="tech-term" data-term="snr-db">Signal-to-Noise Ratio (SNR)</span>
+      </h4>
       <p style="font-size:0.8rem; color:#475569; margin:0 0 12px; line-height:1.4;">
-        Synthetic label corruption simulates noisy coin recording sensors and random bit flips to evaluate the neural network's degradation curve against baseline chaos.
+        Synthetic label corruption simulates noisy sensor readings and accidental bit-flips to measure how gracefully the model resists background interference.
       </p>
 
       <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
         <thead>
           <tr style="border-bottom:2px solid #cbd5e1; color:#334155;">
             <th style="padding:6px 0;">Noise Injected</th>
-            <th style="padding:6px 0;">SNR (dB)</th>
+            <th style="padding:6px 0;"><span class="tech-term" data-term="snr-db">SNR (dB)</span></th>
             <th style="padding:6px 0;">Accuracy</th>
-            <th style="padding:6px 0;">BCE Loss</th>
+            <th style="padding:6px 0;"><span class="tech-term" data-term="bce-loss">BCE Loss</span></th>
             <th style="padding:6px 0;">Edge vs. 50%</th>
           </tr>
         </thead>
         <tbody style="border-bottom:1px solid #e2e8f0;">
-          <tr>
-  <td><strong>0%</strong></td>
-  <td><code>99.9 dB</code></td>
-  <td><strong>52.58%</strong></td>
-  <td><code>0.7035</code></td>
-  <td style="color:#10b981; font-weight:700;">+2.58%</td>
-</tr><tr>
-  <td><strong>5%</strong></td>
-  <td><code>12.8 dB</code></td>
-  <td><strong>51.42%</strong></td>
-  <td><code>0.7126</code></td>
-  <td style="color:#10b981; font-weight:700;">+1.42%</td>
-</tr><tr>
-  <td><strong>10%</strong></td>
-  <td><code>9.5 dB</code></td>
-  <td><strong>52.25%</strong></td>
-  <td><code>0.7117</code></td>
-  <td style="color:#10b981; font-weight:700;">+2.25%</td>
-</tr><tr>
-  <td><strong>15%</strong></td>
-  <td><code>7.5 dB</code></td>
-  <td><strong>51.75%</strong></td>
-  <td><code>0.7151</code></td>
-  <td style="color:#10b981; font-weight:700;">+1.75%</td>
-</tr><tr>
-  <td><strong>20%</strong></td>
-  <td><code>6.0 dB</code></td>
-  <td><strong>51.83%</strong></td>
-  <td><code>0.7216</code></td>
-  <td style="color:#10b981; font-weight:700;">+1.83%</td>
-</tr><tr>
-  <td><strong>30%</strong></td>
-  <td><code>3.7 dB</code></td>
-  <td><strong>52.0%</strong></td>
-  <td><code>0.7425</code></td>
-  <td style="color:#10b981; font-weight:700;">+2.0%</td>
-</tr><tr>
-  <td><strong>50%</strong></td>
-  <td><code>0.0 dB</code></td>
-  <td><strong>48.83%</strong></td>
-  <td><code>0.7502</code></td>
-  <td style="color:#ef4444;">-1.17%</td>
-</tr>
+          <tr><td><strong>0%</strong> (Pure Clean)</td><td><code>99.9 dB</code></td><td><strong>52.58%</strong></td><td><code>0.7035</code></td><td style="color:#10b981; font-weight:700;">+2.58%</td></tr>
+          <tr><td><strong>5%</strong> (Low Static)</td><td><code>12.8 dB</code></td><td><strong>51.42%</strong></td><td><code>0.7126</code></td><td style="color:#10b981; font-weight:700;">+1.42%</td></tr>
+          <tr><td><strong>10%</strong> (Moderate Fuzz)</td><td><code>9.5 dB</code></td><td><strong>52.25%</strong></td><td><code>0.7117</code></td><td style="color:#10b981; font-weight:700;">+2.25%</td></tr>
+          <tr><td><strong>15%</strong> (Heavy Static)</td><td><code>7.5 dB</code></td><td><strong>51.75%</strong></td><td><code>0.7151</code></td><td style="color:#10b981; font-weight:700;">+1.75%</td></tr>
+          <tr><td><strong>20%</strong> (High Distort)</td><td><code>6.0 dB</code></td><td><strong>51.83%</strong></td><td><code>0.7216</code></td><td style="color:#10b981; font-weight:700;">+1.83%</td></tr>
+          <tr><td><strong>30%</strong> (Extreme Noise)</td><td><code>3.7 dB</code></td><td><strong>52.00%</strong></td><td><code>0.7425</code></td><td style="color:#10b981; font-weight:700;">+2.00%</td></tr>
+          <tr><td><strong>50%</strong> (White Noise)</td><td><code>0.0 dB</code></td><td><strong>48.83%</strong></td><td><code>0.7502</code></td><td style="color:#ef4444; font-weight:700;">-1.17%</td></tr>
         </tbody>
       </table>
       <p style="font-size:0.75rem; color:#64748b; margin:10px 0 0;">
         <strong>Key Observation:</strong> The neural network maintains a positive predictive edge up to 30% sequence corruption, only dropping below 50% when exposed to 50% pure white noise ($SNR = 0.0\text{ dB}$).
       </p>
+    </div>
+  </div>
+
+  <!-- Real-World Analogy Guide Card -->
+  <div style="background:#f0f9ff; border:1px solid #bae6fd; border-left:4px solid #0284c7; border-radius:10px; padding:18px; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
+    <h4 style="margin:0 0 10px; color:#0369a1; font-size:1.05rem; display:flex; align-items:center; gap:8px;">
+      <span>💡 Real-World Analogy Guide: Plain-English Translations</span>
+    </h4>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; font-size:0.84rem; color:#334155; line-height:1.5;">
+      <div>
+        <strong style="color:#0284c7; font-size:0.9rem;">1. Confusion Matrix &rarr; Airport Security Tally</strong>
+        <p style="margin:4px 0 0;">Think of an airport metal detector: True Positives are real pocketknives spotted; True Negatives are safe travelers waved through; False Positives are annoying false alarms on belt buckles; False Negatives are dangerous missed items. It reveals where the AI makes its trade-offs.</p>
+      </div>
+      <div>
+        <strong style="color:#0284c7; font-size:0.9rem;">2. F1-Score &rarr; The Two-Way Athlete</strong>
+        <p style="margin:4px 0 0;">Like evaluating an NBA basketball player: if a player only shoots one single layup all year and makes it, their shooting accuracy is 100%, but they're useless to the team! The F1-score prevents the AI from cheating by balancing aggressive catching (Recall) with cautious accuracy (Precision).</p>
+      </div>
+      <div>
+        <strong style="color:#0284c7; font-size:0.9rem;">3. Shannon Entropy &rarr; Sahara vs. Michigan Weather</strong>
+        <p style="margin:4px 0 0;">Forecasting tomorrow's weather in the Sahara desert has 0 surprise (0.0 bits). But predicting spring weather in Michigan has high chaos and high surprise (~1.0 bit). High entropy means the coin sequence is wild noise; low entropy means there is a clear, predictable pattern.</p>
+      </div>
+      <div>
+        <strong style="color:#0284c7; font-size:0.9rem;">4. SNR &rarr; Car Radio in a Tunnel</strong>
+        <p style="margin:4px 0 0;">Like driving into a highway tunnel while listening to FM radio: as static creeps in, you can still hear the melody until the static drowns out the music (0 dB). This sweep proves the AI detects the pattern even through 20% static.</p>
+      </div>
     </div>
   </div>
 </section>
