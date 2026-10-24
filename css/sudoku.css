@@ -251,7 +251,7 @@
 }
 
 .nemo-mind-bubble.hover-paused .nemo-mind-state::after {
-    content: " (PAUSED ON HOVER)";
+    content: " (PAUSED)";
     color: #f59e0b;
     font-size: 0.72rem;
     font-weight: 700;

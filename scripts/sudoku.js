@@ -90,6 +90,7 @@
     let solveTimer = null;
     let solveDelay = 8500; // Default deep study pace (8.5s)
     let isHoverPaused = false;
+    let isTouchTapPaused = false;
     let deductionCount = 0;
     let backtrackCount = 0;
     let solveStartTime = 0;
@@ -426,21 +427,41 @@
             speedLabel.textContent = labels[val - 1];
         });
 
-        if (mindBubble) {
+                if (mindBubble) {
+            // Desktop hover to pause
             mindBubble.addEventListener("mouseenter", () => {
-                if (isSolving && !isPaused) {
+                if (isSolving && !isPaused && !isHoverPaused && !isTouchTapPaused) {
                     isHoverPaused = true;
                     clearTimeout(solveTimer);
                     mindBubble.classList.add("hover-paused");
                 }
             });
             mindBubble.addEventListener("mouseleave", () => {
-                if (isHoverPaused) {
+                if (isHoverPaused && !isTouchTapPaused) {
                     isHoverPaused = false;
                     mindBubble.classList.remove("hover-paused");
                     if (isSolving && !isPaused) {
                         solveTimer = setTimeout(runStepLoop, 600);
                     }
+                }
+            });
+
+            // Mobile tap / click toggle
+            mindBubble.addEventListener("click", () => {
+                if (!isSolving || isPaused) return;
+
+                if (isHoverPaused || isTouchTapPaused) {
+                    // Resume
+                    isHoverPaused = false;
+                    isTouchTapPaused = false;
+                    mindBubble.classList.remove("hover-paused");
+                    solveTimer = setTimeout(runStepLoop, 600);
+                } else {
+                    // Pause on tap
+                    isHoverPaused = true;
+                    isTouchTapPaused = true;
+                    clearTimeout(solveTimer);
+                    mindBubble.classList.add("hover-paused");
                 }
             });
         }
