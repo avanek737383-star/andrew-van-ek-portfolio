@@ -4651,3 +4651,23 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
         display: none !important;
     }
 }
+
+/* Kinetic Nav Mesh & Copilot Easter Egg Layering */
+nav.tablet-desktop {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    overflow: visible !important;
+}
+
+nav.tablet-desktop > ul#site-navigation {
+    position: relative;
+    z-index: 2;
+}
+
+.copilot-confetti-particle {
+    will-change: transform, opacity;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 8px rgba(0, 120, 212, 0.4));
+}

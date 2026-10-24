@@ -826,3 +826,66 @@
         width: 110px;
     }
 }
+
+/* Active Thought Spotlight Pinned at Top of Terminal Flow */
+.terminal-spotlight {
+    background: #0b1528;
+    border: 1px solid #1e3a8a;
+    border-left: 4px solid #38bdf8;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 14px 16px 12px 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.terminal-spotlight.flash-deduction {
+    border-left-color: #10b981 !important;
+    background: #092327;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+}
+
+.terminal-spotlight.flash-backtrack {
+    border-left-color: #ef4444 !important;
+    background: #2a1215;
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.3);
+}
+
+.terminal-spotlight.flash-branch {
+    border-left-color: #f59e0b !important;
+    background: #251c10;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.3);
+}
+
+.spotlight-badge-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+}
+
+.spotlight-badge {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.14);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.spotlight-cell-coords {
+    color: #94a3b8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.spotlight-quote {
+    color: #f8fafc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-style: italic;
+}

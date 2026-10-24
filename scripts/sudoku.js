@@ -103,6 +103,7 @@
     let metricDeductions, metricBacktracks, metricRemaining, metricTime;
     let tabGrid, tabScan, gridPanel, scanPanel;
     let mindBubble, mindState, mindText;
+    let spotlightEl, spotlightTag, spotlightCoords, spotlightQuote;
 
     // Human Internal Self-Dialogue & Observational Stream
     function generateThoughtDialogue(type, info) {
@@ -230,6 +231,10 @@
         mindBubble = document.getElementById("nemo-mind-bubble");
         mindState = document.getElementById("nemo-mind-state");
         mindText = document.getElementById("nemo-mind-text");
+        spotlightEl = document.getElementById("terminal-spotlight");
+        spotlightTag = document.getElementById("spotlight-tag");
+        spotlightCoords = document.getElementById("spotlight-coords");
+        spotlightQuote = document.getElementById("spotlight-quote");
 
         const mobileCollapseBtn = document.getElementById("mobile-collapse-btn");
         const terminalCollapsibleBody = document.getElementById("terminal-collapsible-body");
@@ -940,6 +945,38 @@
 
         const targetCell = getCellElement(step.r, step.c);
         const monologue = generateThoughtDialogue(step.type, step);
+
+        // Update Active Thought Spotlight pinned at top of terminal flow!
+        if (spotlightEl && spotlightQuote) {
+            spotlightQuote.textContent = monologue;
+            const r1 = step.r !== undefined ? step.r + 1 : "-";
+            const c1 = step.c !== undefined ? step.c + 1 : "-";
+            if (spotlightCoords) {
+                spotlightCoords.textContent = (r1 !== "-") ? `Target: Cell (${r1}, ${c1})` : "Target: System";
+            }
+            if (spotlightTag) {
+                const tagNames = {
+                    naked_single: "Sole Candidate",
+                    hidden_single: "Hidden Candidate",
+                    branch_choice: "Branching Choice",
+                    guess: "Testing Hypothesis",
+                    backtrack: "Contradiction / Backtrack",
+                    solved: "Solved Completely"
+                };
+                spotlightTag.textContent = tagNames[step.type] || step.type.toUpperCase();
+            }
+
+            // Brief pulse flash animation
+            spotlightEl.classList.remove("flash-deduction", "flash-backtrack", "flash-branch");
+            void spotlightEl.offsetWidth; // force reflow
+            if (step.type === "backtrack") {
+                spotlightEl.classList.add("flash-backtrack");
+            } else if (step.type === "branch_choice" || step.type === "guess") {
+                spotlightEl.classList.add("flash-branch");
+            } else {
+                spotlightEl.classList.add("flash-deduction");
+            }
+        }
 
         if (step.type === "naked_single" || step.type === "hidden_single" || step.type === "guess") {
             currentGrid[step.r][step.c] = step.val;
