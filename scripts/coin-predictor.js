@@ -1,4 +1,4 @@
-// Neural Coin Predictor & Binary Sequence Classifier
+// Human vs. AI Neural Coin Challenge & Binary Sequence Classifier
 // Built with PyTorch 2.13 (CPU) + In-Browser Vanilla JavaScript Inference Engine
 // Andrew Van Ek Portfolio
 
@@ -11,15 +11,21 @@
     const METRICS = {"final_train_loss": 0.6301, "final_val_loss": 0.7035, "final_train_acc": 63.94, "final_val_acc": 52.58, "eval_accuracy": 52.58, "random_baseline": 50.0};
     const ARCHITECTURE = {"name": "NeuralCoinPredictor", "type": "Multi-Layer Perceptron (Binary Sequence Classifier)", "input_dimension": 14, "hidden_layers": [32, 16], "output_dimension": 1, "activations": ["ReLU", "ReLU", "Sigmoid"], "loss_function": "Binary Cross-Entropy (BCE)", "optimizer": "Adam + CosineAnnealing (lr=0.005 -> 0.0005)", "device": "CPU (PyTorch 2.13.0+cpu)", "training_epochs": 120, "total_samples": 6000};
 
-    // Game Sequence & Flip State
-    // Initial 10 flips to prime the 10-step rolling feature window
+    // Game & Match State
+    let matchRounds = 10; // Default Best of 10
+    let currentRound = 1;
+    let userScore = 0;
+    let aiScore = 0;
+    let isProcessing = false;
+    let matchOver = false;
+
+    // Sequence & Flip State
     let flipHistory = [1, 0, 1, 1, 0, 1, 0, 0, 1, 1]; // 1 = Heads, 0 = Tails
-    let flipRecords = []; // { outcome: 1|0, predicted: 1|0, confidence: 0.65, correct: boolean }
+    let flipRecords = []; // { outcome: 1|0, userGuess: 1|0, aiPred: 1|0, userCorrect: bool, aiCorrect: bool, confidence: float }
     
-    let isFlipping = false;
     let autoStreamInterval = null;
     let totalFlips = 0;
-    let correctPredictions = 0;
+    let totalAiCorrect = 0;
     let currentStreak = 0;
     let streakType = null;
     let longestStreak = 0;
@@ -27,7 +33,6 @@
 
     // Feature Extraction: 14 Dimensions
     function extractFeatures(pastWindow) {
-        // pastWindow is exactly 10 binary values (0 or 1)
         const feats = [...pastWindow]; // 10 values
 
         // Feature 10: Current Streak
@@ -65,7 +70,6 @@
         return feats;
     }
 
-    // Activation Functions
     function relu(x) { return Math.max(0, x); }
     function sigmoid(x) { return 1 / (1 + Math.exp(-Math.max(-40, Math.min(40, x)))); }
 
@@ -77,9 +81,7 @@
         for (let i = 0; i < 32; i++) {
             let sum = weights.fc1_b[i];
             const wRow = weights.fc1_w[i];
-            for (let j = 0; j < 14; j++) {
-                sum += wRow[j] * features[j];
-            }
+            for (let j = 0; j < 14; j++) sum += wRow[j] * features[j];
             z1[i] = sum;
             a1[i] = relu(sum);
         }
@@ -90,9 +92,7 @@
         for (let i = 0; i < 16; i++) {
             let sum = weights.fc2_b[i];
             const wRow = weights.fc2_w[i];
-            for (let j = 0; j < 32; j++) {
-                sum += wRow[j] * a1[j];
-            }
+            for (let j = 0; j < 32; j++) sum += wRow[j] * a1[j];
             z2[i] = sum;
             a2[i] = relu(sum);
         }
@@ -100,16 +100,13 @@
         // Layer 3: 16 -> 1 (Sigmoid)
         let z3 = weights.fc3_b[0];
         const w3Row = weights.fc3_w[0];
-        for (let j = 0; j < 16; j++) {
-            z3 += w3Row[j] * a2[j];
-        }
+        for (let j = 0; j < 16; j++) sum: z3 += w3Row[j] * a2[j];
         const a3 = sigmoid(z3); // P(Heads)
 
         return { z1, a1, z2, a2, z3, a3, probHeads: a3 };
     }
 
-    // Predict Next Flip based on last 10 flips
-    function predictNext() {
+    function getAiPrediction() {
         const past10 = flipHistory.slice(-10);
         const feats = extractFeatures(past10);
         const res = forwardPass(feats, MODEL_WEIGHTS);
@@ -122,11 +119,11 @@
             label: predictedClass === 1 ? "HEADS" : "TAILS",
             confidence,
             probHeads: prob,
-            features: feats
+            features: feats,
+            past10
         };
     }
 
-    // Compute Shannon Entropy H(X) = - sum(p * log2(p))
     function computeShannonEntropy(sequence) {
         if (sequence.length === 0) return 1.0;
         const heads = sequence.reduce((a, b) => a + b, 0);
@@ -136,7 +133,14 @@
         return -(p1 * Math.log2(p1) + p0 * Math.log2(p0));
     }
 
-    // Update DOM HUD Telemetry
+    function updateMindStream(lines) {
+        const container = document.getElementById("neural-mind-hud");
+        if (!container) return;
+        container.innerHTML = lines.map(l => 
+            `<div class="thought-line"><span class="thought-tag">[${l.tag}]</span><span class="thought-text">${l.text}</span></div>`
+        ).join("");
+    }
+
     function updateHUD(pred) {
         const predLabel = document.getElementById("hud-next-pred");
         const confVal = document.getElementById("hud-conf-val");
@@ -155,7 +159,7 @@
         if (confVal) confVal.textContent = confPct + "%";
         if (confBar) confBar.style.width = Math.min(100, Math.max(10, (pred.confidence - 0.5) * 200)) + "%";
 
-        const currentAcc = totalFlips > 0 ? ((correctPredictions / totalFlips) * 100).toFixed(1) : "50.0";
+        const currentAcc = totalFlips > 0 ? ((totalAiCorrect / totalFlips) * 100).toFixed(1) : "50.0";
         if (accVal) accVal.textContent = currentAcc + "%";
         if (accSub) {
             const diff = (parseFloat(currentAcc) - 50.0).toFixed(1);
@@ -172,118 +176,248 @@
         }
     }
 
-    // Render Recent Sequence Ribbon
+    function updateVersusScoreboard(lastRoundOutcome = null) {
+        const userScoreEl = document.getElementById("vs-score-user");
+        const aiScoreEl = document.getElementById("vs-score-ai");
+        const roundTag = document.getElementById("match-round-tag");
+        const statusEl = document.getElementById("vs-round-status");
+
+        if (userScoreEl) userScoreEl.textContent = userScore;
+        if (aiScoreEl) aiScoreEl.textContent = aiScore;
+
+        if (roundTag) {
+            if (matchRounds === Infinity) {
+                roundTag.textContent = `Round ${currentRound} (Endless Mode)`;
+            } else {
+                roundTag.textContent = `Round ${Math.min(currentRound, matchRounds)} of ${matchRounds}`;
+            }
+        }
+
+        if (statusEl && lastRoundOutcome) {
+            statusEl.innerHTML = lastRoundOutcome;
+        }
+    }
+
     function renderSequenceTape() {
         const container = document.getElementById("sequence-tape-stream");
         if (!container) return;
 
         container.innerHTML = "";
-        const slice = flipRecords.slice(-30); // show last 30 flips
+        const slice = flipRecords.slice(-30);
         slice.forEach((rec, idx) => {
             const chip = document.createElement("div");
-            chip.className = `tape-chip ${rec.outcome === 1 ? "tape-chip-heads" : "tape-chip-tails"} ${rec.correct ? "tape-chip-correct" : "tape-chip-missed"}`;
+            const chipClass = rec.outcome === 1 ? "tape-chip-heads" : "tape-chip-tails";
+            const checkClass = rec.aiCorrect ? "tape-chip-correct" : "tape-chip-missed";
+            chip.className = `tape-chip ${chipClass} ${checkClass}`;
             chip.textContent = rec.outcome === 1 ? "H" : "T";
-            chip.title = `Flip #${totalFlips - slice.length + idx + 1}: Outcome ${rec.outcome === 1 ? "Heads" : "Tails"}, AI predicted ${rec.predicted === 1 ? "Heads" : "Tails"} (${(rec.confidence * 100).toFixed(1)}% conf)`;
+            
+            const userStatus = rec.userGuess !== null ? (rec.userCorrect ? "User won" : "User missed") : "No guess";
+            const aiStatus = rec.aiCorrect ? "AI won" : "AI missed";
+            chip.title = `Flip #${totalFlips - slice.length + idx + 1}: Outcome ${rec.outcome === 1 ? "Heads" : "Tails"} | ${userStatus} | ${aiStatus} (${(rec.confidence * 100).toFixed(1)}% conf)`;
             container.appendChild(chip);
         });
-        // Scroll to rightmost
         container.scrollLeft = container.scrollWidth;
     }
 
-    // Execute a Coin Flip (Physical / Simulated)
-    function executeFlip(simulatedType = null, isBatch = false) {
-        // Pre-flip prediction
-        const pred = predictNext();
+    // Play a Human vs AI Round
+    function playRound(userGuess) {
+        if (isProcessing || matchOver) return;
+        isProcessing = true;
 
-        let outcome;
-        if (simulatedType !== null) {
-            outcome = simulatedType;
-        } else {
-            // Real-world dynamic simulation:
-            // 51.5% Diaconis initial-face persistence + slight pseudo-random jitter
-            const lastFace = flipHistory[flipHistory.length - 1];
-            outcome = Math.random() < 0.515 ? lastFace : (Math.random() < 0.5 ? 1 : 0);
-        }
-
-        const isCorrect = (outcome === pred.predictedClass);
-        totalFlips++;
-        if (isCorrect) correctPredictions++;
-
-        // Streak updates
-        if (streakType === outcome) {
-            currentStreak++;
-        } else {
-            streakType = outcome;
-            currentStreak = 1;
-        }
-        if (currentStreak > longestStreak) {
-            longestStreak = currentStreak;
-        }
-
-        flipHistory.push(outcome);
-        flipRecords.push({
-            outcome,
-            predicted: pred.predictedClass,
-            confidence: pred.confidence,
-            correct: isCorrect
-        });
-
-        if (accuracyHistory.length < 200 || totalFlips % Math.ceil(totalFlips / 100) === 0) {
-            accuracyHistory.push({
-                count: totalFlips,
-                acc: (correctPredictions / totalFlips) * 100
-            });
-        }
-
-        if (!isBatch) {
-            renderSequenceTape();
-            const nextPred = predictNext();
-            updateHUD(nextPred);
-            drawAccuracyChart();
-        }
-
-        return { outcome, isCorrect, pred };
-    }
-
-    // Animate 3D Coin Flip
-    function animateFlip() {
-        if (isFlipping) return;
-        isFlipping = true;
-
+        const headsBtn = document.getElementById("btn-guess-heads");
+        const tailsBtn = document.getElementById("btn-guess-tails");
         const disc = document.getElementById("coin-disc");
-        const btn = document.getElementById("btn-flip-primary");
-        if (btn) btn.disabled = true;
+        if (headsBtn) headsBtn.disabled = true;
+        if (tailsBtn) tailsBtn.disabled = true;
 
-        // Reset classes
+        // Step 1: AI scans features and determines prediction
+        const pred = getAiPrediction();
+        const streakDesc = pred.features[10] >= 0 ? `+${(pred.features[10] * 10).toFixed(0)} Heads` : `${(pred.features[10] * 10).toFixed(0)} Tails`;
+        const headsRatioPct = (pred.features[11] * 100).toFixed(0);
+        const altRatePct = (pred.features[12] * 100).toFixed(0);
+
+        updateMindStream([
+            { tag: "1. REASONING", text: `Scanning 10-step sequence. Streak: ${streakDesc} | Heads Ratio: ${headsRatioPct}% | Alternation: ${altRatePct}%` },
+            { tag: "2. DENSE PASS", text: `Dense(32) ReLU &rarr; Dense(16) ReLU &rarr; Sigmoid output: ${pred.probHeads.toFixed(4)}` },
+            { tag: "3. DECISION", text: `AI predicts ${pred.label} (${(pred.confidence * 100).toFixed(1)}% confidence). Tossing coin...` }
+        ]);
+
+        // Step 2: Animate 3D Coin Flip with Diaconis physical dynamics
         disc.classList.remove("coin-spinning-heads", "coin-spinning-tails");
         void disc.offsetWidth; // trigger reflow
 
-        const result = executeFlip(null, true);
-        const spinClass = result.outcome === 1 ? "coin-spinning-heads" : "coin-spinning-tails";
+        const lastFace = flipHistory[flipHistory.length - 1];
+        // 51.5% Diaconis initial-face persistence simulation
+        const outcome = Math.random() < 0.515 ? lastFace : (Math.random() < 0.5 ? 1 : 0);
+        const spinClass = outcome === 1 ? "coin-spinning-heads" : "coin-spinning-tails";
         disc.classList.add(spinClass);
 
         setTimeout(() => {
-            isFlipping = false;
-            if (btn) btn.disabled = false;
+            isProcessing = false;
+
+            const userCorrect = (userGuess === outcome);
+            const aiCorrect = (pred.predictedClass === outcome);
+
+            totalFlips++;
+            if (aiCorrect) totalAiCorrect++;
+            if (userCorrect) userScore++;
+            if (aiCorrect) aiScore++;
+
+            // Streak tracking
+            if (streakType === outcome) {
+                currentStreak++;
+            } else {
+                streakType = outcome;
+                currentStreak = 1;
+            }
+            if (currentStreak > longestStreak) longestStreak = currentStreak;
+
+            flipHistory.push(outcome);
+            flipRecords.push({
+                outcome,
+                userGuess,
+                aiPred: pred.predictedClass,
+                userCorrect,
+                aiCorrect,
+                confidence: pred.confidence
+            });
+
+            if (accuracyHistory.length < 200 || totalFlips % Math.ceil(totalFlips / 100) === 0) {
+                accuracyHistory.push({
+                    count: totalFlips,
+                    acc: (totalAiCorrect / totalFlips) * 100
+                });
+            }
+
+            // Formulate round result banner
+            const outcomeName = outcome === 1 ? "HEADS 🦅" : "TAILS 🛡️";
+            let roundStatusMsg = "";
+            if (userCorrect && aiCorrect) {
+                roundStatusMsg = `<span style="color:#10b981; font-weight:700;">🎉 Both Scored! Landed ${outcomeName} (+1 You, +1 AI)</span>`;
+            } else if (userCorrect && !aiCorrect) {
+                roundStatusMsg = `<span style="color:#0284c7; font-weight:800;">🔥 You Won the Round! Landed ${outcomeName} (+1 You)</span>`;
+            } else if (!userCorrect && aiCorrect) {
+                roundStatusMsg = `<span style="color:#6366f1; font-weight:800;">🤖 AI Won the Round! Landed ${outcomeName} (+1 AI)</span>`;
+            } else {
+                roundStatusMsg = `<span style="color:#94a3b8;">💨 Both Missed! Coin landed ${outcomeName}</span>`;
+            }
+
+            updateVersusScoreboard(roundStatusMsg);
             renderSequenceTape();
-            const nextPred = predictNext();
-            updateHUD(nextPred);
             drawAccuracyChart();
+
+            // Next Prediction for HUD
+            const nextPred = getAiPrediction();
+            updateHUD(nextPred);
+
+            // Check Match Conclusion
+            if (matchRounds !== Infinity && currentRound >= matchRounds) {
+                endMatch();
+            } else {
+                currentRound++;
+                if (roundTagEl()) {
+                    if (matchRounds === Infinity) roundTagEl().textContent = `Round ${currentRound} (Endless Mode)`;
+                    else roundTagEl().textContent = `Round ${currentRound} of ${matchRounds}`;
+                }
+                if (headsBtn) headsBtn.disabled = false;
+                if (tailsBtn) tailsBtn.disabled = false;
+            }
         }, 980);
     }
 
-    // Batch Flips
-    function runBatchFlips(count) {
-        for (let i = 0; i < count; i++) {
-            executeFlip(null, true);
+    function roundTagEl() {
+        return document.getElementById("match-round-tag");
+    }
+
+    function endMatch() {
+        matchOver = true;
+        const banner = document.getElementById("match-victory-banner");
+        const titleEl = document.getElementById("match-victory-title");
+        const subEl = document.getElementById("match-victory-sub");
+        const headsBtn = document.getElementById("btn-guess-heads");
+        const tailsBtn = document.getElementById("btn-guess-tails");
+
+        if (headsBtn) headsBtn.disabled = true;
+        if (tailsBtn) tailsBtn.disabled = true;
+
+        if (banner && titleEl && subEl) {
+            banner.style.display = "block";
+            banner.className = "match-victory-banner";
+
+            if (userScore > aiScore) {
+                banner.classList.add("match-victory-user");
+                titleEl.textContent = "🏆 HUMAN VICTORY! YOU DEFEATED THE NEURAL NETWORK!";
+                subEl.innerHTML = `Final Score: <strong>${userScore} - ${aiScore}</strong>. Your human intuition outmaneuvered 1,025 trained synaptic weights over ${matchRounds} rounds!`;
+            } else if (aiScore > userScore) {
+                banner.classList.add("match-victory-ai");
+                titleEl.textContent = "🤖 MACHINE VICTORY! THE NEURAL NETWORK PREVAILED!";
+                subEl.innerHTML = `Final Score: <strong>${aiScore} - ${userScore}</strong>. The AI's sequence pattern recognition caught your choices!`;
+            } else {
+                titleEl.textContent = "🤝 TIED MATCH! A PERFECT DEADLOCK!";
+                subEl.innerHTML = `Final Score: <strong>${userScore} - ${aiScore}</strong>. Total equilibrium between human intuition and machine intelligence!`;
+            }
         }
+    }
+
+    function resetMatch(rounds = null) {
+        if (rounds !== null) matchRounds = rounds;
+        currentRound = 1;
+        userScore = 0;
+        aiScore = 0;
+        matchOver = false;
+        isProcessing = false;
+
+        const banner = document.getElementById("match-victory-banner");
+        if (banner) banner.style.display = "none";
+
+        const headsBtn = document.getElementById("btn-guess-heads");
+        const tailsBtn = document.getElementById("btn-guess-tails");
+        if (headsBtn) headsBtn.disabled = false;
+        if (tailsBtn) tailsBtn.disabled = false;
+
+        updateVersusScoreboard("Match reset! Select your guess to begin Round 1.");
+        updateMindStream([
+            { tag: "READY", text: "Neural Network initialized with 120-epoch PyTorch weights. Awaiting your first guess..." }
+        ]);
+    }
+
+    // High-Speed Simulation Batch
+    function runSimBatch(count) {
+        for (let i = 0; i < count; i++) {
+            const pred = getAiPrediction();
+            const lastFace = flipHistory[flipHistory.length - 1];
+            const outcome = Math.random() < 0.515 ? lastFace : (Math.random() < 0.5 ? 1 : 0);
+            const aiCorrect = (pred.predictedClass === outcome);
+            
+            totalFlips++;
+            if (aiCorrect) totalAiCorrect++;
+
+            if (streakType === outcome) currentStreak++;
+            else { streakType = outcome; currentStreak = 1; }
+            if (currentStreak > longestStreak) longestStreak = currentStreak;
+
+            flipHistory.push(outcome);
+            flipRecords.push({
+                outcome,
+                userGuess: null,
+                aiPred: pred.predictedClass,
+                userCorrect: false,
+                aiCorrect,
+                confidence: pred.confidence
+            });
+        }
+
+        accuracyHistory.push({
+            count: totalFlips,
+            acc: (totalAiCorrect / totalFlips) * 100
+        });
+
         renderSequenceTape();
-        const nextPred = predictNext();
+        const nextPred = getAiPrediction();
         updateHUD(nextPred);
         drawAccuracyChart();
     }
 
-    // Auto-Stream
     function toggleAutoStream() {
         const btn = document.getElementById("btn-auto-stream");
         if (autoStreamInterval) {
@@ -299,7 +433,7 @@
                 btn.innerHTML = '<span>⏹ Stop Stream</span>';
             }
             autoStreamInterval = setInterval(() => {
-                executeFlip(null, false);
+                runSimBatch(1);
             }, 200);
         }
     }
@@ -334,7 +468,6 @@
         const plotW = w - padL - padR;
         const plotH = h - padT - padB;
 
-        // Grid lines
         ctx.strokeStyle = "#1e293b";
         ctx.lineWidth = 1;
         const yTicks = 4;
@@ -352,7 +485,6 @@
             ctx.fillText(yVal.toFixed(2), padL - 8, yPos + 3);
         }
 
-        // Train Loss Line & Gradient
         ctx.beginPath();
         data.forEach((d, i) => {
             const x = padL + (plotW * (i / (data.length - 1)));
@@ -361,12 +493,10 @@
             else ctx.lineTo(x, y);
         });
 
-        // Stroke line
         ctx.strokeStyle = "#38bdf8";
         ctx.lineWidth = 2.5;
         ctx.stroke();
 
-        // Fill area under curve
         const lastX = padL + plotW;
         ctx.lineTo(lastX, padT + plotH);
         ctx.lineTo(padL, padT + plotH);
@@ -377,7 +507,6 @@
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // X-axis label
         ctx.fillStyle = "#94a3b8";
         ctx.font = "10px sans-serif";
         ctx.textAlign = "left";
@@ -413,7 +542,6 @@
         const minAcc = 35;
         const maxAcc = 75;
 
-        // Grid & 50% Fair Coin Baseline
         ctx.strokeStyle = "#1e293b";
         ctx.lineWidth = 1;
         const yTicks = 4;
@@ -431,7 +559,6 @@
             ctx.fillText(yVal.toFixed(0) + "%", padL - 8, yPos + 3);
         }
 
-        // Baseline 50% Dashed Line
         const base50Y = padT + plotH - (plotH * ((50 - minAcc) / (maxAcc - minAcc)));
         ctx.save();
         ctx.setLineDash([4, 4]);
@@ -448,7 +575,6 @@
         ctx.textAlign = "right";
         ctx.fillText("50% Random Baseline", w - padR, base50Y - 5);
 
-        // Model Accuracy Line
         if (accuracyHistory.length >= 2) {
             ctx.beginPath();
             accuracyHistory.forEach((pt, i) => {
@@ -463,7 +589,6 @@
             ctx.lineWidth = 2.5;
             ctx.stroke();
 
-            // Highlight latest point
             const lastPt = accuracyHistory[accuracyHistory.length - 1];
             const lx = padL + plotW;
             const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastPt.acc)) - minAcc) / (maxAcc - minAcc)));
@@ -476,7 +601,6 @@
             ctx.stroke();
         }
 
-        // X-axis label
         ctx.fillStyle = "#94a3b8";
         ctx.font = "10px sans-serif";
         ctx.textAlign = "left";
@@ -485,28 +609,46 @@
         ctx.fillText(`${totalFlips} Cumulative Flips`, w - padR, h - 8);
     }
 
-    // Initialization
     function init() {
-        // Setup initial predictions and HUD
-        const pred = predictNext();
-        updateHUD(pred);
+        updateVersusScoreboard("Select your guess to start Round 1!");
+        const pred = getAiPrediction();
+        updateHUD(nextPredEl => pred);
         renderSequenceTape();
 
-        // Wire Coin Toss Arena Controls
-        const flipBtn = document.getElementById("btn-flip-primary");
-        if (flipBtn) flipBtn.addEventListener("click", animateFlip);
+        updateMindStream([
+            { tag: "ONLINE", text: "120-Epoch Neural Network active. Select [Guess HEADS] or [Guess TAILS] to begin the match!" }
+        ]);
 
-        const disc = document.getElementById("coin-disc");
-        if (disc) disc.addEventListener("click", animateFlip);
+        // Human Guess Buttons
+        const headsBtn = document.getElementById("btn-guess-heads");
+        if (headsBtn) headsBtn.addEventListener("click", () => playRound(1));
 
+        const tailsBtn = document.getElementById("btn-guess-tails");
+        if (tailsBtn) tailsBtn.addEventListener("click", () => playRound(0));
+
+        // Rematch Button
+        const rematchBtn = document.getElementById("btn-rematch");
+        if (rematchBtn) rematchBtn.addEventListener("click", () => resetMatch());
+
+        // Match Length Pills
+        document.querySelectorAll(".match-pill-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".match-pill-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                const roundsVal = btn.getAttribute("data-rounds");
+                resetMatch(roundsVal === "infinity" ? Infinity : parseInt(roundsVal, 10));
+            });
+        });
+
+        // High-Speed Simulation Controls
         const sim10Btn = document.getElementById("btn-sim-10");
-        if (sim10Btn) sim10Btn.addEventListener("click", () => runBatchFlips(10));
+        if (sim10Btn) sim10Btn.addEventListener("click", () => runSimBatch(10));
 
         const sim50Btn = document.getElementById("btn-sim-50");
-        if (sim50Btn) sim50Btn.addEventListener("click", () => runBatchFlips(50));
+        if (sim50Btn) sim50Btn.addEventListener("click", () => runSimBatch(50));
 
         const sim100Btn = document.getElementById("btn-sim-100");
-        if (sim100Btn) sim100Btn.addEventListener("click", () => runBatchFlips(100));
+        if (sim100Btn) sim100Btn.addEventListener("click", () => runSimBatch(100));
 
         const streamBtn = document.getElementById("btn-auto-stream");
         if (streamBtn) streamBtn.addEventListener("click", toggleAutoStream);

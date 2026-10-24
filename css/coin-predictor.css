@@ -729,3 +729,326 @@
         background: #334155;
     }
 }
+
+/* ==========================================================================
+   Human vs AI Neural Match & Versus Scoreboard Styles
+   ========================================================================== */
+
+.match-setup-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.match-pills {
+    display: flex;
+    gap: 6px;
+}
+
+.match-pill-btn {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.match-pill-btn:hover {
+    border-color: #0056b3;
+    color: #0056b3;
+}
+
+.match-pill-btn.active {
+    background: #0056b3;
+    color: #ffffff;
+    border-color: #004494;
+}
+
+.match-round-tag {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #002d5a;
+    background: #e2e8f0;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+/* Versus Scoreboard */
+.vs-scoreboard {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.vs-player-card {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.vs-player-user {
+    border-color: #93c5fd;
+    background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+}
+
+.vs-player-ai {
+    border-color: #cbd5e1;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.vs-player-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 4px;
+}
+
+.vs-player-score {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.vs-player-user .vs-player-score {
+    color: #0284c7;
+}
+
+.vs-player-ai .vs-player-score {
+    color: #6366f1;
+}
+
+.vs-player-sub {
+    font-size: 0.72rem;
+    color: #64748b;
+}
+
+.vs-divider {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #94a3b8;
+    background: #e2e8f0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Guess Action Buttons */
+.guess-actions-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.guess-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.btn-guess-heads {
+    background: linear-gradient(180deg, #eab308 0%, #ca8a04 100%);
+    color: #713f12;
+    border: 2px solid #a16207;
+    border-radius: 8px;
+    padding: 12px 10px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(202, 138, 4, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+.btn-guess-heads:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(202, 138, 4, 0.35);
+}
+
+.btn-guess-tails {
+    background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+    color: #ffffff;
+    border: 2px solid #475569;
+    border-radius: 8px;
+    padding: 12px 10px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(100, 116, 139, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+.btn-guess-tails:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(100, 116, 139, 0.35);
+}
+
+.btn-guess-heads:disabled, .btn-guess-tails:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Neural Mind Stream HUD */
+.neural-mind-hud {
+    background: #0a0f1d;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 14px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.76rem;
+    color: #94a3b8;
+    line-height: 1.45;
+    text-align: left;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.thought-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.thought-tag {
+    color: #38bdf8;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.thought-text {
+    color: #f8fafc;
+}
+
+/* Victory / Game Over Banner */
+.match-victory-banner {
+    background: #0f172a;
+    border: 2px solid #38bdf8;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #f8fafc;
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.match-victory-title {
+    font-size: 1.25rem;
+    font-weight: 900;
+    margin-bottom: 6px;
+}
+
+.match-victory-user {
+    border-color: #10b981;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.match-victory-ai {
+    border-color: #818cf8;
+    box-shadow: 0 8px 24px rgba(129, 140, 248, 0.3);
+}
+
+.match-victory-sub {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+}
+
+.btn-rematch {
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+    transition: all 0.15s ease;
+}
+
+.btn-rematch:hover {
+    background: #0369a1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-color-scheme: dark) {
+    .match-setup-bar {
+        background: #111827;
+        border-color: #1f2937;
+    }
+    .match-pill-btn {
+        background: #1e293b;
+        border-color: #334155;
+        color: #e2e8f0;
+    }
+    .match-pill-btn:hover {
+        border-color: #38bdf8;
+        color: #38bdf8;
+    }
+    .match-round-tag {
+        background: #1e293b;
+        color: #f8fafc;
+    }
+    .vs-player-card {
+        background: #111827;
+        border-color: #1f2937;
+    }
+    .vs-player-user {
+        border-color: #0369a1;
+        background: linear-gradient(180deg, #0c2136 0%, #111827 100%);
+    }
+    .vs-player-ai {
+        border-color: #3730a3;
+        background: linear-gradient(180deg, #181938 0%, #111827 100%);
+    }
+    .vs-divider {
+        background: #1e293b;
+        color: #64748b;
+    }
+}

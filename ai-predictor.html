@@ -78,11 +78,72 @@
 
 			<!-- Main Interactive Arena -->
 			<div class="predictor-grid">
-				<!-- Coin Toss Stage -->
+				<!-- Coin Toss Stage: Human vs. AI Challenge Arena -->
 				<section class="coin-stage-card" aria-labelledby="stage-title">
-					<h2 id="stage-title" style="margin:0; font-size:1.15rem; color:#002d5a; font-weight:700;">🪙 Interactive Coin Toss Arena</h2>
-					<p style="font-size:0.8rem; color:#64748b; margin:4px 0 16px;">Toss a single coin or trigger high-speed sequence simulations to test the neural network live.</p>
+					<!-- Victory / Match Over Banner -->
+					<div class="match-victory-banner" id="match-victory-banner">
+						<div class="match-victory-title" id="match-victory-title">🏆 HUMAN VICTORY!</div>
+						<div class="match-victory-sub" id="match-victory-sub">Final Score: 6 - 4.</div>
+						<button type="button" class="btn-rematch" id="btn-rematch">🔄 Play Rematch</button>
+					</div>
 
+					<!-- Match Rounds Selector -->
+					<div class="match-setup-bar" style="width:100%;">
+						<div style="display:flex; align-items:center; gap:8px;">
+							<span style="font-size:0.78rem; font-weight:700; color:#475569;">Match Format:</span>
+							<div class="match-pills">
+								<button type="button" class="match-pill-btn" data-rounds="5">Best of 5</button>
+								<button type="button" class="match-pill-btn active" data-rounds="10">Best of 10</button>
+								<button type="button" class="match-pill-btn" data-rounds="20">Best of 20</button>
+								<button type="button" class="match-pill-btn" data-rounds="infinity">Endless</button>
+							</div>
+						</div>
+						<span class="match-round-tag" id="match-round-tag">Round 1 of 10</span>
+					</div>
+
+					<!-- Versus Scoreboard -->
+					<div class="vs-scoreboard">
+						<!-- User -->
+						<div class="vs-player-card vs-player-user">
+							<div class="vs-player-header">
+								<span aria-hidden="true">🧑</span>
+								<span>You (Human)</span>
+							</div>
+							<div class="vs-player-score" id="vs-score-user">0</div>
+							<div class="vs-player-sub">Intuition &amp; Pattern Guess</div>
+						</div>
+
+						<div class="vs-divider" aria-hidden="true">VS</div>
+
+						<!-- AI -->
+						<div class="vs-player-card vs-player-ai">
+							<div class="vs-player-header">
+								<span aria-hidden="true">🤖</span>
+								<span>Neural AI</span>
+							</div>
+							<div class="vs-player-score" id="vs-score-ai">0</div>
+							<div class="vs-player-sub">120-Epoch PyTorch CPU</div>
+						</div>
+					</div>
+
+					<div id="vs-round-status" style="font-size:0.84rem; min-height:22px; margin-bottom:12px; font-weight:600; color:#334155;">
+						Select your guess to begin Round 1!
+					</div>
+
+					<!-- Player Guess Actions -->
+					<div style="width:100%;">
+						<div class="guess-actions-title">Your Turn &mdash; Choose Your Prediction:</div>
+						<div class="guess-btn-row">
+							<button type="button" class="btn-guess-heads" id="btn-guess-heads">
+								<span aria-hidden="true">🦅</span> Guess HEADS
+							</button>
+							<button type="button" class="btn-guess-tails" id="btn-guess-tails">
+								<span aria-hidden="true">🛡️</span> Guess TAILS
+							</button>
+						</div>
+					</div>
+
+					<!-- 3D Coin Viewport -->
 					<div class="coin-viewport" id="coin-viewport">
 						<div class="coin-disc" id="coin-disc" title="Click to toss coin">
 							<!-- Heads Face -->
@@ -100,18 +161,27 @@
 						</div>
 					</div>
 
-					<div class="coin-controls">
-						<button type="button" class="btn-flip-primary" id="btn-flip-primary">
-							Toss Coin (Single)
-						</button>
-						<div class="sim-btn-row">
-							<button type="button" class="btn-sim-secondary" id="btn-sim-10">Toss 10</button>
-							<button type="button" class="btn-sim-secondary" id="btn-sim-50">Toss 50</button>
-							<button type="button" class="btn-sim-secondary" id="btn-sim-100">Toss 100</button>
+					<!-- Neural Mind Stream HUD -->
+					<div class="neural-mind-hud" id="neural-mind-hud" style="width:100%;">
+						<div class="thought-line">
+							<span class="thought-tag">[READY]</span>
+							<span class="thought-text">Neural Network initialized with 120-epoch PyTorch weights. Awaiting your first guess...</span>
 						</div>
-						<button type="button" class="btn-auto-stream" id="btn-auto-stream">
-							<span>⚡ Auto-Stream (5/sec)</span>
-						</button>
+					</div>
+
+					<!-- Rapid Simulation Secondary Bar -->
+					<div style="width:100%; margin-top:16px; border-top:1px dashed #cbd5e1; padding-top:12px;">
+						<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+							<span style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase;">High-Speed AI Simulators:</span>
+							<button type="button" class="btn-auto-stream" id="btn-auto-stream" style="padding:4px 10px; font-size:0.75rem;">
+								<span>⚡ Auto-Stream (5/sec)</span>
+							</button>
+						</div>
+						<div class="sim-btn-row">
+							<button type="button" class="btn-sim-secondary" id="btn-sim-10">Simulate 10</button>
+							<button type="button" class="btn-sim-secondary" id="btn-sim-50">Simulate 50</button>
+							<button type="button" class="btn-sim-secondary" id="btn-sim-100">Simulate 100</button>
+						</div>
 					</div>
 				</section>
 
