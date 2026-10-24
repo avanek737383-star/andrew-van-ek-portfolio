@@ -1167,7 +1167,30 @@
 
 		async function refreshGeo() {
 			try {
-				var res = await fetch("https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/traffic-geo", { cache: "no-store" });
+				var geoUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/traffic-geo";
+				var sessionReported = false;
+				try {
+					sessionReported = !!sessionStorage.getItem("portfolio_geo_reported");
+				} catch (e) {}
+
+				if (!sessionReported) {
+					try {
+						var traceRes = await fetch("/cdn-cgi/trace", { cache: "no-store" });
+						if (traceRes.ok) {
+							var traceTxt = await traceRes.text();
+							var match = traceTxt.match(/^loc=([A-Za-z]{2})$/m);
+							if (match && match[1]) {
+								var visitorLoc = match[1].toUpperCase();
+								geoUrl += "?loc=" + encodeURIComponent(visitorLoc) + "&session=1";
+								try {
+									sessionStorage.setItem("portfolio_geo_reported", visitorLoc);
+								} catch (e) {}
+							}
+						}
+					} catch (e) {}
+				}
+
+				var res = await fetch(geoUrl, { cache: "no-store" });
 				if (!res.ok) return;
 				var data = await res.json();
 				if (!data || !data.regions || typeof data.total !== "number") return;
