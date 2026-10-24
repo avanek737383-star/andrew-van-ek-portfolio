@@ -5205,3 +5205,55 @@ nav.tablet-desktop > ul#site-navigation {
     color: #64748b;
     line-height: 1.3;
 }
+
+/* Radar Map Controls & Reset Button */
+.radar-map-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.radar-map-reset-btn {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+.radar-map-reset-btn:hover {
+    background: #0284c7;
+    color: #ffffff;
+}
+.radar-map-overlay-reset {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(9, 13, 22, 0.9);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+}
+.radar-map-overlay-reset:hover {
+    background: #0284c7;
+    color: #ffffff;
+}
+.radar-reset-x {
+    font-size: 0.95rem;
+    line-height: 1;
+}

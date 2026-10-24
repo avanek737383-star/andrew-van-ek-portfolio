@@ -115,14 +115,22 @@
 					<div class="radar-map-panel">
 						<div class="radar-panel-header">
 							<span class="radar-panel-title"><span class="radar-live-dot"></span> Transoceanic Fiber Radar</span>
-							<div class="radar-legend-chips">
-								<span class="radar-chip"><span class="chip-color chip-na"></span> NA</span>
-								<span class="radar-chip"><span class="chip-color chip-eu"></span> EU</span>
-								<span class="radar-chip"><span class="chip-color chip-apac"></span> APAC</span>
-								<span class="radar-chip"><span class="chip-color chip-latam"></span> LATAM</span>
+							<div class="radar-map-controls">
+								<button id="radar-map-reset-btn" class="radar-map-reset-btn" type="button" aria-label="Reset world radar zoom" style="display: none;">
+									<span class="radar-reset-x">&times;</span> Reset World View
+								</button>
+								<div class="radar-legend-chips">
+									<span class="radar-chip"><span class="chip-color chip-na"></span> NA</span>
+									<span class="radar-chip"><span class="chip-color chip-eu"></span> EU</span>
+									<span class="radar-chip"><span class="chip-color chip-apac"></span> APAC</span>
+									<span class="radar-chip"><span class="chip-color chip-latam"></span> LATAM</span>
+								</div>
 							</div>
 						</div>
 						<div class="radar-map-canvas-wrap">
+							<button id="radar-map-overlay-reset" class="radar-map-overlay-reset" type="button" aria-label="Reset world radar zoom" style="display: none;">
+								<span class="radar-reset-x">&times;</span> Reset World View
+							</button>
 							<svg class="radar-svg-map" viewBox="0 15 1000 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive World Radar showing continental internet speeds and subsea fiber corridors">
 								<defs>
 									<pattern id="radar-cyber-grid" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -816,6 +824,6 @@
 			<p>Website last modified: <time datetime="2026-10-22">October 22, 2026</time></p>
 		</footer>
 	</div>
-	<script src="scripts/script.js?v=20261024-global-radar"></script>
+	<script src="scripts/script.js?v=20261024-radar-zoom"></script>
 </body>
 </html>

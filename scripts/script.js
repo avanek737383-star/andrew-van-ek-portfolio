@@ -2332,6 +2332,65 @@
 		var radarSection = document.getElementById("global-internet-radar");
 		if (!radarSection) return;
 
+		var RADAR_DEFAULT_VIEWBOX = [0, 15, 1000, 420];
+		var RADAR_REGION_VIEWBOXES = {
+			"North America": [30, 20, 490, 210],
+			"Europe": [360, 25, 360, 165],
+			"Asia-Pacific": [480, 75, 480, 240],
+			"Latin America": [150, 170, 420, 230],
+			"Africa / Middle East": [380, 110, 360, 240],
+			"Oceania": [680, 230, 300, 180]
+		};
+
+		var currentRadarVb = RADAR_DEFAULT_VIEWBOX.slice();
+		var radarAnimId = null;
+		var svgRadarMap = radarSection.querySelector(".radar-svg-map");
+		var radarResetBtn = document.getElementById("radar-map-reset-btn");
+		var radarOverlayResetBtn = document.getElementById("radar-map-overlay-reset");
+		var isZoomed = false;
+
+		function animateRadarViewBox(toVb, duration) {
+			if (!svgRadarMap) return;
+			duration = duration || 450;
+			if (radarAnimId) cancelAnimationFrame(radarAnimId);
+			var startVb = currentRadarVb.slice();
+			var startTime = performance.now();
+
+			function step(now) {
+				var elapsed = now - startTime;
+				var progress = Math.min(1, elapsed / duration);
+				var ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+				var cur = [
+					startVb[0] + (toVb[0] - startVb[0]) * ease,
+					startVb[1] + (toVb[1] - startVb[1]) * ease,
+					startVb[2] + (toVb[2] - startVb[2]) * ease,
+					startVb[3] + (toVb[3] - startVb[3]) * ease
+				];
+				currentRadarVb = cur;
+				svgRadarMap.setAttribute("viewBox", cur[0].toFixed(2) + " " + cur[1].toFixed(2) + " " + cur[2].toFixed(2) + " " + cur[3].toFixed(2));
+
+				if (progress < 1) {
+					radarAnimId = requestAnimationFrame(step);
+				} else {
+					currentRadarVb = toVb.slice();
+					svgRadarMap.setAttribute("viewBox", toVb.join(" "));
+					radarAnimId = null;
+				}
+			}
+			radarAnimId = requestAnimationFrame(step);
+		}
+
+		function resetRadarView() {
+			isZoomed = false;
+			animateRadarViewBox(RADAR_DEFAULT_VIEWBOX, 400);
+			if (radarResetBtn) radarResetBtn.style.display = "none";
+			if (radarOverlayResetBtn) radarOverlayResetBtn.style.display = "none";
+		}
+
+		if (radarResetBtn) radarResetBtn.addEventListener("click", resetRadarView);
+		if (radarOverlayResetBtn) radarOverlayResetBtn.addEventListener("click", resetRadarView);
+
 		var CONTINENTS_DATA = {
 			"North America": {
 				flag: "🇺🇸 🇨🇦",
@@ -2431,8 +2490,15 @@
 		var probeBtn = document.getElementById("radar-probe-btn");
 		var probeResultEl = document.getElementById("radar-probe-result");
 
-		function renderRegion(reg) {
+		function renderRegion(reg, optZoom) {
 			activeRegion = reg;
+			if (optZoom) {
+				var targetVb = RADAR_REGION_VIEWBOXES[reg] || RADAR_DEFAULT_VIEWBOX;
+				isZoomed = true;
+				animateRadarViewBox(targetVb, 450);
+				if (radarResetBtn) radarResetBtn.style.display = "inline-flex";
+				if (radarOverlayResetBtn) radarOverlayResetBtn.style.display = "inline-flex";
+			}
 			var data = CONTINENTS_DATA[reg] || CONTINENTS_DATA["North America"];
 
 			if (flagEl) flagEl.textContent = data.flag;
@@ -2492,30 +2558,30 @@
 			}
 		}
 
-		// Wire up Tab Clicks
+		// Wire up Tab Clicks (with smooth zoom)
 		var tabs = radarSection.querySelectorAll(".radar-tab-btn");
 		tabs.forEach(function (tab) {
 			tab.addEventListener("click", function () {
 				var targetReg = tab.getAttribute("data-tab");
-				if (targetReg) renderRegion(targetReg);
+				if (targetReg) renderRegion(targetReg, true);
 			});
 		});
 
-		// Wire up Map Land Clicks
+		// Wire up Map Land Clicks (with smooth zoom)
 		var lands = radarSection.querySelectorAll(".radar-land");
 		lands.forEach(function (land) {
 			land.addEventListener("click", function () {
 				var targetReg = land.getAttribute("data-region");
-				if (targetReg) renderRegion(targetReg);
+				if (targetReg) renderRegion(targetReg, true);
 			});
 		});
 
-		// Wire up IXP Node Clicks
+		// Wire up IXP Node Clicks (with smooth zoom)
 		var ixpNodes = radarSection.querySelectorAll(".ixp-node");
 		ixpNodes.forEach(function (node) {
 			node.addEventListener("click", function () {
 				var targetReg = node.getAttribute("data-region");
-				if (targetReg) renderRegion(targetReg);
+				if (targetReg) renderRegion(targetReg, true);
 			});
 		});
 
