@@ -432,6 +432,7 @@
 
 		if (chatBtn) {
 			chatBtn.addEventListener("click", function (e) {
+				if (chatBtn.disabled) return;
 				e.preventDefault();
 				var toggle = document.querySelector(".portfolio-chat-toggle");
 				var panel = document.querySelector(".portfolio-chat-panel");
@@ -458,6 +459,12 @@
 				var res = await fetch(statusUrl, { cache: "no-store" });
 				if (res.ok) {
 					var data = await res.json();
+					if (chatBtn) {
+						chatBtn.disabled = false;
+						chatBtn.textContent = "Chat with Nemo →";
+						chatBtn.style.opacity = "";
+						chatBtn.style.cursor = "";
+					}
 					if (data.chat) {
 						if (promptEl && typeof data.chat.requests === "number") {
 							promptEl.textContent = (118 + data.chat.requests).toLocaleString();
@@ -467,8 +474,22 @@
 							if (sub) sub.textContent = data.chat.last_tokens_per_second + " tok/s · Local GPU";
 						}
 					}
+				} else {
+					if (chatBtn) {
+						chatBtn.disabled = true;
+						chatBtn.textContent = "AI Node Busy · Training";
+						chatBtn.style.opacity = "0.55";
+						chatBtn.style.cursor = "not-allowed";
+					}
 				}
-			} catch (e) {}
+			} catch (e) {
+				if (chatBtn) {
+					chatBtn.disabled = true;
+					chatBtn.textContent = "AI Node Offline";
+					chatBtn.style.opacity = "0.55";
+					chatBtn.style.cursor = "not-allowed";
+				}
+			}
 
 			try {
 				var nucRes = await fetch("https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/nuc-stats", { cache: "no-store" });
