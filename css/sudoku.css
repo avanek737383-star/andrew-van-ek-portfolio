@@ -244,6 +244,20 @@
     background: #162032;
 }
 
+.nemo-mind-bubble.hover-paused {
+    border-left-color: #f59e0b !important;
+    background: #1a2234;
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.25);
+}
+
+.nemo-mind-bubble.hover-paused .nemo-mind-state::after {
+    content: " (PAUSED ON HOVER)";
+    color: #f59e0b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-left: 6px;
+}
+
 .nemo-avatar {
     width: 36px;
     height: 36px;
@@ -681,8 +695,8 @@
     text-transform: uppercase;
 }
 
-.log-tag.naked_single { background: #065f46; color: #a7f3d0; }
-.log-tag.hidden_single { background: #1e40af; color: #bfdbfe; }
+.log-tag.sole_candidate, .log-tag.naked_single { background: #065f46; color: #a7f3d0; }
+.log-tag.hidden_candidate, .log-tag.hidden_single { background: #1e40af; color: #bfdbfe; }
 .log-tag.branch_choice { background: #78350f; color: #fde68a; }
 .log-tag.guess { background: #581c87; color: #e9d5ff; }
 .log-tag.backtrack { background: #881337; color: #fecdd3; }

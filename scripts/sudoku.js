@@ -88,7 +88,8 @@
     let solveSteps = [];
     let currentStepIndex = 0;
     let solveTimer = null;
-    let solveDelay = 2500; // Default slow story pace
+    let solveDelay = 4500; // Default reading pace (4.5s)
+    let isHoverPaused = false;
     let deductionCount = 0;
     let backtrackCount = 0;
     let solveStartTime = 0;
@@ -112,7 +113,7 @@
             const templates = [
                 `"Wait a second... look at row ${r1}, col ${c1}. Literally every other number 1 through 9 is already blocked. ${v} is the only survivor here. In you go!"`,
                 `"Scanning around (${r1}, ${c1})... aha! Row ${r1} and col ${c1} already have their digits filled out. ${v} has zero competition left in this cell."`,
-                `"Hold on, look at cell (${r1}, ${c1}). That's a pure naked single. All peer constraints are met—only a ${v} can legally fit here."`,
+                `"Hold on, look at cell (${r1}, ${c1}). That's a pure sole candidate. All peer constraints are met—only a ${v} can legally fit here."`,
                 `"Nice! All other candidates for cell (${r1}, ${c1}) just evaporated. Locking in ${v} right now."`,
                 `"Oh, easy pickings! Cell (${r1}, ${c1}) has no other possible moves remaining. Dropping the ${v} down."`,
                 `"Check that out—cell (${r1}, ${c1}) was quietly waiting for us. Only a ${v} works here. Clean deduction!"`
@@ -135,7 +136,7 @@
             const cList = (info.candidates || []).join(", ");
             const templates = [
                 `"Alright, pure obvious logic has run a bit dry. Time to make an educated assumption so we don't stare at the wall. Cell (${r1}, ${c1}) is down to just [${cList}]. Let's test a branch..."`,
-                `"No immediate naked singles in sight. Let's look at cell (${r1}, ${c1})—it has the minimum remaining choices: [${cList}]. Let's explore one path!"`,
+                `"No immediate sole candidates in sight. Let's look at cell (${r1}, ${c1})—it has the minimum remaining choices: [${cList}]. Let's explore one path!"`,
                 `"Time for some strategic search. Cell (${r1}, ${c1}) is a clean fork between [${cList}]. Following this branch down to see if it holds."`
             ];
             return templates[Math.floor(Math.random() * templates.length)];
@@ -377,12 +378,31 @@
 
         speedSlider.addEventListener("input", (e) => {
             const val = parseInt(e.target.value, 10);
-            // 1: Story (2.5s) -> 2: Relaxed (1.4s) -> 3: Brisk (0.6s) -> 4: Fast (0.15s) -> 5: Turbo (10ms)
-            const delays = [2500, 1400, 600, 150, 10];
-            const labels = ["Story (2.5s)", "Relaxed (1.4s)", "Brisk (0.6s)", "Fast (0.15s)", "Turbo (Instant)"];
+            // 1: Reading (4.5s) -> 2: Story (3.0s) -> 3: Relaxed (1.8s) -> 4: Brisk (0.8s) -> 5: Fast (0.2s) -> 6: Turbo (Instant)
+            const delays = [4500, 3000, 1800, 800, 200, 10];
+            const labels = ["Reading (4.5s)", "Story (3.0s)", "Relaxed (1.8s)", "Brisk (0.8s)", "Fast (0.2s)", "Turbo (Instant)"];
             solveDelay = delays[val - 1];
             speedLabel.textContent = labels[val - 1];
         });
+
+        if (mindBubble) {
+            mindBubble.addEventListener("mouseenter", () => {
+                if (isSolving && !isPaused) {
+                    isHoverPaused = true;
+                    clearTimeout(solveTimer);
+                    mindBubble.classList.add("hover-paused");
+                }
+            });
+            mindBubble.addEventListener("mouseleave", () => {
+                if (isHoverPaused) {
+                    isHoverPaused = false;
+                    mindBubble.classList.remove("hover-paused");
+                    if (isSolving && !isPaused) {
+                        solveTimer = setTimeout(runStepLoop, 600);
+                    }
+                }
+            });
+        }
     }
 
     function setFocus(r, c) {
@@ -831,7 +851,7 @@
     }
 
     function runStepLoop() {
-        if (!isSolving || isPaused) return;
+        if (!isSolving || isPaused || isHoverPaused) return;
 
         if (currentStepIndex >= solveSteps.length) {
             finishSolve();
@@ -897,6 +917,8 @@
 
     function pauseSolve() {
         isPaused = true;
+        isHoverPaused = false;
+        if (mindBubble) mindBubble.classList.remove("hover-paused");
         clearTimeout(solveTimer);
         terminalPulse.classList.remove("active");
         terminalStatus.textContent = "Paused";
@@ -969,6 +991,8 @@
     function resetState() {
         isSolving = false;
         isPaused = false;
+        isHoverPaused = false;
+        if (mindBubble) mindBubble.classList.remove("hover-paused");
         solveSteps = [];
         currentStepIndex = 0;
         deductionCount = 0;
@@ -1016,9 +1040,20 @@
         const meta = document.createElement("div");
         meta.className = "log-meta";
 
+        const tagDisplayMap = {
+            naked_single: "sole candidate",
+            hidden_single: "hidden candidate",
+            branch_choice: "branch choice",
+            backtrack: "backtrack",
+            system: "system",
+            guess: "hypothesis",
+            solved: "solved"
+        };
+        const displayTag = tagDisplayMap[tag] || tag.replace(/_/g, " ");
+
         const badge = document.createElement("span");
         badge.className = `log-tag ${tag}`;
-        badge.textContent = tag.replace("_", " ");
+        badge.textContent = displayTag;
 
         const time = document.createElement("span");
         time.className = "log-time";
@@ -1043,7 +1078,7 @@
         });
 
         // Also update Nemo Mind Bubble directly above the grid
-        const cleanState = tag.replace("_", " ").toUpperCase();
+        const cleanState = displayTag.toUpperCase();
         updateMindBubble(cleanState, message);
     }
 
