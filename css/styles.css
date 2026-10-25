@@ -1286,6 +1286,11 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
     .computing-card { padding: 20px; }
 }
 
+.fah-certificate { margin: 20px 0 24px; max-width: 640px; }
+.fah-certificate img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid #d5e0eb; box-shadow: 0 2px 8px rgba(0, 45, 90, 0.08); }
+.fah-certificate figcaption { margin-top: 8px; font-size: .88rem; color: #526170; }
+
+
 .duco-brand { display: flex; align-items: center; gap: 12px; }
 .duco-brand img { display: block; flex: 0 0 auto; object-fit: contain; }
 
