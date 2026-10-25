@@ -97,95 +97,98 @@
 						<circle cx="100" cy="100" r="93" class="big-clock-rim" />
 						<circle cx="100" cy="100" r="90" class="big-clock-face" fill="url(#clock-glass-grad)"/>
 
-						<!-- 60 Minute / Second Tick Ring -->
-						<!-- 12 Major Hour Markers (Baton style) -->
-						<g class="big-clock-ticks">
-							<!-- 12 --> <line x1="100" y1="14" x2="100" y2="26" class="tick-hour" />
-							<!-- 1 -->  <line x1="143" y1="25.5" x2="137" y2="35.9" class="tick-hour" />
-							<!-- 2 -->  <line x1="174.5" y1="57" x2="164.1" y2="63" class="tick-hour" />
-							<!-- 3 -->  <line x1="186" y1="100" x2="174" y2="100" class="tick-hour" />
-							<!-- 4 -->  <line x1="174.5" y1="143" x2="164.1" y2="137" class="tick-hour" />
-							<!-- 5 -->  <line x1="143" y1="174.5" x2="137" y2="164.1" class="tick-hour" />
-							<!-- 6 -->  <line x1="100" y1="186" x2="100" y2="174" class="tick-hour" />
-							<!-- 7 -->  <line x1="57" y1="174.5" x2="63" y2="164.1" class="tick-hour" />
-							<!-- 8 -->  <line x1="25.5" y1="143" x2="35.9" y2="137" class="tick-hour" />
-							<!-- 9 -->  <line x1="14" y1="100" x2="26" y2="100" class="tick-hour" />
-							<!-- 10 --> <line x1="25.5" y1="57" x2="35.9" y2="63" class="tick-hour" />
-							<!-- 11 --> <line x1="57" y1="25.5" x2="63" y2="35.9" class="tick-hour" />
+												<!-- Precision Outer Hour Numerals (1-12) Outside Tick Marks -->
+						<g class="big-clock-num-group" aria-hidden="true">
+							<text x="139.0" y="32.5" class="big-clock-num">1</text>
+							<text x="167.5" y="61.0" class="big-clock-num">2</text>
+							<text x="178.0" y="100.0" class="big-clock-num">3</text>
+							<text x="167.5" y="139.0" class="big-clock-num">4</text>
+							<text x="139.0" y="167.5" class="big-clock-num">5</text>
+							<text x="100.0" y="178.0" class="big-clock-num">6</text>
+							<text x="61.0" y="167.5" class="big-clock-num">7</text>
+							<text x="32.5" y="139.0" class="big-clock-num">8</text>
+							<text x="22.0" y="100.0" class="big-clock-num">9</text>
+							<text x="32.5" y="61.0" class="big-clock-num">10</text>
+							<text x="61.0" y="32.5" class="big-clock-num">11</text>
+							<text x="100.0" y="22.0" class="big-clock-num">12</text>
+						</g>
 
-							<!-- Minor Minute Ticks -->
-							<!-- Every 6 degrees (samples for crisp precision) -->
-							<circle cx="100" cy="18" r="1.2" class="tick-dot" />
-							<circle cx="109.4" cy="18.5" r="0.8" class="tick-dot-min" />
-							<circle cx="118.8" cy="20" r="0.8" class="tick-dot-min" />
-							<circle cx="128" cy="22.5" r="0.8" class="tick-dot-min" />
-							<circle cx="137" cy="25.8" r="0.8" class="tick-dot-min" />
-							<circle cx="154.5" cy="35.5" r="0.8" class="tick-dot-min" />
-							<circle cx="162.5" cy="42" r="0.8" class="tick-dot-min" />
-							<circle cx="169.5" cy="49.5" r="0.8" class="tick-dot-min" />
-							<circle cx="175" cy="58" r="0.8" class="tick-dot-min" />
-							<circle cx="182" cy="78" r="0.8" class="tick-dot-min" />
-							<circle cx="184" cy="88" r="0.8" class="tick-dot-min" />
-							<circle cx="184" cy="112" r="0.8" class="tick-dot-min" />
-							<circle cx="182" cy="122" r="0.8" class="tick-dot-min" />
-							<circle cx="175" cy="142" r="0.8" class="tick-dot-min" />
-							<circle cx="169.5" cy="150.5" r="0.8" class="tick-dot-min" />
-							<circle cx="162.5" cy="158" r="0.8" class="tick-dot-min" />
-							<circle cx="154.5" cy="164.5" r="0.8" class="tick-dot-min" />
-							<circle cx="137" cy="174.2" r="0.8" class="tick-dot-min" />
-							<circle cx="128" cy="177.5" r="0.8" class="tick-dot-min" />
-							<circle cx="118.8" cy="180" r="0.8" class="tick-dot-min" />
-							<circle cx="109.4" cy="181.5" r="0.8" class="tick-dot-min" />
-							<circle cx="90.6" cy="181.5" r="0.8" class="tick-dot-min" />
-							<circle cx="81.2" cy="180" r="0.8" class="tick-dot-min" />
-							<circle cx="72" cy="177.5" r="0.8" class="tick-dot-min" />
-							<circle cx="63" cy="174.2" r="0.8" class="tick-dot-min" />
-							<circle cx="45.5" cy="164.5" r="0.8" class="tick-dot-min" />
-							<circle cx="37.5" cy="158" r="0.8" class="tick-dot-min" />
-							<circle cx="30.5" cy="150.5" r="0.8" class="tick-dot-min" />
-							<circle cx="25" cy="142" r="0.8" class="tick-dot-min" />
-							<circle cx="18" cy="122" r="0.8" class="tick-dot-min" />
-							<circle cx="16" cy="112" r="0.8" class="tick-dot-min" />
-							<circle cx="16" cy="88" r="0.8" class="tick-dot-min" />
-							<circle cx="18" cy="78" r="0.8" class="tick-dot-min" />
-							<circle cx="25" cy="58" r="0.8" class="tick-dot-min" />
-							<circle cx="30.5" cy="49.5" r="0.8" class="tick-dot-min" />
-							<circle cx="37.5" cy="42" r="0.8" class="tick-dot-min" />
-							<circle cx="45.5" cy="35.5" r="0.8" class="tick-dot-min" />
-							<circle cx="63" cy="25.8" r="0.8" class="tick-dot-min" />
-							<circle cx="72" cy="22.5" r="0.8" class="tick-dot-min" />
-							<circle cx="81.2" cy="20" r="0.8" class="tick-dot-min" />
-							<circle cx="90.6" cy="18.5" r="0.8" class="tick-dot-min" />
+						<!-- 60 Minute / Second Tick Ring (Inside Numerals) -->
+						<g class="big-clock-ticks">
+							<!-- 12 --> <line x1="100.0" y1="32.0" x2="100.0" y2="42.0" class="tick-hour" />
+							<line x1="107.1" y1="32.4" x2="106.6" y2="37.3" class="tick-min" />
+							<line x1="114.1" y1="33.5" x2="113.1" y2="38.4" class="tick-min" />
+							<line x1="121.0" y1="35.3" x2="119.5" y2="40.1" class="tick-min" />
+							<line x1="127.7" y1="37.9" x2="125.6" y2="42.4" class="tick-min" />
+							<!-- 1 --> <line x1="134.0" y1="41.1" x2="129.0" y2="49.8" class="tick-hour" />
+							<line x1="140.0" y1="45.0" x2="137.0" y2="49.0" class="tick-min" />
+							<line x1="145.5" y1="49.5" x2="142.2" y2="53.2" class="tick-min" />
+							<line x1="150.5" y1="54.5" x2="146.8" y2="57.8" class="tick-min" />
+							<line x1="155.0" y1="60.0" x2="151.0" y2="63.0" class="tick-min" />
+							<!-- 2 --> <line x1="158.9" y1="66.0" x2="150.2" y2="71.0" class="tick-hour" />
+							<line x1="162.1" y1="72.3" x2="157.6" y2="74.4" class="tick-min" />
+							<line x1="164.7" y1="79.0" x2="159.9" y2="80.5" class="tick-min" />
+							<line x1="166.5" y1="85.9" x2="161.6" y2="86.9" class="tick-min" />
+							<line x1="167.6" y1="92.9" x2="162.7" y2="93.4" class="tick-min" />
+							<!-- 3 --> <line x1="168.0" y1="100.0" x2="158.0" y2="100.0" class="tick-hour" />
+							<line x1="167.6" y1="107.1" x2="162.7" y2="106.6" class="tick-min" />
+							<line x1="166.5" y1="114.1" x2="161.6" y2="113.1" class="tick-min" />
+							<line x1="164.7" y1="121.0" x2="159.9" y2="119.5" class="tick-min" />
+							<line x1="162.1" y1="127.7" x2="157.6" y2="125.6" class="tick-min" />
+							<!-- 4 --> <line x1="158.9" y1="134.0" x2="150.2" y2="129.0" class="tick-hour" />
+							<line x1="155.0" y1="140.0" x2="151.0" y2="137.0" class="tick-min" />
+							<line x1="150.5" y1="145.5" x2="146.8" y2="142.2" class="tick-min" />
+							<line x1="145.5" y1="150.5" x2="142.2" y2="146.8" class="tick-min" />
+							<line x1="140.0" y1="155.0" x2="137.0" y2="151.0" class="tick-min" />
+							<!-- 5 --> <line x1="134.0" y1="158.9" x2="129.0" y2="150.2" class="tick-hour" />
+							<line x1="127.7" y1="162.1" x2="125.6" y2="157.6" class="tick-min" />
+							<line x1="121.0" y1="164.7" x2="119.5" y2="159.9" class="tick-min" />
+							<line x1="114.1" y1="166.5" x2="113.1" y2="161.6" class="tick-min" />
+							<line x1="107.1" y1="167.6" x2="106.6" y2="162.7" class="tick-min" />
+							<!-- 6 --> <line x1="100.0" y1="168.0" x2="100.0" y2="158.0" class="tick-hour" />
+							<line x1="92.9" y1="167.6" x2="93.4" y2="162.7" class="tick-min" />
+							<line x1="85.9" y1="166.5" x2="86.9" y2="161.6" class="tick-min" />
+							<line x1="79.0" y1="164.7" x2="80.5" y2="159.9" class="tick-min" />
+							<line x1="72.3" y1="162.1" x2="74.4" y2="157.6" class="tick-min" />
+							<!-- 7 --> <line x1="66.0" y1="158.9" x2="71.0" y2="150.2" class="tick-hour" />
+							<line x1="60.0" y1="155.0" x2="63.0" y2="151.0" class="tick-min" />
+							<line x1="54.5" y1="150.5" x2="57.8" y2="146.8" class="tick-min" />
+							<line x1="49.5" y1="145.5" x2="53.2" y2="142.2" class="tick-min" />
+							<line x1="45.0" y1="140.0" x2="49.0" y2="137.0" class="tick-min" />
+							<!-- 8 --> <line x1="41.1" y1="134.0" x2="49.8" y2="129.0" class="tick-hour" />
+							<line x1="37.9" y1="127.7" x2="42.4" y2="125.6" class="tick-min" />
+							<line x1="35.3" y1="121.0" x2="40.1" y2="119.5" class="tick-min" />
+							<line x1="33.5" y1="114.1" x2="38.4" y2="113.1" class="tick-min" />
+							<line x1="32.4" y1="107.1" x2="37.3" y2="106.6" class="tick-min" />
+							<!-- 9 --> <line x1="32.0" y1="100.0" x2="42.0" y2="100.0" class="tick-hour" />
+							<line x1="32.4" y1="92.9" x2="37.3" y2="93.4" class="tick-min" />
+							<line x1="33.5" y1="85.9" x2="38.4" y2="86.9" class="tick-min" />
+							<line x1="35.3" y1="79.0" x2="40.1" y2="80.5" class="tick-min" />
+							<line x1="37.9" y1="72.3" x2="42.4" y2="74.4" class="tick-min" />
+							<!-- 10 --> <line x1="41.1" y1="66.0" x2="49.8" y2="71.0" class="tick-hour" />
+							<line x1="45.0" y1="60.0" x2="49.0" y2="63.0" class="tick-min" />
+							<line x1="49.5" y1="54.5" x2="53.2" y2="57.8" class="tick-min" />
+							<line x1="54.5" y1="49.5" x2="57.8" y2="53.2" class="tick-min" />
+							<line x1="60.0" y1="45.0" x2="63.0" y2="49.0" class="tick-min" />
+							<!-- 11 --> <line x1="66.0" y1="41.1" x2="71.0" y2="49.8" class="tick-hour" />
+							<line x1="72.3" y1="37.9" x2="74.4" y2="42.4" class="tick-min" />
+							<line x1="79.0" y1="35.3" x2="80.5" y2="40.1" class="tick-min" />
+							<line x1="85.9" y1="33.5" x2="86.9" y2="38.4" class="tick-min" />
+							<line x1="92.9" y1="32.4" x2="93.4" y2="37.3" class="tick-min" />
 						</g>
 
 						<!-- Dial Branding Typography -->
-												<!-- Hour Numerals (1-12) -->
-						<g class="big-clock-num-group" aria-hidden="true">
-							<text x="130.5" y="47.2" class="big-clock-num">1</text>
-							<text x="152.8" y="69.5" class="big-clock-num">2</text>
-							<text x="161.0" y="100.0" class="big-clock-num">3</text>
-							<text x="152.8" y="130.5" class="big-clock-num">4</text>
-							<text x="130.5" y="152.8" class="big-clock-num">5</text>
-							<text x="100.0" y="161.0" class="big-clock-num">6</text>
-							<text x="69.5" y="152.8" class="big-clock-num">7</text>
-							<text x="47.2" y="130.5" class="big-clock-num">8</text>
-							<text x="39.0" y="100.0" class="big-clock-num">9</text>
-							<text x="47.2" y="69.5" class="big-clock-num">10</text>
-							<text x="69.5" y="47.2" class="big-clock-num">11</text>
-							<text x="100.0" y="39.0" class="big-clock-num">12</text>
-						</g>
-
-						<text x="100" y="65" class="big-dial-brand">ANDREW VAN EK</text>
-						<text x="100" y="73" class="big-dial-sub">HOMELAB CHRONOMETER</text>
-						<text x="100" y="142" class="big-dial-tz" id="big-dial-tz">EASTERN TIME &bull; MICHIGAN</text>
+						<text x="100" y="72" class="big-dial-brand">ANDREW VAN EK</text>
+						<text x="100" y="80" class="big-dial-sub">HOMELAB CHRONOMETER</text>
+						<text x="100" y="132" class="big-dial-tz" id="big-dial-tz">EASTERN TIME &bull; MICHIGAN</text>
 
 						<!-- Hands (Rendered with transform rotate from JS) -->
 						<!-- Hour Hand -->
-						<line x1="100" y1="108" x2="100" y2="48" id="big-hand-hour" class="big-hand big-hand-hour" />
+						<line x1="100" y1="108" x2="100" y2="56" id="big-hand-hour" class="big-hand big-hand-hour" />
 						<!-- Minute Hand -->
-						<line x1="100" y1="112" x2="100" y2="28" id="big-hand-minute" class="big-hand big-hand-minute" />
+						<line x1="100" y1="112" x2="100" y2="38" id="big-hand-minute" class="big-hand big-hand-minute" />
 						<!-- Smooth Sweeping Second Hand (Swiss Station Red) -->
-						<line x1="100" y1="120" x2="100" y2="22" id="big-hand-second" class="big-hand big-hand-second" />
+						<line x1="100" y1="120" x2="100" y2="33" id="big-hand-second" class="big-hand big-hand-second" />
 						<!-- Second Hand Counterweight -->
 						<circle cx="100" cy="118" r="4.5" class="big-second-counterweight" />
 

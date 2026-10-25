@@ -5368,8 +5368,11 @@ nav.tablet-desktop > ul#site-navigation {
 .desk-clock-card.dimmer-active .big-clock-rim {
     stroke: #334155 !important;
 }
-.desk-clock-card.dimmer-active .tick-hour {
+desk-clock-card.dimmer-active .tick-hour {
     stroke: #e2e8f0 !important;
+}
+.desk-clock-card.dimmer-active .tick-min {
+    stroke: #475569 !important;
 }
 .desk-clock-card.dimmer-active .tick-dot,
 .desk-clock-card.dimmer-active .tick-dot-min {
@@ -5495,9 +5498,15 @@ nav.tablet-desktop > ul#site-navigation {
     stroke: #cbd5e1;
     stroke-width: 1.5;
 }
+/* Precision Clock Ticks */
 .tick-hour {
     stroke: #0f172a;
     stroke-width: 3.2;
+    stroke-linecap: round;
+}
+.tick-min {
+    stroke: #94a3b8;
+    stroke-width: 1.2;
     stroke-linecap: round;
 }
 .tick-dot {
