@@ -4350,7 +4350,7 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 
 .commendations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
     margin-top: 20px;
 }
@@ -4477,10 +4477,12 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
     display: block;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .commendations-grid {
         grid-template-columns: 1fr;
     }
+}
+@media (max-width: 600px) {
     .commendation-card {
         padding: 18px;
     }
