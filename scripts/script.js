@@ -692,6 +692,31 @@
 			title: "Alpine Package Manager (apk)",
 			analogy: "A lightning-fast pit crew that swaps out worn or outdated parts (like graphics drivers or security certificates) with fresh replacements in seconds while keeping the car's engine running.",
 			techFact: "Alpine Linux's package manager (apk) downloads, verifies cryptographic checksums, and installs pre-compiled binary packages and libraries while preserving existing system configuration files."
+		},
+		"webassembly": {
+			title: "WebAssembly (WASM)",
+			analogy: "Think of standard JavaScript like an interpreter reading a foreign book out loud sentence by sentence, while WebAssembly is like having the book pre-printed in machine code that your computer's CPU reads and executes directly at near-instant, lightning speed.",
+			techFact: "A low-level binary code format (WASM) executed by modern web browsers in a sandboxed runtime at near-native speed, allowing heavy C, C++, and C# game engines to run on the web."
+		},
+		"cors-protocol": {
+			title: "Cross-Origin Security & Protocol Boundaries (CORS)",
+			analogy: "A strict security guard at an office building with a strict clipboard. If a web page asks to pull raw binary data directly off your hard drive (file://), the guard blocks it on the spot unless the request comes through an official HTTP front door with verified credentials.",
+			techFact: "A browser security boundary preventing client-side scripts from streaming binary assets across different origins or the local file:// protocol without a valid HTTP server response."
+		},
+		"content-encoding": {
+			title: "HTTP Content-Encoding (Brotli & Gzip)",
+			analogy: "Receiving a vacuum-sealed travel bag in the mail. If the box has a prominent label saying 'Vacuum Packed' (the Content-Encoding header), you know to open the valve to expand it. Without that label, you try to read the wrinkled, compressed lump as-is and it makes zero sense.",
+			techFact: "An HTTP response header informing the browser that a payload was compressed on the server (using Gzip or Brotli), signaling the client to decompress the binary stream before execution."
+		},
+		"emscripten": {
+			title: "Emscripten Compiler Toolchain",
+			analogy: "A high-tech adapter kit that takes an engine engineered for a gas racecar (Unity in C# and C++) and rebuilds it so it fits seamlessly inside an electric vehicle (the web browser), translating hardware steering and pedals into web canvas clicks and keyboard events.",
+			techFact: "An LLVM-to-WebAssembly compiler toolchain that compiles C and C++ codebases into WebAssembly, WebGL, and JavaScript glue code."
+		},
+		"wasm-memory-heap": {
+			title: "WebAssembly Linear Memory Heap (TOTAL_MEMORY)",
+			analogy: "Reserving a dedicated block of parking spots in a garage for your crew before the road trip begins. If you only reserve room for compact cars (256 MB) but your team shows up with loaded trucks (500 MB), the gate won't open; but reserve too much, and the whole garage locks up.",
+			techFact: "The contiguous linear memory buffer allocated by the browser for a WebAssembly module, defining the maximum memory heap available for textures, physics, and game variables."
 		}
 	};
 
