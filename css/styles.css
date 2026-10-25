@@ -5764,3 +5764,27 @@ nav.tablet-desktop {
         height: 56px !important;
     }
 }
+
+
+/* Clock hour numerals on home hero and desk clock dials */
+.clock-dial-num {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 4.8px;
+    font-weight: 700;
+    fill: #0f172a;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.big-clock-num {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 8.5px;
+    font-weight: 800;
+    fill: #0f172a;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.desk-clock-card.dimmer-active .big-clock-num {
+    fill: #94a3b8 !important;
+}
