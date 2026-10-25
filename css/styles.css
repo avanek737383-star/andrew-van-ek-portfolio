@@ -1286,9 +1286,64 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
     .computing-card { padding: 20px; }
 }
 
-.fah-certificate { margin: 20px 0 24px; max-width: 640px; }
-.fah-certificate img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid #d5e0eb; box-shadow: 0 2px 8px rgba(0, 45, 90, 0.08); }
-.fah-certificate figcaption { margin-top: 8px; font-size: .88rem; color: #526170; }
+/* Folding@home Live Dual Award Certificates Grid */
+.fah-certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin: 22px 0 26px;
+}
+.fah-certificate-card {
+    margin: 0;
+    padding: 16px;
+    border: 1px solid #d5e0eb;
+    border-radius: 10px;
+    background: #f8fafc;
+    box-shadow: 0 2px 8px rgba(0, 45, 90, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+.fah-certificate-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.fah-certificate-card__header h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #002d5a;
+    border: 0;
+    padding: 0;
+}
+.fah-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #e1effe;
+    color: #1a56db;
+    border-radius: 999px;
+}
+.fah-certificate-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #d5e0eb;
+}
+.fah-certificate-card figcaption {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #526170;
+}
+@media (max-width: 768px) {
+    .fah-certificates-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 
 .duco-brand { display: flex; align-items: center; gap: 12px; }
@@ -5106,12 +5161,13 @@ nav.tablet-desktop > ul#site-navigation {
     color: #64748b;
     text-transform: uppercase;
 }
-.pill-value {
+.inspector-stat-pill .pill-value {
     font-size: 0.92rem;
     font-weight: 800;
     color: #0f172a;
     font-family: ui-monospace, monospace;
 }
+.stats-teaser-pill .pill-value { color: #ffffff !important; }
 
 /* In-Browser Probe Instrument */
 .radar-probe-instrument {
