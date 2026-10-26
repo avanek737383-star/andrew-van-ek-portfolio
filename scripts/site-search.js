@@ -623,6 +623,9 @@
         });
     }
 
+    window.openSpotlightModal = openSpotlightModal;
+    window.closeSpotlightModal = closeSpotlightModal;
+
     // Initialize all search features
     function init() {
         initGlobalSearchTriggers();

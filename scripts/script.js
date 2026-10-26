@@ -14,20 +14,62 @@
 		if (!menu) return;
 		menu.id = "site-navigation";
 
-		var button = document.createElement("button");
-		button.className = "nav-toggle";
-		button.type = "button";
-		button.setAttribute("aria-expanded", "false");
-		button.setAttribute("aria-controls", menu.id);
-		button.innerHTML = '<span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>Menu</span>';
-		nav.insertBefore(button, menu);
+		// Mobile header bar with Menu toggle on left and search bar on right
+		var mobileHeader = nav.querySelector(".nav-mobile-header");
+		var button;
+		if (!mobileHeader) {
+			mobileHeader = document.createElement("div");
+			mobileHeader.className = "nav-mobile-header";
 
-		// Mobile drawer quick-search pinned to the top of menu
-		if (!menu.querySelector(".mobile-search-li")) {
-			var mobileLi = document.createElement("li");
-			mobileLi.className = "mobile-search-li";
-			mobileLi.innerHTML = '<form class="mobile-search-form" action="search.html" method="GET"><input type="search" name="q" placeholder="Search 370+ tasks &amp; projects..." class="mobile-search-input" aria-label="Search entire website" /><button type="submit" class="mobile-search-btn" aria-label="Submit search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></form>';
-			menu.insertBefore(mobileLi, menu.firstChild);
+			button = document.createElement("button");
+			button.className = "nav-toggle";
+			button.type = "button";
+			button.setAttribute("aria-expanded", "false");
+			button.setAttribute("aria-controls", menu.id);
+			button.innerHTML = '<span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>Menu</span>';
+			mobileHeader.appendChild(button);
+
+			var searchWrap = document.createElement("div");
+			searchWrap.className = "nav-mobile-search-wrap";
+			searchWrap.innerHTML = '<form class="nav-mobile-search-form" action="search.html" method="GET" role="search">' +
+				'<input type="search" name="q" placeholder="Search site..." class="nav-mobile-search-input" aria-label="Search entire website" autocomplete="off" />' +
+				'<button type="submit" class="nav-mobile-search-btn" aria-label="Submit search">' +
+					'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>' +
+				'</button>' +
+			'</form>';
+			mobileHeader.appendChild(searchWrap);
+
+			nav.insertBefore(mobileHeader, menu);
+		} else {
+			button = mobileHeader.querySelector(".nav-toggle");
+		}
+
+		var searchInput = mobileHeader.querySelector(".nav-mobile-search-input");
+		if (searchInput) {
+			searchInput.addEventListener("focus", function () {
+				if (nav.classList.contains("nav-open")) {
+					setOpen(false);
+				}
+			});
+		}
+
+		var searchForm = mobileHeader.querySelector(".nav-mobile-search-form");
+		if (searchForm) {
+			searchForm.addEventListener("submit", function (e) {
+				var query = (searchInput ? searchInput.value : "").trim();
+				if (!query) {
+					e.preventDefault();
+					if (window.location.pathname.endsWith("search.html")) {
+						var pageInput = document.getElementById("search-page-input");
+						if (pageInput) pageInput.focus();
+					} else if (typeof window.openSpotlightModal === "function") {
+						window.openSpotlightModal();
+					} else {
+						var trigger = document.getElementById("nav-search-trigger");
+						if (trigger) trigger.click();
+					}
+				}
+			});
 		}
 
 		function closeAllDropdowns() {

@@ -5864,76 +5864,115 @@ nav.tablet-desktop {
     margin-left: 2px;
 }
 
-/* 2. Mobile Drawer Search Form */
+/* 2. Top Navbar Mobile Header & Search Bar */
+.nav-mobile-header {
+    display: none !important;
+}
+
 .mobile-search-li {
-    display: none;
-    padding: 4px 0 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    margin-bottom: 6px !important;
-    width: 100%;
-}
-
-.mobile-search-form {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 8px;
-    padding: 2px 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.mobile-search-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 0.95rem;
-    padding: 9px 0;
-    outline: none;
-    font-family: inherit;
-}
-
-.mobile-search-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.mobile-search-btn {
-    background: transparent;
-    border: none;
-    color: #38bdf8;
-    cursor: pointer;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: none !important;
 }
 
 @media (max-width: 1024px) {
-    nav.tablet-desktop.nav-open .mobile-search-li {
-        display: block !important;
-    }
-    .nav-search-badge {
-        display: none !important;
-    }
-    .nav-item-search {
+    .nav-mobile-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
         width: 100%;
-        display: block;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
     }
-    .nav-search-link {
-        width: 100%;
-        min-height: 44px;
-        padding: 11px 14px;
-        font-size: 0.98rem;
-        justify-content: flex-start;
+
+    .nav-mobile-search-wrap {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: 480px;
+    }
+
+    .nav-mobile-search-form {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.13);
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        border-radius: 8px;
+        padding: 0 4px 0 12px;
+        height: 42px;
+        box-sizing: border-box;
+        transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .nav-mobile-search-form:focus-within {
+        background: rgba(255, 255, 255, 0.22);
+        border-color: #38bdf8;
+        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+    }
+
+    .nav-mobile-search-input {
+        flex: 1 1 auto;
+        min-width: 0;
         background: transparent;
         border: none;
+        color: #ffffff;
+        font-size: 0.92rem;
+        padding: 8px 0;
+        outline: none;
+        font-family: inherit;
     }
-    .nav-search-link:hover,
-    .nav-search-link:focus-visible {
-        background: rgba(255, 255, 255, 0.12);
-        transform: none;
+
+    .nav-mobile-search-input::placeholder {
+        color: rgba(255, 255, 255, 0.72);
+    }
+
+    .nav-mobile-search-btn {
+        background: transparent;
+        border: none;
+        color: #38bdf8;
+        cursor: pointer;
+        padding: 8px 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: 6px;
+        transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .nav-mobile-search-btn:hover,
+    .nav-mobile-search-btn:focus-visible {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Remove search option from expanded hamburger menu */
+    nav.tablet-desktop > ul#site-navigation > li.nav-item-search,
+    .nav-item-search {
+        display: none !important;
+    }
+
+    .mobile-search-li {
+        display: none !important;
+    }
+
+    nav.tablet-desktop.nav-open .nav-plasma-canvas {
+        height: 62px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-mobile-header {
+        gap: 8px;
+    }
+
+    .nav-toggle {
+        padding: 8px 10px !important;
+        font-size: 0.88rem !important;
+        gap: 7px !important;
+    }
+
+    .nav-mobile-search-input {
+        font-size: 0.88rem;
     }
 }
 
