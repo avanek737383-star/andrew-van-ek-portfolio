@@ -285,7 +285,8 @@
             if (accuracyHistory.length < 200 || totalFlips % Math.ceil(totalFlips / 100) === 0) {
                 accuracyHistory.push({
                     count: totalFlips,
-                    acc: (totalAiCorrect / totalFlips) * 100
+                    aiAcc: (totalAiCorrect / totalFlips) * 100,
+                    userAcc: (userScore / totalFlips) * 100
                 });
             }
 
@@ -375,6 +376,9 @@
         if (headsBtn) headsBtn.disabled = false;
         if (tailsBtn) tailsBtn.disabled = false;
 
+        accuracyHistory = [];
+        drawAccuracyChart();
+
         updateVersusScoreboard("Match reset! Select your guess to begin Round 1.");
         updateMindStream([
             { tag: "READY", text: "Neural Network initialized with 120-epoch PyTorch weights. Awaiting your first guess..." }
@@ -409,7 +413,8 @@
 
         accuracyHistory.push({
             count: totalFlips,
-            acc: (totalAiCorrect / totalFlips) * 100
+            aiAcc: (totalAiCorrect / totalFlips) * 100,
+            userAcc: null
         });
 
         renderSequenceTape();
@@ -515,7 +520,7 @@
         ctx.fillText(`Epoch 120 (Record: ${data[data.length-1].train_loss})`, w - padR, h - 8);
     }
 
-    // High-DPI Canvas Chart: Cumulative Accuracy vs Baseline
+    // High-DPI Canvas Chart: Adaptive Cumulative Predictive Edge vs Baseline
     function drawAccuracyChart() {
         const canvas = document.getElementById("canvas-accuracy");
         if (!canvas) return;
@@ -531,7 +536,7 @@
         const h = rect.height;
         const padL = 45;
         const padR = 20;
-        const padT = 20;
+        const padT = 28;
         const padB = 30;
 
         ctx.clearRect(0, 0, w, h);
@@ -542,6 +547,7 @@
         const minAcc = 35;
         const maxAcc = 75;
 
+        // Grid lines & Y percentage ticks
         ctx.strokeStyle = "#1e293b";
         ctx.lineWidth = 1;
         const yTicks = 4;
@@ -559,6 +565,7 @@
             ctx.fillText(yVal.toFixed(0) + "%", padL - 8, yPos + 3);
         }
 
+        // Baseline 50% Dashed Line
         const base50Y = padT + plotH - (plotH * ((50 - minAcc) / (maxAcc - minAcc)));
         ctx.save();
         ctx.setLineDash([4, 4]);
@@ -570,43 +577,216 @@
         ctx.stroke();
         ctx.restore();
 
-        ctx.fillStyle = "#94a3b8";
-        ctx.font = "9px sans-serif";
-        ctx.textAlign = "right";
-        ctx.fillText("50% Random Baseline", w - padR, base50Y - 5);
+        const badgeEl = document.getElementById("chart-acc-badge");
+        const subEl = document.getElementById("chart-acc-subtitle");
 
-        if (accuracyHistory.length >= 2) {
-            ctx.beginPath();
-            accuracyHistory.forEach((pt, i) => {
-                const x = padL + (plotW * (i / (accuracyHistory.length - 1)));
-                const clamped = Math.max(minAcc, Math.min(maxAcc, pt.acc));
-                const y = padT + plotH - (plotH * ((clamped - minAcc) / (maxAcc - minAcc)));
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            });
+        if (accuracyHistory.length >= 1) {
+            // Live Session Mode (User has played or initiated simulation batch)
+            if (badgeEl) {
+                badgeEl.textContent = "Live Match Telemetry";
+                badgeEl.style.color = "#34d399";
+                badgeEl.style.background = "rgba(16,185,129,0.15)";
+            }
+            if (subEl) {
+                subEl.innerHTML = "Live Session Hit Rate vs. Theoretical 50.0% Random Coin Toss";
+            }
 
-            ctx.strokeStyle = "#10b981";
-            ctx.lineWidth = 2.5;
-            ctx.stroke();
+            // Legend on canvas
+            ctx.font = "10px sans-serif";
+            ctx.textAlign = "left";
 
-            const lastPt = accuracyHistory[accuracyHistory.length - 1];
-            const lx = padL + plotW;
-            const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastPt.acc)) - minAcc) / (maxAcc - minAcc)));
-            ctx.beginPath();
-            ctx.arc(lx, ly, 4, 0, Math.PI * 2);
+            // AI Hit Rate legend indicator
+            const latestAi = accuracyHistory[accuracyHistory.length - 1].aiAcc ?? accuracyHistory[accuracyHistory.length - 1].acc ?? 50.0;
             ctx.fillStyle = "#10b981";
-            ctx.fill();
-            ctx.strokeStyle = "#ffffff";
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-        }
+            ctx.fillRect(padL, 8, 10, 10);
+            ctx.fillStyle = "#cbd5e1";
+            ctx.fillText(`AI Hit Rate: ${latestAi.toFixed(1)}%`, padL + 14, 16);
 
-        ctx.fillStyle = "#94a3b8";
-        ctx.font = "10px sans-serif";
-        ctx.textAlign = "left";
-        ctx.fillText("Trial #1", padL, h - 8);
-        ctx.textAlign = "right";
-        ctx.fillText(`${totalFlips} Cumulative Flips`, w - padR, h - 8);
+            // Human Hit Rate legend indicator if user made guesses
+            const hasUserFlips = accuracyHistory.some(pt => pt.userAcc !== null && pt.userAcc !== undefined);
+            if (hasUserFlips) {
+                const latestUser = accuracyHistory.filter(pt => pt.userAcc !== null && pt.userAcc !== undefined).slice(-1)[0]?.userAcc ?? 50.0;
+                ctx.fillStyle = "#38bdf8";
+                ctx.fillRect(padL + 130, 8, 10, 10);
+                ctx.fillStyle = "#cbd5e1";
+                ctx.fillText(`Your Hit Rate: ${latestUser.toFixed(1)}%`, padL + 144, 16);
+            }
+
+            // Baseline label
+            ctx.fillStyle = "#94a3b8";
+            ctx.textAlign = "right";
+            ctx.fillText("50% Random Baseline", w - padR, base50Y - 5);
+
+            // Draw Live User Accuracy Line (Sky Blue)
+            if (hasUserFlips) {
+                const userPts = accuracyHistory.filter(pt => pt.userAcc !== null && pt.userAcc !== undefined);
+                if (userPts.length >= 2) {
+                    ctx.beginPath();
+                    userPts.forEach((pt, i) => {
+                        const x = padL + (plotW * (i / (userPts.length - 1)));
+                        const clamped = Math.max(minAcc, Math.min(maxAcc, pt.userAcc));
+                        const y = padT + plotH - (plotH * ((clamped - minAcc) / (maxAcc - minAcc)));
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    });
+                    ctx.strokeStyle = "#38bdf8";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+
+                    const lastUserPt = userPts[userPts.length - 1];
+                    const lx = padL + plotW;
+                    const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastUserPt.userAcc)) - minAcc) / (maxAcc - minAcc)));
+                    ctx.beginPath();
+                    ctx.arc(lx, ly, 3.5, 0, Math.PI * 2);
+                    ctx.fillStyle = "#38bdf8";
+                    ctx.fill();
+                } else if (userPts.length === 1) {
+                    const clamped = Math.max(minAcc, Math.min(maxAcc, userPts[0].userAcc));
+                    const y = padT + plotH - (plotH * ((clamped - minAcc) / (maxAcc - minAcc)));
+                    ctx.beginPath();
+                    ctx.arc(padL + plotW / 2, y, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = "#38bdf8";
+                    ctx.fill();
+                }
+            }
+
+            // Draw Live AI Accuracy Line (Emerald)
+            if (accuracyHistory.length >= 2) {
+                ctx.beginPath();
+                accuracyHistory.forEach((pt, i) => {
+                    const x = padL + (plotW * (i / (accuracyHistory.length - 1)));
+                    const accVal = pt.aiAcc ?? pt.acc ?? 50.0;
+                    const clamped = Math.max(minAcc, Math.min(maxAcc, accVal));
+                    const y = padT + plotH - (plotH * ((clamped - minAcc) / (maxAcc - minAcc)));
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.strokeStyle = "#10b981";
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+
+                const lastPt = accuracyHistory[accuracyHistory.length - 1];
+                const lastVal = lastPt.aiAcc ?? lastPt.acc ?? 50.0;
+                const lx = padL + plotW;
+                const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastVal)) - minAcc) / (maxAcc - minAcc)));
+                ctx.beginPath();
+                ctx.arc(lx, ly, 4, 0, Math.PI * 2);
+                ctx.fillStyle = "#10b981";
+                ctx.fill();
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            } else if (accuracyHistory.length === 1) {
+                const firstVal = accuracyHistory[0].aiAcc ?? accuracyHistory[0].acc ?? 50.0;
+                const y = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, firstVal)) - minAcc) / (maxAcc - minAcc)));
+                ctx.beginPath();
+                ctx.arc(padL + plotW / 2, y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "#10b981";
+                ctx.fill();
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            // Bottom X-axis labels
+            ctx.fillStyle = "#94a3b8";
+            ctx.font = "10px sans-serif";
+            ctx.textAlign = "left";
+            ctx.fillText("Flip #1", padL, h - 8);
+            ctx.textAlign = "right";
+            ctx.fillText(`${totalFlips} Cumulative Flips`, w - padR, h - 8);
+
+        } else {
+            // Default 120-Epoch Benchmark Mode (Displays immediately on Page Load so graph is never empty!)
+            if (badgeEl) {
+                badgeEl.textContent = "120-Epoch Benchmark";
+                badgeEl.style.color = "#34d399";
+                badgeEl.style.background = "rgba(16,185,129,0.15)";
+            }
+            if (subEl) {
+                subEl.innerHTML = "Training &amp; Holdout Validation Accuracy vs. Theoretical 50.0% Random Baseline";
+            }
+
+            const data = TRAINING_HISTORY;
+            if (data && data.length > 0) {
+                // Legend on canvas
+                ctx.font = "10px sans-serif";
+                ctx.textAlign = "left";
+
+                // Validation Holdout Legend
+                ctx.fillStyle = "#10b981";
+                ctx.fillRect(padL, 8, 10, 10);
+                ctx.fillStyle = "#cbd5e1";
+                ctx.fillText(`Holdout Validation: ${data[data.length-1].val_acc}%`, padL + 14, 16);
+
+                // Training Accuracy Legend
+                ctx.fillStyle = "#38bdf8";
+                ctx.fillRect(padL + 145, 8, 10, 10);
+                ctx.fillStyle = "#cbd5e1";
+                ctx.fillText(`Training Set: ${data[data.length-1].train_acc}%`, padL + 159, 16);
+
+                // Baseline label
+                ctx.fillStyle = "#94a3b8";
+                ctx.textAlign = "right";
+                ctx.fillText("50% Random Baseline", w - padR, base50Y - 5);
+
+                // 1. Draw Training Accuracy Curve (Cyan)
+                ctx.beginPath();
+                data.forEach((d, i) => {
+                    const x = padL + (plotW * (i / (data.length - 1)));
+                    const clamped = Math.max(minAcc, Math.min(maxAcc, d.train_acc));
+                    const y = padT + plotH - (plotH * ((clamped - minAcc) / (maxAcc - minAcc)));
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.strokeStyle = "#38bdf8";
+                ctx.lineWidth = 1.8;
+                ctx.stroke();
+
+                // 2. Draw Validation Holdout Accuracy Curve (Emerald)
+                ctx.beginPath();
+                data.forEach((d, i) => {
+                    const x = padL + (plotW * (i / (data.length - 1)));
+                    const clamped = Math.max(minAcc, Math.min(maxAcc, d.val_acc));
+                    const y = padT + plotH - (plotH * ((clamped - minAcc) / (maxAcc - minAcc)));
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.strokeStyle = "#10b981";
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+
+                // Soft gradient fill under validation curve down to 50% baseline
+                const lastX = padL + plotW;
+                ctx.lineTo(lastX, base50Y);
+                ctx.lineTo(padL, base50Y);
+                ctx.closePath();
+                const grad = ctx.createLinearGradient(0, padT, 0, base50Y);
+                grad.addColorStop(0, "rgba(16, 185, 129, 0.22)");
+                grad.addColorStop(1, "rgba(16, 185, 129, 0.0)");
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // Highlight final point on Validation Curve
+                const lastVal = data[data.length - 1].val_acc;
+                const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastVal)) - minAcc) / (maxAcc - minAcc)));
+                ctx.beginPath();
+                ctx.arc(lastX, ly, 4, 0, Math.PI * 2);
+                ctx.fillStyle = "#10b981";
+                ctx.fill();
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // Bottom X-axis labels
+                ctx.fillStyle = "#94a3b8";
+                ctx.font = "10px sans-serif";
+                ctx.textAlign = "left";
+                ctx.fillText(`Epoch 1 (Val: ${data[0].val_acc}%)`, padL, h - 8);
+                ctx.textAlign = "right";
+                ctx.fillText(`Epoch 120 (Final Holdout: ${lastVal}% vs 50%)`, w - padR, h - 8);
+            }
+        }
     }
 
     function init() {
