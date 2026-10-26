@@ -1,0 +1,112 @@
+<!doctype html>
+<!-- This website template was created by: Andrew Van Ek -->
+<html lang="en">
+	<head>
+		<title>Site-Wide Search | Andrew Van Ek Portfolio</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css?v=20261026-search-1">
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta name="description" content="Universal full-text search across 370+ hands-on homelab maintenance tasks, project case studies, telemetry logs, and AI systems.">
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://andrewtvanekportfolio.online/search.html">
+		<meta property="og:title" content="Site-Wide Search | Andrew Van Ek Portfolio">
+		<meta property="og:description" content="Fast, client-side search across 296+ hands-on maintenance tasks, project case studies, and homelab architecture.">
+		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div class="container">
+			<nav class="tablet-desktop">
+				<ul id="site-navigation">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+							<li><a href="lab.html">Live AI Lab</a></li>
+							<li><a href="council.html">AI Chatroom</a></li>
+							<li><a href="moltbook.html">Moltbook Agent</a></li>
+							<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+							<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="stats.html">Stats for Nerds</a></li>
+							<li><a href="maintenance.html">Maintenance Log</a></li>
+							<li><a href="clock.html">Homelab Desk Clock</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="job.html">Skills &amp; Toolkit</a></li>
+							<li><a href="resume.html">Resume</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li><a href="privacy.html">Privacy Policy</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-search">
+						<a href="search.html" class="nav-search-link" id="nav-search-trigger" aria-current="page" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+							<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+							<span>Search</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+
+			<main class="search-main" id="search-page-container">
+				<header class="search-hero">
+					<span class="search-hero-eyebrow">Universal Knowledge &amp; Homelab Index</span>
+					<h1 class="search-hero-title">Site-Wide Search</h1>
+					<p class="search-hero-desc">Instant client-side search across 370+ hands-on maintenance tasks, project case studies, homelab telemetry, and AI systems.</p>
+				</header>
+
+				<div class="search-box-wrap">
+					<div class="search-input-inner">
+						<svg class="search-input-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						<input type="search" id="search-page-input" class="search-page-input" placeholder="Type keywords: slax, xfs, tailscale, dpms, night light, folding, predictor..." autofocus autocomplete="off" spellcheck="false" aria-label="Search portfolio" />
+						<button type="button" id="search-page-clear" class="search-clear-btn" aria-label="Clear search" style="display:none;">&times;</button>
+					</div>
+				</div>
+
+				<div class="search-filter-pills" role="tablist" aria-label="Filter results by category">
+					<button type="button" class="search-page-pill active" data-filter="all" data-label="All">All</button>
+					<button type="button" class="search-page-pill" data-filter="Maintenance Log" data-label="Maintenance Log">Maintenance Log</button>
+					<button type="button" class="search-page-pill" data-filter="Projects" data-label="Projects">Projects</button>
+					<button type="button" class="search-page-pill" data-filter="AI Labs" data-label="AI Labs">AI Labs</button>
+					<button type="button" class="search-page-pill" data-filter="Systems &amp; Stats" data-label="Systems &amp; Stats">Systems &amp; Stats</button>
+					<button type="button" class="search-page-pill" data-filter="Career &amp; About" data-label="Career &amp; About">Career &amp; About</button>
+				</div>
+
+				<div id="search-page-summary" class="search-summary-wrap"></div>
+				<section id="search-page-results" class="search-results-list" aria-live="polite"></section>
+			</main>
+
+			<footer>
+				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+				<p>Website last modified: <time datetime="2026-10-26">October 26, 2026</time></p>
+			</footer>
+		</div>
+
+		<script src="scripts/site-search.js?v=20261026-search-1"></script>
+		<script src="scripts/script.js?v=20261026-plasma-nav"></script>
+	</body>
+</html>

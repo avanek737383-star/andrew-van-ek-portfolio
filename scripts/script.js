@@ -22,6 +22,14 @@
 		button.innerHTML = '<span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>Menu</span>';
 		nav.insertBefore(button, menu);
 
+		// Mobile drawer quick-search pinned to the top of menu
+		if (!menu.querySelector(".mobile-search-li")) {
+			var mobileLi = document.createElement("li");
+			mobileLi.className = "mobile-search-li";
+			mobileLi.innerHTML = '<form class="mobile-search-form" action="search.html" method="GET"><input type="search" name="q" placeholder="Search 370+ tasks &amp; projects..." class="mobile-search-input" aria-label="Search entire website" /><button type="submit" class="mobile-search-btn" aria-label="Submit search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></form>';
+			menu.insertBefore(mobileLi, menu.firstChild);
+		}
+
 		function closeAllDropdowns() {
 			nav.querySelectorAll(".nav-item-dropdown.dropdown-open").forEach(function (el) {
 				el.classList.remove("dropdown-open");

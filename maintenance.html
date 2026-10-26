@@ -69,6 +69,13 @@
 						<li><a href="privacy.html">Privacy Policy</a></li>
 					</ul>
 				</li>
+			<li class="nav-item-search">
+				<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+					<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+					<span>Search</span>
+					<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+				</a>
+			</li>
 			</ul>
 		</nav>
 
@@ -78,7 +85,7 @@
 <div class="maintenance-intro">
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
-<p class="maintenance-updated">296 documented tasks across seven areas &middot; Updated <time datetime="2026-10-26">October 26, 2026</time></p>
+<p class="maintenance-updated">297 documented tasks across seven areas &middot; Updated <time datetime="2026-10-26">October 26, 2026</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -123,6 +130,7 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
+<li id="universal-site-search-spotlight-and-page-deploy"><strong>Universal site search engine, Spotlight modal &amp; dedicated full-text search page deployment:</strong> With assistance from Antigravity CLI, engineered and deployed a zero-dependency, high-performance client-side search architecture across the entire portfolio. Built a custom Python build-time indexer (<code>build-search-index.py</code>) that crawls and parses semantic HTML across all 18 site pages&mdash;extracting 372 structured records spanning 297 documented maintenance tasks, project case studies, and homelab telemetry into a lightweight 545 KB JSON index (<code>search-index.json</code>). Engineered a universal vanilla JavaScript search engine (<code>site-search.js</code>) featuring multi-term tokenization, weighted title/content/subcategory relevance scoring, and smart excerpt extraction with dynamic <code>&lt;mark class=&quot;search-highlight&quot;&gt;</code> keyword wrapping. Deployed a responsive 3-tier user interface: a desktop/tablet Spotlight command palette (triggered globally via <kbd>Ctrl</kbd>+<kbd>K</kbd>, <kbd>/</kbd>, or the navbar search button) supporting keyboard navigation and instant live previews; an adaptive mobile hamburger drawer integration with a pinned top search bar; and a dedicated full-page search interface (<code>search.html</code>) offering live category facet counts, URL state persistence, empty-state popular topic chips, and anchor-targeted smooth-scroll pulse animations.</li>
 <li id="service-desk-commendations-two-column-grid-layout"><strong>GVSU Service Desk client commendations 2-column grid refactor:</strong> With assistance from Antigravity CLI, overhauled the responsive layout of the verified client and faculty commendations showcase on the About page (<code>about.html</code> and <code>css/styles.css</code>). Refactored <code>.commendations-grid</code> from an auto-fit column formula (<code>repeat(auto-fit, minmax(320px, 1fr))</code>)&mdash;which created an unbalanced 3-column row with awkward trailing whitespace in landscape orientation&mdash;into a balanced 2-column grid (<code>repeat(2, minmax(0, 1fr))</code>). This establishes an even $2 \times 3$ matrix across all six commendation cards and ticket records, maximizing horizontal reading space for quotes and technical resolution gists on desktop and landscape displays while collapsing smoothly into a single stacked column on mobile devices ($\le 768$px).</li>
 <li id="clock-precision-dial-and-numeral-alignment"><strong>Follow-up / verification:</strong> With assistance from Antigravity CLI, re-engineered the analog clock vector dials across the homepage (<code>index.html</code>) and full-screen homelab chronometer (<code>clock.html</code>). Resolved visual numeral and tick-mark misalignment where hour numerals were previously positioned inside the tick radius and overlapping inner dial typography. Recalculated exact trigonometric polar coordinates (x = cx + R &times; sin(&theta;), y = cy - R &times; cos(&theta;)) at 30&deg; radial increments to reposition numerals 1&ndash;12 onto a dedicated outer chapter ring safely within the clock face boundary (radius 78 on the 200px chronometer, radius 39 on the 100px station dial). Repositioned major hour batons and 48 minor minute ticks onto an interior track (R = 58&ndash;68 on chronometer, R = 29&ndash;34 on station dial) with each major baton pointing directly outward through its corresponding numeral. Adjusted hour, minute, and sweeping second hand lengths to maintain clear spatial separation, and updated <code>css/styles.css</code> with dedicated <code>.tick-min</code> stroke styling and nightstand dimmer mode contrast overrides.</li>
 <li id="station-clock-hour-numerals-and-dimmer-styling"><strong>Station clock hour numerals &amp; nightstand dimmer mode integration:</strong> With assistance from Antigravity CLI, upgraded the precision analog SVG clock dials across both the full-screen Homelab Desk Chronometer (<code>clock.html</code>) and the homepage station header widget (<code>index.html</code>) by adding clean, high-legibility hour numerals (1 through 12) aligned radially to each major tick mark. Calculated exact trigonometric polar coordinates ($x = x_0 + r \sin\theta, y = y_0 - r \cos\theta$) for both the 100&times;100 homepage miniature dial ($r = 27$) and the 200&times;200 full chronometer dial ($r = 61$). Formatted each numeral with <code>dominant-baseline="central"</code> and <code>text-anchor="middle"</code> for geometric symmetry, layer-stacked beneath the sweeping hour, minute, and second hands. Engineered responsive typography styling in <code>css/styles.css</code>, ensuring high-contrast visibility against standard daylight themes and automatic dimming to soft slate (<code>#94a3b8</code>) when nightstand dimmer mode is engaged.</li>
@@ -425,6 +433,7 @@
 				<p>Website last modified: <time datetime="2026-10-26">October 26, 2026</time></p>
 			</footer>
 		</div>
+		<script src="scripts/site-search.js?v=20261026-search-1"></script>
 		<script src="scripts/script.js?v=20261024-plasma-nav"></script>
 	</body>
 </html>
