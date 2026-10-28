@@ -77,6 +77,46 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="cloud-takeout-dedupe-mirror-title">
+<h2 id="cloud-takeout-dedupe-mirror-title">Cross-Volume Archive Deduplication &amp; Dual-Drive Mirroring: Deconstructing Google Takeout with Antigravity AI</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Tailscale SMB &middot; exFAT vs. NTFS Delta Sync &middot; PowerShell Forensics &middot; Antigravity AI Pair Programming &middot; Completed <time datetime="2026-10-28">October 28, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How pair programming with Google DeepMind's Antigravity AI turned a 70 GB nested Google Takeout maze and network sync bottleneck into an automated, zero-data-loss storage audit and 5-minute smart delta sync.</p>
+
+<h3>The Storage Sprawl Dilemma: Multi-Part Takeout &amp; Fragmented Roots</h3>
+<p>Over years of backups, data sprawl is inevitable. Across my homelab storage array&mdash;specifically drive <code>B:\</code> (<code>ONEFIVE</code>, a 500 GB NTFS partition hosted on my stationary Alpine Linux NUC and accessed remotely via Tailscale authenticated SMB) and drive <code>G:\</code> (<code>ONETB</code>, a 1 TB high-capacity local exFAT drive)&mdash;both root filesystems contained a legacy folder named <code>Z4. Drive Takeout</code>.</p>
+<p>Google Takeout exports are notoriously unwieldy: multi-part zip archives unpack into nested folder trees four to six levels deep (<code>Z4. Drive Takeout\avanek2005\takeout-20260510T175627Z-3-001\takeout-...\Takeout\Drive\05. All backups\...</code>). Compounding the confusion, previous partial extractions had left fragmented remnants scattered across the root directories of both drives&mdash;including loose files in <code>23. driveRootFilez</code>, folders like <code>05. Backups</code>, and raw timestamped export names like <code>02. Counseling Stuff-20260517T221837Z-3-001</code>.</p>
+<p>Simply wiping <code>Z4. Drive Takeout</code> was out of the question: blindly deleting 25,600+ files (~70 GB) carried massive risks of permanently destroying unique personal documents, irreplaceable family concert footage, or unindexed photo albums. Yet manually verifying and sorting every nested directory by hand would have required days of mind-numbing clicking.</p>
+
+<h3>Algorithmic File Forensics: Pairing with Antigravity AI</h3>
+<p>To eliminate the guesswork and ensure strict zero data loss, I paired up with <strong>Antigravity</strong>, Google DeepMind's agentic AI coding assistant. Operating directly in the environment through automated PowerShell inspection harnesses, Antigravity systematically indexed, cataloged, and cross-referenced all 25,616 files in <code>Z4. Drive Takeout</code> against the root directory contents of both drives.</p>
+<p>The forensic audit categorized the 69.64 GB archive into four distinct actionable buckets:</p>
+<ul>
+  <li><strong>Safe Movie Pruning (&ldquo;Yoinking&rdquo; 2.62 GB):</strong> In <code>takeout-003</code>, the audit isolated two large movies (<code>PLANES_FIRE_AND_RESCUE</code> [828 MB] and <code>The_APPLE_DUMPLING_GANG</code> [1.98 GB]). Cross-referencing against <code>G:\09. Movies\PG+G Movies\</code> proved they were 100% byte-for-byte identical duplicates, allowing them to be safely deleted immediately.</li>
+  <li><strong>Promoting 58 GB of Google Photos:</strong> The audit discovered that <code>Takeout\Google Photos</code> held 25,308 files (~58 GB) with <em>zero</em> representation anywhere on the root of either drive. Deleting the Takeout folder would have wiped out the entire photo library. Instead, we executed an instant filesystem rename, promoting the directory directly to root as <code>03. Google Photos</code> on both drives (taking 0 extra bytes and 0 seconds).</li>
+  <li><strong>Rescuing Loose Root Documents (304 MB):</strong> Nine loose Google Drive documents and videos (including a 292 MB recording <code>20210119_021608A.mp4</code>, study audio, and presentations) were extracted and consolidated directly into <code>23. driveRootFilez</code>.</li>
+  <li><strong>Recovering Irreplaceable Backups &amp; Photo Sets (8.96 GB):</strong> Deep inside <code>05. All backups</code>, the audit surfaced five irreplaceable family concert and anniversary videos (6.5 GB from 2012&ndash;2017) that existed nowhere else on any drive, plus 290 phone picture backups. These were safely migrated and merged into <code>05. Backups</code> without overwriting existing files.</li>
+</ul>
+<p>Once every byte was accounted for and safely housed, <code>Z4. Drive Takeout</code> was completely empty and permanently deleted from both drives.</p>
+
+<h3>Overcoming SMB Protocol &amp; exFAT vs. NTFS Timestamp Roadblocks</h3>
+<p>With the archive cleared, the next step was bringing <code>B:\</code> and <code>G:\</code> into clean mirror synchronization (excluding designated local folders <code>_TEMP</code> on <code>B:</code> and <code>09. Movies</code> on <code>G:</code>). However, standard Windows utilities immediately surfaced low-level filesystem incompatibilities:</p>
+<ul>
+  <li><strong>SMB Error 50 (<code>The request is not supported</code>):</strong> Standard tools like <code>robocopy</code> and <code>xcopy</code> attempting to preserve POSIX directory attributes over the remote Tailscale SMB mount failed because the underlying Linux Samba share rejects certain Windows directory attribute modifications. We adapted the tooling to handle data streams cleanly without triggering attribute errors.</li>
+  <li><strong>The exFAT Timestamp Resolution Trap:</strong> When running standard delta sync (<code>xcopy /D</code>), the process stalled on <code>19. WiiU stuf</code> (a 44.8 GB directory) and began re-copying a 14.36 GB archive over the Wi-Fi link. The cause: <code>G:\</code> is formatted as <strong>exFAT</strong> (which rounds timestamps to 2-second increments), while <code>B:\</code> is <strong>NTFS</strong> (sub-second precision). Standard timestamp comparison falsely flagged identical multi-gigabyte ISOs as &ldquo;newer&rdquo; on NTFS, threatening to drag out the sync for over 3 hours across 150+ GB of already-identical game dumps.</li>
+</ul>
+
+<h3>Engineering the Smart Delta Sync: Hours to 5 Minutes</h3>
+<p>Rather than letting network transfers waste hours re-streaming identical files, we terminated the brute-force transfer and engineered a targeted PowerShell Smart-Sync engine (<code>smart_sync.ps1</code>). The script used existence checks and strict byte-length comparison rather than fragile cross-filesystem timestamps, completely skipping the 150+ GB of verified Wii, Wii U, and ROM archives.</p>
+<p>The smart engine executed in roughly 5 minutes, targeting only true discrepancies:</p>
+<ul>
+  <li>Transferred 542 missing songs into <code>00. All Music Playlists Revamped LOCAL</code> (bringing both drives to an identical 41.86 GB audio corpus).</li>
+  <li>Synchronized developer software packages (MySQL macOS/Windows installers, Android x86 ISOs, and IPA archives) between drives in <code>08 Software</code>.</li>
+  <li>Mirrored OpenVPN profiles, Minecraft server configurations, and Windows XP legacy wallpapers.</li>
+  <li>Normalized takeout suffix folders on <code>G:\</code> (e.g., <code>02. Counseling Stuff</code> and <code>04. Personal Portfolio Website Stuff</code>) to match <code>B:\</code>.</li>
+</ul>
+<p>A post-sync verification audit confirmed 100% parity across all shared directories on both drives, transforming an intimidating, confusing archive sprawl into an organized, fully redundant storage architecture.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="assistant-two-brains-title">
 <h2 id="assistant-two-brains-title">One Assistant, Two Brains: Self-Updating AI Assistant on Google Cloud</h2>
 <p class="project-status"><span class="status-badge project-completed">Live &amp; Deployed</span> <span>Cloud Run &middot; Vertex AI Agent Builder &middot; SharePoint REST API &middot; Updated <time datetime="2026-10-22">October 22, 2026</time></span></p>
