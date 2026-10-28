@@ -77,6 +77,87 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="internal-drive-c-forensics-title">
+<h2 id="internal-drive-c-forensics-title">Autonomous Drive C Forensics &amp; Precision Reclamation: Reclaiming 65+ GB on Windows with Antigravity AI</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Parallel File Tree Forensics &middot; Reparse Point Auditing &middot; PyTorch Checkpoint Pruning &middot; Antigravity AI Pair Programming &middot; Active <time datetime="2026-10-28">October 28, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How systematic parallel filesystem inspection with Google DeepMind's Antigravity AI diagnosed a critical 93.2% capacity bottleneck on my primary Windows SSD, recovered over 65 GB in safe multi-stage sweeps, and established a zero-loss roadmap to reclaim 40+ GB more.</p>
+
+<h3>The Capacity Wall: 93.2% Full on Primary Drive C</h3>
+<p>As a developer running local machine learning fine-tuning, multiple virtualization platforms, and containerized dev environments on a primary workstation, disk storage is constantly under high pressure. On October 28, 2026, my primary 500 GB NVMe solid-state drive (<code>C:\</code>) hit a critical threshold:</p>
+<ul>
+  <li><strong>Total Capacity:</strong> 475.93 GB</li>
+  <li><strong>Used Space:</strong> 443.74 GB (<strong>93.2% capacity</strong>)</li>
+  <li><strong>Free Space Remaining:</strong> Only <strong>32.19 GB</strong></li>
+</ul>
+<p>With an active PyTorch fine-tuning workflow producing multi-epoch checkpoints, multiple VM disk images, and heavy developer caching, running below 35 GB of headroom created immediate risks of filesystem thrashing, aborted training epochs, and broken Windows virtual memory paging. I needed a systematic, zero-data-loss storage audit to pinpoint exactly what was eating the drive and safely reclaim tens of gigabytes without disrupting running environments.</p>
+
+<h3>Algorithmic Filesystem Forensics: Eliminating Recursion &amp; Junction Traps</h3>
+<p>Standard Windows tools like File Explorer and naive PowerShell recursive commands (<code>Get-ChildItem -Recurse</code>) quickly proved unusable for a drive this large: they either froze indefinitely, spawned millions of .NET object allocations that devoured system RAM, or got trapped in infinite recursion loops caused by Windows filesystem junctions (such as the legacy <code>Application Data</code> loop pointing back into <code>AppData\Local</code>).</p>
+<p>To solve this, I paired up with <strong>Antigravity</strong>, Google DeepMind's agentic AI coding assistant. Operating directly in my workstation terminal through autonomous PowerShell and Python execution harnesses, Antigravity built a high-speed multi-threaded filesystem crawler that bypassed standard pitfalls:</p>
+<ul>
+  <li><strong>Low-Level Reparse Point Detection:</strong> Inspected the Win32 file attribute bitmask (<code>st_file_attributes &amp; 0x400</code>) to identify and safely bypass directory junctions and cloud-reparse placeholders (preventing infinite loops and unwanted OneDrive file hydration).</li>
+  <li><strong>Concurrent Multi-Worker Directory Walks:</strong> Leveraged Python's <code>ThreadPoolExecutor</code> with 8 parallel worker threads using <code>os.scandir</code> directly against Windows NT filesystem APIs, scanning hundreds of thousands of files across deep subtrees in seconds.</li>
+</ul>
+<p>The forensic scan revealed the primary storage offenders across Drive C:</p>
+<ul>
+  <li><code>C:\Users\Owner</code>: <strong>232.93 GB</strong> (over 52.5% of the entire drive), dominated by <code>AppData</code> (73.6 GB), <code>Downloads</code> (56.4 GB), <code>AI_Apps</code> (19.3 GB), and <code>VirtualBox VMs</code> (21.2 GB).</li>
+  <li><code>C:\ProgramData</code>: <strong>20.23 GB</strong>, heavily consumed by a 13.88 GB BlueStacks Android emulator container.</li>
+  <li><code>C:\Windows</code>: <strong>55.63 GB</strong>, including 20.4 GB in <code>WinSxS</code> and a massive 15.0 GB in <code>System32\DriverStore</code> (accumulated superseded driver packages).</li>
+  <li>Root System Files: <strong>18.92 GB</strong> locked by <code>hiberfil.sys</code> (12.67 GB) and <code>pagefile.sys</code> (6.25 GB).</li>
+</ul>
+
+<h3>Phase 1: What We Have Cleaned Up (+65.10 GB Reclaimed)</h3>
+<p>Working collaboratively through interactive planning, we executed an incremental, safe series of surgical purges:</p>
+<ul>
+  <li><strong>Slax Linux Session Backups &amp; Build Artifacts (7.54 GB Physical Reclaim):</strong> Permanently removed <code>slax_session1_backup</code> (which held multiple multi-gigabyte sparse <code>changes.dat.*</code> persistence files) and <code>Slax-build</code> (custom ISO outputs like <code>slax-debian-xfce-custom.iso</code> and Slackware module archives).</li>
+  <li><strong>FreeBSD VirtualBox VM Decommissioning (3.18 GB):</strong> Cleanly unregistered the powered-off VM using Oracle's CLI tool:
+    <pre><code>&amp; "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" unregistervm "FreeBSD 64 bits" --delete</code></pre>
+    This safely purged the virtual disk (<code>FreeBSD 64 bits.vdi</code>) and configuration without leaving orphaned entries in the VirtualBox machine registry.</li>
+  <li><strong>Orphaned Kali VM Snapshot Removal (5.31 GB):</strong> The audit detected an orphaned 4.11 GB saved state snapshot (<code>2026-09-13...sav</code>) in <code>VirtualBox VMs\Kali 64 BITS\Snapshots</code> belonging to a VM that was no longer registered in VirtualBox, safely eliminating it while leaving active VMs (such as <code>458project</code>) completely untouched.</li>
+  <li><strong>Deep Dive on PyTorch LoRA Resumption &amp; Checkpoint Pruning (35.0 GB):</strong>
+    <p>My <code>Downloads/ACE_STEP_Dataset_Clean_30s</code> directory held over 51 GB of training outputs across multiple runs. I wanted to verify whether deleting early epoch checkpoints would break my ability to resume training from later checkpoints. Together with Antigravity, we inspected my training scripts (<code>resume_training_to_epoch100.py</code> and <code>train.py</code>) and verified that <strong>every checkpoint directory is 100% self-contained</strong>:</p>
+    <ul>
+      <li><code>adapter_model.safetensors</code> (84 MB) stores the complete cumulative LoRA weights up to that epoch.</li>
+      <li><code>training_state.pt</code> (168.3 MB) contains the complete AdamW optimizer momentum buffers, learning rate scheduler state, and global step count.</li>
+      <li>When resuming training via <code>--resume-from &lt;checkpoint_dir&gt;</code>, PyTorch loads strictly from that target folder and never references earlier epochs.</li>
+    </ul>
+    <p>With this confirmed, we performed an extensive pruning sweep:</p>
+    <ul>
+      <li>Deleted obsolete early run <code>lora_output_validated_epoch45</code> (<strong>7.48 GB</strong>).</li>
+      <li>Deleted obsolete run <code>lora_output_validated_epoch100</code> (<strong>9.94 GB</strong>).</li>
+      <li>Deleted 8 miscellaneous early test runs (epochs 1, 4, 6, 7, 12, 25, 60, and continuation tests, reclaiming <strong>7.97 GB</strong>).</li>
+      <li>Pruned 39 intermediate checkpoints from <code>lora_output_validated_epoch180</code> while preserving <code>epoch_180_loss_0.8729</code> and the exported <code>final</code> adapter for future audio sound benchmarking (reclaiming <strong>9.61 GB</strong>).</li>
+    </ul>
+  </li>
+  <li><strong>BlueStacks Android Container Purge (13.88 GB):</strong> Permanently removed <code>C:\ProgramData\BlueStacks_nxt</code>, wiping unused Android VHD virtual disks and cache.</li>
+  <li><strong>OneDrive Local Cache Dehydration:</strong> Executed <code>attrib +U -P /s /d</code> across duplicate GGUF models (<code>Z3. LM Studio Models</code>) and portable app runtimes in <code>OneDrive - Grand Valley State University (1)</code> to instruct OneDrive's Cloud Files engine to evict local disk sectors while preserving cloud availability.</li>
+</ul>
+
+<p><strong>Phase 1 Result:</strong> Free disk space on Drive C expanded from <strong>32.19 GB to 97.29 GB</strong>&mdash;a net recovery of <strong>65.10 GB of high-speed NVMe storage</strong>, bringing drive capacity down from 93.2% to <strong>79.5%</strong>.</p>
+
+<h3>Phase 2: In-Progress Roadmap (Identified Targets for 40+ GB More)</h3>
+<p>Because this project is active and ongoing, we cataloged and staged the next batch of high-yield reclamation targets to execute in subsequent pair-programming sessions:</p>
+<ul>
+  <li><strong>Prune Intermediate Checkpoints in Epoch 200 (~4.75 GB):</strong> Apply the same surgical pruning to <code>lora_output_validated_epoch200</code>&mdash;preserving our all-time lowest loss checkpoint (<code>epoch_200_loss_0.8885</code>, step 4,600) and the <code>final</code> adapter while clearing intermediate epochs 181&ndash;199.</li>
+  <li><strong>Orphaned Windows 11 VM Snapshot (5.51 GB):</strong> Remove <code>VirtualBox VMs\Windows 11\Snapshots\2026-09-13...sav</code> (an orphaned saved-state file from an unregistered VM with no base disk).</li>
+  <li><strong>Python Package Wheels &amp; Build Caches (11.1 GB):</strong> Run <code>uv cache clean</code> (<strong>8.0 GB</strong>) and <code>pip cache purge</code> (<strong>3.1 GB</strong>) in <code>AppData\Local</code> to wipe downloaded package archives without affecting any installed virtual environment.</li>
+  <li><strong>User Temp Scratches (4.18 GB):</strong> Purge scratch installers and crash logs in <code>AppData\Local\Temp</code>.</li>
+  <li><strong>Academic Lab Forensics Image (7.0 GB):</strong> Archive <code>Documents\cis430\lab05\evidence\InCh05.img</code> (6.0 GB raw forensic dump) to external homelab cold storage.</li>
+  <li><strong>Disable Windows Fast Startup / Hibernation (12.67 GB):</strong> Execute <code>powercfg /h off</code> from an elevated administrator command prompt to permanently remove <code>C:\hiberfil.sys</code>.</li>
+  <li><strong>WSL2 Debian Virtual Disk Compaction (up to 15 GB):</strong> Run <code>diskpart</code> compaction against <code>AppData\Local\wsl\...\ext4.vhdx</code> (currently 24.1 GB on host while only 19 GB is used internally).</li>
+</ul>
+
+<h3>Session Telemetry &amp; Resuming with Antigravity AI</h3>
+<p>To ensure continuity and reproducibility across sessions, the entire investigation trajectory, environment state, and diagnostic tooling are maintained in Google DeepMind's Antigravity assistant system.</p>
+<ul>
+  <li><strong>Antigravity CLI Conversation ID:</strong> <code>362b53f1-3a98-4019-bde4-e886b81f209a</code></li>
+  <li><strong>How to Resume This Project Session:</strong> From any terminal on the workstation running Antigravity CLI, run:
+    <pre><code>agy --resume 362b53f1-3a98-4019-bde4-e886b81f209a</code></pre>
+    Or open the Antigravity session manager and select this conversation to continue directly from the current filesystem state.</li>
+</ul>
+</section>
+
+
 <section class="project-entry" aria-labelledby="cloud-takeout-dedupe-mirror-title">
 <h2 id="cloud-takeout-dedupe-mirror-title">Cross-Volume Archive Deduplication &amp; Dual-Drive Mirroring: Deconstructing Google Takeout with Antigravity AI</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Tailscale SMB &middot; exFAT vs. NTFS Delta Sync &middot; PowerShell Forensics &middot; Antigravity AI Pair Programming &middot; Completed <time datetime="2026-10-28">October 28, 2026</time></span></p>
