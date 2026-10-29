@@ -142,13 +142,18 @@
 							<span id="editor-file-label">main.py</span>
 						</div>
 						<div class="editor-tools">
+							<div class="editor-syntax-status" id="editor-syntax-status" title="Live Syntax Checker">
+								<span class="status-dot clean"></span>
+								<span class="status-text">No syntax errors</span>
+							</div>
 							<span class="keyboard-hint"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> to Run</span>
 							<button type="button" class="btn-editor-action" id="btn-copy-code" title="Copy Code">📋 Copy</button>
 						</div>
 					</div>
 					<div class="editor-body">
-						<div class="line-numbers" id="line-numbers" aria-hidden="true">1</div>
-						<textarea id="code-editor" class="code-textarea" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Code Editor"></textarea>
+						<div class="line-numbers" id="line-numbers" aria-hidden="true"></div>
+						<textarea id="code-editor" class="code-textarea" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off" aria-label="Code Editor"></textarea>
+						<div id="gutter-tooltip" class="gutter-tooltip" hidden></div>
 					</div>
 				</section>
 

@@ -139,20 +139,415 @@
 	};
 
 	// ==========================================
-	// 2. Editor Mechanics (Line Numbers, Tab Key)
+	// 2. Editor Mechanics & Live Syntax Checker
 	// ==========================================
-	function updateLineNumbers() {
-		var lines = codeEditor.value.split("\n").length;
-		var numbersArr = [];
-		for (var i = 1; i <= lines; i++) {
-			numbersArr.push(i);
-		}
-		lineNumbers.textContent = numbersArr.join("\n");
+	var gutterTooltip = document.getElementById("gutter-tooltip");
+	var editorSyntaxStatus = document.getElementById("editor-syntax-status");
+
+	function escapeHtml(str) {
+		if (!str) return "";
+		return String(str)
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#039;");
 	}
 
-	codeEditor.addEventListener("input", updateLineNumbers);
+	function jumpToLine(lineNum) {
+		if (!lineNum || lineNum < 1) return;
+		var lineHeight = 22;
+		codeEditor.focus();
+		codeEditor.scrollTop = Math.max(0, (lineNum - 3) * lineHeight);
+		lineNumbers.scrollTop = codeEditor.scrollTop;
+	}
+
+	function checkLiveSyntax(code, lang) {
+		var errors = [];
+		if (!code || !code.trim()) return errors;
+		var lines = code.split("\n");
+
+		// 1. PYTHON
+		if (lang === "python") {
+			var stack = [];
+			var inTripleQuote = null;
+			var inTripleLine = 0;
+
+			for (var i = 0; i < lines.length; i++) {
+				var rawLine = lines[i];
+				var lineNum = i + 1;
+				var trimmed = rawLine.trim();
+
+				var tq3 = rawLine.match(/"""/g);
+				var sq3 = rawLine.match(/'''/g);
+				if (tq3 && tq3.length % 2 === 1) {
+					if (inTripleQuote === '"""') inTripleQuote = null;
+					else if (!inTripleQuote) { inTripleQuote = '"""'; inTripleLine = lineNum; }
+				} else if (sq3 && sq3.length % 2 === 1) {
+					if (inTripleQuote === "'''") inTripleQuote = null;
+					else if (!inTripleQuote) { inTripleQuote = "'''"; inTripleLine = lineNum; }
+				}
+
+				if (inTripleQuote) continue;
+				if (!trimmed || trimmed.startsWith("#")) continue;
+
+				var codePart = trimmed.split("#")[0].trim();
+				if (!codePart) continue;
+
+				var singleQuotes = (codePart.match(/(?<!\\)'/g) || []).length;
+				var doubleQuotes = (codePart.match(/(?<!\\)"/g) || []).length;
+				if (singleQuotes % 2 !== 0 && doubleQuotes % 2 === 0) {
+					errors.push({ line: lineNum, message: "SyntaxError: unterminated string literal (line " + lineNum + ")" });
+				} else if (doubleQuotes % 2 !== 0 && singleQuotes % 2 === 0) {
+					errors.push({ line: lineNum, message: "SyntaxError: unterminated string literal (line " + lineNum + ")" });
+				}
+
+				for (var c = 0; c < codePart.length; c++) {
+					var ch = codePart[c];
+					if (ch === '(' || ch === '[' || ch === '{') {
+						stack.push({ char: ch, line: lineNum });
+					} else if (ch === ')' || ch === ']' || ch === '}') {
+						if (stack.length === 0) {
+							errors.push({ line: lineNum, message: "SyntaxError: unmatched closing '" + ch + "'" });
+						} else {
+							var top = stack.pop();
+							var match = (top.char === '(' && ch === ')') || (top.char === '[' && ch === ']') || (top.char === '{' && ch === '}');
+							if (!match) {
+								errors.push({ line: lineNum, message: "SyntaxError: closing '" + ch + "' does not match opening '" + top.char + "' from line " + top.line });
+							}
+						}
+					}
+				}
+
+				if (stack.length === 0) {
+					var isHeader = /^(if\s+|elif\s+|else\s*:?|for\s+|while\s+|def\s+|class\s+|try\s*:?|except\s*|finally\s*:?|with\s+|async\s+def\s+|async\s+for\s+|async\s+with\s+)/.test(codePart);
+					if (isHeader) {
+						if (!codePart.endsWith(":")) {
+							errors.push({ line: lineNum, message: "SyntaxError: expected ':'" });
+						}
+						if (/^(if|elif|while)\s+[^=]*=(?!=)/.test(codePart) && !codePart.includes(":=")) {
+							errors.push({ line: lineNum, message: "SyntaxError: invalid syntax (maybe you meant '==' instead of '='?)" });
+						}
+					}
+				}
+
+				if (/^print\s+["'0-9]/.test(codePart)) {
+					errors.push({ line: lineNum, message: "SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?" });
+				}
+			}
+
+			if (inTripleQuote) {
+				errors.push({ line: inTripleLine, message: "SyntaxError: EOF while scanning triple-quoted string literal" });
+			}
+			while (stack.length > 0) {
+				var unclosed = stack.pop();
+				errors.push({ line: unclosed.line, message: "SyntaxError: unclosed bracket '" + unclosed.char + "'" });
+			}
+		}
+
+		// 2. JAVASCRIPT
+		else if (lang === "javascript") {
+			try {
+				new Function(code);
+			} catch (jsErr) {
+				var line = 1;
+				var msg = jsErr.message || "SyntaxError: Invalid syntax";
+				if (jsErr.stack) {
+					var m = jsErr.stack.match(/<anonymous>:(\d+):(\d+)/) || jsErr.stack.match(/anonymous\s+line\s+(\d+)/i) || jsErr.stack.match(/:(\d+):(\d+)\)?$/m);
+					if (m && m[1]) {
+						var parsedLine = parseInt(m[1], 10) - 2;
+						if (parsedLine >= 1 && parsedLine <= lines.length) {
+							line = parsedLine;
+						}
+					}
+				}
+				errors.push({ line: line, message: "SyntaxError: " + msg.replace(/^SyntaxError:\s*/, "") });
+			}
+		}
+
+		// 3. SQL
+		else if (lang === "sql") {
+			var stack = [];
+			for (var i = 0; i < lines.length; i++) {
+				var rawLine = lines[i];
+				var lineNum = i + 1;
+				var trimmed = rawLine.trim();
+				if (!trimmed || trimmed.startsWith("--") || trimmed.startsWith("/*")) continue;
+
+				if (/\b(SELCT|SEELCT|SLCT)\b/i.test(trimmed)) {
+					errors.push({ line: lineNum, message: "SyntaxError: unrecognized token near 'SELCT' (did you mean SELECT?)" });
+				} else if (/\bFORM\b/i.test(trimmed) && !/["'`]FORM["'`]/i.test(trimmed)) {
+					errors.push({ line: lineNum, message: "SyntaxError: unrecognized token 'FORM' (did you mean FROM?)" });
+				} else if (/\b(WHER|WEHRE)\b/i.test(trimmed)) {
+					errors.push({ line: lineNum, message: "SyntaxError: unrecognized token near 'WHER' (did you mean WHERE?)" });
+				} else if (/\b(INSRT|UPDAT|DELET)\b/i.test(trimmed)) {
+					errors.push({ line: lineNum, message: "SyntaxError: syntax error near '" + trimmed.split(/\s+/)[0] + "'" });
+				}
+
+				var quotes = (trimmed.match(/'/g) || []).length;
+				if (quotes % 2 !== 0) {
+					errors.push({ line: lineNum, message: "SyntaxError: unmatched single quote '" });
+				}
+
+				for (var c = 0; c < trimmed.length; c++) {
+					if (trimmed[c] === '(') stack.push(lineNum);
+					else if (trimmed[c] === ')') {
+						if (stack.length === 0) {
+							errors.push({ line: lineNum, message: "SyntaxError: unexpected closing parenthesis ')'" });
+						} else {
+							stack.pop();
+						}
+					}
+				}
+			}
+			while (stack.length > 0) {
+				errors.push({ line: stack.pop(), message: "SyntaxError: unclosed parenthesis '('" });
+			}
+		}
+
+		// 4. ASSEMBLY (x86)
+		else if (lang === "assembly") {
+			var VALID_OPCODES = {
+				"MOV": 2, "ADD": 2, "SUB": 2, "CMP": 2, "AND": 2, "OR": 2, "XOR": 2, "TEST": 2, "SHL": 2, "SHR": 2, "LEA": 2,
+				"INC": 1, "DEC": 1, "MUL": 1, "DIV": 1, "IMUL": 1, "IDIV": 1, "NOT": 1, "NEG": 1,
+				"PUSH": 1, "POP": 1, "JMP": 1, "JE": 1, "JZ": 1, "JNE": 1, "JNZ": 1, "JG": 1, "JL": 1, "JGE": 1, "JLE": 1,
+				"CALL": 1, "INT": 1, "LOOP": 1,
+				"RET": 0, "NOP": 0, "HLT": 0
+			};
+
+			for (var i = 0; i < lines.length; i++) {
+				var rawLine = lines[i];
+				var lineNum = i + 1;
+				var trimmed = rawLine.trim();
+				if (!trimmed || trimmed.startsWith(";") || trimmed.startsWith("//")) continue;
+
+				var cleanLine = trimmed.split(";")[0].trim();
+				if (!cleanLine || cleanLine.endsWith(":")) continue;
+				if (/^(section|\.section|global|\.global|extern|align|bits|org|db|dw|dd|resb)/i.test(cleanLine)) continue;
+
+				var parts = cleanLine.split(/\s+/);
+				var mnemonic = parts[0].toUpperCase();
+
+				if (VALID_OPCODES[mnemonic] === undefined) {
+					errors.push({ line: lineNum, message: "SyntaxError: unknown instruction opcode '" + parts[0] + "'" });
+					continue;
+				}
+
+				var expectedArity = VALID_OPCODES[mnemonic];
+				var operandStr = cleanLine.substring(parts[0].length).trim();
+				var operands = operandStr ? operandStr.split(",").map(function(s){ return s.trim(); }) : [];
+
+				if (expectedArity === 2) {
+					if (operands.length !== 2 || !operands[0] || !operands[1]) {
+						errors.push({ line: lineNum, message: "SyntaxError: instruction '" + mnemonic + "' requires 2 comma-separated operands" });
+						continue;
+					}
+					if (/^-?[0-9]/.test(operands[0])) {
+						errors.push({ line: lineNum, message: "SyntaxError: destination operand cannot be a constant number" });
+						continue;
+					}
+				} else if (expectedArity === 1) {
+					if (operands.length !== 1 || !operands[0]) {
+						errors.push({ line: lineNum, message: "SyntaxError: instruction '" + mnemonic + "' requires exactly 1 operand" });
+						continue;
+					}
+				} else if (expectedArity === 0) {
+					if (operands.length > 0 && operands[0]) {
+						errors.push({ line: lineNum, message: "SyntaxError: instruction '" + mnemonic + "' takes no operands" });
+						continue;
+					}
+				}
+			}
+		}
+
+		// 5. C, C++, JAVA, C# (C-FAMILY)
+		else if (lang === "c" || lang === "cpp" || lang === "java" || lang === "csharp") {
+			var stack = [];
+			var inBlockComment = false;
+
+			for (var i = 0; i < lines.length; i++) {
+				var rawLine = lines[i];
+				var lineNum = i + 1;
+				var trimmed = rawLine.trim();
+
+				if (inBlockComment) {
+					if (trimmed.includes("*/")) {
+						inBlockComment = false;
+						trimmed = trimmed.split("*/")[1].trim();
+					} else {
+						continue;
+					}
+				}
+
+				if (!trimmed) continue;
+				if (trimmed.startsWith("/*")) {
+					if (!trimmed.includes("*/")) { inBlockComment = true; continue; }
+					trimmed = trimmed.split("*/")[1].trim();
+				}
+				if (!trimmed || trimmed.startsWith("//")) continue;
+
+				var codePart = trimmed.split("//")[0].trim();
+				if (!codePart) continue;
+
+				if (codePart.startsWith("#")) {
+					if (/^#include\b/.test(codePart) && !/<[^>]+>|"[^"]+"/.test(codePart)) {
+						errors.push({ line: lineNum, message: "SyntaxError: #include expects <header> or \"header\"" });
+					}
+					continue;
+				}
+
+				for (var c = 0; c < codePart.length; c++) {
+					var ch = codePart[c];
+					if (ch === '(' || ch === '[' || ch === '{') {
+						stack.push({ char: ch, line: lineNum });
+					} else if (ch === ')' || ch === ']' || ch === '}') {
+						if (stack.length === 0) {
+							errors.push({ line: lineNum, message: "SyntaxError: unexpected closing token '" + ch + "'" });
+						} else {
+							var top = stack.pop();
+							var match = (top.char === '(' && ch === ')') || (top.char === '[' && ch === ']') || (top.char === '{' && ch === '}');
+							if (!match) {
+								errors.push({ line: lineNum, message: "SyntaxError: closing '" + ch + "' does not match opening '" + top.char + "' from line " + top.line });
+							}
+						}
+					}
+				}
+
+				var ctrlMatch = codePart.match(/^(if|while|for|switch)\b\s*([^(].*)$/);
+				if (ctrlMatch && !ctrlMatch[2].startsWith("(")) {
+					errors.push({ line: lineNum, message: "SyntaxError: expected '(' after '" + ctrlMatch[1] + "'" });
+				}
+
+				if (lang === "java") {
+					if (/\bsystem\.out\.print/i.test(codePart) && !codePart.includes("System.out.print")) {
+						errors.push({ line: lineNum, message: "SyntaxError: package 'system' does not exist; 'System' must be capitalized" });
+					}
+					if (/\bstring\s+[a-zA-Z0-9_]+\s*=/i.test(codePart) && !codePart.includes("String ")) {
+						errors.push({ line: lineNum, message: "SyntaxError: cannot find symbol 'string' (did you mean 'String'?)" });
+					}
+				} else if (lang === "csharp") {
+					if (/\bconsole\.write/i.test(codePart) && !codePart.includes("Console.Write")) {
+						errors.push({ line: lineNum, message: "SyntaxError: The name 'console' does not exist (did you mean 'Console'?)" });
+					}
+				}
+
+				if ((lang === "c" || lang === "cpp") && /\b(var|let)\s+[a-zA-Z0-9_]+\s*=/.test(codePart)) {
+					errors.push({ line: lineNum, message: "SyntaxError: 'var'/'let' is not valid in " + (lang === "c" ? "C" : "C++") + " (use explicit type or 'auto')" });
+				}
+
+				var isHeader = /^(if|else|for|while|do|switch|case|default|class|struct|enum|namespace|public|private|protected|interface)\b/.test(codePart);
+				var isFuncHeader = /\)\s*\{?$/.test(codePart) && !/=\s*\(/.test(codePart) && !codePart.startsWith("return");
+				var endsWithSafe = /[;{}:,\\]$/.test(codePart);
+
+				if (!endsWithSafe && !isHeader && !isFuncHeader) {
+					var isStmt = /^(return|using|import|package|int|double|float|char|bool|boolean|void|long|short|auto|var|const|std::|System\.|Console\.|printf|cout)/.test(codePart) ||
+								 /[a-zA-Z0-9_]+\s*=\s*[^=]+$/.test(codePart) ||
+								 /\w+\s*<<\s*/.test(codePart) ||
+								 /\w+\s*\([^)]*\)$/.test(codePart);
+					if (isStmt) {
+						var msg = (lang === "java" || lang === "csharp") ? "SyntaxError: ';' expected" : "SyntaxError: expected ';' at end of statement";
+						errors.push({ line: lineNum, message: msg });
+					}
+				}
+			}
+
+			while (stack.length > 0) {
+				var unclosed = stack.pop();
+				errors.push({ line: unclosed.line, message: "SyntaxError: unclosed block '" + unclosed.char + "'" });
+			}
+		}
+
+		return errors;
+	}
+
+	function updateLineNumbers() {
+		var code = codeEditor.value;
+		var lines = code.split("\n");
+		var totalLines = lines.length;
+		var currentLang = langSelect.value;
+
+		var errors = checkLiveSyntax(code, currentLang);
+		var errorMap = {};
+		for (var e = 0; e < errors.length; e++) {
+			var err = errors[e];
+			if (!errorMap[err.line]) {
+				errorMap[err.line] = err.message;
+			}
+		}
+
+		var html = "";
+		for (var i = 1; i <= totalLines; i++) {
+			var hasErr = !!errorMap[i];
+			var errMsg = hasErr ? escapeHtml(errorMap[i]) : "";
+			var rawMsgAttr = hasErr ? ' data-error="' + errMsg + '"' : '';
+			html += '<div class="gutter-row' + (hasErr ? ' has-syntax-error' : '') + '" data-line="' + i + '"' + rawMsgAttr + ' title="' + (hasErr ? errMsg : '') + '">';
+			html += '<span class="gutter-marker">' + (hasErr ? '⚠️' : '') + '</span>';
+			html += '<span class="gutter-num">' + i + '</span>';
+			html += '</div>';
+		}
+		lineNumbers.innerHTML = html;
+
+		// Update syntax status badge in editor header
+		if (editorSyntaxStatus) {
+			if (errors.length === 0) {
+				editorSyntaxStatus.className = "editor-syntax-status";
+				editorSyntaxStatus.innerHTML = '<span class="status-dot clean"></span><span class="status-text">No syntax errors</span>';
+				editorSyntaxStatus.title = "Live Syntax: Clean";
+				editorSyntaxStatus.onclick = null;
+			} else {
+				editorSyntaxStatus.className = "editor-syntax-status has-errors";
+				var firstLine = errors[0].line;
+				var text = errors.length === 1 ? "1 error on line " + firstLine : errors.length + " syntax errors";
+				editorSyntaxStatus.innerHTML = '<span class="status-dot error"></span><span class="status-text">⚠️ ' + text + '</span>';
+				editorSyntaxStatus.title = "Click to jump to line " + firstLine + " (" + errors[0].message + ")";
+				editorSyntaxStatus.onclick = function() {
+					jumpToLine(firstLine);
+				};
+			}
+		}
+	}
+
+	// Hover tooltips on line numbers gutter
+	lineNumbers.addEventListener("mouseover", function (e) {
+		var row = e.target.closest(".gutter-row.has-syntax-error");
+		if (row && row.dataset.error && gutterTooltip) {
+			var lineIndex = parseInt(row.dataset.line, 10);
+			var rowTop = 14 + (lineIndex - 1) * 22 - lineNumbers.scrollTop + 11;
+			gutterTooltip.textContent = row.dataset.error;
+			gutterTooltip.style.top = rowTop + "px";
+			gutterTooltip.hidden = false;
+		}
+	});
+
+	lineNumbers.addEventListener("mouseout", function (e) {
+		if (!e.relatedTarget || !lineNumbers.contains(e.relatedTarget)) {
+			if (gutterTooltip) gutterTooltip.hidden = true;
+		} else {
+			var row = e.relatedTarget.closest(".gutter-row.has-syntax-error");
+			if (!row && gutterTooltip) {
+				gutterTooltip.hidden = true;
+			}
+		}
+	});
+
+	lineNumbers.addEventListener("click", function (e) {
+		var row = e.target.closest(".gutter-row");
+		if (row && row.dataset.line) {
+			jumpToLine(parseInt(row.dataset.line, 10));
+		}
+	});
+
+	var syntaxDebounceTimer = null;
+	codeEditor.addEventListener("input", function () {
+		clearTimeout(syntaxDebounceTimer);
+		syntaxDebounceTimer = setTimeout(updateLineNumbers, 120);
+	});
+
 	codeEditor.addEventListener("scroll", function () {
 		lineNumbers.scrollTop = codeEditor.scrollTop;
+		if (gutterTooltip && !gutterTooltip.hidden) {
+			gutterTooltip.hidden = true;
+		}
 	});
 
 	// Tab key indentation handling
