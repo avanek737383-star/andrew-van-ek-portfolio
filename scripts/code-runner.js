@@ -14,6 +14,13 @@
 	var codeEditor = document.getElementById("code-editor");
 	var lineNumbers = document.getElementById("line-numbers");
 	var btnRun = document.getElementById("btn-run");
+	var platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
+	var isMac = /Mac|iPhone|iPad|iPod/i.test(platform);
+	var runShortcut = isMac ? "⌘+Enter" : "Ctrl+Enter";
+	var shortcutHint = document.getElementById("run-shortcut-hint");
+	if (shortcutHint) shortcutHint.textContent = runShortcut;
+	btnRun.title = "Run Code (" + runShortcut + ")";
+	btnRun.setAttribute("aria-keyshortcuts", isMac ? "Meta+Enter" : "Control+Enter");
 	var btnReset = document.getElementById("btn-reset");
 	var btnCopyCode = document.getElementById("btn-copy-code");
 	var editorFileLabel = document.getElementById("editor-file-label");
@@ -461,6 +468,7 @@
 	}
 
 	function updateLineNumbers() {
+		if (gutterTooltip) gutterTooltip.hidden = true;
 		var code = codeEditor.value;
 		var lines = code.split("\n");
 		var totalLines = lines.length;
@@ -480,7 +488,7 @@
 			var hasErr = !!errorMap[i];
 			var errMsg = hasErr ? escapeHtml(errorMap[i]) : "";
 			var rawMsgAttr = hasErr ? ' data-error="' + errMsg + '"' : '';
-			html += '<div class="gutter-row' + (hasErr ? ' has-syntax-error' : '') + '" data-line="' + i + '"' + rawMsgAttr + ' title="' + (hasErr ? errMsg : '') + '">';
+			html += '<div class="gutter-row' + (hasErr ? ' has-syntax-error' : '') + '" data-line="' + i + '"' + rawMsgAttr + '>';
 			html += '<span class="gutter-marker">' + (hasErr ? '⚠️' : '') + '</span>';
 			html += '<span class="gutter-num">' + i + '</span>';
 			html += '</div>';
@@ -559,9 +567,9 @@
 			this.value = this.value.substring(0, start) + "    " + this.value.substring(end);
 			this.selectionStart = this.selectionEnd = start + 4;
 			updateLineNumbers();
-		} else if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+		} else if (e.key === "Enter" && (isMac ? e.metaKey : e.ctrlKey) && !e.altKey && !e.shiftKey && !e.isComposing) {
 			e.preventDefault();
-			btnRun.click();
+			if (!e.repeat) btnRun.click();
 		}
 	});
 

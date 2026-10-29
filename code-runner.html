@@ -9,7 +9,7 @@
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261026-nav-search-2">
-	<link rel="stylesheet" href="css/code-runner.css?v=20261029-runner-1">
+	<link rel="stylesheet" href="css/code-runner.css?v=20261029-runner-2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -127,9 +127,7 @@
 					<button type="button" class="btn-tool btn-reset" id="btn-reset" title="Reset code or database schema">
 						🔄 Reset
 					</button>
-					<button type="button" class="btn-tool btn-run" id="btn-run" title="Run Code (Ctrl+Enter)">
-						<span class="run-icon">▶</span> Run Code
-					</button>
+
 				</div>
 			</div>
 
@@ -146,7 +144,10 @@
 								<span class="status-dot clean"></span>
 								<span class="status-text">No syntax errors</span>
 							</div>
-							<span class="keyboard-hint"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> to Run</span>
+							<button type="button" class="btn-tool btn-run" id="btn-run" title="Run Code">
+								<span class="run-icon" aria-hidden="true">▶</span> Run Code
+								<span class="keyboard-hint" id="run-shortcut-hint" aria-hidden="true"></span>
+							</button>
 							<button type="button" class="btn-editor-action" id="btn-copy-code" title="Copy Code">📋 Copy</button>
 						</div>
 					</div>
@@ -181,7 +182,7 @@
 					<div class="results-body">
 						<!-- Terminal View -->
 						<div class="result-view active" id="view-terminal">
-							<pre class="terminal-stdout" id="terminal-stdout">Click "Run Code" or press Ctrl+Enter to execute.</pre>
+							<pre class="terminal-stdout" id="terminal-stdout">Click "Run Code" to execute.</pre>
 
 							<!-- Plain English Error Coach Box -->
 							<div class="coach-card" id="coach-card" hidden>
@@ -283,12 +284,12 @@
 
 		<footer>
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-10-29T11:25:56-04:00">October 29, 2026 at 11:25:56 AM EST</time></p>
+			<p>Website last modified: <time datetime="2026-10-29T11:42:45-04:00">October 29, 2026 at 11:42:45 AM EDT</time></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 	<script src="scripts/script.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/code-runner.js?v=20261029-runner-1"></script>
+	<script src="scripts/code-runner.js?v=20261029-runner-2"></script>
 </body>
 </html>

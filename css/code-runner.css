@@ -269,6 +269,12 @@
 	gap: 10px;
 }
 
+.btn-run .keyboard-hint {
+	color: #e0f2fe;
+	font-size: 0.7rem;
+	font-weight: 400;
+}
+
 .keyboard-hint {
 	font-size: 0.75rem;
 	color: #64748b;
@@ -388,7 +394,9 @@
 	font-size: 12px;
 	font-family: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
 	white-space: pre-wrap;
-	max-width: 520px;
+	max-width: min(520px, calc(100% - 80px));
+	box-sizing: border-box;
+	overflow-wrap: anywhere;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
 	z-index: 100;
 	pointer-events: none;
@@ -953,4 +961,9 @@
 .modal-note a {
 	color: #38bdf8;
 	text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+	.editor-pane .pane-header { flex-wrap: wrap; gap: 8px; }
+	.editor-tools { flex-wrap: wrap; }
 }
