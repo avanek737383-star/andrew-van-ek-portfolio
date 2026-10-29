@@ -41,6 +41,7 @@
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
 						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
+						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
 					</ul>
 				</li>
 				<li class="nav-item-dropdown">
@@ -1262,6 +1263,57 @@
 </ul>
 
 <p><a href="ai-predictor.html" class="stats-teaser-btn" style="display:inline-flex; align-items:center; gap:8px; background:#0056b3; color:#ffffff; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:700; margin-top:8px;"><span>Play Human vs. AI Neural Coin Challenge Lab</span> <span aria-hidden="true">&rarr;</span></a></p>
+</section>
+
+
+<section class="project-entry" aria-labelledby="polyglot-code-runner-title">
+<h2 id="polyglot-code-runner-title">Interactive Polyglot Code Runner &amp; Plain-English Error Coach: Zero-Download In-Browser Execution &amp; Isolated Host Sandbox</h2>
+<p class="project-status"><span class="status-badge project-completed">Live Production</span> <span>Interactive WebAssembly Suite &amp; MFA-Guarded Host Compiler</span></p>
+
+<p>A zero-download, in-browser code execution playground and intelligent error diagnostic coach designed to solve a ubiquitous barrier in software engineering education: the overhead of installing compilers, runtime environments, package managers, and toolchains just to experiment with a code snippet or understand an algorithmic concept. Deployed directly within this portfolio (<a href="code-runner.html"><code>code-runner.html</code></a>), visitors can write, execute, inspect, and debug code across eight diverse languages and paradigms with zero local setup.</p>
+
+<div class="project-metrics" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin:16px 0;">
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
+    <strong style="display:block; font-size:1.15rem; color:#0284c7;">100% In-Browser</strong>
+    <span style="font-size:0.8rem; color:#64748b;">Tier 1 WASM / Web Worker isolation</span>
+  </div>
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
+    <strong style="display:block; font-size:1.15rem; color:#059669;">8 Languages</strong>
+    <span style="font-size:0.8rem; color:#64748b;">Python, JS, SQL, x86, C, C++, Java, C#</span>
+  </div>
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
+    <strong style="display:block; font-size:1.15rem; color:#d97706;">TOTP MFA Guarded</strong>
+    <span style="font-size:0.8rem; color:#64748b;">Zero NUC load &middot; Isolated Linux HP host</span>
+  </div>
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
+    <strong style="display:block; font-size:1.15rem; color:#7c3aed;">Plain-English Coach</strong>
+    <span style="font-size:0.8rem; color:#64748b;">Rookie trap detection &amp; copy-paste fixes</span>
+  </div>
+</div>
+
+<h3>Multi-Tier Execution Architecture &amp; Sandboxing</h3>
+<ul>
+  <li><strong>Tier 1: Client-Side WebAssembly &amp; Web Workers (Zero Server Load):</strong>
+    <ul>
+      <li><strong>Python 3.12:</strong> Bootstrapped through Pyodide (WASM CPython 3.12 compilation) with virtualized standard library execution and real-time <code>stdout</code>/<code>stderr</code> stream redirection.</li>
+      <li><strong>JavaScript:</strong> Evaluated inside an isolated Web Worker sandbox with strict execution time guards and custom <code>console.log</code> intercepts.</li>
+      <li><strong>SQL &amp; Relational Persistence:</strong> Full SQLite relational database engine compiled to WASM via <code>sql.js</code>. Queries persist client-side within browser <code>sessionStorage</code> across page navigations, complete with visual table rendering, column headers, and a one-click <em>Reset Sample Database</em> action.</li>
+      <li><strong>x86 / 8086 Assembly CPU Simulator:</strong> Custom-built 32-bit register simulator featuring a live animated register bank (<code>EAX</code>, <code>EBX</code>, <code>ECX</code>, <code>EDX</code>, <code>ESI</code>, <code>EDI</code>, <code>ESP</code>, <code>EIP</code>, and status flags <code>ZF</code>, <code>CF</code>, <code>SF</code>), instruction stepping, memory inspections, and real-time operand state changes.</li>
+      <li><strong>C Simulation:</strong> Zero-dependency ANSI C pre-compilation parser executing formatted <code>printf</code>, variable scopes, mathematical calculations, and standard loops entirely in-memory.</li>
+    </ul>
+  </li>
+  <li><strong>Tier 2: Native Host Sandboxing &amp; NUC Decoupling:</strong>
+    To protect the primary production Alpine NUC (which hosts Samba file shares, Tailscale routing, and site ingress), untrusted compilation for resource-heavy compiled languages (Java, C++, C#) is strictly decoupled and delegated to the dedicated Linux HP workstation (<code>100.110.13.11</code>). The NUC acts solely as a static reverse proxy and will never execute foreign binaries.
+  </li>
+  <li><strong>Duo Mobile TOTP Multi-Factor Authentication:</strong>
+    Compiled backend languages require an administrator passkey. Borrowing from modern paywall UI patterns, selecting Java, C++, or C# presents an elegant, dismissible MFA overlay requiring Andrew's 6-digit Duo Mobile Authenticator code. Visitors can freely cancel or click <em>&ldquo;Return to In-Browser Mode&rdquo;</em> at any time to immediately continue experimenting with Tier 1 languages without friction.
+  </li>
+  <li><strong>Plain-English Error Coach:</strong>
+    Rather than dumping cryptic compiler stack traces or unhelpful hex fault codes, an integrated cognitive diagnostics engine intercepts runtime exceptions and parses common beginner traps (such as missing colons in Python, forgotten semicolons in C/C++/Java, <code>NullPointerException</code>, array index out of bounds, <code>Segmentation fault (core dumped)</code>, and missing SQL tables). It outputs a three-part diagnostic breakdown: the raw system error, a plain-English explanation of <em>why</em> the machine was confused, and a concrete copy-paste code snippet showing how to resolve it.
+  </li>
+</ul>
+
+<p><a href="code-runner.html" class="stats-teaser-btn" style="display:inline-flex; align-items:center; gap:8px; background:#0056b3; color:#ffffff; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:700; margin-top:8px;"><span>Launch Interactive Code Runner &amp; Error Coach</span> <span aria-hidden="true">&rarr;</span></a></p>
 </section>
 
 <section class="project-entry" aria-labelledby="custom-domain-email-title">

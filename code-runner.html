@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Polyglot Code Runner &amp; Error Coach | Andrew Van Ek Portfolio</title>
+	<meta name="description" content="Zero-install in-browser code runner across Python, JavaScript, SQL, Assembly, C, C++, Java, and C# featuring pedagogical plain-English error coaching and isolated sandbox execution.">
+	<link rel="icon" href="favicon.ico" sizes="any">
+	<link rel="icon" href="favicon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="css/styles.css?v=20261026-nav-search-2">
+	<link rel="stylesheet" href="css/code-runner.css?v=20261029-runner-1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- Pyodide for In-Browser Python 3 -->
+	<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js" defer></script>
+	<!-- SQL.js for In-Browser SQLite/MySQL WASM -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.js" defer></script>
+</head>
+<body>
+	<div class="container">
+		<nav class="tablet-desktop">
+			<ul id="site-navigation">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+						<li><a href="lab.html">Live AI Lab</a></li>
+						<li><a href="council.html">AI Chatroom</a></li>
+						<li><a href="moltbook.html">Moltbook Agent</a></li>
+						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
+						<li><a href="code-runner.html" aria-current="page">Code Runner &amp; Coach</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="stats.html">Stats for Nerds</a></li>
+						<li><a href="maintenance.html">Maintenance Log</a></li>
+						<li><a href="clock.html">Homelab Desk Clock</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="job.html">Skills &amp; Toolkit</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-search">
+					<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+						<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						<span>Search</span>
+						<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<main class="runner-container">
+			<!-- Header / Hero -->
+			<header class="runner-hero">
+				<h1>Polyglot Code Runner &amp; Error Coach</h1>
+				<p class="runner-subtitle">
+					Instant zero-download browser execution across Python, JavaScript, SQL, Assembly, C, C++, Java, and C#. Built with a pedagogical <strong>Plain-English Error Coach</strong> that diagnoses real compiler errors, explains the underlying rookie misconception, and teaches language mechanics in plain English.
+				</p>
+				<div class="runner-spec-ribbon">
+					<span class="spec-chip">⚡ <strong>Tier 1 (Browser WASM):</strong> <span class="spec-highlight">Python 3.12 &bull; JS Worker &bull; SQL/WASM &bull; x86 CPU &bull; C</span></span>
+					<span class="spec-sep">&bull;</span>
+					<span class="spec-chip">⭐ <strong>Tier 2 (Air-Gapped Sandbox):</strong> <span class="spec-highlight">Java 17 &bull; C++ 17 &bull; C# (.NET) [Linux HP Host &middot; MFA Guarded]</span></span>
+					<span class="spec-sep">&bull;</span>
+					<span class="spec-chip">💡 <strong>Error Coach:</strong> <span class="spec-highlight">Dual-Pane Raw + Plain-English Remediation</span></span>
+					<span class="spec-sep">&bull;</span>
+					<span class="spec-chip">🗄️ <strong>Session Storage:</strong> <span class="spec-highlight">Persistent In-Browser SQL Tables &amp; Reset Hook</span></span>
+				</div>
+			</header>
+
+			<!-- Control Bar -->
+			<div class="runner-toolbar">
+				<div class="toolbar-left">
+					<div class="field-group">
+						<label for="lang-select" class="toolbar-label">Language:</label>
+						<select id="lang-select" class="runner-select" aria-label="Select Programming Language">
+							<optgroup label="⚡ In-Browser Execution (Zero Setup · Instant)">
+								<option value="python" selected>🐍 Python 3.12 (Pyodide WASM)</option>
+								<option value="javascript">⚡ JavaScript (Web Worker Sandbox)</option>
+								<option value="sql">🗄️ SQL / MySQL (SQLite WASM + Session)</option>
+								<option value="assembly">⚙️ Assembly (x86 CPU Simulator)</option>
+								<option value="c">🔷 C (ANSI C Engine)</option>
+							</optgroup>
+							<optgroup label="⭐ Dedicated Sandbox (Linux HP · MFA Protected)">
+								<option value="java">☕ Java 17 ⭐ [MFA Required]</option>
+								<option value="cpp">🔶 C++ 17 ⭐ [MFA Required]</option>
+								<option value="csharp">🟣 C# Mono / .NET ⭐ [MFA Required]</option>
+							</optgroup>
+						</select>
+					</div>
+
+					<div class="field-group">
+						<label for="preset-select" class="toolbar-label">Templates:</label>
+						<select id="preset-select" class="runner-select" aria-label="Select Code Template">
+							<option value="hello">👋 Hello World</option>
+							<option value="algorithm">🚀 Practical Algorithm / Query</option>
+							<option value="bug">🐛 Intentional Bug (Test the Coach!)</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="toolbar-right">
+					<span class="mfa-badge" id="mfa-badge" title="MFA Authentication Status">
+						<span class="badge-dot" id="badge-dot"></span>
+						<span id="badge-text">In-Browser Mode</span>
+					</span>
+					<button type="button" class="btn-tool btn-reset" id="btn-reset" title="Reset code or database schema">
+						🔄 Reset
+					</button>
+					<button type="button" class="btn-tool btn-run" id="btn-run" title="Run Code (Ctrl+Enter)">
+						<span class="run-icon">▶</span> Run Code
+					</button>
+				</div>
+			</div>
+
+			<!-- Main Workspace Grid -->
+			<div class="runner-workspace">
+				<!-- Code Editor Box -->
+				<section class="editor-pane" aria-labelledby="editor-title">
+					<div class="pane-header">
+						<div class="pane-tab active">
+							<span id="editor-file-label">main.py</span>
+						</div>
+						<div class="editor-tools">
+							<span class="keyboard-hint"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> to Run</span>
+							<button type="button" class="btn-editor-action" id="btn-copy-code" title="Copy Code">📋 Copy</button>
+						</div>
+					</div>
+					<div class="editor-body">
+						<div class="line-numbers" id="line-numbers" aria-hidden="true">1</div>
+						<textarea id="code-editor" class="code-textarea" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Code Editor"></textarea>
+					</div>
+				</section>
+
+				<!-- Execution Results & Coach Pane -->
+				<section class="results-pane" aria-labelledby="results-title">
+					<div class="pane-header">
+						<div class="tab-group" role="tablist">
+							<button type="button" class="pane-tab active" id="tab-terminal-btn" role="tab" aria-selected="true" aria-controls="view-terminal">
+								🖥️ Terminal Output
+							</button>
+							<button type="button" class="pane-tab" id="tab-sql-btn" role="tab" aria-selected="false" aria-controls="view-sql" hidden>
+								📊 SQL Table Inspector
+							</button>
+							<button type="button" class="pane-tab" id="tab-asm-btn" role="tab" aria-selected="false" aria-controls="view-asm" hidden>
+								⚙️ CPU Registers &amp; Memory
+							</button>
+						</div>
+						<div class="execution-meta" id="execution-meta">
+							<span class="meta-tag" id="meta-engine">Ready</span>
+							<span class="meta-tag" id="meta-duration">0.0 ms</span>
+							<span class="meta-status" id="meta-status">Status: Idle</span>
+						</div>
+					</div>
+
+					<div class="results-body">
+						<!-- Terminal View -->
+						<div class="result-view active" id="view-terminal">
+							<pre class="terminal-stdout" id="terminal-stdout">Click "Run Code" or press Ctrl+Enter to execute.</pre>
+
+							<!-- Plain English Error Coach Box -->
+							<div class="coach-card" id="coach-card" hidden>
+								<div class="coach-header">
+									<div class="coach-title-wrap">
+										<span class="coach-bulb" aria-hidden="true">💡</span>
+										<strong class="coach-title">Plain-English Error Coach</strong>
+									</div>
+									<span class="coach-category" id="coach-category">Syntax Error</span>
+								</div>
+								<div class="coach-content">
+									<div class="coach-section">
+										<div class="coach-label">What actually happened:</div>
+										<p class="coach-text" id="coach-plain"></p>
+									</div>
+									<div class="coach-section">
+										<div class="coach-label">Why this happens (The Rookie Misconception):</div>
+										<p class="coach-text" id="coach-why"></p>
+									</div>
+									<div class="coach-section" id="coach-fix-section">
+										<div class="coach-label">How to fix it:</div>
+										<div class="coach-fix-box">
+											<code id="coach-fix-code"></code>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- SQL Table Inspector View -->
+						<div class="result-view" id="view-sql" hidden>
+							<div class="sql-inspector-toolbar">
+								<div class="sql-meta-info" id="sql-meta-info">Table results will render below.</div>
+								<button type="button" class="btn-tool btn-small" id="btn-clear-db">🧹 Reset Sample DB</button>
+							</div>
+							<div class="sql-table-wrapper" id="sql-table-output">
+								<div class="empty-hint">Execute a SQL query (e.g. <code>SELECT * FROM students;</code>) to view formatted data tables.</div>
+							</div>
+							<div class="sql-schema-drawer" id="sql-schema-drawer">
+								<h4 class="drawer-title">Active Database Schema (sessionStorage):</h4>
+								<div id="sql-tables-list" class="schema-tags"></div>
+							</div>
+						</div>
+
+						<!-- Assembly CPU State View -->
+						<div class="result-view" id="view-asm" hidden>
+							<div class="asm-toolbar">
+								<span class="asm-status" id="asm-status">Simulator Ready &bull; 32-bit x86 / 8086 Instruction Set</span>
+								<div class="asm-actions">
+									<button type="button" class="btn-tool btn-small" id="btn-asm-step">👟 Single Step</button>
+									<button type="button" class="btn-tool btn-small" id="btn-asm-reset">⏮️ Reset CPU</button>
+								</div>
+							</div>
+							<div class="asm-registers-grid">
+								<div class="reg-card"><span class="reg-name">EAX</span><span class="reg-val" id="reg-eax">0x00000000</span></div>
+								<div class="reg-card"><span class="reg-name">EBX</span><span class="reg-val" id="reg-ebx">0x00000000</span></div>
+								<div class="reg-card"><span class="reg-name">ECX</span><span class="reg-val" id="reg-ecx">0x00000000</span></div>
+								<div class="reg-card"><span class="reg-name">EDX</span><span class="reg-val" id="reg-edx">0x00000000</span></div>
+								<div class="reg-card"><span class="reg-name">ESI</span><span class="reg-val" id="reg-esi">0x00000000</span></div>
+								<div class="reg-card"><span class="reg-name">EDI</span><span class="reg-val" id="reg-edi">0x00000000</span></div>
+								<div class="reg-card"><span class="reg-name">ESP</span><span class="reg-val" id="reg-esp">0x0000FFFC</span></div>
+								<div class="reg-card"><span class="reg-name">EIP</span><span class="reg-val" id="reg-eip">0x00000000</span></div>
+							</div>
+							<div class="asm-flags-bar">
+								<span class="flag-chip" id="flag-zf">ZF: 0</span>
+								<span class="flag-chip" id="flag-cf">CF: 0</span>
+								<span class="flag-chip" id="flag-sf">SF: 0</span>
+								<span class="flag-chip" id="flag-of">OF: 0</span>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<!-- Paywall-Style MFA Modal Overlay -->
+		<div class="mfa-modal-overlay" id="mfa-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+			<div class="mfa-modal-card">
+				<button type="button" class="modal-close-btn" id="mfa-modal-close" aria-label="Close modal">&times;</button>
+				<div class="modal-icon" aria-hidden="true">🔒</div>
+				<h3 class="modal-title" id="modal-title">Homelab Sandbox Protection</h3>
+				<p class="modal-desc">
+					This language compiles and executes inside an isolated, air-gapped container on Andrew’s dedicated <strong>Linux HP host</strong>. Enter your 6-digit Duo Mobile or authenticator code to unlock backend execution.
+				</p>
+				<form id="mfa-modal-form" class="modal-form">
+					<label for="mfa-code-input" class="modal-input-label">6-Digit Authenticator Code:</label>
+					<input type="text" id="mfa-code-input" name="mfa_code" class="modal-input" inputmode="numeric" placeholder="123456" maxlength="12" autocomplete="one-time-code" required autofocus>
+					<div class="modal-actions">
+						<button type="submit" class="btn-modal-primary" id="mfa-submit-btn">Verify &amp; Unlock →</button>
+						<button type="button" class="btn-modal-cancel" id="mfa-cancel-btn">Back to In-Browser Mode</button>
+					</div>
+					<p class="modal-status" id="mfa-modal-status" role="status"></p>
+				</form>
+				<p class="modal-note">
+					Tip: If you've already authenticated in the <a href="council.html">AI Chatroom</a>, your session carries over automatically.
+				</p>
+			</div>
+		</div>
+
+		<footer>
+			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+			<p>Website last modified: <time datetime="2026-10-29">October 29, 2026</time></p>
+		</footer>
+	</div>
+
+	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
+	<script src="scripts/script.js?v=20261026-nav-search-2"></script>
+	<script src="scripts/code-runner.js?v=20261029-runner-1"></script>
+</body>
+</html>
