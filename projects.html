@@ -78,6 +78,79 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="glm4-tailscale-homelab-title">
+<h2 id="glm4-tailscale-homelab-title">Persistent Homelab LLM Inference &amp; Private Tailscale Mesh Streaming: Deploying GLM-4-9B-Chat with Antigravity AI</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>LM Studio Headless Daemon &middot; GLM-4-9B-Chat GGUF &middot; Encrypted Tailnet &middot; Custom Streaming Web UI &middot; Systemd Supervision &middot; Completed <time datetime="2026-10-29">October 29, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How pair programming with Google DeepMind's Antigravity AI transformed an 8-vCPU homelab Linux VM into an always-on, private AI reasoning node&mdash;serving GLM-4-9B over Tailscale with a dedicated zero-dependency streaming web app, RAM pre-loading, and resilient multi-user service supervision.</p>
+
+<div class="project-architecture" aria-label="GLM-4 Tailscale Homelab Architecture">
+	<span>Any Tailscale Device (iOS / macOS / Windows / Linux)</span><span aria-hidden="true">&rarr;</span>
+	<span>Encrypted Tailnet (100.82.213.77)</span><span aria-hidden="true">&rarr;</span>
+	<span>Zero-Dependency Node.js Web UI &amp; Proxy (Port 3000)</span><span aria-hidden="true">&rarr;</span>
+	<span>LM Studio llmster Daemon &amp; OpenAI API (Port 12340)</span><span aria-hidden="true">&rarr;</span>
+	<span>GLM-4-9B-Chat (Q4_K_M GGUF in RAM)</span>
+</div>
+
+<h3>The Vision: Dedicated Private AI Reasoning on the Tailnet</h3>
+<p>While cloud-hosted models and subscription chatbots are powerful, they present significant trade-offs for personal homelab workflows: recurring monthly subscription overhead, third-party privacy exposure, rate limits, and an inability to easily query models from headless internal scripts or mobile devices without exposing endpoints to the public WAN. Having an 8-vCPU virtual machine with 31 GiB of RAM (<code>fah-cpu-8</code>) connected to my private Tailscale mesh network, I set out to establish an always-on, private local large language model (LLM) server.</p>
+<p>I selected <strong>GLM-4-9B-Chat</strong> (quantized to 4-bit <code>Q4_K_M</code> GGUF, consuming 6.25 GB of memory). GLM-4 delivers an outstanding balance for local compute: advanced multi-turn instruction following, deep analytical reasoning, coding proficiency, and native support for up to 8,192 context tokens on CPU inference without requiring an expensive enterprise GPU cluster. The objective was straightforward: boot persistence, zero manual terminal startup, an OpenAI-compatible REST API for developer tooling, and a dedicated, lightweight mobile-friendly web chat interface accessible anywhere on my Tailscale network.</p>
+
+<h3>Headless Runtime &amp; Persistent Systemd Supervision</h3>
+<p>Rather than relying on manual GUI applications that require an active X11 desktop session, I paired with <strong>Antigravity</strong>, Google DeepMind's agentic AI coding assistant, to engineer an autonomous background service stack:</p>
+<ul>
+	<li><strong>Headless LM Studio Core (<code>llmster</code>):</strong> Deployed the native Linux x86_64 headless daemon (v0.0.25-1) and CLI toolchain (<code>lms</code>), configuring the runtime engine to optimize CPU thread pools across all 8 virtual cores with AVX2/AVX512 acceleration.</li>
+	<li><strong>Private Tailnet Binding &amp; CORS:</strong> Configured the server to bind exclusively to the host's private network stack (<code>0.0.0.0:12340</code>) with CORS enabled, exposing a standard OpenAI-compatible completions endpoint (<code>/v1/chat/completions</code>) and models catalog (<code>/v1/models</code>) strictly accessible by authenticated tailnet peers (<code>100.82.213.77</code>).</li>
+	<li><strong>Systemd Service Architecture:</strong> Authored a system-level supervisor unit (<code>/etc/systemd/system/lmstudio.service</code>) backed by a startup supervisor script (<code>/home/fold/.local/bin/lmstudio-service.sh</code>). The service starts after network and Tailscale daemons, initializes the daemon, starts the API listener, and executes an automated pre-load of <code>glm-4-9b-chat</code> into RAM on boot. By pre-allocating the 6.25 GB model weights into memory during VM startup, client requests receive instant token generation without encountering cold-start load delays.</li>
+	<li><strong>Desktop Access:</strong> Generated a customized freedesktop launcher (<code>LM Studio.desktop</code>) on the user desktop for direct GUI discovery whenever interactive local sessions are utilized.</li>
+</ul>
+
+<h3>Overcoming Deployment Roadblocks: Storage Crunches, Symlink Drift &amp; Temp Paths</h3>
+<p>Engineering a clean, headless multi-component service on a compact 30 GB virtual root partition surfaced several real-world operational challenges that we systematically diagnosed and resolved:</p>
+<ul>
+	<li><strong>The 99% Capacity Wall &amp; Orphaned Part Recovery:</strong> Following an abrupt terminal disconnection during initial model acquisition, the root filesystem hit a critical threshold: 28 GB used with only <strong>315 MB free (99% capacity)</strong>. A forensic inspection revealed that an interrupted 4.1 GB download artifact (<code>downloading_glm-4-9b-chat-Q4_K_M.gguf.part</code>) remained trapped on disk alongside the fully finalized 6.25 GB model file. Safely purging the partial residue reclaimed 4.1 GB instantly, restoring system disk headroom to a safe 4.4 GB.</li>
+	<li><strong>Chat-Template Temp Directory Provisioning:</strong> Headless model loading initially failed with a Node.js filesystem exception (<code>Error: ENOENT: no such file or directory, mkdtemp '/home/fold/.lmstudio/.internal/temp/lmstudio-chat-template-...'</code>). The headless runtime expected a persistent internal temporary working folder that had not been generated by the installer. We updated the service script to proactively ensure <code>~/.lmstudio/.internal/temp</code> exists with proper ownership before invoking model loads.</li>
+	<li><strong>PATH &amp; Symlink Normalization:</strong> Resolved an invocation disconnect where the installer reported successful registration in shell profiles but left broken symlinks in <code>~/.local/bin/lms</code>. Established deterministic symlinks directly into the active llmster bundle directory (<code>~/.lmstudio/llmster/0.0.25-1/.bundle/lms</code>), enabling seamless command execution across systemd scripts and interactive SSH sessions alike.</li>
+</ul>
+
+<h3>Engineering the Zero-Dependency Streaming Web Interface</h3>
+<p>While the native LM Studio AppImage provides a desktop UI, mobile devices such as iPhones and remote tablets on Tailscale cannot run native Linux desktop binaries. To deliver a seamless conversational experience without the bloat of multi-gigabyte containerized frontends or third-party web frameworks, we engineered a dedicated, custom web application (<code>/home/fold/.local/share/lmstudio-webui/server.mjs</code>):</p>
+<ul>
+	<li><strong>Pure Node.js Architecture:</strong> Built using only native Node.js standard modules (<code>http</code>, <code>fs</code>, <code>path</code>, <code>URL</code>)&mdash;requiring zero external npm dependencies or package bloat.</li>
+	<li><strong>Real-Time Server-Sent Events (SSE) Streaming:</strong> The web proxy transparently forwards chat completion requests to LM Studio's backend with <code>stream: true</code> and parses incoming SSE data chunks (<code>data: {"choices":[{"delta":{"content":"..."}}]}</code>), streaming text live to the browser DOM token-by-token.</li>
+	<li><strong>Mobile Soft-Keyboard &amp; Form Navigation Defense:</strong> During initial testing on mobile browsers, pressing the virtual &ldquo;Send&rdquo; or &ldquo;Go&rdquo; key caused the browser to execute a standard HTML GET form submission to <code>/?</code>, triggering an abrupt &ldquo;Not found&rdquo; error. We hardened both ends of the pipeline: converted the client form to event-driven JavaScript submission with navigation prevention (<code>action="javascript:void(0);"</code>, <code>onsubmit="return false;"</code>), and upgraded the Node server router with dynamic URL pathname parsing and a resilient fallback handler that always serves the chat UI for any incoming GET request.</li>
+	<li><strong>Responsive Dark-Mode Cockpit:</strong> Implemented a clean, modern interface featuring automatic textarea expansion, clear-history action, live model selector filtering out embedding models, and an active pulse indicator confirming backend server connectivity.</li>
+</ul>
+
+<h3>Verification &amp; Telemetry</h3>
+<p>We conducted end-to-end verification across the entire network topology. Both endpoints are active and healthy:</p>
+<ul>
+	<li><strong>Dedicated Web Chat:</strong> <code>http://100.82.213.77:3000</code> &mdash; Verified responsive token streaming on iPhone and workstation browsers across Tailscale with zero packet drops.</li>
+	<li><strong>Direct OpenAI REST API:</strong> <code>http://100.82.213.77:12340/v1</code> &mdash; Verified multi-turn completions with curl and Python OpenAI SDK scripts:
+<pre><code>curl http://100.82.213.77:12340/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "glm-4-9b-chat",
+    "messages": [{"role": "user", "content": "Explain homelab mesh routing in 2 sentences."}]
+  }'</code></pre></li>
+	<li><strong>Inference Telemetry:</strong> Tested prompt evaluation and generation throughput on the 8-vCPU Intel Xeon compute node: prompt evaluation completed at 418 ms/token (~2.4 tok/s) and generation sustained ~2.2&ndash;2.4 tokens/second across an 8,192 token context window, providing reliable, private, and capable AI reasoning directly within my homelab.</li>
+</ul>
+
+<h3>Stack</h3>
+<ul class="chips">
+	<li>GLM-4-9B-Chat (Q4_K_M GGUF)</li>
+	<li>LM Studio Headless (llmster 0.0.25-1)</li>
+	<li>Tailscale Mesh VPN</li>
+	<li>Debian 12 Linux (8 vCPUs / 31 GiB RAM)</li>
+	<li>Node.js (Native HTTP &amp; SSE Proxy)</li>
+	<li>Systemd Service Supervision</li>
+	<li>llama.cpp AVX2/AVX512 CPU Backend</li>
+	<li>HTML5 / CSS3 Responsive UI</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Designed, deployed, debugged, and documented in continuous pair-programming collaboration with <strong>Antigravity</strong>, Google DeepMind's agentic AI coding assistant. Operating autonomously through direct terminal and system execution harnesses, Antigravity handled disk forensics, systemd service writing, shell scripting, API verification, and full-stack web development across the entire project lifecycle.</p>
+</section>
+
+
 <section class="project-entry" aria-labelledby="internal-drive-c-forensics-title">
 <h2 id="internal-drive-c-forensics-title">Autonomous Drive C Forensics &amp; Precision Reclamation: Reclaiming 65+ GB on Windows with Antigravity AI</h2>
 <p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Parallel File Tree Forensics &middot; Reparse Point Auditing &middot; PyTorch Checkpoint Pruning &middot; Antigravity AI Pair Programming &middot; Active <time datetime="2026-10-28">October 28, 2026</time></span></p>
