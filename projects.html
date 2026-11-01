@@ -78,6 +78,39 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+<section class="project-entry" aria-labelledby="teams-project-plan-collaboration-title">
+<h2 id="teams-project-plan-collaboration-title">Making a Desktop Project Plan a Shared Team Workspace</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>CIS 450 &middot; Project Plan 365 &middot; Microsoft Teams &middot; Cross-platform browser testing &middot; Completed <time datetime="2026-11-01">November 1, 2026</time></span></p>
+<p>For a CIS 450 group project, I wanted everyone to help build the project schedule instead of leaving one person to enter the entire plan. I already had an activated copy of Project Plan 365 on Windows. The question was whether I could make that existing application available to classmates in a simple, practical way.</p>
+
+<h3>Start with the actual license and requirements</h3>
+<p>Working with OpenAI&rsquo;s ChatGPT/Codex, I inspected the application&rsquo;s About screen and confirmed a <strong>perpetual, per-device Standard Editor license</strong> for PC/Server. A visible Sign In button did not mean the installed editor was unactivated. We checked the vendor&rsquo;s documentation and established that native real-time collaboration requires its Business offering, Editor access for collaborators, and a project stored in Drive 365. Saving and emailing an MPP file would let people exchange copies, but would not create one live shared editing session.</p>
+
+<h3>Compare alternatives before adding infrastructure</h3>
+<p>I considered hosting one master application instance inside a virtual machine, with classmates joining a shared remote desktop. We researched Apache Guacamole as a browser gateway and discussed a dedicated VM as a way to separate the class workspace from my personal computer. I also had a working macOS VM, but its possible latency made it a less attractive starting point for a live group session. These were options we evaluated; we did not deploy a Guacamole server or move the Windows activation into the Mac VM.</p>
+<p>I chose to test meeting software I already had available. Zoom offered screen sharing and remote control; Teams was familiar from my internship. The goal became one Windows application, one master project file, and classmates taking turns entering and reviewing tasks while everyone watched.</p>
+
+<h3>Test the real cross-platform workflow</h3>
+<p>I hosted a Teams meeting in the Windows desktop app, shared the Project Plan 365 window, and joined from a browser on my Mac. I successfully requested and received control, saw the participant cursor, and interacted with the shared application. I then tested joining <strong>without signing into an account</strong> and confirmed that browser-based control also worked in that session.</p>
+<ul>
+<li><strong>Approve requests from the original meeting window:</strong> the floating sharing toolbar was difficult to find, but I could accept the control request in the main Teams meeting window.</li>
+<li><strong>Keep the shared application open and not minimized:</strong> this was important in my test. Switching windows could pause application sharing, and minimizing the shared window disrupted the intended workflow.</li>
+<li><strong>Coordinate editing:</strong> everyone shares the same application view and keyboard focus. This supports taking turns on one plan; it does not add independent, simultaneous task editing or merge separate users&rsquo; changes.</li>
+<li><strong>Verify the account environment:</strong> anonymous browser control worked in my test, but another organization&rsquo;s meeting policies or client configuration may behave differently.</li>
+</ul>
+
+<h3>Fit the solution into the existing group routine</h3>
+<p>We created a recurring Teams meeting matching the group&rsquo;s Tuesday/Thursday, 6&ndash;7 p.m. schedule through December 8. Codex added its join link to the existing <strong>CIS 450 GC</strong> Google Calendar invitation for November 3 and following occurrences, preserving the original Zoom details. After I approved sending the update, the invitation was saved and update emails were sent to the existing guests. The group could use the invitation it already had rather than receive a separate Teams invitation.</p>
+
+<h3>Outcome and lesson</h3>
+<p>The result was a working, manually tested way to share control of an existing desktop planning application across Windows and a Mac browser. It gave us a practical way to divide responsibility for entering tasks and dependencies without first deploying another remote-access platform. Shared control still requires trust: showing one app window should not be treated as a sandbox that guarantees isolation from the host computer.</p>
+<p>This experiment reflects how I approach a constraint: identify what the current software actually supports, investigate alternatives, test the simplest promising workflow, and document its limits. The access test and calendar setup are complete; long-session performance with the full class group remains to be evaluated.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> OpenAI&rsquo;s ChatGPT/Codex helped inspect the installed license, research vendor documentation and alternatives, troubleshoot the Teams controls, configure the recurring link and calendar update, and write this project account. I defined the classroom need, chose the workflow, performed the Mac browser and anonymous-access tests, discovered the main-window approval path, and approved notifying the group.</p>
+<p><strong>References:</strong> <a href="https://www.projectplan365.com/faqs/is-the-real-time-collaboration-feature-available-only-for-the-business-subscription-or-also-with-the-standard-subscription/" target="_blank" rel="noopener noreferrer">Project Plan 365 collaboration requirements</a> &middot; <a href="https://learn.microsoft.com/en-us/microsoftteams/meeting-who-present-request-control" target="_blank" rel="noopener noreferrer">Teams control-sharing policies</a> &middot; <a href="https://guacamole.apache.org/doc/gug/administration.html#connection-sharing" target="_blank" rel="noopener noreferrer">Guacamole connection sharing</a></p>
+<ul class="chips"><li>Project Plan 365</li><li>Microsoft Teams</li><li>Windows</li><li>macOS browser</li><li>Google Calendar</li><li>Workflow evaluation</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="glm4-tailscale-homelab-title">
 <h2 id="glm4-tailscale-homelab-title">Persistent Homelab LLM Inference &amp; Private Tailscale Mesh Streaming: Deploying GLM-4-9B-Chat with Antigravity AI</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>LM Studio Headless Daemon &middot; GLM-4-9B-Chat GGUF &middot; Encrypted Tailnet &middot; Custom Streaming Web UI &middot; Systemd Supervision &middot; Completed <time datetime="2026-10-29">October 29, 2026</time></span></p>
@@ -1710,7 +1743,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-01T14:56:00-05:00">November 1, 2026 at 02:56:00 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-01T15:54:48-05:00">November 1, 2026 at 3:54:48 PM EST</time></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
