@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 28 High-Resolution Workbench Captures across 4 Curated Categories
+ * - 29 High-Resolution Workbench Captures across 4 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -326,7 +326,27 @@
             credit: "Cross-platform setup and security lab work by Andrew Van Ek. Cryptographic analysis authored with Google DeepMind Antigravity AI."
         },
 
-        // ----------------- Category: Homelab, Cloud & Linux Fleet (9) -----------------
+        // ----------------- Category: Homelab, Cloud & Linux Fleet (10) -----------------
+        {
+            id: "alpine-nuc-vnc",
+            title: "Alpine Linux NUC: Dual-Resolution TigerVNC Desktop & Conky Telemetry",
+            category: "homelab",
+            categoryLabel: "Homelab Fleet & Headless VNC",
+            badgeClass: "badge-info",
+            image: "images/gallery/alpine-nuc-vnc-tigervnc-desktop.png",
+            thumb: "images/gallery/alpine-nuc-vnc-tigervnc-desktop.png",
+            tags: ["Alpine Linux", "TigerVNC", "x11vnc", "Tailscale", "Conky", "Homelab Fleet", "NUC", "LXTerminal"],
+            summary: "Live TigerVNC session connected to the Alpine Linux NUC over Tailscale (100.87.81.52:5921), featuring dual-resolution remote desktop endpoints, LXTerminal, and a real-time Conky hardware telemetry desklet.",
+            sandboxObservation: "Andrew established a low-latency remote desktop connection via TigerVNC to the stationary Alpine Linux NUC (nucWOL2-0--HDD) at 100.87.81.52:5921 (912x720 mobile/tablet optimized viewport). The session highlights live system monitoring—CPU live graph across 4 cores (47% @ 1.84 GHz), RAM tachometer (1.87 / 3.75 GiB), thermal gauges (CPU 118.4°F, Disk 89.6°F)—and an active LXTerminal session reviewing modern developer tools, while documenting dual Tailscale VNC display listeners (:5921 at 912x720 and :5922 at 1600x1264).",
+            technicalBreakdown: "Headless X11 environments on Alpine Linux leverage lightweight display servers paired with x11vnc daemons bound strictly to the Tailscale WireGuard virtual interface (100.87.81.52). Running parallel listeners with fixed virtual viewports enables adaptive client scaling: high-resolution multi-monitor desktop sessions over port 5922 and lightweight mobile/low-bandwidth sessions over port 5921 without desktop resync stalls.",
+            defensePlaybook: [
+                "Tailnet-Bound Display Listeners: Bind VNC daemons exclusively to internal Tailscale IP addresses (100.x.y.z) to prevent unauthenticated RFB scanning on public network interfaces.",
+                "Encrypted Transport Tunneling: Utilize WireGuard peer-to-peer encryption for VNC traffic rather than transmitting unencrypted RFB protocol packets across LAN/WAN perimeters.",
+                "Thermal & Resource Limits: Monitor core temperatures and disk thermal metrics continuously via Conky or Prometheus exporters to protect stationary low-power NUC hardware under persistent compute loads."
+            ],
+            containment: "Private homelab server running headless X11 with x11vnc restricted exclusively to Tailscale mesh interfaces.",
+            credit: "Remote desktop architecture, dual-resolution VNC daemon engineering, and Conky HUD design by Andrew Van Ek. Documentation compiled with Google DeepMind Antigravity AI."
+        },
         {
             id: "glm4-web-chat",
             title: "GLM-4-9B Private Tailscale Web Chat Interface",
