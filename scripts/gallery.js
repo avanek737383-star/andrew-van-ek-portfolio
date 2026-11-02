@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 26 High-Resolution Workbench Captures across 4 Curated Categories
+ * - 28 High-Resolution Workbench Captures across 4 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -226,7 +226,27 @@
             credit: "Email threat triage and screenshot captured by Andrew Van Ek. Analysis authored with Google DeepMind Antigravity AI."
         },
 
-        // ----------------- Category: Virtual Machines & Retro OS (4) -----------------
+        // ----------------- Category: Virtual Machines & Retro OS (5) -----------------
+        {
+            id: "windows-xp-rdp",
+            title: "Windows XP Professional: Remote Desktop (RDP) Live Session",
+            category: "vms",
+            categoryLabel: "Retro Workstation & RDP",
+            badgeClass: "badge-info",
+            image: "images/gallery/windows-xp-rdp-remote-desktop-session.png",
+            thumb: "images/gallery/windows-xp-rdp-remote-desktop-session.png",
+            tags: ["Windows XP", "RDP", "Remote Administration", "Retro Computing", "Luna Theme", "Homelab"],
+            summary: "Active high-resolution Remote Desktop session connected to a vintage Windows XP workstation (192.168.0.160), showcasing native Luna desktop and legacy administration tools.",
+            sandboxObservation: "Andrew established a high-resolution Remote Desktop connection directly to a dedicated vintage Windows XP workstation at 192.168.0.160. The connection bar confirms live low-latency interactive control over the iconic Bliss wallpaper and Luna blue shell. Desktop staging shows active vintage media and extraction tooling—including ImgBurn, VLC media player, 7-Zip, TrackMania Nations Forever, and curated disc staging archives (XP_Disc_Stufz).",
+            technicalBreakdown: "Windows XP utilizes RDP version 5.1 (port 3389) over TCP. Diagnosing reliable remote administration required verifying Windows Firewall exception rules with Nmap and Netcat, adjusting service session isolation handles so console applications execute within interactive desktop contexts, and disabling legacy power-saving shutoffs on USB wireless adapters to prevent sleep-induced socket drops.",
+            defensePlaybook: [
+                "Network Isolation: Confine vintage legacy endpoints (XP/2000) to segregated homelab VLANs or isolated subnets with no direct WAN egress.",
+                "RDP Port Security: Never expose port 3389 directly to the public internet; restrict remote access exclusively to trusted local subnets or encrypted VPN/Tailscale tunnels.",
+                "Power Management Hardening: Configure power schemes to 'Always On' and disable selective USB/NIC suspension in Device Manager to maintain socket persistence."
+            ],
+            containment: "Physical retro hardware workstation isolated on internal homelab subnet with strict firewall controls and Samba credential sandboxing.",
+            credit: "Workstation restoration, RDP network diagnostics, and screenshot captured by Andrew Van Ek. Technical analysis authored with Google DeepMind Antigravity AI."
+        },
         {
             id: "vista-legacy-update",
             title: "Windows Vista Ultimate SP2: Legacy Update 1.14.1 Revival",
@@ -306,7 +326,27 @@
             credit: "Cross-platform setup and security lab work by Andrew Van Ek. Cryptographic analysis authored with Google DeepMind Antigravity AI."
         },
 
-        // ----------------- Category: Homelab, Cloud & Linux Fleet (8) -----------------
+        // ----------------- Category: Homelab, Cloud & Linux Fleet (9) -----------------
+        {
+            id: "glm4-web-chat",
+            title: "GLM-4-9B Private Tailscale Web Chat Interface",
+            category: "homelab",
+            categoryLabel: "Private LLM & Tailscale Streaming",
+            badgeClass: "badge-success",
+            image: "images/gallery/glm4-tailscale-web-chat-interface.png",
+            thumb: "images/gallery/glm4-tailscale-web-chat-interface.png",
+            tags: ["GLM-4", "LM Studio", "Tailscale", "Local AI", "Web Chat", "Private Mesh", "Streaming SSE"],
+            summary: "Dedicated zero-dependency streaming web interface for GLM-4-9B-Chat hosted on an 8-vCPU homelab Linux VM, accessed privately over Tailscale (100.82.213.77:3000).",
+            sandboxObservation: "Andrew deployed a custom, zero-dependency streaming web chat client connected to GLM-4-9B-Chat running headlessly via LM Studio on an 8-vCPU Linux VM over Tailscale (100.82.213.77:3000). The active session demonstrates real-time streaming token generation for academic coursework inquiries regarding project management resource requirements, backed by an instant clear-chat action and active model selection.",
+            technicalBreakdown: "The architecture combines a headless LM Studio API daemon managed by a systemd supervisor unit with a custom lightweight Python/HTML streaming frontend. Model weights (GLM-4-9B Q4_K_M GGUF, 6.25 GB) are pre-allocated directly into RAM at boot to eliminate cold-start latencies. Requests stream via Server-Sent Events (SSE) over an encrypted wireguard Tailscale mesh without public internet port exposure.",
+            defensePlaybook: [
+                "Encrypted Mesh Transport: Restrict proprietary model endpoints to private WireGuard Tailscale interfaces (100.x.y.z) rather than public IP bindings.",
+                "RAM Allocation Pre-Checks: Ensure systemd supervisor units verify memory availability before pre-loading multi-gigabyte GGUF model weights.",
+                "Disk Partition Quotas: Implement automated cleanup routines to purge partial download artifacts (.part) that can silently exhaust root disk storage."
+            ],
+            containment: "Private VM inference node supervised by systemd, completely isolated behind Tailscale network ACLs with zero public internet routing.",
+            credit: "Headless LLM inference pipeline, web streaming UI, and screenshot captured by Andrew Van Ek. Service supervision and documentation engineered with Google DeepMind Antigravity AI."
+        },
         {
             id: "slax-dell-conky",
             title: "Custom Slax XFCE on Home Dell: USB Persistence & Real-Time Desklets",
