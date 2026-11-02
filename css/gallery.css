@@ -557,14 +557,28 @@
     position: relative;
     overflow: hidden;
     cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
 }
 
 .gallery-img-viewport.is-zoomed {
     cursor: grab;
 }
 
-.gallery-img-viewport.is-panning {
-    cursor: grabbing;
+.gallery-img-viewport.is-zoomed .gallery-modal-main-img {
+    cursor: grab;
+}
+
+.gallery-img-viewport.is-panning,
+.gallery-img-viewport.is-zoomed:active {
+    cursor: grabbing !important;
+}
+
+.gallery-img-viewport.is-panning .gallery-modal-main-img,
+.gallery-img-viewport.is-zoomed:active .gallery-modal-main-img {
+    cursor: grabbing !important;
 }
 
 .gallery-modal-main-img {
@@ -575,6 +589,10 @@
     transition: transform 0.08s ease-out;
     pointer-events: auto;
     will-change: transform;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
 }
 
 /* Navigation Arrow Buttons */

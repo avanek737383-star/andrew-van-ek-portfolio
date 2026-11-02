@@ -716,6 +716,8 @@
     }
 
     function resetZoom() {
+        state.isDragging = false;
+        if (dom.imgViewport) dom.imgViewport.classList.remove("is-panning");
         setZoom(1.0, true);
     }
 
@@ -896,8 +898,23 @@
             });
         }
 
-        // Mouse Wheel Zoom
+        // Prevent native HTML5 image drag on main image
+        if (dom.mainImg) {
+            dom.mainImg.setAttribute("draggable", "false");
+            dom.mainImg.addEventListener("dragstart", function (e) {
+                e.preventDefault();
+                return false;
+            });
+        }
+
+        // Mouse Wheel Zoom & Drag Panning
         if (dom.imgViewport) {
+            // Prevent browser native drag-and-drop ghost image
+            dom.imgViewport.addEventListener("dragstart", function (e) {
+                e.preventDefault();
+                return false;
+            });
+
             dom.imgViewport.addEventListener("wheel", function (e) {
                 e.preventDefault();
                 var delta = e.deltaY < 0 ? 0.25 : -0.25;
@@ -907,6 +924,9 @@
             // Mouse Drag Panning
             dom.imgViewport.addEventListener("mousedown", function (e) {
                 if (state.scale <= 1.0) return;
+                // Only initiate drag with primary (left) mouse button
+                if (e.button !== 0) return;
+                e.preventDefault(); // Prevents browser image drag-and-drop and text selection
                 state.isDragging = true;
                 state.dragStartX = e.clientX - state.panX;
                 state.dragStartY = e.clientY - state.panY;
@@ -915,12 +935,33 @@
 
             window.addEventListener("mousemove", function (e) {
                 if (!state.isDragging) return;
+                // Safety guard: if primary mouse button was released outside the window or during an interrupted drag,
+                // e.buttons will be 0. Cleanly terminate dragging so the image doesn't stay attached to the cursor.
+                if ((e.buttons & 1) === 0) {
+                    state.isDragging = false;
+                    if (dom.imgViewport) dom.imgViewport.classList.remove("is-panning");
+                    return;
+                }
                 state.panX = e.clientX - state.dragStartX;
                 state.panY = e.clientY - state.dragStartY;
                 updateTransform();
             });
 
             window.addEventListener("mouseup", function () {
+                if (state.isDragging) {
+                    state.isDragging = false;
+                    if (dom.imgViewport) dom.imgViewport.classList.remove("is-panning");
+                }
+            });
+
+            window.addEventListener("blur", function () {
+                if (state.isDragging) {
+                    state.isDragging = false;
+                    if (dom.imgViewport) dom.imgViewport.classList.remove("is-panning");
+                }
+            });
+
+            window.addEventListener("dragend", function () {
                 if (state.isDragging) {
                     state.isDragging = false;
                     if (dom.imgViewport) dom.imgViewport.classList.remove("is-panning");
