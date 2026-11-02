@@ -105,6 +105,7 @@ def build_index():
 
     # 3. Static Pages
     static_pages = [
+        ("gallery.html", "Visual Gallery & Malware Sandbox Lab", "Showcase", "Hands-on security research, live malware detonations, ransomware file destruction, screen lockers, and threat forensics analyzed in Windows Sandbox."),
         ("index.html", "Home & Homelab Overview", "General", "Homelab engineering, local AI experiments, live Eastern Station Clock, and systems architecture."),
         ("about.html", "About Andrew Van Ek", "Career & About", "Background, education, computing philosophy, hands-on homelab journey, and technology stack."),
         ("job.html", "Technical Skills & Toolkit", "Career & About", "Enterprise IT skills, networking, Linux administration, Python, cloud infrastructure, and technical competencies."),

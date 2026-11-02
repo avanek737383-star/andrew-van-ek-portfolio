@@ -763,6 +763,46 @@
 			analogy: "A high-tech adapter kit that takes an engine engineered for a gas racecar (Unity in C# and C++) and rebuilds it so it fits seamlessly inside an electric vehicle (the web browser), translating hardware steering and pedals into web canvas clicks and keyboard events.",
 			techFact: "An LLVM-to-WebAssembly compiler toolchain that compiles C and C++ codebases into WebAssembly, WebGL, and JavaScript glue code."
 		},
+		"windows-sandbox": {
+			title: "Windows Sandbox (Ephemeral Hypervisor)",
+			analogy: "A disposable hazmat testing room made of unbreakable glass: you bring in volatile chemicals to observe their reactions, and the moment you close the door, the entire room incinerates itself clean without a single molecule leaking into your home.",
+			techFact: "A lightweight, ephemeral virtual machine built on Microsoft Hyper-V virtualization and kernel isolation. Every session boots from a clean Windows snapshot and completely discards all state, registry changes, and memory upon exit."
+		},
+		"ransomware": {
+			title: "Cryptographic Ransomware",
+			analogy: "A burglar who slips into your office library, puts unbreakable military-grade combination padlocks on every single filing cabinet and book, throws away the keys, and leaves a demand note for the combinations.",
+			techFact: "Malicious software that traverses local and network storage volumes, systematically encrypting user files, databases, and system binaries using asymmetric (RSA/AES) cryptography and deleting volume shadow copies."
+		},
+		"screen-locker": {
+			title: "Screen Locker & Winlocker",
+			analogy: "An aggressive intruder who chains your front doorway from the outside and refuses to unlock it until you pay a toll, even though your furniture and personal belongings inside are completely untouched.",
+			techFact: "A non-destructive class of malware that hooks low-level keyboard/mouse events, replaces the desktop shell (explorer.exe), or renders a topmost borderless window to prevent user interaction until an unlock key or fee is provided."
+		},
+		"polymorphic-virus": {
+			title: "Polymorphic File Infector",
+			analogy: "A master of disguise who changes clothes, wigs, glasses, and gait every time they walk into a bank so static security camera facial recognition never matches their picture, even though their mission remains identical.",
+			techFact: "Malicious code that mutates its internal binary signature, decryption routines, or instruction sequences with every infection cycle while preserving its core payload, evading traditional hash-based antivirus signatures."
+		},
+		"smartscreen": {
+			title: "Windows Defender SmartScreen",
+			analogy: "A sharp security guard at the building lobby who checks a global digital guest registry before letting any unknown delivery inside; if a package has no verified sender or reputation, the guard raises a red barrier and halts entry.",
+			techFact: "A cloud-powered reputation service integrated into Windows that checks downloaded executable signatures and hashes against global Microsoft telemetry to warn users before launching untrusted binaries."
+		},
+		"fork-bomb": {
+			title: "UI Fork Bomb (Process Spawner)",
+			analogy: "A magical trick mirror box where touching one reflection causes two more to sprout, and touching either of those spawns four more, quickly filling the room until everyone is squeezed against the walls and can't breathe.",
+			techFact: "A process that recursively duplicates itself or loops dialog box creation exponentially, consuming memory, GDI handles, and window message queues until the operating system shell locks up."
+		},
+		"rogue-antivirus": {
+			title: "Rogue Antivirus & Scareware",
+			analogy: "A phony mechanic who peers under your car's hood, points to harmless road dust on an air filter, panics that your engine will explode in 30 seconds, and demands $300 on the spot for a magic potion to fix a fake problem.",
+			techFact: "Deceptive software that impersonates legitimate antivirus programs, simulates file scanning animations, and reports fabricated malware infections to frighten victims into paying for fraudulent software or installing spyware."
+		},
+		"volume-shadow-copies": {
+			title: "Volume Shadow Copies (VSS)",
+			analogy: "An automatic background time-machine camera that takes invisible snapshots of all your files before major changes, allowing you to instantly roll back to yesterday's exact photo if a document gets ruined.",
+			techFact: "A Windows storage service (VSS) that creates differential point-in-time backup snapshots of disk volumes, enabling fast system restores and file version rollbacks."
+		},
 		"wasm-memory-heap": {
 			title: "WebAssembly Linear Memory Heap (TOTAL_MEMORY)",
 			analogy: "Reserving a dedicated block of parking spots in a garage for your crew before the road trip begins. If you only reserve room for compact cars (256 MB) but your team shows up with loaded trucks (500 MB), the gate won't open; but reserve too much, and the whole garage locks up.",
@@ -771,6 +811,7 @@
 	};
 
 	function initTechAnalogies() {
+		window.initTechAnalogies = initTechAnalogies;
 		var terms = document.querySelectorAll(".tech-term");
 		if (!terms.length) return;
 

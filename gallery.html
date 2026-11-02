@@ -1,0 +1,174 @@
+<!doctype html>
+<!-- This website template was created by: Andrew Van Ek -->
+<html lang="en">
+	<head>
+		<title>Visual Gallery &amp; Malware Sandbox Lab | Andrew Van Ek</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css?v=20261026-nav-search-2">
+		<link rel="stylesheet" href="css/gallery.css?v=20261102-gallery-1">
+		<link rel="icon" href="favicon.ico" sizes="any">
+		<link rel="icon" href="favicon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<meta name="description" content="Visual gallery of hands-on security research, live malware detonations, and threat forensics conducted safely inside disposable Windows Sandbox environments by Andrew Van Ek.">
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://andrewtvanekportfolio.online/gallery.html">
+		<meta property="og:title" content="Visual Gallery &amp; Sandbox Lab | Andrew Van Ek Portfolio">
+		<meta property="og:description" content="Explore real-time malware detonations, ransomware file destruction, and social engineering screens analyzed safely in Windows Sandbox with deep forensic breakdowns.">
+		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/gallery/wannacry-sandbox-test.png">
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:url" content="https://andrewtvanekportfolio.online/gallery.html">
+		<meta property="twitter:title" content="Visual Gallery &amp; Sandbox Lab | Andrew Van Ek Portfolio">
+		<meta property="twitter:description" content="Explore real-time malware detonations, ransomware file destruction, and social engineering screens analyzed safely in Windows Sandbox with deep forensic breakdowns.">
+		<meta property="twitter:image" content="https://andrewtvanekportfolio.online/images/gallery/wannacry-sandbox-test.png">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div class="container">
+			<nav class="tablet-desktop">
+				<ul id="site-navigation">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="gallery.html" aria-current="page">Gallery</a></li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+							<li><a href="lab.html">Live AI Lab</a></li>
+							<li><a href="council.html">AI Chatroom</a></li>
+							<li><a href="moltbook.html">Moltbook Agent</a></li>
+							<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+							<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
+							<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="stats.html">Stats for Nerds</a></li>
+							<li><a href="maintenance.html">Maintenance Log</a></li>
+							<li><a href="clock.html">Homelab Desk Clock</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-dropdown">
+						<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+							Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+						</button>
+						<ul class="nav-dropdown-menu">
+							<li><a href="job.html">Skills &amp; Toolkit</a></li>
+							<li><a href="resume.html">Resume</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li><a href="privacy.html">Privacy Policy</a></li>
+						</ul>
+					</li>
+					<li class="nav-item-search">
+						<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+							<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+							<span>Search</span>
+							<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+						</a>
+					</li>
+				</ul>
+			</nav>
+
+			<main>
+				<header class="gallery-hero">
+					<h1>Visual Gallery &amp; Security Workbench</h1>
+					<p class="gallery-tagline">Real-world payload detonations, file integrity destruction, and threat analysis studied safely in disposable sandboxes.</p>
+					<p>Not every experiment belongs inside a polished project case study or a dry maintenance log. This visual gallery captures hands-on explorations at my security workbench—from live ransomware samples downloaded from the Da2dalus malware repository to deceptive screen lockers and recursive fork-bombs.</p>
+					<p>Studying active threats firsthand was an eye-opening lesson in defensive engineering: watching aggressive payloads completely break Windows Explorer, seize desktop focus, and scramble files in real time cemented the paramount importance of strict testing discipline. When handled with proper isolation protocols, dissecting malware is both fascinating and essential for building robust enterprise defenses.</p>
+					
+					<div class="gallery-safety-banner">
+						<span class="safety-icon" aria-hidden="true">&#128737;&#65039;</span>
+						<div>
+							<strong>Safety &amp; Isolation Protocol:</strong> All samples featured below were analyzed exclusively within <span class="tech-term" data-term="windows-sandbox">Windows Sandbox</span>—an ephemeral, Hyper-V-isolated disposable container. No host network shares or persistence existed. Every session was completely incinerated upon closing, ensuring zero risk to the physical workstation or internal network.
+						</div>
+					</div>
+
+					<div class="gallery-credit-pill">
+						<span>&#10024; Technical analyses and mitigation playbooks co-authored with Google DeepMind Antigravity AI</span>
+					</div>
+				</header>
+
+				<!-- Filter Bar -->
+				<section class="gallery-filter-wrap" aria-label="Filter gallery items by threat category">
+					<button type="button" class="gallery-filter-btn active" data-category="all">All Samples (8)</button>
+					<button type="button" class="gallery-filter-btn" data-category="ransomware">Ransomware &amp; Lockers (5)</button>
+					<button type="button" class="gallery-filter-btn" data-category="trojans">Trojans &amp; Infectors (2)</button>
+					<button type="button" class="gallery-filter-btn" data-category="pranks">Jokes &amp; Pranks (1)</button>
+				</section>
+
+				<!-- Cards Grid -->
+				<section class="gallery-grid" id="gallery-grid" aria-label="Malware and security screenshots gallery"></section>
+			</main>
+
+			<!-- Fullscreen Interactive Lightbox Modal -->
+			<div class="gallery-modal-overlay" id="gallery-modal" role="dialog" aria-modal="true" aria-hidden="true">
+				<div class="gallery-modal-wrapper">
+					<!-- Left/Top: Image Viewer Column -->
+					<div class="gallery-modal-viewer-col">
+						<!-- Floating Zoom Toolbar -->
+						<div class="gallery-zoom-toolbar" role="toolbar" aria-label="Image zoom and viewer controls">
+							<button type="button" class="gallery-zoom-btn" id="gallery-zoom-out" title="Zoom Out (-)" aria-label="Zoom Out">&minus;</button>
+							<input type="range" class="gallery-zoom-slider" id="gallery-zoom-slider" min="1.0" max="4.0" step="0.1" value="1.0" title="Zoom Slider" aria-label="Zoom scale slider">
+							<button type="button" class="gallery-zoom-btn" id="gallery-zoom-in" title="Zoom In (+)" aria-label="Zoom In">&plus;</button>
+							<span class="gallery-zoom-val" id="gallery-zoom-val">100%</span>
+							<button type="button" class="gallery-zoom-reset" id="gallery-zoom-reset" title="Reset to Original Size (0)" aria-label="Reset Zoom">Reset</button>
+						</div>
+
+						<!-- Image Viewport -->
+						<div class="gallery-img-viewport" id="gallery-viewport">
+							<img class="gallery-modal-main-img" id="gallery-main-img" src="" alt="Malware sample sandbox capture">
+						</div>
+
+						<!-- Side Navigation Arrows -->
+						<button type="button" class="gallery-nav-arrow gallery-nav-prev" id="gallery-nav-prev" title="Previous Sample (Left Arrow)" aria-label="Previous sample">&#10094;</button>
+						<button type="button" class="gallery-nav-arrow gallery-nav-next" id="gallery-nav-next" title="Next Sample (Right Arrow)" aria-label="Next sample">&#10095;</button>
+
+						<!-- Bottom Counter & Gestures Hint -->
+						<span class="gallery-img-counter" id="gallery-counter">Sample 1 of 8</span>
+						<span class="gallery-gesture-hint">&#9757; Pinch to zoom on touch &middot; Drag to pan &middot; Double-tap 2x</span>
+					</div>
+
+					<!-- Right/Bottom: Technical Details Drawer -->
+					<aside class="gallery-modal-drawer-col" aria-label="Sample analysis and defense breakdown">
+						<header class="gallery-drawer-header">
+							<div class="gallery-drawer-title-group">
+								<span class="gallery-drawer-category-badge" id="gallery-drawer-category">Ransomware</span>
+								<h2 id="gallery-drawer-title">Sample Title</h2>
+							</div>
+							<button type="button" class="gallery-drawer-close-btn" id="gallery-close-btn" title="Close Lightbox (Esc)" aria-label="Close dialog">&times;</button>
+						</header>
+
+						<div class="gallery-drawer-content" id="gallery-drawer-content">
+							<!-- Populated dynamically by scripts/gallery.js -->
+						</div>
+					</aside>
+				</div>
+			</div>
+
+			<footer>
+				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+				<p>Website last modified: <time datetime="2026-11-02T14:55:00-05:00">November 2, 2026 at 2:55:00 PM EST</time></p>
+			</footer>
+		</div>
+
+		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
+		<script src="scripts/script.js?v=20261102-gallery-security-1"></script>
+		<script src="scripts/gallery.js?v=20261102-gallery-1"></script>
+	</body>
+</html>
