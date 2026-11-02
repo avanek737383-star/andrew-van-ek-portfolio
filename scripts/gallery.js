@@ -6,7 +6,7 @@
  * - 26 High-Resolution Workbench Captures across 4 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
- * - Fullscreen Interactive Lightbox Modal
+ * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
  * - Desktop Floating Zoom Toolbar (Slider, +/- Buttons, Mouse Wheel Zoom, Pan/Drag)
  * - Mobile Touch Gestures (2-Finger Pinch-to-Zoom, 1-Finger Pan when Zoomed, Double-Tap)
  * - Integrated Tech Term Analogy Tooltips
@@ -195,7 +195,7 @@
             thumb: "images/gallery/ftk-imager-digital-forensics-fat-ntfs.png",
             tags: ["FTK Imager", "Digital Forensics", "FAT32", "NTFS", "Hex Analysis", "Deleted Files"],
             summary: "Side-by-side evidence analysis in Exterro FTK Imager comparing directory allocation tables, deleted file recovery (!ank.jpg), and hex clusters.",
-            sandboxObservation: "Andrew conducted a comparative filesystem forensic audit between raw disk images (fat32.001 vs. ntfs.001) for university coursework (lab05_Windows_Forensics.docx). In the FAT32 image, deleted files were flagged with red X icons where the initial character in the directory entry was replaced with a deleted marker byte (0xE5, rendered as '!'), while NTFS preserved deep transaction metadata ($RmMetadata, $BadClus, $Secure).",
+            sandboxObservation: "Andrew conducted a comparative filesystem forensic audit between raw disk images (fat32.001 vs. ntfs.001) for university coursework. In the FAT32 image, deleted files were flagged with red X icons where the initial character in the directory entry was replaced with a deleted marker byte (0xE5, rendered as '!'), while NTFS preserved deep transaction metadata ($RmMetadata, $BadClus, $Secure).",
             technicalBreakdown: "FTK Imager provides low-level hex and structural parsing of physical and logical disk images. The analysis revealed how FAT32 marks file deletion by zeroing FAT chain clusters and overwriting the first directory entry byte, whereas NTFS tracks allocations via the Master File Table (MFT) $BITMAP and record flags, allowing forensic analysts to recover data from unallocated sectors.",
             defensePlaybook: [
                 "Secure Erase & Sanitization: Standard OS file deletion does not sanitize storage; employ NIST 800-88 cryptographic wiping or secure shredding tools for sensitive media.",
@@ -595,6 +595,7 @@
         filtered.forEach(function (item) {
             var card = document.createElement("article");
             card.className = "gallery-card";
+            card.id = "card-" + item.id;
             card.setAttribute("role", "button");
             card.setAttribute("tabindex", "0");
             card.setAttribute("aria-label", "View " + item.title + " in full resolution");
@@ -723,6 +724,11 @@
         resetZoom();
         populateDrawer(index);
 
+        var item = galleryItems[index];
+        if (item && window.history && window.history.replaceState) {
+            window.history.replaceState(null, null, "#" + item.id);
+        }
+
         if (dom.modalOverlay) {
             dom.modalOverlay.classList.add("active");
             dom.modalOverlay.setAttribute("aria-hidden", "false");
@@ -735,6 +741,9 @@
             dom.modalOverlay.classList.remove("active");
             dom.modalOverlay.setAttribute("aria-hidden", "true");
             document.body.style.overflow = "";
+        }
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
         }
         resetZoom();
     }
@@ -801,6 +810,23 @@
         openLightbox(newIndex);
     }
 
+    function checkInitialHash() {
+        if (window.location.hash) {
+            var hash = window.location.hash.replace("#", "").trim().toLowerCase();
+            for (var i = 0; i < galleryItems.length; i++) {
+                if (galleryItems[i].id.toLowerCase() === hash) {
+                    // Switch category if needed so it is visible
+                    if (state.activeCategory !== "all" && galleryItems[i].category !== state.activeCategory) {
+                        state.activeCategory = "all";
+                        updateCategoryUI();
+                    }
+                    openLightbox(i);
+                    break;
+                }
+            }
+        }
+    }
+
     function initEvents() {
         // Desktop Filter Buttons
         if (dom.filterBtns) {
@@ -831,7 +857,7 @@
                 opt.addEventListener("click", function () {
                     state.activeCategory = opt.getAttribute("data-category") || "all";
                     updateCategoryUI();
-                    closeMobileCategoryModal(); // Auto-dismiss as requested!
+                    closeMobileCategoryModal();
                 });
             });
         }
@@ -975,11 +1001,15 @@
                 resetZoom();
             }
         });
+
+        // Listen for popstate / hashchange
+        window.addEventListener("hashchange", checkInitialHash);
     }
 
     function init() {
         updateCategoryUI();
         initEvents();
+        checkInitialHash();
     }
 
     if (document.readyState === "loading") {

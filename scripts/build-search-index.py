@@ -103,7 +103,43 @@ def build_index():
                 "content": full_text
             })
 
-    # 3. Static Pages
+    # 3. Gallery Items
+    gallery_path = os.path.join(BASE_DIR, "scripts", "gallery.js")
+    if os.path.exists(gallery_path):
+        with open(gallery_path, "r", encoding="utf-8") as f:
+            gcontent = f.read()
+
+        gm = re.search(r'var galleryItems = (\[[\s\S]*?\]);\s*var state', gcontent)
+        if gm:
+            g_raw = gm.group(1)
+            blocks = re.findall(r'\{\s*id:\s*"([^"]+)",([\s\S]*?credit:\s*"[^"]*"\s*\}|\}\s*,)', g_raw)
+            for item_id, block in blocks:
+                def get_gfield(name):
+                    fm = re.search(r'' + name + r':\s*"([^"]*)"', block)
+                    return fm.group(1) if fm else ""
+
+                gtitle = get_gfield("title")
+                gcat = get_gfield("categoryLabel") or "Workbench"
+                gsummary = get_gfield("summary")
+                gobs = get_gfield("sandboxObservation")
+                gbreakdown = get_gfield("technicalBreakdown")
+
+                tm = re.search(r'tags:\s*\[([^\]]*)\]', block)
+                gtags = tm.group(1).replace('"', '').strip() if tm else ""
+
+                gfull = clean_text(strip_tags(f"{gtitle}. {gcat}. Tags: {gtags}. Summary: {gsummary}. Observation: {gobs}. Technical details: {gbreakdown}"))
+
+                index_items.append({
+                    "id": f"gallery-{item_id}",
+                    "url": f"gallery.html#{item_id}",
+                    "title": f"Gallery: {gtitle}",
+                    "category": "Gallery",
+                    "subcategory": gcat,
+                    "snippet": gsummary,
+                    "content": gfull
+                })
+
+    # 4. Static Pages
     static_pages = [
         ("gallery.html", "Visual Gallery & Malware Sandbox Lab", "Showcase", "Hands-on security research, live malware detonations, ransomware file destruction, screen lockers, and threat forensics analyzed in Windows Sandbox."),
         ("index.html", "Home & Homelab Overview", "General", "Homelab engineering, local AI experiments, live Eastern Station Clock, and systems architecture."),
