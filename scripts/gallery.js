@@ -1,32 +1,34 @@
 /**
- * Gallery & Sandbox Showcase Script
+ * Visual Gallery & Homelab Showcase Script
+ * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
+ *
  * Features:
- * - Dynamic Category Filtering
- * - Fullscreen Lightbox Modal
- * - Desktop Zoom Slider & Interactive Buttons
- * - Touch Pinch-to-Zoom (2-finger) & Double-Tap
- * - Pan/Drag when Zoomed
- * - Keyboard Shortcuts (Esc, Arrows, +, -, 0)
- * - Dynamic Integration with Tech Term Analogies
- * - Co-authored with Google DeepMind Antigravity AI
+ * - 26 High-Resolution Workbench Captures across 4 Curated Categories
+ * - Desktop/Tablet Filter Pill Bar
+ * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
+ * - Fullscreen Interactive Lightbox Modal
+ * - Desktop Floating Zoom Toolbar (Slider, +/- Buttons, Mouse Wheel Zoom, Pan/Drag)
+ * - Mobile Touch Gestures (2-Finger Pinch-to-Zoom, 1-Finger Pan when Zoomed, Double-Tap)
+ * - Integrated Tech Term Analogy Tooltips
  */
 
 (function () {
     "use strict";
 
     var galleryItems = [
+        // ----------------- Category: Malware & Security (10) -----------------
         {
             id: "wannacry",
             title: "WannaCry Ransomware (EternalBlue MS17-010)",
-            category: "ransomware",
+            category: "security",
             categoryLabel: "Cryptographic Ransomware",
             badgeClass: "badge-danger",
             image: "images/gallery/wannacry-sandbox-test.png",
             thumb: "images/gallery/wannacry-sandbox-test.png",
             tags: ["WannaCry", "Ransomware", "EternalBlue", "Windows Sandbox", "Da2dalus"],
-            summary: "Detonation of the notorious Wanna Decryptor 1.0 payload inside Windows Sandbox, presenting extortion timers and Bitcoin payment demands.",
-            sandboxObservation: "Detonated cleanly within disposable Windows Sandbox memory. The malware background process enumerated virtual directories and deployed its UI prompt over active windows. As seen in the background, test files and references were pulled directly from the Da2dalus malware repository for controlled academic analysis.",
-            technicalBreakdown: "WannaCry deploys high-grade asymmetric cryptography (AES-128 coupled with RSA-2048) to encrypt targeted file extensions (.docx, .pdf, .zip, .jpg). It historically spread as a worm by exploiting the <span class=\"tech-term\" data-term=\"ransomware\">MS17-010 EternalBlue</span> SMBv1 vulnerability. Once locked, the software presents a persistent decryption GUI with automated countdown clocks.",
+            summary: "Detonation of the notorious Wanna Decryptor 1.0 payload inside Windows Sandbox, presenting extortion countdown clocks and Bitcoin payment demands.",
+            sandboxObservation: "Andrew detonated the sample inside disposable Windows Sandbox memory. The malware background process enumerated virtual directories and deployed its UI prompt over active windows. As seen in the background, test files and references were pulled directly from the Da2dalus malware repository for controlled academic analysis.",
+            technicalBreakdown: "WannaCry deploys high-grade asymmetric cryptography (AES-128 coupled with RSA-2048) to encrypt targeted file extensions. It historically spread as a worm by exploiting the <span class=\"tech-term\" data-term=\"ransomware\">MS17-010 EternalBlue</span> SMBv1 vulnerability. Once locked, the software presents a persistent decryption GUI with automated countdown clocks.",
             defensePlaybook: [
                 "Strict Patch Management: Ensure Microsoft security bulletin MS17-010 (KB4012598) is installed across all endpoints.",
                 "Disable Legacy SMBv1: Deprecate and completely disable SMBv1 across enterprise group policies and client machines.",
@@ -34,19 +36,19 @@
                 "Immutable Backups: Maintain offline, air-gapped, or write-once (WORM) backups that cannot be overwritten by infected endpoints."
             ],
             containment: "Executed exclusively inside <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span>. No shared host folders or host networking were active during execution. The entire sandbox hypervisor state was discarded upon closing, leaving the host operating system completely untouched.",
-            credit: "Exploration & sandbox telemetry captured by Andrew Van Ek. Technical breakdown and mitigation playbook co-authored with Google DeepMind Antigravity AI pair programmer."
+            credit: "Exploration, safety containment, and screenshot captured by Andrew Van Ek. Technical breakdown and mitigation playbook co-authored with Google DeepMind Antigravity AI."
         },
         {
             id: "redeye",
             title: "RedEye Ransomware (Active Filesystem Destruction)",
-            category: "ransomware",
+            category: "security",
             categoryLabel: "Active Encryption",
             badgeClass: "badge-danger",
             image: "images/gallery/redeye-ransomware-encryption.png",
             thumb: "images/gallery/redeye-ransomware-encryption.png",
             tags: ["RedEye", "Filesystem Encryption", "VSS Purge", "Windows Sandbox"],
             summary: "Real-time capture of File Explorer showing test binaries actively encrypted and rewritten with the .RedEye extension.",
-            sandboxObservation: "During this test, RedEye immediately began mass-encrypting binaries and files across the virtual user profile. Watching Windows Explorer refresh in real time as file extensions mutated to .RedEye demonstrated how rapidly a modern ransomware payload can tear through a filesystem.",
+            sandboxObservation: "During Andrew's test, RedEye immediately began mass-encrypting binaries across the virtual user profile. Watching Windows Explorer refresh in real time as file extensions mutated to .RedEye demonstrated how rapidly a modern ransomware payload tears through a filesystem.",
             technicalBreakdown: "RedEye executes an aggressive background loop that renames targeted files and encrypts their contents. To thwart recovery, modern ransomware families systematically execute shell commands like <code>vssadmin.exe delete shadows /all /quiet</code> to wipe out <span class=\"tech-term\" data-term=\"volume-shadow-copies\">Volume Shadow Copies</span> and disable system startup repair.",
             defensePlaybook: [
                 "Controlled Folder Access: Enable Windows Defender Controlled Folder Access to prevent unauthorized binaries from altering key directories.",
@@ -60,7 +62,7 @@
         {
             id: "hydra",
             title: "Hydra Joke Virus (Rayquaza Cascading Fork-Bomb)",
-            category: "pranks",
+            category: "security",
             categoryLabel: "Joke / UI Fork Bomb",
             badgeClass: "badge-warning",
             image: "images/gallery/hydra-joke-virus-forkbomb.png",
@@ -81,7 +83,7 @@
         {
             id: "fake-update",
             title: "Fake Windows Update (Deceptive Screen Locker)",
-            category: "ransomware",
+            category: "security",
             categoryLabel: "Screen Locker & Social Engineering",
             badgeClass: "badge-info",
             image: "images/gallery/fake-windows-update-locker.png",
@@ -93,7 +95,7 @@
             defensePlaybook: [
                 "Secure Attention Sequence (SAS): Utilize <code>Ctrl + Alt + Delete</code>, which is handled at the Windows kernel level and cannot be trapped or faked by user-mode applications.",
                 "Disable Automatic Script Execution: Block untrusted script interpreters (WScript, CScript, PowerShell execution policies) from launching out of temporary folders.",
-                "Startup Integrity Monitoring: Inspect registry run keys (<code>HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run</code>) for persistence mechanisms.",
+                "Startup Integrity Monitoring: Inspect registry run keys for unauthorized persistence mechanisms.",
                 "Safe Mode Boot: If locked on physical hardware, boot into Windows Safe Mode to bypass non-essential startup screen blockers."
             ],
             containment: "Executed in <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span>. Because the sandbox is ephemeral, closing the sandbox window instantly terminated the hook without needing kernel debugging.",
@@ -102,7 +104,7 @@
         {
             id: "suckylocker",
             title: "$ucyLocker (High-Contrast Threat Locker)",
-            category: "ransomware",
+            category: "security",
             categoryLabel: "Ransomware Screen Locker",
             badgeClass: "badge-danger",
             image: "images/gallery/suckylocker-ransomware.png",
@@ -123,7 +125,7 @@
         {
             id: "xpaj",
             title: "Xpaj Polymorphic Virus (SmartScreen Interception)",
-            category: "trojans",
+            category: "security",
             categoryLabel: "Polymorphic File Infector",
             badgeClass: "badge-warning",
             image: "images/gallery/xpaj-virus-smartscreen.png",
@@ -144,7 +146,7 @@
         {
             id: "nsb-winlocker",
             title: "National Security Bureau (Police Winlocker Extortion)",
-            category: "ransomware",
+            category: "security",
             categoryLabel: "Police Winlocker / Extortion",
             badgeClass: "badge-danger",
             image: "images/gallery/nsb-police-ransomware-winlocker.png",
@@ -165,23 +167,375 @@
         {
             id: "fake-adwcleaner",
             title: "Fake AdwCleaner (Scareware & Trojan Dropper)",
-            category: "trojans",
+            category: "security",
             categoryLabel: "Scareware / Trojan Dropper",
             badgeClass: "badge-warning",
             image: "images/gallery/fake-adwcleaner-scareware.png",
             thumb: "images/gallery/fake-adwcleaner-scareware.png",
             tags: ["Fake AdwCleaner", "Scareware", "Banking Trojan", "Social Engineering", "Windows Sandbox"],
             summary: "Phony utility mimicking the legitimate AdwCleaner interface, generating fake registry infections from Banking-Malware samples.",
-            sandboxObservation: "The executable displayed a polished replica of the AdwCleaner interface. It ran a fake animated progress bar before reporting 7 fabricated \"Very High\" infections (such as Win32.Stealer Trojan and Win32.cc Logger). The sample originated from a banking malware repository containing DanaBot, Emotet, and Dridex.",
+            sandboxObservation: "The executable displayed a polished replica of the AdwCleaner interface. It ran a fake animated progress bar before reporting 7 fabricated \"Very High\" infections. The sample originated from a banking malware repository containing DanaBot, Emotet, and Dridex.",
             technicalBreakdown: "This represents <span class=\"tech-term\" data-term=\"rogue-antivirus\">rogue security software / scareware</span>. The malware intentionally fabricates alarming infection reports to panic the victim into downloading an additional \"remediation tool\" that serves as a dropper for destructive banking trojans like Emotet or Dridex.",
             defensePlaybook: [
-                "Verify Software Provenance: Always download utility software directly from official vendor domains (e.g., Malwarebytes for AdwCleaner).",
+                "Verify Software Provenance: Always download utility software directly from official vendor domains.",
                 "Hash Verification: Compare downloaded file hashes (SHA-256) against official release checksums and VirusTotal records.",
                 "DNS Filtering: Implement DNS filtering (such as Quad9 or Cloudflare for Families) to block known malicious download domains.",
                 "Zero Trust Execution: Prevent execution of unknown binaries downloaded from untrusted file-sharing repositories."
             ],
             containment: "Executed within <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span>. The deception and simulated scan were thoroughly analyzed without risking physical credentials.",
             credit: "Investigation and capture by Andrew Van Ek. Threat vector breakdown and defensive recommendations produced with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "ftk-imager",
+            title: "FTK Imager Forensics: FAT32 vs. NTFS Filesystem Artifacts",
+            category: "security",
+            categoryLabel: "Digital Forensics & Artifacts",
+            badgeClass: "badge-info",
+            image: "images/gallery/ftk-imager-digital-forensics-fat-ntfs.png",
+            thumb: "images/gallery/ftk-imager-digital-forensics-fat-ntfs.png",
+            tags: ["FTK Imager", "Digital Forensics", "FAT32", "NTFS", "Hex Analysis", "Deleted Files"],
+            summary: "Side-by-side evidence analysis in Exterro FTK Imager comparing directory allocation tables, deleted file recovery (!ank.jpg), and hex clusters.",
+            sandboxObservation: "Andrew conducted a comparative filesystem forensic audit between raw disk images (fat32.001 vs. ntfs.001) for university coursework (lab05_Windows_Forensics.docx). In the FAT32 image, deleted files were flagged with red X icons where the initial character in the directory entry was replaced with a deleted marker byte (0xE5, rendered as '!'), while NTFS preserved deep transaction metadata ($RmMetadata, $BadClus, $Secure).",
+            technicalBreakdown: "FTK Imager provides low-level hex and structural parsing of physical and logical disk images. The analysis revealed how FAT32 marks file deletion by zeroing FAT chain clusters and overwriting the first directory entry byte, whereas NTFS tracks allocations via the Master File Table (MFT) $BITMAP and record flags, allowing forensic analysts to recover data from unallocated sectors.",
+            defensePlaybook: [
+                "Secure Erase & Sanitization: Standard OS file deletion does not sanitize storage; employ NIST 800-88 cryptographic wiping or secure shredding tools for sensitive media.",
+                "BitLocker Full Disk Encryption: Encrypt volumes with AES-XTS 256 to ensure raw unallocated sectors cannot be read if physical drives are seized or lost.",
+                "Write-Blocker Hardware: Always utilize hardware or software write-blockers during forensic acquisition to prevent evidence contamination."
+            ],
+            containment: "Performed on isolated disk image files (.001) mounted read-only within FTK Imager to preserve cryptographic hash integrity.",
+            credit: "Forensic laboratory analysis and image evidence captured by Andrew Van Ek. Filesystem architectural breakdown co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "phishing-analysis",
+            title: "Gmail Phishing Triage: TransUnion Deception & Lures",
+            category: "security",
+            categoryLabel: "Email Security & Threat Analysis",
+            badgeClass: "badge-warning",
+            image: "images/gallery/phishing-email-analysis-transunion-spam.png",
+            thumb: "images/gallery/phishing-email-analysis-transunion-spam.png",
+            tags: ["Phishing", "Email Security", "Social Engineering", "Spam Analysis"],
+            summary: "Triage and forensic review of an active credit-monitoring phishing campaign targeting Gmail inboxes with misspelled entity names and urgent financial lures.",
+            sandboxObservation: "Andrew analyzed a live phishing email flagged by spam heuristics. The email impersonated credit bureau TransUnion with glaring typos ('TransUnioun') and urgent claims of sudden score increases to coax clicks on deceptive external landing pages.",
+            technicalBreakdown: "Financial phishing campaigns leverage urgent emotional triggers (credit fluctuations, vehicle loans) to drive victims to credential harvesting portals. Attackers frequently register typosquatted domains and utilize obfuscated redirect chains to evade basic URL filtering.",
+            defensePlaybook: [
+                "SPF, DKIM & DMARC Enforcement: Implement strict email authentication records (p=reject) to prevent domain spoofing.",
+                "Automated Inbox Rules: Deploy server-side email rules (like Andrew's custom Google Apps Script automation) to auto-purge high-confidence spam threads.",
+                "Security Awareness Training: Train users to verify sender domain headers and look for brand typographical errors before interacting with financial alerts."
+            ],
+            containment: "Triaged safely within isolated web sandbox without clicking external payload hyperlinks.",
+            credit: "Email threat triage and screenshot captured by Andrew Van Ek. Analysis authored with Google DeepMind Antigravity AI."
+        },
+
+        // ----------------- Category: Virtual Machines & Retro OS (4) -----------------
+        {
+            id: "vista-legacy-update",
+            title: "Windows Vista Ultimate SP2: Legacy Update 1.14.1 Revival",
+            category: "vms",
+            categoryLabel: "Vintage VM & Update Revival",
+            badgeClass: "badge-info",
+            image: "images/gallery/windows-vista-legacy-update-vm.png",
+            thumb: "images/gallery/windows-vista-legacy-update-vm.png",
+            tags: ["Windows Vista", "Legacy Update", "Virtual Machine", "Retro Computing", "TLS Certificates"],
+            summary: "Windows Vista Ultimate SP2 running inside a virtual machine, successfully restored to online status using community-driven Legacy Update 1.14.1.",
+            sandboxObservation: "Andrew revived a fresh installation of Windows Vista Ultimate SP2 in a virtual machine. Because Microsoft shut down legacy Windows Update servers and modern websites require updated TLS 1.2/1.3 root certificates, Andrew deployed Legacy Update 1.14.1 to restore Windows Update functionality and patched cryptographic trust stores.",
+            technicalBreakdown: "Legacy operating systems encounter error 80072EFE when connecting to outdated Windows Update endpoints due to retired SHA-1 hashing and discontinued TLS 1.0 protocols. Legacy Update proxies update requests, installs updated Root Certificate Authorities (CA), and patches the Windows Update client (wuaueng.dll) so the OS can safely discover and install missing patches.",
+            defensePlaybook: [
+                "Isolated Retro Networks: Legacy operating systems (Vista, XP) should reside on dedicated isolated VLANs with no direct outbound WAN routing.",
+                "Proxy-Based Certificate Management: Revive legacy browser trust safely using verified root certificates from reputable archive repositories.",
+                "Virtual Machine Snapshots: Maintain gold-master VM snapshots before installing community patches to enable instant rollback."
+            ],
+            containment: "Isolated guest virtual machine configured with host-only networking and snapshot rollbacks.",
+            credit: "Virtual machine engineering and system restoration executed by Andrew Van Ek. Technical documentation compiled with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "win81-charms",
+            title: "Windows 8.1 32-Bit: Metro Charms & Start Tutorial in VM",
+            category: "vms",
+            categoryLabel: "Legacy VM / UI Architecture",
+            badgeClass: "badge-info",
+            image: "images/gallery/windows-81-metro-charms-tutorial-vm.png",
+            thumb: "images/gallery/windows-81-metro-charms-tutorial-vm.png",
+            tags: ["Windows 8.1", "Metro UI", "Charms Bar", "Virtual Machine", "UTM / Fusion"],
+            summary: "Windows 8.1 32-bit guest VM displaying the historic Metro Charms tutorial: 'Here\\'s Start: Move your mouse pointer all the way into the corner and click.'",
+            sandboxObservation: "Andrew deployed a 32-bit Windows 8.1 virtual machine on his Mac to study Microsoft's touch-first Metro UI paradigm and OS architecture. The screenshot captures the initial OOBE personalization tour introducing edge-screen gesture mechanics.",
+            technicalBreakdown: "Windows 8 introduced the Windows Runtime (WinRT) framework and dual-shell architecture, mapping screen corner hover events to the DWM (Desktop Window Manager) to render the Charms bar and Start screen. Running 32-bit builds in virtualization allows testing lightweight legacy enterprise apps with minimal RAM overhead.",
+            defensePlaybook: [
+                "Lifecycle Deprecation: Windows 8.1 reached End of Life in January 2023; air-gap legacy virtual machines running obsolete OS builds.",
+                "Hypervisor Isolation: Ensure VM guest additions and shared clipboards are disabled when running untrusted legacy workloads."
+            ],
+            containment: "Executed in an isolated guest VM on macOS.",
+            credit: "VM setup and capture by Andrew Van Ek. Technical analysis formatted with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "win81-load",
+            title: "Windows 8.1 Pro VM: 100% CPU Benchmark & Task Manager",
+            category: "vms",
+            categoryLabel: "Virtualization Performance",
+            badgeClass: "badge-info",
+            image: "images/gallery/windows-81-vm-taskmanager-load.png",
+            thumb: "images/gallery/windows-81-vm-taskmanager-load.png",
+            tags: ["Windows 8.1 Pro", "Task Manager", "100% CPU", "Virtualization", "Resource Monitoring"],
+            summary: "Task Manager resource telemetry inside Windows 8.1 Pro Build 9600 during a 100% 1.00 GHz CPU stress benchmark on a 2.0 GB RAM virtual machine.",
+            sandboxObservation: "Andrew monitored hypervisor resource scheduling during a compute stress test on Windows 8.1 Pro. The virtualized single-core processor pinned at 100% utilization while memory allocation held stable at 1.2 / 2.0 GB (60%), verifying guest stability under full CPU constraint.",
+            technicalBreakdown: "Demonstrates hypervisor vCPU time-slicing and virtual interrupt handling. Windows 8.1 was the first consumer Windows release to debut the redesigned modern Task Manager, introducing the heat-map resource grid, grouped processes, and live performance metrics.",
+            defensePlaybook: [
+                "Hypervisor Resource Quotas: Always configure vCPU shares and execution caps to prevent a runaway guest VM from starving the host OS.",
+                "Synthetic Metric Verification: Correlate in-guest Task Manager stats with host-level hypervisor telemetry to detect CPU scheduling latency."
+            ],
+            containment: "Contained within a single-vCPU guest virtual machine.",
+            credit: "Benchmarking and capture conducted by Andrew Van Ek. Architectural review with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "kali-wordlist",
+            title: "Kali Linux in VirtualBox: Wordlist Cracking & Character Encoding",
+            category: "vms",
+            categoryLabel: "Security VM & Password Auditing",
+            badgeClass: "badge-warning",
+            image: "images/gallery/kali-linux-virtualbox-hash-cracking.png",
+            thumb: "images/gallery/kali-linux-virtualbox-hash-cracking.png",
+            tags: ["Kali Linux", "VirtualBox", "Rockyou.txt", "Hash Cracking", "UTF-8 Encoding", "Remote Desktop"],
+            summary: "Multi-tier cross-platform virtualization: macOS Safari controlling Chrome Remote Desktop to Windows, running Kali Linux 64-bit in VirtualBox for password security labs.",
+            sandboxObservation: "Andrew set up a multi-hop remote access architecture to conduct security lab work from anywhere. Inside Kali Linux, while preparing wordlists (rockyou.txt) for hash cracking labs, the Mousepad editor flagged a non-UTF-8 encoding conflict—highlighting practical character set challenges when parsing legacy dictionary archives.",
+            technicalBreakdown: "The famous rockyou.txt wordlist contains over 14 million passwords compiled from historical leaks, including raw binary strings, extended ASCII, and ISO-8859-1 encodings that violate strict UTF-8 parsers. Security tooling requires iconv normalization or binary-safe stream processing (e.g. John the Ripper / Hashcat) to avoid corrupted dictionary evaluations.",
+            defensePlaybook: [
+                "High-Entropy Password Policies: Require passphrases (>16 characters) with high Kolmogorov complexity to render dictionary attacks mathematically infeasible.",
+                "Adaptive Salting & KDFs: Store hashes using Argon2id, bcrypt, or PBKDF2 with high work factors to thwart GPU-accelerated cracking.",
+                "Rate Limiting & Account Lockouts: Implement progressive exponential backoffs on authentication endpoints to stop automated wordlist spray attacks."
+            ],
+            containment: "Executed in an isolated VirtualBox Kali Linux instance accessed securely over Chrome Remote Desktop.",
+            credit: "Cross-platform setup and security lab work by Andrew Van Ek. Cryptographic analysis authored with Google DeepMind Antigravity AI."
+        },
+
+        // ----------------- Category: Homelab, Cloud & Linux Fleet (8) -----------------
+        {
+            id: "slax-dell-conky",
+            title: "Custom Slax XFCE on Home Dell: USB Persistence & Real-Time Desklets",
+            category: "homelab",
+            categoryLabel: "Homelab Fleet & Live OS",
+            badgeClass: "badge-info",
+            image: "images/gallery/slax-dell-usb-persistence-conky.png",
+            thumb: "images/gallery/slax-dell-usb-persistence-conky.png",
+            tags: ["Slax Linux", "Dell Laptop", "USB Persistence", "Conky", "Tailscale", "Homebrew Maintenance"],
+            summary: "Custom persistent Slax Linux installation running on the Home Dell laptop over USB 3.0, featuring Conky system monitors and autonomous Homebrew maintenance.",
+            sandboxObservation: "Andrew engineered a custom live Slax XFCE deployment running entirely off a USB drive with encrypted persistence (14.0 GiB / 46.8 GiB utilized). Connected via TigerVNC, the desktop features a custom Conky telemetry HUD tracking CPU temp (+51°C), RAM (4.59 / 15.5 GiB), USB I/O throughput, Tailscale mesh IP (100.121.51.123), and background Homebrew updates.",
+            technicalBreakdown: "Slax uses an AUFS / OverlayFS layered filesystem architecture to merge read-only compressed squashfs system modules with a writable persistence directory on USB storage. Andrew configured background maintenance scripts with download rate-limiting (16 KiB/s) to ensure package updates never saturate mobile or homelab bandwidth.",
+            defensePlaybook: [
+                "Persistence Partition Encryption: Encrypt LUKS storage on portable USB operating systems to protect credentials if physical media is misplaced.",
+                "Mesh Network Segmentation: Enforce Tailscale ACL policies so portable endpoints only reach authorized internal homelab services."
+            ],
+            containment: "Ephemeral live OS with modular persistence overlay running on dedicated test hardware.",
+            credit: "Operating system tailoring, Conky widget scripting, and system monitoring by Andrew Van Ek. Systems architecture documented with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "debian-mac-ai",
+            title: "2011 Debian Intel Mac: AI Wallpaper Generation & Conky Telemetry",
+            category: "homelab",
+            categoryLabel: "Retro Mac Linux & Local AI",
+            badgeClass: "badge-info",
+            image: "images/gallery/debian-mac-ai-image-gen-conky.png",
+            thumb: "images/gallery/debian-mac-ai-image-gen-conky.png",
+            tags: ["2011 Mac", "Debian Linux", "Local AI", "Wallpaper Generator", "Conky", "TigerVNC"],
+            summary: "Vintage 2011 Intel Mac repurposed with Debian Linux, running an autonomous multi-threaded Wallpaper Batch Generator GUI with live hardware telemetry.",
+            sandboxObservation: "Andrew brought new life to his 2011 Intel Mac by installing Debian Linux and engineering an automated Python/Tkinter Wallpaper Batch Generator. Over TigerVNC, the Mac coordinates 30-image batch prompts while Conky monitors CPU temperature (84.4°F), RAM temperature (125.2°F), and 23.6 GiB memory utilization.",
+            technicalBreakdown: "Demonstrates repurposing legacy x86_64 Mac hardware into a headless AI compute worker. By offloading image generation tasks to background queues with swap optimizations (leveraging up to 48 GB swap when needed), older hardware remains highly capable of autonomous creative workloads.",
+            defensePlaybook: [
+                "Hardware Thermal Guardrails: Implement temperature-triggered throttling scripts (lm-sensors) to prevent thermal degradation on aging laptop logic boards.",
+                "Headless VNC Security: Bind VNC servers strictly to localhost (127.0.0.1) and tunnel display sessions exclusively over SSH or Tailscale."
+            ],
+            containment: "Headless Debian Linux workstation on private homelab Tailscale network.",
+            credit: "Hardware revival, Debian configuration, and AI batch script engineering by Andrew Van Ek. Telemetry integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "mint-desklets-crypto",
+            title: "Linux Mint on HP Laptop: Quad-Core Desklets & Monero Mining",
+            category: "homelab",
+            categoryLabel: "Linux Fleet & Distributed Compute",
+            badgeClass: "badge-info",
+            image: "images/gallery/linux-mint-desklets-monero-mining.png",
+            thumb: "images/gallery/linux-mint-desklets-monero-mining.png",
+            tags: ["Linux Mint", "HP Laptop", "Monero Mining", "Cinnamon Desklets", "Hardware Telemetry"],
+            summary: "HP 15 laptop running Linux Mint Cinnamon, featuring custom circular CPU core gauges, live Monero mining telemetry, and local AI model runners.",
+            sandboxObservation: "Andrew configured his HP 15 laptop as a distributed compute node on Linux Mint. The desktop displays custom Cinnamon desklets tracking 100% load across all 4 CPU cores, RAM allocation (11.20 / 16.40 GiB), and MoneroOcean mining pool shares (386.0 H/s) running alongside local Realistic Vision AI models.",
+            technicalBreakdown: "Utilizes the RandomX proof-of-work algorithm optimized for consumer x86 CPUs. Andrew carefully tuned the thread allocation and Huge Pages settings to balance compute throughput without causing thermal runaway on laptop form factors.",
+            defensePlaybook: [
+                "Mining Pool Authentication: Secure pool payout addresses with hardware wallets and enforce TLS-encrypted Stratum connections.",
+                "Thermal Management: Configure core affinity and power-limit throttles to preserve battery health on mobile laptops."
+            ],
+            containment: "Dedicated Linux Mint hardware node on private home network.",
+            credit: "Linux Mint customization, desklet arrangement, and mining node administration by Andrew Van Ek. Hardware evaluation with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "folding-dashboard",
+            title: "Folding@Home Multi-Machine Cluster: 151.7 Million PPD Telemetry",
+            category: "homelab",
+            categoryLabel: "Distributed Science & Compute Cluster",
+            badgeClass: "badge-info",
+            image: "images/gallery/folding-at-home-slax-multi-machine.png",
+            thumb: "images/gallery/folding-at-home-slax-multi-machine.png",
+            tags: ["Folding@Home", "Banano.cc", "Distributed Computing", "151M PPD", "Cluster Dashboard"],
+            summary: "Unified Folding@home Web Client dashboard orchestrating 151,764,241 Points Per Day (PPD) across cloud and physical nodes for biomedical research.",
+            sandboxObservation: "Andrew's distributed scientific compute cluster in action. Monitored from Slax Linux, the dashboard tracks parallel work units running across physical and cloud nodes: slax (2 CPUs), EC2AMAZ high-performance cloud compute (151.6M PPD), fah-cpu-8 (8 CPUs), and fah-linux.",
+            technicalBreakdown: "Folding@home distributes molecular dynamics simulations of protein folding to help researchers develop treatments for cancer and Alzheimer's disease. Andrew orchestrated multiple heterogenous nodes into the Banano.cc folding team, contributing millions of compute points to medical research.",
+            defensePlaybook: [
+                "Zero-Privilege Daemon Execution: Run scientific compute daemons under isolated non-root system users (fahclient).",
+                "Egress Traffic Filtering: Restrict folding node outbound network connections strictly to verified Stanford/Folding@home assignment servers."
+            ],
+            containment: "Distributed compute cluster operating across isolated cloud instances and homelab hardware.",
+            credit: "Cluster architecture, node deployment, and team configuration engineered by Andrew Van Ek. Summary reviewed with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "gcp-folding-xeon",
+            title: "Google Cloud 8-vCPU Xeon VM: Parallel Folding & Stable-Diffusion.cpp",
+            category: "homelab",
+            categoryLabel: "Cloud Infrastructure & Compute",
+            badgeClass: "badge-info",
+            image: "images/gallery/gcp-folding-vm-stablediffusion-xeon.png",
+            thumb: "images/gallery/gcp-folding-vm-stablediffusion-xeon.png",
+            tags: ["Google Cloud", "Intel Xeon", "Stable-Diffusion.cpp", "TigerVNC", "Linuxbrew", "Folding"],
+            summary: "Google Cloud Compute Engine 8-vCPU Intel Xeon instance running parallel workloads: Folding@home client, stable-diffusion.cpp WebUI, and Linuxbrew package management.",
+            sandboxObservation: "Andrew architected an 8-vCPU Intel Xeon instance on Google Cloud (fah-cpu-8) as an elastic compute laboratory. Connected via TigerVNC, the desktop manages parallel threads: compiling local image prompts through stable-diffusion.cpp WebUI, managing system packages via Linuxbrew, and crunching research units.",
+            technicalBreakdown: "Demonstrates running quantized CPU-optimized neural network inference using stable-diffusion.cpp. By utilizing AVX-512 vector extensions on Intel Xeon processors, the VM generates high-quality images without requiring expensive dedicated GPU allocations.",
+            defensePlaybook: [
+                "IAM Principle of Least Privilege: Enforce strict Google Cloud Service Account roles with zero access to production project resources.",
+                "Automated Cloud Shutdowns: Deploy Cloud Functions to automatically stop high-vCPU instances when idle to eliminate unexpected billing."
+            ],
+            containment: "Isolated Google Cloud Virtual Private Cloud (VPC) with firewall rules permitting ingress strictly from authorized VPN IPs.",
+            credit: "Cloud VM deployment, desktop environment tailoring, and workflow optimization by Andrew Van Ek. Cloud security audit with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "azure-vm-telemetry",
+            title: "Azure Cloud VM: stable-diffusion.cpp Memory-Mapped Weights & Network Telemetry",
+            category: "homelab",
+            categoryLabel: "Cloud Virtualization & AI",
+            badgeClass: "badge-info",
+            image: "images/gallery/azure-vm-stablediffusion-telemetry.png",
+            thumb: "images/gallery/azure-vm-stablediffusion-telemetry.png",
+            tags: ["Microsoft Azure", "Stable-Diffusion.cpp", "Memory Mapping", "Network Telemetry", "TigerVNC"],
+            summary: "Microsoft Azure cloud Linux VM running stable-diffusion.cpp with memory-mapped weights (1268 MB), displaying real-time 2.29 MB/s network throughput.",
+            sandboxObservation: "Andrew deployed an Azure cloud instance running stable-diffusion.cpp WebUI over TigerVNC. The terminal showcases instant model loading via memory-mapped files (mmap taking 0.00s) paired with live network telemetry graphs capturing real-time asset streaming.",
+            technicalBreakdown: "Memory-mapping (mmap) allows the operating system kernel to map neural network weights directly from disk into virtual address space, bypassing user-space buffer copies and drastically accelerating cold-start inference times on resource-constrained cloud VMs.",
+            defensePlaybook: [
+                "Network Security Groups (NSG): Restrict Azure inbound ports (VNC port 5902, WebUI 1234) exclusively to authenticated Tailscale/VPN IPs.",
+                "Ephemeral OS Disks: Use Azure Ephemeral OS disks for stateless compute workers to improve I/O speed and eliminate disk persistence costs."
+            ],
+            containment: "Sandboxed Microsoft Azure cloud virtual machine with dedicated NSG rules.",
+            credit: "Cloud instance configuration and AI runtime testing by Andrew Van Ek. Systems evaluation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "dell-xp-troubleshooting",
+            title: "Physical Dell Latitude XP Laptop: SMB Share Network Troubleshooting",
+            category: "homelab",
+            categoryLabel: "Physical Hardware & Retro Networking",
+            badgeClass: "badge-warning",
+            image: "images/gallery/dell-windows-xp-smb-troubleshooting.jpg",
+            thumb: "images/gallery/dell-windows-xp-smb-troubleshooting.jpg",
+            tags: ["Windows XP", "Dell Latitude", "SMB Troubleshooting", "Vintage Hardware", "Local Networking"],
+            summary: "Hands-on hardware troubleshooting on the physical Dell Latitude laptop running Windows XP, debugging authentication and SMB share permissions.",
+            sandboxObservation: "A real-world photo from Andrew's retro computing workbench: diagnosing SMB share connectivity on the physical Dell Latitude laptop running Windows XP. When attempting to connect to the network share (\\\\192.168.0.201\\onefive), Windows Explorer prompted for credentials and returned an access permission error, sparking a deep-dive into legacy NTLMv1 vs SMB2/3 authentication protocols.",
+            technicalBreakdown: "Modern Samba and Windows servers disable legacy SMBv1 and NTLMv1 by default due to severe security vulnerabilities. Bridging a 2001-era Windows XP machine to a modern storage array requires configuring dedicated, isolated Samba shares with 'server min protocol = NT1' and explicit legacy user mappings, strictly isolated from production LAN traffic.",
+            defensePlaybook: [
+                "VLAN Segmentation for Retro Devices: Never connect legacy Windows XP hardware to unsegmented production networks; isolate legacy gear onto a quarantined VLAN.",
+                "Read-Only Guest Shares: Expose only non-sensitive, read-only network shares to obsolete operating systems lacking modern cryptographic protocols."
+            ],
+            containment: "Physical vintage laptop operating on a separate network segment.",
+            credit: "Hands-on hardware troubleshooting and photography by Andrew Van Ek. SMB protocol analysis with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "alpine-samba-restart",
+            title: "Alpine Linux NUC: Samba Network Share Recovery via Tailscale",
+            category: "homelab",
+            categoryLabel: "Homelab Administration & CLI",
+            badgeClass: "badge-info",
+            image: "images/gallery/alpine-samba-tailscale-network-restart.png",
+            thumb: "images/gallery/alpine-samba-tailscale-network-restart.png",
+            tags: ["Alpine Linux", "Samba", "Tailscale", "OpenRC", "UNC Paths", "Network Drives"],
+            summary: "Terminal session restarting crashed Samba services (rc-service samba restart) on Alpine Linux and mapping UNC network drives (\\\\100.87.81.52\\G) across Tailscale.",
+            sandboxObservation: "Andrew diagnosed and resolved a Samba network share interruption on his 24/7 Alpine Linux NUC. Using OpenRC service commands (rc-service samba restart), the daemon was restored, and UNC paths (\\\\100.87.81.52\\G and WORKFORMAT1) were mapped persistently into Windows File Explorer over encrypted Tailscale.",
+            technicalBreakdown: "Alpine Linux utilizes OpenRC as its init system. When Samba daemons halt due to locked file handles or interface restarts, restarting the 'samba' meta-service cleanly bounces both smbd (file sharing) and nmbd (NetBIOS name service), re-establishing SMB3 sessions over the Tailscale VPN interface.",
+            defensePlaybook: [
+                "Service Watchdogs: Deploy OpenRC cron watchdogs to automatically monitor smbd process health and restart halted services.",
+                "Encrypted Mesh Routing: Restrict SMB network shares exclusively to Tailscale virtual IPs (100.x.y.z), ensuring all traffic is encrypted end-to-end with WireGuard."
+            ],
+            containment: "Configured on the self-hosted Alpine Linux server over authenticated Tailscale.",
+            credit: "Homelab administration and recovery executed by Andrew Van Ek. Documentation formatted with Google DeepMind Antigravity AI."
+        },
+
+        // ----------------- Category: Creative Lab & Everyday Automation (4) -----------------
+        {
+            id: "super-smash-audio",
+            title: "Super Smash Bros Brawl OST: Precision Waveform Trimming & Audio Re-Merge",
+            category: "media",
+            categoryLabel: "Creative Lab & Audio Engineering",
+            badgeClass: "badge-info",
+            image: "images/gallery/super-smash-bros-audio-trimming.png",
+            thumb: "images/gallery/super-smash-bros-audio-trimming.png",
+            tags: ["Audio Engineering", "Super Smash Bros", "Waveform Trimming", "MP3 Editing", "Soundtrack"],
+            summary: "Surgical audio editing on Super Smash Bros Brawl OST, trimming unwanted dead air and looping segments before clean re-merging.",
+            sandboxObservation: "Andrew engineered a custom soundtrack cut of the Super Smash Bros Brawl OST using web-based spectral editing. By visualizing exact millisecond cue markers (04:04:48.5 to 04:13:19.6), dead air and extraneous intro loops were cleanly excised before export.",
+            technicalBreakdown: "Digital audio editing at zero-crossing points prevents acoustic popping and phase distortion during track splicing. Proper boundary trimming preserves bit-rate transparency while standardizing playlist playback.",
+            defensePlaybook: [
+                "Local-First Audio Processing: Utilize local or trusted audio tools to avoid uploading proprietary or high-bitrate masters to unverified cloud converters.",
+                "Non-Destructive Editing: Always preserve original audio source masters with append-only version control."
+            ],
+            containment: "Processed safely within isolated browser sandboxes.",
+            credit: "Audio editing and arrangement crafted by Andrew Van Ek. Summary notes with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "ace-step-apps",
+            title: "Local AI Suite: ACE-Step 1.5 Music & Diffusers Image Generator Shortcuts",
+            category: "media",
+            categoryLabel: "Local AI & Workflow Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/ace-step-and-diffusers-desktop-apps.png",
+            thumb: "images/gallery/ace-step-and-diffusers-desktop-apps.png",
+            tags: ["ACE-Step 1.5", "Stable Diffusion", "PyTorch CUDA", "Desktop Shortcuts", "uv Python"],
+            summary: "Architecture and desktop launch shortcuts for locally hosted AI creation tools: ACE-Step 1.5 Music Generator and PyTorch Diffusers Image Generator.",
+            sandboxObservation: "Andrew configured a local generative AI suite on his Windows RTX workstation, deploying dual web interfaces: ACE-Step 1.5 Music Generator (port 7860) and a PyTorch Diffusers Image Generator (port 7861 with SD-Turbo & SD 1.5). Created one-click desktop shortcuts that boot the optimized uv Python environments and automatically open the Gradio browser interfaces.",
+            technicalBreakdown: "Leverages the ultra-fast 'uv' Python package manager and PyTorch CUDA 12.8 acceleration. By packaging startup scripts into double-clickable desktop shortcuts (.lnk), local AI generation runs on-demand without keeping heavy model weights permanently locked in VRAM.",
+            defensePlaybook: [
+                "Local Model Verification: Compute SHA-256 hashes of Hugging Face model weights to prevent malicious Pickle deserialization attacks.",
+                "Localhost Binding: Restrict local Gradio web servers strictly to 127.0.0.1 to avoid exposing inference APIs to the local network."
+            ],
+            containment: "Executed locally on dedicated workstation GPU hardware with zero cloud telemetry.",
+            credit: "AI environment setup, batch scripts, and shortcut automation built by Andrew Van Ek. Technical documentation with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "wallpaper-fix",
+            title: "macOS Live Wallpaper Process Fix: Activity Monitor Diagnostics",
+            category: "media",
+            categoryLabel: "macOS Diagnostics & Optimization",
+            badgeClass: "badge-info",
+            image: "images/gallery/macos-live-wallpaper-process-fix.png",
+            thumb: "images/gallery/macos-live-wallpaper-process-fix.png",
+            tags: ["macOS Sequoia", "Activity Monitor", "WallpaperSequoiaExtension", "Memory Diagnostics"],
+            summary: "Process inspection and memory diagnostics in macOS Activity Monitor isolating WallpaperSequoiaExtension memory footprint.",
+            sandboxObservation: "Andrew diagnosed background memory consumption on macOS Sequoia, using Activity Monitor to isolate the WallpaperSequoiaExtension (137.5 MB across 14 threads) and the parent Wallpaper daemon (11.9 MB across 4 threads) to optimize battery life and system responsiveness.",
+            technicalBreakdown: "macOS Sequoia delegates dynamic desktop aerials to decoupled XPC extension services. When wallpaper loops fail to sleep properly during full-screen apps, restarting the extension process frees retained memory frames without requiring a full system reboot.",
+            defensePlaybook: [
+                "Process Triage: Use targeted pkill commands (pkill WallpaperSequoiaExtension) to refresh hung GUI extensions cleanly without terminating user sessions.",
+                "Activity Monitor Audits: Routinely audit Activity Monitor memory pressure to detect background memory leaks before swap thrashing occurs."
+            ],
+            containment: "Standard macOS system diagnostics within userland permissions.",
+            credit: "Diagnostic investigation and screenshot by Andrew Van Ek. Technical summary compiled with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "autocad-support",
+            title: "Autodesk AutoCAD Licensing: Support Escalation & Expiration Mismatch",
+            category: "media",
+            categoryLabel: "Enterprise Licensing & IT Support",
+            badgeClass: "badge-info",
+            image: "images/gallery/autocad-license-expiration-mismatch.png",
+            thumb: "images/gallery/autocad-license-expiration-mismatch.png",
+            tags: ["AutoCAD", "Autodesk Support", "License Mismatch", "IT Administration", "Vendor Escalation"],
+            summary: "Documenting vendor support escalation: resolving an AutoCAD for Mac subscription expiration modal that contradicted an active license expiring Feb 2027.",
+            sandboxObservation: "Andrew encountered a classic enterprise licensing mismatch: AutoCAD for Mac blocked application access with a modal stating 'Your subscription has expired', while the Autodesk Account management portal verified an active educational subscription valid through February 25, 2027. Andrew documented the discrepancy and worked through vendor support channels to reconcile token validation.",
+            technicalBreakdown: "Enterprise CAD software validates licensing tokens via periodic background OAuth handshakes with Autodesk Cloud. When cached local token stores (AdskLicensing) desynchronize from cloud subscription databases, local clients report false expiration states until credentials are refreshed or re-authenticated.",
+            defensePlaybook: [
+                "Vendor Support Documentation: Maintain screenshot proof of valid portal entitlements when escalating licensing defects to enterprise vendors.",
+                "Token Cache Reset: Clear corrupt local license state (deleting cached LGS.data and AdskLicensingService tokens) to force a clean server-side handshake."
+            ],
+            containment: "Administered within official Autodesk enterprise and university subscription portals.",
+            credit: "Issue identification, vendor coordination, and capture by Andrew Van Ek. Case study notes with Google DeepMind Antigravity AI."
         }
     ];
 
@@ -198,9 +552,21 @@
         lastTapTime: 0
     };
 
+    var categoryLabels = {
+        all: "All Experiments & Samples",
+        security: "Malware & Security Forensics",
+        vms: "Virtual Machines & Retro OS",
+        homelab: "Homelab, Cloud & Linux Fleet",
+        media: "Creative Lab & Everyday Automation"
+    };
+
     var dom = {
         grid: document.getElementById("gallery-grid"),
         filterBtns: document.querySelectorAll(".gallery-filter-btn"),
+        mobileFilterBtn: document.getElementById("gallery-mobile-filter-btn"),
+        mobileFilterModal: document.getElementById("gallery-mobile-category-modal"),
+        mobileFilterClose: document.getElementById("gallery-mobile-category-close"),
+        mobileCategoryOptions: document.querySelectorAll(".gallery-mobile-cat-option"),
         modalOverlay: document.getElementById("gallery-modal"),
         mainImg: document.getElementById("gallery-main-img"),
         imgViewport: document.getElementById("gallery-viewport"),
@@ -269,6 +635,52 @@
 
             dom.grid.appendChild(card);
         });
+    }
+
+    function updateCategoryUI() {
+        // Desktop buttons
+        if (dom.filterBtns) {
+            dom.filterBtns.forEach(function (btn) {
+                if (btn.getAttribute("data-category") === state.activeCategory) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+        }
+
+        // Mobile button label
+        if (dom.mobileFilterBtn) {
+            var label = categoryLabels[state.activeCategory] || "Filter Categories";
+            dom.mobileFilterBtn.innerHTML = '<span>&#9881; Filter: <strong>' + label + '</strong></span> <span class="filter-arrow">&#9662;</span>';
+        }
+
+        // Mobile modal options
+        if (dom.mobileCategoryOptions) {
+            dom.mobileCategoryOptions.forEach(function (opt) {
+                if (opt.getAttribute("data-category") === state.activeCategory) {
+                    opt.classList.add("active");
+                } else {
+                    opt.classList.remove("active");
+                }
+            });
+        }
+
+        renderGrid();
+    }
+
+    function openMobileCategoryModal() {
+        if (!dom.mobileFilterModal) return;
+        dom.mobileFilterModal.classList.add("active");
+        dom.mobileFilterModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeMobileCategoryModal() {
+        if (!dom.mobileFilterModal) return;
+        dom.mobileFilterModal.classList.remove("active");
+        dom.mobileFilterModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
     }
 
     function updateTransform() {
@@ -352,19 +764,19 @@
         if (dom.drawerContent) {
             dom.drawerContent.innerHTML = [
                 '<div class="gallery-drawer-section section-sandbox">',
-                '  <h3><span class="section-icon">&#128300;</span> What Happened in the Sandbox</h3>',
+                '  <h3><span class="section-icon">&#128300;</span> What Happened on the Workbench</h3>',
                 '  <p>' + item.sandboxObservation + '</p>',
                 '</div>',
                 '<div class="gallery-drawer-section">',
-                '  <h3><span class="section-icon">&#9881;</span> How the Payload Operates</h3>',
+                '  <h3><span class="section-icon">&#9881;</span> Technical Mechanics &amp; Architecture</h3>',
                 '  <p>' + item.technicalBreakdown + '</p>',
                 '</div>',
                 '<div class="gallery-drawer-section section-defense">',
-                '  <h3><span class="section-icon">&#128737;</span> Defensive Hardening Playbook</h3>',
+                '  <h3><span class="section-icon">&#128737;</span> Defensive Hardening &amp; Playbook</h3>',
                 '  <ul>' + defenseListHtml + '</ul>',
                 '</div>',
                 '<div class="gallery-drawer-section">',
-                '  <h3><span class="section-icon">&#128274;</span> Containment &amp; Sandbox Safety</h3>',
+                '  <h3><span class="section-icon">&#128274;</span> Containment &amp; Testing Discipline</h3>',
                 '  <p>' + item.containment + '</p>',
                 '</div>',
                 '<div class="gallery-credit-box">',
@@ -390,14 +802,36 @@
     }
 
     function initEvents() {
-        // Filter Buttons
+        // Desktop Filter Buttons
         if (dom.filterBtns) {
             dom.filterBtns.forEach(function (btn) {
                 btn.addEventListener("click", function () {
-                    dom.filterBtns.forEach(function (b) { b.classList.remove("active"); });
-                    btn.classList.add("active");
                     state.activeCategory = btn.getAttribute("data-category") || "all";
-                    renderGrid();
+                    updateCategoryUI();
+                });
+            });
+        }
+
+        // Mobile Filter Overlay Button
+        if (dom.mobileFilterBtn) {
+            dom.mobileFilterBtn.addEventListener("click", openMobileCategoryModal);
+        }
+        if (dom.mobileFilterClose) {
+            dom.mobileFilterClose.addEventListener("click", closeMobileCategoryModal);
+        }
+        if (dom.mobileFilterModal) {
+            dom.mobileFilterModal.addEventListener("click", function (e) {
+                if (e.target === dom.mobileFilterModal) {
+                    closeMobileCategoryModal();
+                }
+            });
+        }
+        if (dom.mobileCategoryOptions) {
+            dom.mobileCategoryOptions.forEach(function (opt) {
+                opt.addEventListener("click", function () {
+                    state.activeCategory = opt.getAttribute("data-category") || "all";
+                    updateCategoryUI();
+                    closeMobileCategoryModal(); // Auto-dismiss as requested!
                 });
             });
         }
@@ -544,7 +978,7 @@
     }
 
     function init() {
-        renderGrid();
+        updateCategoryUI();
         initEvents();
     }
 

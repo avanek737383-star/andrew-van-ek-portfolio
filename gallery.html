@@ -2,29 +2,29 @@
 <!-- This website template was created by: Andrew Van Ek -->
 <html lang="en">
 	<head>
-		<title>Visual Gallery &amp; Malware Sandbox Lab | Andrew Van Ek</title>
+		<title>Visual Gallery &amp; Security Workbench | Andrew Van Ek</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/styles.css?v=20261026-nav-search-2">
-		<link rel="stylesheet" href="css/gallery.css?v=20261102-gallery-1">
+		<link rel="stylesheet" href="css/gallery.css?v=20261102-gallery-2">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<meta name="description" content="Visual gallery of hands-on security research, live malware detonations, and threat forensics conducted safely inside disposable Windows Sandbox environments by Andrew Van Ek.">
+		<meta name="description" content="Visual gallery of hands-on security research, live malware detonations, retro OS virtualization, and distributed homelab fleet engineering by Andrew Van Ek.">
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://andrewtvanekportfolio.online/gallery.html">
-		<meta property="og:title" content="Visual Gallery &amp; Sandbox Lab | Andrew Van Ek Portfolio">
-		<meta property="og:description" content="Explore real-time malware detonations, ransomware file destruction, and social engineering screens analyzed safely in Windows Sandbox with deep forensic breakdowns.">
+		<meta property="og:title" content="Visual Gallery &amp; Security Workbench | Andrew Van Ek Portfolio">
+		<meta property="og:description" content="Explore real-time malware detonations, retro virtualization, distributed compute telemetry, and homelab engineering analyzed safely with interactive zoom.">
 		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/gallery/wannacry-sandbox-test.png">
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image">
 		<meta property="twitter:url" content="https://andrewtvanekportfolio.online/gallery.html">
-		<meta property="twitter:title" content="Visual Gallery &amp; Sandbox Lab | Andrew Van Ek Portfolio">
-		<meta property="twitter:description" content="Explore real-time malware detonations, ransomware file destruction, and social engineering screens analyzed safely in Windows Sandbox with deep forensic breakdowns.">
+		<meta property="twitter:title" content="Visual Gallery &amp; Security Workbench | Andrew Van Ek Portfolio">
+		<meta property="twitter:description" content="Explore real-time malware detonations, retro virtualization, distributed compute telemetry, and homelab engineering analyzed safely with interactive zoom.">
 		<meta property="twitter:image" content="https://andrewtvanekportfolio.online/images/gallery/wannacry-sandbox-test.png">
 		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,14 +88,14 @@
 			<main>
 				<header class="gallery-hero">
 					<h1>Visual Gallery &amp; Security Workbench</h1>
-					<p class="gallery-tagline">Real-world payload detonations, file integrity destruction, and threat analysis studied safely in disposable sandboxes.</p>
-					<p>Not every experiment belongs inside a polished project case study or a dry maintenance log. This visual gallery captures hands-on explorations at my security workbench—from live ransomware samples downloaded from the Da2dalus malware repository to deceptive screen lockers and recursive fork-bombs.</p>
-					<p>Studying active threats firsthand was an eye-opening lesson in defensive engineering: watching aggressive payloads completely break Windows Explorer, seize desktop focus, and scramble files in real time cemented the paramount importance of strict testing discipline. When handled with proper isolation protocols, dissecting malware is both fascinating and essential for building robust enterprise defenses.</p>
+					<p class="gallery-tagline">Real-world payload detonations, forensics artifacts, retro virtualization &amp; distributed compute fleet telemetry.</p>
+					<p>Not every experiment belongs inside a polished project case study or an operational changelog. This visual workbench captures hands-on explorations across my physical and virtual lab environments—from live malware detonations safely contained inside Windows Sandbox to vintage operating system revivals, digital forensics coursework, and 24/7 distributed compute nodes.</p>
+					<p>Studying active threats firsthand was an eye-opening lesson in defensive discipline: watching aggressive payloads completely shatter Windows Explorer, hijack desktop input hooks, and scramble files in real time cemented the paramount importance of strict testing safety. When handled with proper isolation protocols, dissecting software behavior is both fascinating and essential for building resilient systems.</p>
 					
 					<div class="gallery-safety-banner">
 						<span class="safety-icon" aria-hidden="true">&#128737;&#65039;</span>
 						<div>
-							<strong>Safety &amp; Isolation Protocol:</strong> All samples featured below were analyzed exclusively within <span class="tech-term" data-term="windows-sandbox">Windows Sandbox</span>—an ephemeral, Hyper-V-isolated disposable container. No host network shares or persistence existed. Every session was completely incinerated upon closing, ensuring zero risk to the physical workstation or internal network.
+							<strong>Safety &amp; Containment Protocol:</strong> All volatile malware samples and suspicious binaries featured below were detonated exclusively within <span class="tech-term" data-term="windows-sandbox">Windows Sandbox</span>—an ephemeral, Hyper-V-isolated disposable container. No host network shares or persistence existed. Every session was completely incinerated upon closing, ensuring zero risk to physical hardware or production networks.
 						</div>
 					</div>
 
@@ -104,16 +104,57 @@
 					</div>
 				</header>
 
-				<!-- Filter Bar -->
-				<section class="gallery-filter-wrap" aria-label="Filter gallery items by threat category">
-					<button type="button" class="gallery-filter-btn active" data-category="all">All Samples (8)</button>
-					<button type="button" class="gallery-filter-btn" data-category="ransomware">Ransomware &amp; Lockers (5)</button>
-					<button type="button" class="gallery-filter-btn" data-category="trojans">Trojans &amp; Infectors (2)</button>
-					<button type="button" class="gallery-filter-btn" data-category="pranks">Jokes &amp; Pranks (1)</button>
+				<!-- Desktop / Tablet Filter Bar -->
+				<section class="gallery-filter-wrap gallery-desktop-filters" aria-label="Filter gallery items by category">
+					<button type="button" class="gallery-filter-btn active" data-category="all">All Experiments &amp; Samples (26)</button>
+					<button type="button" class="gallery-filter-btn" data-category="security">Malware &amp; Security Forensics (10)</button>
+					<button type="button" class="gallery-filter-btn" data-category="vms">Virtual Machines &amp; Retro OS (4)</button>
+					<button type="button" class="gallery-filter-btn" data-category="homelab">Homelab, Cloud &amp; Linux Fleet (8)</button>
+					<button type="button" class="gallery-filter-btn" data-category="media">Creative Lab &amp; Everyday Automation (4)</button>
 				</section>
 
+				<!-- Mobile Screen Category Selector Bar -->
+				<div class="gallery-mobile-filter-bar">
+					<button type="button" class="gallery-mobile-trigger-btn" id="gallery-mobile-filter-btn" aria-haspopup="dialog" aria-expanded="false">
+						<span>&#9881; Filter: <strong>All Experiments (26)</strong></span>
+						<span class="filter-arrow">&#9662;</span>
+					</button>
+				</div>
+
+				<!-- Mobile Category Selection Modal Overlay -->
+				<div class="gallery-mobile-modal-overlay" id="gallery-mobile-category-modal" role="dialog" aria-modal="true" aria-hidden="true">
+					<div class="gallery-mobile-modal-sheet">
+						<header class="gallery-mobile-modal-header">
+							<h3>Select Category</h3>
+							<button type="button" class="gallery-mobile-modal-close" id="gallery-mobile-category-close" aria-label="Close category menu">&times;</button>
+						</header>
+						<div class="gallery-mobile-cat-list">
+							<button type="button" class="gallery-mobile-cat-option active" data-category="all">
+								<span>All Experiments &amp; Samples</span>
+								<span class="cat-count">26</span>
+							</button>
+							<button type="button" class="gallery-mobile-cat-option" data-category="security">
+								<span>Malware &amp; Security Forensics</span>
+								<span class="cat-count">10</span>
+							</button>
+							<button type="button" class="gallery-mobile-cat-option" data-category="vms">
+								<span>Virtual Machines &amp; Retro OS</span>
+								<span class="cat-count">4</span>
+							</button>
+							<button type="button" class="gallery-mobile-cat-option" data-category="homelab">
+								<span>Homelab, Cloud &amp; Linux Fleet</span>
+								<span class="cat-count">8</span>
+							</button>
+							<button type="button" class="gallery-mobile-cat-option" data-category="media">
+								<span>Creative Lab &amp; Everyday Automation</span>
+								<span class="cat-count">4</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
 				<!-- Cards Grid -->
-				<section class="gallery-grid" id="gallery-grid" aria-label="Malware and security screenshots gallery"></section>
+				<section class="gallery-grid" id="gallery-grid" aria-label="Laboratory workbench and security screenshots gallery"></section>
 			</main>
 
 			<!-- Fullscreen Interactive Lightbox Modal -->
@@ -132,20 +173,20 @@
 
 						<!-- Image Viewport -->
 						<div class="gallery-img-viewport" id="gallery-viewport">
-							<img class="gallery-modal-main-img" id="gallery-main-img" src="" alt="Malware sample sandbox capture">
+							<img class="gallery-modal-main-img" id="gallery-main-img" src="" alt="Workbench capture">
 						</div>
 
 						<!-- Side Navigation Arrows -->
-						<button type="button" class="gallery-nav-arrow gallery-nav-prev" id="gallery-nav-prev" title="Previous Sample (Left Arrow)" aria-label="Previous sample">&#10094;</button>
-						<button type="button" class="gallery-nav-arrow gallery-nav-next" id="gallery-nav-next" title="Next Sample (Right Arrow)" aria-label="Next sample">&#10095;</button>
+						<button type="button" class="gallery-nav-arrow gallery-nav-prev" id="gallery-nav-prev" title="Previous Item (Left Arrow)" aria-label="Previous item">&#10094;</button>
+						<button type="button" class="gallery-nav-arrow gallery-nav-next" id="gallery-nav-next" title="Next Item (Right Arrow)" aria-label="Next item">&#10095;</button>
 
 						<!-- Bottom Counter & Gestures Hint -->
-						<span class="gallery-img-counter" id="gallery-counter">Sample 1 of 8</span>
+						<span class="gallery-img-counter" id="gallery-counter">Sample 1 of 26</span>
 						<span class="gallery-gesture-hint">&#9757; Pinch to zoom on touch &middot; Drag to pan &middot; Double-tap 2x</span>
 					</div>
 
 					<!-- Right/Bottom: Technical Details Drawer -->
-					<aside class="gallery-modal-drawer-col" aria-label="Sample analysis and defense breakdown">
+					<aside class="gallery-modal-drawer-col" aria-label="Sample analysis and architecture breakdown">
 						<header class="gallery-drawer-header">
 							<div class="gallery-drawer-title-group">
 								<span class="gallery-drawer-category-badge" id="gallery-drawer-category">Ransomware</span>
@@ -163,12 +204,12 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-02T14:55:00-05:00">November 2, 2026 at 2:55:00 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-02T15:25:00-05:00">November 2, 2026 at 3:25:00 PM EST</time></p>
 			</footer>
 		</div>
 
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 		<script src="scripts/script.js?v=20261102-gallery-security-1"></script>
-		<script src="scripts/gallery.js?v=20261102-gallery-1"></script>
+		<script src="scripts/gallery.js?v=20261102-gallery-2"></script>
 	</body>
 </html>
