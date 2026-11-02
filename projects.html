@@ -79,6 +79,52 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+
+<section class="project-entry" aria-labelledby="tailscale-wake-lock-study-reader-title">
+<h2 id="tailscale-wake-lock-study-reader-title">Private Tailscale Reference Reader &amp; Screen Wake Lock Persistence: Continuous Community Study Web App</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Tailscale Mesh HTTPS &middot; Screen Wake Lock API &middot; Alpine Linux OpenRC Supervision &middot; SQLite Caching &middot; Completed <time datetime="2026-11-02">November 2, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How pair programming with Google DeepMind's Antigravity AI engineered a persistent, private reference reading web app on an Alpine Linux homelab server&mdash;integrating the HTML5 Screen Wake Lock API, multi-version reference indexing, and encrypted Tailscale HTTPS to eliminate display sleep timeouts during community study discussions.</p>
+
+<div class="project-architecture" aria-label="Study Reader Architecture">
+	<span>Personal Device (iOS / Android / macOS)</span><span aria-hidden="true">&rarr;</span>
+	<span>Encrypted Tailnet (Tailscale Serve HTTPS :8444)</span><span aria-hidden="true">&rarr;</span>
+	<span>Alpine NUC (OpenRC Daemon :8092)</span><span aria-hidden="true">&rarr;</span>
+	<span>SQLite Cache &amp; Upstream API</span>
+</div>
+
+<h3>The Real-World Dilemma: Display Sleep Timeouts During Group Discussion</h3>
+<p>During weekly life group discussions and shared community reading sessions, following along with long-form texts, comparative translations, and reference passages on mobile phones or tablets presents a constant frustration: default device power management. After 30 to 60 seconds of conversational pause or active dialogue, phone screens automatically dim and lock. Having to repeatedly reach out, tap the screen, enter passcodes, or authenticate with biometrics to re-read a passage disrupts the natural rhythm of collaborative study.</p>
+<p>While native operating system settings allow temporarily disabling screen timeouts globally, doing so is clumsy, drains battery life throughout the remainder of the day, and poses security concerns when forgotten. I wanted a purposeful, lightweight reading web app that automatically keeps the display awake while viewing a reference text, gracefully yields back to standard device sleep policies when closed, and remains securely accessible across all my devices without managing third-party accounts or public exposure.</p>
+
+<h3>Overcoming Power Management: The Screen Wake Lock API &amp; Visibility State Machine</h3>
+<p>Working with Antigravity AI, we leveraged the modern W3C <code>navigator.wakeLock</code> API to acquire a display lock directly through the browser. However, implementing real-world screen retention on mobile devices involves critical nuances:</p>
+<ul>
+	<li><strong>Visibility State Lifecycle Management:</strong> When a user switches to another app, checks a message, or briefly locks their phone, mobile Safari (iOS) and Chromium (Android) automatically and silently release the active wake lock to preserve battery. We implemented an automatic lifecycle watcher via <code>document.addEventListener('visibilitychange', ...)</code>. When the reader tab returns to <code>visible</code>, the application automatically inspects user preferences and immediately re-acquires the screen wake lock without requiring manual intervention.</li>
+	<li><strong>Explicit Visual Telemetry:</strong> In a group setting, certainty matters. We engineered a prominent, tactile top-docked control with active visual feedback (a pulsing emerald telemetry indicator indicating <em>&ldquo;Screen Awake: ON &mdash; Display will stay on&rdquo;</em> versus a muted slate indicator for <em>&ldquo;Screen Awake: OFF &mdash; Tap to keep display on&rdquo;</em>).</li>
+	<li><strong>Full Cross-Session Persistence:</strong> Display wake-lock toggles, selected translations (WEB, KJV, ASV, BBE, OEB), active chapter position, font scale (small through extra-large), typography style (Serif vs. Sans), and reading palette (Dark, Warm Sepia, and Clean Light) are synchronized to <code>localStorage</code>, instantly resuming the exact reading environment across browser restarts.</li>
+</ul>
+
+<h3>Resolving the Secure Context Requirement with Private Tailscale HTTPS</h3>
+<p>A crucial technical constraint of the Screen Wake Lock API is security sandboxing: modern browsers strictly refuse to expose <code>navigator.wakeLock</code> in non-secure contexts. Accessing a local service over plain HTTP (e.g., <code>http://100.87.81.52:8092</code>) results in the browser marking <code>window.isSecureContext === false</code>, disabling the API entirely.</p>
+<p>To satisfy the secure context requirement while maintaining absolute privacy, we integrated Tailscale Serve on the stationary Alpine Linux NUC (<code>nucWOL2-0--HDD</code>):</p>
+<ul>
+	<li><strong>Tailnet-Only HTTPS:</strong> Tailscale Serve was provisioned to listen on dedicated port <code>8444</code> (<code>https://nucwol2-0--hdd.taile72a68.ts.net:8444/</code>) and reverse-proxy internal traffic to the local daemon at <code>127.0.0.1:8092</code>.</li>
+	<li><strong>Trusted Automated TLS:</strong> Tailscale automatically terminates Let's Encrypt TLS certificates matching the node's MagicDNS domain. This establishes a fully trusted HTTPS secure context, enabling complete native Wake Lock API functionality on iPhone and Android browsers.</li>
+	<li><strong>Zero Funnel Exposure:</strong> Tailscale Funnel was strictly kept disabled for port 8444. Unlike the public portfolio gateway, this service is only reachable from authenticated nodes on my private tailnet. There are no public login forms or exposed surface areas to the wider internet.</li>
+</ul>
+
+<h3>Reliable Homelab Daemon Architecture &amp; SQLite Offline Caching</h3>
+<p>To ensure zero maintenance overhead, the backend was engineered as a self-contained, zero-dependency Python service managed by Alpine Linux's native <strong>OpenRC</strong> init system:</p>
+<ul>
+	<li><strong>OpenRC Supervise Daemon:</strong> Configured a dedicated service script (<code>/etc/init.d/bible-reader</code>) supervised by <code>supervise-daemon</code> with automated respawn limits, standard logging, and registered in the <code>default</code> runlevel (<code>rc-update add bible-reader default</code>) to guarantee uninterrupted availability across system reboots.</li>
+	<li><strong>Sub-Millisecond SQLite Caching:</strong> The daemon integrates a persistent SQLite database (<code>bible_cache.db</code>) that indexes all retrieved chapters and verse queries. Once a passage is requested, subsequent lookups are resolved from local storage in less than 2 milliseconds with an <code>X-Cache: HIT</code> header, ensuring rapid navigation even when church or community basement Wi-Fi connectivity is degraded.</li>
+	<li><strong>Fast Navigation Ergonomics:</strong> Features single-thumb touch navigation, modal drawer book selection across both the Old and New Testaments, chapter number grids, and interactive verse tapping that copies formatted citations directly to the system clipboard with an animated toast notification.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Developed in pair programming with Google DeepMind's Antigravity AI to architect the Screen Wake Lock state machine, implement visibility change re-acquisition listeners, configure OpenRC init supervision on Alpine Linux, and provision private Tailscale HTTPS termination.</p>
+<ul class="chips"><li>Tailscale Serve</li><li>Screen Wake Lock API</li><li>OpenRC</li><li>Python 3</li><li>Alpine Linux</li><li>Mobile UX</li><li>SQLite</li><li>Completed</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="teams-project-plan-collaboration-title">
 <h2 id="teams-project-plan-collaboration-title">Making a Desktop Project Plan a Shared Team Workspace</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>CIS 450 &middot; Project Plan 365 &middot; Microsoft Teams &middot; Cross-platform browser testing &middot; Completed <time datetime="2026-11-01">November 1, 2026</time></span></p>
@@ -1802,7 +1848,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-02T12:50:00-05:00">November 2, 2026 at 12:50:00 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-02T17:58:00-05:00">November 2, 2026 at 5:58:00 PM EST</time></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
