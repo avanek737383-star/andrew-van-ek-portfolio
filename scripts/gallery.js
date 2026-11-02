@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 29 High-Resolution Workbench Captures across 4 Curated Categories
+ * - 30 High-Resolution Workbench Captures across 4 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -326,7 +326,27 @@
             credit: "Cross-platform setup and security lab work by Andrew Van Ek. Cryptographic analysis authored with Google DeepMind Antigravity AI."
         },
 
-        // ----------------- Category: Homelab, Cloud & Linux Fleet (10) -----------------
+        // ----------------- Category: Homelab, Cloud & Linux Fleet (11) -----------------
+        {
+            id: "antigravity-cli-vnc",
+            title: "Antigravity CLI: Live AI Pair Programming in Alpine TigerVNC",
+            category: "homelab",
+            categoryLabel: "Autonomous AI & Homelab Ops",
+            badgeClass: "badge-success",
+            image: "images/gallery/antigravity-cli-alpine-vnc-pair-programming.png",
+            thumb: "images/gallery/antigravity-cli-alpine-vnc-pair-programming.png",
+            tags: ["Antigravity CLI", "Gemini 3.8 Flash", "TigerVNC", "Alpine Linux", "Pair Programming", "Terminal AI", "BOINC"],
+            summary: "Active terminal session running Google DeepMind's Antigravity CLI (Gemini 3.8 Flash High) inside an Alpine Linux TigerVNC desktop, driving multi-task desktop customization and automated Git operations.",
+            sandboxObservation: "Andrew engaged in an interactive pair programming session with Antigravity CLI directly inside LXTerminal on the stationary Alpine Linux NUC over TigerVNC (912x720). The prompt showcases real-time homelab problem-solving: diagnosing desktop wallpaper state, engineering Windows-like taskbar window hover previews, unpinning dock shortcuts, auditing GNOME Software update indicators, and generating structured maintenance documentation before pushing to GitHub. In the background, BOINC Manager computes Einstein@Home pulsar search work units and GNOME Software manages system packages.",
+            technicalBreakdown: "Antigravity CLI leverages advanced agentic coding workflows powered by Gemini models with real-time streaming tokens and subagent orchestration. Operating directly within terminal environments on remote Linux nodes over Tailscale, it enables conversational shell automation, configuration debugging, and Git repository reconciliation without leaving the developer console.",
+            defensePlaybook: [
+                "Agent Sandboxing: Restrict autonomous CLI agents to documented repository paths and non-destructive terminal command sets.",
+                "Review Staged Diff Verification: Always audit staged HTML, CSS, and script diffs prior to executing automated git push commands.",
+                "Process Headroom Monitoring: Monitor background compute daemons (like BOINC and Docker containers) during intensive LLM token generation sessions."
+            ],
+            containment: "Live developer terminal session hosted inside isolated TigerVNC container on Alpine NUC.",
+            credit: "Agentic prompt engineering and screenshot captured by Andrew Van Ek. Technical workflow co-developed with Google DeepMind Antigravity AI."
+        },
         {
             id: "alpine-nuc-vnc",
             title: "Alpine Linux NUC: Dual-Resolution TigerVNC Desktop & Conky Telemetry",
