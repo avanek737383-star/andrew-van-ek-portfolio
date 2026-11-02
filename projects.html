@@ -112,6 +112,39 @@
 <ul class="chips"><li>Project Plan 365</li><li>Microsoft Teams</li><li>Windows</li><li>macOS browser</li><li>Google Calendar</li><li>Workflow evaluation</li></ul>
 </section>
 
+<section class="project-entry" aria-labelledby="blackboard-autologin-title">
+<h2 id="blackboard-autologin-title">macOS Blackboard Single Sign-On Automation: UI Scripting, Apple Events Security &amp; Safari Credential Isolation</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In-Progress Project</span> <span>macOS zsh &middot; AppleScript / System Events &middot; Safari Touch ID &middot; SSO Authentication &middot; In-Progress <time datetime="2026-09-12">Updated September 12, 2026</time></span></p>
+
+<p>At Grand Valley State University, accessing coursework on Blackboard requires repeatedly navigating through multi-step Single Sign-On (SSO) login screens and two-factor authentication (2FA/MFA) prompts. To streamline my daily academic workflow on macOS without compromising security, I set out to engineer a desktop automation shortcut that launches Safari and minimizes repetitive credential entry.</p>
+
+<h3>Initial Desktop Launcher &amp; Keystroke Simulation Vulnerability</h3>
+<p>I began by authoring a double-clickable macOS desktop shortcut (<code>GVSU Blackboard Login.command</code>) written in Zsh to open <code>https://my.gvsu.edu/</code> inside Apple Safari via <code>/usr/bin/open -b com.apple.Safari</code>. To automate the login form, I initially experimented with storing credentials within an AppleScript wrapper and injecting keystrokes into form inputs using macOS System Events.</p>
+<p><strong>The Critical Security Realization:</strong> During testing, an unexpected window focus shift occurred&mdash;a background notification momentarily stole active window focus, causing scripted keystrokes containing credentials to be typed directly into an open Google search field rather than the targeted authentication field. Recognizing this fundamental security flaw, I immediately halted the approach, purged all stored plaintext credentials from the script, and updated account passwords across the board. This experience underscored a core rule of systems engineering: <em>never rely on blind keystroke injection for authentication</em>.</p>
+
+<h3>Accessibility &amp; Coordinate Automation Roadblocks</h3>
+<p>I then investigated targeting Safari's DOM elements directly through macOS accessibility labels via System Events (querying UI elements such as <em>&ldquo;Next&rdquo;</em>, <em>&ldquo;Verify with something else&rdquo;</em>, and <em>&ldquo;Receive a code via SMS&rdquo;</em>). However, because modern web browsers isolate web content within sandboxed WebContent processes, standard macOS accessibility trees cannot reliably bind to dynamic web controls across varying page states.</p>
+<p>Next, I tested fixed-coordinate mouse clicks paired with programmatic delays (including a 10-second window for Touch ID verification). This quickly proved brittle: display scaling differences, dynamic browser window positioning, and variable network latency caused coordinate-based clicks to miss buttons or inadvertently trigger unwanted autofill popovers.</p>
+
+<h3>Re-Architecting Around Native Touch ID &amp; Credential Isolation</h3>
+<p>Rather than compromising security to force full automation, I pivoted the architecture to a safe, defense-in-depth model:</p>
+<ul>
+<li><strong>Zero Credential Storage:</strong> The launcher shortcut stores zero passwords and performs zero keystroke injection.</li>
+<li><strong>Leveraging Secure Enclave &amp; Touch ID:</strong> The shortcut safely opens the institutional portal in Safari, allowing macOS Keychain and Safari Password AutoFill to manage credentials backed by biometric Touch ID authentication.</li>
+<li><strong>Manual Confirmation for MFA:</strong> Preserves a strict manual confirmation step for multi-factor SMS/app approvals, ensuring automated processes cannot trigger unauthorized 2FA challenges.</li>
+</ul>
+
+<h3>Current Status &amp; Next Engineering Steps</h3>
+<p>The project is currently operational as a hardened, safe launch shortcut. To safely advance automation without compromising isolation, I am evaluating two paths:</p>
+<ol>
+<li><strong>Safari-Native JavaScript Apple Events:</strong> Utilizing <code>do JavaScript</code> via AppleScript to query dynamic DOM elements by text and class name. This requires enabling Safari's <em>&ldquo;Allow JavaScript from Apple Events&rdquo;</em> developer permission, which introduces trust boundaries that must be evaluated thoroughly.</li>
+<li><strong>Dedicated Browser Extension Architecture:</strong> Evaluating a scoped WebExtension that operates strictly within the context of the authentication domain, eliminating the fragility of external OS-level window hooks.</li>
+</ol>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Developed in pair programming with AI assistance to evaluate macOS System Events accessibility architectures, document security threat boundaries, and formulate the risk-averse refactoring from keystroke injection to biometric isolation. All testing, vulnerability identification, and architectural security decisions were directed and validated by Andrew Van Ek.</p>
+<ul class="chips"><li>macOS</li><li>Zsh</li><li>AppleScript</li><li>Safari Automation</li><li>System Events</li><li>Single Sign-On (SSO)</li><li>MFA Security</li><li>Touch ID</li><li>In-Progress</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="glm4-tailscale-homelab-title">
 <h2 id="glm4-tailscale-homelab-title">Persistent Homelab LLM Inference &amp; Private Tailscale Mesh Streaming: Deploying GLM-4-9B-Chat with Antigravity AI</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>LM Studio Headless Daemon &middot; GLM-4-9B-Chat GGUF &middot; Encrypted Tailnet &middot; Custom Streaming Web UI &middot; Systemd Supervision &middot; Completed <time datetime="2026-10-29">October 29, 2026</time></span></p>
