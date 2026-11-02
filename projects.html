@@ -460,7 +460,7 @@
 
 <section class="project-entry" aria-labelledby="minecraft-crossplay-tunnel-title">
 <h2 id="minecraft-crossplay-tunnel-title">Cross-Platform Minecraft Server &amp; Zero-Config Global Tunneling: PaperMC 26.3, GeyserMC &amp; Playit.gg Relay</h2>
-<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>PaperMC 26.3 &middot; GeyserMC Bedrock Bridge &middot; Playit.gg Tunneling &middot; Socat Relay &middot; Completed <time datetime="2026-10-17">October 17, 2026</time></span></p>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>PaperMC 26.3 &middot; GeyserMC NetherNet Bridge &middot; TP-Link AX3000 NAT Forwarding &middot; DHCP Reservation &middot; Completed October 17, 2026 &middot; Hardened <time datetime="2026-11-02">November 2, 2026</time></span></p>
 <p>I wanted to set up a dependable private Minecraft server so my girlfriend and I could play together from anywhere in the world, regardless of what hardware we were on. She plays on Pocket Edition (mobile/tablet), while I play on PC Java Edition or via emulator. Achieving this meant solving two core challenges: bridging two fundamentally different multiplayer protocols (Bedrock vs. Java) and providing friction-free global connectivity without forcing non-technical players to install VPN clients or exposing my home router to open public ports.</p>
 <h3>Hardware allocation: Matching workloads to the right machine</h3>
 <p>I initially considered hosting everything on my always-on Intel NUC (a 6W TDP Intel Pentium N3700 running Alpine Linux). However, modern Minecraft world generation and entity ticking are heavily single-thread bound. An older, low-clocked Braswell Atom core would drop ticks and lag when players explore new areas.</p>
@@ -498,7 +498,32 @@
 </ul>
 <h3>The finished result: Seamless cross-play with zero client friction</h3>
 <p>With both routing and authentication resolved, Pocket Edition connected immediately on the very next attempt. My girlfriend can connect seamlessly from anywhere in the world using our assigned Playit domain (<code>practically-nissan.tun.ply.gg:63453</code>) without installing Tailscale or configuring VPN profiles on her phone. The Windows gaming rig handles world rendering, mob AI, and Chunky pre-generation with an unyielding 20 TPS, while the Alpine NUC quietly maintains the persistent network tunnel and background routing.</p>
-<p><a href="https://papermc.io/" target="_blank" rel="noopener">PaperMC server documentation</a> &middot; <a href="https://geysermc.org/" target="_blank" rel="noopener">GeyserMC Bedrock bridge</a> &middot; <a href="https://playit.gg/docs/" target="_blank" rel="noopener">Playit.gg global tunneling</a></p>
+<h3>Phase 2: Overcoming the Mojang NetherNet Mandate, NTP Clock Drift &amp; Hardening Production Routing</h3>
+<p>In early November 2026, our cross-platform setup faced a critical test when Mojang pushed an update to Minecraft: Bedrock Edition that officially enforced <strong>NetherNet</strong> and disabled legacy RakNet single-port UDP protocol support on modern clients. When my girlfriend attempted to join from outside our local network, the client abruptly failed with <em>&ldquo;Your connection to the server is not good. Playability may be impacted&rdquo;</em> followed by <em>&ldquo;An unspecified error has occurred&rdquo;</em> and named error codes <em>&ldquo;NetherNet&rdquo;</em> and <em>&ldquo;Terracotta&rdquo;</em>.</p>
+<p>Working in pair programming with Google DeepMind's <strong>Antigravity AI</strong>, we conducted a systematic end-to-end network and protocol trace across transport layers, Windows kernel services, and router infrastructure to modernize our hosting architecture:</p>
+
+<h4>1. Diagnosing the Protocol Shift: RakNet vs. NetherNet</h4>
+<p>Historically, Minecraft Bedrock relied purely on <span class="tech-term" data-term="geysermc">RakNet</span> over a single UDP port (<code>19132</code>). NetherNet fundamentally restructured this architecture into a two-phase connection model: an initial <strong>TCP signaling handshake</strong> (HTTP <code>GET /v1/join</code>) to exchange session credentials and encryption keys, followed by an encrypted <strong>UDP WebRTC media stream</strong> for actual gameplay. Because our Playit.gg tunnel was provisioned strictly as a single UDP forwarder, incoming TCP signaling packets were silently dropped at the edge, causing clients to stall and time out during initial negotiation.</p>
+
+<h4>2. Uncovering the 25-Second NTP Clock Skew &amp; &ldquo;Terracotta&rdquo; Rejection</h4>
+<p>To support NetherNet signaling without exposing arbitrary TCP ports, we initially integrated Geyser with external signaling (Warden Cloud, <code>agent.warden.cloud</code>). However, attempting to connect triggered Bedrock error code <strong>&ldquo;Terracotta&rdquo;</strong>. Inspecting Geyser's server console revealed a subtle cryptographic timing fault: <code>NXS: This machine's clock is 24 seconds ahead of the signaling service, which refuses requests signed too far from its own time</code>.</p>
+<p>Executing a live Python diagnostic probe against the global atomic NTP pool (<code>pool.ntp.org</code>) confirmed that the Windows host clock had drifted <strong>+25.39 seconds fast</strong>. An audit of the Windows Time service (<code>w32time</code>) revealed it was in a <code>Stopped</code> state, and Microsoft's default time source (<code>time.windows.com</code>) was reporting <code>Stratum 0 (unspecified) - no time data available</code>. We reconfigured <code>w32time</code> with reliable atomic peers (<code>pool.ntp.org,0x8</code> and <code>time.google.com,0x8</code>) via elevated PowerShell, restarted the service, and forced an authoritative resynchronization (<code>w32tm /resync /force</code>)&mdash;crushing system clock drift from 25.4 seconds down to a razor-thin <strong>0.96 seconds</strong>.</p>
+
+<h4>3. Production Hardening: TP-Link Archer AX3000 NAT Forwarding &amp; DHCP Reservation</h4>
+<p>Rather than relying on third-party edge proxies that add latency and rewrite source ports in ways that interfere with WebRTC Interactive Connectivity Establishment (ICE) candidate negotiation, we transitioned our production pipeline to direct hardware routing via our home <strong>TP-Link Archer AX3000</strong> Wi-Fi 6 router:</p>
+<ul>
+<li><strong>DHCP Address Reservation:</strong> Locked the Windows gaming host's Realtek USB GbE network interface (MAC: <code>5C-60-BA-E9-B3-73</code>) to permanent static IP <code>192.168.0.205</code>, ensuring router reboots or lease expirations never break forwarding tables.</li>
+<li><strong>Virtual Server NAT Forwarding:</strong> Built an inbound NAT forwarding rule on port <code>19132</code> set to protocol <strong>ALL (both TCP and UDP)</strong> pointing directly to <code>192.168.0.205</code>. This provides NetherNet with native, high-throughput dual-stack routing for both TCP HTTP signaling and UDP WebRTC data streams without proxy bottlenecks.</li>
+<li><strong>Geyser ICE Stream Optimization:</strong> Configured Geyser's <code>config.yml</code> with <code>transport: nethernet</code>, bound NetherNet to the primary port (<code>webrtc-port: 0</code>), and populated <code>advertise-addresses</code> with our router's public IP (<code>71.227.18.183:19132</code>) alongside Tailscale (<code>100.64.20.50:19132</code>) and local LAN (<code>192.168.0.205:19132</code>). WebRTC clients seamlessly select the optimal direct route.</li>
+</ul>
+
+<h4>4. Security Hardening: Enforcing the Player Whitelist</h4>
+<p>Because the backend operates with <code>online-mode=false</code> to support mobile Bedrock licenses, exposing port 19132 to the public internet required bulletproof access control to prevent unauthorized connections. We activated <code>white-list=true</code> and <code>enforce-whitelist=true</code> in <code>server.properties</code> and provisioned exact player UUIDs in <code>whitelist.json</code> for both authorized players (<code>AWESOMENESS9789</code> and <code>KyleeMc01</code>). Any unauthenticated port scanners or automated bots attempting to connect are rejected at the boundary.</p>
+
+<h4>5. Remote Campus Wi-Fi Verification &amp; Live Success</h4>
+<p>To definitively validate the setup without local Wi-Fi loopback or NAT hairpinning interference, I conducted a remote connection test while on the Grand Valley State University (GVSU) campus wireless network with Tailscale explicitly disabled on my client device. My client connected directly across the public internet to <code>71.227.18.183:19132</code>, successfully completing NetherNet protocol 2225 signaling and logging in from <code>35.38.80.13</code> with instantaneous world generation, zero connection warnings, and an unyielding 20 TPS.</p>
+
+<p><a href="https://papermc.io/" target="_blank" rel="noopener">PaperMC server documentation</a> &middot; <a href="https://geysermc.org/" target="_blank" rel="noopener">GeyserMC Bedrock bridge</a> &middot; <a href="https://geysermc.org/blog/preparing-for-nethernet" target="_blank" rel="noopener">GeyserMC NetherNet documentation</a></p>
 </section>
 
 <section class="project-entry" aria-labelledby="boinc-einstein-alpine-title">
@@ -1743,7 +1768,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-01T15:54:48-05:00">November 1, 2026 at 3:54:48 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-02T11:25:00-05:00">November 2, 2026 at 11:25:00 AM EST</time></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
