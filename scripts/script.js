@@ -515,13 +515,6 @@
 			}
 		});
 
-		toggle.addEventListener("click", function () {
-			setOpen(panel.hidden, true);
-		});
-		close.addEventListener("click", function () {
-			setOpen(false, false);
-			toggle.focus();
-		});
 		clear.addEventListener("click", function () {
 			try {
 				localStorage.removeItem(STORAGE_KEY);

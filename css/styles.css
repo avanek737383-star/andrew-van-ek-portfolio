@@ -4751,6 +4751,9 @@ nav.tablet-desktop > ul#site-navigation {
     flex-shrink: 0;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     user-select: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 .home-est-clock:hover {
     transform: translateY(-2px);
