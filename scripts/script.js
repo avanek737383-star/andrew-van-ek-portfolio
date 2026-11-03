@@ -202,17 +202,16 @@
 	var DEFAULT_WELCOME = "Hi! I'm Nemo, Andrew's local AI. Ask me about Andrew's experience, skills, or this local-AI project.";
 
 	function createChat() {
-		var wrapper = document.createElement("aside");
-		wrapper.className = "portfolio-chat";
-		wrapper.hidden = true;
-		wrapper.innerHTML = [
-			'<div class="portfolio-chat-dock">',
-			'  <button class="portfolio-phone-toggle" type="button" aria-expanded="false" aria-controls="portfolio-phone-panel" title="Call AI Telephone Hotline (+1 912-915-3851)">',
-			'    <span class="phone-toggle-icon" aria-hidden="true">📞</span>',
-			'    <span class="phone-toggle-label">+1 (912) 915-3851 · AI Hotline</span>',
-			'  </button>',
-			'  <button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask Nemo</button>',
-			'</div>',
+		// 1. Phone AI Voice Hotline Widget (Fixed Lower-Left on all screens)
+		var phoneWrapper = document.createElement("aside");
+		phoneWrapper.className = "portfolio-phone";
+		phoneWrapper.id = "portfolio-phone";
+		phoneWrapper.hidden = true;
+		phoneWrapper.innerHTML = [
+			'<button class="portfolio-phone-toggle" type="button" aria-expanded="false" aria-controls="portfolio-phone-panel" title="Call AI Telephone Hotline (+1 912-915-3851)" aria-label="Call Nemo AI Voice Hotline (+1 912-915-3851)">',
+			'  <span class="phone-toggle-icon" aria-hidden="true">📞</span>',
+			'  <span class="phone-toggle-label">+1 (912) 915-3851 · AI Hotline</span>',
+			'</button>',
 			'<section id="portfolio-phone-panel" class="portfolio-phone-panel" aria-label="Voice AI Telephone Hotline" hidden>',
 			'  <header class="portfolio-phone-header">',
 			'    <div class="phone-header-title">',
@@ -250,7 +249,24 @@
 			'      </div>',
 			'    </div>',
 			'  </div>',
-			'</section>',
+			'</section>'
+		].join("");
+		document.body.appendChild(phoneWrapper);
+
+		// 2. AI Chatbot Widget (Fixed Lower-Right on all screens)
+		var chatWrapper = document.createElement("aside");
+		chatWrapper.className = "portfolio-chat";
+		chatWrapper.id = "portfolio-chat";
+		chatWrapper.hidden = true;
+		chatWrapper.innerHTML = [
+			'<div class="chat-toggle-container">',
+			'  <div class="chat-toggle-hint" aria-hidden="true">Ask Nemo AI</div>',
+			'  <button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel" title="Chat with Nemo AI" aria-label="Chat with Nemo, Andrew\'s Local AI">',
+			'    <span class="chat-toggle-text">Ask Nemo</span>',
+			'    <span class="chat-toggle-icon" aria-hidden="true">🤖</span>',
+			'    <span class="chat-toggle-badge" aria-hidden="true">AI</span>',
+			'  </button>',
+			'</div>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
 			'  <header class="portfolio-chat-header">',
 			'    <div><strong>Nemo · Andrew\'s Local AI</strong><span>NVIDIA Nemotron 3 Nano 4B · privately hosted</span></div>',
@@ -268,44 +284,78 @@
 			'  <p id="portfolio-chat-help" class="portfolio-chat-note">Enter to send · Shift+Enter for a new line.<br>Portfolio questions only. 5 messages/minute per IP.<br>Prompts are logged privately for abuse review; avoid sharing sensitive information.</p>',
 			'</section>'
 		].join("");
-		document.body.appendChild(wrapper);
+		document.body.appendChild(chatWrapper);
 
-		var dock = wrapper.querySelector(".portfolio-chat-dock");
-		var toggle = wrapper.querySelector(".portfolio-chat-toggle");
-		var panel = wrapper.querySelector(".portfolio-chat-panel");
-		var close = wrapper.querySelector(".portfolio-chat-close");
-		var phoneToggle = wrapper.querySelector(".portfolio-phone-toggle");
-		var phonePanel = wrapper.querySelector(".portfolio-phone-panel");
-		var phoneClose = wrapper.querySelector(".portfolio-phone-close");
-		var phoneCopyBtn = wrapper.querySelector("#phone-copy-btn");
-		var clear = wrapper.querySelector(".portfolio-chat-clear");
-		var form = wrapper.querySelector(".portfolio-chat-form");
-		var input = wrapper.querySelector("#portfolio-chat-input");
-		var messages = wrapper.querySelector(".portfolio-chat-messages");
+		var chatToggle = chatWrapper.querySelector(".portfolio-chat-toggle");
+		var chatPanel = chatWrapper.querySelector(".portfolio-chat-panel");
+		var chatClose = chatWrapper.querySelector(".portfolio-chat-close");
+		var chatHint = chatWrapper.querySelector(".chat-toggle-hint");
+		var clear = chatWrapper.querySelector(".portfolio-chat-clear");
+		var form = chatWrapper.querySelector(".portfolio-chat-form");
+		var input = chatWrapper.querySelector("#portfolio-chat-input");
+		var messages = chatWrapper.querySelector(".portfolio-chat-messages");
+
+		var phoneToggle = phoneWrapper.querySelector(".portfolio-phone-toggle");
+		var phonePanel = phoneWrapper.querySelector(".portfolio-phone-panel");
+		var phoneClose = phoneWrapper.querySelector(".portfolio-phone-close");
+		var phoneCopyBtn = phoneWrapper.querySelector("#phone-copy-btn");
+
 		var initialCheckDone = false;
 
 		function setPhoneOpen(open) {
 			if (!phonePanel) return;
 			phonePanel.hidden = !open;
-			if (phoneToggle) phoneToggle.setAttribute("aria-expanded", String(open));
+			phoneToggle.hidden = open;
+			phoneToggle.setAttribute("aria-expanded", String(open));
 			if (open) {
-				setOpen(false, false);
-				if (dock) dock.hidden = true;
-			} else {
-				if (dock) dock.hidden = false;
+				setChatOpen(false, false);
 			}
 		}
 
-		if (phoneToggle) {
-			phoneToggle.addEventListener("click", function () {
-				setPhoneOpen(phonePanel.hidden);
-			});
+		function setChatOpen(open, shouldFocus) {
+			if (!chatPanel) return;
+			chatPanel.hidden = !open;
+			chatToggle.hidden = open;
+			if (chatHint && open) chatHint.style.display = "none";
+			chatToggle.setAttribute("aria-expanded", String(open));
+			try {
+				localStorage.setItem(STORAGE_OPEN_KEY, String(open));
+			} catch (e) {}
+			if (open) {
+				setPhoneOpen(false);
+				messages.scrollTop = messages.scrollHeight;
+				if (shouldFocus) {
+					setTimeout(function () {
+						try { input.focus({ preventScroll: true }); } catch (error) { input.focus(); }
+					}, 150);
+				}
+			}
 		}
 
-		if (phoneClose) {
-			phoneClose.addEventListener("click", function () {
-				setPhoneOpen(false);
-			});
+		phoneToggle.addEventListener("click", function () {
+			setPhoneOpen(phonePanel.hidden);
+		});
+
+		phoneClose.addEventListener("click", function () {
+			setPhoneOpen(false);
+		});
+
+		chatToggle.addEventListener("click", function () {
+			setChatOpen(chatPanel.hidden, true);
+		});
+
+		chatClose.addEventListener("click", function () {
+			setChatOpen(false, false);
+		});
+
+		// Auto-fade mobile hint after 7 seconds
+		if (chatHint) {
+			setTimeout(function () {
+				chatHint.classList.add("fade-out");
+				setTimeout(function () {
+					if (chatHint.parentNode) chatHint.style.display = "none";
+				}, 600);
+			}, 7000);
 		}
 
 		if (phoneCopyBtn) {
@@ -347,27 +397,7 @@
 		}
 
 		function setOpen(open, shouldFocus) {
-			panel.hidden = !open;
-			if (open) {
-				if (phonePanel) phonePanel.hidden = true;
-				if (dock) dock.hidden = true;
-			} else {
-				if (dock) dock.hidden = false;
-			}
-			toggle.setAttribute("aria-expanded", String(open));
-			try {
-				localStorage.setItem(STORAGE_OPEN_KEY, String(open));
-			} catch (e) {}
-			if (open) {
-				messages.scrollTop = messages.scrollHeight;
-				if (shouldFocus) {
-					try {
-						input.focus({ preventScroll: true });
-					} catch (error) {
-						input.focus();
-					}
-				}
-			}
+			setChatOpen(open, shouldFocus);
 		}
 
 		async function checkAvailability() {
@@ -375,24 +405,29 @@
 				var response = await fetch(statusUrl, { cache: "no-store" });
 				var data = await response.json();
 				var available = response.ok && data.status === "online";
-				wrapper.hidden = !available;
+				chatWrapper.hidden = !available;
+				phoneWrapper.hidden = !available;
 				if (!available) {
-					panel.hidden = true;
-					if (phonePanel) phonePanel.hidden = true;
-					if (dock) dock.hidden = true;
+					chatPanel.hidden = true;
+					chatToggle.hidden = true;
+					phonePanel.hidden = true;
+					phoneToggle.hidden = true;
 				} else if (!initialCheckDone) {
-					if (dock) dock.hidden = false;
+					phoneToggle.hidden = false;
+					chatToggle.hidden = false;
 					var wasOpen = false;
 					try {
 						wasOpen = localStorage.getItem(STORAGE_OPEN_KEY) === "true";
 					} catch (e) {}
-					if (wasOpen) setOpen(true, false);
+					if (wasOpen) setChatOpen(true, false);
 				}
 			} catch (error) {
-				wrapper.hidden = true;
-				panel.hidden = true;
-				if (phonePanel) phonePanel.hidden = true;
-				if (dock) dock.hidden = true;
+				chatWrapper.hidden = true;
+				phoneWrapper.hidden = true;
+				chatPanel.hidden = true;
+				chatToggle.hidden = true;
+				phonePanel.hidden = true;
+				phoneToggle.hidden = true;
 			} finally {
 				initialCheckDone = true;
 			}
@@ -3088,7 +3123,7 @@
 			// Suppress easter eggs when user is typing in form inputs, textareas, contenteditable elements, or chat
 			var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
 			if (tag === "input" || tag === "textarea" || (e.target && e.target.isContentEditable) ||
-				(e.target && e.target.closest && e.target.closest(".portfolio-chat, .portfolio-chat-panel, .portfolio-phone-panel, form, input, textarea"))) {
+				(e.target && e.target.closest && e.target.closest(".portfolio-chat, .portfolio-phone, .portfolio-chat-panel, .portfolio-phone-panel, form, input, textarea"))) {
 				return;
 			}
 			if (e.key && e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
