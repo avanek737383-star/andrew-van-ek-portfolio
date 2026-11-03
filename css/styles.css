@@ -6761,3 +6761,322 @@ body.search-modal-open {
         box-shadow: 0 12px 40px rgba(0, 25, 55, 0.4) !important;
     }
 }
+
+
+/* ==========================================================================
+   Git Changelog & Production Releases Table
+   ========================================================================== */
+.changelog-page-header {
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.changelog-eyebrow {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    margin-bottom: 6px;
+}
+
+.changelog-subtitle {
+    font-size: 1.05rem;
+    color: #475569;
+    max-width: 820px;
+    line-height: 1.6;
+    margin: 8px 0 0;
+}
+
+/* Metrics Grid */
+.changelog-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.changelog-metric-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.changelog-metric-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.changelog-metric-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.changelog-metric-highlight {
+    color: #0284c7;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.changelog-metric-sub {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+/* Controls & Filter Bar */
+.changelog-controls-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.changelog-search-bar {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.changelog-search-input {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+}
+
+.changelog-search-input:focus {
+    outline: none;
+    border-color: #0284c7;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.changelog-clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    font-size: 1.3rem;
+    color: #94a3b8;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.changelog-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.changelog-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-pill {
+    padding: 6px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.filter-pill:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.filter-pill.active {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
+.changelog-results-count {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+/* Changelog Table Card */
+.changelog-table-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.changelog-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.changelog-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.changelog-table thead {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+.changelog-table th {
+    padding: 14px 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #94a3b8;
+    white-space: nowrap;
+    border: none;
+}
+
+.changelog-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.1s ease;
+}
+
+.changelog-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.changelog-table td {
+    padding: 13px 16px;
+    vertical-align: middle;
+    color: #334155;
+    border: none;
+}
+
+/* Cell Specifics */
+.commit-version-pill {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.commit-hex-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #0f172a;
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 0.82rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: all;
+}
+
+.commit-hex-badge:hover {
+    background: #1e293b;
+    color: #7dd3fc;
+    box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
+}
+
+.td-date time {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.td-msg {
+    font-weight: 500;
+    color: #1e293b;
+    line-height: 1.45;
+}
+
+.td-msg code {
+    background: #f1f5f9;
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: #0284c7;
+    font-size: 0.82rem;
+}
+
+/* Category Badges */
+.commit-tag-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.tag-ai { background: #fae8ff; color: #86198f; }
+.tag-infra { background: #ecfdf5; color: #065f46; }
+.tag-ui { background: #fef3c7; color: #92400e; }
+.tag-feat { background: #e0f2fe; color: #0369a1; }
+.tag-sec { background: #fee2e2; color: #991b1b; }
+.tag-maint { background: #f1f5f9; color: #475569; }
+
+.changelog-no-results {
+    padding: 40px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.footer-version {
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 0.84rem;
+}
+
+.footer-version a {
+    color: #0284c7;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.footer-version a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .changelog-table th,
+    .changelog-table td {
+        padding: 10px 12px;
+    }
+    .changelog-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
