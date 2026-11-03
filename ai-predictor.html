@@ -9,7 +9,7 @@
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261026-nav-search-2">
-	<link rel="stylesheet" href="css/coin-predictor.css?v=20261024-coin-1">
+	<link rel="stylesheet" href="css/coin-predictor.css?v=20261102-coin-hud-2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -161,7 +161,7 @@
 							<div class="coin-face coin-face-heads">
 								<span class="coin-emblem" aria-hidden="true">🦅</span>
 								<span class="coin-label">Heads</span>
-								<span class="coin-motto">LIBERTY &bull; 2026</span>
+								<span class="coin-motto">LIBERTY &bull; 2005</span>
 							</div>
 							<!-- Tails Face -->
 							<div class="coin-face coin-face-tails">
@@ -169,14 +169,6 @@
 								<span class="coin-label">Tails</span>
 								<span class="coin-motto">IN AI WE TRUST</span>
 							</div>
-						</div>
-					</div>
-
-					<!-- Neural Mind Stream HUD -->
-					<div class="neural-mind-hud" id="neural-mind-hud" style="width:100%;">
-						<div class="thought-line">
-							<span class="thought-tag">[READY]</span>
-							<span class="thought-text">Neural Network initialized with 120-epoch PyTorch weights. Awaiting your first guess...</span>
 						</div>
 					</div>
 
@@ -206,13 +198,6 @@
 					</div>
 
 					<div class="hud-metrics-grid">
-						<!-- Next Prediction -->
-						<div class="metric-box">
-							<div class="metric-label">Next Predicted Outcome</div>
-							<div class="metric-val-large metric-val-heads" id="hud-next-pred">HEADS</div>
-							<div class="metric-sub">Forward-pass evaluation of rolling 10-step sequence dynamics</div>
-						</div>
-
 						<!-- Model Confidence -->
 						<div class="metric-box">
 							<div class="metric-label">
@@ -227,16 +212,30 @@
 
 						<!-- Empirical Win-Rate -->
 						<div class="metric-box">
-							<div class="metric-label">Empirical Win-Rate</div>
+							<div class="metric-label"><span class="tech-term" data-term="empirical-win-rate">Empirical Win-Rate</span></div>
 							<div class="metric-val-large" id="hud-acc-val">54.8%</div>
 							<div class="metric-sub" id="hud-acc-sub"><strong>+4.8%</strong> vs 50.0% random chance baseline</div>
 						</div>
 
 						<!-- Sequence Entropy & Streaks -->
-						<div class="metric-box">
+						<div class="metric-box metric-box-span-2">
 							<div class="metric-label"><span class="tech-term" data-term="shannon-entropy">Shannon Entropy</span> (Chaos Meter)</div>
 							<div class="metric-val-large" id="hud-entropy-val">0.974 bits</div>
 							<div class="metric-sub" id="hud-streak-val">Streak: 2 Heads (Best: 5)</div>
+						</div>
+					</div>
+
+					<!-- Forward-Pass Neural Reasoning & Decision Stream (Live HUD Panel) -->
+					<div class="hud-reasoning-panel">
+						<div class="hud-reasoning-header">
+							<span style="font-size:0.75rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.05em;">🧠 Live Inference Reasoning &amp; Decision Stream:</span>
+							<span style="font-size:0.70rem; color:#64748b; font-family:ui-monospace, monospace;">Zero-Latency Local Math</span>
+						</div>
+						<div class="neural-mind-hud" id="neural-mind-hud">
+							<div class="thought-line">
+								<span class="thought-tag">[READY]</span>
+								<span class="thought-text">Neural Network initialized with 120-epoch PyTorch weights. Awaiting your first guess...</span>
+							</div>
 						</div>
 					</div>
 
@@ -403,7 +402,7 @@
 <section class="theory-section" aria-labelledby="diagnostics-heading" style="margin-top:32px;">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px;">
     <div>
-      <h3 id="diagnostics-heading" style="margin:0; font-size:1.3rem; color:#002d5a;">📊 Statistical Diagnostics &amp; Noise Perturbation</h3>
+      <h3 id="diagnostics-heading" style="margin:0; font-size:1.3rem; color:#002d5a;">📊 Statistical Diagnostics &amp; <span class="tech-term" data-term="noise-perturbation">Noise Perturbation</span></h3>
       <span style="font-size:0.85rem; color:#475569;">1,200 Holdout Test Samples &bull; Extended 120-Epoch CPU Verification Suite &bull; Hover or tap highlighted terms for analogies</span>
     </div>
     <span style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Verified Benchmark Checkpoints</span>
@@ -485,7 +484,7 @@
     <!-- Noise Perturbation & SNR Sweep Card -->
     <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
       <h4 style="margin:0 0 8px; font-size:1.05rem; color:#002d5a;">
-        Noise Perturbation &amp; <span class="tech-term" data-term="snr-db">Signal-to-Noise Ratio (SNR)</span>
+        <span class="tech-term" data-term="noise-perturbation">Noise Perturbation</span> &amp; <span class="tech-term" data-term="snr-db">Signal-to-Noise Ratio (SNR)</span>
       </h4>
       <p style="font-size:0.8rem; color:#475569; margin:0 0 12px; line-height:1.4;">
         Synthetic label corruption simulates noisy sensor readings and accidental bit-flips to measure how gracefully the model resists background interference.
@@ -495,7 +494,7 @@
         <table style="width:100%; min-width:380px; border-collapse:collapse; font-size:0.82rem; text-align:left;">
         <thead>
           <tr style="border-bottom:2px solid #cbd5e1; color:#334155;">
-            <th style="padding:6px 0;">Noise Injected</th>
+            <th style="padding:6px 0;"><span class="tech-term" data-term="noise-injected">Noise Injected</span></th>
             <th style="padding:6px 0;"><span class="tech-term" data-term="snr-db">SNR (dB)</span></th>
             <th style="padding:6px 0;">Accuracy</th>
             <th style="padding:6px 0;"><span class="tech-term" data-term="bce-loss">BCE Loss</span></th>
@@ -541,6 +540,14 @@
         <strong style="color:#0284c7; font-size:0.9rem;">4. SNR &rarr; Car Radio in a Tunnel</strong>
         <p style="margin:4px 0 0;">Like driving into a highway tunnel while listening to FM radio: as static creeps in, you can still hear the melody until the static drowns out the music (0 dB). This sweep proves the AI detects the pattern even through 20% static.</p>
       </div>
+      <div>
+        <strong style="color:#0284c7; font-size:0.9rem;">5. Noise Perturbation &rarr; The Turbulence Wind Tunnel</strong>
+        <p style="margin:4px 0 0;">Like stress-testing an aircraft wing in an extreme wind tunnel or having a quarterback practice while being tackled. It deliberately shakes the input sequence to prove the AI's pattern recognition remains steadfast even through noisy interference.</p>
+      </div>
+      <div>
+        <strong style="color:#0284c7; font-size:0.9rem;">6. Empirical Win-Rate &rarr; Real-World Batting Average</strong>
+        <p style="margin:4px 0 0;">Like evaluating a baseball hitter by their actual regular-season hits versus theoretical predictions in batting practice. Empirical win-rate tallies the exact percentage of live coin tosses the AI successfully predicted in real matches.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -573,12 +580,12 @@
 
 		<footer>
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-02T12:50:00-05:00">November 2, 2026 at 12:50:00 PM EST</time></p>
+			<p>Website last modified: <time datetime="2026-11-02T18:54:00-05:00">November 2, 2026 at 6:54:00 PM EST</time></p>
 		</footer>
 	</div>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 
-	<script src="scripts/script.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/coin-predictor.js?v=20261024-coin-1"></script>
+	<script src="scripts/script.js?v=20261102-easteregg-1"></script>
+	<script src="scripts/coin-predictor.js?v=20261102-coin-hud-2"></script>
 </body>
 </html>

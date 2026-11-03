@@ -623,6 +623,21 @@
 			analogy: "Like driving your car through a tunnel while listening to your favorite radio station: when the music is clear, SNR is high (clean signal). As static and fuzz creep in, you can still hum the melody until the static completely overpowers the music (0 dB). This test proves our AI still hears the coin pattern through 20% static!",
 			techFact: "Decibel ratio 10 * log10(Signal / Noise). Quantifies how much useful underlying pattern remains audible over corrupt random distortion."
 		},
+		"empirical-win-rate": {
+			title: "Empirical Win-Rate (Actual Track Record)",
+			analogy: "Like a baseball hitter's batting average in real regular-season games versus their theoretical batting average in batting cages. Rather than guessing based on theory, empirical win-rate tallies the exact percentage of coin flips the AI actually predicted correctly during live interactive tosses.",
+			techFact: "The observed ratio of successful classifications to total trials: Win Rate = (True Positives + True Negatives) / Total Flips. Measures real-world model accuracy against the 50.0% null hypothesis baseline."
+		},
+		"noise-injected": {
+			title: "Noise Injected (Static / Distortion Rate)",
+			analogy: "Like turning up static on an old FM car radio or having someone whisper random wrong numbers while you're tallying bills. At 0%, the sequence is crystal-clear; at 50%, it becomes pure white noise where half the records have been scrambled into garbage.",
+			techFact: "The percentage rate (from 0% clean to 50% pure white noise) at which ground-truth binary trial labels in the sequence are randomly flipped or corrupted before feeding them into the neural classifier."
+		},
+		"noise-perturbation": {
+			title: "Noise Perturbation (The 'Stress-Test Shaking' Drill)",
+			analogy: "Like testing an airplane's wings in an extreme turbulence wind tunnel, or having a quarterback practice throwing while defenders bump into him. It deliberately shakes and distorts the input data to ensure the AI doesn't fall apart when conditions get messy.",
+			techFact: "The deliberate introduction of random errors, jitter, or label-flipping into input sequences to evaluate model robustness, generalization stability, and degradation thresholds under non-ideal conditions."
+		},
 		"tailscale": {
 			title: "Tailscale Mesh VPN",
 			analogy: "An encrypted walkie-talkie channel that lets all your personal devices talk directly to each other from anywhere in the world as if they were sitting in the same living room—without needing to leave your front door unlocked or open holes in your home router.",
@@ -2970,6 +2985,116 @@
 		requestAnimationFrame(renderDeskClock);
 	}
 
+	function initAndrewFaviconEasterEgg() {
+		var secret = "andrew";
+		var buffer = "";
+
+		window.addEventListener("keydown", function (e) {
+			var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+			if (tag === "input" || tag === "textarea" || (e.target && e.target.isContentEditable)) {
+				return;
+			}
+			if (e.key && e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+				buffer = (buffer + e.key.toLowerCase()).slice(-secret.length);
+				if (buffer === secret) {
+					buffer = "";
+					triggerFaviconExplosion();
+				}
+			}
+		});
+
+		function triggerFaviconExplosion() {
+			var numParticles = 46;
+			var centerX = window.innerWidth / 2;
+			var centerY = window.innerHeight / 2;
+
+			var iconLink = document.querySelector("link[rel*='icon']");
+			var iconSrc = (iconLink && iconLink.getAttribute("href")) || "favicon.ico";
+
+			var container = document.createElement("div");
+			container.className = "andrew-favicon-blast";
+			container.style.position = "fixed";
+			container.style.left = "0";
+			container.style.top = "0";
+			container.style.width = "100vw";
+			container.style.height = "100vh";
+			container.style.pointerEvents = "none";
+			container.style.zIndex = "999999";
+			container.style.overflow = "hidden";
+			document.body.appendChild(container);
+
+			var particles = [];
+
+			for (var i = 0; i < numParticles; i++) {
+				var img = document.createElement("img");
+				img.src = iconSrc;
+				img.alt = "";
+				var size = 26 + Math.random() * 26; // 26px to 52px
+				img.style.position = "absolute";
+				img.style.width = size + "px";
+				img.style.height = size + "px";
+				img.style.left = (centerX - size / 2) + "px";
+				img.style.top = (centerY - size / 2) + "px";
+				img.style.willChange = "transform, opacity";
+				img.style.filter = "drop-shadow(0 4px 10px rgba(0, 45, 90, 0.4))";
+				container.appendChild(img);
+
+				var angle = Math.random() * Math.PI * 2;
+				var speed = 7 + Math.random() * 14;
+				var vx = Math.cos(angle) * speed;
+				var vy = Math.sin(angle) * speed - (4 + Math.random() * 4); // upward blast bias
+				var spin = (Math.random() - 0.5) * 22;
+
+				particles.push({
+					el: img,
+					x: centerX - size / 2,
+					y: centerY - size / 2,
+					vx: vx,
+					vy: vy,
+					rotation: Math.random() * 360,
+					spin: spin,
+					opacity: 1,
+					scale: 1,
+					decay: 0.011 + Math.random() * 0.008
+				});
+			}
+
+			var gravity = 0.42;
+
+			function animate() {
+				var alive = false;
+				for (var j = 0; j < particles.length; j++) {
+					var p = particles[j];
+					p.x += p.vx;
+					p.y += p.vy;
+					p.vy += gravity;
+					p.vx *= 0.985;
+					p.rotation += p.spin;
+					p.opacity -= p.decay;
+					p.scale = Math.max(0.2, p.scale - 0.004);
+
+					if (p.opacity > 0) {
+						alive = true;
+						p.el.style.transform = "translate3d(" + (p.x - centerX) + "px, " + (p.y - centerY) + "px, 0) rotate(" + p.rotation + "deg) scale(" + p.scale + ")";
+						p.el.style.opacity = p.opacity;
+					} else {
+						p.el.style.opacity = "0";
+					}
+				}
+
+				if (alive) {
+					requestAnimationFrame(animate);
+				} else {
+					if (container.parentNode) {
+						container.parentNode.removeChild(container);
+					}
+				}
+			}
+
+			requestAnimationFrame(animate);
+		}
+	}
+
 	function initialize() {
 		createResponsiveNavigation();
 		createContactTools();
@@ -2984,6 +3109,7 @@
 		initEstAnalogClock();
 		initGlobalInternetRadar();
 		initDedicatedDeskClock();
+		initAndrewFaviconEasterEgg();
 	}
 
 	if (document.readyState === "loading") {

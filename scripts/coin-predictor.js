@@ -29,7 +29,9 @@
     let currentStreak = 0;
     let streakType = null;
     let longestStreak = 0;
-    let accuracyHistory = []; // [{ count: N, acc: percentage }]
+    let accuracyHistory = []; // [{ count: N, aiAcc: float, userAcc: float|null }]
+    let hoverLossIndex = null;
+    let hoverAccIndex = null;
 
     // Feature Extraction: 14 Dimensions
     function extractFeatures(pastWindow) {
@@ -141,6 +143,20 @@
         ).join("");
     }
 
+    function renderAiForwardPass(actionText = "Awaiting your guess...") {
+        const pred = getAiPrediction();
+        const streakDesc = pred.features[10] >= 0 ? `+${(pred.features[10] * 10).toFixed(0)} Heads` : `${(pred.features[10] * 10).toFixed(0)} Tails`;
+        const headsRatioPct = (pred.features[11] * 100).toFixed(0);
+        const altRatePct = (pred.features[12] * 100).toFixed(0);
+
+        updateMindStream([
+            { tag: "1. REASONING", text: `Scanning 10-step sequence. Streak: ${streakDesc} | Heads Ratio: ${headsRatioPct}% | Alternation: ${altRatePct}%` },
+            { tag: "2. DENSE PASS", text: `Dense(32) ReLU &rarr; Dense(16) ReLU &rarr; Sigmoid output: ${pred.probHeads.toFixed(4)}` },
+            { tag: "3. DECISION", text: `AI predicts ${pred.label} (${(pred.confidence * 100).toFixed(1)}% confidence). ${actionText}` }
+        ]);
+        return pred;
+    }
+
     function updateHUD(pred) {
         const predLabel = document.getElementById("hud-next-pred");
         const confVal = document.getElementById("hud-conf-val");
@@ -231,16 +247,7 @@
         if (tailsBtn) tailsBtn.disabled = true;
 
         // Step 1: AI scans features and determines prediction
-        const pred = getAiPrediction();
-        const streakDesc = pred.features[10] >= 0 ? `+${(pred.features[10] * 10).toFixed(0)} Heads` : `${(pred.features[10] * 10).toFixed(0)} Tails`;
-        const headsRatioPct = (pred.features[11] * 100).toFixed(0);
-        const altRatePct = (pred.features[12] * 100).toFixed(0);
-
-        updateMindStream([
-            { tag: "1. REASONING", text: `Scanning 10-step sequence. Streak: ${streakDesc} | Heads Ratio: ${headsRatioPct}% | Alternation: ${altRatePct}%` },
-            { tag: "2. DENSE PASS", text: `Dense(32) ReLU &rarr; Dense(16) ReLU &rarr; Sigmoid output: ${pred.probHeads.toFixed(4)}` },
-            { tag: "3. DECISION", text: `AI predicts ${pred.label} (${(pred.confidence * 100).toFixed(1)}% confidence). Tossing coin...` }
-        ]);
+        const pred = renderAiForwardPass("Tossing coin...");
 
         // Step 2: Animate 3D Coin Flip with Diaconis physical dynamics
         disc.classList.remove("coin-spinning-heads", "coin-spinning-tails");
@@ -307,8 +314,9 @@
             renderSequenceTape();
             drawAccuracyChart();
 
-            // Next Prediction for HUD
-            const nextPred = getAiPrediction();
+            // Next Prediction for HUD & forward-pass reasoning
+            const nextAction = (matchRounds !== Infinity && currentRound >= matchRounds) ? "Match completed." : `Awaiting your guess for Round ${currentRound + 1}...`;
+            const nextPred = renderAiForwardPass(nextAction);
             updateHUD(nextPred);
 
             // Check Match Conclusion
@@ -380,9 +388,8 @@
         drawAccuracyChart();
 
         updateVersusScoreboard("Match reset! Select your guess to begin Round 1.");
-        updateMindStream([
-            { tag: "READY", text: "Neural Network initialized with 120-epoch PyTorch weights. Awaiting your first guess..." }
-        ]);
+        const resetPred = renderAiForwardPass("Match reset! Awaiting your guess for Round 1...");
+        updateHUD(resetPred);
     }
 
     // High-Speed Simulation Batch
@@ -418,7 +425,7 @@
         });
 
         renderSequenceTape();
-        const nextPred = getAiPrediction();
+        const nextPred = renderAiForwardPass("Batch simulation complete.");
         updateHUD(nextPred);
         drawAccuracyChart();
     }
@@ -441,6 +448,65 @@
                 runSimBatch(1);
             }, 200);
         }
+    }
+
+    // Reusable High-DPI Floating Tooltip Renderer for Convergence Graphs
+    function drawCanvasTooltip(ctx, hx, hy, lines, accentColor, w, h, padL, padR, padT, padB) {
+        ctx.save();
+        ctx.font = "11px Inter, system-ui, -apple-system, sans-serif";
+
+        let maxTextW = 0;
+        lines.forEach(l => {
+            ctx.font = l.bold ? "bold 11px Inter, system-ui, -apple-system, sans-serif" : "11px Inter, system-ui, -apple-system, sans-serif";
+            const tw = ctx.measureText(l.text).width;
+            if (tw > maxTextW) maxTextW = tw;
+        });
+
+        const boxPadX = 10;
+        const boxPadY = 8;
+        const lineH = 15;
+        const boxW = maxTextW + boxPadX * 2;
+        const boxH = lines.length * lineH + boxPadY * 2;
+
+        let tipX = hx - boxW / 2;
+        let tipY = hy - boxH - 12;
+
+        if (tipX < padL + 4) tipX = padL + 4;
+        if (tipX + boxW > w - padR - 4) tipX = w - padR - 4 - boxW;
+        if (tipY < padT + 2) tipY = hy + 14;
+
+        ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
+        ctx.shadowBlur = 12;
+        ctx.shadowOffsetY = 4;
+
+        ctx.fillStyle = "rgba(11, 19, 43, 0.96)";
+        ctx.strokeStyle = accentColor;
+        ctx.lineWidth = 1.3;
+
+        ctx.beginPath();
+        const r = 6;
+        ctx.moveTo(tipX + r, tipY);
+        ctx.lineTo(tipX + boxW - r, tipY);
+        ctx.quadraticCurveTo(tipX + boxW, tipY, tipX + boxW, tipY + r);
+        ctx.lineTo(tipX + boxW, tipY + boxH - r);
+        ctx.quadraticCurveTo(tipX + boxW, tipY + boxH, tipX + boxW - r, tipY + boxH);
+        ctx.lineTo(tipX + r, tipY + boxH);
+        ctx.quadraticCurveTo(tipX, tipY + boxH, tipX, tipY + boxH - r);
+        ctx.lineTo(tipX, tipY + r);
+        ctx.quadraticCurveTo(tipX, tipY, tipX + r, tipY);
+        ctx.closePath();
+        ctx.fill();
+        ctx.shadowColor = "transparent";
+        ctx.stroke();
+
+        lines.forEach((l, idx) => {
+            ctx.font = l.bold ? "bold 11px Inter, system-ui, -apple-system, sans-serif" : "11px Inter, system-ui, -apple-system, sans-serif";
+            ctx.fillStyle = l.color || "#f8fafc";
+            ctx.textAlign = "left";
+            ctx.fillText(l.text, tipX + boxPadX, tipY + boxPadY + (idx * lineH) + 11);
+        });
+
+        ctx.restore();
     }
 
     // High-DPI Canvas Chart: Authoritative 120-Epoch Training Loss Convergence
@@ -511,6 +577,41 @@
         grad.addColorStop(1, "rgba(56, 189, 248, 0.0)");
         ctx.fillStyle = grad;
         ctx.fill();
+
+        // Interactive Hover Tooltip for Training Loss Convergence
+        if (hoverLossIndex !== null && hoverLossIndex >= 0 && hoverLossIndex < data.length) {
+            const pt = data[hoverLossIndex];
+            const hx = padL + (plotW * (hoverLossIndex / (data.length - 1)));
+            const hy = padT + plotH - (plotH * ((pt.train_loss - minLoss) / (maxLoss - minLoss)));
+
+            // Vertical crosshair guide line
+            ctx.save();
+            ctx.setLineDash([3, 3]);
+            ctx.strokeStyle = "rgba(56, 189, 248, 0.75)";
+            ctx.lineWidth = 1.3;
+            ctx.beginPath();
+            ctx.moveTo(hx, padT);
+            ctx.lineTo(hx, padT + plotH);
+            ctx.stroke();
+            ctx.restore();
+
+            // Highlight point on the line
+            ctx.beginPath();
+            ctx.arc(hx, hy, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "#38bdf8";
+            ctx.fill();
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Draw tooltip badge above hover point
+            const tipLines = [
+                { text: `Epoch ${pt.epoch} of 120`, color: "#38bdf8", bold: true },
+                { text: `Training Loss: ${pt.train_loss.toFixed(4)}`, color: "#f8fafc", bold: false },
+                { text: `Validation Loss: ${pt.val_loss.toFixed(4)}`, color: "#94a3b8", bold: false }
+            ];
+            drawCanvasTooltip(ctx, hx, hy, tipLines, "#38bdf8", w, h, padL, padR, padT, padB);
+        }
 
         ctx.fillStyle = "#94a3b8";
         ctx.font = "10px sans-serif";
@@ -688,6 +789,58 @@
                 ctx.stroke();
             }
 
+            // Interactive Hover Tooltip for Live Session Accuracy
+            if (hoverAccIndex !== null && hoverAccIndex >= 0 && hoverAccIndex < accuracyHistory.length) {
+                const pt = accuracyHistory[hoverAccIndex];
+                const hx = padL + (plotW * (hoverAccIndex / (accuracyHistory.length - 1 || 1)));
+                const aiVal = pt.aiAcc ?? pt.acc ?? 50.0;
+                const clampedAi = Math.max(minAcc, Math.min(maxAcc, aiVal));
+                const hyAi = padT + plotH - (plotH * ((clampedAi - minAcc) / (maxAcc - minAcc)));
+
+                // Vertical Guide Line
+                ctx.save();
+                ctx.setLineDash([3, 3]);
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.75)";
+                ctx.lineWidth = 1.3;
+                ctx.beginPath();
+                ctx.moveTo(hx, padT);
+                ctx.lineTo(hx, padT + plotH);
+                ctx.stroke();
+                ctx.restore();
+
+                // Highlight dot on AI Accuracy
+                ctx.beginPath();
+                ctx.arc(hx, hyAi, 5, 0, Math.PI * 2);
+                ctx.fillStyle = "#10b981";
+                ctx.fill();
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                const edge = (aiVal - 50.0).toFixed(1);
+                const prefix = parseFloat(edge) >= 0 ? "+" : "";
+                const tipLines = [
+                    { text: `Flip #${pt.count || (hoverAccIndex + 1)}`, color: "#34d399", bold: true },
+                    { text: `AI Hit Rate: ${aiVal.toFixed(1)}% (${prefix}${edge}% edge)`, color: "#10b981", bold: true }
+                ];
+
+                if (pt.userAcc !== null && pt.userAcc !== undefined) {
+                    const clampedUser = Math.max(minAcc, Math.min(maxAcc, pt.userAcc));
+                    const hyUser = padT + plotH - (plotH * ((clampedUser - minAcc) / (maxAcc - minAcc)));
+                    ctx.beginPath();
+                    ctx.arc(hx, hyUser, 4.5, 0, Math.PI * 2);
+                    ctx.fillStyle = "#38bdf8";
+                    ctx.fill();
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.lineWidth = 1.8;
+                    ctx.stroke();
+
+                    tipLines.push({ text: `Your Hit Rate: ${pt.userAcc.toFixed(1)}%`, color: "#38bdf8", bold: false });
+                }
+
+                drawCanvasTooltip(ctx, hx, hyAi, tipLines, "#10b981", w, h, padL, padR, padT, padB);
+            }
+
             // Bottom X-axis labels
             ctx.fillStyle = "#94a3b8";
             ctx.font = "10px sans-serif";
@@ -778,6 +931,54 @@
                 ctx.lineWidth = 1.5;
                 ctx.stroke();
 
+                // Interactive Hover Tooltip for Benchmark Accuracy
+                if (hoverAccIndex !== null && hoverAccIndex >= 0 && hoverAccIndex < data.length) {
+                    const pt = data[hoverAccIndex];
+                    const hx = padL + (plotW * (hoverAccIndex / (data.length - 1)));
+                    const clampedVal = Math.max(minAcc, Math.min(maxAcc, pt.val_acc));
+                    const hyVal = padT + plotH - (plotH * ((clampedVal - minAcc) / (maxAcc - minAcc)));
+
+                    const clampedTrain = Math.max(minAcc, Math.min(maxAcc, pt.train_acc));
+                    const hyTrain = padT + plotH - (plotH * ((clampedTrain - minAcc) / (maxAcc - minAcc)));
+
+                    // Vertical Guide Line
+                    ctx.save();
+                    ctx.setLineDash([3, 3]);
+                    ctx.strokeStyle = "rgba(16, 185, 129, 0.75)";
+                    ctx.lineWidth = 1.3;
+                    ctx.beginPath();
+                    ctx.moveTo(hx, padT);
+                    ctx.lineTo(hx, padT + plotH);
+                    ctx.stroke();
+                    ctx.restore();
+
+                    // Highlight dot Validation
+                    ctx.beginPath();
+                    ctx.arc(hx, hyVal, 5, 0, Math.PI * 2);
+                    ctx.fillStyle = "#10b981";
+                    ctx.fill();
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+
+                    // Highlight dot Training
+                    ctx.beginPath();
+                    ctx.arc(hx, hyTrain, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = "#38bdf8";
+                    ctx.fill();
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+
+                    const edge = (pt.val_acc - 50.0).toFixed(2);
+                    const tipLines = [
+                        { text: `Epoch ${pt.epoch} of 120`, color: "#34d399", bold: true },
+                        { text: `Holdout Val Acc: ${pt.val_acc}% (+${edge}% edge)`, color: "#10b981", bold: true },
+                        { text: `Training Set Acc: ${pt.train_acc}%`, color: "#38bdf8", bold: false }
+                    ];
+                    drawCanvasTooltip(ctx, hx, hyVal, tipLines, "#10b981", w, h, padL, padR, padT, padB);
+                }
+
                 // Bottom X-axis labels
                 ctx.fillStyle = "#94a3b8";
                 ctx.font = "10px sans-serif";
@@ -791,13 +992,75 @@
 
     function init() {
         updateVersusScoreboard("Select your guess to start Round 1!");
-        const pred = getAiPrediction();
-        updateHUD(nextPredEl => pred);
+        const initialPred = renderAiForwardPass("Awaiting your guess for Round 1...");
+        updateHUD(initialPred);
         renderSequenceTape();
 
-        updateMindStream([
-            { tag: "ONLINE", text: "120-Epoch Neural Network active. Select [Guess HEADS] or [Guess TAILS] to begin the match!" }
-        ]);
+        // Canvas Interactive Hover Listeners
+        const lossCanvas = document.getElementById("canvas-loss");
+        if (lossCanvas) {
+            lossCanvas.style.cursor = "crosshair";
+            const onLossMove = (clientX) => {
+                const rect = lossCanvas.getBoundingClientRect();
+                const mouseX = clientX - rect.left;
+                const padL = 45;
+                const padR = 20;
+                const plotW = rect.width - padL - padR;
+                if (mouseX >= padL && mouseX <= rect.width - padR && TRAINING_HISTORY.length > 0) {
+                    const ratio = (mouseX - padL) / plotW;
+                    hoverLossIndex = Math.max(0, Math.min(TRAINING_HISTORY.length - 1, Math.round(ratio * (TRAINING_HISTORY.length - 1))));
+                } else {
+                    hoverLossIndex = null;
+                }
+                drawLossChart();
+            };
+            lossCanvas.addEventListener("mousemove", (e) => onLossMove(e.clientX));
+            lossCanvas.addEventListener("mouseleave", () => {
+                hoverLossIndex = null;
+                drawLossChart();
+            });
+            lossCanvas.addEventListener("touchmove", (e) => {
+                if (e.touches && e.touches[0]) {
+                    onLossMove(e.touches[0].clientX);
+                }
+            }, { passive: true });
+            lossCanvas.addEventListener("touchend", () => {
+                setTimeout(() => { hoverLossIndex = null; drawLossChart(); }, 2000);
+            });
+        }
+
+        const accCanvas = document.getElementById("canvas-accuracy");
+        if (accCanvas) {
+            accCanvas.style.cursor = "crosshair";
+            const onAccMove = (clientX) => {
+                const rect = accCanvas.getBoundingClientRect();
+                const mouseX = clientX - rect.left;
+                const padL = 45;
+                const padR = 20;
+                const plotW = rect.width - padL - padR;
+                const totalPoints = accuracyHistory.length >= 1 ? accuracyHistory.length : TRAINING_HISTORY.length;
+                if (mouseX >= padL && mouseX <= rect.width - padR && totalPoints > 0) {
+                    const ratio = (mouseX - padL) / plotW;
+                    hoverAccIndex = Math.max(0, Math.min(totalPoints - 1, Math.round(ratio * (totalPoints - 1))));
+                } else {
+                    hoverAccIndex = null;
+                }
+                drawAccuracyChart();
+            };
+            accCanvas.addEventListener("mousemove", (e) => onAccMove(e.clientX));
+            accCanvas.addEventListener("mouseleave", () => {
+                hoverAccIndex = null;
+                drawAccuracyChart();
+            });
+            accCanvas.addEventListener("touchmove", (e) => {
+                if (e.touches && e.touches[0]) {
+                    onAccMove(e.touches[0].clientX);
+                }
+            }, { passive: true });
+            accCanvas.addEventListener("touchend", () => {
+                setTimeout(() => { hoverAccIndex = null; drawAccuracyChart(); }, 2000);
+            });
+        }
 
         // Human Guess Buttons
         const headsBtn = document.getElementById("btn-guess-heads");
