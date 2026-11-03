@@ -86,14 +86,14 @@
 }
 
 .coin-viewport {
-    width: 210px;
+    width: 100%;
     height: 210px;
     perspective: 800px;
     margin: 16px auto 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer !important;
+    cursor: default;
 }
 
 .coin-disc {
@@ -102,11 +102,7 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.15s ease-out;
-    cursor: pointer !important;
-}
-
-.coin-disc:hover {
-    transform: scale(1.03);
+    cursor: default;
 }
 
 .coin-face {
@@ -120,12 +116,12 @@
     align-items: center;
     justify-content: center;
     user-select: none;
-    cursor: pointer !important;
+    cursor: default;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28), inset 0 0 0 5px rgba(255, 255, 255, 0.35);
 }
 
 .coin-face * {
-    cursor: pointer !important;
+    cursor: default;
 }
 
 .coin-face-heads {

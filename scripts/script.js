@@ -206,7 +206,51 @@
 		wrapper.className = "portfolio-chat";
 		wrapper.hidden = true;
 		wrapper.innerHTML = [
-			'<button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask Nemo</button>',
+			'<div class="portfolio-chat-dock">',
+			'  <button class="portfolio-phone-toggle" type="button" aria-expanded="false" aria-controls="portfolio-phone-panel" title="Call AI Telephone Hotline (+1 912-915-3851)">',
+			'    <span class="phone-toggle-icon" aria-hidden="true">📞</span>',
+			'    <span class="phone-toggle-label">+1 (912) 915-3851 · AI Hotline</span>',
+			'  </button>',
+			'  <button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel">Ask Nemo</button>',
+			'</div>',
+			'<section id="portfolio-phone-panel" class="portfolio-phone-panel" aria-label="Voice AI Telephone Hotline" hidden>',
+			'  <header class="portfolio-phone-header">',
+			'    <div class="phone-header-title">',
+			'      <strong>📞 Voice AI Hotline · Talk to Nemo</strong>',
+			'      <span>Direct telephony bridge to local NVIDIA Nemotron 3 Nano 4B</span>',
+			'    </div>',
+			'    <div class="portfolio-chat-controls">',
+			'      <button class="portfolio-phone-close" type="button" aria-label="Close hotline tutorial">&times;</button>',
+			'    </div>',
+			'  </header>',
+			'  <div class="portfolio-phone-body">',
+			'    <div class="phone-number-banner">',
+			'      <div class="phone-banner-digits">+1 (912) 915-3851</div>',
+			'      <div class="phone-banner-actions">',
+			'        <a href="tel:+19129153851" class="phone-action-btn phone-action-call">Call Hotline 📞</a>',
+			'        <button type="button" class="phone-action-btn phone-action-copy" id="phone-copy-btn">Copy Number 📋</button>',
+			'      </div>',
+			'    </div>',
+			'    <div class="phone-tutorial-section">',
+			'      <h4 class="phone-tutorial-title">Quick Voice Tutorial &amp; How It Works</h4>',
+			'      <ol class="phone-tutorial-steps">',
+			'        <li><strong>Dial From Any Phone:</strong> Call from your mobile carrier, landline, or VoIP. No special app or user registration is required.</li>',
+			'        <li><strong>PIN-Free Instant Connection:</strong> Calls connect directly into Andrew\'s homelab Twilio PSTN gateway without prompting for a security code or PIN.</li>',
+			'        <li><strong>Speak Aloud Naturally:</strong> Twilio streams your audio with real-time speech transcription. The local PC GPU (NVIDIA Nemotron 3 Nano 4B) generates general-purpose spoken answers and reads them aloud.</li>',
+			'        <li><strong>Hang Up When Finished:</strong> When you\'re done conversing, simply hang up your phone. No trigger phrases like &ldquo;goodbye&rdquo; or &ldquo;exit&rdquo; are needed.</li>',
+			'      </ol>',
+			'      <div class="phone-guardrails-box">',
+			'        <strong>⚡ Live Operating Guardrails:</strong>',
+			'        <ul>',
+			'          <li>5-minute session limit per call</li>',
+			'          <li>1 call per 15 minutes per caller ID</li>',
+			'          <li>30-minute GPU memory idle-unload timer</li>',
+			'          <li>Automatic friendly deferral if host GPU is saturated by training</li>',
+			'        </ul>',
+			'      </div>',
+			'    </div>',
+			'  </div>',
+			'</section>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
 			'  <header class="portfolio-chat-header">',
 			'    <div><strong>Nemo · Andrew\'s Local AI</strong><span>NVIDIA Nemotron 3 Nano 4B · privately hosted</span></div>',
@@ -226,14 +270,58 @@
 		].join("");
 		document.body.appendChild(wrapper);
 
+		var dock = wrapper.querySelector(".portfolio-chat-dock");
 		var toggle = wrapper.querySelector(".portfolio-chat-toggle");
 		var panel = wrapper.querySelector(".portfolio-chat-panel");
 		var close = wrapper.querySelector(".portfolio-chat-close");
+		var phoneToggle = wrapper.querySelector(".portfolio-phone-toggle");
+		var phonePanel = wrapper.querySelector(".portfolio-phone-panel");
+		var phoneClose = wrapper.querySelector(".portfolio-phone-close");
+		var phoneCopyBtn = wrapper.querySelector("#phone-copy-btn");
 		var clear = wrapper.querySelector(".portfolio-chat-clear");
 		var form = wrapper.querySelector(".portfolio-chat-form");
 		var input = wrapper.querySelector("#portfolio-chat-input");
 		var messages = wrapper.querySelector(".portfolio-chat-messages");
 		var initialCheckDone = false;
+
+		function setPhoneOpen(open) {
+			if (!phonePanel) return;
+			phonePanel.hidden = !open;
+			if (phoneToggle) phoneToggle.setAttribute("aria-expanded", String(open));
+			if (open) {
+				setOpen(false, false);
+				if (dock) dock.hidden = true;
+			} else {
+				if (dock) dock.hidden = false;
+			}
+		}
+
+		if (phoneToggle) {
+			phoneToggle.addEventListener("click", function () {
+				setPhoneOpen(phonePanel.hidden);
+			});
+		}
+
+		if (phoneClose) {
+			phoneClose.addEventListener("click", function () {
+				setPhoneOpen(false);
+			});
+		}
+
+		if (phoneCopyBtn) {
+			phoneCopyBtn.addEventListener("click", function () {
+				try {
+					navigator.clipboard.writeText("+19129153851").then(function () {
+						phoneCopyBtn.textContent = "Copied! ✓";
+						setTimeout(function () {
+							phoneCopyBtn.textContent = "Copy Number 📋";
+						}, 2000);
+					});
+				} catch (e) {
+					phoneCopyBtn.textContent = "+1 (912) 915-3851";
+				}
+			});
+		}
 
 		function getSavedHistory() {
 			try {
@@ -260,7 +348,12 @@
 
 		function setOpen(open, shouldFocus) {
 			panel.hidden = !open;
-			toggle.hidden = open;
+			if (open) {
+				if (phonePanel) phonePanel.hidden = true;
+				if (dock) dock.hidden = true;
+			} else {
+				if (dock) dock.hidden = false;
+			}
 			toggle.setAttribute("aria-expanded", String(open));
 			try {
 				localStorage.setItem(STORAGE_OPEN_KEY, String(open));
@@ -285,8 +378,10 @@
 				wrapper.hidden = !available;
 				if (!available) {
 					panel.hidden = true;
-					toggle.hidden = true;
+					if (phonePanel) phonePanel.hidden = true;
+					if (dock) dock.hidden = true;
 				} else if (!initialCheckDone) {
+					if (dock) dock.hidden = false;
 					var wasOpen = false;
 					try {
 						wasOpen = localStorage.getItem(STORAGE_OPEN_KEY) === "true";
@@ -296,7 +391,8 @@
 			} catch (error) {
 				wrapper.hidden = true;
 				panel.hidden = true;
-				toggle.hidden = true;
+				if (phonePanel) phonePanel.hidden = true;
+				if (dock) dock.hidden = true;
 			} finally {
 				initialCheckDone = true;
 			}
@@ -2985,24 +3081,38 @@
 		requestAnimationFrame(renderDeskClock);
 	}
 
-	function initAndrewFaviconEasterEgg() {
-		var secret = "andrew";
+		function initAllEasterEggs() {
 		var buffer = "";
 
 		window.addEventListener("keydown", function (e) {
+			// Suppress easter eggs when user is typing in form inputs, textareas, contenteditable elements, or chat
 			var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
-			if (tag === "input" || tag === "textarea" || (e.target && e.target.isContentEditable)) {
+			if (tag === "input" || tag === "textarea" || (e.target && e.target.isContentEditable) ||
+				(e.target && e.target.closest && e.target.closest(".portfolio-chat, .portfolio-chat-panel, .portfolio-phone-panel, form, input, textarea"))) {
 				return;
 			}
 			if (e.key && e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
-				buffer = (buffer + e.key.toLowerCase()).slice(-secret.length);
-				if (buffer === secret) {
+				buffer = (buffer + e.key.toLowerCase()).slice(-10);
+				if (buffer.endsWith("andrew")) {
 					buffer = "";
 					triggerFaviconExplosion();
+				} else if (buffer.endsWith("apple")) {
+					buffer = "";
+					triggerAppleRain();
+				} else if (buffer.endsWith("windows")) {
+					buffer = "";
+					triggerWindowsZoom();
+				} else if (buffer.endsWith("android")) {
+					buffer = "";
+					triggerAndroidSurprise();
+				} else if (buffer.endsWith("iphone")) {
+					buffer = "";
+					triggerIphoneEntrance();
 				}
 			}
 		});
 
+		// 1. Andrew Favicon Radial Blast
 		function triggerFaviconExplosion() {
 			var numParticles = 46;
 			var centerX = window.innerWidth / 2;
@@ -3029,7 +3139,7 @@
 				var img = document.createElement("img");
 				img.src = iconSrc;
 				img.alt = "";
-				var size = 26 + Math.random() * 26; // 26px to 52px
+				var size = 26 + Math.random() * 26;
 				img.style.position = "absolute";
 				img.style.width = size + "px";
 				img.style.height = size + "px";
@@ -3042,7 +3152,7 @@
 				var angle = Math.random() * Math.PI * 2;
 				var speed = 7 + Math.random() * 14;
 				var vx = Math.cos(angle) * speed;
-				var vy = Math.sin(angle) * speed - (4 + Math.random() * 4); // upward blast bias
+				var vy = Math.sin(angle) * speed - (4 + Math.random() * 4);
 				var spin = (Math.random() - 0.5) * 22;
 
 				particles.push({
@@ -3085,13 +3195,395 @@
 				if (alive) {
 					requestAnimationFrame(animate);
 				} else {
-					if (container.parentNode) {
-						container.parentNode.removeChild(container);
-					}
+					if (container.parentNode) container.parentNode.removeChild(container);
 				}
 			}
 
 			requestAnimationFrame(animate);
+		}
+
+		// 2. Apple Emojis & 1984 Rain
+		function triggerAppleRain() {
+			var container = document.createElement("div");
+			container.className = "apple-rain-overlay";
+			container.style.position = "fixed";
+			container.style.left = "0";
+			container.style.top = "0";
+			container.style.width = "100vw";
+			container.style.height = "100vh";
+			container.style.pointerEvents = "none";
+			container.style.zIndex = "999999";
+			container.style.overflow = "hidden";
+			document.body.appendChild(container);
+
+			var symbols = ["🍎", "🍏", "1984", "🍎", "🍏", "1984", "🍎"];
+			var drops = [];
+			var numDrops = 52;
+
+			for (var i = 0; i < numDrops; i++) {
+				var drop = document.createElement("div");
+				var item = symbols[Math.floor(Math.random() * symbols.length)];
+				drop.textContent = item;
+				drop.style.position = "absolute";
+				drop.style.left = (Math.random() * 95) + "vw";
+				drop.style.top = (-40 - Math.random() * 60) + "px";
+				drop.style.userSelect = "none";
+				drop.style.willChange = "transform, opacity";
+
+				if (item === "1984") {
+					drop.style.fontFamily = "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
+					drop.style.fontWeight = "900";
+					drop.style.fontSize = (16 + Math.random() * 18) + "px";
+					drop.style.color = "#facc15";
+					drop.style.textShadow = "0 0 8px rgba(250, 204, 21, 0.6)";
+					drop.style.letterSpacing = "0.08em";
+				} else {
+					drop.style.fontSize = (24 + Math.random() * 26) + "px";
+					drop.style.filter = "drop-shadow(0 4px 10px rgba(0,0,0,0.3))";
+				}
+
+				container.appendChild(drop);
+
+				drops.push({
+					el: drop,
+					y: -40 - Math.random() * 80,
+					speed: 3 + Math.random() * 6.5,
+					drift: (Math.random() - 0.5) * 1.5,
+					xDrift: 0,
+					rot: (Math.random() - 0.5) * 20,
+					rotSpeed: (Math.random() - 0.5) * 3,
+					opacity: 1
+				});
+			}
+
+			var startTime = performance.now();
+			function fall(now) {
+				var elapsed = (now - startTime) / 1000;
+				var alive = false;
+				for (var j = 0; j < drops.length; j++) {
+					var d = drops[j];
+					d.y += d.speed;
+					d.xDrift += d.drift;
+					d.rot += d.rotSpeed;
+
+					if (d.y < window.innerHeight + 60 && elapsed < 5.5) {
+						alive = true;
+						var fade = elapsed > 4.2 ? Math.max(0, 1 - (elapsed - 4.2) / 1.3) : 1;
+						d.el.style.transform = "translate3d(" + d.xDrift + "px, " + d.y + "px, 0) rotate(" + d.rot + "deg)";
+						d.el.style.opacity = fade;
+					} else {
+						d.el.style.opacity = "0";
+					}
+				}
+
+				if (alive) {
+					requestAnimationFrame(fall);
+				} else {
+					if (container.parentNode) container.parentNode.removeChild(container);
+				}
+			}
+			requestAnimationFrame(fall);
+		}
+
+		// 3. Windows 10 Logo Expanding & Fading
+		function triggerWindowsZoom() {
+			var overlay = document.createElement("div");
+			overlay.className = "windows-zoom-overlay";
+			overlay.style.position = "fixed";
+			overlay.style.inset = "0";
+			overlay.style.zIndex = "999999";
+			overlay.style.pointerEvents = "none";
+			overlay.style.display = "flex";
+			overlay.style.alignItems = "center";
+			overlay.style.justifyContent = "center";
+			overlay.style.background = "rgba(0, 0, 0, 0.4)";
+			overlay.style.backdropFilter = "blur(2px)";
+			overlay.style.overflow = "hidden";
+			overlay.style.transition = "opacity 0.4s ease-out";
+
+			var svgWrapper = document.createElement("div");
+			svgWrapper.style.transformOrigin = "center center";
+			svgWrapper.style.willChange = "transform, opacity";
+
+			svgWrapper.innerHTML = [
+				'<svg viewBox="0 0 88 88" width="130" height="130" style="filter: drop-shadow(0 0 35px rgba(0, 164, 239, 0.95));">',
+				'  <polygon points="0,12 36,7 36,42 0,42" fill="#00a4ef"/>',
+				'  <polygon points="40,6 88,0 88,42 40,42" fill="#00a4ef"/>',
+				'  <polygon points="0,46 36,46 36,81 0,76" fill="#00a4ef"/>',
+				'  <polygon points="40,46 88,46 88,88 40,82" fill="#00a4ef"/>',
+				'</svg>'
+			].join("");
+
+			overlay.appendChild(svgWrapper);
+			document.body.appendChild(overlay);
+
+			var startTime = performance.now();
+			var duration = 3200; // ms
+
+			function zoom(now) {
+				var progress = (now - startTime) / duration;
+				if (progress >= 1) {
+					if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+					return;
+				}
+
+				// Exponential smooth scale from 0.1 to 32
+				var scale = 0.1 + Math.pow(progress, 2.6) * 36;
+				var opacity = 1;
+				if (progress < 0.12) {
+					opacity = progress / 0.12;
+				} else if (progress > 0.72) {
+					opacity = Math.max(0, 1 - (progress - 0.72) / 0.28);
+				}
+
+				svgWrapper.style.transform = "scale(" + scale.toFixed(3) + ")";
+				svgWrapper.style.opacity = opacity.toFixed(3);
+				overlay.style.background = "rgba(0, 0, 0, " + (0.45 * opacity).toFixed(3) + ")";
+
+				requestAnimationFrame(zoom);
+			}
+
+			requestAnimationFrame(zoom);
+		}
+
+		// 4. Android Bugdroid Backflip & Sweet Desserts Celebration
+		function triggerAndroidSurprise() {
+			var container = document.createElement("div");
+			container.className = "android-surprise-overlay";
+			container.style.position = "fixed";
+			container.style.inset = "0";
+			container.style.zIndex = "999999";
+			container.style.pointerEvents = "none";
+			container.style.overflow = "hidden";
+
+			// Bugdroid Character Element
+			var droid = document.createElement("div");
+			droid.style.position = "absolute";
+			droid.style.bottom = "-160px";
+			droid.style.left = "calc(50% - 60px)";
+			droid.style.width = "120px";
+			droid.style.height = "130px";
+			droid.style.willChange = "transform, opacity";
+			droid.style.textAlign = "center";
+
+			// Clean Android Bugdroid SVG
+			droid.innerHTML = [
+				'<div class="android-speech-bubble" style="background:#0f172a; border:2px solid #3ddc84; border-radius:12px; padding:6px 12px; color:#3ddc84; font-family:sans-serif; font-weight:800; font-size:0.85rem; box-shadow:0 4px 14px rgba(61,220,132,0.4); margin-bottom:8px; white-space:nowrap; display:inline-block;">',
+				'  Hello Android! 🤖 👋',
+				'</div>',
+				'<svg viewBox="0 0 100 105" width="100" height="105" style="filter: drop-shadow(0 6px 16px rgba(0,0,0,0.45));">',
+				'  <!-- Antennae -->',
+				'  <line x1="36" y1="20" x2="26" y2="6" stroke="#3ddc84" stroke-width="4.5" stroke-linecap="round"/>',
+				'  <line x1="64" y1="20" x2="74" y2="6" stroke="#3ddc84" stroke-width="4.5" stroke-linecap="round"/>',
+				'  <!-- Head -->',
+				'  <path d="M 22 36 A 28 28 0 0 1 78 36 Z" fill="#3ddc84"/>',
+				'  <!-- Eyes -->',
+				'  <circle cx="38" cy="26" r="3.2" fill="#ffffff"/>',
+				'  <circle cx="62" cy="26" r="3.2" fill="#ffffff"/>',
+				'  <!-- Torso Body -->',
+				'  <rect x="22" y="41" width="56" height="46" rx="6" fill="#3ddc84"/>',
+				'  <!-- Left Arm -->',
+				'  <rect x="8" y="43" width="9" height="34" rx="4.5" fill="#3ddc84"/>',
+				'  <!-- Right Waving Arm -->',
+				'  <rect x="83" y="32" width="9" height="34" rx="4.5" fill="#3ddc84" transform="rotate(-25 87 32)"/>',
+				'  <!-- Legs -->',
+				'  <rect x="33" y="90" width="9" height="15" rx="4.5" fill="#3ddc84"/>',
+				'  <rect x="58" y="90" width="9" height="15" rx="4.5" fill="#3ddc84"/>',
+				'</svg>'
+			].join("");
+
+			container.appendChild(droid);
+			document.body.appendChild(container);
+
+			var desserts = ["🧁", "🍩", "🍬", "🍦", "🍭", "🍫", "🍪", "🍡", "🧁", "🍩", "🍬"];
+			var candies = [];
+
+			function spawnDessertShower() {
+				for (var k = 0; k < 28; k++) {
+					var el = document.createElement("div");
+					el.textContent = desserts[k % desserts.length];
+					el.style.position = "absolute";
+					el.style.left = (window.innerWidth / 2) + "px";
+					el.style.bottom = "120px";
+					el.style.fontSize = (22 + Math.random() * 18) + "px";
+					el.style.userSelect = "none";
+					el.style.willChange = "transform, opacity";
+					container.appendChild(el);
+
+					var angle = (Math.PI * 0.15) + (Math.random() * Math.PI * 0.7); // upward arc
+					var speed = 7 + Math.random() * 11;
+					candies.push({
+						el: el,
+						x: window.innerWidth / 2,
+						y: window.innerHeight - 120,
+						vx: Math.cos(angle) * speed * (Math.random() > 0.5 ? 1 : -1),
+						vy: -Math.sin(angle) * speed,
+						rot: Math.random() * 360,
+						spin: (Math.random() - 0.5) * 16,
+						opacity: 1
+					});
+				}
+			}
+
+			var startTime = performance.now();
+			var popped = false;
+
+			function animateDroid(now) {
+				var t = (now - startTime) / 1000;
+
+				// Phase 1: Pop up (0.0s - 0.8s)
+				if (t < 0.8) {
+					var p = t / 0.8;
+					var ease = 1 - Math.pow(1 - p, 3);
+					var y = -160 + ease * 200; // ends at bottom: 40px
+					droid.style.transform = "translateY(" + (-y) + "px)";
+				}
+				// Phase 2: Energetic backflip and dessert burst (0.8s - 1.8s)
+				else if (t < 1.8) {
+					if (!popped) {
+						popped = true;
+						spawnDessertShower();
+					}
+					var flipP = (t - 0.8) / 1.0;
+					var jumpY = Math.sin(flipP * Math.PI) * 90;
+					var flipAngle = -flipP * 360;
+					droid.style.transform = "translateY(" + (-200 - jumpY) + "px) rotate(" + flipAngle + "deg)";
+				}
+				// Phase 3: Happy pause and wave (1.8s - 2.8s)
+				else if (t < 2.8) {
+					droid.style.transform = "translateY(-200px) scale(" + (1 + Math.sin((t - 1.8) * 10) * 0.05) + ")";
+				}
+				// Phase 4: Slide back down (2.8s - 3.6s)
+				else if (t < 3.6) {
+					var exitP = (t - 2.8) / 0.8;
+					var easeOut = Math.pow(exitP, 2);
+					var yExit = 200 - easeOut * 240;
+					droid.style.transform = "translateY(" + (-yExit) + "px)";
+					droid.style.opacity = Math.max(0, 1 - exitP);
+				}
+
+				// Animate dessert candies
+				for (var c = 0; c < candies.length; c++) {
+					var item = candies[c];
+					item.x += item.vx;
+					item.y += item.vy;
+					item.vy += 0.42; // gravity
+					item.rot += item.spin;
+					item.opacity -= 0.012;
+					if (item.opacity > 0) {
+						item.el.style.transform = "translate3d(" + (item.x - window.innerWidth / 2) + "px, " + (item.y - (window.innerHeight - 120)) + "px, 0) rotate(" + item.rot + "deg)";
+						item.el.style.opacity = item.opacity;
+					} else {
+						item.el.style.opacity = "0";
+					}
+				}
+
+				if (t < 3.8) {
+					requestAnimationFrame(animateDroid);
+				} else {
+					if (container.parentNode) container.parentNode.removeChild(container);
+				}
+			}
+
+			requestAnimationFrame(animateDroid);
+		}
+
+		// 5. iPhone 2007 Steve Jobs Keynote Entrance
+		function triggerIphoneEntrance() {
+			var overlay = document.createElement("div");
+			overlay.className = "iphone-entrance-overlay";
+			overlay.style.position = "fixed";
+			overlay.style.inset = "0";
+			overlay.style.zIndex = "999999";
+			overlay.style.pointerEvents = "none";
+			overlay.style.display = "flex";
+			overlay.style.alignItems = "center";
+			overlay.style.justifyContent = "center";
+			overlay.style.background = "radial-gradient(circle at 50% 45%, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.94) 85%)";
+			overlay.style.backdropFilter = "blur(4px)";
+			overlay.style.overflow = "hidden";
+			overlay.style.transition = "opacity 0.5s ease-out";
+
+			var card = document.createElement("div");
+			card.style.background = "rgba(15, 23, 42, 0.92)";
+			card.style.border = "1px solid rgba(56, 189, 248, 0.4)";
+			card.style.borderRadius = "20px";
+			card.style.padding = "32px 36px";
+			card.style.boxShadow = "0 25px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.25)";
+			card.style.textAlign = "center";
+			card.style.maxWidth = "480px";
+			card.style.width = "calc(100vw - 40px)";
+			card.style.color = "#f8fafc";
+			card.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif";
+			card.style.willChange = "transform, opacity";
+
+			card.innerHTML = [
+				'<div style="font-size:0.75rem; font-weight:800; letter-spacing:0.12em; color:#facc15; text-transform:uppercase; margin-bottom:8px;">',
+				'  January 9, 2007 &bull; Moscone Center, San Francisco',
+				'</div>',
+				'<div style="font-size:3.8rem; font-weight:900; line-height:1; letter-spacing:-0.03em; background:linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:14px;">',
+				'  2007',
+				'</div>',
+				'<div style="margin: 12px auto; display:flex; justify-content:center;">',
+				'  <!-- Classic Original 2007 iPhone Silhouette -->',
+				'  <svg viewBox="0 0 64 120" width="64" height="120" style="filter: drop-shadow(0 6px 18px rgba(56, 189, 248, 0.35));">',
+				'    <!-- Aluminum & Glass Bezel -->',
+				'    <rect x="2" y="2" width="60" height="116" rx="12" fill="#1e293b" stroke="#94a3b8" stroke-width="2.5"/>',
+				'    <!-- Screen Glass -->',
+				'    <rect x="7" y="18" width="50" height="78" rx="3" fill="#0284c7" fill-opacity="0.25" stroke="#38bdf8" stroke-width="1.2"/>',
+				'    <!-- Speaker Earpiece -->',
+				'    <line x1="26" y1="10" x2="38" y2="10" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>',
+				'    <!-- Classic Circular Home Button -->',
+				'    <circle cx="32" cy="105" r="5.5" fill="#0f172a" stroke="#cbd5e1" stroke-width="1.5"/>',
+				'    <rect x="29.5" y="102.5" width="5" height="5" rx="1" fill="none" stroke="#94a3b8" stroke-width="0.9"/>',
+				'  </svg>',
+				'</div>',
+				'<p style="font-size:1.05rem; font-weight:600; color:#f8fafc; margin:14px 0 6px; line-height:1.4;">',
+				'  &ldquo;Every once in a while, a revolutionary product comes along that changes everything.&rdquo;',
+				'</p>',
+				'<div style="font-size:0.85rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.08em; margin-top:8px;">',
+				'  Apple Reinvents The Phone.',
+				'</div>'
+			].join("");
+
+			overlay.appendChild(card);
+			document.body.appendChild(overlay);
+
+			var startTime = performance.now();
+			var duration = 4400; // ms
+
+			function animateIphone(now) {
+				var t = (now - startTime) / 1000;
+
+				// Glide in (0s - 0.7s)
+				if (t < 0.7) {
+					var p = t / 0.7;
+					var ease = 1 - Math.pow(1 - p, 3);
+					card.style.transform = "translateX(" + ((1 - ease) * 120) + "vw) scale(" + (0.85 + ease * 0.15) + ")";
+					card.style.opacity = ease;
+				}
+				// Hold with subtle floating shimmer (0.7s - 3.6s)
+				else if (t < 3.6) {
+					var floatY = Math.sin((t - 0.7) * 2.5) * 4;
+					card.style.transform = "translateY(" + floatY + "px) scale(1)";
+					card.style.opacity = 1;
+				}
+				// Glide out to left and fade (3.6s - 4.4s)
+				else if (t < 4.4) {
+					var exitP = (t - 3.6) / 0.8;
+					var exitEase = Math.pow(exitP, 2.5);
+					card.style.transform = "translateX(" + (-exitEase * 120) + "vw) scale(" + (1 - exitEase * 0.15) + ")";
+					card.style.opacity = Math.max(0, 1 - exitP);
+					overlay.style.opacity = Math.max(0, 1 - exitP);
+				} else {
+					if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+					return;
+				}
+
+				requestAnimationFrame(animateIphone);
+			}
+
+			requestAnimationFrame(animateIphone);
 		}
 	}
 
@@ -3109,7 +3601,7 @@
 		initEstAnalogClock();
 		initGlobalInternetRadar();
 		initDedicatedDeskClock();
-		initAndrewFaviconEasterEgg();
+		initAllEasterEggs();
 	}
 
 	if (document.readyState === "loading") {
