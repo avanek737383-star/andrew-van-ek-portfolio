@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">398 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-03T09:25:00-05:00">November 3, 2026 at 9:25:00 AM EST</time></p>
+<p class="maintenance-updated">399 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-03T20:45:00-05:00">November 3, 2026 at 8:45:00 PM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -101,7 +101,105 @@
 <br><br>
 <em>Telephony Telemetry Refinement:</em> Eliminated the intrusive spoken seconds countdown (<code>Time Elapsed.</code> and periodic <code>{sec} seconds.</code> voice announcements) emitted during AI thought inference on incoming Twilio phone calls (<code>/chat</code> and <code>/wait_for_response</code> in <code>servingcall.py</code>). Replaced the voice loop with a silent, DTMF-interruptible gather and brief pause loop, enabling quiet, natural waiting while preserving &ldquo;22&rdquo; touch-tone escape navigation.
 <br><br>
-<em>Workstation AI Migration to Llama 3.2 3B Instruct Abliterated:</em> Replaced NVIDIA Nemotron 3 Nano with <strong>Llama-3.2-3B-Instruct-abliterated-GGUF</strong> (QuantFactory Q4_K_S) hosted in LM Studio on workstation <code>FREEHPGAMER</code>. Updated the persistent Windows model service watchdog (<code>StartBionicTray.ps1</code> and <code>start-server.mjs</code>), the FastAPI gateway model bindings, telemetry collectors, and guardrail validators (<code>portfolio_guardrails.py</code>). Both the portfolio website chatbot and the telephone voice hotline now benefit from ultra-fast inference latency (~2&ndash;3 seconds per spoken response) and conversational fluency across whitelisted personal assistance (answering technical, programming, and homework questions without refusals or meta-reasoning tokens) and non-whitelisted public portfolio inquiries.</li>
+<em>Workstation AI Migration to Llama 3.2 3B Instruct Abliterated:</em> Replaced NVIDIA Nemotron 3 Nano with <strong>Llama-3.2-3B-Instruct-abliterated-GGUF</strong> (QuantFactory Q4_K_S) hosted in LM Studio on workstation <code>FREEHPGAMER</code>. Updated the persistent Windows model service watchdog (<code>StartBionicTray.ps1</code> and <code>start-server.mjs</code>), the FastAPI gateway model bindings, telemetry collectors, and guardrail validators (<code>portfolio_guardrails.py</code>). Both the portfolio website chatbot and the telephone voice hotline now benefit from ultra-fast inference latency (~2&ndash;3 seconds per spoken response) and conversational fluency across whitelisted personal assistance (answering technical, programming, and homework questions without refusals or meta-reasoning tokens) and non-whitelisted public portfolio inquiries.
+<figure class="system-diagram-wrap" style="margin: 22px 0 16px;">
+<svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Duino-Coin Web Miner and iOS Screen Keep-Awake Engine Architecture" style="width: 100%; max-width: 860px; height: auto; display: block; margin: 16px auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="amberCard2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b45309" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#78350f" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="blueCard2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1d4ed8" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="greenCard2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#047857" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#064e3b" stop-opacity="0.95"/>
+    </linearGradient>
+    <marker id="arr-amber2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arr-cyan2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="860" height="270" rx="12" fill="url(#bgGrad2)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Title Pill -->
+  <g transform="translate(25, 18)">
+    <rect width="450" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="14" y="17" fill="#fbbf24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="0.5">DUINO-COIN TAILSCALE MINER &amp; KEEP-AWAKE ENGINE</text>
+    <rect x="460" y="0" width="165" height="26" rx="6" fill="#14532d" stroke="#16a34a" stroke-width="1"/>
+    <text x="472" y="17" fill="#86efac" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">OpenRC Daemon &#8226; Port 8095</text>
+  </g>
+
+  <!-- Left: iOS Safari & Keep-Awake Engine -->
+  <g transform="translate(25, 62)">
+    <rect width="250" height="185" rx="8" fill="url(#amberCard2)" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="14" y="24" fill="#fef3c7" font-family="system-ui, sans-serif" font-size="11" font-weight="700">MOBILE / iOS CLIENT</text>
+    <text x="14" y="44" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Dual-Layer Keep-Awake</text>
+
+    <rect x="12" y="56" width="226" height="52" rx="5" fill="#0f172a" stroke="#d97706"/>
+    <text x="20" y="74" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="10" font-weight="700">1. W3C Screen Wake Lock API</text>
+    <text x="20" y="90" fill="#fde68a" font-family="system-ui, sans-serif" font-size="10">2. NoSleep.js Looping Video Fallback</text>
+    <text x="20" y="102" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">Prevents iOS Safari Background Sleep</text>
+
+    <rect x="12" y="116" width="226" height="56" rx="5" fill="#0f172a" stroke="#d97706"/>
+    <text x="20" y="134" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="10" font-weight="700">Auto-Capitalization Hardening</text>
+    <text x="20" y="150" fill="#fde68a" font-family="monospace" font-size="10">autocapitalize="none"</text>
+    <text x="20" y="164" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">Locked: avanek737383 (Key: avanek4444)</text>
+  </g>
+
+  <!-- Arrow: iOS -> NUC -->
+  <path d="M 275 155 L 325 155" stroke="#fbbf24" stroke-width="2" marker-end="url(#arr-amber2)"/>
+
+  <!-- Center: Alpine NUC Host -->
+  <g transform="translate(335, 62)">
+    <rect width="250" height="185" rx="8" fill="url(#blueCard2)" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="14" y="24" fill="#bfdbfe" font-family="system-ui, sans-serif" font-size="11" font-weight="700">ALPINE LINUX NUC (100.87.81.52)</text>
+    <text x="14" y="44" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Persistent Mining Daemon</text>
+
+    <rect x="12" y="56" width="226" height="52" rx="5" fill="#0f172a" stroke="#2563eb"/>
+    <text x="20" y="74" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="10" font-weight="700">OpenRC Service Daemon</text>
+    <text x="20" y="90" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="10">/etc/init.d/duino-webminer</text>
+    <text x="20" y="102" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">Auto-restarts &#8226; Default Runlevel</text>
+
+    <rect x="12" y="116" width="226" height="56" rx="5" fill="#0f172a" stroke="#2563eb"/>
+    <text x="20" y="134" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="10" font-weight="700">Network Ingress Endpoints</text>
+    <text x="20" y="150" fill="#93c5fd" font-family="monospace" font-size="10">100.87.81.52:8095 (LAN)</text>
+    <text x="20" y="164" fill="#93c5fd" font-family="monospace" font-size="10">Tailscale HTTPS :8445</text>
+  </g>
+
+  <!-- Arrow: NUC -> Duino Pool -->
+  <path d="M 585 155 L 635 155" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-cyan2)"/>
+
+  <!-- Right: Central Pool Server -->
+  <g transform="translate(645, 62)">
+    <rect width="190" height="185" rx="8" fill="url(#greenCard2)" stroke="#10b981" stroke-width="1.2"/>
+    <text x="14" y="24" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="11" font-weight="700">DUINO-COIN NETWORK</text>
+    <text x="14" y="44" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Central Mining Pool</text>
+
+    <rect x="12" y="56" width="166" height="52" rx="5" fill="#0f172a" stroke="#059669"/>
+    <text x="18" y="74" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="700">Kolka Algorithm</text>
+    <text x="18" y="90" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="10">Hash Verification</text>
+    <text x="18" y="102" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">Duco-S1 Difficulty Level</text>
+
+    <rect x="12" y="116" width="166" height="56" rx="5" fill="#0f172a" stroke="#059669"/>
+    <text x="18" y="134" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="700">Live Telemetry Sync</text>
+    <text x="18" y="150" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="10">24/7 Hash Submission</text>
+    <text x="18" y="164" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">Continuous Verified Payouts</text>
+  </g>
+</svg>
+<figcaption style="font-size: 0.85rem; color: #64748b; text-align: center; margin-top: 6px;">
+  Figure: Persistent Duino-Coin Web Miner Topology with Dual-Layer iOS Screen Keep-Awake Engine
+</figcaption>
+</figure></li>
 <li id="gallery-expansion-glm4-streaming-and-vintage-xp-rdp"><strong>Visual Gallery expansion: GLM-4-9B Tailscale streaming chat workbench &amp; Windows XP Remote Desktop session telemetry:</strong> With assistance from Antigravity AI, expanded the interactive visual security and homelab workbench (<a href="gallery.html">Gallery</a>) from 26 to 28 high-resolution architectural captures across two key computing domains. Added a live production capture of the <strong>GLM-4-9B Private Tailscale Web Chat</strong> interface (<code>100.82.213.77:3000</code>), illustrating real-time Server-Sent Events (SSE) streaming token generation for academic coursework inquiries against quantized GGUF weights pre-loaded into RAM on a headless 8-vCPU Linux VM. Added a vintage <strong>Windows XP Professional Remote Desktop (RDP)</strong> live session capture (<code>192.168.0.160</code>), documenting network firewall exception validation, legacy port 3389 routing over TCP, and administrative desktop session persistence across isolated homelab subnets. Synchronized all category filters, responsive counter badges, and mobile selection overlays across <code>gallery.html</code> and <code>scripts/gallery.js</code>, and re-executed automated search index generation (<code>scripts/build-search-index.py</code>) to index sample identifiers, architectural tags, and defense playbooks directly into <code>data/search-index.json</code>.</li>
 <li id="gallery-lightbox-drag-ghosting-and-pointer-tracking-resolution"><strong>Gallery lightbox HTML5 image drag suppression, mouse tracking desync &amp; grab cursor ergonomics:</strong> With assistance from Antigravity AI, diagnosed and resolved an erratic cursor interaction bug occurring when zooming and panning images inside the visual laboratory showcase (<a href="gallery.html">Gallery</a>). Identified that clicking and dragging zoomed images on desktop triggered default browser HTML5 drag-and-drop behavior on the underlying <code>&lt;img&gt;</code> element, generating a semi-transparent ghost thumbnail (as if attempting to drop the image file into a downloads directory) while suppressing native <code>mouseup</code> events. Because the release event was swallowed during drag initiation, the pan controller retained a stuck <code>isDragging = true</code> state, causing images to stick to the cursor and track involuntary mouse movements until an arbitrary second click was made. Engineered comprehensive cross-browser event protections across <code>gallery.html</code>, <code>css/gallery.css</code>, and <code>scripts/gallery.js</code>: injected explicit <code>draggable="false"</code> attributes, suppressed <code>dragstart</code> on both image and viewport containers, enforced CSS <code>-webkit-user-drag: none</code>, <code>user-select: none</code>, and <code>touch-action: none</code>, and added strict <code>e.preventDefault()</code> guards on primary mouse-down events. Hardened panning lifecycle logic with active button bitmask polling (<code>(e.buttons &amp; 1) === 0</code>) during <code>mousemove</code> alongside global <code>blur</code> and <code>dragend</code> failsafes to guarantee immediate, graceful disengagement whenever the primary button is released, paired with dynamic <code>grab</code> and <code>grabbing</code> cursor styling.</li>
 <li id="gallery-search-indexing-and-deeplink-automation"><strong>Gallery threat index automation, deep-linking hash navigation &amp; GPU compositor hit-testing resolution:</strong> With assistance from Antigravity AI, enhanced the portfolio search and discovery architecture across the Alpine Linux NUC server and frontend runtime. Upgraded the automated Python search indexer (<code>scripts/build-search-index.py</code>) to parse and index all 26 visual workbench and malware forensics captures, extracting sample identifiers, threat taxonomies, forensic observations, and technical breakdowns directly into <code>data/search-index.json</code> (expanding search coverage to 486 searchable items). Synchronized the search pipeline with the hourly cron reconciliation daemon (<code>auto-reconcile-search-index.sh</code>) to automatically detect HTML revisions and maintain parity without manual intervention. Engineered deep-linking URL hash handling (<code>#hash</code>) inside <code>scripts/gallery.js</code>: searching for samples (such as WannaCry, FTK Imager, Legacy Update, or NSB Police Winlocker) via global Spotlight search (<kbd>Ctrl</kbd>+<kbd>K</kbd>) now routes directly to specific anchors, automatically switching threat categories and launching the interactive high-resolution zoom lightbox on arrival. Furthermore, diagnosed and resolved a GPU compositor hit-testing dead zone on desktop viewports where backdrop-filtered modal overlays blocked pointer hover events on bottom-row cards; refactored overlay styles to enforce strict CSS <code>visibility: hidden</code> and <code>pointer-events: none</code> when inactive, raised grid stacking contexts (<code>z-index: 5</code>), and added generous bottom clearance above floating interface widgets.</li>
@@ -390,6 +488,146 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
+<li id="coqui-xtts-voice-cloning-vram-lifecycle-and-twilio-hold-music"><strong>Coqui XTTS-v2 zero-shot voice cloning microservice, dynamic VRAM lifecycle engine &amp; Twilio hold music streaming integration:</strong> In pair programming with Antigravity AI, engineered a self-hosted voice cloning pipeline for the interactive telephone AI gateway (<code>servingcall.py</code>), eliminating reliance on paid external TTS APIs while preventing telephone silence through dynamic hold music streaming.
+<br><br>
+<em>Coqui XTTS-v2 Microservice on RTX A2000 Laptop GPU:</em> Deployed a dedicated FastAPI TTS microservice on workstation <code>FREEHPGAMER</code> (<code>C:\Users\Owner\Documents\StartUps\portfolio-tts-service</code>) executing Coqui XTTS-v2 on the host NVIDIA RTX A2000 Laptop GPU via PyTorch CUDA 12.4. Engineered dynamic, on-demand VRAM lifecycle management: the server boots into a silent standby consuming <strong>0 MB VRAM</strong>, loads model weights into GPU memory (~1.8 GB) only upon receiving an active synthesis request, and automatically unloads XTTS from CUDA with <code>torch.cuda.empty_cache()</code> after <strong>30 minutes of idle</strong>, leaving the GPU free for background Folding@home operations. Benchmark tests demonstrated warm voice synthesis in ~4.8 seconds from a clean reference sample (<code>voice_sample.wav</code>).
+<br><br>
+<em>Dual-Port SSH Reverse Tunnel &amp; Public Ingress:</em> Updated the persistent OpenRC tunnel daemon (<code>/root/myserver/run-portfolio-model-tunnel.sh</code>) on the Alpine Linux NUC to multiplex both port 12340 (LM Studio LLM) and port 8020 (Coqui XTTS-v2) across the private Tailscale mesh network. Configured a secure static audio distribution endpoint (<code>/audio/{filename}</code>) in <code>servingcall.py</code> serving generated WAV assets directly to Twilio over Tailscale Funnel HTTPS.
+<br><br>
+<em>Twilio Hold Music Streaming &amp; Carrier Whitelist Logic:</em> To eradicate dead air during concurrent LLM inference and neural voice synthesis, integrated Kevin MacLeod's royalty-free <em>&ldquo;Local Forecast &ndash; Elevator&rdquo;</em> (Creative Commons Attribution) into an interactive <code>&lt;Gather&gt;&lt;Play&gt;</code> loop during polling in <code>/wait_for_response</code>. Whitelisted callers (Andrew) bypass voice cloning to receive instant, unrestricted personal assistant answers via native Twilio <code>&lt;Say&gt;</code>, while public callers hear the custom cloned voice reading answers with full DTMF &ldquo;22&rdquo; touch-tone escape navigation.
+<br><br>
+<em>Persistent Windows Service Supervision:</em> Packaged the Python microservice into a detached, persistent Windows background daemon supervised via <code>StartTTSTray.ps1</code> and <code>StartTTSTray.vbs</code> enrolled in the Windows Startup directory, guarded with a single-instance named mutex (<code>Local\AndrewPortfolioTTSStartup</code>) for automatic resurrection upon system boot.
+<figure class="system-diagram-wrap" style="margin: 22px 0 16px;">
+<svg viewBox="0 0 860 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hybrid AI Telephony Gateway and Coqui XTTS Voice Cloning Architecture" style="width: 100%; max-width: 860px; height: auto; display: block; margin: 16px auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="blueCard1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#172554" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="greenCard1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#022c22" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="purpleCard1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#581c87" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#3b0764" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="amberCard1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#451a03" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="cyanCard1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#155e75" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#083344" stop-opacity="0.95"/>
+    </linearGradient>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#34d399"/>
+    </marker>
+    <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+  </defs>
+
+  <rect width="860" height="410" rx="12" fill="url(#bgGrad1)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Title Pill -->
+  <g transform="translate(25, 20)">
+    <rect width="420" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="14" y="17" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="0.5">TELEPHONY AI &amp; VOICE CLONE ARCHITECTURE</text>
+    <rect x="430" y="0" width="160" height="26" rx="6" fill="#022c22" stroke="#059669" stroke-width="1"/>
+    <text x="444" y="17" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">RTX A2000 &#8226; XTTS-v2</text>
+  </g>
+
+  <!-- Left: Inbound Caller -->
+  <g transform="translate(25, 75)">
+    <rect width="160" height="110" rx="8" fill="url(#blueCard1)" stroke="#3b82f6" stroke-width="1.2"/>
+    <text x="15" y="26" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="11" font-weight="700">INBOUND CALLER</text>
+    <text x="15" y="48" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Twilio Voice</text>
+    <text x="15" y="68" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Webhook /call &#8594; /chat</text>
+    <rect x="15" y="80" width="115" height="18" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="22" y="93" fill="#38bdf8" font-family="monospace" font-size="10">E.164 Caller ID</text>
+  </g>
+
+  <!-- Arrow: Caller -> Gateway -->
+  <path d="M 185 130 L 225 130" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <!-- Center: Alpine NUC Gateway -->
+  <g transform="translate(235, 65)">
+    <rect width="210" height="150" rx="8" fill="url(#cyanCard1)" stroke="#06b6d4" stroke-width="1.2"/>
+    <text x="15" y="24" fill="#67e8f9" font-family="system-ui, sans-serif" font-size="11" font-weight="700">ALPINE NUC GATEWAY</text>
+    <text x="15" y="44" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">servingcall.py</text>
+    <text x="15" y="62" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Tailscale Funnel :443 &#8594; :8000</text>
+    
+    <!-- Whitelist Branching inside NUC -->
+    <rect x="12" y="76" width="186" height="30" rx="5" fill="#0f172a" stroke="#0284c7"/>
+    <text x="18" y="94" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">Whitelist Filter &amp; Rate Limits</text>
+    
+    <rect x="12" y="112" width="186" height="26" rx="5" fill="#1e293b" stroke="#334155"/>
+    <text x="18" y="129" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">Hold Music: /audio/hold_music.mp3</text>
+  </g>
+
+  <!-- Arrow: Whitelist -> Instant Say -->
+  <path d="M 340 65 L 340 38 L 475 38" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arr-green)"/>
+
+  <!-- Whitelisted Branch Card (Andrew) -->
+  <g transform="translate(485, 20)">
+    <rect width="350" height="42" rx="6" fill="url(#greenCard1)" stroke="#10b981" stroke-width="1.2"/>
+    <text x="14" y="20" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="11" font-weight="700">WHITELISTED (ANDREW)</text>
+    <text x="14" y="34" fill="#d1fae5" font-family="system-ui, sans-serif" font-size="11">Bypasses TTS &#8226; Instant Twilio &lt;Say&gt; &#8226; Unrestricted Prompt</text>
+  </g>
+
+  <!-- Arrow: Non-Whitelisted -> Tunnels -->
+  <path d="M 445 140 L 485 140" stroke="#c084fc" stroke-width="2" marker-end="url(#arr-purple)"/>
+
+  <!-- Right: Windows Model PC (FREEHPGAMER) -->
+  <g transform="translate(495, 75)">
+    <rect width="340" height="205" rx="8" fill="url(#purpleCard1)" stroke="#a855f7" stroke-width="1.2"/>
+    <text x="16" y="24" fill="#d8b4fe" font-family="system-ui, sans-serif" font-size="11" font-weight="700">WINDOWS WORKSTATION (FREEHPGAMER)</text>
+    <text x="16" y="44" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">NVIDIA RTX A2000 Laptop GPU (CUDA 12.4)</text>
+
+    <!-- Sub-card 1: LLM -->
+    <rect x="14" y="58" width="312" height="60" rx="6" fill="#0f172a" stroke="#6b21a8"/>
+    <text x="24" y="78" fill="#c084fc" font-family="system-ui, sans-serif" font-size="11" font-weight="700">1. LLM INFERENCE (SSH Port 12340 &#8594; 1234)</text>
+    <text x="24" y="96" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">Llama 3.2 3B Instruct Abliterated &#8226; Generates Response Text</text>
+    <text x="24" y="110" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Latency: ~2.2s &#8226; QuantFactory Q4_K_S</text>
+
+    <!-- Sub-card 2: TTS -->
+    <rect x="14" y="126" width="312" height="68" rx="6" fill="#0f172a" stroke="#059669"/>
+    <text x="24" y="146" fill="#34d399" font-family="system-ui, sans-serif" font-size="11" font-weight="700">2. VOICE CLONING TTS (SSH Port 8020 &#8594; 8020)</text>
+    <text x="24" y="164" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">Coqui XTTS-v2 &#8226; Speaker Ref: voice_sample.wav</text>
+    <text x="24" y="182" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="10">Warm Synthesis: ~4.8s &#8226; Yields /audio/{job_id}.wav</text>
+  </g>
+
+  <!-- Bottom: Dynamic VRAM Lifecycle & Audio Delivery -->
+  <g transform="translate(25, 295)">
+    <!-- VRAM Manager Card -->
+    <rect width="460" height="95" rx="8" fill="url(#amberCard1)" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="16" y="24" fill="#fcd34d" font-family="system-ui, sans-serif" font-size="11" font-weight="700">DYNAMIC VRAM LIFECYCLE MANAGEMENT</text>
+    <text x="16" y="46" fill="#fef3c7" font-family="system-ui, sans-serif" font-size="11">&#8226; Standby: 0 MB VRAM allocated &#8226; Server listens quietly on port 8020</text>
+    <text x="16" y="66" fill="#fef3c7" font-family="system-ui, sans-serif" font-size="11">&#8226; On Call: Loads XTTS-v2 into CUDA (~1.8 GB) &#8226; Synthesizes response</text>
+    <text x="16" y="84" fill="#fcd34d" font-family="system-ui, sans-serif" font-size="11">&#8226; 30-Min Idle Unload: Automatically frees GPU VRAM for Folding@home</text>
+
+    <!-- Return Audio Card -->
+    <g transform="translate(470, 0)">
+      <rect width="340" height="95" rx="8" fill="url(#blueCard1)" stroke="#38bdf8" stroke-width="1.2"/>
+      <text x="16" y="24" fill="#7dd3fc" font-family="system-ui, sans-serif" font-size="11" font-weight="700">SEAMLESS TWILIO AUDIO STREAMING</text>
+      <text x="16" y="46" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11">&#8226; Thinking: Streams Kevin MacLeod Hold Music</text>
+      <text x="16" y="66" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11">&#8226; Done: Twilio &lt;Play&gt; outputs Andrew's Cloned Voice</text>
+      <text x="16" y="84" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10">DTMF &quot;22&quot; interruptible &#8226; Natural conversational turn-taking</text>
+    </g>
+  </g>
+</svg>
+<figcaption style="font-size: 0.85rem; color: #64748b; text-align: center; margin-top: 6px;">
+  Figure: Hybrid Multi-Node Voice AI Telephony Gateway Architecture with On-Demand VRAM Management &amp; Hold Music Streaming
+</figcaption>
+</figure></li>
 <li id="voice-ai-hotline-telephony-widget-and-quad-easter-eggs"><strong>Phone AI Voice Hotline dock widget, local inference resurrection &amp; four interactive keyboard easter eggs:</strong> In pair programming with Antigravity AI, resolved an offline AI node state, deployed a floating Phone AI Voice Hotline launcher and tutorial modal, corrected the Neural Predictor coin affordance, and engineered four interactive keyboard easter eggs across the portfolio. Diagnosed an offline HTTP 503 response on the portfolio gateway's <code>/website-chat/stats</code> endpoint; traced the root cause to a lingering, stale process lock (<code>llmster-pid.lock</code> dated Oct 10) and uncommitted SQLite journal inside <code>~/.lmstudio/.internal/</code> on host workstation <code>FREEHPGAMER</code> that blocked the background model runtime from binding port 1234. Safely backed up and purged the stale lock artifacts, launched the Bionic inference engine with on-demand just-in-time model loading for <strong>NVIDIA Nemotron 3 Nano 4B</strong>, created a persistent Windows Startup shortcut (<code>Bionic-AI-Server.lnk</code>) to ensure automatic resurrection upon reboot, and verified real-time tunnel telemetry streaming 200 OK responses with active GPU resource telemetry (171 MB VRAM utilized while Folding@home operates on GPU compute). Engineered a floating Voice AI Hotline launcher dock (<code>.portfolio-chat-dock</code> in <code>css/styles.css</code> and <code>scripts/script.js</code>) featuring a desktop pill with live telephone number telemetry (<code>📞 +1 (912) 915-3851 · AI Hotline</code>) that expands into a step-by-step tutorial card with 1-click dialing (<code>tel:+19129153851</code>), clipboard copy integration, and guardrail summaries, collapsing responsively into a sleek 44px circular phone icon on mobile viewports while obeying identical online/offline service visibility rules as the Nemo chatbot. On the Neural Coin Predictor (<a href="ai-predictor.html">Neural Coin Predictor</a>), corrected tactile affordances by removing misleading browser toss tooltips (<code>title</code>) and resetting coin face cursors to standard default arrows, clarifying that coin tosses require a player prediction guess. Finally, engineered four rich, external-keyboard easter eggs in <code>scripts/script.js</code> strictly guarded against typing in input fields, textareas, or active chat sessions: typing <strong>&ldquo;apple&rdquo;</strong> (case-insensitive) cascades a retro 1984 rain shower of falling red/green apple emojis and glowing yellow &ldquo;1984&rdquo; code streams; typing <strong>&ldquo;windows&rdquo;</strong> triggers a smooth, exponential screen-filling zoom of the Windows 10 four-pane blue logo before gracefully dissolving; typing <strong>&ldquo;android&rdquo;</strong> brings an animated green Bugdroid mascot popping up from the bottom-center with wiggling antennae, an arm wave, and an energetic 360-degree backflip releasing a celebratory shower of sweet dessert emojis (🧁, 🍩, 🍬, 🍦, 🍭); and typing <strong>&ldquo;iphone&rdquo;</strong> stages an iconic Steve Jobs January 9, 2007 Macworld keynote entrance featuring a floating frosted glass showcase card with original iPhone silhouette typography (&ldquo;Apple reinvents the phone&rdquo;) and spotlight shimmer.</li>
 <li id="neural-coin-predictor-interactive-telemetry-hud-and-easter-eggs"><strong>Neural Sequence Predictor interactive hover telemetry, desktop HUD reasoning reorganization &amp; dual easter eggs:</strong> In pair programming with Antigravity AI, overhauled the client-side Neural Coin Predictor laboratory (<a href="ai-predictor.html">Neural Coin Predictor</a>) and deployed interactive telemetry enhancements, desktop UX balancing, real-world educational analogies, and two hidden easter eggs. On both High-DPI convergence charts (<em>CPU Training Loss Convergence Curve</em> and <em>Cumulative Predictive Edge vs. Baseline</em> in <code>scripts/coin-predictor.js</code> and <code>css/coin-predictor.css</code>), implemented real-time cursor tracking with crosshairs (<code>cursor: crosshair</code>), dynamic vertical guide lines, glowing coordinate points, and high-contrast floating tooltip badges positioned directly above the hovered data coordinates; displays exact epoch loss figures (training and validation BCE loss) across all 120 PyTorch epochs, as well as live session hit rates versus the theoretical 50.0% random baseline with mobile touch-sliding support. Rebalanced the desktop arena layout (<code>.predictor-grid</code>): expanded the primary 3D coin toss stage by 25% (viewport enlarged to 210px with a 175px tactile coin disc) and eliminated empty whitespace in the dark HUD card by relocating the live 3-step forward-pass neural reasoning stream (<code>[1. REASONING]</code>, <code>[2. DENSE PASS]</code>, and <code>[3. DECISION]</code>) directly into the right-hand Live Neural Inference HUD, replacing the redundant &ldquo;Next Predicted Outcome&rdquo; tile with continuous real-time step-by-step tensor evaluation. Configured tactile cursor pointer affordances (<code>cursor: pointer !important</code>) across the coin disc and face elements to simulate interactive flip responsiveness. Integrated helpful real-world analogy tooltips for <span class="tech-term" data-term="empirical-win-rate">Empirical Win-Rate</span> (likening observed classification hits to a baseball player's regular-season batting average versus theoretical batting cage averages), <span class="tech-term" data-term="noise-injected">Noise Injected</span>, and <span class="tech-term" data-term="noise-perturbation">Noise Perturbation</span> (analogizing synthetic sequence corruption to aircraft turbulence wind tunnels) in <code>scripts/script.js</code> and <code>ai-predictor.html</code>. Streamlined the homepage (<code>index.html</code>) by removing the redundant Live Homelab Telemetry teaser. Finally, deployed two personal easter eggs: minted the 3D coin face motto with <strong>2005</strong> in honor of Andrew's birth year, and engineered an external-keyboard global listener in <code>scripts/script.js</code> where typing <strong>&ldquo;andrew&rdquo;</strong> (case-insensitive) anywhere across the website triggers a celebratory 360-degree physics particle explosion of the site favicon bursting across the screen.</li>
 <li id="blueai-v1278-updater-triage-and-elevation"><strong>BlueAI 1.2.78 upgrade, macOS updater privilege escalation triage &amp; notary package recovery:</strong> With assistance from Antigravity AI, diagnosed and resolved an automated updater failure loop in BlueAI on macOS (<code>/Applications/BlueAI.app</code>). Investigated repeated <em>&ldquo;Update ready&rdquo;</em> notifications and traced persistent upgrade stalls to permission boundaries recorded in the runtime telemetry logs (<code>/Users/Shared/Library/Application Support/BlueAI/Logs/BlueAI.log</code>): while the background updater successfully downloaded and staged version 1.2.78, its headless application script invoked <code>osascript</code> administrator elevation to overwrite root-owned bundle assets and reconfigure the <code>com.now.gg.BlueAI.cleanup</code> LaunchDaemon, timing out in scheduled worker sessions and logging <code>[Updater] apply marker present but version unchanged (1.2.69 → 1.2.78)</code>. Located the verified, staged payload in temporary staging cache (<code>/var/folders/.../T/BlueAI-update/BlueAI-1.2.78.pkg</code>), conducted a forensic signature audit via <code>pkgutil --check-signature</code> to verify Apple notarization and Developer ID certification from <code>now.gg, Inc.</code> (Team ID: <code>UJYFHY4XNR</code>), and extracted package scripts to audit pre/post-install operations and launchctl bootstrap logic. Staged the verified pkg to <code>~/Downloads/BlueAI-1.2.78.pkg</code>, dispatched the macOS interactive Installer with native GUI authentication prompts, verified clean bundle registration at <code>CFBundleShortVersionString</code> <strong>1.2.78</strong>, and removed transient install artifacts.</li>
