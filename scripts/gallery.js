@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 93 Workbench Captures across 5 Curated Categories
+ * - 98 Workbench Captures across 5 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -1785,6 +1785,102 @@
                 ],
             containment: "Physical bench hardware teardown and cleaning.",
             credit: "Hardware teardown and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        }
+,
+        {
+            id: "danabot-banking-trojan-cmd-execution",
+            title: "DanaBot Banking Trojan: Transient Command Prompt & Process Execution Trace",
+            category: "security",
+            categoryLabel: "Banking Trojan & Evasion",
+            badgeClass: "badge-danger",
+            image: "images/gallery/approved3/danabot-banking-trojan-cmd-execution.png",
+            thumb: "images/gallery/approved3/danabot-banking-trojan-cmd-execution-thumb.jpg",
+            tags: ["DanaBot", "Banking Trojan", "Malware Analysis", "Windows Sandbox", "Process Trace"],
+            summary: "Analyzing the fleeting command execution window of the DanaBot modular banking trojan inside Windows Sandbox during initial loader launch.",
+            sandboxObservation: "Windows Sandbox environment executing DanaBot.exe from The-MALWARE-Repo, capturing the transient console command window spawned during initial stage extraction before evasion hooks suppress the prompt.",
+            technicalBreakdown: "DanaBot is a modular banking trojan notorious for multi-stage loader evasion. During initial detonation, it briefly spawns command-line processes or batch scripts to perform anti-analysis environment checks, decrypt secondary payloads, and inject malicious DLLs into legitimate system processes before terminating the parent console window.",
+            defensePlaybook: [
+                "Process Creation Telemetry (Sysmon Event ID 1): Monitor for rapid parent-child process anomalies where command line tools spawn briefly from user download directories and exit within milliseconds.",
+                "Network Egress Filtering: Block C2 callback attempts on non-standard ports commonly leveraged by DanaBot affiliates for beaconing and configuration downloads."
+            ],
+            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "slider-puzzle-screen-locker-trojan",
+            title: "Slider 1.0 Screen Locker Trojan: Interactive Sliding Tile Hostage Lock",
+            category: "security",
+            categoryLabel: "Screen Locker & Winlocker",
+            badgeClass: "badge-danger",
+            image: "images/gallery/approved3/slider-puzzle-screen-locker-trojan.png",
+            thumb: "images/gallery/approved3/slider-puzzle-screen-locker-trojan-thumb.jpg",
+            tags: ["DesktopPuzzle", "Screen Locker", "Trojan", "Malware Analysis", "Windows Sandbox"],
+            summary: "Documenting the interactive lock screen payload of the DesktopPuzzle / Slider 1.0 trojan forcing the user to complete a sliding tile puzzle to regain desktop access.",
+            sandboxObservation: "Windows Sandbox session running DesktopPuzzle (240 KB Application) from the Trojan repository, triggering a modal alert stating: 'Oops, looks like somebody doesn\'t like you very much ! You have to finish this sliding tile puzzle before you can continue whatever it is you\'re doing ! Use the cursor keys to move the pieces (black piece is the empty one)'.",
+            technicalBreakdown: "Screen locker trojans (Winlockers) intercept user input, keyboard focus, and desktop interactions without necessarily encrypting underlying disk files. DesktopPuzzle couples window management hooking with an interactive gamified restriction mechanism to disrupt operations and test user persistence.",
+            defensePlaybook: [
+                "Safe Mode / Recovery Boot: Screen lockers lacking driver-level persistence or full-disk encryption can be bypassed by booting into Safe Mode or Windows Recovery Environment (WinRE) to disable startup run keys.",
+                "Endpoint Privilege Management: Enforce standard user privileges to block rogue binaries from hooking low-level Windows keyboard messages (WH_KEYBOARD_LL) or terminating Task Manager."
+            ],
+            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "dharma-ransomware-driver-blocklist-byovd",
+            title: "Dharma Ransomware: Vulnerable Driver Blocklist & BYOVD Neutralization",
+            category: "security",
+            categoryLabel: "BYOVD Kernel Defense",
+            badgeClass: "badge-danger",
+            image: "images/gallery/approved3/dharma-ransomware-driver-blocklist-byovd.png",
+            thumb: "images/gallery/approved3/dharma-ransomware-driver-blocklist-byovd-thumb.jpg",
+            tags: ["Dharma", "CrySiS", "Ransomware", "BYOVD", "Driver Blocklist", "Windows Sandbox"],
+            summary: "Observing Windows Hypervisor-protected Code Integrity (HVCI) and vulnerable driver blocklists actively intercepting Dharma ransomware's kernel driver exploitation attempt.",
+            sandboxObservation: "Windows Sandbox desktop populated by cascading Program Compatibility Assistant alerts reading: 'A driver cannot load on this device: Driver: atvxvgfgfrxsofygk.sys ... A security setting is detecting this as a vulnerable driver and blocking it from loading' alongside 'Load Driver Error!' and PC Hunter / nc123.exe execution from the Dharma ransomware directory.",
+            technicalBreakdown: "Modern ransomware variants (including Dharma / CrySiS distributions) frequently deploy Bring Your Own Vulnerable Driver (BYOVD) tactics, attempting to drop legitimate but known-vulnerable signed third-party drivers (such as antirootkit drivers like PC Hunter) to terminate endpoint detection and response (EDR) agents from kernel space. Windows Driver Blocklist and Hypervisor-protected Code Integrity (HVCI) effectively neutralize this vector by refusing to load blacklisted vulnerable drivers.",
+            defensePlaybook: [
+                "Enable Microsoft Vulnerable Driver Blocklist: Enforce WDAC (Windows Defender Application Control) kernel driver blocklists to neutralize BYOVD attacks regardless of administrative privilege.",
+                "Hypervisor-protected Code Integrity (HVCI): Ensure Memory Integrity / HVCI is enabled in Windows Core Isolation settings to prevent unsigned or vulnerable driver execution."
+            ],
+            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "fun-fun-funny-gdi-screen-payload-trojan",
+            title: "FunFunFun GDI Payload Trojan: Rapid Alert Spam & Screen Pixel Crosshatching",
+            category: "security",
+            categoryLabel: "GDI Destruction & Screen Payload",
+            badgeClass: "badge-danger",
+            image: "images/gallery/approved3/fun-fun-funny-gdi-screen-payload-trojan.png",
+            thumb: "images/gallery/approved3/fun-fun-funny-gdi-screen-payload-trojan-thumb.jpg",
+            tags: ["GDI Payload", "Screen Destroyer", "Trojan", "Malware Forensics", "Windows Sandbox"],
+            summary: "Executing a visual destruction / screen perturbation payload spawning cascading message boxes and dynamic desktop GDI pixel crosshatching.",
+            sandboxObservation: "Windows Sandbox displaying an aggressive crosshatched pattern of rasterized static across the browser and desktop canvas, overlaid with multiple spawned message boxes titled 'FUN FUN FUN FUN FUN!!!!' with body text 'A very funny thing is happening!'.",
+            technicalBreakdown: "Screen destroyer and annoyance trojans manipulate the Windows Graphics Device Interface (GDI) via functions such as GetDC, PatBlt, BitBlt, and CreatePen to render chaotic visual artifacts directly to the desktop device context (GetDC(NULL)). Concurrently, multi-threaded loops spawn non-blocking user32 MessageBox alerts to exhaust window message queues and disorient the operator.",
+            defensePlaybook: [
+                "GDI & Desktop Window Manager Isolation: Modern container architectures and application sandboxes prevent untrusted guest processes from obtaining direct device context handles to the host compositor.",
+                "Application Whitelisting: Restrict execution of standalone unsigned script/executables from user temporary directories using AppLocker or Software Restriction Policies."
+            ],
+            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "krotten-ransomware-cyrillic-lock-note",
+            title: "Trojan-Ransom Krotten: Registry Hijacking & Mojibake Cyrillic Ransom Note",
+            category: "security",
+            categoryLabel: "Trojan-Ransomware Registry Hijack",
+            badgeClass: "badge-danger",
+            image: "images/gallery/approved3/krotten-ransomware-cyrillic-lock-note.png",
+            thumb: "images/gallery/approved3/krotten-ransomware-cyrillic-lock-note-thumb.jpg",
+            tags: ["Krotten", "Ransomware", "Trojan-Ransom", "Registry Hijack", "Windows Sandbox"],
+            summary: "Isolating the Krotten ransomware sample inside Windows Sandbox, documenting its signature Cyrillic ransom message dialog and extortion contact channel.",
+            sandboxObservation: "Windows Sandbox File Explorer displaying Krotten (54 KB Application) in the Ransomware directory, triggering a modal notification dialog with title 'Âñå âïîðÿäêå!' (Все в порядке! / Everything is fine!) displaying a corrupted Windows-1252 Cyrillic ransom message demanding contact at 'wordsia@notrix.de'.",
+            technicalBreakdown: "Trojan-Ransom.Win32.Krotten is an infamous early ransomware/wiper family created to corrupt system settings rather than encrypting files with strong public-key cryptography. It modifies critical Windows Registry hives (disabling Taskmgr, Regedit, and Safe Mode keys) and presents a deceptive message box while sabotaging user shell navigation.",
+            defensePlaybook: [
+                "Registry Integrity Monitoring: Monitor changes to sensitive registry keys under HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System (DisableTaskMgr, DisableRegistryTools).",
+                "Offline System State Backups: Maintain volume shadow copies and regular offsite system state backups to roll back malicious registry and policy tampering without paying extortion."
+            ],
+            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         }
     ];
 
