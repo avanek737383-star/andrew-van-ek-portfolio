@@ -76,7 +76,7 @@
             tags: ["HP laptop", "Hardware Repair", "Copilot", "Completed"],
             summary: "I asked whether to install the entire sheet or cut it to fit the CPU.",
             sandboxObservation: "A packaged sheet of PTM7950 is held beside the exposed HP CPU, which still has old compound on its die.",
-            technicalBreakdown: "The discussion distinguished the CPU die from its larger package and explained that the phase-change sheet needs to be sized for the contact area. It also covered the protective liners and using a single layer rather than combining it with paste.",
+            technicalBreakdown: "The discussion distinguished the CPU die from its larger package and explained that the <span class=\"tech-term\" data-term=\"thermal-paste\">phase-change</span> sheet needs to be sized for the contact area. It also covered the protective liners and using a single layer rather than combining it with paste.",
             defensePlaybook: ["I asked whether to install the entire sheet or cut it to fit the CPU."],
             containment: "This photo documents planning and sizing. It does not show the CPU cleaned, the material installed, or the machine tested afterward. Follow-up from Andrew on November 5: the HP repair is complete and temperatures look good; no numerical readings were supplied. On this HP, Andrew found that the battery needed to be connected for it to boot.",
             credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
@@ -210,7 +210,7 @@
             tags: ["RedEye", "Filesystem Encryption", "VSS Purge", "Windows Sandbox"],
             summary: "Real-time capture of File Explorer showing test binaries actively encrypted and rewritten with the .RedEye extension.",
             sandboxObservation: "During Andrew's test, RedEye immediately began mass-encrypting binaries across the virtual user profile. Watching Windows Explorer refresh in real time as file extensions mutated to .RedEye demonstrated how rapidly a modern ransomware payload tears through a filesystem.",
-            technicalBreakdown: "RedEye executes an aggressive background loop that renames targeted files and encrypts their contents. To thwart recovery, modern ransomware families systematically execute shell commands like <code>vssadmin.exe delete shadows /all /quiet</code> to wipe out <span class=\"tech-term\" data-term=\"volume-shadow-copies\">Volume Shadow Copies</span> and disable system startup repair.",
+            technicalBreakdown: "RedEye executes an aggressive background loop that renames targeted files and encrypts their contents. To thwart recovery, modern <span class=\"tech-term\" data-term=\"ransomware\">ransomware</span> families systematically execute shell commands like <code>vssadmin.exe delete shadows /all /quiet</code> to wipe out <span class=\"tech-term\" data-term=\"volume-shadow-copies\">Volume Shadow Copies</span> and disable system startup repair.",
             defensePlaybook: [
                 "Controlled Folder Access: Enable Windows Defender Controlled Folder Access to prevent unauthorized binaries from altering key directories.",
                 "Heuristic Endpoint Detection (EDR): Deploy behavioral detection configured to flag and terminate rapid file renaming and encryption cascades.",
@@ -315,7 +315,7 @@
             tags: ["NSB Locker", "Police Ransomware", "Extortion", "Social Engineering", "Windows Sandbox"],
             summary: "Government impersonation screen claiming 140 files seized for pirated software, demanding 250 USD in Bitcoin under threat of arrest.",
             sandboxObservation: "The sample launched full-screen in Windows Sandbox, impersonating a fictitious \"National Security Bureau (NSB)\". It populated an input box demanding a Bitcoin transaction ID and threatened up to 5 years imprisonment if payment was not submitted.",
-            technicalBreakdown: "This is a classic police <span class=\"tech-term\" data-term=\"screen-locker\">winlocker</span> that exploits authority deception and urgency. It blocks desktop access while displaying scary legal jargon to coerce victims into sending non-refundable cryptocurrency payments. Unlike true ransomware, files are often intact beneath the lock window.",
+            technicalBreakdown: "This is a classic police <span class=\"tech-term\" data-term=\"screen-locker\">winlocker</span> that exploits authority deception and urgency. It blocks desktop access while displaying scary legal jargon to coerce victims into sending non-refundable cryptocurrency payments. Unlike true <span class=\"tech-term\" data-term=\"ransomware\">ransomware</span>, files are often intact beneath the lock window.",
             defensePlaybook: [
                 "Public Awareness & Education: Official law enforcement and security bureaus never lock computers or demand fines via Bitcoin or gift cards.",
                 "Task Manager & Safe Mode Bypasses: Terminate the locker via Safe Mode or an alternate user account where the startup hook is inactive.",
@@ -357,7 +357,7 @@
             tags: ["FTK Imager", "Digital Forensics", "FAT32", "NTFS", "Hex Analysis", "Deleted Files"],
             summary: "Side-by-side evidence analysis in Exterro FTK Imager comparing directory allocation tables, deleted file recovery (!ank.jpg), and hex clusters.",
             sandboxObservation: "Andrew conducted a comparative filesystem forensic audit between raw disk images (fat32.001 vs. ntfs.001) for university coursework. In the FAT32 image, deleted files were flagged with red X icons where the initial character in the directory entry was replaced with a deleted marker byte (0xE5, rendered as '!'), while NTFS preserved deep transaction metadata ($RmMetadata, $BadClus, $Secure).",
-            technicalBreakdown: "FTK Imager provides low-level hex and structural parsing of physical and logical disk images. The analysis revealed how FAT32 marks file deletion by zeroing FAT chain clusters and overwriting the first directory entry byte, whereas NTFS tracks allocations via the Master File Table (MFT) $BITMAP and record flags, allowing forensic analysts to recover data from unallocated sectors.",
+            technicalBreakdown: "<span class=\"tech-term\" data-term=\"forensics-disk-image\">FTK Imager</span> provides low-level hex and structural parsing of physical and logical disk images. The analysis revealed how FAT32 marks file deletion by zeroing FAT chain clusters and overwriting the first directory entry byte, whereas NTFS tracks allocations via the Master File Table (MFT) $BITMAP and record flags, allowing forensic analysts to recover data from unallocated sectors.",
             defensePlaybook: [
                 "Secure Erase & Sanitization: Standard OS file deletion does not sanitize storage; employ NIST 800-88 cryptographic wiping or secure shredding tools for sensitive media.",
                 "BitLocker Full Disk Encryption: Encrypt volumes with AES-XTS 256 to ensure raw unallocated sectors cannot be read if physical drives are seized or lost.",
@@ -399,7 +399,7 @@
             tags: ["Windows XP", "RDP", "Remote Administration", "Retro Computing", "Luna Theme", "Homelab"],
             summary: "Active high-resolution Remote Desktop session connected to a vintage Windows XP workstation (192.168.0.160), showcasing native Luna desktop and legacy administration tools.",
             sandboxObservation: "Andrew established a high-resolution Remote Desktop connection directly to a dedicated vintage Windows XP workstation at 192.168.0.160. The connection bar confirms live low-latency interactive control over the iconic Bliss wallpaper and Luna blue shell. Desktop staging shows active vintage media and extraction tooling—including ImgBurn, VLC media player, 7-Zip, TrackMania Nations Forever, and curated disc staging archives (XP_Disc_Stufz).",
-            technicalBreakdown: "Windows XP utilizes RDP version 5.1 (port 3389) over TCP. Diagnosing reliable remote administration required verifying Windows Firewall exception rules with Nmap and Netcat, adjusting service session isolation handles so console applications execute within interactive desktop contexts, and disabling legacy power-saving shutoffs on USB wireless adapters to prevent sleep-induced socket drops.",
+            technicalBreakdown: "Windows XP utilizes <span class=\"tech-term\" data-term=\"rdp\">RDP</span> version 5.1 (port 3389) over TCP. Diagnosing reliable remote administration required verifying Windows Firewall exception rules with Nmap and Netcat, adjusting service session isolation handles so console applications execute within interactive desktop contexts, and disabling legacy power-saving shutoffs on USB wireless adapters to prevent sleep-induced socket drops.",
             defensePlaybook: [
                 "Network Isolation: Confine vintage legacy endpoints (XP/2000) to segregated homelab VLANs or isolated subnets with no direct WAN egress.",
                 "RDP Port Security: Never expose port 3389 directly to the public internet; restrict remote access exclusively to trusted local subnets or encrypted VPN/Tailscale tunnels.",
@@ -477,7 +477,7 @@
             tags: ["Kali Linux", "VirtualBox", "Rockyou.txt", "Hash Cracking", "UTF-8 Encoding", "Remote Desktop"],
             summary: "Multi-tier cross-platform virtualization: macOS Safari controlling Chrome Remote Desktop to Windows, running Kali Linux 64-bit in VirtualBox for password security labs.",
             sandboxObservation: "Andrew set up a multi-hop remote access architecture to conduct security lab work from anywhere. Inside Kali Linux, while preparing wordlists (rockyou.txt) for hash cracking labs, the Mousepad editor flagged a non-UTF-8 encoding conflict—highlighting practical character set challenges when parsing legacy dictionary archives.",
-            technicalBreakdown: "The famous rockyou.txt wordlist contains over 14 million passwords compiled from historical leaks, including raw binary strings, extended ASCII, and ISO-8859-1 encodings that violate strict UTF-8 parsers. Security tooling requires iconv normalization or binary-safe stream processing (e.g. John the Ripper / Hashcat) to avoid corrupted dictionary evaluations.",
+            technicalBreakdown: "The famous rockyou.txt wordlist contains over 14 million passwords compiled from historical leaks, including raw binary strings, extended ASCII, and ISO-8859-1 encodings that violate strict UTF-8 parsers. Security tooling requires iconv normalization or binary-safe stream processing (e.g. <span class=\"tech-term\" data-term=\"john-the-ripper\">John the Ripper</span> / Hashcat) to avoid corrupted dictionary evaluations.",
             defensePlaybook: [
                 "High-Entropy Password Policies: Require passphrases (>16 characters) with high Kolmogorov complexity to render dictionary attacks mathematically infeasible.",
                 "Adaptive Salting & KDFs: Store hashes using Argon2id, bcrypt, or PBKDF2 with high work factors to thwart GPU-accelerated cracking.",
@@ -499,7 +499,7 @@
             tags: ["Antigravity CLI", "Gemini 3.8 Flash", "TigerVNC", "Alpine Linux", "Pair Programming", "Terminal AI", "BOINC"],
             summary: "Active terminal session running Google DeepMind's Antigravity CLI (Gemini 3.8 Flash High) inside an Alpine Linux TigerVNC desktop, driving multi-task desktop customization and automated Git operations.",
             sandboxObservation: "Andrew engaged in an interactive pair programming session with Antigravity CLI directly inside LXTerminal on the stationary Alpine Linux NUC over TigerVNC (912x720). The prompt showcases real-time homelab problem-solving: diagnosing desktop wallpaper state, engineering Windows-like taskbar window hover previews, unpinning dock shortcuts, auditing GNOME Software update indicators, and generating structured maintenance documentation before pushing to GitHub. In the background, BOINC Manager computes Einstein@Home pulsar search work units and GNOME Software manages system packages.",
-            technicalBreakdown: "Antigravity CLI leverages advanced agentic coding workflows powered by Gemini models with real-time streaming tokens and subagent orchestration. Operating directly within terminal environments on remote Linux nodes over Tailscale, it enables conversational shell automation, configuration debugging, and Git repository reconciliation without leaving the developer console.",
+            technicalBreakdown: "Antigravity CLI leverages advanced agentic coding workflows powered by Gemini models with real-time streaming tokens and subagent orchestration. Operating directly within terminal environments on remote Linux nodes over <span class=\"tech-term\" data-term=\"tailscale\">Tailscale</span>, it enables conversational shell automation, configuration debugging, and Git repository reconciliation without leaving the developer console.",
             defensePlaybook: [
                 "Agent Sandboxing: Restrict autonomous CLI agents to documented repository paths and non-destructive terminal command sets.",
                 "Review Staged Diff Verification: Always audit staged HTML, CSS, and script diffs prior to executing automated git push commands.",
@@ -519,7 +519,7 @@
             tags: ["Alpine Linux", "TigerVNC", "x11vnc", "Tailscale", "Conky", "Homelab Fleet", "NUC", "LXTerminal"],
             summary: "Live TigerVNC session connected to the Alpine Linux NUC over Tailscale (100.87.81.52:5921), featuring dual-resolution remote desktop endpoints, LXTerminal, and a real-time Conky hardware telemetry desklet.",
             sandboxObservation: "Andrew established a low-latency remote desktop connection via TigerVNC to the stationary Alpine Linux NUC (nucWOL2-0--HDD) at 100.87.81.52:5921 (912x720 mobile/tablet optimized viewport). The session highlights live system monitoring—CPU live graph across 4 cores (47% @ 1.84 GHz), RAM tachometer (1.87 / 3.75 GiB), thermal gauges (CPU 118.4°F, Disk 89.6°F)—and an active LXTerminal session reviewing modern developer tools, while documenting dual Tailscale VNC display listeners (:5921 at 912x720 and :5922 at 1600x1264).",
-            technicalBreakdown: "Headless X11 environments on Alpine Linux leverage lightweight display servers paired with x11vnc daemons bound strictly to the Tailscale WireGuard virtual interface (100.87.81.52). Running parallel listeners with fixed virtual viewports enables adaptive client scaling: high-resolution multi-monitor desktop sessions over port 5922 and lightweight mobile/low-bandwidth sessions over port 5921 without desktop resync stalls.",
+            technicalBreakdown: "Headless X11 environments on Alpine Linux leverage lightweight display servers paired with x11vnc daemons bound strictly to the <span class=\"tech-term\" data-term=\"tailscale\">Tailscale</span> WireGuard virtual interface (100.87.81.52). Running parallel listeners with fixed virtual viewports enables adaptive client scaling: high-resolution multi-monitor desktop sessions over port 5922 and lightweight mobile/low-bandwidth sessions over port 5921 without desktop resync stalls.",
             defensePlaybook: [
                 "Tailnet-Bound Display Listeners: Bind VNC daemons exclusively to internal Tailscale IP addresses (100.x.y.z) to prevent unauthenticated RFB scanning on public network interfaces.",
                 "Encrypted Transport Tunneling: Utilize WireGuard peer-to-peer encryption for VNC traffic rather than transmitting unencrypted RFB protocol packets across LAN/WAN perimeters.",
@@ -539,7 +539,7 @@
             tags: ["GLM-4", "LM Studio", "Tailscale", "Local AI", "Web Chat", "Private Mesh", "Streaming SSE"],
             summary: "Dedicated zero-dependency streaming web interface for GLM-4-9B-Chat hosted on an 8-vCPU homelab Linux VM, accessed privately over Tailscale (100.82.213.77:3000).",
             sandboxObservation: "Andrew deployed a custom, zero-dependency streaming web chat client connected to GLM-4-9B-Chat running headlessly via LM Studio on an 8-vCPU Linux VM over Tailscale (100.82.213.77:3000). The active session demonstrates real-time streaming token generation for academic coursework inquiries regarding project management resource requirements, backed by an instant clear-chat action and active model selection.",
-            technicalBreakdown: "The architecture combines a headless LM Studio API daemon managed by a systemd supervisor unit with a custom lightweight Python/HTML streaming frontend. Model weights (GLM-4-9B Q4_K_M GGUF, 6.25 GB) are pre-allocated directly into RAM at boot to eliminate cold-start latencies. Requests stream via Server-Sent Events (SSE) over an encrypted wireguard Tailscale mesh without public internet port exposure.",
+            technicalBreakdown: "The architecture combines a headless LM Studio API daemon managed by a systemd supervisor unit with a custom lightweight Python/HTML streaming frontend. Model weights (GLM-4-9B Q4_K_M GGUF, 6.25 GB) are pre-allocated directly into RAM at boot to eliminate cold-start latencies. Requests stream via Server-Sent Events (SSE) over an encrypted wireguard <span class=\"tech-term\" data-term=\"tailscale\">Tailscale</span> mesh without public internet port exposure.",
             defensePlaybook: [
                 "Encrypted Mesh Transport: Restrict proprietary model endpoints to private WireGuard Tailscale interfaces (100.x.y.z) rather than public IP bindings.",
                 "RAM Allocation Pre-Checks: Ensure systemd supervisor units verify memory availability before pre-loading multi-gigabyte GGUF model weights.",
@@ -692,7 +692,7 @@
             tags: ["Alpine Linux", "Samba", "Tailscale", "OpenRC", "UNC Paths", "Network Drives"],
             summary: "Terminal session restarting crashed Samba services (rc-service samba restart) on Alpine Linux and mapping UNC network drives (\\\\100.87.81.52\\G) across Tailscale.",
             sandboxObservation: "Andrew diagnosed and resolved a Samba network share interruption on his 24/7 Alpine Linux NUC. Using OpenRC service commands (rc-service samba restart), the daemon was restored, and UNC paths (\\\\100.87.81.52\\G and WORKFORMAT1) were mapped persistently into Windows File Explorer over encrypted Tailscale.",
-            technicalBreakdown: "Alpine Linux utilizes OpenRC as its init system. When Samba daemons halt due to locked file handles or interface restarts, restarting the 'samba' meta-service cleanly bounces both smbd (file sharing) and nmbd (NetBIOS name service), re-establishing SMB3 sessions over the Tailscale VPN interface.",
+            technicalBreakdown: "Alpine Linux utilizes <span class=\"tech-term\" data-term=\"openrc\">OpenRC</span> as its init system. When Samba daemons halt due to locked file handles or interface restarts, restarting the 'samba' meta-service cleanly bounces both smbd (file sharing) and nmbd (NetBIOS name service), re-establishing SMB3 sessions over the <span class=\"tech-term\" data-term=\"tailscale\">Tailscale</span> VPN interface.",
             defensePlaybook: [
                 "Service Watchdogs: Deploy OpenRC cron watchdogs to automatically monitor smbd process health and restart halted services.",
                 "Encrypted Mesh Routing: Restrict SMB network shares exclusively to Tailscale virtual IPs (100.x.y.z), ensuring all traffic is encrypted end-to-end with WireGuard."
@@ -847,7 +847,7 @@
             tags: ["MFA", "Okta Verify", "Google Authenticator", "SMS 2FA", "Identity Security"],
             summary: "Multi-channel MFA selector menu surfacing Okta Verify push notifications, Google Authenticator codes, SMS, and security keys.",
             sandboxObservation: "Fallback verification options menu presented when primary Touch ID is bypassed. The initial AppleScript attempted to query accessibility labels such as 'Verify with something else' to reach SMS options.",
-            technicalBreakdown: "Modern Single Sign-On portals dynamically render fallback options in asynchronous JavaScript frames. Querying accessibility elements across asynchronous transitions frequently resulted in timeout exceptions under System Events.",
+            technicalBreakdown: "Modern <span class=\"tech-term\" data-term=\"mfa\">Single Sign-On</span> portals dynamically render fallback options in asynchronous JavaScript frames. Querying accessibility elements across asynchronous transitions frequently resulted in timeout exceptions under System Events.",
             defensePlaybook: [
                 "Multi-Channel Verification: Maintain active secondary MFA authenticators (TOTP, hardware tokens) to prevent account lockout when primary biometrics fail.",
                 "Graceful Script Fallbacks: Ensure desktop automation gracefully halts when out-of-band MFA challenges are encountered."
@@ -904,7 +904,7 @@
             tags: ["Blackboard Ultra", "GVSU Apps", "Single Sign-On Landing", "Safari macOS", "Academic Workflow"],
             summary: "Successfully authenticated university portal displaying direct access to Blackboard Ultra LMS, Google Drive, Banner, and academic tools.",
             sandboxObservation: "The fully loaded 'my.gvsu.edu Apps Dashboard' in Safari, highlighting the 'Bb Ultra LMS Blackboard' launch icon. The desktop automation successfully delivered the student directly to this coursework hub without stored passwords.",
-            technicalBreakdown: "Once authenticated, the browser receives an encrypted session cookie scoped to '.gvsu.edu'. This grants seamless Single Sign-On (SSO) pass-through across Blackboard Ultra, Banner Self-Service, and Google Workspace without repeated credential challenges.",
+            technicalBreakdown: "Once authenticated, the browser receives an encrypted session cookie scoped to '.gvsu.edu'. This grants seamless <span class=\"tech-term\" data-term=\"mfa\">Single Sign-On</span> (SSO) pass-through across Blackboard Ultra, Banner Self-Service, and Google Workspace without repeated credential challenges.",
             defensePlaybook: [
                 "Cookie Scope Protection: Ensure institutional session cookies maintain 'Secure' and 'SameSite=Lax' flags to prevent cross-site request forgery.",
                 "Automated Shortcut Value: The refined launcher saves repetitive daily URL typing and portal navigation while maintaining 100% credential isolation."
@@ -923,7 +923,7 @@
             tags: ["Phone Link", "Windows 11", "Android Integration", "Cross-Device Sync", "Bluetooth BLE"],
             summary: "Pairing and verifying Microsoft Phone Link on Windows 11 to synchronize mobile notifications, SMS, and calls with the workstation.",
             sandboxObservation: "Windows Phone Link completion dialog announcing 'You're all set - Your mobile device is now ready to use with this PC' running on the primary workstation desktop alongside active homelab, Duino-Coin, and email windows.",
-            technicalBreakdown: "Microsoft Phone Link establishes an encrypted peer connection combining local Bluetooth Low Energy (BLE) proximity handshakes with Wi-Fi local network sockets, bridging mobile telephony, SMS, and clipboard data seamlessly without third-party cloud brokers.",
+            technicalBreakdown: "Microsoft <span class=\"tech-term\" data-term=\"phone-link\">Phone Link</span> establishes an encrypted peer connection combining local Bluetooth Low Energy (BLE) proximity handshakes with Wi-Fi local network sockets, bridging mobile telephony, SMS, and clipboard data seamlessly without third-party cloud brokers.",
             defensePlaybook: [
                 "Local Transport Isolation: Verify cross-device sync communicates directly across local subnets rather than relaying plaintext data through external cloud servers.",
                 "Device Unlinking Audits: Periodically review connected devices in Windows Settings to revoke access for decommissioned hardware."
@@ -1037,7 +1037,7 @@
             tags: ["Microsoft Azure", "Cloud VM", "ARM Template", "Infrastructure as Code"],
             summary: "Configuring compute specifications, virtual network interfaces, and storage tiers within the Microsoft Azure Portal VM provisioning workflow.",
             sandboxObservation: "Azure management portal displaying the 'Create a virtual machine' ARM provisioning interface, configuring virtual networking, OS image selection, and inbound security rules for cloud computing experiments.",
-            technicalBreakdown: "Azure Resource Manager (ARM) coordinates hypervisor allocation across regional availability zones. Proper network security group (NSG) provisioning and ephemeral disk allocation prevents unexpected ingress exposure and controls operating costs.",
+            technicalBreakdown: "<span class=\"tech-term\" data-term=\"cloud-vm\">Azure</span> Resource Manager (ARM) coordinates hypervisor allocation across regional availability zones. Proper network security group (NSG) provisioning and ephemeral disk allocation prevents unexpected ingress exposure and controls operating costs.",
             defensePlaybook: [
                                 "Just-In-Time Access: Restrict management ports (SSH/RDP) behind Azure Bastion or JIT access policies rather than exposing public IP listeners.",
                                 "Storage Tier Selection: Match OS disk IOPs to workload demands (Standard SSD vs. Premium SSD) to avoid storage bottlenecks during boot."
@@ -1056,7 +1056,7 @@
             tags: ["Wake-on-LAN", "BusyBox", "ether-wake", "Alpine Linux", "Remote Power"],
             summary: "Deploying lightweight BusyBox ether-wake commands to broadcast Magic Packets across local subnets for remote workstation power management.",
             sandboxObservation: "Technical documentation snippet detailing headless Wake-on-LAN dispatch: 'Basic wake on LAN (same subnet, Ethernet): busybox ether-wake aa:bb:cc:dd:ee:ff' for waking remote desktop towers across the homelab.",
-            technicalBreakdown: "Wake-on-LAN broadcasts an Ethernet Layer 2 packet containing a 6-byte synchronization header (0xFFFFFFFFFFFF) followed by 16 repetitions of the target NIC's MAC address, triggering the network controller's standby power rail to assert a system power-on pulse.",
+            technicalBreakdown: "<span class=\"tech-term\" data-term=\"wake-on-lan\">Wake-on-LAN</span> broadcasts an Ethernet Layer 2 packet containing a 6-byte synchronization header (0xFFFFFFFFFFFF) followed by 16 repetitions of the target NIC's MAC address, triggering the network controller's standby power rail to assert a system power-on pulse.",
             defensePlaybook: [
                                 "Subnet Broadcast Isolation: Restrict WoL packet dispatch to dedicated management VLANs to prevent unauthorized broadcast storms.",
                                 "Password-Protected WoL: Enable SecureOn password bytes in BIOS/NIC settings where supported to guard against unauthorized wakeups."
@@ -1113,7 +1113,7 @@
             tags: ["Linux Deploy", "Termux", "chroot", "Android Modding", "Path Resolution"],
             summary: "Fixing invocation disconnects between Termux and Linux Deploy by binding execution paths directly to the app data shell script.",
             sandboxObservation: "Technical troubleshooting guide resolving 'linuxdeploy shell' command failures: 'You need to point Termux to the actual script inside the Linux Deploy app data', providing path normalization across Android internal storage.",
-            technicalBreakdown: "Modern Android security architectures isolate application sandboxes under /data/user/0/ru.meefik.linuxdeploy/. Invoking chroot helper binaries from external shell environments requires explicit absolute path references and proper SELinux context execution.",
+            technicalBreakdown: "Modern Android security architectures isolate application sandboxes under /data/user/0/ru.meefik.linuxdeploy/. Invoking <span class=\"tech-term\" data-term=\"chroot\">chroot</span> helper binaries from external shell environments requires explicit absolute path references and proper <span class=\"tech-term\" data-term=\"selinux\">SELinux</span> context execution.",
             defensePlaybook: [
                                 "Path Hardening: Store administrative scripts in persistent application-accessible directories to survive package updates.",
                                 "SELinux Permissive Sandboxing: Verify chroot mounts possess proper filesystem permissions before launching containerized daemons."
@@ -1132,7 +1132,7 @@
             tags: ["Active Directory", "ADUC", "RSAT", "PowerShell", "IT Administration"],
             summary: "Automating the installation of Remote Server Administration Tools (RSAT), Active Directory Users & Computers (ADUC), DNS, and Group Policy tools via PowerShell.",
             sandboxObservation: "PowerShell command documentation for rapid enterprise workstation provisioning: 'Install the stuff IT folks usually want - If you want ADUC plus Group Policy Management and DNS tools', showcasing DISM / Add-WindowsCapability automation.",
-            technicalBreakdown: "Deploying 'Rsat.ActiveDirectory.DS-LDS.Tools' and 'Rsat.GroupPolicy.Management.Tools' via Windows Capability cmdlets enables remote Active Directory domain controller management directly from client workstations without requiring RDP sessions.",
+            technicalBreakdown: "Deploying 'Rsat.ActiveDirectory.DS-LDS.Tools' and 'Rsat.GroupPolicy.Management.Tools' via Windows Capability cmdlets enables remote <span class=\"tech-term\" data-term=\"active-directory\">Active Directory</span> domain controller management directly from client workstations without requiring <span class=\"tech-term\" data-term=\"rdp\">RDP</span> sessions.",
             defensePlaybook: [
                                 "Automated Workstation Staging: Package RSAT provisioning into reusable PowerShell deployment scripts for standard IT onboarding.",
                                 "Principle of Least Privilege: Run RSAT consoles under dedicated tiered administrative credentials rather than standard daily user accounts."
@@ -1151,7 +1151,7 @@
             tags: ["OData", "API Integration", "Power Automate", "Filter Queries", "REST APIs"],
             summary: "Analyzing OData comparison operator conventions (gt, ge, lt, le, eq, ne) for filtering enterprise service desk tickets and database queries.",
             sandboxObservation: "Technical reference table detailing OData query operators: 'It would actually be gt (for greater than)! OData operators always use standard two-letter abbreviations: Symbol OData Operator ge lt eq ne'.",
-            technicalBreakdown: "The Open Data Protocol (OData) standardizes URL query parameters ($filter, $select, $expand). Utilizing proper two-letter operator abbreviations prevents malformed URI errors in Microsoft Graph, SharePoint, and Power Automate integrations.",
+            technicalBreakdown: "The Open Data Protocol (<span class=\"tech-term\" data-term=\"odata\">OData</span>) standardizes URL query parameters ($filter, $select, $expand). Utilizing proper two-letter operator abbreviations prevents malformed URI errors in Microsoft Graph, SharePoint, and Power Automate integrations.",
             defensePlaybook: [
                                 "Server-Side Filtering: Always enforce $filter constraints on server queries rather than fetching complete datasets into client memory.",
                                 "Sanitized Query Building: Parameterize dynamic filter variables to prevent OData query injection and unauthorized data enumeration."
@@ -1189,7 +1189,7 @@
             tags: ["Docker", "Alpine Linux", "Host Security", "Container Permissions", "Linux Administration"],
             summary: "Analyzing permission elevation boundaries between Docker containers and the underlying Alpine Linux host filesystem to enforce least privilege.",
             sandboxObservation: "AI technical advisory dialog discussing container security: 'Yes\u2014but it requires a change on the Alpine host or in the Docker container configuration. Giving permission in this chat won\\'t change the kernel/filesystem boundary'.",
-            technicalBreakdown: "Docker containers share the host Linux kernel. Modifying container permissions requires explicit daemon configuration (userns-remap, non-root user directives, volume mount permissions) on the host rather than user-space shell assumptions.",
+            technicalBreakdown: "<span class=\"tech-term\" data-term=\"docker\">Docker</span> containers share the host Linux kernel. Modifying container permissions requires explicit daemon configuration (userns-remap, non-root user directives, volume mount permissions) on the host rather than user-space shell assumptions.",
             defensePlaybook: [
                                 "Rootless Container Execution: Enforce non-root user execution inside container Dockerfiles to prevent root escalation to the host filesystem.",
                                 "Read-Only Volume Mounts: Mount host configuration directories as read-only (:ro) to block container processes from mutating host configs."
@@ -1208,7 +1208,7 @@
             tags: ["SMB", "File Sharing", "Windows Server", "Access Control", "Share Permissions"],
             summary: "Conducting side-by-side comparative analysis of Windows SMB share definitions to diagnose cross-network file access failures.",
             sandboxObservation: "Technical troubleshooting conversation analyzing Windows share configurations: 'sounds good, oh my word it literally seems there\\'s no difference between them - Exactly\u2014that comparison shows the SMB share definitions are identical'.",
-            technicalBreakdown: "Windows file sharing relies on a two-tier permission model: SMB Share Permissions (configured via 'net share' or Server Manager) and NTFS Access Control Lists (ACLs). Two shares with identical SMB definitions will behave completely differently if the underlying NTFS ACLs lack read inheritance.",
+            technicalBreakdown: "Windows file sharing relies on a two-tier permission model: <span class=\"tech-term\" data-term=\"smb\">SMB</span> Share Permissions (configured via 'net share' or Server Manager) and NTFS Access Control Lists (ACLs). Two shares with identical SMB definitions will behave completely differently if the underlying NTFS ACLs lack read inheritance.",
             defensePlaybook: [
                                 "Dual-Layer Permission Audits: Always verify both SMB Share Permissions and underlying NTFS security tabs when debugging access denied errors.",
                                 "Inheritance Verification: Ensure subdirectories inherit permissions cleanly from the root volume using icacls."
@@ -1227,7 +1227,7 @@
             tags: ["Admin Shares", "C$", "XMRig", "Duino-Coin", "PowerShell", "Homelab"],
             summary: "Investigating default Windows administrative shares (C$, IPC$) and network storage mounts alongside active XMRig and Duino-Coin mining workloads.",
             sandboxObservation: "Multi-window workstation session displaying 'XMRig 6.26.0' CPU miner, Duino-Coin Python miner, PowerShell console inspecting 'ONEFIVE' storage shares, and administrative shortcut properties.",
-            technicalBreakdown: "Windows automatically enables administrative shares (C$, ADMIN$) for domain management. Understanding how local firewall rules and LocalAccountTokenFilterPolicy impact remote access over SMB is essential for secure cross-machine administration.",
+            technicalBreakdown: "Windows automatically enables administrative shares (C$, ADMIN$) for domain management. Understanding how local firewall rules and LocalAccountTokenFilterPolicy impact remote access over <span class=\"tech-term\" data-term=\"smb\">SMB</span> is essential for secure cross-machine administration.",
             defensePlaybook: [
                                 "Disable Default Administrative Shares: Set AutoShareWks to 0 in registry (HKLM\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters) on non-domain workstations.",
                                 "Process Priority Isolation: Run background computational tasks (XMRig) at BelowNormal priority to ensure zero interference with storage I/O."
@@ -1284,7 +1284,7 @@
             tags: ["Chrome Remote Desktop", "Headless Management", "Duino-Coin", "Remote Access"],
             summary: "Administering a remote workstation session via Chrome Remote Desktop inside Safari on macOS, monitoring active Duino-Coin mining threads.",
             sandboxObservation: "macOS Safari browser accessing 'remotedesktop.google.com' session connected to 'FREEHPGAMER', monitoring active Duino-Coin Python mining console and system metrics.",
-            technicalBreakdown: "Chrome Remote Desktop uses WebRTC with VP8/VP9 video encoding to establish low-latency, NAT-traversing remote desktop connections through Google STUN/TURN relays, enabling seamless headless machine administration across remote networks.",
+            technicalBreakdown: "Chrome <span class=\"tech-term\" data-term=\"rdp\">Remote Desktop</span> uses WebRTC with VP8/VP9 video encoding to establish low-latency, NAT-traversing remote desktop connections through Google STUN/TURN relays, enabling seamless headless machine administration across remote networks.",
             defensePlaybook: [
                                 "Remote Access Segmentation: Limit remote desktop protocols to secure VPN/mesh connections (Tailscale) where possible to minimize third-party relay dependency.",
                                 "Host Pin Authentication: Require long, complex PINs and multi-factor authentication on all registered Chrome Remote Desktop endpoints."
@@ -1303,7 +1303,7 @@
             tags: ["SMB", "LanmanServer", "Registry Configuration", "Security Hardening"],
             summary: "Researching and validating Windows SMB server registry parameters (EnableAuthenticateUserSharing) to resolve multi-user network share authentication.",
             sandboxObservation: "Technical documentation search inspecting Microsoft Learn articles: 'Searched the web for site:learn.microsoft.com EnableAuthenticateUserSharing SMB server configuration We\\'ve exhausted the standard GUI options'.",
-            technicalBreakdown: "LanmanServer registry parameters dictate how the Windows SMB server negotiates guest vs. authenticated user contexts. Setting explicit server security parameters forces clients to present valid domain or local machine credentials before establishing null-session connections.",
+            technicalBreakdown: "LanmanServer registry parameters dictate how the Windows <span class=\"tech-term\" data-term=\"smb\">SMB</span> server negotiates guest vs. authenticated user contexts. Setting explicit server security parameters forces clients to present valid domain or local machine credentials before establishing null-session connections.",
             defensePlaybook: [
                                 "Block Insecure Guest Logons: Enforce 'Turn on insecure guest logons = Disabled' in Group Policy to mitigate SMB relay and NTLM coercion attacks.",
                                 "SMB Signing & Encryption: Require SMB signing (RequireSecuritySignature) across all LAN file transfers to prevent man-in-the-middle tampering."
@@ -1322,7 +1322,7 @@
             tags: ["SSH", "Ed25519", "Alpine Linux", "XMRig", "Tailscale", "Terminal"],
             summary: "Establishing an encrypted SSH session with Ed25519 key authentication from macOS Terminal to the Alpine Linux server (100.87.81.52) supervising XMRig compute.",
             sandboxObservation: "macOS Terminal window (202x47) executing 'ssh -i ~/.ssh/id_ed25519 avanek@100.87.81.52', monitoring active XMRig CPU miner with custom arguments '--donate-level 1 --print-time'.",
-            technicalBreakdown: "Ed25519 uses elliptic-curve cryptography (Curve25519) providing 128-bit security with high signature generation speed. Connecting across Tailscale encrypts all interactive terminal telemetry inside WireGuard tunnels without requiring open firewall ports on the public WAN.",
+            technicalBreakdown: "Ed25519 uses elliptic-curve cryptography (Curve25519) providing 128-bit security with high signature generation speed. Connecting across <span class=\"tech-term\" data-term=\"tailscale\">Tailscale</span> encrypts all interactive terminal telemetry inside WireGuard tunnels without requiring open firewall ports on the public WAN.",
             defensePlaybook: [
                                 "Passwordless SSH Enforcement: Disable PasswordAuthentication and ChallengeResponseAuthentication in /etc/ssh/sshd_config to enforce strict key-only access.",
                                 "Dedicated Mining Supervision: Wrap long-running computational daemons in system OpenRC/systemd services to manage CPU thread affinity and automatic restart cycles."
@@ -1341,7 +1341,7 @@
             tags: ["Windows XP", "Windows Media Player", "DRM", "License Acquisition", "Software Forensics"],
             summary: "Documenting vintage Windows Media Player DRM license acquisition failure on Windows XP when attempting playback of protected WMA audio.",
             sandboxObservation: "Windows XP desktop displaying Windows Media Player error modal: 'A license is required to play the selected content. To obtain a license, you must visit content provider\\'s Web page...', showcasing early digital copyright enforcement mechanisms.",
-            technicalBreakdown: "Windows Media DRM leverages encrypted content keys bound to individual machine hardware profiles (CPU ID, BIOS string, hard drive serial). When vintage DRM license servers are decommissioned, legacy protected media becomes permanently unplayable despite possessing original physical files.",
+            technicalBreakdown: "Windows Media DRM leverages encrypted content keys bound to individual machine hardware profiles (CPU ID, <span class=\"tech-term\" data-term=\"uefi-firmware\">BIOS</span> string, hard drive serial). When vintage DRM license servers are decommissioned, legacy protected media becomes permanently unplayable despite possessing original physical files.",
             defensePlaybook: [
                                 "DRM-Free Preservation: Maintain master audio and video archives in open, non-DRM formats (FLAC, MP3, WAV) to guarantee long-term digital preservation.",
                                 "Hardware Decoupling: Avoid proprietary container-locked licensing schemes that depend on permanent third-party server infrastructure."
@@ -1474,7 +1474,7 @@
             tags: ["Kali Linux", "John the Ripper", "CIS 458", "Hash Cracking", "Cybersecurity", "VirtualBox"],
             summary: "Executing dictionary and rule-based password hash cracking attacks in a Kali Linux VirtualBox VM for CIS 458 university cybersecurity coursework.",
             sandboxObservation: "VirtualBox virtual machine running 'CIS 458 VM Section 1 - Kali [Running]', executing John the Ripper in an Xfce terminal window to audit and recover password hashes from shadow files using customized wordlists.",
-            technicalBreakdown: "John the Ripper autodetects cryptographic hash formats (SHA-512 crypt, MD5, NTLM). Running mutation rules against wordlists (such as rockyou.txt) benchmarks how password entropy and salted key-derivation functions (bcrypt/Argon2) defend against brute-force recovery.",
+            technicalBreakdown: "<span class=\"tech-term\" data-term=\"john-the-ripper\">John the Ripper</span> autodetects cryptographic hash formats (SHA-512 crypt, MD5, NTLM). Running mutation rules against wordlists (such as rockyou.txt) benchmarks how password entropy and salted key-derivation functions (bcrypt/Argon2) defend against brute-force recovery.",
             defensePlaybook: [
                                 "Enforce High-Cost Hashing: Mandate modern memory-hard password hashing algorithms (Argon2id, PBKDF2 with high iterations) rather than raw MD5/SHA-256.",
                                 "Audit Enterprise Password Quality: Routinely conduct offline hash audits against Active Directory NTDS.dit snapshots to identify weak or compromised employee passwords."
@@ -1512,7 +1512,7 @@
             tags: ["Lenovo IdeaPad", "Hardware Teardown", "RAM Replacement", "Hardware Maintenance"],
             summary: "Performing internal chassis disassembly on a Lenovo IdeaPad laptop, opened up for memory (RAM) replacement/upgrade and internal component inspection.",
             sandboxObservation: "High-detail internal photograph of an opened Lenovo IdeaPad laptop chassis showing the motherboard layout, installed battery pack (Model L18C3PF7), internal ribbon routing, and access to the system memory assembly.",
-            technicalBreakdown: "Servicing Lenovo IdeaPad laptops requires removing perimeter underside screws, carefully releasing internal chassis retention clips, and disconnecting the main battery header before handling SODIMM memory modules or internal circuitry to avoid electrostatic damage.",
+            technicalBreakdown: "Servicing Lenovo IdeaPad laptops requires removing perimeter underside screws, carefully releasing internal chassis retention clips, and disconnecting the main battery header before handling <span class=\"tech-term\" data-term=\"sodimm\">SODIMM</span> memory modules or internal circuitry to avoid electrostatic damage.",
             defensePlaybook: [
                                 "ESD & Power Isolation: Disconnect the battery terminal before reseating or installing new RAM modules to prevent transient board shorts.",
                                 "Memory Compatibility Verification: Match DDR SODIMM voltage, clock speed, and channel density specs before installing memory upgrades."
@@ -1569,7 +1569,7 @@
             tags: ["Triple Monitor", "Engineering Setup", "Automation", "CAD Workstation", "SQL Server SSMS", "Hardware Setup"],
             summary: "A panoramic triple-monitor engineering workstation setup capable of high-density workflows such as AutoCAD electrical drafting, industrial automation monitoring, and Microsoft SQL Server Management Studio (SSMS) database administration.",
             sandboxObservation: "Photograph of a high-productivity three-display workstation configured in an engineering environment, providing the screen real estate required to run AutoCAD drawings, PLC automation consoles, or Microsoft SQL Server Management Studio (SSMS) queries in parallel.",
-            technicalBreakdown: "Triple-display topologies provide the visual bandwidth required for complex technical tasks, allowing engineers to dedicate separate screens to database development (querying relational tables in Microsoft SSMS), active CAD schematics, and system documentation without window congestion.",
+            technicalBreakdown: "Triple-display topologies provide the visual bandwidth required for complex technical tasks, allowing engineers to dedicate separate screens to database development (querying relational tables in Microsoft <span class=\"tech-term\" data-term=\"ssms\">SSMS</span>), active CAD schematics, and system documentation without window congestion.",
             defensePlaybook: [
                                 "Multi-Display Bandwidth Planning: Ensure GPU video outputs and DisplayPort/HDMI standards support native multi-monitor resolutions at full 60Hz refresh rates.",
                                 "Workflow Real Estate Allocation: Structure window placement strategically across the three displays—such as SQL querying on one screen, design drawings on the center panel, and reference consoles on the third."
@@ -1607,7 +1607,7 @@
             tags: ["Tailscale", "SMB", "Packet Trace", "Port 445", "Network Diagnostics"],
             summary: "Analyzing bidirectional network packet traces to verify SMB connectivity between macOS client (100.67.172.15) and Windows server (100.64.20.50) over Tailscale.",
             sandboxObservation: "Network diagnostic analysis log: 'We finally got a meaningful result from both sides: Mac 100.67.172.15 reached Windows 100.64.20.50:445. The trace shows the SMB connection establishes cleanly'.",
-            technicalBreakdown: "Tracing TCP port 445 handshakes over Tailscale confirms that WireGuard point-to-point tunnels successfully route SMB traffic without carrier CGNAT interference or router firewall drops.",
+            technicalBreakdown: "Tracing TCP port 445 handshakes over <span class=\"tech-term\" data-term=\"tailscale\">Tailscale</span> confirms that WireGuard point-to-point tunnels successfully route <span class=\"tech-term\" data-term=\"smb\">SMB</span> traffic without carrier CGNAT interference or router firewall drops.",
             defensePlaybook: [
                                 "Targeted Port Scanning: Utilize Test-NetConnection or nc -zv to confirm port 445 availability before mounting remote SMB paths.",
                                 "Tailscale ACL Hardening: Enforce granular Tailscale ACL rules restricting port 445 access strictly between authorized workstations and file servers."
@@ -1645,7 +1645,7 @@
             tags: ["Andronix", "Ubuntu", "Mobile Linux", "chroot", "X11VNC", "VNC Desktop"],
             summary: "Provisioning user credentials and configuring an Andronix Ubuntu chroot environment on Android, working towards launching an X11VNC server for full graphical desktop access.",
             sandboxObservation: "Mobile terminal capture showing automated system provisioning in Andronix ('Setting root password... Adding user avanek...'), preparing the mobile Linux chroot environment on the road to running an X11VNC desktop server for graphical access.",
-            technicalBreakdown: "Setting up Andronix on Android establishes an unprivileged or chrooted GNU/Linux environment. Configuring base user accounts and passwords is the prerequisite foundation before installing an X11 display server, window manager, and X11VNC daemon for remote graphical desktop access.",
+            technicalBreakdown: "Setting up Andronix on Android establishes an unprivileged or chrooted GNU/Linux environment. Configuring base user accounts and passwords is the prerequisite foundation before installing an X11 display server, window manager, and <span class=\"tech-term\" data-term=\"x11vnc\">X11VNC</span> daemon for remote graphical desktop access.",
             defensePlaybook: [
                                 "VNC Security Hardening: Restrict X11VNC listener bindings to localhost when tunneling over SSH or require authenticated passwords for remote sessions.",
                                 "Chroot User Isolation: Operate within the configured user account rather than root for standard graphical userland sessions."
@@ -1664,7 +1664,7 @@
             tags: ["Android", "Mobile Linux", "chroot", "SELinux", "Troubleshooting"],
             summary: "Troubleshooting hurdles encountered when attempting to get Linux running in a chroot on Android, researching whether SELinux Enforcing policies were blocking filesystem mount operations.",
             sandboxObservation: "Screenshot of AI advisory notes consulted while troubleshooting mobile Linux on Android, reviewing whether SELinux Enforcing mode prevents chroot mounts and exploring permissive mode adjustments.",
-            technicalBreakdown: "Getting Linux distributions to run within Android often encounters permission roadblocks at the kernel level. Troubleshooting includes examining whether SELinux access policies (Enforcing vs. Permissive) are preventing loop mounts or filesystem bindings, or if alternative PRoot userland methods are required.",
+            technicalBreakdown: "Getting Linux distributions to run within Android often encounters permission roadblocks at the kernel level. Troubleshooting includes examining whether <span class=\"tech-term\" data-term=\"selinux\">SELinux</span> access policies (Enforcing vs. Permissive) are preventing loop mounts or filesystem bindings, or if alternative <span class=\"tech-term\" data-term=\"proot\">PRoot</span> userland methods are required.",
             defensePlaybook: [
                                 "Mount Failure Diagnosis: Check dmesg and logcat for avc: denied entries to confirm if mount errors stem from SELinux policies rather than missing filesystem modules.",
                                 "Minimal Policy Modification: Avoid leaving devices permanently in Permissive mode after testing, or utilize userland PRoot tools that avoid kernel mount restrictions altogether."
@@ -1693,22 +1693,22 @@
         },
         {
             id: "satellite-imagery-gaming-hud",
-            title: "Geospatial & Creative Computing: Orbital Satellite Imagery & Gaming Reference",
+            title: "Mobile Systems & UI: iPhone Satellite Connectivity Status & Gaming HUD Reference",
             category: "media",
-            categoryLabel: "Creative Computing & Geospatial Analysis",
+            categoryLabel: "Mobile Systems & Interface Design",
             badgeClass: "badge-info",
             image: "images/gallery/approved2/satellite-imagery-and-retro-gaming-hud.png",
             thumb: "images/gallery/approved2/satellite-imagery-and-retro-gaming-hud-thumb.jpg",
-            tags: ["Satellite Imagery", "Geospatial", "Visual Computing", "Gaming"],
-            summary: "Exploring high-resolution orbital satellite photography, cloud formation dynamics, and retro gaming interfaces.",
-            sandboxObservation: "High-contrast digital display showing orbital satellite focus imagery displaying atmospheric weather fronts, alongside retro gaming interface assets.",
-            technicalBreakdown: "Geospatial visualization combines multispectral orbital sensor data (infrared, visible spectrum) to render planetary surface and meteorological dynamics at scale.",
+            tags: ["iPhone", "Satellite", "Mobile UI", "Gaming HUD", "Telemetry"],
+            summary: "Capturing an iPhone screen displaying an active Satellite connectivity indicator in the mobile status header alongside a retro gaming interface and HUD layout.",
+            sandboxObservation: "Mobile screen capture highlighting the iPhone status bar displaying the 'Satellite' indicator (Apple Emergency SOS via satellite telemetry) alongside a stylized mobile gaming HUD asset.",
+            technicalBreakdown: "Modern mobile platforms support direct Low Earth Orbit (LEO) satellite communications. When standard terrestrial cellular and Wi-Fi networks are unavailable, iOS transitions status telemetry to indicate an active satellite link, coordinating RF handshakes with overhead orbital constellations for off-grid messaging.",
             defensePlaybook: [
-                                "High-DPI Calibration: Ensure display hardware renders uncompressed high-resolution satellite imagery with accurate gamma curves.",
-                                "Asset Compression Optimization: Balance image fidelity with optimized storage formats (WebP/AVIF) for web-based portfolio showcases."
+                                "Line-of-Sight Calibration: Direct satellite links require an unobstructed line of sight to open sky; avoid heavy tree canopies or indoor structures when testing satellite telemetry.",
+                                "Status Bar Fallback Verification: Ensure applications gracefully accommodate changing network statuses when moving between cellular, Wi-Fi, and emergency satellite modes."
                 ],
-            containment: "Rendered on personal creative workstation.",
-            credit: "Visual analysis and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+            containment: "Captured on personal mobile hardware.",
+            credit: "Mobile screenshot and interface analysis by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
             id: "teams-collaborative-live-editing",
@@ -1769,22 +1769,22 @@
         },
         {
             id: "vintage-desktop-pc-teardown",
-            title: "Hardware Teardown: Vintage Desktop Tower Chassis, Motherboard & Expansion Slots",
+            title: "Hardware Servicing: Vintage PC Chassis Disassembly & HDD Adapter Installation",
             category: "hardware",
             categoryLabel: "Hardware Repair & Maintenance",
             badgeClass: "badge-info",
             image: "images/gallery/approved2/vintage-desktop-pc-chassis-teardown.jpg",
             thumb: "images/gallery/approved2/vintage-desktop-pc-chassis-teardown-thumb.jpg",
-            tags: ["Hardware Teardown", "Vintage PC", "Motherboard", "PCI Slots", "Hardware Restoration"],
-            summary: "Performing complete chassis teardown and physical hardware inspection on a vintage desktop tower, examining motherboard capacitors, PCI slots, and cabling.",
-            sandboxObservation: "Overhead photograph of an opened steel desktop tower chassis showing the motherboard, CPU heatsink fan assembly, multi-colored internal ATX power harness, ribbon IDE cables, and expansion card bays.",
-            technicalBreakdown: "Restoring vintage PC hardware requires inspecting electrolytic capacitors for bulging or electrolyte leakage ('capacitor plague' era), cleaning dust from heatsink fins, and reseating AGP/PCI expansion cards to ensure clean electrical contact.",
+            tags: ["Hardware Workbench", "Vintage PC", "HDD Adapter", "Storage Upgrade", "Chassis Maintenance"],
+            summary: "Servicing an opened vintage computer chassis on the workbench, preparing internal bays and cabling to mount a hard disk drive (HDD) using an interface adapter bracket.",
+            sandboxObservation: "Workbench photograph of an opened vintage computer chassis during hardware modification, showing internal drive bays, wiring harnesses, and component layout while preparing to install a hard drive with an adapter bracket.",
+            technicalBreakdown: "Integrating replacement storage drives into vintage computer enclosures frequently requires drive sled adapters or interface bridge adapters (such as 2.5-inch to 3.5-inch bay brackets or IDE/SATA conversion adapters) to accommodate non-standard internal chassis mounting holes and power harnesses.",
             defensePlaybook: [
-                                "Capacitor Visual Inspection: Examine motherboard and PSU capacitors for domed tops or crusty residue before powering on vintage hardware.",
-                                "ATX Voltage Rail Verification: Test power supply rails (+12V, +5V, +3.3V) with a digital PSU tester before connecting sensitive vintage motherboards."
+                                "Drive Sled & Adapter Alignment: Ensure drive adapter brackets are mechanically secured to prevent vibration and chassis ground shorts before closing the casing.",
+                                "Power Header Pinout Safety: Verify legacy 4-pin Molex to SATA power adapter wiring matches standard 12V and 5V rail pinouts before powering storage drives."
                 ],
-            containment: "Physical bench hardware teardown and cleaning.",
-            credit: "Hardware teardown and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+            containment: "Executed on a physical hardware repair workbench.",
+            credit: "Hardware assembly and workbench photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         }
 ,
         {
@@ -1798,12 +1798,12 @@
             tags: ["DanaBot", "Banking Trojan", "Malware Analysis", "Windows Sandbox", "Process Trace"],
             summary: "Analyzing the fleeting command execution window of the DanaBot modular banking trojan inside Windows Sandbox during initial loader launch.",
             sandboxObservation: "Windows Sandbox environment executing DanaBot.exe from The-MALWARE-Repo, capturing the transient console command window spawned during initial stage extraction before evasion hooks suppress the prompt.",
-            technicalBreakdown: "DanaBot is a modular banking trojan notorious for multi-stage loader evasion. During initial detonation, it briefly spawns command-line processes or batch scripts to perform anti-analysis environment checks, decrypt secondary payloads, and inject malicious DLLs into legitimate system processes before terminating the parent console window.",
+            technicalBreakdown: "DanaBot is a modular <span class=\"tech-term\" data-term=\"banking-trojan\">banking trojan</span> notorious for multi-stage loader evasion. During initial detonation, it briefly spawns command-line processes or batch scripts to perform anti-analysis environment checks, decrypt secondary payloads, and inject malicious DLLs into legitimate system processes before terminating the parent console window.",
             defensePlaybook: [
                 "Process Creation Telemetry (Sysmon Event ID 1): Monitor for rapid parent-child process anomalies where command line tools spawn briefly from user download directories and exit within milliseconds.",
                 "Network Egress Filtering: Block C2 callback attempts on non-standard ports commonly leveraged by DanaBot affiliates for beaconing and configuration downloads."
             ],
-            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            containment: "Isolated within disposable <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span> session (WDAGUtilityAccount).",
             credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
@@ -1822,7 +1822,7 @@
                 "Safe Mode / Recovery Boot: Screen lockers lacking driver-level persistence or full-disk encryption can be bypassed by booting into Safe Mode or Windows Recovery Environment (WinRE) to disable startup run keys.",
                 "Endpoint Privilege Management: Enforce standard user privileges to block rogue binaries from hooking low-level Windows keyboard messages (WH_KEYBOARD_LL) or terminating Task Manager."
             ],
-            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            containment: "Isolated within disposable <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span> session (WDAGUtilityAccount).",
             credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
@@ -1836,12 +1836,12 @@
             tags: ["Dharma", "CrySiS", "Ransomware", "BYOVD", "Driver Blocklist", "Windows Sandbox"],
             summary: "Observing Windows Hypervisor-protected Code Integrity (HVCI) and vulnerable driver blocklists actively intercepting Dharma ransomware's kernel driver exploitation attempt.",
             sandboxObservation: "Windows Sandbox desktop populated by cascading Program Compatibility Assistant alerts reading: 'A driver cannot load on this device: Driver: atvxvgfgfrxsofygk.sys ... A security setting is detecting this as a vulnerable driver and blocking it from loading' alongside 'Load Driver Error!' and PC Hunter / nc123.exe execution from the Dharma ransomware directory.",
-            technicalBreakdown: "Modern ransomware variants (including Dharma / CrySiS distributions) frequently deploy Bring Your Own Vulnerable Driver (BYOVD) tactics, attempting to drop legitimate but known-vulnerable signed third-party drivers (such as antirootkit drivers like PC Hunter) to terminate endpoint detection and response (EDR) agents from kernel space. Windows Driver Blocklist and Hypervisor-protected Code Integrity (HVCI) effectively neutralize this vector by refusing to load blacklisted vulnerable drivers.",
+            technicalBreakdown: "Modern <span class=\"tech-term\" data-term=\"ransomware\">ransomware</span> variants (including Dharma / CrySiS distributions) frequently deploy Bring Your Own Vulnerable Driver (<span class=\"tech-term\" data-term=\"byovd\">BYOVD</span>) tactics, attempting to drop legitimate but known-vulnerable signed third-party drivers (such as antirootkit drivers like PC Hunter) to terminate endpoint detection and response (EDR) agents from kernel space. Windows Driver Blocklist and Hypervisor-protected Code Integrity (<span class=\"tech-term\" data-term=\"hvci\">HVCI</span>) effectively neutralize this vector by refusing to load blacklisted vulnerable drivers.",
             defensePlaybook: [
                 "Enable Microsoft Vulnerable Driver Blocklist: Enforce WDAC (Windows Defender Application Control) kernel driver blocklists to neutralize BYOVD attacks regardless of administrative privilege.",
                 "Hypervisor-protected Code Integrity (HVCI): Ensure Memory Integrity / HVCI is enabled in Windows Core Isolation settings to prevent unsigned or vulnerable driver execution."
             ],
-            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            containment: "Isolated within disposable <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span> session (WDAGUtilityAccount).",
             credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
@@ -1855,12 +1855,12 @@
             tags: ["GDI Payload", "Screen Destroyer", "Trojan", "Malware Forensics", "Windows Sandbox"],
             summary: "Executing a visual destruction / screen perturbation payload spawning cascading message boxes and dynamic desktop GDI pixel crosshatching.",
             sandboxObservation: "Windows Sandbox displaying an aggressive crosshatched pattern of rasterized static across the browser and desktop canvas, overlaid with multiple spawned message boxes titled 'FUN FUN FUN FUN FUN!!!!' with body text 'A very funny thing is happening!'.",
-            technicalBreakdown: "Screen destroyer and annoyance trojans manipulate the Windows Graphics Device Interface (GDI) via functions such as GetDC, PatBlt, BitBlt, and CreatePen to render chaotic visual artifacts directly to the desktop device context (GetDC(NULL)). Concurrently, multi-threaded loops spawn non-blocking user32 MessageBox alerts to exhaust window message queues and disorient the operator.",
+            technicalBreakdown: "Screen destroyer and annoyance trojans manipulate the Windows Graphics Device Interface (<span class=\"tech-term\" data-term=\"gdi\">GDI</span>) via functions such as GetDC, PatBlt, BitBlt, and CreatePen to render chaotic visual artifacts directly to the desktop device context (GetDC(NULL)). Concurrently, multi-threaded loops spawn non-blocking user32 MessageBox alerts to exhaust window message queues and disorient the operator.",
             defensePlaybook: [
                 "GDI & Desktop Window Manager Isolation: Modern container architectures and application sandboxes prevent untrusted guest processes from obtaining direct device context handles to the host compositor.",
                 "Application Whitelisting: Restrict execution of standalone unsigned script/executables from user temporary directories using AppLocker or Software Restriction Policies."
             ],
-            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            containment: "Isolated within disposable <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span> session (WDAGUtilityAccount).",
             credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
@@ -1874,12 +1874,12 @@
             tags: ["Krotten", "Ransomware", "Trojan-Ransom", "Registry Hijack", "Windows Sandbox"],
             summary: "Isolating the Krotten ransomware sample inside Windows Sandbox, documenting its signature Cyrillic ransom message dialog and extortion contact channel.",
             sandboxObservation: "Windows Sandbox File Explorer displaying Krotten (54 KB Application) in the Ransomware directory, triggering a modal notification dialog with title 'Âñå âïîðÿäêå!' (Все в порядке! / Everything is fine!) displaying a corrupted Windows-1252 Cyrillic ransom message demanding contact at 'wordsia@notrix.de'.",
-            technicalBreakdown: "Trojan-Ransom.Win32.Krotten is an infamous early ransomware/wiper family created to corrupt system settings rather than encrypting files with strong public-key cryptography. It modifies critical Windows Registry hives (disabling Taskmgr, Regedit, and Safe Mode keys) and presents a deceptive message box while sabotaging user shell navigation.",
+            technicalBreakdown: "Trojan-Ransom.Win32.Krotten is an infamous early <span class=\"tech-term\" data-term=\"ransomware\">ransomware</span>/wiper family created to corrupt system settings rather than encrypting files with strong public-key cryptography. It modifies critical Windows Registry hives (disabling Taskmgr, Regedit, and Safe Mode keys) and presents a deceptive message box while sabotaging user shell navigation.",
             defensePlaybook: [
                 "Registry Integrity Monitoring: Monitor changes to sensitive registry keys under HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System (DisableTaskMgr, DisableRegistryTools).",
                 "Offline System State Backups: Maintain volume shadow copies and regular offsite system state backups to roll back malicious registry and policy tampering without paying extortion."
             ],
-            containment: "Isolated within disposable Windows Sandbox session (WDAGUtilityAccount).",
+            containment: "Isolated within disposable <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span> session (WDAGUtilityAccount).",
             credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         }
     ];
@@ -1982,6 +1982,9 @@
 
             dom.grid.appendChild(card);
         });
+        if (typeof window.initTechAnalogies === "function") {
+            window.initTechAnalogies();
+        }
     }
 
     function updateCategoryUI() {

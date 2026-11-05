@@ -946,6 +946,161 @@
 			title: "WebAssembly Linear Memory Heap (TOTAL_MEMORY)",
 			analogy: "Reserving a dedicated block of parking spots in a garage for your crew before the road trip begins. If you only reserve room for compact cars (256 MB) but your team shows up with loaded trucks (500 MB), the gate won't open; but reserve too much, and the whole garage locks up.",
 			techFact: "The contiguous linear memory buffer allocated by the browser for a WebAssembly module, defining the maximum memory heap available for textures, physics, and game variables."
+		},
+		"banking-trojan": {
+			title: "Banking Trojan (e.g. DanaBot)",
+			analogy: "Like an undercover identity thief who slips behind the bank teller desk, watching your hands as you enter your PIN and forging your signature before you even finish the transaction.",
+			techFact: "A modular malware family designed to capture web banking credentials, inject rogue HTML forms into financial portals, and intercept multi-factor authentication tokens."
+		},
+		"byovd": {
+			title: "BYOVD (Bring Your Own Vulnerable Driver)",
+			analogy: "Like an intruder who can't pick a military vault's lock, so they find an old, legally certified maintenance master key that had a known design defect, carrying it inside to unlock the security vault with official permission.",
+			techFact: "Bring Your Own Vulnerable Driver is an evasion attack where threat actors drop legitimate, cryptographically signed third-party kernel drivers with known flaws to bypass Windows kernel driver signing and disable security defenses."
+		},
+		"hvci": {
+			title: "HVCI (Hypervisor-Protected Code Integrity)",
+			analogy: "Like an armed guard stationed inside an isolated bulletproof checkpoint who scrutinizes the digital hologram on every single worker badge before opening the door to the machine room.",
+			techFact: "Hypervisor-protected Code Integrity runs kernel mode validation inside an isolated Virtual Secure Mode (VSM), ensuring only cryptographically verified code executes in the OS kernel."
+		},
+		"chroot": {
+			title: "Chroot Jail / Container Userland",
+			analogy: "Like renting a room in a building and changing the lock on that single door so the tenant can never see the hallway or any other apartment in the complex.",
+			techFact: "A chroot changes the perceived root directory (/) for an isolated process tree, preventing it from reading or modifying system files outside that sandbox folder."
+		},
+		"selinux": {
+			title: "SELinux (Security-Enhanced Linux)",
+			analogy: "Like an unbending corporate compliance officer who checks a thick binder of department rulebooks before letting anyone touch a filing cabinet—even if you're the building owner (root), if the rule isn't written down, you're denied.",
+			techFact: "Security-Enhanced Linux implements Mandatory Access Control (MAC) via kernel security policies, confining processes and file contexts even when run by the root user."
+		},
+		"smb": {
+			title: "SMB (Server Message Block)",
+			analogy: "Like an inter-office motorized file cart that rolls between desks on the same floor, allowing coworkers to view and modify shared folders as if they were sitting on their own desk.",
+			techFact: "SMB is an application-layer network protocol primarily used by Windows and Samba for sharing files, printers, and serial ports over a local TCP/IP network (port 445)."
+		},
+		"ptm7950": {
+			title: "Honeywell PTM7950 Phase-Change Thermal Pad",
+			analogy: "Like a butter-like pad between a hot frying pan and a stove burner that is solid at room temperature, but melts into microscopic metal grooves under heat to conduct warmth away with zero trapped air bubbles.",
+			techFact: "PTM7950 is a polymer phase-change material with extreme thermal conductivity (~8.5 W/mK) that transitions to molten phase at ~45°C, offering superior longevity and pump-out resistance compared to standard thermal pastes."
+		},
+		"rsat": {
+			title: "RSAT (Remote Server Administration Tools)",
+			analogy: "Like a universal management remote that lets building superintendents adjust lights, keycards, and elevator permissions across all company skyscrapers right from their living room sofa.",
+			techFact: "RSAT provides administrative consoles (Active Directory Users & Computers, Group Policy, DNS) enabling IT engineers to manage Windows Server roles remotely from a client workstation."
+		},
+		"sodimm": {
+			title: "SO-DIMM RAM Module",
+			analogy: "Like the physical surface area of your workbench: the wider your desk, the more active tools and blueprints you can keep within arm's reach simultaneously before having to put them away into filing drawers (the hard drive).",
+			techFact: "Small Outline Dual In-line Memory Modules are compact RAM boards designed for laptops and mini-PCs, providing high-speed volatile scratchpad storage directly accessible by the CPU memory controller."
+		},
+		"proot": {
+			title: "PRoot (Unprivileged Chroot Emulator)",
+			analogy: "Like wearing augmented-reality glasses that trick your software into believing it's running inside a completely different operating system without needing permission from the landlord.",
+			techFact: "PRoot uses the ptrace system call to intercept and rewrite filesystem calls in user space, emulating chroot, mount, and root permissions on unrooted Android devices."
+		},
+		"sysmon": {
+			title: "Microsoft Sysmon (System Monitor)",
+			analogy: "Like a high-speed black-box flight recorder installed in your computer's engine room, logging every single ignition spark, door opening, and wire connection with a timestamp.",
+			techFact: "Sysmon is a Windows system service and device driver that monitors and logs detailed system activity (process creation, network connections, file changes) to the Windows Event Log."
+		},
+		"conky": {
+			title: "Conky System Monitor",
+			analogy: "Like a transparent fighter-jet heads-up display (HUD) projected directly onto your windshield, showing fuel levels, engine RPM, and temperature without blocking your view of the road.",
+			techFact: "Conky is a lightweight, highly configurable desktop system telemetry monitor for X11/Wayland that renders live CPU, RAM, network, and storage stats directly on the root desktop window."
+		},
+		"busybox": {
+			title: "BusyBox (The Swiss Army Knife of Embedded Linux)",
+			analogy: "Like a pocket multi-tool that combines a screwdriver, pliers, scissors, and bottle opener all into one tiny folding handle instead of carrying an entire 50-pound mechanics toolbox.",
+			techFact: "BusyBox combines tiny versions of many standard UNIX utilities into a single multi-call binary, extensively used in embedded devices, initramfs, and Alpine Linux."
+		},
+		"x11vnc": {
+			title: "X11VNC Desktop Server",
+			analogy: "Like a live high-definition security camera pointing at your desk display paired with an electronic mirror that lets you reach in through the glass from another room to move the mouse and type.",
+			techFact: "X11VNC is a VNC server that shares an existing X11 desktop display rather than creating an artificial virtual framebuffer, allowing real-time remote GUI interaction."
+		},
+		"ssms": {
+			title: "Microsoft SQL Server Management Studio (SSMS)",
+			analogy: "Like the master control desk of a giant digital library that lets researchers query millions of catalog card drawers, re-index shelves, and inspect visitor permissions with precision commands.",
+			techFact: "SSMS is an integrated environment for configuring, managing, and administering all components within Microsoft SQL Server, featuring graphical query design, execution plans, and Transact-SQL (T-SQL) editors."
+		},
+		"fat32-vs-ntfs": {
+			title: "FAT32 vs. NTFS Filesystems",
+			analogy: "Like an open spiral-bound notebook that any kid can write in with no locks (FAT32) versus a biometric security binder with per-page authorization stamps and an automatic paper-jam rewind journal (NTFS).",
+			techFact: "FAT32 is a legacy filesystem with universal device compatibility but a 4GB file size limit and no Access Control Lists (ACLs); NTFS provides journaled reliability, file permissions, and multi-terabyte volume scaling."
+		},
+		"bitlocker": {
+			title: "BitLocker Drive Encryption",
+			analogy: "Like putting all contents of a metal shipping crate into an unbreakable digital cipher safe that scrambles into meaningless static the second it is unplugged from the authorized truck.",
+			techFact: "BitLocker provides full-volume encryption using AES-128 or AES-256 with TPM hardware key binding, protecting offline data from unauthorized drive extraction."
+		},
+		"john-the-ripper": {
+			title: "John the Ripper (Hash Cracking Suite)",
+			analogy: "Like a rapid-fire master locksmith who feeds thousands of known key patterns into a mysterious lock in fractions of a second to discover which exact key cuts produced the lock.",
+			techFact: "John the Ripper is an open-source password security auditing tool that tests dictionary wordlists and rule permutations against cryptographic hash algorithms (MD5, SHA, NTLM) to identify weak passwords."
+		},
+		"gdi": {
+			title: "Windows GDI (Graphics Device Interface)",
+			analogy: "Like the mechanical drawing arm inside an architect's drafting desk that draws lines, shapes, and text onto the computer screen on command.",
+			techFact: "GDI is the legacy 2D graphics subsystem in Windows responsible for rendering lines, curves, fonts, and bitmaps to display devices and printers."
+		},
+		"aduc": {
+			title: "Active Directory Users & Computers (ADUC)",
+			analogy: "Like the central HR filing room for an entire 10,000-person corporation, where employee badges, job titles, department access cards, and password resets are all maintained.",
+			techFact: "ADUC is the primary MMC snap-in for managing Active Directory Domain Services (AD DS) objects, including user accounts, security groups, organizational units (OUs), and computer join states."
+		},
+		"rdp": {
+			title: "RDP (Remote Desktop Protocol)",
+			analogy: "Like an ultra-long virtual monitor cable and wireless keyboard receiver stretching across the country, letting you interact with an office PC as if you were sitting right in front of it.",
+			techFact: "RDP is a proprietary Microsoft network protocol running on TCP port 3389 that provides graphical user interface remote management with display caching and input redirection."
+		},
+		"forensics-disk-image": {
+			title: "Forensic Disk Image (E01 / Raw DD)",
+			analogy: "Like creating an exact molecular wax cast of a physical key or crime scene footprint before examining it, so the original evidence is never altered or contaminated.",
+			techFact: "A bit-stream forensic disk image copies every single sector (allocated and unallocated) along with cryptographic hash verification (MD5/SHA1) to preserve chain of custody."
+		},
+		"thermal-paste": {
+			title: "Thermal Interface Material (TIM / Heatsink Paste)",
+			analogy: "Like spreading a thin layer of heat-conducting butter between two rough cast-iron pans pressed together, squeezing out every microscopic pocket of trapped air so heat flows freely.",
+			techFact: "Thermal paste fills microscopic air voids between the CPU integrated heat spreader (IHS) and the heatsink baseplate, replacing poorly conducting air with high-conductivity compound."
+		},
+		"cloud-vm": {
+			title: "Cloud Virtual Machine (Azure / GCP)",
+			analogy: "Like renting a fully furnished apartment on the 40th floor of a giant skyscraper for an afternoon, using its power and high-speed elevator, and checking out when your work is done.",
+			techFact: "Cloud VMs run on hypervisor-managed enterprise server clusters (Azure Hyper-V, GCP KVM), providing elastically provisioned virtual CPUs, RAM, and storage on demand."
+		},
+		"phone-link": {
+			title: "Microsoft Phone Link (Cross-Device Integration)",
+			analogy: "Like a mirrored display window on your desk monitor that relays notifications, photos, and calls from the smartphone in your coat pocket without needing to pull it out.",
+			techFact: "Microsoft Phone Link uses Bluetooth and Wi-Fi Direct/LAN tunnels to synchronize SMS messages, push notifications, and calls between mobile devices and Windows."
+		},
+		"odata": {
+			title: "OData (Open Data Protocol)",
+			analogy: "Like a universal restaurant ordering form where you can check specific boxes to filter out onions, sort dishes by price, and only receive the exact side orders you asked for in a neat package.",
+			techFact: "OData defines a standard set of best practices for building and consuming RESTful APIs, enabling clients to query and filter relational datasets using URL parameters ($filter, $select, $orderby)."
+		},
+		"uefi-firmware": {
+			title: "UEFI / BIOS Firmware",
+			analogy: "Like the computer's biological brainstem: before the conscious mind (the operating system) wakes up, it handles breathing, checks heartbeats, and tests all limbs to verify the body is alive.",
+			techFact: "Unified Extensible Firmware Interface (UEFI) is low-level platform code stored in non-volatile flash ROM that initializes hardware components and hands control to the OS bootloader."
+		},
+		"mfa": {
+			title: "Multi-Factor Authentication (MFA / 2FA)",
+			analogy: "Like entering a bank vault that requires both a physical brass key that you carry in your pocket AND a unique one-time SMS or fingerprint scan from the security guard at the door.",
+			techFact: "MFA verifies digital identity by requiring two or more distinct credential categories: something you know (password), something you have (phone/token), or something you are (biometrics)."
+		},
+		"powershell": {
+			title: "PowerShell (Object-Oriented Automation)",
+			analogy: "Like an intelligent factory conveyor belt that passes actual complete parts (rich data objects) between workers, rather than just shouting raw text numbers down the hallway.",
+			techFact: "PowerShell is Microsoft's cross-platform automation shell that passes structured .NET objects between cmdlets rather than unformatted text streams."
+		},
+		"active-directory": {
+			title: "Active Directory (Enterprise Identity Service)",
+			analogy: "Like a master corporate credential registry that issues a single photo ID badge granting access to every office room, elevator, and printer across 50 company buildings.",
+			techFact: "Active Directory Domain Services (AD DS) provides centralized user identity, Kerberos authentication, and Group Policy management across enterprise domains."
+		},
+		"ssh": {
+			title: "SSH (Secure Shell Protocol)",
+			analogy: "Like an encrypted private phone line connecting your keyboard directly to a remote server, ensuring that no eavesdropper on the local network can read passwords or keystrokes.",
+			techFact: "SSH is a cryptographic network protocol operating on TCP port 22 for secure remote administration and encrypted command execution."
 		}
 	};
 
@@ -1091,8 +1246,11 @@
 			clearTimeout(hideTimer);
 		}
 
-		tooltip.addEventListener("mouseenter", cancelHide);
-		tooltip.addEventListener("mouseleave", scheduleHide);
+		if (!tooltip._analogyListeners) {
+			tooltip._analogyListeners = true;
+			tooltip.addEventListener("mouseenter", cancelHide);
+			tooltip.addEventListener("mouseleave", scheduleHide);
+		}
 
 		function openModal(el) {
 			var entry = getEntry(el);
@@ -1125,18 +1283,23 @@
 			}, 200);
 		}
 
-		modalClose.addEventListener("click", closeModal);
-		modalDismiss.addEventListener("click", closeModal);
-		modalBackdrop.addEventListener("click", closeModal);
+		if (!modal._analogyListeners) {
+			modal._analogyListeners = true;
+			modalClose.addEventListener("click", closeModal);
+			modalDismiss.addEventListener("click", closeModal);
+			modalBackdrop.addEventListener("click", closeModal);
 
-		document.addEventListener("keydown", function (e) {
-			if (e.key === "Escape") {
-				if (!modal.hidden) closeModal();
-				else scheduleHide();
-			}
-		});
+			document.addEventListener("keydown", function (e) {
+				if (e.key === "Escape") {
+					if (!modal.hidden) closeModal();
+					else scheduleHide();
+				}
+			});
+		}
 
 		terms.forEach(function (el) {
+			if (el.getAttribute("data-analogy-bound")) return;
+			el.setAttribute("data-analogy-bound", "true");
 			if (!el.getAttribute("tabindex") && el.tagName !== "BUTTON" && el.tagName !== "A") {
 				el.setAttribute("tabindex", "0");
 				el.setAttribute("role", "button");
