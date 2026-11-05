@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 51 Workbench Captures across 5 Curated Categories
+ * - 93 Workbench Captures across 5 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -987,6 +987,804 @@
             ],
             containment: "Physical fastener inspection on MacBook unibody chassis.",
             credit: "Macro photography and repair analysis by Andrew Van Ek. Documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "fishbeck-agent-troubleshooting",
+            title: "IT Service Desk AI Agent: Multi-Turn Troubleshooting & Logic Recovery",
+            category: "media",
+            categoryLabel: "Enterprise IT & AI Workflow",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/agent-troubleshooting-fishbeck-internship.png",
+            thumb: "images/gallery/approved2/agent-troubleshooting-fishbeck-internship-thumb.jpg",
+            tags: ["Fishbeck", "Service Desk AI", "Prompt Engineering", "IT Automation"],
+            summary: "Auditing and troubleshooting multi-turn conversational recovery logic in an enterprise IT service desk AI assistant during my Fishbeck internship.",
+            sandboxObservation: "AI agent troubleshooting console displaying 'First cycle 1 4 Miss #3 I\\'m still having trouble determining how to help. Let\\'s start over and try a different approach. Reset and restart.' Andrew evaluated prompt constraints and failure-recovery branches to prevent loop traps.",
+            technicalBreakdown: "Conversational state machines in enterprise customer service must maintain deterministic failure fallbacks. Implementing an explicit reset cycle prevents hallucination escalation and ensures graceful handoff to human support tiers.",
+            defensePlaybook: [
+                                "Escalation Boundaries: Establish hard thresholds on consecutive conversational misunderstandings to trigger instant human agent routing.",
+                                "State Clearing: Wipe intermediate context buffers on reset to avoid carrying corrupted entity states into new dialog sessions."
+                ],
+            containment: "Simulated in internal IT service desk sandbox environments.",
+            credit: "Agent logic auditing and workflow analysis by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "sysinternals-suite-reference",
+            title: "Microsoft Sysinternals Suite: Cross-Platform Systems Diagnostics Cheat Sheet",
+            category: "media",
+            categoryLabel: "Systems Administration & Diagnostics",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/sysinternals-reference-notes-macos.png",
+            thumb: "images/gallery/approved2/sysinternals-reference-notes-macos-thumb.jpg",
+            tags: ["Sysinternals", "Process Explorer", "Autoruns", "RAMMap", "Windows Troubleshooting"],
+            summary: "Compiling a quick-reference guide covering Microsoft Sysinternals tools (Process Explorer, Autoruns, TCPView, Handle, RAMMap, Sysmon) for forensic investigation.",
+            sandboxObservation: "Structured systems diagnostic guide categorizing core Sysinternals utilities for rapid incident response: Process Explorer, Process Monitor, Autoruns, TCPView, Handle, PsList/PsKill, RAMMap, Disk Usage, Sigcheck, and Sysmon.",
+            technicalBreakdown: "Sysinternals leverages low-level Windows kernel drivers (such as PROCEXP152.SYS) to expose undocumented object handles, physical memory allocation pools, and thread call stacks inaccessible through standard Task Manager.",
+            defensePlaybook: [
+                                "Process Signature Verification: Utilize Sigcheck to verify Authenticode digital signatures across all running binaries and autostart entries.",
+                                "Live Memory Inspection: Employ RAMMap to analyze memory leak exhaustion across page pools, kernel buffers, and standby lists."
+                ],
+            containment: "Reference documentation compiled across macOS and Windows management workstations.",
+            credit: "Toolchain compilation and systems documentation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "azure-vm-setup-wizard",
+            title: "Microsoft Azure Portal: ARM Virtual Machine Provisioning & Compute Sizing",
+            category: "vms",
+            categoryLabel: "Cloud Architecture & Virtualization",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/azure-vm-setup-wizard-cloud.png",
+            thumb: "images/gallery/approved2/azure-vm-setup-wizard-cloud-thumb.jpg",
+            tags: ["Microsoft Azure", "Cloud VM", "ARM Template", "Infrastructure as Code"],
+            summary: "Configuring compute specifications, virtual network interfaces, and storage tiers within the Microsoft Azure Portal VM provisioning workflow.",
+            sandboxObservation: "Azure management portal displaying the 'Create a virtual machine' ARM provisioning interface, configuring virtual networking, OS image selection, and inbound security rules for cloud computing experiments.",
+            technicalBreakdown: "Azure Resource Manager (ARM) coordinates hypervisor allocation across regional availability zones. Proper network security group (NSG) provisioning and ephemeral disk allocation prevents unexpected ingress exposure and controls operating costs.",
+            defensePlaybook: [
+                                "Just-In-Time Access: Restrict management ports (SSH/RDP) behind Azure Bastion or JIT access policies rather than exposing public IP listeners.",
+                                "Storage Tier Selection: Match OS disk IOPs to workload demands (Standard SSD vs. Premium SSD) to avoid storage bottlenecks during boot."
+                ],
+            containment: "Provisioned in isolated Azure Cloud subscription boundaries.",
+            credit: "Cloud infrastructure architecture and configuration by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "busybox-ether-wake-wol",
+            title: "BusyBox Wake-on-LAN: Headless Remote Power Management via ether-wake",
+            category: "homelab",
+            categoryLabel: "Network Architecture & Power Management",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/busybox-ether-wake-wol-remote.png",
+            thumb: "images/gallery/approved2/busybox-ether-wake-wol-remote-thumb.jpg",
+            tags: ["Wake-on-LAN", "BusyBox", "ether-wake", "Alpine Linux", "Remote Power"],
+            summary: "Deploying lightweight BusyBox ether-wake commands to broadcast Magic Packets across local subnets for remote workstation power management.",
+            sandboxObservation: "Technical documentation snippet detailing headless Wake-on-LAN dispatch: 'Basic wake on LAN (same subnet, Ethernet): busybox ether-wake aa:bb:cc:dd:ee:ff' for waking remote desktop towers across the homelab.",
+            technicalBreakdown: "Wake-on-LAN broadcasts an Ethernet Layer 2 packet containing a 6-byte synchronization header (0xFFFFFFFFFFFF) followed by 16 repetitions of the target NIC's MAC address, triggering the network controller's standby power rail to assert a system power-on pulse.",
+            defensePlaybook: [
+                                "Subnet Broadcast Isolation: Restrict WoL packet dispatch to dedicated management VLANs to prevent unauthorized broadcast storms.",
+                                "Password-Protected WoL: Enable SecureOn password bytes in BIOS/NIC settings where supported to guard against unauthorized wakeups."
+                ],
+            containment: "Executed from always-on Alpine Linux server across private Ethernet segments.",
+            credit: "Power management architecture and documentation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "android-stay-awake-developer-options",
+            title: "Android Developer Options: Screen Wake Lock & Continuous Charging Persistence",
+            category: "homelab",
+            categoryLabel: "Mobile Systems & OS Optimization",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/android-developer-options-stay-awake.png",
+            thumb: "images/gallery/approved2/android-developer-options-stay-awake-thumb.jpg",
+            tags: ["Android", "Developer Options", "Stay Awake", "Power Management", "Homelab Dashboard"],
+            summary: "Configuring Android Developer Options 'Stay Awake' flags to keep mobile devices active indefinitely while charging for dedicated homelab telemetry display.",
+            sandboxObservation: "Android Developer Options settings menu showing 'Stay awake: Screen will never sleep while charging' enabled, preventing sleep-mode lockouts during long-running dashboard and telemetry monitoring.",
+            technicalBreakdown: "Enabling 'Stay Awake' overrides standard Android PowerManagerService timeout locks when USB or AC charging state (BATTERY_PLUGGED_AC/USB) is asserted. This eliminates lockscreen dimming without requiring background wakelock services.",
+            defensePlaybook: [
+                                "OLED Burn-in Mitigation: Pair stay-awake flags with dynamic pixel-shifting or dark-mode themes when repurposing OLED mobile devices as permanent monitors.",
+                                "Security Pin Isolation: Restrict device physical access when disabling lockscreen timeouts in production spaces."
+                ],
+            containment: "Configured on dedicated Android homelab monitor hardware.",
+            credit: "Mobile configuration and power architecture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "magisk-denylist-security-isolation",
+            title: "Magisk Zygisk DenyList: Hiding Root & Enforcing App Sandbox Integrity",
+            category: "homelab",
+            categoryLabel: "Mobile Security & Root Architecture",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/magisk-denylist-root-isolation.png",
+            thumb: "images/gallery/approved2/magisk-denylist-root-isolation-thumb.jpg",
+            tags: ["Magisk", "Zygisk", "DenyList", "Root Hiding", "Android Security"],
+            summary: "Configuring Magisk Zygisk DenyList rules to isolate root permissions and bypass SafetyNet/Play Integrity detection for Google Wallet and enterprise apps.",
+            sandboxObservation: "Magisk configuration interface displaying the DenyList module targeting Google Wallet (com.google.android.apps.walletnfcrel), Technogym, and Zoom, isolating modified system paths from sensitive client runtimes.",
+            technicalBreakdown: "Zygisk intercepts process forking directly within Android's Zygote daemon. DenyList enforces mount namespace unsharing, unmounting Magisk modules and su binaries prior to child process execution so that SafetyNet and hardware integrity attestation checks pass cleanly.",
+            defensePlaybook: [
+                                "Selective Root Isolation: Apply DenyList to banking and workplace communication applications to preserve biometric and NFC security integrity.",
+                                "Play Integrity Attestation: Combine Zygisk with Shamiko or Play Integrity Fix modules to pass hardware-backed cryptographic checks."
+                ],
+            containment: "Administered on rooted Android testing device with sandboxed module isolation.",
+            credit: "Mobile security configuration and root isolation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "linux-deploy-chroot-path-fix",
+            title: "Termux & Linux Deploy: Resolving App Data Binary Paths in Android Chroot",
+            category: "homelab",
+            categoryLabel: "Mobile Linux & Chroot Environments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/termux-linux-deploy-chroot-fix.png",
+            thumb: "images/gallery/approved2/termux-linux-deploy-chroot-fix-thumb.jpg",
+            tags: ["Linux Deploy", "Termux", "chroot", "Android Modding", "Path Resolution"],
+            summary: "Fixing invocation disconnects between Termux and Linux Deploy by binding execution paths directly to the app data shell script.",
+            sandboxObservation: "Technical troubleshooting guide resolving 'linuxdeploy shell' command failures: 'You need to point Termux to the actual script inside the Linux Deploy app data', providing path normalization across Android internal storage.",
+            technicalBreakdown: "Modern Android security architectures isolate application sandboxes under /data/user/0/ru.meefik.linuxdeploy/. Invoking chroot helper binaries from external shell environments requires explicit absolute path references and proper SELinux context execution.",
+            defensePlaybook: [
+                                "Path Hardening: Store administrative scripts in persistent application-accessible directories to survive package updates.",
+                                "SELinux Permissive Sandboxing: Verify chroot mounts possess proper filesystem permissions before launching containerized daemons."
+                ],
+            containment: "Configured in local Android terminal testing environment.",
+            credit: "Linux container diagnosis and scripting by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "powershell-aduc-rsat-install",
+            title: "Windows PowerShell: Automating RSAT, ADUC & DNS Management Deployment",
+            category: "media",
+            categoryLabel: "Enterprise IT & Systems Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/powershell-aduc-rsat-install.png",
+            thumb: "images/gallery/approved2/powershell-aduc-rsat-install-thumb.jpg",
+            tags: ["Active Directory", "ADUC", "RSAT", "PowerShell", "IT Administration"],
+            summary: "Automating the installation of Remote Server Administration Tools (RSAT), Active Directory Users & Computers (ADUC), DNS, and Group Policy tools via PowerShell.",
+            sandboxObservation: "PowerShell command documentation for rapid enterprise workstation provisioning: 'Install the stuff IT folks usually want - If you want ADUC plus Group Policy Management and DNS tools', showcasing DISM / Add-WindowsCapability automation.",
+            technicalBreakdown: "Deploying 'Rsat.ActiveDirectory.DS-LDS.Tools' and 'Rsat.GroupPolicy.Management.Tools' via Windows Capability cmdlets enables remote Active Directory domain controller management directly from client workstations without requiring RDP sessions.",
+            defensePlaybook: [
+                                "Automated Workstation Staging: Package RSAT provisioning into reusable PowerShell deployment scripts for standard IT onboarding.",
+                                "Principle of Least Privilege: Run RSAT consoles under dedicated tiered administrative credentials rather than standard daily user accounts."
+                ],
+            containment: "Administered across corporate and homelab Active Directory domain environments.",
+            credit: "IT administration automation and documentation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "odata-filter-query-syntax",
+            title: "Enterprise Automation: OData Query Syntax & Comparison Operators",
+            category: "media",
+            categoryLabel: "Enterprise IT & API Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/odata-filter-query-syntax-guide.png",
+            thumb: "images/gallery/approved2/odata-filter-query-syntax-guide-thumb.jpg",
+            tags: ["OData", "API Integration", "Power Automate", "Filter Queries", "REST APIs"],
+            summary: "Analyzing OData comparison operator conventions (gt, ge, lt, le, eq, ne) for filtering enterprise service desk tickets and database queries.",
+            sandboxObservation: "Technical reference table detailing OData query operators: 'It would actually be gt (for greater than)! OData operators always use standard two-letter abbreviations: Symbol OData Operator ge lt eq ne'.",
+            technicalBreakdown: "The Open Data Protocol (OData) standardizes URL query parameters ($filter, $select, $expand). Utilizing proper two-letter operator abbreviations prevents malformed URI errors in Microsoft Graph, SharePoint, and Power Automate integrations.",
+            defensePlaybook: [
+                                "Server-Side Filtering: Always enforce $filter constraints on server queries rather than fetching complete datasets into client memory.",
+                                "Sanitized Query Building: Parameterize dynamic filter variables to prevent OData query injection and unauthorized data enumeration."
+                ],
+            containment: "Reference material verified against enterprise REST API specifications.",
+            credit: "API documentation and query optimization by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "procurement-bidding-policy-audit",
+            title: "Academic IT Governance: Public Procurement & Competitive Bidding Analysis",
+            category: "media",
+            categoryLabel: "Academic Coursework & IT Governance",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/procurement-bidding-policy-review.png",
+            thumb: "images/gallery/approved2/procurement-bidding-policy-review-thumb.jpg",
+            tags: ["IT Governance", "Procurement", "Competitive Bidding", "CIS 450", "Public Policy"],
+            summary: "Reviewing institutional procurement regulations, trade journal advertising policies, and competitive bidding workflows for university systems architecture.",
+            sandboxObservation: "Coursework analysis document outlining competitive bidding requirements: 'These preliminary services are needed governing policies and process to solicit bids newspapers, trade journals...' detailing legal and institutional IT compliance.",
+            technicalBreakdown: "Enterprise IT acquisitions exceeding statutory thresholds require formal Request for Proposal (RFP) publication and sealed bidding processes to comply with public procurement guidelines and prevent vendor lock-in.",
+            defensePlaybook: [
+                                "Vendor Neutral Specifications: Draft RFP requirements around open protocols and standards rather than proprietary vendor features.",
+                                "Audit Trail Compliance: Maintain immutable records of vendor bid submissions, scoring rubrics, and selection criteria."
+                ],
+            containment: "Academic coursework analysis compiled in macOS document suite.",
+            credit: "IT policy research and analysis by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "docker-alpine-permission-hardening",
+            title: "Alpine Linux Homelab: Docker Container Permissions & Host Security Boundary",
+            category: "homelab",
+            categoryLabel: "Container Security & Systems Hardening",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/docker-alpine-host-permission-hardening.png",
+            thumb: "images/gallery/approved2/docker-alpine-host-permission-hardening-thumb.jpg",
+            tags: ["Docker", "Alpine Linux", "Host Security", "Container Permissions", "Linux Administration"],
+            summary: "Analyzing permission elevation boundaries between Docker containers and the underlying Alpine Linux host filesystem to enforce least privilege.",
+            sandboxObservation: "AI technical advisory dialog discussing container security: 'Yes\u2014but it requires a change on the Alpine host or in the Docker container configuration. Giving permission in this chat won\\'t change the kernel/filesystem boundary'.",
+            technicalBreakdown: "Docker containers share the host Linux kernel. Modifying container permissions requires explicit daemon configuration (userns-remap, non-root user directives, volume mount permissions) on the host rather than user-space shell assumptions.",
+            defensePlaybook: [
+                                "Rootless Container Execution: Enforce non-root user execution inside container Dockerfiles to prevent root escalation to the host filesystem.",
+                                "Read-Only Volume Mounts: Mount host configuration directories as read-only (:ro) to block container processes from mutating host configs."
+                ],
+            containment: "Administered on production Alpine Linux NUC server.",
+            credit: "Container hardening and permission analysis by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-smb-share-definition-audit",
+            title: "Windows Server SMB: Comparative Share Definition & Access Rule Forensics",
+            category: "homelab",
+            categoryLabel: "Network Storage & Access Control",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/windows-smb-share-definition-audit.png",
+            thumb: "images/gallery/approved2/windows-smb-share-definition-audit-thumb.jpg",
+            tags: ["SMB", "File Sharing", "Windows Server", "Access Control", "Share Permissions"],
+            summary: "Conducting side-by-side comparative analysis of Windows SMB share definitions to diagnose cross-network file access failures.",
+            sandboxObservation: "Technical troubleshooting conversation analyzing Windows share configurations: 'sounds good, oh my word it literally seems there\\'s no difference between them - Exactly\u2014that comparison shows the SMB share definitions are identical'.",
+            technicalBreakdown: "Windows file sharing relies on a two-tier permission model: SMB Share Permissions (configured via 'net share' or Server Manager) and NTFS Access Control Lists (ACLs). Two shares with identical SMB definitions will behave completely differently if the underlying NTFS ACLs lack read inheritance.",
+            defensePlaybook: [
+                                "Dual-Layer Permission Audits: Always verify both SMB Share Permissions and underlying NTFS security tabs when debugging access denied errors.",
+                                "Inheritance Verification: Ensure subdirectories inherit permissions cleanly from the root volume using icacls."
+                ],
+            containment: "Investigated across Windows fixed storage and network endpoints.",
+            credit: "SMB troubleshooting and permission auditing by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-admin-shares-xmrig-notes",
+            title: "Windows Workstation: Admin Shares (C$), ONEFIVE Storage & XMRig Mining Telemetry",
+            category: "homelab",
+            categoryLabel: "Network Storage & Distributed Computing",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/windows-admin-shares-xmrig-miner-notes.png",
+            thumb: "images/gallery/approved2/windows-admin-shares-xmrig-miner-notes-thumb.jpg",
+            tags: ["Admin Shares", "C$", "XMRig", "Duino-Coin", "PowerShell", "Homelab"],
+            summary: "Investigating default Windows administrative shares (C$, IPC$) and network storage mounts alongside active XMRig and Duino-Coin mining workloads.",
+            sandboxObservation: "Multi-window workstation session displaying 'XMRig 6.26.0' CPU miner, Duino-Coin Python miner, PowerShell console inspecting 'ONEFIVE' storage shares, and administrative shortcut properties.",
+            technicalBreakdown: "Windows automatically enables administrative shares (C$, ADMIN$) for domain management. Understanding how local firewall rules and LocalAccountTokenFilterPolicy impact remote access over SMB is essential for secure cross-machine administration.",
+            defensePlaybook: [
+                                "Disable Default Administrative Shares: Set AutoShareWks to 0 in registry (HKLM\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters) on non-domain workstations.",
+                                "Process Priority Isolation: Run background computational tasks (XMRig) at BelowNormal priority to ensure zero interference with storage I/O."
+                ],
+            containment: "Monitored on primary Windows workstation.",
+            credit: "Storage administration and miner telemetry configuration by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "smb-removable-drive-isolation",
+            title: "Windows Storage Forensics: Removable USB vs. Fixed Drive SMB Permissions",
+            category: "homelab",
+            categoryLabel: "Network Storage & Filesystem Architecture",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/smb-removable-drive-permission-isolation.png",
+            thumb: "images/gallery/approved2/smb-removable-drive-permission-isolation-thumb.jpg",
+            tags: ["SMB", "Removable Media", "USB Drive", "NTFS Permissions", "Windows Server"],
+            summary: "Isolating why Windows SMB sharing fails on removable USB drives while succeeding on fixed NTFS partitions.",
+            sandboxObservation: "Troubleshooting chat resolving storage access issues: 'If this works, the removable drive won\\'t need it. Ok cool - cause was the original removable drive permissions', confirming distinct OS treatment of external media.",
+            technicalBreakdown: "Windows Server and client editions enforce security restrictions on removable drives (IOCTL_STORAGE_GET_HOTPLUG_INFO). Removable drives formatted as FAT32 lack NTFS security descriptors, preventing Windows LanmanServer from attaching authenticated security tokens to share endpoints.",
+            defensePlaybook: [
+                                "Fixed-Disk VHD Staging: Create a fixed-disk Virtual Hard Disk (.vhdx) on removable drives and mount as NTFS to bypass removable media SMB restrictions.",
+                                "Dedicated NAS Provisioning: Host persistent network shares on native Linux ext4/ZFS fixed pools rather than ad-hoc USB drives."
+                ],
+            containment: "Diagnosed across Windows fixed and removable USB drive topologies.",
+            credit: "Filesystem diagnostics and storage architecture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "smb-fat-vs-ntfs-comparison",
+            title: "Filesystem Security Forensics: Removable FAT vs. Fixed NTFS Share Replication",
+            category: "homelab",
+            categoryLabel: "Filesystems & Storage Security",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/smb-fat-vs-ntfs-drive-comparison.png",
+            thumb: "images/gallery/approved2/smb-fat-vs-ntfs-drive-comparison-thumb.jpg",
+            tags: ["FAT32", "NTFS", "SMB Sharing", "Filesystem Forensics", "Troubleshooting"],
+            summary: "Testing second removable FAT USB drive (G:) to conclusively prove that FAT filesystem architecture blocks authenticated SMB sharing.",
+            sandboxObservation: "Diagnostic chat confirming experimental evidence: 'Yep\u2014this is now strong evidence. A second, completely different removable USB (G:, FAT) fails the same way, while the fixed C: test share succeeds cleanly'.",
+            technicalBreakdown: "FAT32 filesystems maintain zero user SID mappings or security descriptors. When LanmanServer negotiates SMB2/3 authenticated sessions, it cannot evaluate user access tokens against filesystem objects, resulting in generic 'Access Denied' errors across client connections.",
+            defensePlaybook: [
+                                "Format Standardization: Standardize all shared storage volumes on modern NTFS or Linux filesystems that support POSIX / Windows ACLs.",
+                                "Audit Trail Logging: Review Microsoft-Windows-SMBServer/Operational event logs (Event ID 1001) to identify access denial root causes."
+                ],
+            containment: "Tested across physical USB hardware and virtual disk controllers.",
+            credit: "Filesystem forensic investigation and test verification by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "chrome-remote-desktop-miner-session",
+            title: "Chrome Remote Desktop: Headless Workstation Administration & Miner Monitoring",
+            category: "homelab",
+            categoryLabel: "Remote Management & Telemetry",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/chrome-remote-desktop-headless-miner.png",
+            thumb: "images/gallery/approved2/chrome-remote-desktop-headless-miner-thumb.jpg",
+            tags: ["Chrome Remote Desktop", "Headless Management", "Duino-Coin", "Remote Access"],
+            summary: "Administering a remote workstation session via Chrome Remote Desktop inside Safari on macOS, monitoring active Duino-Coin mining threads.",
+            sandboxObservation: "macOS Safari browser accessing 'remotedesktop.google.com' session connected to 'FREEHPGAMER', monitoring active Duino-Coin Python mining console and system metrics.",
+            technicalBreakdown: "Chrome Remote Desktop uses WebRTC with VP8/VP9 video encoding to establish low-latency, NAT-traversing remote desktop connections through Google STUN/TURN relays, enabling seamless headless machine administration across remote networks.",
+            defensePlaybook: [
+                                "Remote Access Segmentation: Limit remote desktop protocols to secure VPN/mesh connections (Tailscale) where possible to minimize third-party relay dependency.",
+                                "Host Pin Authentication: Require long, complex PINs and multi-factor authentication on all registered Chrome Remote Desktop endpoints."
+                ],
+            containment: "Executed within sandboxed WebRTC browser stream on macOS.",
+            credit: "Remote desktop management and telemetry monitoring by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "smb-authenticate-user-sharing-audit",
+            title: "Windows Server LanmanServer: EnableAuthenticateUserSharing Configuration Audit",
+            category: "homelab",
+            categoryLabel: "Windows Server & SMB Hardening",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/smb-enable-authenticate-user-sharing-audit.png",
+            thumb: "images/gallery/approved2/smb-enable-authenticate-user-sharing-audit-thumb.jpg",
+            tags: ["SMB", "LanmanServer", "Registry Configuration", "Security Hardening"],
+            summary: "Researching and validating Windows SMB server registry parameters (EnableAuthenticateUserSharing) to resolve multi-user network share authentication.",
+            sandboxObservation: "Technical documentation search inspecting Microsoft Learn articles: 'Searched the web for site:learn.microsoft.com EnableAuthenticateUserSharing SMB server configuration We\\'ve exhausted the standard GUI options'.",
+            technicalBreakdown: "LanmanServer registry parameters dictate how the Windows SMB server negotiates guest vs. authenticated user contexts. Setting explicit server security parameters forces clients to present valid domain or local machine credentials before establishing null-session connections.",
+            defensePlaybook: [
+                                "Block Insecure Guest Logons: Enforce 'Turn on insecure guest logons = Disabled' in Group Policy to mitigate SMB relay and NTLM coercion attacks.",
+                                "SMB Signing & Encryption: Require SMB signing (RequireSecuritySignature) across all LAN file transfers to prevent man-in-the-middle tampering."
+                ],
+            containment: "Audited against official Microsoft Learn documentation and Windows Server registry hives.",
+            credit: "SMB server configuration research by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "ssh-terminal-alpine-xmrig-session",
+            title: "macOS Terminal: Encrypted Ed25519 SSH Session to Alpine Server Running XMRig",
+            category: "homelab",
+            categoryLabel: "Linux Server Administration",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/ssh-terminal-alpine-xmrig-miner-session.png",
+            thumb: "images/gallery/approved2/ssh-terminal-alpine-xmrig-miner-session-thumb.jpg",
+            tags: ["SSH", "Ed25519", "Alpine Linux", "XMRig", "Tailscale", "Terminal"],
+            summary: "Establishing an encrypted SSH session with Ed25519 key authentication from macOS Terminal to the Alpine Linux server (100.87.81.52) supervising XMRig compute.",
+            sandboxObservation: "macOS Terminal window (202x47) executing 'ssh -i ~/.ssh/id_ed25519 avanek@100.87.81.52', monitoring active XMRig CPU miner with custom arguments '--donate-level 1 --print-time'.",
+            technicalBreakdown: "Ed25519 uses elliptic-curve cryptography (Curve25519) providing 128-bit security with high signature generation speed. Connecting across Tailscale encrypts all interactive terminal telemetry inside WireGuard tunnels without requiring open firewall ports on the public WAN.",
+            defensePlaybook: [
+                                "Passwordless SSH Enforcement: Disable PasswordAuthentication and ChallengeResponseAuthentication in /etc/ssh/sshd_config to enforce strict key-only access.",
+                                "Dedicated Mining Supervision: Wrap long-running computational daemons in system OpenRC/systemd services to manage CPU thread affinity and automatic restart cycles."
+                ],
+            containment: "Encrypted SSH session executing across private Tailscale mesh network.",
+            credit: "Server administration, key management, and compute supervision by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-xp-wmp-drm-license-error",
+            title: "Windows XP Media Player: Digital Rights Management (DRM) License Acquisition Error",
+            category: "security",
+            categoryLabel: "Digital Rights Management & Software Forensics",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/windows-xp-wmp-drm-license-error.png",
+            thumb: "images/gallery/approved2/windows-xp-wmp-drm-license-error-thumb.jpg",
+            tags: ["Windows XP", "Windows Media Player", "DRM", "License Acquisition", "Software Forensics"],
+            summary: "Documenting vintage Windows Media Player DRM license acquisition failure on Windows XP when attempting playback of protected WMA audio.",
+            sandboxObservation: "Windows XP desktop displaying Windows Media Player error modal: 'A license is required to play the selected content. To obtain a license, you must visit content provider\\'s Web page...', showcasing early digital copyright enforcement mechanisms.",
+            technicalBreakdown: "Windows Media DRM leverages encrypted content keys bound to individual machine hardware profiles (CPU ID, BIOS string, hard drive serial). When vintage DRM license servers are decommissioned, legacy protected media becomes permanently unplayable despite possessing original physical files.",
+            defensePlaybook: [
+                                "DRM-Free Preservation: Maintain master audio and video archives in open, non-DRM formats (FLAC, MP3, WAV) to guarantee long-term digital preservation.",
+                                "Hardware Decoupling: Avoid proprietary container-locked licensing schemes that depend on permanent third-party server infrastructure."
+                ],
+            containment: "Observed in vintage Windows XP test environment.",
+            credit: "DRM behavior documentation and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "copilot-early-mobile-interaction",
+            title: "Generative AI Evolution: Early Mobile Conversational Image Prompting",
+            category: "media",
+            categoryLabel: "Generative AI & Prompt Evolution",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/copilot-early-mobile-interaction.png",
+            thumb: "images/gallery/approved2/copilot-early-mobile-interaction-thumb.jpg",
+            tags: ["Microsoft Copilot", "Generative AI", "DALL-E", "Prompt Engineering", "Mobile AI"],
+            summary: "Documenting early hands-on interactions with Microsoft Copilot on mobile, exploring generative multimodal image synthesis from conversational natural language prompts.",
+            sandboxObservation: "Mobile interface showing early conversational exchange: 'draw a picture of a cup of coffee in front of a lake with a sunset - Copilot: I\\'ll try to create that...', illustrating the emergence of real-time mobile generative AI assistants.",
+            technicalBreakdown: "Modern mobile generative AI gateways leverage cloud-based diffusion models (DALL-E 3) orchestrated through conversational LLM prompt expansion, converting concise user prompts into detailed descriptive latent-space generation briefs.",
+            defensePlaybook: [
+                                "Prompt Expansion Verification: Review model-expanded prompts to ensure generative additions align with user intent and avoid unintended style drift.",
+                                "Local Model Comparison: Evaluate cloud generation against local PyTorch Diffusers pipelines to benchmark latency, privacy, and fidelity."
+                ],
+            containment: "Captured on mobile personal device.",
+            credit: "Generative AI exploration and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "excel-custom-number-formatting",
+            title: "Microsoft Excel: Custom Cell Number Formatting & Visual Unit Suffixes",
+            category: "media",
+            categoryLabel: "Enterprise Tools & Spreadsheet Engineering",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/excel-custom-number-formatting-guide.png",
+            thumb: "images/gallery/approved2/excel-custom-number-formatting-guide-thumb.jpg",
+            tags: ["Microsoft Excel", "Number Formatting", "Spreadsheet Engineering", "Data Entry"],
+            summary: "Mastering custom Excel number formats that display physical unit suffixes ('sq. ft.') visually while preserving raw numeric values for formulas.",
+            sandboxObservation: "Technical Excel formatting reference demonstrating custom syntax: 'Type: 1 50 sq. ft. Excel will display: 150 sq. ft. Plain Text vs. Formatted Number', showing how to separate visual formatting from calculation data types.",
+            technicalBreakdown: "Excel custom number formats (e.g. 0 \"sq. ft.\") alter the presentation layer without converting the cell value into a string. This preserves floating-point math, aggregation functions (SUM, AVERAGE), and chart compatibility.",
+            defensePlaybook: [
+                                "Preserve Data Types: Never manually type text units into calculation cells; use custom format strings to keep underlying data numeric.",
+                                "Formula Resilience: Verify spreadsheet formulas reference raw numeric cells to prevent #VALUE! type mismatch exceptions."
+                ],
+            containment: "Compiled in enterprise productivity workspace.",
+            credit: "Spreadsheet engineering and formatting documentation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "excel-color-palette-analyzer",
+            title: "Data Visualization: AI-Assisted Spreadsheet Color Palette Optimization",
+            category: "media",
+            categoryLabel: "Data Analytics & Interface Design",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/excel-color-palette-analyzer-gemini.png",
+            thumb: "images/gallery/approved2/excel-color-palette-analyzer-gemini-thumb.jpg",
+            tags: ["Google Gemini", "Data Visualization", "Color Palettes", "Excel Analytics", "UI Design"],
+            summary: "Collaborating with Google Gemini to optimize high-contrast color palettes for data analytics spreadsheets, balancing aesthetic variety with accessibility.",
+            sandboxObservation: "Conversational AI dialog discussing color calibration: 'Ok sweet - and color adjustments that you recently changed work for everything they did previously PLUS these additional colors+adjustments?', validating palette expansion across complex data grids.",
+            technicalBreakdown: "Effective data visualization requires perceptually uniform color palettes (such as Viridis or ColorBrewer) with distinct luminance steps to ensure legibility across diverse display hardware and for users with color vision deficiencies.",
+            defensePlaybook: [
+                                "WCAG Contrast Compliance: Verify visual cell highlights maintain at least 4.5:1 contrast ratios against background fills for text readability.",
+                                "Semantic Color Encoding: Reserve alert colors (red, green, amber) strictly for status metrics rather than decorative category grouping."
+                ],
+            containment: "Designed in personal analytics workspace.",
+            credit: "Visualization design and AI collaboration by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "gvsu-university-football-atmosphere",
+            title: "Campus Life: Grand Valley State University Stadium Atmosphere",
+            category: "media",
+            categoryLabel: "Campus Life & University Community",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/gvsu-university-football-game-atmosphere.jpg",
+            thumb: "images/gallery/approved2/gvsu-university-football-game-atmosphere-thumb.jpg",
+            tags: ["GVSU", "Grand Valley State University", "Campus Life", "Athletics"],
+            summary: "Capturing the vibrant game-day atmosphere at the Grand Valley State University football stadium during fall semester.",
+            sandboxObservation: "Sunny afternoon panoramic capture of the packed GVSU football stadium, showcasing the lively university community, team spirit, and campus athletic tradition in Allendale, Michigan.",
+            technicalBreakdown: "University athletic events unite thousands of students, faculty, and alumni, fostering strong community bonds and collaborative pride across academic disciplines.",
+            defensePlaybook: [
+                                "Community Engagement: Participate in campus community activities to maintain a well-rounded academic and professional life.",
+                                "Work-Life Balance: Balance rigorous homelab engineering with active campus participation."
+                ],
+            containment: "Captured on mobile device at GVSU campus stadium.",
+            credit: "Campus photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-xp-intel-graphics-driver",
+            title: "Retro Hardware Diagnostics: Windows XP Intel 82845G Graphics Driver Analysis",
+            category: "vms",
+            categoryLabel: "Retro Computing & Hardware Diagnostics",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/windows-xp-intel-graphics-driver-properties.jpg",
+            thumb: "images/gallery/approved2/windows-xp-intel-graphics-driver-properties-thumb.jpg",
+            tags: ["Windows XP", "Intel 82845G", "Device Drivers", "Retro Hardware", "Graphics Diagnostics"],
+            summary: "Inspecting legacy Intel 82845G graphics controller driver properties and hardware IDs on a vintage Windows XP installation.",
+            sandboxObservation: "Windows XP desktop with Notepad documenting graphics driver properties: 'graphics Driver properties: Intel (R) 82845G/GL/GE/PE/GV Graphics controller...', verifying driver version and Direct3D acceleration status.",
+            technicalBreakdown: "The Intel 82845G Extreme Graphics chipset relies on shared system RAM (Unified Memory Architecture) with fixed 200 MHz core clocks. Proper driver binding under Windows XP (ialmrnt5.inf) is necessary to enable 2D hardware blitting and early DirectX 8.1 API support.",
+            defensePlaybook: [
+                                "Legacy Driver Archive Integrity: Maintain verified offline copies of legacy INF and SYS driver packages before performing retro OS reinstalls.",
+                                "Hardware ID Verification: Cross-reference PCI Vendor and Device IDs (VEN_8086&DEV_2562) to identify correct driver revisions when OEM recovery disks are lost."
+                ],
+            containment: "Investigated on physical vintage Windows XP hardware.",
+            credit: "Hardware forensics and documentation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "pixel-9-adb-anydesk-permissions",
+            title: "Android ADB Administration: Pixel 9 Package Auditing & AnyDesk Remote Permissions",
+            category: "homelab",
+            categoryLabel: "Mobile Administration & ADB Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/pixel-9-adb-shell-anydesk-permissions.png",
+            thumb: "images/gallery/approved2/pixel-9-adb-shell-anydesk-permissions-thumb.jpg",
+            tags: ["Google Pixel 9", "ADB", "Android Debug Bridge", "AnyDesk", "Remote Support"],
+            summary: "Utilizing Android Debug Bridge (ADB) on macOS to audit package permissions and configure AnyDesk unattended remote access on Google Pixel 9.",
+            sandboxObservation: "Technical troubleshooting guide for Pixel 9 administration: 'To confirm on your Pixel 9: Connect via USB (with USB debugging enabled). In Terminal on your Mac: adb shell pm list packages | grep anydesk' to verify application privileges.",
+            technicalBreakdown: "Android's Package Manager (pm) and AppOps services regulate accessibility and screen-recording permissions. Granting accessibility service bindings via ADB ('appops set ... PROJECT_MEDIA allow') enables remote viewing without repeated interactive user consent prompts on reboot.",
+            defensePlaybook: [
+                                "Revoke USB Debugging Post-Setup: Disable 'USB debugging' in Developer Options once configuration scripts finish to prevent unauthorized physical port exploitation.",
+                                "Verify Authorized Host Keys: Inspect ~/.android/adbkey.pub fingerprints to ensure only trusted workstation keys are authorized for device control."
+                ],
+            containment: "Executed over secure USB connection between macOS and Pixel 9.",
+            credit: "Mobile administration and ADB automation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "kali-linux-john-the-ripper",
+            title: "CIS 458 Cybersecurity Lab: Kali Linux John the Ripper Password Hash Auditing",
+            category: "security",
+            categoryLabel: "Cybersecurity & Cryptographic Analysis",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/kali-linux-john-the-ripper-hash-cracking.png",
+            thumb: "images/gallery/approved2/kali-linux-john-the-ripper-hash-cracking-thumb.jpg",
+            tags: ["Kali Linux", "John the Ripper", "CIS 458", "Hash Cracking", "Cybersecurity", "VirtualBox"],
+            summary: "Executing dictionary and rule-based password hash cracking attacks in a Kali Linux VirtualBox VM for CIS 458 university cybersecurity coursework.",
+            sandboxObservation: "VirtualBox virtual machine running 'CIS 458 VM Section 1 - Kali [Running]', executing John the Ripper in an Xfce terminal window to audit and recover password hashes from shadow files using customized wordlists.",
+            technicalBreakdown: "John the Ripper autodetects cryptographic hash formats (SHA-512 crypt, MD5, NTLM). Running mutation rules against wordlists (such as rockyou.txt) benchmarks how password entropy and salted key-derivation functions (bcrypt/Argon2) defend against brute-force recovery.",
+            defensePlaybook: [
+                                "Enforce High-Cost Hashing: Mandate modern memory-hard password hashing algorithms (Argon2id, PBKDF2 with high iterations) rather than raw MD5/SHA-256.",
+                                "Audit Enterprise Password Quality: Routinely conduct offline hash audits against Active Directory NTDS.dit snapshots to identify weak or compromised employee passwords."
+                ],
+            containment: "Conducted within an isolated, host-only VirtualBox academic lab environment.",
+            credit: "Cybersecurity lab execution and analysis by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "intel-nuc-tv-display-setup",
+            title: "Living Room Homelab: Intel NUC HDMI Display Output to 4K Living Room TV",
+            category: "homelab",
+            categoryLabel: "Hardware Integration & Multi-Display Setups",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/intel-nuc-hdmi-tv-windows-11-display.jpg",
+            thumb: "images/gallery/approved2/intel-nuc-hdmi-tv-windows-11-display-thumb.jpg",
+            tags: ["Intel NUC", "Living Room TV", "HDMI 2.0", "Windows 11", "Homelab Setup"],
+            summary: "Connecting the Intel NUC server via HDMI to a large living room TV display running Windows 11 lockscreen for shared multimedia and dashboard viewing.",
+            sandboxObservation: "Wide photograph of the living room entertainment center showing a large television displaying the Windows 11 lock screen ('5:53 Saturday, January 11'), driven directly by the compact Intel NUC hardware.",
+            technicalBreakdown: "Intel Iris Xe integrated graphics support native 4K 60Hz HDR output over HDMI 2.0b / DisplayPort 1.4. Configuring EDID handshakes and audio passthrough enables seamless switching between headless Linux server duties and direct big-screen display tasks.",
+            defensePlaybook: [
+                                "Resolution & Scaling Tuning: Set custom Windows display scaling (150% - 200%) to ensure text legibility across ten-foot viewing distances.",
+                                "Display Sleep Management: Configure dedicated CEC or HDMI power states to allow the NUC to run headless server workloads without keeping the television panel energized."
+                ],
+            containment: "Physical living room homelab hardware integration.",
+            credit: "Hardware deployment and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "lenovo-yoga-battery-teardown",
+            title: "Hardware Servicing: Lenovo Yoga Internal Battery Teardown & Spec Verification",
+            category: "hardware",
+            categoryLabel: "Hardware Repair & Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/lenovo-yoga-battery-internal-teardown.jpg",
+            thumb: "images/gallery/approved2/lenovo-yoga-battery-internal-teardown-thumb.jpg",
+            tags: ["Lenovo Yoga", "Hardware Teardown", "Battery Replacement", "Hardware Maintenance"],
+            summary: "Performing internal chassis disassembly on a Lenovo Yoga laptop, verifying battery model specs (L18C3PF7, 4670mAh / 52.5Wh) and mounting points.",
+            sandboxObservation: "High-detail internal photograph of an opened Lenovo laptop chassis showing the internal lithium-ion battery pack label ('Model L18C3PF7, Typical Capacity 4670mAh / 52.5Wh, Rating 11.4V') and surrounding motherboard ribbon routing.",
+            technicalBreakdown: "Servicing modern thin-and-light convertible laptops requires careful disengagement of perimeter plastic retention clips and disconnecting the multi-pin battery header before removing retaining screws to prevent accidental short circuits.",
+            defensePlaybook: [
+                                "Model Code Verification: Cross-reference exact OEM battery part numbers (L18C3PF7) and voltage ratings (11.4V) before ordering replacement cells.",
+                                "ESD Safety Protocols: Wear grounded anti-static wrist straps and disconnect battery power before touching internal logic components."
+                ],
+            containment: "Executed on an ESD-safe physical hardware workstation.",
+            credit: "Hardware disassembly and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "linux-mint-lenovo-yoga-telemetry",
+            title: "Mobile Linux Workstation: Linux Mint Cinnamon on Lenovo Yoga with Conky HUD",
+            category: "homelab",
+            categoryLabel: "Linux Fleet & System Telemetry",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/linux-mint-cinnamon-lenovo-yoga-conky.jpg",
+            thumb: "images/gallery/approved2/linux-mint-cinnamon-lenovo-yoga-conky-thumb.jpg",
+            tags: ["Linux Mint", "Lenovo Yoga", "Conky", "Cinnamon Desktop", "Hardware Telemetry"],
+            summary: "Deploying and optimizing Linux Mint Cinnamon on the Lenovo Yoga convertible laptop, featuring real-time multi-core CPU Conky telemetry and system monitoring.",
+            sandboxObservation: "Photograph of the Lenovo Yoga running Linux Mint desktop with an active system monitor displaying per-core CPU load across Core 0 through Core 3, 932.8 MiB RAM usage out of 3.7 GiB, and battery power status at 10:56 PM.",
+            technicalBreakdown: "Linux Mint Cinnamon provides an exceptionally lightweight footprint (under 1 GB RAM at idle), breathing high-speed responsiveness into older 4-core mobile hardware while maintaining full touchscreen and trackpad gesture support.",
+            defensePlaybook: [
+                                "Conky Telemetry Tuning: Configure lightweight Conky update intervals (2-3 seconds) to prevent the monitoring daemon itself from creating noticeable CPU load.",
+                                "Thermal Governor Selection: Utilize TLP and the 'powersave' or 'balanced' CPU governor to optimize battery life on convertible laptops."
+                ],
+            containment: "Running on physical Lenovo Yoga mobile hardware.",
+            credit: "Linux deployment and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "dual-workstation-cross-platform-setup",
+            title: "Workstation Ergonomics: Dual-System macOS & Windows Multi-Screen Collaboration",
+            category: "media",
+            categoryLabel: "Workstation Ergonomics & Systems Integration",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/dual-workstation-cross-platform-desk-setup.jpg",
+            thumb: "images/gallery/approved2/dual-workstation-cross-platform-desk-setup-thumb.jpg",
+            tags: ["Cross-Platform", "macOS", "Windows", "Desk Setup", "Multi-Monitor", "Productivity"],
+            summary: "Operating a unified dual-workstation desk setup, running macOS Safari research tools alongside Windows engineering and document workflows.",
+            sandboxObservation: "Wide photograph of the desk setup showing a MacBook Pro displaying academic literature and research tools on Safari seamlessly alongside an adjacent primary Windows workstation running systems management utilities.",
+            technicalBreakdown: "Cross-platform desk ergonomics leverage software KVM switches (Synergy / Barrier) and shared network shares to unify keyboard, mouse, and clipboard buffers across differing OS kernels without physical cable swapping.",
+            defensePlaybook: [
+                                "Encrypted Clipboard Sharing: Ensure cross-platform KVM tools utilize TLS encryption to protect sensitive clipboard data transmitted across the local subnet.",
+                                "Display Profile Calibration: Calibrate color temperatures and display scaling across adjacent monitors to reduce visual fatigue during long coding sessions."
+                ],
+            containment: "Physical multi-machine personal productivity workstation.",
+            credit: "Workstation architecture and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "triple-monitor-cad-engineering-station",
+            title: "Engineering Command Center: Triple-Monitor Workstation for Automation & CAD",
+            category: "hardware",
+            categoryLabel: "Workstation Hardware & Industrial Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/triple-monitor-engineering-cad-station.jpg",
+            thumb: "images/gallery/approved2/triple-monitor-engineering-cad-station-thumb.jpg",
+            tags: ["Triple Monitor", "CAD Station", "Industrial Automation", "Hardware Setup", "Engineering"],
+            summary: "Operating an enterprise-grade triple-monitor engineering workstation for complex computer-aided design (CAD), PLC programming, and automation workflows.",
+            sandboxObservation: "Photograph of an impressive three-display engineering desk setup displaying complex architectural CAD drawings, automation schematics, and monitoring consoles across an expansive panoramic visual workspace.",
+            technicalBreakdown: "Multi-head display topologies powered by dedicated NVIDIA Quadro / RTX GPUs allow engineers to simultaneously visualize real-time SCADA telemetry, ladder logic routines, and 3D mechanical assemblies without window switching.",
+            defensePlaybook: [
+                                "DisplayPort Daisy-Chaining: Utilize DisplayPort Multi-Stream Transport (MST) or dedicated high-bandwidth outputs to drive multiple high-resolution panels at full 60Hz.",
+                                "Workspace Organization: Dedicate central displays to active CAD design while flanking monitors host schematics, logs, and communication channels."
+                ],
+            containment: "Physical engineering workstation deployment.",
+            credit: "Engineering workspace photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-to-go-external-provisioning",
+            title: "OS Deployment: Windows To Go External Drive Boot & Device Initialization",
+            category: "vms",
+            categoryLabel: "OS Deployment & Portable Computing",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/windows-to-go-external-drive-provisioning.jpg",
+            thumb: "images/gallery/approved2/windows-to-go-external-drive-provisioning-thumb.jpg",
+            tags: ["Windows To Go", "External SSD", "OS Deployment", "Device Setup", "Portable OS"],
+            summary: "Testing portable Windows To Go booting from an external drive, documenting early hardware detection and driver initialization ('Getting devices ready 20%').",
+            sandboxObservation: "Close-up photograph of a laptop keyboard and screen showing Windows boot-phase hardware initialization: 'Getting devices ready 20%', verifying clean OS driver binding on external USB storage.",
+            technicalBreakdown: "Windows To Go installs a specialized Windows PE/RE boot configuration onto external USB mass storage devices with SAN policy 4 enabled (offline internal disks) to prevent accidental data contamination of the host machine.",
+            defensePlaybook: [
+                                "UASP Protocol Verification: Ensure external drive enclosures support USB Attached SCSI Protocol (UASP) to maximize 4K random read/write IOPS during portable OS operation.",
+                                "BitLocker Portable Encryption: Enforce BitLocker To Go encryption on external boot drives to safeguard personal files if the portable media is misplaced."
+                ],
+            containment: "Tested across physical laptop hardware and external USB SSD media.",
+            credit: "Portable OS deployment and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "smb-tailscale-network-trace",
+            title: "Network Diagnostics: Cross-Subnet SMB Packet Trace over Tailscale Mesh",
+            category: "homelab",
+            categoryLabel: "Network Architecture & Protocol Analysis",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/smb-tailscale-network-packet-trace.png",
+            thumb: "images/gallery/approved2/smb-tailscale-network-packet-trace-thumb.jpg",
+            tags: ["Tailscale", "SMB", "Packet Trace", "Port 445", "Network Diagnostics"],
+            summary: "Analyzing bidirectional network packet traces to verify SMB connectivity between macOS client (100.67.172.15) and Windows server (100.64.20.50) over Tailscale.",
+            sandboxObservation: "Network diagnostic analysis log: 'We finally got a meaningful result from both sides: Mac 100.67.172.15 reached Windows 100.64.20.50:445. The trace shows the SMB connection establishes cleanly'.",
+            technicalBreakdown: "Tracing TCP port 445 handshakes over Tailscale confirms that WireGuard point-to-point tunnels successfully route SMB traffic without carrier CGNAT interference or router firewall drops.",
+            defensePlaybook: [
+                                "Targeted Port Scanning: Utilize Test-NetConnection or nc -zv to confirm port 445 availability before mounting remote SMB paths.",
+                                "Tailscale ACL Hardening: Enforce granular Tailscale ACL rules restricting port 445 access strictly between authorized workstations and file servers."
+                ],
+            containment: "Captured across verified Tailscale mesh diagnostic sessions.",
+            credit: "Network trace analysis and troubleshooting by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "lenovo-vantage-firmware-diagnostics",
+            title: "OEM Diagnostics: Lenovo Vantage System Update & Hardware Telemetry",
+            category: "hardware",
+            categoryLabel: "Hardware Maintenance & Firmware Updates",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/lenovo-vantage-firmware-update-diagnostics.jpg",
+            thumb: "images/gallery/approved2/lenovo-vantage-firmware-update-diagnostics-thumb.jpg",
+            tags: ["Lenovo Vantage", "System Update", "Firmware", "Hardware Diagnostics", "BIOS"],
+            summary: "Using Lenovo Vantage and System Update tools to evaluate hardware health, thermal profiles, and install official UEFI/BIOS firmware updates.",
+            sandboxObservation: "Browser interface displaying Lenovo Vantage software download and support documentation, researching official firmware update tools for system maintenance.",
+            technicalBreakdown: "OEM diagnostic suites (Lenovo Vantage) communicate with ACPI embedded controllers (EC) and Intel Management Engine (ME) to flash signed firmware updates and manage battery charge thresholds.",
+            defensePlaybook: [
+                                "Official Firmware Verification: Download system updates exclusively through verified OEM channels with SHA-256 hash checks.",
+                                "AC Power Safety: Never initiate BIOS/firmware flashing without reliable AC mains power and a fully charged battery."
+                ],
+            containment: "Administered on personal Lenovo workstation.",
+            credit: "Firmware maintenance research by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "andronix-mobile-linux-setup",
+            title: "Mobile Linux: Andronix Chroot User Provisioning & Root Password Setup",
+            category: "homelab",
+            categoryLabel: "Mobile Linux & Chroot Environments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/andronix-mobile-linux-chroot-user-setup.jpg",
+            thumb: "images/gallery/approved2/andronix-mobile-linux-chroot-user-setup-thumb.jpg",
+            tags: ["Andronix", "Ubuntu", "Mobile Linux", "chroot", "User Setup"],
+            summary: "Configuring persistent user accounts ('avanek') and root credentials in an Andronix Ubuntu chroot environment running on Android.",
+            sandboxObservation: "Mobile terminal interface displaying automated system provisioning: 'Setting root password... Adding user avanek... Setting full name to Andrew T... Applying system configuration', establishing a full Linux shell on Android.",
+            technicalBreakdown: "Andronix deploys containerized PRoot and Chroot Linux distributions on Android without requiring full kernel virtualization, providing an APT package manager and standard GNU utilities directly on mobile hardware.",
+            defensePlaybook: [
+                                "User Privilege Separation: Operate within unprivileged user accounts (avanek) for daily compiling rather than running exclusively as root.",
+                                "Storage Permission Binding: Bind Android shared storage (/sdcard) cleanly using termux-setup-storage to permit seamless file transfers."
+                ],
+            containment: "Executed within local mobile Linux chroot container.",
+            credit: "Mobile Linux configuration and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "android-selinux-permissive-mounting",
+            title: "Android Security Architecture: SELinux Enforcing vs. Permissive Chroot Mounts",
+            category: "homelab",
+            categoryLabel: "Mobile Security & Kernel Architecture",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/android-selinux-permissive-chroot-mounting.png",
+            thumb: "images/gallery/approved2/android-selinux-permissive-chroot-mounting-thumb.jpg",
+            tags: ["Android", "SELinux", "Permissive", "chroot", "Kernel Security"],
+            summary: "Diagnosing Android SELinux Enforcing policy blocks that prevent mounting external chroot filesystems and learning corrective recovery steps.",
+            sandboxObservation: "Technical troubleshooting advisory from Google Gemini: 'Set SELinux to Permissive: Modern Android uses \"Enforcing\" mode, which blocks chroot mounting even if you have root privileges', detailing kernel policy mitigation.",
+            technicalBreakdown: "Security-Enhanced Linux (SELinux) in Android implements Mandatory Access Control (MAC). Even root (UID 0) processes are constrained by domain policies; transitioning to Permissive (setenforce 0) logs policy violations without blocking mount calls.",
+            defensePlaybook: [
+                                "Minimal Permissive Windows: Return SELinux to Enforcing mode immediately after mounting filesystems to maintain kernel attack surface hardening.",
+                                "Custom Policy Compilation: Author targeted policy rules (.te) with chcon to allow specific mount operations without globally disabling SELinux."
+                ],
+            containment: "Investigated within Android kernel security testing environment.",
+            credit: "Android security research and AI consultation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "lenovo-yoga-windows-10-external-ssd",
+            title: "Hardware Execution: Lenovo Yoga Running Windows 10 from External USB SSD",
+            category: "vms",
+            categoryLabel: "OS Deployment & Portable Computing",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/lenovo-yoga-running-windows-10-external-ssd.jpg",
+            thumb: "images/gallery/approved2/lenovo-yoga-running-windows-10-external-ssd-thumb.jpg",
+            tags: ["Lenovo Yoga", "Windows 10", "External SSD", "USB 3.0", "Performance"],
+            summary: "Successfully booting and running a complete Windows 10 installation on the Lenovo Yoga from a high-speed external USB solid-state drive.",
+            sandboxObservation: "Photograph of the Lenovo Yoga running an interactive Windows 10 desktop session booted entirely from an external SSD, showing Task Manager telemetry with 1.92 GHz CPU frequency and responsive system operation.",
+            technicalBreakdown: "Executing a production OS over USB 3.0 requires reliable 5 Gbps bus throughput and low 4K random latency. By deploying Windows to an external SSD rather than a slow flash drive, boot times and app responsiveness match internal SATA storage.",
+            defensePlaybook: [
+                                "USB Power Management: Disable 'USB selective suspend' in Windows Power Options to prevent the OS from accidentally putting its own boot drive to sleep.",
+                                "Write Caching Policies: Enable write caching on the external drive in Device Manager to boost performance while observing safe ejection protocols."
+                ],
+            containment: "Tested on physical Lenovo Yoga hardware with external solid-state storage.",
+            credit: "Hardware deployment and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "satellite-imagery-gaming-hud",
+            title: "Geospatial & Creative Computing: Orbital Satellite Imagery & Gaming Reference",
+            category: "media",
+            categoryLabel: "Creative Computing & Geospatial Analysis",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/satellite-imagery-and-retro-gaming-hud.png",
+            thumb: "images/gallery/approved2/satellite-imagery-and-retro-gaming-hud-thumb.jpg",
+            tags: ["Satellite Imagery", "Geospatial", "Visual Computing", "Gaming"],
+            summary: "Exploring high-resolution orbital satellite photography, cloud formation dynamics, and retro gaming interfaces.",
+            sandboxObservation: "High-contrast digital display showing orbital satellite focus imagery displaying atmospheric weather fronts, alongside retro gaming interface assets.",
+            technicalBreakdown: "Geospatial visualization combines multispectral orbital sensor data (infrared, visible spectrum) to render planetary surface and meteorological dynamics at scale.",
+            defensePlaybook: [
+                                "High-DPI Calibration: Ensure display hardware renders uncompressed high-resolution satellite imagery with accurate gamma curves.",
+                                "Asset Compression Optimization: Balance image fidelity with optimized storage formats (WebP/AVIF) for web-based portfolio showcases."
+                ],
+            containment: "Rendered on personal creative workstation.",
+            credit: "Visual analysis and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "teams-collaborative-live-editing",
+            title: "Remote Collaboration: Microsoft Teams Live Co-Authoring & Homelab Multitasking",
+            category: "media",
+            categoryLabel: "Remote Collaboration & Multi-Tasking",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/teams-collaborative-live-editing-call.png",
+            thumb: "images/gallery/approved2/teams-collaborative-live-editing-call-thumb.jpg",
+            tags: ["Microsoft Teams", "Live Co-Authoring", "Folding@home", "CompTIA", "Remote Collaboration"],
+            summary: "Participating in a collaborative Microsoft Teams working session while managing live cloud document edits, Folding@home client telemetry, and CompTIA study materials.",
+            sandboxObservation: "Multi-window desktop showing an active Microsoft Teams video call alongside browser tabs for live document co-authoring, the local Folding@home client monitor, and CompTIA certification study materials.",
+            technicalBreakdown: "Modern multi-threaded workstations manage simultaneous real-time WebRTC audio/video encoding, distributed compute workloads (Folding@home), and cloud document synchronization without audio dropouts or interface lag.",
+            defensePlaybook: [
+                                "Bandwidth Prioritization: Enforce Quality of Service (QoS) router rules prioritizing VoIP/Teams traffic over background computational transfers.",
+                                "Microphone & Camera Privacy: Utilize hardware mute toggles and verify camera indicators during remote collaborative calls."
+                ],
+            containment: "Active collaborative workstation session.",
+            credit: "Collaborative workflow capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-10-end-of-support-wild",
+            title: "Enterprise Lifecycle Management: Windows 10 End of Support Full-Screen Notification",
+            category: "vms",
+            categoryLabel: "Enterprise IT & OS Lifecycle Management",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/windows-10-end-of-support-notification.jpg",
+            thumb: "images/gallery/approved2/windows-10-end-of-support-notification-thumb.jpg",
+            tags: ["Windows 10", "End of Support", "OS Migration", "Lifecycle Management", "IT Planning"],
+            summary: "Documenting Microsoft's full-screen End of Support notification on a production Windows 10 system, highlighting migration deadlines (October 14, 2025).",
+            sandboxObservation: "Full-screen photograph of a computer monitor displaying Microsoft's official EOS notification: 'It\\'s time to upgrade your PC before end of support - End of support for Windows 10 arrives on October 14th, 2025. This means your PC won\\'t receive security updates...'.",
+            technicalBreakdown: "Operating system lifecycle milestones (EOS/EOL) present significant enterprise cybersecurity challenges. Systems remaining on Windows 10 post-October 2025 require Extended Security Updates (ESU) or migration to Windows 11 / Linux to prevent exposure to unpatched zero-day vulnerabilities.",
+            defensePlaybook: [
+                                "Hardware Readiness Audits: Execute automated PowerShell scripts querying TPM 2.0 and Secure Boot status across all fleet PCs to identify upgradeable hardware.",
+                                "Phased OS Migration: Transition aging hardware to lightweight Linux distributions (Linux Mint, Alpine) rather than discarding functional compute."
+                ],
+            containment: "Captured in-the-wild on physical client workstation.",
+            credit: "Lifecycle documentation and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-xp-media-center-device-manager",
+            title: "Retro Computing: Windows XP Media Center Edition 2005 Device Manager Hardware Audit",
+            category: "vms",
+            categoryLabel: "Retro Computing & Systems Restoration",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/windows-xp-media-center-device-manager.jpg",
+            thumb: "images/gallery/approved2/windows-xp-media-center-device-manager-thumb.jpg",
+            tags: ["Windows XP", "Media Center Edition", "Device Manager", "IDE ATA", "Retro Hardware"],
+            summary: "Auditing hardware controllers, IDE ATA/ATAPI storage channels, and legacy multimedia hardware in Windows XP Media Center Edition 2005.",
+            sandboxObservation: "Vintage CRT/LCD monitor displaying Windows XP Media Center Edition 2005 desktop with Device Manager open, inspecting IDE ATA/ATAPI controllers, legacy audio drivers, and expansion hardware.",
+            technicalBreakdown: "Windows XP Media Center Edition 2005 (Codename 'Symphony') represents the pinnacle of the eHome media architecture, requiring specialized hardware MPEG-2 decoder cards, TV tuners, and dedicated IR remote transceivers.",
+            defensePlaybook: [
+                                "Air-Gapped Network Isolation: Keep legacy Windows XP machines strictly air-gapped or segmented onto isolated retro VLANs with zero WAN routing.",
+                                "Driver Preservation: Back up the C:\\Windows\\Driver Cache and INF trees to preserve irreplaceable legacy hardware support."
+                ],
+            containment: "Physical vintage tower PC running Windows XP Media Center Edition.",
+            credit: "Retro computing restoration and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "vintage-desktop-pc-teardown",
+            title: "Hardware Teardown: Vintage Desktop Tower Chassis, Motherboard & Expansion Slots",
+            category: "hardware",
+            categoryLabel: "Hardware Repair & Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved2/vintage-desktop-pc-chassis-teardown.jpg",
+            thumb: "images/gallery/approved2/vintage-desktop-pc-chassis-teardown-thumb.jpg",
+            tags: ["Hardware Teardown", "Vintage PC", "Motherboard", "PCI Slots", "Hardware Restoration"],
+            summary: "Performing complete chassis teardown and physical hardware inspection on a vintage desktop tower, examining motherboard capacitors, PCI slots, and cabling.",
+            sandboxObservation: "Overhead photograph of an opened steel desktop tower chassis showing the motherboard, CPU heatsink fan assembly, multi-colored internal ATX power harness, ribbon IDE cables, and expansion card bays.",
+            technicalBreakdown: "Restoring vintage PC hardware requires inspecting electrolytic capacitors for bulging or electrolyte leakage ('capacitor plague' era), cleaning dust from heatsink fins, and reseating AGP/PCI expansion cards to ensure clean electrical contact.",
+            defensePlaybook: [
+                                "Capacitor Visual Inspection: Examine motherboard and PSU capacitors for domed tops or crusty residue before powering on vintage hardware.",
+                                "ATX Voltage Rail Verification: Test power supply rails (+12V, +5V, +3.3V) with a digital PSU tester before connecting sensitive vintage motherboards."
+                ],
+            containment: "Physical bench hardware teardown and cleaning.",
+            credit: "Hardware teardown and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         }
     ];
 
