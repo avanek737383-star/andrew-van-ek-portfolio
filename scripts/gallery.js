@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 30 High-Resolution Workbench Captures across 4 Curated Categories
+ * - 40 Workbench Captures across 5 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,167 @@
     "use strict";
 
     var galleryItems = [
+        // Hardware repair photographs and documentation: Andrew Van Ek, Microsoft Copilot, and OpenAI Codex.
+        {
+            id: "repair-01-cooling-assembly",
+            title: "HP: locating the CPU cooling assembly",
+            category: "hardware",
+            categoryLabel: "HP Cooling Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/repairs/01-cooling-assembly.jpg",
+            thumb: "images/gallery/repairs/01-cooling-assembly-thumb.jpg",
+            tags: ["HP laptop", "Hardware Repair", "Copilot", "Completed"],
+            summary: "I was preparing to replace the CPU thermal interface and needed to understand which cooling components had to come off.",
+            sandboxObservation: "The open HP shows its fan, copper heat pipe, and CPU contact plate still installed.",
+            technicalBreakdown: "The CPU contact surface sits beneath the heatsink plate. Identifying the fan, heat pipe, mounting screws, and wiring made the disassembly easier to understand before removing the assembly.",
+            defensePlaybook: ["I was preparing to replace the CPU thermal interface and needed to understand which cooling components had to come off."],
+            containment: "This records the starting point. Later photos show the heatsink removed; this image does not document a completed repair. Follow-up from Andrew on November 5: the HP repair is complete and temperatures look good; no numerical readings were supplied. On this HP, Andrew found that the battery needed to be connected for it to boot.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-02-exposed-cpu-old-paste",
+            title: "HP: exposing the old thermal compound",
+            category: "hardware",
+            categoryLabel: "HP Cooling Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/repairs/02-exposed-cpu-old-paste.jpg",
+            thumb: "images/gallery/repairs/02-exposed-cpu-old-paste-thumb.jpg",
+            tags: ["HP laptop", "Hardware Repair", "Copilot", "Completed"],
+            summary: "I needed to inspect the existing thermal interface and prepare the CPU for replacement material.",
+            sandboxObservation: "With the heatsink removed, old thermal compound is visible across the CPU die on the blue motherboard.",
+            technicalBreakdown: "Removing the heatsink exposed the actual contact area. The small CPU die and the larger surrounding package are different surfaces, which matters when sizing the replacement thermal material.",
+            defensePlaybook: ["I needed to inspect the existing thermal interface and prepare the CPU for replacement material."],
+            containment: "The chat identified the compound as looking dry and uneven. Its appearance alone does not establish the cause of a thermal problem. Follow-up from Andrew on November 5: the HP repair is complete and temperatures look good; no numerical readings were supplied. On this HP, Andrew found that the battery needed to be connected for it to boot.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-03-dust-blocked-heatsink-fins",
+            title: "HP: discovering blocked heatsink fins",
+            category: "hardware",
+            categoryLabel: "HP Cooling Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/repairs/03-dust-blocked-heatsink-fins.jpg",
+            thumb: "images/gallery/repairs/03-dust-blocked-heatsink-fins-thumb.jpg",
+            tags: ["HP laptop", "Hardware Repair", "Copilot", "Completed"],
+            summary: "A job that began as thermal-interface replacement also uncovered a substantial obstruction in the cooling airflow path.",
+            sandboxObservation: "The removed copper heatsink is held above the laptop, revealing a dense mat of dust and lint caught along the radiator fins.",
+            technicalBreakdown: "Cooling depends on air moving through the fin stack as well as heat reaching it from the CPU. Inspecting the removed heatsink revealed a problem that replacing thermal material alone would leave behind.",
+            defensePlaybook: ["A job that began as thermal-interface replacement also uncovered a substantial obstruction in the cooling airflow path."],
+            containment: "The obstruction is visible. The chat proposed cleaning the fins, but no post-cleaning temperature measurements or performance results were supplied. Follow-up from Andrew on November 5: the HP repair is complete and temperatures look good; no numerical readings were supplied. On this HP, Andrew found that the battery needed to be connected for it to boot.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-04-ptm7950-sizing",
+            title: "HP: understanding PTM7950 placement",
+            category: "hardware",
+            categoryLabel: "HP Cooling Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/repairs/04-ptm7950-sizing.jpg",
+            thumb: "images/gallery/repairs/04-ptm7950-sizing-thumb.jpg",
+            tags: ["HP laptop", "Hardware Repair", "Copilot", "Completed"],
+            summary: "I asked whether to install the entire sheet or cut it to fit the CPU.",
+            sandboxObservation: "A packaged sheet of PTM7950 is held beside the exposed HP CPU, which still has old compound on its die.",
+            technicalBreakdown: "The discussion distinguished the CPU die from its larger package and explained that the phase-change sheet needs to be sized for the contact area. It also covered the protective liners and using a single layer rather than combining it with paste.",
+            defensePlaybook: ["I asked whether to install the entire sheet or cut it to fit the CPU."],
+            containment: "This photo documents planning and sizing. It does not show the CPU cleaned, the material installed, or the machine tested afterward. Follow-up from Andrew on November 5: the HP repair is complete and temperatures look good; no numerical readings were supplied. On this HP, Andrew found that the battery needed to be connected for it to boot.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-05-stripped-battery-screw",
+            title: "MacBook Pro: dealing with a stripped battery screw",
+            category: "hardware",
+            categoryLabel: "2011 MacBook Pro Battery Work",
+            badgeClass: "badge-warning",
+            image: "images/gallery/repairs/05-stripped-battery-screw.jpg",
+            thumb: "images/gallery/repairs/05-stripped-battery-screw-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Hardware Repair", "Copilot", "In Progress"],
+            summary: "I wanted to remove the battery, but a stripped mounting screw was preventing progress.",
+            sandboxObservation: "A close-up shows the battery mounting area beside the MacBook logic board, including a damaged screw head and the battery wiring.",
+            technicalBreakdown: "The conversation clarified that the troublesome fastener belonged to the battery mounting tab even though it was close to the logic board. The useful lesson was to identify what a screw secures and recognize when a driver is slipping instead of repeatedly worsening the head.",
+            defensePlaybook: ["I wanted to remove the battery, but a stripped mounting screw was preventing progress."],
+            containment: "The chat discussed several extraction approaches. This photo records the obstacle; it does not establish which technique ultimately removed the screw. Overall project status: in progress as of November 5, 2026.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-06-macbook-battery-clearance",
+            title: "MacBook Pro: checking what still held the battery",
+            category: "hardware",
+            categoryLabel: "2011 MacBook Pro Battery Work",
+            badgeClass: "badge-warning",
+            image: "images/gallery/repairs/06-macbook-battery-clearance.jpg",
+            thumb: "images/gallery/repairs/06-macbook-battery-clearance-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Hardware Repair", "Copilot", "In Progress"],
+            summary: "After reporting that the screw was out, I was checking why the battery still would not come free and whether more disassembly was needed.",
+            sandboxObservation: "A low-angle close-up shows the battery cable and connector area near the edge of the logic board and aluminum chassis.",
+            technicalBreakdown: "A freed mounting screw does not prove that the battery is electrically disconnected. Later messages corrected Copilot’s initial assumption about the connector, showing why a physical connection must be checked directly.",
+            defensePlaybook: ["After reporting that the screw was out, I was checking why the battery still would not come free and whether more disassembly was needed."],
+            containment: "The chat speculated about the battery catching under the logic board. That explanation and the suggested need to loosen the board were not verified in the conversation. Overall project status: in progress as of November 5, 2026.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-07-macbook-spark-incident-overview",
+            title: "MacBook Pro: pausing after a reported spark",
+            category: "hardware",
+            categoryLabel: "2011 MacBook Pro Battery Work",
+            badgeClass: "badge-warning",
+            image: "images/gallery/repairs/07-macbook-spark-incident-overview.jpg",
+            thumb: "images/gallery/repairs/07-macbook-spark-incident-overview-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Hardware Repair", "Copilot", "In Progress"],
+            summary: "I reported a brief spark after a screw or metal tool contacted exposed metal near the battery connection, while another stripped screw complicated the work.",
+            sandboxObservation: "A wider view shows the MacBook logic board, battery cable, and partly moved battery during the removal attempt.",
+            technicalBreakdown: "The repair priority shifted from removing parts to checking the power connection and preventing another accidental bridge between contacts. The later clarification that the battery remained connected was more reliable than Copilot’s first reading of this photo.",
+            defensePlaybook: ["I reported a brief spark after a screw or metal tool contacted exposed metal near the battery connection, while another stripped screw complicated the work."],
+            containment: "The spark was reported in the message rather than captured in the image. This view cannot establish whether electrical damage occurred. Overall project status: in progress as of November 5, 2026.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-08-macbook-logic-board-screw-closeup",
+            title: "MacBook Pro: inspecting another damaged screw",
+            category: "hardware",
+            categoryLabel: "2011 MacBook Pro Battery Work",
+            badgeClass: "badge-warning",
+            image: "images/gallery/repairs/08-macbook-logic-board-screw-closeup.jpg",
+            thumb: "images/gallery/repairs/08-macbook-logic-board-screw-closeup-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Hardware Repair", "Copilot", "In Progress"],
+            summary: "A stripped screw near delicate circuitry was blocking further disassembly during the same reported spark incident.",
+            sandboxObservation: "A tight close-up shows a severely damaged screw head surrounded by traces, small components, and exposed copper around the mounting point.",
+            technicalBreakdown: "The close-up showed why repeated driver slippage or rushed extraction could affect nearby circuitry. It also separated the mechanical screw problem from the electrical question raised by the spark.",
+            defensePlaybook: ["A stripped screw near delicate circuitry was blocking further disassembly during the same reported spark incident."],
+            containment: "The photo shows wear around the screw, but it does not establish whether marks came from tool contact, earlier work, corrosion, or the reported electrical event. Removal of this screw is not documented. Overall project status: in progress as of November 5, 2026.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-09-macbook-battery-still-connected",
+            title: "MacBook Pro: correcting the battery connection diagnosis",
+            category: "hardware",
+            categoryLabel: "2011 MacBook Pro Battery Work",
+            badgeClass: "badge-warning",
+            image: "images/gallery/repairs/09-macbook-battery-still-connected.jpg",
+            thumb: "images/gallery/repairs/09-macbook-battery-still-connected-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Hardware Repair", "Copilot", "In Progress"],
+            summary: "I clarified that the battery was still connected when the metal screwdriver touched the nearby contacts.",
+            sandboxObservation: "The battery connector and the row of exposed soldered contacts immediately above it fill the frame.",
+            technicalBreakdown: "This corrected the earlier assumption that the battery had already been unplugged. Removing mounting screws and moving the battery are separate from disconnecting its electrical connector; the next step in the chat became using a plastic tool to disconnect it.",
+            defensePlaybook: ["I clarified that the battery was still connected when the metal screwdriver touched the nearby contacts."],
+            containment: "The user described a very brief possible spark and no burnt smell. Neither that report nor this photograph proves that the board escaped damage. Overall project status: in progress as of November 5, 2026.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
+        {
+            id: "repair-10-macbook-battery-disconnected",
+            title: "MacBook Pro: successful disconnection with a plastic spudger",
+            category: "hardware",
+            categoryLabel: "2011 MacBook Pro Battery Work",
+            badgeClass: "badge-warning",
+            image: "images/gallery/repairs/10-macbook-battery-disconnected.jpg",
+            thumb: "images/gallery/repairs/10-macbook-battery-disconnected-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Hardware Repair", "Copilot", "In Progress"],
+            summary: "I needed to disconnect the battery after the metal-tool incident and difficulty around the stripped screws.",
+            sandboxObservation: "The battery plug is absent from the logic-board socket, leaving its contact pins visible.",
+            technicalBreakdown: "Switching to the plastic spudger worked. This photo provided a clearer visual check of disconnection than the earlier angled views and marked a concrete milestone in the repair.",
+            defensePlaybook: ["I needed to disconnect the battery after the metal-tool incident and difficulty around the stripped screws."],
+            containment: "The user explicitly reported that the plastic spudger worked. The visible result supports successful connector removal; the chat does not document a later boot test, complete reassembly, or confirmation that all components remained functional. Overall project status: in progress as of November 5, 2026.",
+            credit: "Hardware work and original photography by Andrew Van Ek. Repair discussion with Microsoft Copilot. Photo selection, captions, gallery integration, and project documentation by OpenAI Codex, reviewed against the chat and Andrew’s follow-up."
+        },
         // ----------------- Category: Malware & Security (10) -----------------
         {
             id: "wannacry",
@@ -637,7 +798,8 @@
         security: "Malware & Security Forensics",
         vms: "Virtual Machines & Retro OS",
         homelab: "Homelab, Cloud & Linux Fleet",
-        media: "Creative Lab & Everyday Automation"
+        media: "Creative Lab & Everyday Automation",
+        hardware: "Hardware Repair & Maintenance"
     };
 
     var dom = {
@@ -859,15 +1021,15 @@
                 '  <p>' + item.sandboxObservation + '</p>',
                 '</div>',
                 '<div class="gallery-drawer-section">',
-                '  <h3><span class="section-icon">&#9881;</span> Technical Mechanics &amp; Architecture</h3>',
+                '  <h3><span class="section-icon">&#9881;</span> ' + (item.category === "hardware" ? "What I Learned" : "Technical Mechanics &amp; Architecture") + '</h3>',
                 '  <p>' + item.technicalBreakdown + '</p>',
                 '</div>',
                 '<div class="gallery-drawer-section section-defense">',
-                '  <h3><span class="section-icon">&#128737;</span> Defensive Hardening &amp; Playbook</h3>',
+                '  <h3><span class="section-icon">&#128737;</span> ' + (item.category === "hardware" ? "What I Was Solving" : "Defensive Hardening &amp; Playbook") + '</h3>',
                 '  <ul>' + defenseListHtml + '</ul>',
                 '</div>',
                 '<div class="gallery-drawer-section">',
-                '  <h3><span class="section-icon">&#128274;</span> Containment &amp; Testing Discipline</h3>',
+                '  <h3><span class="section-icon">&#128274;</span> ' + (item.category === "hardware" ? "Progress &amp; Documented Outcome" : "Containment &amp; Testing Discipline") + '</h3>',
                 '  <p>' + item.containment + '</p>',
                 '</div>',
                 '<div class="gallery-credit-box">',

@@ -81,6 +81,34 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="hp-thermal-refresh-title">
+<h2 id="hp-thermal-refresh-title">HP Laptop Cooling Refresh: Thermal Interface Replacement &amp; Airflow Troubleshooting</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>HP laptop &middot; PTM7950 &middot; Cooling maintenance &middot; Updated <time datetime="2026-11-05">November 5, 2026</time></span></p>
+<p>I opened my HP laptop to replace its CPU thermal interface, using photos and a back-and-forth conversation with Microsoft Copilot to understand the cooling assembly. The work expanded into an airflow investigation when removing the heatsink revealed a thick mat of dust and lint across the radiator fins.</p>
+<h3>What I worked through</h3>
+<p>I identified the fan, copper heat pipe, CPU contact plate, and mounting points before removing the heatsink. That exposed the old compound on the CPU die and made the blockage in the fin stack visible. I then worked through preparing the contact surfaces and sizing the PTM7950 phase-change material for the CPU contact area.</p>
+<h3>What I learned with Copilot</h3>
+<ul><li><strong>Inspect the whole cooling path:</strong> thermal material transfers heat to the heatsink, but the fins also need clear airflow. The dust buildup was a separate issue from the old compound.</li><li><strong>Distinguish the die from the package:</strong> the small CPU contact surface is different from the larger surrounding package. That distinction helped me understand where the replacement material belonged.</li><li><strong>Check power connections during reassembly:</strong> on this HP, I found that the battery needed to be plugged in for it to boot. This is my observation on this machine; I have not established whether it is a model-wide requirement.</li></ul>
+<h3>Completed outcome</h3>
+<p>The thermal-interface replacement is finished, the laptop boots, and temperatures are looking good in my follow-up use. I have not recorded numerical before-and-after temperatures or a controlled benchmark, so the result is a successful practical repair rather than a measured temperature-reduction claim.</p>
+<p><a href="gallery.html#repair-01-cooling-assembly">View the four HP repair photos and their individual lessons &rarr;</a></p>
+<p class="credit"><strong>AI collaboration credit:</strong> I performed the hardware work and took the photographs. Microsoft Copilot helped me interpret the images and work through the repair questions. OpenAI Codex reviewed the conversation, organized the photos, wrote these project notes, and integrated the gallery and website updates using my follow-up observations.</p><ul class="chips"><li>HP laptop</li><li>Cooling maintenance</li><li>PTM7950</li><li>Airflow diagnosis</li><li>Microsoft Copilot</li><li>OpenAI Codex</li></ul>
+</section>
+
+<section class="project-entry" aria-labelledby="macbook-2011-battery-removal-title">
+<h2 id="macbook-2011-battery-removal-title">2011 MacBook Pro Battery Removal: Stripped Screws, Power Isolation &amp; Learning from Photos</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>2011 MacBook Pro &middot; Battery removal &middot; Plastic spudger &middot; Updated <time datetime="2026-11-05">November 5, 2026</time></span></p>
+<p>I started removing the battery from my always-plugged-in 2011 MacBook Pro, hoping to make it lighter. A stripped battery mounting screw, uncertainty about what still held the battery, and another damaged screw near the logic board turned this into a lesson in careful disassembly and verifying assumptions.</p>
+<h3>The obstacle and the change in priority</h3>
+<p>After reporting that the first screw was out, I examined the battery connector and clearance around the logic board. During the attempt, I reported a brief possible spark when a screw or metal screwdriver contacted exposed contacts near the still-connected battery. I stopped to reassess rather than continue rushing the disassembly. I reported no burnt smell; that observation did not establish that the circuitry was undamaged.</p>
+<h3>What I learned with Copilot</h3>
+<ul><li><strong>A photo interpretation can be wrong:</strong> Copilot initially thought the battery was disconnected. My next close-up and clarification showed that it was still connected, changing the assessment.</li><li><strong>Mechanical removal and electrical disconnection are separate:</strong> freeing a mounting screw or moving the battery does not prove that the connector is unplugged.</li><li><strong>The plastic spudger worked:</strong> switching to the nonmetal tool let me disconnect the battery, and the final photo shows the empty board socket and exposed pins.</li><li><strong>Keep uncertain explanations provisional:</strong> the chat speculated about interference under the logic board, but it did not verify that logic-board removal was necessary.</li></ul>
+<h3>Current status and remaining work</h3>
+<p>Battery disconnection is the latest confirmed milestone. The overall project remains in progress: final resolution of the remaining fastener and removal path, complete reassembly, and a functional boot test have not been documented. The photos also do not prove whether the reported short caused any damage.</p>
+<p><a href="gallery.html#repair-05-stripped-battery-screw">View the six MacBook repair photos and the evolving diagnosis &rarr;</a></p>
+<p class="credit"><strong>AI collaboration credit:</strong> I performed the hardware work and took the photographs. Microsoft Copilot helped me interpret the images and work through the repair questions. OpenAI Codex reviewed the conversation, organized the photos, wrote these project notes, and integrated the gallery and website updates using my follow-up observations.</p><ul class="chips"><li>2011 MacBook Pro</li><li>Battery removal</li><li>Stripped screws</li><li>Power isolation</li><li>Microsoft Copilot</li><li>OpenAI Codex</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="tailscale-wake-lock-study-reader-title">
 <h2 id="tailscale-wake-lock-study-reader-title">Private Tailscale Reference Reader &amp; Screen Wake Lock Persistence: Continuous Community Study Web App</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Tailscale Mesh HTTPS &middot; Screen Wake Lock API &middot; Alpine Linux OpenRC Supervision &middot; SQLite Caching &middot; Completed <time datetime="2026-11-02">November 2, 2026</time></span></p>
@@ -1849,7 +1877,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-03T09:25:00-05:00">November 3, 2026 at 9:25:00 AM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-05T09:02:08-05:00">November 5, 2026 at 9:02:08 AM EST</time></p>
 				<p class="footer-version">Version v2.6.356 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
