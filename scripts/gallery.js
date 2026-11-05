@@ -1503,22 +1503,22 @@
         },
         {
             id: "lenovo-yoga-battery-teardown",
-            title: "Hardware Servicing: Lenovo Yoga Internal Battery Teardown & Spec Verification",
+            title: "Hardware Servicing: Lenovo IdeaPad Internal Disassembly & RAM Replacement",
             category: "hardware",
             categoryLabel: "Hardware Repair & Maintenance",
             badgeClass: "badge-info",
             image: "images/gallery/approved2/lenovo-yoga-battery-internal-teardown.jpg",
             thumb: "images/gallery/approved2/lenovo-yoga-battery-internal-teardown-thumb.jpg",
-            tags: ["Lenovo Yoga", "Hardware Teardown", "Battery Replacement", "Hardware Maintenance"],
-            summary: "Performing internal chassis disassembly on a Lenovo Yoga laptop, verifying battery model specs (L18C3PF7, 4670mAh / 52.5Wh) and mounting points.",
-            sandboxObservation: "High-detail internal photograph of an opened Lenovo laptop chassis showing the internal lithium-ion battery pack label ('Model L18C3PF7, Typical Capacity 4670mAh / 52.5Wh, Rating 11.4V') and surrounding motherboard ribbon routing.",
-            technicalBreakdown: "Servicing modern thin-and-light convertible laptops requires careful disengagement of perimeter plastic retention clips and disconnecting the multi-pin battery header before removing retaining screws to prevent accidental short circuits.",
+            tags: ["Lenovo IdeaPad", "Hardware Teardown", "RAM Replacement", "Hardware Maintenance"],
+            summary: "Performing internal chassis disassembly on a Lenovo IdeaPad laptop, opened up for memory (RAM) replacement/upgrade and internal component inspection.",
+            sandboxObservation: "High-detail internal photograph of an opened Lenovo IdeaPad laptop chassis showing the motherboard layout, installed battery pack (Model L18C3PF7), internal ribbon routing, and access to the system memory assembly.",
+            technicalBreakdown: "Servicing Lenovo IdeaPad laptops requires removing perimeter underside screws, carefully releasing internal chassis retention clips, and disconnecting the main battery header before handling SODIMM memory modules or internal circuitry to avoid electrostatic damage.",
             defensePlaybook: [
-                                "Model Code Verification: Cross-reference exact OEM battery part numbers (L18C3PF7) and voltage ratings (11.4V) before ordering replacement cells.",
-                                "ESD Safety Protocols: Wear grounded anti-static wrist straps and disconnect battery power before touching internal logic components."
+                                "ESD & Power Isolation: Disconnect the battery terminal before reseating or installing new RAM modules to prevent transient board shorts.",
+                                "Memory Compatibility Verification: Match DDR SODIMM voltage, clock speed, and channel density specs before installing memory upgrades."
                 ],
             containment: "Executed on an ESD-safe physical hardware workstation.",
-            credit: "Hardware disassembly and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+            credit: "Hardware servicing and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
             id: "linux-mint-lenovo-yoga-telemetry",
@@ -1541,38 +1541,38 @@
         },
         {
             id: "dual-workstation-cross-platform-setup",
-            title: "Workstation Ergonomics: Dual-System macOS & Windows Multi-Screen Collaboration",
+            title: "Workstation Ergonomics: Dual macOS & Windows Side-by-Side Setup",
             category: "media",
             categoryLabel: "Workstation Ergonomics & Systems Integration",
             badgeClass: "badge-info",
             image: "images/gallery/approved2/dual-workstation-cross-platform-desk-setup.jpg",
             thumb: "images/gallery/approved2/dual-workstation-cross-platform-desk-setup-thumb.jpg",
-            tags: ["Cross-Platform", "macOS", "Windows", "Desk Setup", "Multi-Monitor", "Productivity"],
-            summary: "Operating a unified dual-workstation desk setup, running macOS Safari research tools alongside Windows engineering and document workflows.",
-            sandboxObservation: "Wide photograph of the desk setup showing a MacBook Pro displaying academic literature and research tools on Safari seamlessly alongside an adjacent primary Windows workstation running systems management utilities.",
-            technicalBreakdown: "Cross-platform desk ergonomics leverage software KVM switches (Synergy / Barrier) and shared network shares to unify keyboard, mouse, and clipboard buffers across differing OS kernels without physical cable swapping.",
+            tags: ["macOS", "Windows", "Desk Setup", "Multi-Screen", "Workstation", "Productivity"],
+            summary: "Capturing a dual-system desk setup running macOS and Windows concurrently side-by-side, utilizing both operating environments simultaneously with independent peripherals.",
+            sandboxObservation: "Desk photograph showcasing a MacBook Pro running macOS alongside a primary Windows desktop workstation, operating both systems concurrently side-by-side for parallel multitasking with independent mouse and keyboard inputs.",
+            technicalBreakdown: "Operating separate physical macOS and Windows machines side-by-side provides access to platform-specific workflows—such as macOS UNIX command-line utilities and Safari alongside Windows enterprise applications—without virtualization overhead or software KVM bridging.",
             defensePlaybook: [
-                                "Encrypted Clipboard Sharing: Ensure cross-platform KVM tools utilize TLS encryption to protect sensitive clipboard data transmitted across the local subnet.",
-                                "Display Profile Calibration: Calibrate color temperatures and display scaling across adjacent monitors to reduce visual fatigue during long coding sessions."
+                                "Workspace Layout & Ergonomics: Position dual screens within natural sightlines to minimize neck strain when switching visual focus between independent machines.",
+                                "Peripheral Organization: Keep distinct input devices organized and clearly assigned to avoid accidental input dispatch across adjacent workstations."
                 ],
-            containment: "Physical multi-machine personal productivity workstation.",
-            credit: "Workstation architecture and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+            containment: "Physical dual-machine personal productivity workstation.",
+            credit: "Workstation setup and photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
             id: "triple-monitor-cad-engineering-station",
-            title: "Engineering Command Center: Triple-Monitor Workstation for Automation & CAD",
+            title: "Engineering Command Center: Triple-Monitor Workstation for Automation, CAD & SQL Workflows",
             category: "hardware",
             categoryLabel: "Workstation Hardware & Industrial Automation",
             badgeClass: "badge-info",
             image: "images/gallery/approved2/triple-monitor-engineering-cad-station.jpg",
             thumb: "images/gallery/approved2/triple-monitor-engineering-cad-station-thumb.jpg",
-            tags: ["Triple Monitor", "CAD Station", "Industrial Automation", "Hardware Setup", "Engineering"],
-            summary: "Operating an enterprise-grade triple-monitor engineering workstation for complex computer-aided design (CAD), PLC programming, and automation workflows.",
-            sandboxObservation: "Photograph of an impressive three-display engineering desk setup displaying complex architectural CAD drawings, automation schematics, and monitoring consoles across an expansive panoramic visual workspace.",
-            technicalBreakdown: "Multi-head display topologies powered by dedicated NVIDIA Quadro / RTX GPUs allow engineers to simultaneously visualize real-time SCADA telemetry, ladder logic routines, and 3D mechanical assemblies without window switching.",
+            tags: ["Triple Monitor", "Engineering Setup", "Automation", "CAD Workstation", "SQL Server SSMS", "Hardware Setup"],
+            summary: "A panoramic triple-monitor engineering workstation setup capable of high-density workflows such as AutoCAD electrical drafting, industrial automation monitoring, and Microsoft SQL Server Management Studio (SSMS) database administration.",
+            sandboxObservation: "Photograph of a high-productivity three-display workstation configured in an engineering environment, providing the screen real estate required to run AutoCAD drawings, PLC automation consoles, or Microsoft SQL Server Management Studio (SSMS) queries in parallel.",
+            technicalBreakdown: "Triple-display topologies provide the visual bandwidth required for complex technical tasks, allowing engineers to dedicate separate screens to database development (querying relational tables in Microsoft SSMS), active CAD schematics, and system documentation without window congestion.",
             defensePlaybook: [
-                                "DisplayPort Daisy-Chaining: Utilize DisplayPort Multi-Stream Transport (MST) or dedicated high-bandwidth outputs to drive multiple high-resolution panels at full 60Hz.",
-                                "Workspace Organization: Dedicate central displays to active CAD design while flanking monitors host schematics, logs, and communication channels."
+                                "Multi-Display Bandwidth Planning: Ensure GPU video outputs and DisplayPort/HDMI standards support native multi-monitor resolutions at full 60Hz refresh rates.",
+                                "Workflow Real Estate Allocation: Structure window placement strategically across the three displays—such as SQL querying on one screen, design drawings on the center panel, and reference consoles on the third."
                 ],
             containment: "Physical engineering workstation deployment.",
             credit: "Engineering workspace photography by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
@@ -1636,41 +1636,41 @@
         },
         {
             id: "andronix-mobile-linux-setup",
-            title: "Mobile Linux: Andronix Chroot User Provisioning & Root Password Setup",
+            title: "Mobile Linux: Andronix Chroot Setup & Initializing X11VNC Desktop Access",
             category: "homelab",
             categoryLabel: "Mobile Linux & Chroot Environments",
             badgeClass: "badge-info",
             image: "images/gallery/approved2/andronix-mobile-linux-chroot-user-setup.jpg",
             thumb: "images/gallery/approved2/andronix-mobile-linux-chroot-user-setup-thumb.jpg",
-            tags: ["Andronix", "Ubuntu", "Mobile Linux", "chroot", "User Setup"],
-            summary: "Configuring persistent user accounts ('avanek') and root credentials in an Andronix Ubuntu chroot environment running on Android.",
-            sandboxObservation: "Mobile terminal interface displaying automated system provisioning: 'Setting root password... Adding user avanek... Setting full name to Andrew T... Applying system configuration', establishing a full Linux shell on Android.",
-            technicalBreakdown: "Andronix deploys containerized PRoot and Chroot Linux distributions on Android without requiring full kernel virtualization, providing an APT package manager and standard GNU utilities directly on mobile hardware.",
+            tags: ["Andronix", "Ubuntu", "Mobile Linux", "chroot", "X11VNC", "VNC Desktop"],
+            summary: "Provisioning user credentials and configuring an Andronix Ubuntu chroot environment on Android, working towards launching an X11VNC server for full graphical desktop access.",
+            sandboxObservation: "Mobile terminal capture showing automated system provisioning in Andronix ('Setting root password... Adding user avanek...'), preparing the mobile Linux chroot environment on the road to running an X11VNC desktop server for graphical access.",
+            technicalBreakdown: "Setting up Andronix on Android establishes an unprivileged or chrooted GNU/Linux environment. Configuring base user accounts and passwords is the prerequisite foundation before installing an X11 display server, window manager, and X11VNC daemon for remote graphical desktop access.",
             defensePlaybook: [
-                                "User Privilege Separation: Operate within unprivileged user accounts (avanek) for daily compiling rather than running exclusively as root.",
-                                "Storage Permission Binding: Bind Android shared storage (/sdcard) cleanly using termux-setup-storage to permit seamless file transfers."
+                                "VNC Security Hardening: Restrict X11VNC listener bindings to localhost when tunneling over SSH or require authenticated passwords for remote sessions.",
+                                "Chroot User Isolation: Operate within the configured user account rather than root for standard graphical userland sessions."
                 ],
             containment: "Executed within local mobile Linux chroot container.",
             credit: "Mobile Linux configuration and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
             id: "android-selinux-permissive-mounting",
-            title: "Android Security Architecture: SELinux Enforcing vs. Permissive Chroot Mounts",
+            title: "Mobile Linux Troubleshooting: Investigating Android Chroot Mounts & SELinux Restrictions",
             category: "homelab",
             categoryLabel: "Mobile Security & Kernel Architecture",
             badgeClass: "badge-info",
             image: "images/gallery/approved2/android-selinux-permissive-chroot-mounting.png",
             thumb: "images/gallery/approved2/android-selinux-permissive-chroot-mounting-thumb.jpg",
-            tags: ["Android", "SELinux", "Permissive", "chroot", "Kernel Security"],
-            summary: "Diagnosing Android SELinux Enforcing policy blocks that prevent mounting external chroot filesystems and learning corrective recovery steps.",
-            sandboxObservation: "Technical troubleshooting advisory from Google Gemini: 'Set SELinux to Permissive: Modern Android uses \"Enforcing\" mode, which blocks chroot mounting even if you have root privileges', detailing kernel policy mitigation.",
-            technicalBreakdown: "Security-Enhanced Linux (SELinux) in Android implements Mandatory Access Control (MAC). Even root (UID 0) processes are constrained by domain policies; transitioning to Permissive (setenforce 0) logs policy violations without blocking mount calls.",
+            tags: ["Android", "Mobile Linux", "chroot", "SELinux", "Troubleshooting"],
+            summary: "Troubleshooting hurdles encountered when attempting to get Linux running in a chroot on Android, researching whether SELinux Enforcing policies were blocking filesystem mount operations.",
+            sandboxObservation: "Screenshot of AI advisory notes consulted while troubleshooting mobile Linux on Android, reviewing whether SELinux Enforcing mode prevents chroot mounts and exploring permissive mode adjustments.",
+            technicalBreakdown: "Getting Linux distributions to run within Android often encounters permission roadblocks at the kernel level. Troubleshooting includes examining whether SELinux access policies (Enforcing vs. Permissive) are preventing loop mounts or filesystem bindings, or if alternative PRoot userland methods are required.",
             defensePlaybook: [
-                                "Minimal Permissive Windows: Return SELinux to Enforcing mode immediately after mounting filesystems to maintain kernel attack surface hardening.",
-                                "Custom Policy Compilation: Author targeted policy rules (.te) with chcon to allow specific mount operations without globally disabling SELinux."
+                                "Mount Failure Diagnosis: Check dmesg and logcat for avc: denied entries to confirm if mount errors stem from SELinux policies rather than missing filesystem modules.",
+                                "Minimal Policy Modification: Avoid leaving devices permanently in Permissive mode after testing, or utilize userland PRoot tools that avoid kernel mount restrictions altogether."
                 ],
-            containment: "Investigated within Android kernel security testing environment.",
-            credit: "Android security research and AI consultation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+            containment: "Investigated during mobile Linux Android troubleshooting.",
+            credit: "Android troubleshooting research and AI consultation by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
             id: "lenovo-yoga-windows-10-external-ssd",
