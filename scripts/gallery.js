@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 40 Workbench Captures across 5 Curated Categories
+ * - 51 Workbench Captures across 5 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -777,6 +777,216 @@
             ],
             containment: "Administered within official Autodesk enterprise and university subscription portals.",
             credit: "Issue identification, vendor coordination, and capture by Andrew Van Ek. Case study notes with Google DeepMind Antigravity AI."
+        },
+        // Academic Workflow & Blackboard Single Sign-On Automation
+        {
+            id: "blackboard-01-cas-login",
+            title: "Blackboard SSO Automation: GVSU Central Authentication Service (CAS) Entry",
+            category: "media",
+            categoryLabel: "Academic Workflow & SSO Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blackboard-automation/01-gvsu-cas-username.png",
+            thumb: "images/gallery/blackboard-automation/01-gvsu-cas-username-thumb.jpg",
+            tags: ["Blackboard", "macOS Automation", "GVSU CAS", "Single Sign-On", "Safari Scripting"],
+            summary: "Initial institutional login screen for Grand Valley State University CAS, the entry point targeted by the macOS desktop launch automation.",
+            sandboxObservation: "Initial state of the GVSU Central Authentication Service portal displaying the username input field and 'Keep me signed in' checkbox. This screen represented the first target of the automated Zsh and AppleScript launcher.",
+            technicalBreakdown: "The CAS portal serves as the primary SAML/OAuth identity gateway for university services. Scripted navigation via '/usr/bin/open -b com.apple.Safari https://my.gvsu.edu/' reliably triggers this page, but automated keystroke injection was rejected after security evaluations revealed window-focus drift risks.",
+            defensePlaybook: [
+                "Focus Isolation: Never inject unvalidated authentication keystrokes via desktop GUI automation; active focus changes can leak credentials into unintended windows.",
+                "Keychain Integration: Delegate initial credential recall to native system keychains rather than script variables."
+            ],
+            containment: "GVSU official identity provider accessed inside sandboxed Safari processes.",
+            credit: "Automation research, UI capture, and security architecture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "blackboard-02-password-entry",
+            title: "Blackboard SSO Automation: Identity Provider Password Authentication",
+            category: "media",
+            categoryLabel: "Academic Workflow & SSO Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blackboard-automation/02-gvsu-password-entry.png",
+            thumb: "images/gallery/blackboard-automation/02-gvsu-password-entry-thumb.jpg",
+            tags: ["Blackboard", "Password Authentication", "Credential Isolation", "Apple Events"],
+            summary: "Second-stage identity provider password challenge during the multi-tier university authentication handoff.",
+            sandboxObservation: "The secondary federated authentication prompt displaying 'Verify with your password'. Testing revealed coordinate-based clicking was brittle due to dynamic window offsets and browser viewport changes.",
+            technicalBreakdown: "Web forms rendered inside Safari WebContent processes are decoupled from the native macOS accessibility tree, preventing standard System Events accessibility queries from reliably targeting submit buttons without full DOM access.",
+            defensePlaybook: [
+                "Zero Credential Hardcoding: Eliminate all plaintext password storage in shell scripts, environment variables, or AppleScript files.",
+                "Native Password Managers: Allow Safari Password AutoFill backed by Secure Enclave encryption to handle form submission."
+            ],
+            containment: "Protected by university enterprise SSO and encrypted TLS session negotiation.",
+            credit: "Automation testing, security analysis, and UI capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "blackboard-03-touch-id-prompt",
+            title: "Blackboard SSO Automation: Biometric Touch ID & FIDO2 Challenge",
+            category: "media",
+            categoryLabel: "Academic Workflow & SSO Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blackboard-automation/03-touch-id-biometric-prompt.png",
+            thumb: "images/gallery/blackboard-automation/03-touch-id-biometric-prompt-thumb.jpg",
+            tags: ["Touch ID", "WebAuthn", "Biometric Authentication", "FIDO2", "macOS Security"],
+            summary: "Primary passwordless biometric challenge requesting Touch ID or hardware security key verification for university access.",
+            sandboxObservation: "GVSU verification modal prompting '@vaneka' for biometric verification ('Windows Hello, Touch ID, etc.'). The launcher was redesigned to yield execution control specifically for user Touch ID confirmation.",
+            technicalBreakdown: "WebAuthn / FIDO2 authentication binds cryptographic keypairs directly to the macOS Secure Enclave. Biometric Touch ID prompt execution requires physical capacitive presence, making full robotic automation intentionally impossible by security design.",
+            defensePlaybook: [
+                "Biometric Boundaries: Embrace biometric verification gates rather than attempting to circumvent hardware-enforced presence requirements.",
+                "Programmatic Delay Windows: Allow generous user interaction pauses in automation scripts to permit seamless Touch ID tapping."
+            ],
+            containment: "Enforced by hardware-level Apple Secure Enclave coprocessor and WebAuthn standards.",
+            credit: "Biometric integration analysis and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "blackboard-04-mfa-method-select",
+            title: "Blackboard SSO Automation: Multi-Factor Authentication (MFA) Fallback Menu",
+            category: "media",
+            categoryLabel: "Academic Workflow & SSO Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blackboard-automation/04-mfa-security-method-select.png",
+            thumb: "images/gallery/blackboard-automation/04-mfa-security-method-select-thumb.jpg",
+            tags: ["MFA", "Okta Verify", "Google Authenticator", "SMS 2FA", "Identity Security"],
+            summary: "Multi-channel MFA selector menu surfacing Okta Verify push notifications, Google Authenticator codes, SMS, and security keys.",
+            sandboxObservation: "Fallback verification options menu presented when primary Touch ID is bypassed. The initial AppleScript attempted to query accessibility labels such as 'Verify with something else' to reach SMS options.",
+            technicalBreakdown: "Modern Single Sign-On portals dynamically render fallback options in asynchronous JavaScript frames. Querying accessibility elements across asynchronous transitions frequently resulted in timeout exceptions under System Events.",
+            defensePlaybook: [
+                "Multi-Channel Verification: Maintain active secondary MFA authenticators (TOTP, hardware tokens) to prevent account lockout when primary biometrics fail.",
+                "Graceful Script Fallbacks: Ensure desktop automation gracefully halts when out-of-band MFA challenges are encountered."
+            ],
+            containment: "Multi-factor authentication handled across verified enterprise mobile channels.",
+            credit: "Authentication flow auditing and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "blackboard-05-sms-code-dispatch",
+            title: "Blackboard SSO Automation: Carrier SMS Transmission Dispatch",
+            category: "media",
+            categoryLabel: "Academic Workflow & SSO Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blackboard-automation/05-sms-code-dispatch.png",
+            thumb: "images/gallery/blackboard-automation/05-sms-code-dispatch-thumb.jpg",
+            tags: ["SMS 2FA", "Out-of-Band Auth", "Carrier Messaging", "Two-Factor Verification"],
+            summary: "SMS text dispatch confirmation screen requesting permission to transmit a one-time verification passcode over cellular networks.",
+            sandboxObservation: "GVSU verification dialog displaying 'Send a code via SMS to +1 xxx-xxx' with action button 'Receive a code via SMS'. Coordinate-based click scripts proved unreliable due to dynamic banner messages shifting button offsets.",
+            technicalBreakdown: "Carrier-dispatched SMS serves as an out-of-band verification channel. Automating the click without user verification risks triggering cellular rate-limiting or carrier messaging fees during repeated script execution.",
+            defensePlaybook: [
+                "Rate Limit Awareness: Avoid rapid automated polling on SMS endpoints to prevent telecommunication provider throttling and temporary account locks.",
+                "Push vs. SMS: Prioritize cryptographically signed push notifications (Okta / WebAuthn) over unencrypted carrier SMS."
+            ],
+            containment: "Out-of-band cellular transmission secured with one-time validity windows.",
+            credit: "UI interaction testing and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "blackboard-06-sms-code-entry",
+            title: "Blackboard SSO Automation: One-Time Passcode (OTP) Code Entry",
+            category: "media",
+            categoryLabel: "Academic Workflow & SSO Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blackboard-automation/06-sms-code-entry.png",
+            thumb: "images/gallery/blackboard-automation/06-sms-code-entry-thumb.jpg",
+            tags: ["OTP Entry", "Two-Factor Authentication", "Input Verification", "Session Security"],
+            summary: "Verification code entry prompt accepting the six-digit SMS passcode received on the authenticated mobile device.",
+            sandboxObservation: "The OTP entry modal presenting 'Enter Code' input field and 'Verify' submission button. This was the final hurdle in the authentication pipeline before establishing an authorized academic session.",
+            technicalBreakdown: "One-Time Passcodes (OTPs) feature ephemeral 3-to-5 minute expiration lifecycles. Automating OTP retrieval from macOS Messages via AppleScript introduces permission overhead (Full Disk Access) that compromises system sandboxing.",
+            defensePlaybook: [
+                "Ephemeral Token Security: Never persist one-time verification codes to disk or logs.",
+                "Manual User Entry: Keep the final 2FA verification step manual to ensure human intent behind session elevation."
+            ],
+            containment: "Time-limited, single-use authentication challenge.",
+            credit: "Security verification flow and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "blackboard-07-blackboard-dashboard",
+            title: "Blackboard SSO Automation: Authenticated GVSU Apps Portal & LMS Landing",
+            category: "media",
+            categoryLabel: "Academic Workflow & SSO Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blackboard-automation/07-authenticated-apps-blackboard-landing.png",
+            thumb: "images/gallery/blackboard-automation/07-authenticated-apps-blackboard-landing-thumb.jpg",
+            tags: ["Blackboard Ultra", "GVSU Apps", "Single Sign-On Landing", "Safari macOS", "Academic Workflow"],
+            summary: "Successfully authenticated university portal displaying direct access to Blackboard Ultra LMS, Google Drive, Banner, and academic tools.",
+            sandboxObservation: "The fully loaded 'my.gvsu.edu Apps Dashboard' in Safari, highlighting the 'Bb Ultra LMS Blackboard' launch icon. The desktop automation successfully delivered the student directly to this coursework hub without stored passwords.",
+            technicalBreakdown: "Once authenticated, the browser receives an encrypted session cookie scoped to '.gvsu.edu'. This grants seamless Single Sign-On (SSO) pass-through across Blackboard Ultra, Banner Self-Service, and Google Workspace without repeated credential challenges.",
+            defensePlaybook: [
+                "Cookie Scope Protection: Ensure institutional session cookies maintain 'Secure' and 'SameSite=Lax' flags to prevent cross-site request forgery.",
+                "Automated Shortcut Value: The refined launcher saves repetitive daily URL typing and portal navigation while maintaining 100% credential isolation."
+            ],
+            containment: "Fully authorized university session running in Safari on macOS.",
+            credit: "Workflow automation implementation and full desktop capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "phone-link-setup",
+            title: "Microsoft Phone Link: Cross-Device Windows 11 & Android Mobile Pairing",
+            category: "media",
+            categoryLabel: "Desktop & Mobile Integration",
+            badgeClass: "badge-info",
+            image: "images/gallery/phone-link-pairing-setup.png",
+            thumb: "images/gallery/phone-link-pairing-setup-thumb.jpg",
+            tags: ["Phone Link", "Windows 11", "Android Integration", "Cross-Device Sync", "Bluetooth BLE"],
+            summary: "Pairing and verifying Microsoft Phone Link on Windows 11 to synchronize mobile notifications, SMS, and calls with the workstation.",
+            sandboxObservation: "Windows Phone Link completion dialog announcing 'You're all set - Your mobile device is now ready to use with this PC' running on the primary workstation desktop alongside active homelab, Duino-Coin, and email windows.",
+            technicalBreakdown: "Microsoft Phone Link establishes an encrypted peer connection combining local Bluetooth Low Energy (BLE) proximity handshakes with Wi-Fi local network sockets, bridging mobile telephony, SMS, and clipboard data seamlessly without third-party cloud brokers.",
+            defensePlaybook: [
+                "Local Transport Isolation: Verify cross-device sync communicates directly across local subnets rather than relaying plaintext data through external cloud servers.",
+                "Device Unlinking Audits: Periodically review connected devices in Windows Settings to revoke access for decommissioned hardware."
+            ],
+            containment: "Encrypted local Bluetooth and Wi-Fi transport on secure personal workstation.",
+            credit: "Cross-device workstation configuration and capture by Andrew Van Ek. Technical summary compiled with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "repair-11-hp-motherboard-battery-check",
+            title: "HP Laptop: Motherboard Assembly & Internal Battery Reconnection",
+            category: "hardware",
+            categoryLabel: "HP Cooling Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/repairs/11-hp-motherboard-battery-check.jpg",
+            thumb: "images/gallery/repairs/11-hp-motherboard-battery-check-thumb.jpg",
+            tags: ["HP laptop", "Hardware Repair", "Battery Check", "Assembly", "Completed"],
+            summary: "Inspecting motherboard seating, cooling pipe alignment, and battery reconnection on the HP laptop following PTM7950 application.",
+            sandboxObservation: "Overhead view of the opened HP laptop showing the cleaned cooling assembly, fan header, motherboard circuitry, and battery connector securely seated in place prior to bottom cover reinstallation.",
+            technicalBreakdown: "Physical inspection of internal ribbon cables, antenna leads, and battery connectors prevents pinch hazards and thermal throttling. Confirmed that the battery must be electrically connected to complete the power-on circuit on this specific HP motherboard revision.",
+            defensePlaybook: [
+                "Fastener Torque Management: Avoid overtightening heatsink retention screws to ensure even thermal pressure without cracking silicon dies.",
+                "Boot Verification: Always verify basic POST and fan spin before fully driving case screws."
+            ],
+            containment: "Clean ESD-safe hardware workbench assembly.",
+            credit: "Hardware repair, photography, and bench assembly by Andrew Van Ek. Documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "repair-12-macbook-chassis-battery-bay",
+            title: "2011 MacBook Pro: Full Chassis & Battery Bay Overview",
+            category: "hardware",
+            categoryLabel: "MacBook Pro Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/repairs/12-macbook-chassis-battery-bay.jpg",
+            thumb: "images/gallery/repairs/12-macbook-chassis-battery-bay-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Unibody Chassis", "Battery Bay", "Hardware Teardown"],
+            summary: "Full internal architectural layout of the 2011 unibody MacBook Pro chassis, detailing the battery compartment, hard drive bracket, and optical bay.",
+            sandboxObservation: "Comprehensive internal view of the aluminum unibody enclosure with the bottom panel removed, revealing the large multi-cell lithium-polymer battery pack, SATA drive bay, SuperDrive optical unit, and main logic board.",
+            technicalBreakdown: "The 2011 unibody MacBook Pro architecture utilizes tri-wing security fasteners to secure the battery pack. Understanding the proximity of the battery interface to the sensitive logic board power rails is critical to preventing accidental electrical shorts during servicing.",
+            defensePlaybook: [
+                "Complete Power Isolation: Disconnect the battery terminal immediately upon opening unibody MacBooks before attempting any screw removal.",
+                "Non-Conductive Tooling: Exclusively utilize plastic spudgers and insulated tools near exposed board power rails."
+            ],
+            containment: "Physical hardware teardown in isolated bench environment.",
+            credit: "Hardware disassembly and photography by Andrew Van Ek. Documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "repair-13-macbook-stripped-screw-macro",
+            title: "2011 MacBook Pro: Stripped Fastener & Retention Bracket Close-Up",
+            category: "hardware",
+            categoryLabel: "MacBook Pro Maintenance",
+            badgeClass: "badge-info",
+            image: "images/gallery/repairs/13-macbook-stripped-screw-macro.jpg",
+            thumb: "images/gallery/repairs/13-macbook-stripped-screw-macro-thumb.jpg",
+            tags: ["2011 MacBook Pro", "Stripped Screw", "Macro Forensics", "Hardware Servicing"],
+            summary: "High-magnification macro capture detailing a stripped mounting fastener and the aluminum battery retention bracket.",
+            sandboxObservation: "Extreme close-up showing the worn drive recess of a damaged mounting screw head securing the battery retention tab to the unibody chassis. The rounding of the fastener head illustrates the risk of incorrect driver sizing.",
+            technicalBreakdown: "Consumer electronics utilize soft aluminum and zinc-plated alloy screws easily stripped by improper bit geometry (e.g. using standard Phillips #00 on Japanese Industrial Standard or proprietary tri-wing fasteners). Macro inspection confirms driver cam-out damage and informs extraction techniques (rubber-band friction extraction or micro-pliers).",
+            defensePlaybook: [
+                "Driver Bit Matching: Verify exact fastener head geometry (JIS vs. Phillips vs. Torx vs. Tri-point) under magnification before applying rotational torque.",
+                "Cam-Out Prevention: Apply firm axial downward force to keep driver bits fully seated in shallow screw recesses."
+            ],
+            containment: "Physical fastener inspection on MacBook unibody chassis.",
+            credit: "Macro photography and repair analysis by Andrew Van Ek. Documentation co-authored with Google DeepMind Antigravity AI."
         }
     ];
 
