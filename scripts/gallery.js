@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 101 Workbench Captures across 6 Curated Categories
+ * - 117 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,358 @@
     "use strict";
 
     var galleryItems = [
+{
+            id: "anydesk-vnc-viewer-comparison",
+            title: "Remote desktop: comparing VNC viewers through AnyDesk",
+            category: "homelab",
+            categoryLabel: "Workstations & Troubleshooting",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/anydesk-vnc-viewer-comparison.png",
+            thumb: "images/gallery/approved3/anydesk-vnc-viewer-comparison-thumb.jpg",
+            tags: [
+                        "Homelab"
+            ],
+            summary: "An AnyDesk session shows a Linux desktop with a Codex terminal discussing a frozen image and alternatives including RealVNC Viewer, UltraVNC Viewer, macOS Screen Sharing, and TigerVNC.",
+            sandboxObservation: "An AnyDesk session shows a Linux desktop with a Codex terminal discussing a frozen image and alternatives including RealVNC Viewer, UltraVNC Viewer, macOS Screen Sharing, and TigerVNC.",
+            technicalBreakdown: "A remote desktop troubleshooting discussion with several viewer options on screen.",
+            defensePlaybook: [
+                        "Original filename: B019249__alt viewerez_thru_anydex.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The capture shows suggestions, without a subsequent viewer test or confirmed resolution.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "xp-butterfly-desktop",
+            title: "Windows XP: butterflies over the desktop",
+            category: "security",
+            categoryLabel: "XP VM Experiments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/xp-butterfly-desktop.png",
+            thumb: "images/gallery/approved3/xp-butterfly-desktop-thumb.jpg",
+            tags: [
+                        "Windows XP"
+            ],
+            summary: "Butterfly graphics appear over an Explorer window and Windows Components Wizard in a running Windows XP VirtualBox VM.",
+            sandboxObservation: "Butterfly graphics appear over an Explorer window and Windows Components Wizard in a running Windows XP VirtualBox VM.",
+            technicalBreakdown: "The filename labels this a malware/virus experiment. The visible effect is a butterfly overlay; the image alone does not identify the executable or establish malicious behavior.",
+            defensePlaybook: [
+                        "Original filename: ButterflyOnDesktopMalwareVirusXP.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "A single frame records the visual effect; persistence and other behavior are not established.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "xp-coronavirus-ransom-note",
+            title: "CoronaVirus: ransom message in an XP VM",
+            category: "security",
+            categoryLabel: "XP VM Experiments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/xp-coronavirus-ransom-note.png",
+            thumb: "images/gallery/approved3/xp-coronavirus-ransom-note-thumb.jpg",
+            tags: [
+                        "Windows XP"
+            ],
+            summary: "A running Windows XP VirtualBox VM displays a message claiming that all files have been encrypted, with payment/contact instructions and Explorer open beside it.",
+            sandboxObservation: "A running Windows XP VirtualBox VM displays a message claiming that all files have been encrypted, with payment/contact instructions and Explorer open beside it.",
+            technicalBreakdown: "General background: ransomware can encrypt files or block access while demanding payment. The note is an on-screen claim rather than independent proof of encryption. <a href=\"https://support.microsoft.com/en-us/windows/security/protect-your-pc-from-ransomware\" target=\"_blank\" rel=\"noopener noreferrer\">Microsoft: ransomware background</a>.",
+            defensePlaybook: [
+                        "Original filename: CoronaVirus.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The screenshot records the ransom message, without a file-content comparison or recovery result.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "xp-coronavirus-explorer-restriction",
+            title: "CoronaVirus follow-up: Explorer restriction message",
+            category: "security",
+            categoryLabel: "XP VM Experiments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/xp-coronavirus-explorer-restriction.png",
+            thumb: "images/gallery/approved3/xp-coronavirus-explorer-restriction-thumb.jpg",
+            tags: [
+                        "Windows XP"
+            ],
+            summary: "Windows XP Explorer is open in VirtualBox with a Restrictions dialog saying the operation was cancelled due to restrictions in effect on the computer.",
+            sandboxObservation: "Windows XP Explorer is open in VirtualBox with a Restrictions dialog saying the operation was cancelled due to restrictions in effect on the computer.",
+            technicalBreakdown: "The filename connects this capture to the CoronaVirus experiment and an Explorer closing issue. The dialog documents a restriction, without showing its underlying cause.",
+            defensePlaybook: [
+                        "Original filename: CoronaVirus2FileExplroerCloseIssue.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "A still image cannot establish whether the window could subsequently be closed.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "smb-removable-volume-ntfs-discussion",
+            title: "SMB troubleshooting: discussing a removable USB volume",
+            category: "homelab",
+            categoryLabel: "Workstations & Troubleshooting",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/smb-removable-volume-ntfs-discussion.png",
+            thumb: "images/gallery/approved3/smb-removable-volume-ntfs-discussion-thumb.jpg",
+            tags: [
+                        "Homelab"
+            ],
+            summary: "A Codex conversation discusses a Windows SMB issue involving a removable I: volume and proposes an NTFS reformat, with confirmation requested before erasing the drive.",
+            sandboxObservation: "A Codex conversation discusses a Windows SMB issue involving a removable I: volume and proposes an NTFS reformat, with confirmation requested before erasing the drive.",
+            technicalBreakdown: "The discussion treats removable-volume handling as a possible explanation and explicitly says NTFS is not guaranteed to resolve it.",
+            defensePlaybook: [
+                        "Original filename: criticalthinkingonsmbproject.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "This capture documents a proposal, without a completed format or successful share test.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "smb-local-share-diagnostic-test",
+            title: "SMB troubleshooting: a local share comparison test",
+            category: "homelab",
+            categoryLabel: "Workstations & Troubleshooting",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/smb-local-share-diagnostic-test.png",
+            thumb: "images/gallery/approved3/smb-local-share-diagnostic-test-thumb.jpg",
+            tags: [
+                        "Homelab"
+            ],
+            summary: "A terminal shows ACL and share checks for a temporary local C: share, a macOS mount_smbfs command, the user reporting that it worked, and cleanup commands with exit code 0.",
+            sandboxObservation: "A terminal shows ACL and share checks for a temporary local C: share, a macOS mount_smbfs command, the user reporting that it worked, and cleanup commands with exit code 0.",
+            technicalBreakdown: "The visible conversation uses a local-disk share as a comparison for the removable-volume problem. It records a successful test report for the temporary share.",
+            defensePlaybook: [
+                        "Original filename: evenmoretroubleshootinglateronSMBProj.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The result shown concerns the temporary local share; a final fix for the original USB share is not pictured.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "xp-fake-bsod-browser-popup",
+            title: "XP browser experiment: fake BSOD and support popup",
+            category: "security",
+            categoryLabel: "XP VM Experiments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/xp-fake-bsod-browser-popup.png",
+            thumb: "images/gallery/approved3/xp-fake-bsod-browser-popup-thumb.jpg",
+            tags: [
+                        "Windows XP"
+            ],
+            summary: "Internet Explorer in an XP VirtualBox VM shows a blue error-style page and a warning popup containing a support phone number.",
+            sandboxObservation: "Internet Explorer in an XP VirtualBox VM shows a blue error-style page and a warning popup containing a support phone number.",
+            technicalBreakdown: "The filename attributes this to an Enderman experiment after allowing blocked content and reports that closing the window and popup did not work. General background: scareware uses alarming warnings to pressure users. <a href=\"https://support.microsoft.com/en-us/edge/prevent-online-scams-with-the-scareware-blocker-in-microsoft-edge\" target=\"_blank\" rel=\"noopener noreferrer\">Microsoft: scareware background</a>.",
+            defensePlaybook: [
+                        "Original filename: FakeBSODAndPopupAfterAllowingMicrosoftXPEXPLORERBlockedContent(Enderman)AndClosingExplorerWindowandPopUpDoesNotWork.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The blue page is visible inside the browser. It is not evidence of an actual operating-system crash.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "service-desk-triple-screen-setup",
+            title: "IT service desk: late Saturday desk setup",
+            category: "homelab",
+            categoryLabel: "Workstations & Troubleshooting",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/service-desk-triple-screen-setup.jpg",
+            thumb: "images/gallery/approved3/service-desk-triple-screen-setup-thumb.jpg",
+            tags: [
+                        "Homelab"
+            ],
+            summary: "A curved service desk holds a laptop, two external monitors, a keyboard, mouse, and desk accessories.",
+            sandboxObservation: "A curved service desk holds a laptop, two external monitors, a keyboard, mouse, and desk accessories.",
+            technicalBreakdown: "The filename describes a late Saturday night IT service desk setup with a Mac for three screens.",
+            defensePlaybook: [
+                        "Original filename: itservicedesklatesaturdaynightsetupandmac_fortriplescrn.jpg"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The photograph documents the workstation arrangement; it does not establish the work completed during the shift.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "xp-krotten-dialog",
+            title: "Krotten: dialog in a Windows XP VM",
+            category: "security",
+            categoryLabel: "XP VM Experiments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/xp-krotten-dialog.png",
+            thumb: "images/gallery/approved3/xp-krotten-dialog-thumb.jpg",
+            tags: [
+                        "Windows XP"
+            ],
+            summary: "A Windows XP VirtualBox VM shows Explorer with sample icons and a dialog containing garbled text.",
+            sandboxObservation: "A Windows XP VirtualBox VM shows Explorer with sample icons and a dialog containing garbled text.",
+            technicalBreakdown: "The filename identifies this as Krotten. The visible evidence is the Explorer window and dialog; the text encoding prevents a reliable reading of the message.",
+            defensePlaybook: [
+                        "Original filename: Krotten.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The capture does not establish registry changes, encryption, or recovery.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "mda-monitor-startallback-desk",
+            title: "Laptop and monitor desk setup",
+            category: "homelab",
+            categoryLabel: "Workstations & Troubleshooting",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/mda-monitor-startallback-desk.jpg",
+            thumb: "images/gallery/approved3/mda-monitor-startallback-desk-thumb.jpg",
+            tags: [
+                        "Homelab"
+            ],
+            summary: "A laptop and several monitors share a desk with a keyboard, mouse, headphones, and connected cables.",
+            sandboxObservation: "A laptop and several monitors share a desk with a keyboard, mouse, headphones, and connected cables.",
+            technicalBreakdown: "The filename mentions MDA, a monitor, and StartAllBack. The photograph shows the physical workstation arrangement.",
+            defensePlaybook: [
+                        "Original filename: mda w my monitor &amp; startallback.jpg"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "No installation process or completed software configuration is documented in the photograph.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "messages-early-generative-ai-troubleshooting",
+            title: "Messages troubleshooting: early generative AI search",
+            category: "media",
+            categoryLabel: "Everyday AI Exploration",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/messages-early-generative-ai-troubleshooting.jpg",
+            thumb: "images/gallery/approved3/messages-early-generative-ai-troubleshooting-thumb.jpg",
+            tags: [
+                        "AI"
+            ],
+            summary: "A phone Google search for a Messages sending problem displays an experimental generative AI response with possible causes and suggested troubleshooting steps.",
+            sandboxObservation: "A phone Google search for a Messages sending problem displays an experimental generative AI response with possible causes and suggested troubleshooting steps.",
+            technicalBreakdown: "The filename frames this as an early generative AI troubleshooting capture. It shows search output and suggestions.",
+            defensePlaybook: [
+                        "Original filename: messages_troubleshooting_early_gen_ai_stages1.jpg"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The image does not show which suggestion was tried or whether message sending was restored.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "andronix-process-terminated",
+            title: "Andronix setup: process terminated message",
+            category: "vms",
+            categoryLabel: "Mobile Linux & Emulation",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/andronix-process-terminated.jpg",
+            thumb: "images/gallery/approved3/andronix-process-terminated-thumb.jpg",
+            tags: [
+                        "Mobile"
+            ],
+            summary: "The Andronix home screen on a phone displays a notice headed Process Completed (Signal 9) - Termux Error, above Linux Distribution and Andronix Modded OS cards.",
+            sandboxObservation: "The Andronix home screen on a phone displays a notice headed Process Completed (Signal 9) - Termux Error, above Linux Distribution and Andronix Modded OS cards.",
+            technicalBreakdown: "The filename describes setting up Andronix and a terminated process. This is a capture of the app and its error notice.",
+            defensePlaybook: [
+                        "Original filename: settingupandronixprocterminated.jpg"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "A working Linux session or resolved setup error is not shown.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "limbo-mobile-windows-attempt",
+            title: "Trying Windows on mobile through Limbo PC Emulator",
+            category: "vms",
+            categoryLabel: "Mobile Linux & Emulation",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/limbo-mobile-windows-attempt.jpg",
+            thumb: "images/gallery/approved3/limbo-mobile-windows-attempt-thumb.jpg",
+            tags: [
+                        "Mobile"
+            ],
+            summary: "The Limbo x86 PC Emulator configuration screen shows machine settings including CPU model EPYC and eight CPU cores.",
+            sandboxObservation: "The Limbo x86 PC Emulator configuration screen shows machine settings including CPU model EPYC and eight CPU cores.",
+            technicalBreakdown: "The filename describes an attempt to run Windows on a mobile device through Limbo. The image shows emulator configuration.",
+            defensePlaybook: [
+                        "Original filename: tryingtorunwindowsonmobilethrutheLimboPCEmu.jpg"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "There is no Windows boot screen or completed guest startup in this capture.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "tv-external-display-library",
+            title: "TV as an external display at the library",
+            category: "homelab",
+            categoryLabel: "Workstations & Troubleshooting",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/tv-external-display-library.jpg",
+            thumb: "images/gallery/approved3/tv-external-display-library-thumb.jpg",
+            tags: [
+                        "Homelab"
+            ],
+            summary: "A laptop sits on a library desk beneath a large display showing a purple desktop, with cables and a speaker nearby.",
+            sandboxObservation: "A laptop sits on a library desk beneath a large display showing a purple desktop, with cables and a speaker nearby.",
+            technicalBreakdown: "The filename describes using a TV as an external display at the library.",
+            defensePlaybook: [
+                        "Original filename: TV_As_EXT_Lib.jpg"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The photo records the display arrangement, without establishing the connection method or task outcome.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "ai-scam-call-advice-chat",
+            title: "Exploring scam-call advice with AI",
+            category: "media",
+            categoryLabel: "Everyday AI Exploration",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/ai-scam-call-advice-chat.png",
+            thumb: "images/gallery/approved3/ai-scam-call-advice-chat-thumb.jpg",
+            tags: [
+                        "AI"
+            ],
+            summary: "A phone chat displays suggestions about spam-filter apps and carrier call-protection services, followed by a section about whether scammers can record a voice.",
+            sandboxObservation: "A phone chat displays suggestions about spam-filter apps and carrier call-protection services, followed by a section about whether scammers can record a voice.",
+            technicalBreakdown: "The filename describes using AI to explore how to thwart scam calls. The screenshot records advice from the chat.",
+            defensePlaybook: [
+                        "Original filename: usingaitofigureouthowtothwartscaamcalls.PNG"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "It does not show any service being enabled, advice being verified, or a reduction in scam calls.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
+{
+            id: "xp-viralock-file-properties",
+            title: "ViraLock experiment: file properties in XP",
+            category: "security",
+            categoryLabel: "XP VM Experiments",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/xp-viralock-file-properties.png",
+            thumb: "images/gallery/approved3/xp-viralock-file-properties-thumb.jpg",
+            tags: [
+                        "Windows XP"
+            ],
+            summary: "A Windows XP VirtualBox VM displays Explorer and a file Properties dialog with file type, location, size, and timestamps.",
+            sandboxObservation: "A Windows XP VirtualBox VM displays Explorer and a file Properties dialog with file type, location, size, and timestamps.",
+            technicalBreakdown: "The filename identifies this as a ViraLock/Enderman experiment and says the current file broke. The Properties window records file metadata rather than a direct inspection of its contents.",
+            defensePlaybook: [
+                        "Original filename: ViraLockEndermanBrokeCurrentFile.png"
+            ],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The image alone cannot establish the mechanism of file damage or whether the file was later restored.",
+            credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
+},
         {
             "id": "pixel-buds-firmware-chrome-app",
             "title": "Pixel Buds: firmware maintenance through a Chrome app",
