@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 98 Workbench Captures across 5 Curated Categories
+ * - 101 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,79 @@
     "use strict";
 
     var galleryItems = [
+        {
+            "id": "pixel-buds-firmware-chrome-app",
+            "title": "Pixel Buds: firmware maintenance through a Chrome app",
+            "category": "hardware",
+            "categoryLabel": "Device Updates & Chrome Apps",
+            "badgeClass": "badge-info",
+            "image": "images/gallery/pixel-buds-firmware-chrome-app.png",
+            "tags": [
+                "Pixel Buds",
+                "Firmware Update",
+                "Chrome App",
+                "macOS"
+            ],
+            "summary": "Updating Pixel Buds from my Mac through an installed Chrome app—one example of my hands-on work keeping a wide variety of devices up to date.",
+            "sandboxObservation": "The Pixel Buds firmware-update window is open on macOS and displays “Checking the update…” while reconnecting to the earbuds. The app window also shows an Uninstall control.",
+            "technicalBreakdown": "This capture brings together device firmware maintenance and Chrome app installation: the Pixel Buds update interface is running in its own app window on the Mac.",
+            "defensePlaybook": [
+                "Keep a wide variety of devices current, including accessories such as earbuds.",
+                "Use the Pixel Buds interface as an installed Chrome app."
+            ],
+            "containment": "Captured November 6, 2026. The screenshot records an update check and reconnection in progress; it does not show a completed firmware update.",
+            "credit": "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex.",
+            "thumb": "images/gallery/pixel-buds-firmware-chrome-app.png"
+        },
+        {
+            "id": "blueai-side-hustle-workflow",
+            "title": "BlueAI: exploring a side-hustle workflow",
+            "category": "media",
+            "categoryLabel": "BlueAI & Everyday Automation",
+            "badgeClass": "badge-info",
+            "image": "images/gallery/blueai-side-hustle-workflow.png",
+            "tags": [
+                "BlueAI",
+                "BlueStacks Air",
+                "AI Agent",
+                "Side Hustle"
+            ],
+            "summary": "I work with BlueAI on a side-hustle project. This capture shows the BlueStacks Air environment with AI Agent mode activated.",
+            "sandboxObservation": "BlueStacks Air is open on the Mac with the banner “BlueStacks Air AI Agent mode activated.” The home screen shows the app search field and installed app shortcuts.",
+            "technicalBreakdown": "The screenshot documents the Android app environment used for my BlueAI work. The activated agent-mode banner is visible, while the specific task and its results are not shown.",
+            "defensePlaybook": [
+                "Explore a side-hustle workflow with BlueAI."
+            ],
+            "containment": "Captured November 6, 2026. This is a view of the working environment; no earnings or completed business outcome are documented in the image.",
+            "playbookHeading": "What I Am Working On",
+            "outcomeHeading": "Progress &amp; Documented Outcome",
+            "credit": "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex.",
+            "thumb": "images/gallery/blueai-side-hustle-workflow.png"
+        },
+        {
+            "id": "codex-windows-xp-vm-setup",
+            "title": "Codex on Windows: setting up an XP malware-testing VM",
+            "category": "vms",
+            "categoryLabel": "AI-Assisted Retro VM Setup",
+            "badgeClass": "badge-info",
+            "image": "images/gallery/codex-windows-xp-vm-setup.png",
+            "tags": [
+                "Codex CLI",
+                "Windows XP",
+                "VirtualBox",
+                "Malware Lab"
+            ],
+            "summary": "Using ChatGPT’s Codex CLI on my Windows machine to help install and set up a Windows XP virtual machine for malware detonation and testing.",
+            "sandboxObservation": "Windows XP Professional Setup is running in Oracle VirtualBox behind a Codex CLI terminal. Codex reports restarting the saved VM and shows a successful VM-start message.",
+            "technicalBreakdown": "Codex is assisting with the VM setup from the Windows host. The visible terminal uses VirtualBox’s VBoxManage command-line interface to inspect and start the Windows XP VM while installation continues.",
+            "defensePlaybook": [
+                "Prepare a separate Windows XP VM for malware detonation and testing.",
+                "Complete and verify isolation checks before using the VM for that purpose."
+            ],
+            "containment": "Captured November 5, 2026, during setup. The visible Codex message says desktop setup and final isolation checks are still pending. This image documents preparation, not a malware detonation or verification that containment is complete.",
+            "credit": "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex.",
+            "thumb": "images/gallery/codex-windows-xp-vm-setup.png"
+        },
         // Hardware repair photographs and documentation: Andrew Van Ek, Microsoft Copilot, and OpenAI Codex.
         {
             id: "repair-01-cooling-assembly",
@@ -2132,11 +2205,11 @@
                 '  <p>' + item.technicalBreakdown + '</p>',
                 '</div>',
                 '<div class="gallery-drawer-section section-defense">',
-                '  <h3><span class="section-icon">&#128737;</span> ' + (item.category === "hardware" ? "What I Was Solving" : "Defensive Hardening &amp; Playbook") + '</h3>',
+                '  <h3><span class="section-icon">&#128737;</span> ' + (item.playbookHeading || (item.category === "hardware" ? "What I Was Solving" : "Defensive Hardening &amp; Playbook")) + '</h3>',
                 '  <ul>' + defenseListHtml + '</ul>',
                 '</div>',
                 '<div class="gallery-drawer-section">',
-                '  <h3><span class="section-icon">&#128274;</span> ' + (item.category === "hardware" ? "Progress &amp; Documented Outcome" : "Containment &amp; Testing Discipline") + '</h3>',
+                '  <h3><span class="section-icon">&#128274;</span> ' + (item.outcomeHeading || (item.category === "hardware" ? "Progress &amp; Documented Outcome" : "Containment &amp; Testing Discipline")) + '</h3>',
                 '  <p>' + item.containment + '</p>',
                 '</div>',
                 '<div class="gallery-credit-box">',
