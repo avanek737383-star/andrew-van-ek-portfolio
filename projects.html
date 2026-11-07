@@ -81,6 +81,51 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="iphone-slomo-reconstruction-title">
+<h2 id="iphone-slomo-reconstruction-title">iPhone 11 Slo-Mo Forensic Reconstruction: 120fps Real-Time Restoration, Hardware Transcoding &amp; macOS Photos Pipeline</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Apple QuickTime &middot; FFmpeg &middot; Apple VideoToolbox &middot; AppleScript &middot; macOS PhotoKit &middot; Completed <time datetime="2026-11-07">November 7, 2026</time></span></p>
+<p>I accidentally recorded a race finish video in Slo-Mo mode on my iPhone 11 at the Iceman Cometh Challenge in Traverse City, leaving the cyclist's finish line sprint stretched across 46 seconds of sluggish playback. In pair programming with Antigravity AI, we forensically audited Apple's CoreMedia container format, reverse-engineered the underlying 120fps sensor stream and PhotoKit adjustment metadata, engineered a hardware-accelerated 60fps real-time reconstruction pipeline with synchronized pitch-corrected audio, preserved full GPS and temporal EXIF tags, and automated Apple Photos library import and cleanup.</p>
+
+<div class="project-architecture" aria-label="iPhone Slo-Mo Forensic Reconstruction Pipeline">
+	<span>Accidental 120fps Slo-Mo (IMG_9739.mov - 46s)</span><span aria-hidden="true">&rarr;</span>
+	<span>CoreMedia &amp; Photos.sqlite bplist Forensic Audit</span><span aria-hidden="true">&rarr;</span>
+	<span>Cadence Math &amp; VideoToolbox 60fps Reconstruction</span><span aria-hidden="true">&rarr;</span>
+	<span>Lossless EXIF/GPS Sync &amp; Photos AppleScript Automation</span>
+</div>
+
+<h3>The Problem: Accidental Slo-Mo at the Iceman Finish Line</h3>
+<p>While filming a cyclist sprinting toward the finish line of the <strong>Iceman Cometh Challenge</strong> in Traverse City, Michigan, my iPhone 11 camera was accidentally toggled into Slo-Mo mode instead of standard Video. The resulting file&mdash;<code>IMG_9739.mov</code> in my Downloads folder&mdash;was a 46.17-second 1080p clip where the rider appeared to pedal in extreme slow motion for the vast majority of the duration, creating an awkward, dragged-out sequence with distorted sound.</p>
+<p>I wanted the entire clip restored to a natural, smooth, real-time pace, with clean audio, all original capture metadata intact (including location and recording time), seamlessly imported back into my macOS Photos library, and the accidental original removed. To solve this, I paired with <strong>Antigravity</strong>, Google DeepMind's agentic AI coding assistant, to perform a complete forensic stream analysis and build an automated restoration workflow.</p>
+
+<h3>Forensic Discovery: Deconstructing Apple's Slo-Mo Architecture</h3>
+<p>Probing <code>IMG_9739.mov</code> with <code>ffprobe</code> and binary inspection immediately revealed counterintuitive findings about how Apple devices record and store slow-motion footage:</p>
+<ul>
+	<li><strong>The 30fps Container Illusion:</strong> Although captured by a high-speed sensor, <code>ffprobe</code> reported a nominal frame rate of exactly <strong>30.0 fps</strong> and <strong>1,385 total frames</strong> over 46.167 seconds, along with an unmapped <code>mebx</code> data stream and <code>com.apple.quicktime.full-frame-rate-playback-intent: 0</code>. Apple does not store raw 120fps files as 120fps playback containers; rather, the iOS Camera app records 120 frames every real second and sequentially packs them into a 30fps container, inherently stretching 1 real-world second into 4 container seconds.</li>
+	<li><strong>The Non-Destructive Ramp Marker Myth:</strong> When viewing the clip in Apple Photos or on iOS, the video appeared to start at normal speed, drop into slow motion in the middle, and speed back up at the end. By inspecting the local macOS Photos SQLite database (<code>Photos.sqlite</code>) and extracting the CoreMedia adjustment record (<code>ZUNMANAGEDADJUSTMENT</code> with identifier <code>com.apple.video.slomo</code>, version 1.1), we decoded the embedded binary plist:
+	<pre><code>{'slowMotion': {'regions': [{'timeRange': {'start': 6.925s, 'duration': 32.316667s}}], 'rate': 1.0}}</code></pre>
+	This proved that the perceived &ldquo;partial slow motion&rdquo; was merely non-destructive player metadata applied by Apple Photos. The raw AirDropped video file itself was actually captured at 120 fps across its <em>entire</em> 46-second duration with zero frame drops.</li>
+	<li><strong>Kinematic &amp; Pedaling Cadence Proof:</strong> To definitively verify whether the camera recorded at 120 fps (4&times; slowdown) or 240 fps (8&times; slowdown), Antigravity analyzed the rider's pedaling mechanics across frame extracts: a half pedal-crank revolution (180&deg;) took exactly 2.5 seconds of video time, indicating 5.0 seconds per complete revolution. Sped up by 4&times;, this translated to 1.25 seconds per revolution&mdash;an authentic 48 RPM climbing cadence ramping to 96 RPM sprint cadence, covering ~50 meters in 11.5 seconds (~10 mph). Consecutive frame PSNR delta analysis (consistently 33&ndash;35 dB with 0 duplicate frames across all 1,385 frames) mathematically confirmed that a uniform 4&times; speedup was the true physical real-world pace.</li>
+</ul>
+
+<h3>Hardware-Accelerated 60fps Reconstruction &amp; DSP Audio Sync</h3>
+<p>With the physical speed factor verified, Antigravity engineered an optimized rendering pipeline leveraging Apple Silicon hardware acceleration:</p>
+<ul>
+	<li><strong>Dual-Stage Audio Time-Stretching:</strong> In slow-motion recordings, audio is stretched alongside video. To accelerate the audio track 4&times; to match the 11.54-second runtime without introducing severe high-pitch &ldquo;chipmunk&rdquo; distortion, we implemented chained dual-stage tempo filtering (<code>atempo=2.0,atempo=2.0</code>) at 192 kbps AAC, preserving original voice timbre, spectator cheering, and ambient trail acoustics.</li>
+	<li><strong>VideoToolbox 60fps Fluidity:</strong> Because the source contained 120 unique frames of captured motion per real second, rendering at standard 30 fps would discard 75% of the visual data. We configured FFmpeg with Apple's native hardware encoder (<code>-c:v h264_videotoolbox -b:v 15M</code>) at <strong>60 fps</strong>. This leveraged the dense high-speed capture to produce a broadcast-smooth 60 fps master (<code>IMG_9739_regular_pace.mov</code>) in just ~10 seconds of encoding time.</li>
+	<li><strong>Faststart Container Optimization:</strong> Second-pass MP4 box relocation (<code>-movflags +faststart</code>) shifted the <code>moov</code> index atom ahead of the <code>mdat</code> payload, ensuring instant streaming and zero-delay scrubbing.</li>
+</ul>
+
+<h3>Metadata Preservation &amp; macOS Photos Automation</h3>
+<p>To ensure the new video integrated seamlessly into my photo library and timeline without appearing as an untagged duplicate, we automated metadata propagation and Photos management:</p>
+<ul>
+	<li><strong>Lossless EXIF &amp; GPS Injection:</strong> Using <code>exiftool</code>, we cloned all QuickTime and EXIF metadata tags from the original file, embedding the exact capture date and time (<code>November 7, 2026 at 8:58:10 AM EST</code>), camera hardware signature (Apple iPhone 11), orientation, and GPS coordinates (<code>44&deg; 42' 49.68" N, 85&deg; 29' 27.24" W</code> at 296m altitude in Traverse City, MI).</li>
+	<li><strong>AppleScript Photos Ingestion:</strong> Scripted Apple Photos to import the reconstructed 60fps movie directly into the library and programmatically bind its library timestamp to the original capture date so it appears in its authentic historical timeline slot.</li>
+	<li><strong>Safe Automated Deletion:</strong> Apple Photos' scripting dictionary intentionally restricts direct scripting deletions of library media items. Antigravity resolved this by scripting the Photos UI via System Events: spotlighting the original slo-mo asset (<code>B3DC3400-9771-4642-81FE-370C16CB3CC8</code>), triggering the native <code>Delete 1 Video</code> command, and confirming the modal sheet, safely moving the obsolete 46-second original to the <em>Recently Deleted</em> bin for 30-day recovery protection.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> I identified the accidental slow-motion recording, established the requirements for real-time smoothness and Photos library integration, and tested the final output. Antigravity AI (Google DeepMind) conducted the forensic CoreMedia container and SQLite adjustment analysis, computed the kinematic cadence verification, engineered the FFmpeg VideoToolbox and audio tempo pipeline, cloned all GPS/EXIF tags, and authored the AppleScript Photos automation.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="windows-xp-malware-lab-title">
 <h2 id="windows-xp-malware-lab-title">Windows XP Malware Lab: Offline VM Setup, Archive Preparation &amp; Snapshot Recovery</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Oracle VirtualBox &middot; Windows XP Professional (32-bit) &middot; Python &amp; 7-Zip &middot; Completed <time datetime="2026-11-05">November 5, 2026</time></span></p>
