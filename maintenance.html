@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">446 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-10T10:45:00-05:00">November 10, 2026 at 10:45:00 AM EST</time></p>
+<p class="maintenance-updated">447 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-10T10:50:00-05:00">November 10, 2026 at 10:50:00 AM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -647,6 +647,13 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
+<li id="fah-cpu-8-work-unit-expiration-and-hypervisor-ntp-synchronization-audit"><strong>Folding@home worker fah-cpu-8 work unit expiration diagnostic, hypervisor NTP synchronization audit &amp; FahCore multi-thread verification:</strong> In pair programming with Antigravity AI, diagnosed a client work unit expiration event and FahCore subprocess termination alert on the remote cloud compute worker node (<code>fah-cpu-8</code>, <code>100.82.213.77</code>), followed by a comprehensive audit of hypervisor time synchronization and live compute throughput.
+<br><br>
+<em>Work Unit Lifecycle &amp; Log Triage:</em> Analyzed FAH client v8 runtime telemetry reporting <code>WU9:Unit expired, deleting</code> alongside <code>Subprocess deallocated while process is still running</code>. Verified that the event resulted from an expired science assignment deadline triggering expected core cleanup, confirmed that the client cleanly terminated the active FahCore subprocess without system instability, and verified automatic self-recovery as the client requested and received assignment for a fresh work unit (<code>WU10</code>, <code>POST /api/assign</code> &rarr; <code>200 HTTP_OK</code>) under user Andrew Van Ek (Team 234980).
+<br><br>
+<em>System Time &amp; NTP Synchronization Audit:</em> Because virtual machine time drift is a primary cause of premature work unit expiration, conducted low-level clock synchronization inspection via <code>timedatectl status</code> and <code>timedatectl timesync-status</code>. Verified active NTP synchronization locked against the cloud hypervisor metadata time authority (<code>169.254.169.254</code>, Stratum 2) with zero clock skew, measuring a microsecond-level offset of just <code>+29 µs</code> and jitter of <code>24 µs</code>, confirming system clock reliability across 13+ days of continuous uptime.
+<br><br>
+<em>Compute Throughput &amp; Multi-Core Verification:</em> Queried process accounting to verify production compute health. Confirmed <code>FahCore_a9</code> (GROMACS AVX2 256-bit release engine) operating at sustained multi-core capacity with 8 compute threads (<code>-np 8</code>) pulling ~725% CPU utilization (load average 8.10), steadily advancing <strong>WU48</strong> simulation frames (~1% progress every 3.5 minutes) without resource contention or stalls.</li>
 <li id="m1-mac-foldingathome-network-firewall-bypass-dns-cache-triage-and-core-tuning"><strong>Apple Silicon M1 Folding@home network firewall bypass, launchd DNS resolver synchronization &amp; GROMACS core tuning:</strong> In pair programming with Antigravity AI, diagnosed and resolved an end-to-end work unit acquisition outage on macOS (Apple M1, 8-core) running Folding@home v8.5.6. Triage identified three distinct root causes:
 <br><br>
 <em>Perimeter Network Filter Triage:</em> When starting the client, work unit downloads hung indefinitely at <code>Downloading 0.0%</code> before aborting with <code>Failed response: EOF</code>. Low-level ICMP and TCP SYN diagnostics traced outbound connections to academic research work servers (e.g., Temple University <code>129.32.209.200</code>) and uncovered an active institutional perimeter block at the local network gateway (<code>35.38.95.254</code>) returning ICMP type 3 code 13 (<code>Communication prohibited by filter</code>). Deployed ProtonVPN to encapsulate traffic outside the campus perimeter, verifying an immediate drop in packet loss from 100% to 0.0% and confirming full bidirectionality to research nodes.
@@ -976,7 +983,7 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-10T10:45:00-05:00">November 10, 2026 at 10:45:00 AM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-10T10:50:00-05:00">November 10, 2026 at 10:50:00 AM EST</time></p>
 				<p class="footer-version">Version v2.6.356 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
