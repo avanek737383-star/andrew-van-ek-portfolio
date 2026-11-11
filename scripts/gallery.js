@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 135 Workbench Captures across 6 Curated Categories
+ * - 128 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -1580,140 +1580,6 @@
             ],
             containment: "Administered within official Autodesk enterprise and university subscription portals.",
             credit: "Issue identification, vendor coordination, and capture by Andrew Van Ek. Case study notes with Google DeepMind Antigravity AI."
-        },
-        // Academic Workflow & Blackboard Single Sign-On Automation
-        {
-            id: "blackboard-01-cas-login",
-            title: "Blackboard SSO Automation: GVSU Central Authentication Service (CAS) Entry",
-            category: "media",
-            categoryLabel: "Academic Workflow & SSO Automation",
-            badgeClass: "badge-info",
-            image: "images/gallery/blackboard-automation/01-gvsu-cas-username.png",
-            thumb: "images/gallery/blackboard-automation/01-gvsu-cas-username-thumb.jpg",
-            tags: ["Blackboard", "macOS Automation", "GVSU CAS", "Single Sign-On", "Safari Scripting"],
-            summary: "Initial institutional login screen for Grand Valley State University CAS, the entry point targeted by the macOS desktop launch automation.",
-            sandboxObservation: "Initial state of the GVSU Central Authentication Service portal displaying the username input field and 'Keep me signed in' checkbox. This screen represented the first target of the automated Zsh and AppleScript launcher.",
-            technicalBreakdown: "The CAS portal serves as the primary SAML/OAuth identity gateway for university services. Scripted navigation via '/usr/bin/open -b com.apple.Safari https://my.gvsu.edu/' reliably triggers this page, but automated keystroke injection was rejected after security evaluations revealed window-focus drift risks.",
-            defensePlaybook: [
-                "Focus Isolation: Never inject unvalidated authentication keystrokes via desktop GUI automation; active focus changes can leak credentials into unintended windows.",
-                "Keychain Integration: Delegate initial credential recall to native system keychains rather than script variables."
-            ],
-            containment: "GVSU official identity provider accessed inside sandboxed Safari processes.",
-            credit: "Automation research, UI capture, and security architecture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
-        },
-        {
-            id: "blackboard-02-password-entry",
-            title: "Blackboard SSO Automation: Identity Provider Password Authentication",
-            category: "media",
-            categoryLabel: "Academic Workflow & SSO Automation",
-            badgeClass: "badge-info",
-            image: "images/gallery/blackboard-automation/02-gvsu-password-entry.png",
-            thumb: "images/gallery/blackboard-automation/02-gvsu-password-entry-thumb.jpg",
-            tags: ["Blackboard", "Password Authentication", "Credential Isolation", "Apple Events"],
-            summary: "Second-stage identity provider password challenge during the multi-tier university authentication handoff.",
-            sandboxObservation: "The secondary federated authentication prompt displaying 'Verify with your password'. Testing revealed coordinate-based clicking was brittle due to dynamic window offsets and browser viewport changes.",
-            technicalBreakdown: "Web forms rendered inside Safari WebContent processes are decoupled from the native macOS accessibility tree, preventing standard System Events accessibility queries from reliably targeting submit buttons without full DOM access.",
-            defensePlaybook: [
-                "Zero Credential Hardcoding: Eliminate all plaintext password storage in shell scripts, environment variables, or AppleScript files.",
-                "Native Password Managers: Allow Safari Password AutoFill backed by Secure Enclave encryption to handle form submission."
-            ],
-            containment: "Protected by university enterprise SSO and encrypted TLS session negotiation.",
-            credit: "Automation testing, security analysis, and UI capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
-        },
-        {
-            id: "blackboard-03-touch-id-prompt",
-            title: "Blackboard SSO Automation: Biometric Touch ID & FIDO2 Challenge",
-            category: "media",
-            categoryLabel: "Academic Workflow & SSO Automation",
-            badgeClass: "badge-info",
-            image: "images/gallery/blackboard-automation/03-touch-id-biometric-prompt.png",
-            thumb: "images/gallery/blackboard-automation/03-touch-id-biometric-prompt-thumb.jpg",
-            tags: ["Touch ID", "WebAuthn", "Biometric Authentication", "FIDO2", "macOS Security"],
-            summary: "Primary passwordless biometric challenge requesting Touch ID or hardware security key verification for university access.",
-            sandboxObservation: "GVSU verification modal prompting '@vaneka' for biometric verification ('Windows Hello, Touch ID, etc.'). The launcher was redesigned to yield execution control specifically for user Touch ID confirmation.",
-            technicalBreakdown: "WebAuthn / FIDO2 authentication binds cryptographic keypairs directly to the macOS Secure Enclave. Biometric Touch ID prompt execution requires physical capacitive presence, making full robotic automation intentionally impossible by security design.",
-            defensePlaybook: [
-                "Biometric Boundaries: Embrace biometric verification gates rather than attempting to circumvent hardware-enforced presence requirements.",
-                "Programmatic Delay Windows: Allow generous user interaction pauses in automation scripts to permit seamless Touch ID tapping."
-            ],
-            containment: "Enforced by hardware-level Apple Secure Enclave coprocessor and WebAuthn standards.",
-            credit: "Biometric integration analysis and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
-        },
-        {
-            id: "blackboard-04-mfa-method-select",
-            title: "Blackboard SSO Automation: Multi-Factor Authentication (MFA) Fallback Menu",
-            category: "media",
-            categoryLabel: "Academic Workflow & SSO Automation",
-            badgeClass: "badge-info",
-            image: "images/gallery/blackboard-automation/04-mfa-security-method-select.png",
-            thumb: "images/gallery/blackboard-automation/04-mfa-security-method-select-thumb.jpg",
-            tags: ["MFA", "Okta Verify", "Google Authenticator", "SMS 2FA", "Identity Security"],
-            summary: "Multi-channel MFA selector menu surfacing Okta Verify push notifications, Google Authenticator codes, SMS, and security keys.",
-            sandboxObservation: "Fallback verification options menu presented when primary Touch ID is bypassed. The initial AppleScript attempted to query accessibility labels such as 'Verify with something else' to reach SMS options.",
-            technicalBreakdown: "Modern <span class=\"tech-term\" data-term=\"mfa\">Single Sign-On</span> portals dynamically render fallback options in asynchronous JavaScript frames. Querying accessibility elements across asynchronous transitions frequently resulted in timeout exceptions under System Events.",
-            defensePlaybook: [
-                "Multi-Channel Verification: Maintain active secondary MFA authenticators (TOTP, hardware tokens) to prevent account lockout when primary biometrics fail.",
-                "Graceful Script Fallbacks: Ensure desktop automation gracefully halts when out-of-band MFA challenges are encountered."
-            ],
-            containment: "Multi-factor authentication handled across verified enterprise mobile channels.",
-            credit: "Authentication flow auditing and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
-        },
-        {
-            id: "blackboard-05-sms-code-dispatch",
-            title: "Blackboard SSO Automation: Carrier SMS Transmission Dispatch",
-            category: "media",
-            categoryLabel: "Academic Workflow & SSO Automation",
-            badgeClass: "badge-info",
-            image: "images/gallery/blackboard-automation/05-sms-code-dispatch.png",
-            thumb: "images/gallery/blackboard-automation/05-sms-code-dispatch-thumb.jpg",
-            tags: ["SMS 2FA", "Out-of-Band Auth", "Carrier Messaging", "Two-Factor Verification"],
-            summary: "SMS text dispatch confirmation screen requesting permission to transmit a one-time verification passcode over cellular networks.",
-            sandboxObservation: "GVSU verification dialog displaying 'Send a code via SMS to +1 xxx-xxx' with action button 'Receive a code via SMS'. Coordinate-based click scripts proved unreliable due to dynamic banner messages shifting button offsets.",
-            technicalBreakdown: "Carrier-dispatched SMS serves as an out-of-band verification channel. Automating the click without user verification risks triggering cellular rate-limiting or carrier messaging fees during repeated script execution.",
-            defensePlaybook: [
-                "Rate Limit Awareness: Avoid rapid automated polling on SMS endpoints to prevent telecommunication provider throttling and temporary account locks.",
-                "Push vs. SMS: Prioritize cryptographically signed push notifications (Okta / WebAuthn) over unencrypted carrier SMS."
-            ],
-            containment: "Out-of-band cellular transmission secured with one-time validity windows.",
-            credit: "UI interaction testing and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
-        },
-        {
-            id: "blackboard-06-sms-code-entry",
-            title: "Blackboard SSO Automation: One-Time Passcode (OTP) Code Entry",
-            category: "media",
-            categoryLabel: "Academic Workflow & SSO Automation",
-            badgeClass: "badge-info",
-            image: "images/gallery/blackboard-automation/06-sms-code-entry.png",
-            thumb: "images/gallery/blackboard-automation/06-sms-code-entry-thumb.jpg",
-            tags: ["OTP Entry", "Two-Factor Authentication", "Input Verification", "Session Security"],
-            summary: "Verification code entry prompt accepting the six-digit SMS passcode received on the authenticated mobile device.",
-            sandboxObservation: "The OTP entry modal presenting 'Enter Code' input field and 'Verify' submission button. This was the final hurdle in the authentication pipeline before establishing an authorized academic session.",
-            technicalBreakdown: "One-Time Passcodes (OTPs) feature ephemeral 3-to-5 minute expiration lifecycles. Automating OTP retrieval from macOS Messages via AppleScript introduces permission overhead (Full Disk Access) that compromises system sandboxing.",
-            defensePlaybook: [
-                "Ephemeral Token Security: Never persist one-time verification codes to disk or logs.",
-                "Manual User Entry: Keep the final 2FA verification step manual to ensure human intent behind session elevation."
-            ],
-            containment: "Time-limited, single-use authentication challenge.",
-            credit: "Security verification flow and capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
-        },
-        {
-            id: "blackboard-07-blackboard-dashboard",
-            title: "Blackboard SSO Automation: Authenticated GVSU Apps Portal & LMS Landing",
-            category: "media",
-            categoryLabel: "Academic Workflow & SSO Automation",
-            badgeClass: "badge-info",
-            image: "images/gallery/blackboard-automation/07-authenticated-apps-blackboard-landing.png",
-            thumb: "images/gallery/blackboard-automation/07-authenticated-apps-blackboard-landing-thumb.jpg",
-            tags: ["Blackboard Ultra", "GVSU Apps", "Single Sign-On Landing", "Safari macOS", "Academic Workflow"],
-            summary: "Successfully authenticated university portal displaying direct access to Blackboard Ultra LMS, Google Drive, Banner, and academic tools.",
-            sandboxObservation: "The fully loaded 'my.gvsu.edu Apps Dashboard' in Safari, highlighting the 'Bb Ultra LMS Blackboard' launch icon. The desktop automation successfully delivered the student directly to this coursework hub without stored passwords.",
-            technicalBreakdown: "Once authenticated, the browser receives an encrypted session cookie scoped to '.gvsu.edu'. This grants seamless <span class=\"tech-term\" data-term=\"mfa\">Single Sign-On</span> (SSO) pass-through across Blackboard Ultra, Banner Self-Service, and Google Workspace without repeated credential challenges.",
-            defensePlaybook: [
-                "Cookie Scope Protection: Ensure institutional session cookies maintain 'Secure' and 'SameSite=Lax' flags to prevent cross-site request forgery.",
-                "Automated Shortcut Value: The refined launcher saves repetitive daily URL typing and portal navigation while maintaining 100% credential isolation."
-            ],
-            containment: "Fully authorized university session running in Safari on macOS.",
-            credit: "Workflow automation implementation and full desktop capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         },
         {
             id: "phone-link-setup",
