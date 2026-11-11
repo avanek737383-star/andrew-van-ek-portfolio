@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 128 Workbench Captures across 6 Curated Categories
+ * - 132 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,78 @@
     "use strict";
 
     var galleryItems = [
+        {
+            id: "kroll-identity-theft-monitoring-dashboard",
+            title: "Identity theft defense: reviewing Kroll monitoring dashboard and security alerts",
+            category: "security",
+            categoryLabel: "Identity & Security Monitoring",
+            badgeClass: "badge-success",
+            image: "images/gallery/approved/caring-about-security-and-safety.png",
+            thumb: "images/gallery/approved/caring-about-security-and-safety-thumb.jpg",
+            tags: ["Identity Theft", "Security Monitoring", "Kroll", "Alerts"],
+            summary: "A browser session on macOS accessing the Kroll Monitoring dashboard, showing zero pending alerts alongside identity verification and identity theft restoration resources.",
+            sandboxObservation: "The browser displays the Kroll Monitoring dashboard (web.krollmonitoring.com) for Andrew with a summary of '0 New Alerts' under Recent alerts ('Congratulations! You have no alerts to review.'). Action cards prompt for identity verification, identity theft restoration assistance, and lost wallet assistance, alongside an FTC informational video titled 'Why Care About Identity Theft?'.",
+            technicalBreakdown: "Identity theft monitoring services interface with credit reporting agencies and identity verification networks to detect compromised personal identifying information (PII), fraudulent credit inquiries, and unauthorized account creation.",
+            defensePlaybook: ["Original filename: caring about security and safety.png"],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The dashboard capture confirms zero active security alerts or detected identity anomalies at the recorded timestamp.",
+            credit: "Original capture by Andrew Van Ek. Description and gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "glpi-itsm-fleet-inventory-dashboard",
+            title: "GLPI ITSM asset management: Alpine NUC homelab inventory dashboard",
+            category: "homelab",
+            categoryLabel: "ITSM & Fleet Inventory",
+            badgeClass: "badge-primary",
+            image: "images/gallery/approved/glpi.png",
+            thumb: "images/gallery/approved/glpi-thumb.jpg",
+            tags: ["GLPI", "ITSM", "Asset Management", "Alpine Linux", "Tailscale"],
+            summary: "Accessing the GLPI IT asset management web console hosted on the Alpine NUC over Tailscale, displaying an inventory of 12.2K software entries, 11 computers, 1 monitor, and helpdesk ticket telemetry.",
+            sandboxObservation: "The GLPI dashboard (nucwol2-0--hdd.taile72a68.ts.net:9443) is viewed under the Super-Admin role. Top metric tiles show 12.2K Software items, 11 Computers, 1 Monitor, 4 Users, 8 Profiles, and 1 Knowledge base entry. Donut charts track computer manufacturer distribution (8 units in the primary segment) and monitors by model, while the Tickets status module records 1 active ticket with 0 late tickets or problems.",
+            technicalBreakdown: "GLPI (Gestionnaire Libre de Parc Informatique) is an open-source IT asset management and service desk system running in Docker on Alpine Linux, exposed securely to authorized devices across the Tailscale mesh overlay network.",
+            defensePlaybook: ["Original filename: GLPI.png"],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The screenshot documents active fleet accounting and system inventory telemetry across managed homelab endpoints.",
+            credit: "Original capture by Andrew Van Ek. Description and gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "router-traffic-bandwidth-monitor-usage",
+            title: "Router traffic monitoring: analyzing hourly bandwidth utilization curves",
+            category: "homelab",
+            categoryLabel: "Network Traffic Analysis",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved/investigating-traffic-usage-router.png",
+            thumb: "images/gallery/approved/investigating-traffic-usage-router-thumb.jpg",
+            tags: ["Router", "Network Monitoring", "Bandwidth", "Traffic Analysis"],
+            summary: "Router management interface traffic monitor displaying hourly downstream and upstream bandwidth utilization for all connected LAN devices, highlighting an 11:00 peak of 1.2 GB downstream.",
+            sandboxObservation: "The Advanced traffic usage chart plots hourly device throughput across a 24-hour cycle. A highlighted data cursor at hour 11 records 1.2 GB downstream and 258.4 MB upstream data transfer, showing distinct traffic distribution curves between download and upload activity across the local subnet.",
+            technicalBreakdown: "Router-level traffic accounting samples interface packet counters to quantify per-device and aggregate bandwidth consumption. Identifying burst traffic periods assists in diagnosing background transfers, synchronization tasks, and network utilization trends.",
+            defensePlaybook: ["Original filename: investigating traffic usage router.png"],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The capture records aggregate network utilization trends and peak bandwidth timing across the monitored network interface.",
+            credit: "Original capture by Andrew Van Ek. Description and gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "windows-11-arm-utm-virtualization-setup",
+            title: "Windows 11 ARM virtualization: OS installation and coursework analysis",
+            category: "vms",
+            categoryLabel: "ARM Virtualization",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved/vm-setup-installation-arm.png",
+            thumb: "images/gallery/approved/vm-setup-installation-arm-thumb.jpg",
+            tags: ["Windows 11 ARM", "Virtualization", "UTM", "macOS", "Coursework"],
+            summary: "macOS desktop featuring an active Windows 11 ARM virtual machine installation at 11% completion alongside ONLYOFFICE documenting intrusion detection system analysis.",
+            sandboxObservation: "A hypervisor window titled 'Windows 11 ARM [Running]' executes the Windows 11 OS setup process displaying 'Installing Windows 11' at '11% complete'. In the background, ONLYOFFICE is editing a coursework document ('10-10-2026.docx') titled 'Analyzer' with the prompt 'Has an intrusion occurred or not?' alongside tabs for CIS 430 projects and forensics reports.",
+            technicalBreakdown: "Running Windows 11 on Apple Silicon / ARM architectures utilizes hardware hypervisor framework virtualization (such as UTM/QEMU) to execute ARM64 Windows guests at near-native performance for coursework, software evaluation, and lab environments.",
+            defensePlaybook: ["Original filename: vm setup installation arm.png"],
+            playbookHeading: "Source Capture",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "The capture establishes the concurrent execution of ARM-based operating system provisioning alongside technical security documentation.",
+            credit: "Original capture by Andrew Van Ek. Description and gallery integration with Google DeepMind Antigravity AI."
+        },
         {
             id: "macos-tahoe-vmware-software-update",
             title: "macOS VMware Workstation: running Software Update for Safari 27.2",
