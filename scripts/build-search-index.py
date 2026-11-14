@@ -141,6 +141,7 @@ def build_index():
 
     # 4. Static Pages
     static_pages = [
+        ("karaoke.html", "Robo-Karaoke Studio: Retro 172 BPM B-Roll & Audio Alignment Player", "AI Labs", "Interactive retro arcade karaoke player featuring Mike's Theme rockabilly remix, 172 BPM beat bounce, procedural canvas B-roll, and Whisper-CPP RMS audio transient alignment."),
         ("gallery.html", "Visual Gallery & Malware Sandbox Lab", "Showcase", "Hands-on security research, live malware detonations, ransomware file destruction, screen lockers, and threat forensics analyzed in Windows Sandbox."),
         ("index.html", "Home & Homelab Overview", "General", "Homelab engineering, local AI experiments, live Eastern Station Clock, and systems architecture."),
         ("about.html", "About Andrew Van Ek", "Career & About", "Background, education, computing philosophy, hands-on homelab journey, and technology stack."),

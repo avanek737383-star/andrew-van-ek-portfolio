@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robo-Karaoke Studio | Andrew Van Ek Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Chakra+Petch:wght@600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #001226;
+    color: #f8f9fa;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+  }
+
+  /* B-ROLL BACKGROUND CANVAS */
+  #brollCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+  }
+
+  /* CRT / VHS OVERLAYS */
+  .vhs-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 18, 38, 0.22) 0px,
+      rgba(0, 18, 38, 0.22) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+  .vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 38%, rgba(0, 18, 38, 0.88) 100%);
+  }
+
+  /* TOP HUD - PORTFOLIO TECH BADGE THEME */
+  .hud-top {
+    position: absolute;
+    top: 20px;
+    left: 28px;
+    right: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+  .vcr-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 45, 90, 0.78);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 20, 50, 0.45);
+    padding: 8px 18px;
+    border-radius: 50px;
+    backdrop-filter: blur(12px);
+  }
+  .vcr-play {
+    color: #93c5fd;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+  }
+  .vcr-play.playing {
+    color: #00ff88;
+  }
+  .vcr-play.stopped {
+    color: #ff4757;
+  }
+  .vcr-indicator-dot {
+    width: 9px;
+    height: 9px;
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .vcr-play.playing .vcr-indicator-dot {
+    animation: blink 1.2s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .vcr-time {
+    color: #ffffff;
+    font-family: 'Chakra Petch', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+  }
+
+  .track-meta {
+    text-align: right;
+    background: rgba(0, 45, 90, 0.78);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 20, 50, 0.45);
+    padding: 8px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(12px);
+  }
+  .track-title {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+  }
+  .track-sub {
+    font-size: 11px;
+    color: #93c5fd;
+    font-weight: 500;
+    margin-top: 1px;
+  }
+
+  /* KARAOKE STAGE (POSITIONED UPPER-MID) */
+  .karaoke-stage {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1040px;
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* PRECISION FIXED BOUNCING MIC (Direct viewport coordinates, locked underneath active word) */
+  #micBouncer {
+    position: fixed;
+    font-size: 19px;
+    filter: drop-shadow(0 0 8px #00ffff);
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: left 0.08s ease-out;
+  }
+
+  .lyric-box {
+    background: rgba(0, 25, 55, 0.84);
+    border: 1.5px solid rgba(147, 197, 253, 0.38);
+    border-radius: 20px;
+    padding: 24px 38px 32px 38px;
+    box-shadow: 0 20px 50px rgba(0, 10, 30, 0.8), inset 0 0 30px rgba(0, 86, 179, 0.25);
+    backdrop-filter: blur(18px);
+    width: 100%;
+    position: relative;
+    min-height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section-tag {
+    font-size: 12px;
+    color: #93c5fd;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    background: rgba(0, 86, 179, 0.35);
+    padding: 3px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(147, 197, 253, 0.3);
+  }
+
+  /* CURRENT ACTIVE LINE */
+  .line-active {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    text-shadow: 0 4px 14px rgba(0, 10, 30, 0.95);
+    position: relative;
+    display: inline-block;
+  }
+  .word-span {
+    display: inline-block;
+    position: relative;
+    margin: 0 5px;
+    transition: color 0.08s linear, transform 0.1s ease;
+  }
+  .word-span.sung {
+    color: #ffd700;
+    text-shadow: 0 0 16px rgba(255, 215, 0, 0.7), 0 0 28px rgba(255, 140, 0, 0.5);
+    transform: scale(1.05);
+  }
+  .word-span.highlight-now {
+    color: #38bdf8;
+    text-shadow: 0 0 20px #38bdf8, 0 0 35px #0056b3;
+    transform: scale(1.14) translateY(-3px);
+  }
+
+  /* NEXT PREVIEW LINE */
+  .line-next {
+    margin-top: 14px;
+    font-size: 21px;
+    font-weight: 600;
+    color: rgba(147, 197, 253, 0.55);
+    text-shadow: 0 2px 6px rgba(0, 10, 30, 0.8);
+  }
+
+  /* PORTFOLIO-THEMED CONTROLS BAR */
+  .controls-bar {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 860px;
+    background: rgba(0, 45, 90, 0.82);
+    border: 1px solid rgba(147, 197, 253, 0.28);
+    box-shadow: 0 15px 40px rgba(0, 15, 40, 0.65);
+    border-radius: 50px;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+  }
+  .btn-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #0056b3, #0070f3);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 112, 243, 0.45);
+    transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.15s ease;
+  }
+  .btn-circle:hover { 
+    transform: scale(1.08); 
+    background: linear-gradient(135deg, #0070f3, #38bdf8);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5); 
+  }
+  .btn-pill {
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(147, 197, 253, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: #eaf3ff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, border-color 0.2s;
+  }
+  .btn-pill:hover { 
+    background: rgba(255, 255, 255, 0.18); 
+    border-color: rgba(147, 197, 253, 0.5);
+    transform: translateY(-1px); 
+  }
+  .progress-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .progress-bar-bg {
+    width: 100%;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #0056b3, #0070f3, #38bdf8);
+    border-radius: 50px;
+    box-shadow: 0 0 10px #38bdf8;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="brollCanvas"></canvas>
+<div class="vignette"></div>
+<div class="vhs-overlay" id="vhsOverlay"></div>
+
+<div class="hud-top">
+  <div class="vcr-badge">
+    <div class="vcr-play" id="vcrState"><span class="vcr-indicator-dot"></span><span id="vcrStateText">PAUSE ❚❚</span></div>
+    <div class="vcr-time" id="vcrTimer">00:00.0</div>
+  </div>
+  <div class="track-meta">
+    <div class="track-title">MIKE'S THEME (ROBO-KARAOKE)</div>
+    <div class="track-sub">Andrew Van Ek Portfolio • Audio Lab</div>
+  </div>
+</div>
+
+<div id="micBouncer">🎤</div>
+
+<div class="karaoke-stage">
+  <div class="lyric-box">
+    <div class="section-tag" id="sectionTag">AUDIO LAB READY</div>
+    <div class="line-active" id="lineActive">Press Play to Start Robo-Karaoke! 🎤</div>
+    <div class="line-next" id="lineNext">Get ready for the beat!</div>
+  </div>
+</div>
+
+<div class="controls-bar">
+  <button class="btn-circle" id="playBtn">▶</button>
+  <button class="btn-pill" id="sceneBtn">Scene: Auto Cycle 🔄</button>
+  <button class="btn-pill" id="vhsBtn">CRT: ON 📺</button>
+  
+  <div class="progress-wrap">
+    <div class="progress-bar-bg" id="progressBarBg">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+  </div>
+
+  <button class="btn-pill" id="fsBtn">Fullscreen ⛶</button>
+</div>
+
+<audio id="audioEl" preload="auto" src="data/karaoke-mike-theme.mp3"></audio>
+
+<script>
+const LYRICS = [{"start": 0.0, "end": 3.8, "text": "(Go! Go! Go, go, Mike! Go! Go! Go, go, Mike!)", "sub": "Count-in / Intro", "words": [{"w": "(Go!", "t": 0.0}, {"w": "Go!", "t": 0.6}, {"w": "Go,", "t": 1.1}, {"w": "go,", "t": 1.4}, {"w": "Mike!", "t": 1.8}, {"w": "Go!", "t": 2.2}, {"w": "Go!", "t": 2.6}, {"w": "Go,", "t": 2.9}, {"w": "go,", "t": 3.2}, {"w": "Mike!)", "t": 3.4}]}, {"start": 3.8, "end": 6.8, "text": "My name is Mike, c'mon, let's robo-karaoke!", "sub": "Verse 1", "words": [{"w": "My", "t": 3.8}, {"w": "name", "t": 4.1}, {"w": "is", "t": 4.3}, {"w": "Mike,", "t": 4.5}, {"w": "c'mon,", "t": 5.0}, {"w": "let's", "t": 5.5}, {"w": "robo-", "t": 5.9}, {"w": "karaoke!", "t": 6.3}]}, {"start": 6.8, "end": 8.2, "text": "(Buh-bah-bop! Shoo-wop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Buh-", "t": 6.8}, {"w": "bah-", "t": 7.1}, {"w": "bop!", "t": 7.4}, {"w": "Shoo-", "t": 7.7}, {"w": "wop!)", "t": 8.0}]}, {"start": 8.2, "end": 12.0, "text": "Get up on the stage and sing a little ditty for me!", "sub": "Verse 1", "words": [{"w": "Get", "t": 8.2}, {"w": "up", "t": 8.5}, {"w": "on", "t": 8.7}, {"w": "the", "t": 8.9}, {"w": "stage", "t": 9.2}, {"w": "and", "t": 9.6}, {"w": "sing", "t": 9.9}, {"w": "a", "t": 10.3}, {"w": "little", "t": 10.6}, {"w": "ditty", "t": 10.9}, {"w": "for", "t": 11.3}, {"w": "me!", "t": 11.6}]}, {"start": 12.0, "end": 13.6, "text": "(Buh-bah-bop! Shoo-wop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Buh-", "t": 12.0}, {"w": "bah-", "t": 12.3}, {"w": "bop!", "t": 12.6}, {"w": "Shoo-", "t": 12.9}, {"w": "wop!)", "t": 13.2}]}, {"start": 13.6, "end": 17.2, "text": "Off-key? No, not me! I'm a karaoke machine!", "sub": "Chorus", "words": [{"w": "Off-key?", "t": 13.6}, {"w": "No,", "t": 14.1}, {"w": "not", "t": 14.4}, {"w": "me!", "t": 14.7}, {"w": "I'm", "t": 15.1}, {"w": "a", "t": 15.4}, {"w": "karaoke", "t": 15.8}, {"w": "machine!", "t": 16.5}]}, {"start": 17.2, "end": 20.8, "text": "I got two mics on my head and you sing into me!", "sub": "Chorus", "words": [{"w": "I", "t": 17.2}, {"w": "got", "t": 17.5}, {"w": "two", "t": 17.8}, {"w": "mics", "t": 18.2}, {"w": "on", "t": 18.6}, {"w": "my", "t": 18.9}, {"w": "head", "t": 19.2}, {"w": "and", "t": 19.6}, {"w": "you", "t": 19.9}, {"w": "sing", "t": 20.2}, {"w": "into", "t": 20.4}, {"w": "me!", "t": 20.6}]}, {"start": 20.8, "end": 21.8, "text": "(Buh-bah-bop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Buh-", "t": 20.8}, {"w": "bah-", "t": 21.1}, {"w": "bop!)", "t": 21.5}]}, {"start": 21.8, "end": 26.2, "text": "Yeah, don't you wanna, don't you wanna, don't you wanna karaoke?", "sub": "Chorus Hook", "words": [{"w": "Yeah,", "t": 21.8}, {"w": "don't", "t": 22.1}, {"w": "you", "t": 22.3}, {"w": "wanna,", "t": 22.5}, {"w": "don't", "t": 23.0}, {"w": "you", "t": 23.2}, {"w": "wanna,", "t": 23.4}, {"w": "don't", "t": 24.0}, {"w": "you", "t": 24.2}, {"w": "wanna", "t": 24.4}, {"w": "karaoke?", "t": 25.1}]}, {"start": 26.2, "end": 27.4, "text": "(Bop-bop-shoo-wop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Bop-", "t": 26.2}, {"w": "bop-", "t": 26.5}, {"w": "shoo-", "t": 26.8}, {"w": "wop!)", "t": 27.1}]}, {"start": 27.4, "end": 31.0, "text": "Off-key? No, not me! I'm a karaoke machine!", "sub": "Chorus", "words": [{"w": "Off-key?", "t": 27.4}, {"w": "No,", "t": 27.9}, {"w": "not", "t": 28.2}, {"w": "me!", "t": 28.5}, {"w": "I'm", "t": 28.9}, {"w": "a", "t": 29.2}, {"w": "karaoke", "t": 29.6}, {"w": "machine!", "t": 30.3}]}, {"start": 31.2, "end": 36.5, "text": "My name is Mike, and tonight, I'm your robo-MC!", "sub": "Verse 2", "words": [{"w": "My", "t": 31.2}, {"w": "name", "t": 31.8}, {"w": "is", "t": 32.3}, {"w": "Mike,", "t": 32.8}, {"w": "and", "t": 33.4}, {"w": "tonight,", "t": 34.0}, {"w": "I'm", "t": 34.7}, {"w": "your", "t": 35.1}, {"w": "robo-", "t": 35.6}, {"w": "MC!", "t": 36.1}]}, {"start": 37.5, "end": 41.5, "text": "Just pick a song from the list, and I'll cue the CD!", "sub": "Verse 2", "words": [{"w": "Just", "t": 37.5}, {"w": "pick", "t": 38.0}, {"w": "a", "t": 38.3}, {"w": "song", "t": 38.6}, {"w": "from", "t": 39.0}, {"w": "the", "t": 39.3}, {"w": "list,", "t": 39.7}, {"w": "and", "t": 40.1}, {"w": "I'll", "t": 40.4}, {"w": "cue", "t": 40.7}, {"w": "the", "t": 41.0}, {"w": "CD!", "t": 41.3}]}, {"start": 42.0, "end": 46.0, "text": "Yeah, Mike's on the mics, and you know that he's doin' the deed!", "sub": "Verse 2", "words": [{"w": "Yeah,", "t": 42.0}, {"w": "Mike's", "t": 42.4}, {"w": "on", "t": 42.7}, {"w": "the", "t": 43.0}, {"w": "mics,", "t": 43.4}, {"w": "and", "t": 43.8}, {"w": "you", "t": 44.1}, {"w": "know", "t": 44.4}, {"w": "that", "t": 44.7}, {"w": "he's", "t": 45.0}, {"w": "doin'", "t": 45.3}, {"w": "the", "t": 45.6}, {"w": "deed!", "t": 45.8}]}, {"start": 46.2, "end": 51.8, "text": "(Ow!) 'Cause nothin' gets a party goin' higher than a little karaoke-dokie!", "sub": "Climax", "words": [{"w": "(Ow!)", "t": 46.2}, {"w": "'Cause", "t": 47.0}, {"w": "nothin'", "t": 47.5}, {"w": "gets", "t": 47.9}, {"w": "a", "t": 48.2}, {"w": "party", "t": 48.5}, {"w": "goin'", "t": 48.9}, {"w": "higher", "t": 49.4}, {"w": "than", "t": 49.8}, {"w": "a", "t": 50.1}, {"w": "little", "t": 50.4}, {"w": "karaoke-", "t": 50.9}, {"w": "dokie!", "t": 51.4}]}, {"start": 51.8, "end": 56.5, "text": "\ud83c\udfb8 [GUITAR LICK INTERLUDE] \ud83c\udfb8", "sub": "Instrumental", "isBreak": true, "words": [{"w": "\ud83c\udfb8 [GUITAR LICK INTERLUDE] \ud83c\udfb8", "t": 51.8}]}, {"start": 56.5, "end": 59.5, "text": "My name is Mike, c'mon, let's robo-karaoke!", "sub": "Verse 3", "words": [{"w": "My", "t": 56.5}, {"w": "name", "t": 56.9}, {"w": "is", "t": 57.2}, {"w": "Mike,", "t": 57.5}, {"w": "c'mon,", "t": 57.9}, {"w": "let's", "t": 58.3}, {"w": "robo-", "t": 58.7}, {"w": "karaoke!", "t": 59.2}]}, {"start": 59.5, "end": 61.0, "text": "(Buh-bah-bop! Shoo-wop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Buh-", "t": 59.5}, {"w": "bah-", "t": 59.8}, {"w": "bop!", "t": 60.1}, {"w": "Shoo-", "t": 60.4}, {"w": "wop!)", "t": 60.7}]}, {"start": 61.0, "end": 64.8, "text": "Get up on the stage and sing a little ditty for me!", "sub": "Verse 3", "words": [{"w": "Get", "t": 61.0}, {"w": "up", "t": 61.3}, {"w": "on", "t": 61.5}, {"w": "the", "t": 61.7}, {"w": "stage", "t": 62.0}, {"w": "and", "t": 62.4}, {"w": "sing", "t": 62.7}, {"w": "a", "t": 63.0}, {"w": "little", "t": 63.3}, {"w": "ditty", "t": 63.7}, {"w": "for", "t": 64.1}, {"w": "me!", "t": 64.4}]}, {"start": 64.8, "end": 66.2, "text": "(Buh-bah-bop! Shoo-wop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Buh-", "t": 64.8}, {"w": "bah-", "t": 65.1}, {"w": "bop!", "t": 65.4}, {"w": "Shoo-", "t": 65.7}, {"w": "wop!)", "t": 66.0}]}, {"start": 66.2, "end": 70.0, "text": "Off-key? No, not me! I'm a karaoke machine!", "sub": "Chorus", "words": [{"w": "Off-key?", "t": 66.2}, {"w": "No,", "t": 66.7}, {"w": "not", "t": 67.0}, {"w": "me!", "t": 67.3}, {"w": "I'm", "t": 67.7}, {"w": "a", "t": 68.0}, {"w": "karaoke", "t": 68.4}, {"w": "machine!", "t": 69.2}]}, {"start": 70.0, "end": 73.8, "text": "I got two mics on my head and you sing into me!", "sub": "Chorus", "words": [{"w": "I", "t": 70.0}, {"w": "got", "t": 70.3}, {"w": "two", "t": 70.6}, {"w": "mics", "t": 70.9}, {"w": "on", "t": 71.3}, {"w": "my", "t": 71.6}, {"w": "head", "t": 71.9}, {"w": "and", "t": 72.3}, {"w": "you", "t": 72.6}, {"w": "sing", "t": 72.9}, {"w": "into", "t": 73.2}, {"w": "me!", "t": 73.5}]}, {"start": 73.8, "end": 74.8, "text": "(Buh-bah-bop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Buh-", "t": 73.8}, {"w": "bah-", "t": 74.1}, {"w": "bop!)", "t": 74.5}]}, {"start": 74.8, "end": 79.2, "text": "Don't you wanna, don't you wanna, don't you wanna karaoke?", "sub": "Chorus Hook", "words": [{"w": "Don't", "t": 74.8}, {"w": "you", "t": 75.1}, {"w": "wanna,", "t": 75.4}, {"w": "don't", "t": 75.9}, {"w": "you", "t": 76.1}, {"w": "wanna,", "t": 76.3}, {"w": "don't", "t": 76.8}, {"w": "you", "t": 77.0}, {"w": "wanna", "t": 77.2}, {"w": "karaoke?", "t": 77.9}]}, {"start": 79.2, "end": 80.5, "text": "(Bop-bop-shoo-wop!)", "sub": "Backing Vocals", "isBacking": true, "words": [{"w": "(Bop-", "t": 79.2}, {"w": "bop-", "t": 79.5}, {"w": "shoo-", "t": 79.8}, {"w": "wop!)", "t": 80.1}]}, {"start": 80.5, "end": 84.0, "text": "Off-key? No, not me! I'm a karaoke machine!", "sub": "Chorus", "words": [{"w": "Off-key?", "t": 80.5}, {"w": "No,", "t": 81.0}, {"w": "not", "t": 81.3}, {"w": "me!", "t": 81.6}, {"w": "I'm", "t": 82.0}, {"w": "a", "t": 82.3}, {"w": "karaoke", "t": 82.7}, {"w": "machine!", "t": 83.4}]}, {"start": 84.0, "end": 88.5, "text": "My name is Mike, and tonight, I'm your robo-MC!", "sub": "Verse 4", "words": [{"w": "My", "t": 84.0}, {"w": "name", "t": 84.5}, {"w": "is", "t": 84.8}, {"w": "Mike,", "t": 85.1}, {"w": "and", "t": 85.6}, {"w": "tonight,", "t": 86.0}, {"w": "I'm", "t": 86.6}, {"w": "your", "t": 87.0}, {"w": "robo-", "t": 87.4}, {"w": "MC!", "t": 88.0}]}, {"start": 89.5, "end": 93.5, "text": "Just pick a song from the list, and I'll cue the CD!", "sub": "Verse 4", "words": [{"w": "Just", "t": 89.5}, {"w": "pick", "t": 89.9}, {"w": "a", "t": 90.2}, {"w": "song", "t": 90.5}, {"w": "from", "t": 90.9}, {"w": "the", "t": 91.2}, {"w": "list,", "t": 91.6}, {"w": "and", "t": 92.0}, {"w": "I'll", "t": 92.3}, {"w": "cue", "t": 92.6}, {"w": "the", "t": 92.9}, {"w": "CD!", "t": 93.2}]}, {"start": 94.0, "end": 98.0, "text": "Mike's on the mics, and you know that he's doin' the deed!", "sub": "Verse 4", "words": [{"w": "Mike's", "t": 94.0}, {"w": "on", "t": 94.4}, {"w": "the", "t": 94.7}, {"w": "mics,", "t": 95.1}, {"w": "and", "t": 95.5}, {"w": "you", "t": 95.8}, {"w": "know", "t": 96.1}, {"w": "that", "t": 96.4}, {"w": "he's", "t": 96.7}, {"w": "doin'", "t": 97.0}, {"w": "the", "t": 97.3}, {"w": "deed!", "t": 97.6}]}, {"start": 98.0, "end": 99.5, "text": "(Pah-pah-pah-pah-pah!)", "sub": "Backing Doo-Wop", "isBacking": true, "words": [{"w": "(Pah-", "t": 98.0}, {"w": "pah-", "t": 98.3}, {"w": "pah-", "t": 98.6}, {"w": "pah-", "t": 98.9}, {"w": "pah!)", "t": 99.2}]}, {"start": 99.5, "end": 105.0, "text": "'Cause nothin' gets a party goin' higher than a little karaoke-dokie!", "sub": "Chorus", "words": [{"w": "'Cause", "t": 99.5}, {"w": "nothin'", "t": 100.0}, {"w": "gets", "t": 100.5}, {"w": "a", "t": 100.9}, {"w": "party", "t": 101.3}, {"w": "goin'", "t": 101.8}, {"w": "higher", "t": 102.3}, {"w": "than", "t": 102.7}, {"w": "a", "t": 103.0}, {"w": "little", "t": 103.4}, {"w": "karaoke-", "t": 103.9}, {"w": "dokie!", "t": 104.5}]}, {"start": 105.0, "end": 118.8, "text": "\ud83c\udfb8 [GUITAR SOLO] \ud83c\udfb8 Yeah, yeah! Sing it!", "sub": "Rockabilly Solo", "words": [{"w": "\ud83c\udfb8", "t": 105.0}, {"w": "[GUITAR", "t": 106.0}, {"w": "SOLO]\ud83c\udfb8", "t": 107.5}, {"w": "Yeah,", "t": 113.5}, {"w": "yeah!", "t": 114.5}, {"w": "Sing", "t": 116.5}, {"w": "it!", "t": 117.8}]}, {"start": 119.0, "end": 123.0, "text": "My name is Mike, and tonight, I'm your robo-MC!", "sub": "Final Chorus", "words": [{"w": "My", "t": 119.0}, {"w": "name", "t": 119.4}, {"w": "is", "t": 119.7}, {"w": "Mike,", "t": 120.0}, {"w": "and", "t": 120.5}, {"w": "tonight,", "t": 120.9}, {"w": "I'm", "t": 121.4}, {"w": "your", "t": 121.8}, {"w": "robo-", "t": 122.2}, {"w": "MC!", "t": 122.7}]}, {"start": 123.0, "end": 124.5, "text": "(Yeah, that's me!)", "sub": "Mike Ad-lib", "isBacking": true, "words": [{"w": "(Yeah,", "t": 123.0}, {"w": "that's", "t": 123.6}, {"w": "me!)", "t": 124.1}]}, {"start": 124.5, "end": 128.5, "text": "Just pick a song from the list, and I'll cue the CD!", "sub": "Final Chorus", "words": [{"w": "Just", "t": 124.5}, {"w": "pick", "t": 124.9}, {"w": "a", "t": 125.2}, {"w": "song", "t": 125.5}, {"w": "from", "t": 125.9}, {"w": "the", "t": 126.2}, {"w": "list,", "t": 126.6}, {"w": "and", "t": 127.0}, {"w": "I'll", "t": 127.3}, {"w": "cue", "t": 127.7}, {"w": "the", "t": 128.0}, {"w": "CD!", "t": 128.3}]}, {"start": 128.8, "end": 132.8, "text": "Yeah, Mike's on the mics, and you know that he's doin' the deed!", "sub": "Final Chorus", "words": [{"w": "Yeah,", "t": 128.8}, {"w": "Mike's", "t": 129.2}, {"w": "on", "t": 129.6}, {"w": "the", "t": 129.9}, {"w": "mics,", "t": 130.3}, {"w": "and", "t": 130.7}, {"w": "you", "t": 131.0}, {"w": "know", "t": 131.3}, {"w": "that", "t": 131.6}, {"w": "he's", "t": 131.9}, {"w": "doin'", "t": 132.2}, {"w": "the", "t": 132.4}, {"w": "deed!", "t": 132.6}]}, {"start": 133.0, "end": 138.0, "text": "'Cause nothin' gets a party goin' higher than a little karaoke-dokie!", "sub": "Big Finish", "words": [{"w": "'Cause", "t": 133.0}, {"w": "nothin'", "t": 133.4}, {"w": "gets", "t": 133.8}, {"w": "a", "t": 134.2}, {"w": "party", "t": 134.6}, {"w": "goin'", "t": 135.0}, {"w": "higher", "t": 135.5}, {"w": "than", "t": 135.9}, {"w": "a", "t": 136.3}, {"w": "little", "t": 136.7}, {"w": "karaoke-", "t": 137.2}, {"w": "dokie!", "t": 137.7}]}, {"start": 138.5, "end": 146.0, "text": "My name is Mike, c'mon, let's robo-karaoke! \ud83c\udfa4\ud83d\udca5", "sub": "Outro / Final Note", "words": [{"w": "My", "t": 138.5}, {"w": "name", "t": 139.0}, {"w": "is", "t": 139.4}, {"w": "Mike,", "t": 139.8}, {"w": "c'mon,", "t": 140.4}, {"w": "let's", "t": 141.0}, {"w": "robo-", "t": 141.6}, {"w": "karaoke!", "t": 142.4}]}];
+
+const audio = document.getElementById('audioEl');
+const playBtn = document.getElementById('playBtn');
+const sceneBtn = document.getElementById('sceneBtn');
+const vhsBtn = document.getElementById('vhsBtn');
+const fsBtn = document.getElementById('fsBtn');
+const progressBarBg = document.getElementById('progressBarBg');
+const progressBarFill = document.getElementById('progressBarFill');
+const vcrState = document.getElementById('vcrState');
+const vcrStateText = document.getElementById('vcrStateText');
+const vcrTimer = document.getElementById('vcrTimer');
+const lineActive = document.getElementById('lineActive');
+const lineNext = document.getElementById('lineNext');
+const sectionTag = document.getElementById('sectionTag');
+const micBouncer = document.getElementById('micBouncer');
+const vhsOverlay = document.getElementById('vhsOverlay');
+const canvas = document.getElementById('brollCanvas');
+const ctx = canvas.getContext('2d');
+
+let currentLineIndex = -1;
+let sceneIndex = 0;
+const SCENES = ['Tokyo Neon 🌃', 'Sunset Beach 🌅', 'Disco Laser Grid 🪩', 'Cyber Highway 🚗'];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+// B-ROLL PROCEDURAL ANIMATOR (FREEZES WHEN PAUSED OR STOPPED)
+let animFrame = 0;
+function drawBroll() {
+  if (audio && !audio.paused && !audio.ended) {
+    animFrame++;
+  }
+
+  const w = canvas.width;
+  const h = canvas.height;
+
+  const songProgress = audio.duration ? (audio.currentTime / audio.duration) : 0;
+  const autoScene = Math.floor(songProgress * 4) % 4;
+  const activeScene = (sceneIndex === 0) ? autoScene : (sceneIndex - 1);
+
+  if (activeScene === 0) {
+    // 1. TOKYO SHIBUYA NEON NIGHT
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, '#001226');
+    grad.addColorStop(0.65, '#002d5a');
+    grad.addColorStop(1, '#000b18');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#001833';
+    for(let i=0; i<w; i+=80) {
+      const bh = ((Math.sin(i*0.02) + 1.2) * 160) + 120;
+      ctx.fillRect(i, h*0.65 - bh, 74, bh + h*0.35);
+      for(let y = h*0.65 - bh + 15; y < h*0.65; y += 22) {
+        if ((i + y + animFrame) % 7 === 0) {
+          ctx.fillStyle = (i % 3 === 0) ? 'rgba(56, 189, 248, 0.75)' : 'rgba(0, 112, 243, 0.75)';
+          ctx.fillRect(i + 12, y, 12, 14);
+          ctx.fillStyle = '#001833';
+        }
+      }
+    }
+
+    const roadGrad = ctx.createLinearGradient(0, h*0.65, 0, h);
+    roadGrad.addColorStop(0, '#002040');
+    roadGrad.addColorStop(1, '#000c1c');
+    ctx.fillStyle = roadGrad;
+    ctx.fillRect(0, h*0.65, w, h*0.35);
+
+    for (let j = 0; j < 12; j++) {
+      const rx = (j * (w / 12) + (animFrame * 0.8)) % w;
+      const rColor = (j % 2 === 0) ? 'rgba(56, 189, 248, 0.15)' : 'rgba(0, 112, 243, 0.15)';
+      ctx.fillStyle = rColor;
+      ctx.fillRect(rx - 25, h*0.65, 50, h*0.35);
+    }
+  } else if (activeScene === 1) {
+    // 2. RETRO SUNSET BEACH
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, '#002244');
+    grad.addColorStop(0.4, '#0056b3');
+    grad.addColorStop(0.65, '#fba442');
+    grad.addColorStop(1, '#001226');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    const sunX = w * 0.5;
+    const sunY = h * 0.55;
+    const sunRad = Math.min(w, h) * 0.22;
+    const sunGrad = ctx.createRadialGradient(sunX, sunY, sunRad*0.2, sunX, sunY, sunRad);
+    sunGrad.addColorStop(0, '#fff494');
+    sunGrad.addColorStop(0.7, '#ff5e36');
+    sunGrad.addColorStop(1, 'rgba(255, 94, 54, 0)');
+    ctx.fillStyle = sunGrad;
+    ctx.beginPath();
+    ctx.arc(sunX, sunY, sunRad, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = 'rgba(0, 18, 38, 0.88)';
+    ctx.fillRect(0, h*0.65, w, h*0.35);
+    for (let k = 0; k < 6; k++) {
+      const wy = h*0.66 + k * 28;
+      ctx.fillStyle = 'rgba(255, 170, 70, 0.25)';
+      ctx.fillRect(sunX - 160 + Math.sin(animFrame*0.05 + k)*30, wy, 320, 3);
+    }
+  } else if (activeScene === 2) {
+    // 3. DISCO LASER 3D PERSPECTIVE GRID
+    ctx.fillStyle = '#000e1f';
+    ctx.fillRect(0, 0, w, h);
+
+    const horizon = h * 0.55;
+    ctx.strokeStyle = 'rgba(0, 112, 243, 0.45)';
+    ctx.lineWidth = 2;
+    const cx = w * 0.5;
+    for (let x = -w; x <= w * 2; x += 90) {
+      ctx.beginPath();
+      ctx.moveTo(cx, horizon);
+      ctx.lineTo(x + (Math.sin(animFrame * 0.02) * 50), h);
+      ctx.stroke();
+    }
+    const speed = (animFrame * 2) % 40;
+    for (let y = horizon; y <= h; y += (y - horizon) * 0.25 + 6) {
+      const realY = y + speed * ((y - horizon) / (h - horizon));
+      if (realY <= h) {
+        ctx.strokeStyle = 'rgba(56, 189, 248, ' + Math.min(0.85, (realY - horizon) / (h - horizon)) + ')';
+        ctx.beginPath();
+        ctx.moveTo(0, realY);
+        ctx.lineTo(w, realY);
+        ctx.stroke();
+      }
+    }
+    for(let b=0; b<4; b++) {
+      ctx.strokeStyle = (b % 2 === 0) ? 'rgba(56, 189, 248, 0.35)' : 'rgba(0, 112, 243, 0.35)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(cx, 0);
+      ctx.lineTo((w * 0.25 * b) + Math.sin(animFrame*0.04 + b) * 150, horizon);
+      ctx.stroke();
+    }
+  } else {
+    // 4. CYBER HIGHWAY NIGHT DRIVE
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, '#000814');
+    grad.addColorStop(0.55, '#001e3d');
+    grad.addColorStop(1, '#000e1f');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#fff';
+    for(let s=0; s<40; s++) {
+      const sx = (s * 137.5) % w;
+      const sy = (s * 83.1) % (h * 0.5);
+      ctx.fillRect(sx, sy, 2, 2);
+    }
+    const hx = w * 0.5;
+    const hy = h * 0.52;
+    ctx.fillStyle = '#001428';
+    ctx.beginPath();
+    ctx.moveTo(hx, hy);
+    ctx.lineTo(0, h);
+    ctx.lineTo(w, h);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.strokeStyle = '#ffd700';
+    ctx.lineWidth = 4;
+    const offset = (animFrame * 8) % 60;
+    for(let r=hy; r<h; r += (r - hy) * 0.4 + 10) {
+      ctx.beginPath();
+      ctx.moveTo(hx, r + offset * ((r-hy)/(h-hy)));
+      ctx.lineTo(hx, r + 20 + offset * ((r-hy)/(h-hy)));
+      ctx.stroke();
+    }
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.7)';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(hx - 30, hy);
+    ctx.lineTo(w * 0.25, h);
+    ctx.stroke();
+  }
+
+  requestAnimationFrame(drawBroll);
+}
+requestAnimationFrame(drawBroll);
+
+function fmtTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  const ms = Math.floor((sec % 1) * 10);
+  return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}.${ms}`;
+}
+
+function updateLyrics() {
+  const t = audio.currentTime;
+
+  vcrTimer.textContent = fmtTime(t);
+  progressBarFill.style.width = ((t / (audio.duration || 149.5)) * 100) + '%';
+
+  let activeIdx = -1;
+  for (let i = 0; i < LYRICS.length; i++) {
+    if (t >= LYRICS[i].start && t < LYRICS[i].end) {
+      activeIdx = i;
+      break;
+    }
+  }
+
+  if (activeIdx !== -1 && activeIdx !== currentLineIndex) {
+    currentLineIndex = activeIdx;
+    const line = LYRICS[activeIdx];
+    const nextLine = LYRICS[activeIdx + 1];
+
+    sectionTag.textContent = line.sub || 'ROBO-KARAOKE';
+    micBouncer.style.opacity = 1;
+
+    lineActive.innerHTML = line.words.map((w, idx) => {
+      return `<span class="word-span" id="word_${idx}">${w.w}</span>`;
+    }).join(' ');
+
+    lineNext.textContent = nextLine ? nextLine.text : '★ END OF SONG ★';
+  } else if (activeIdx === -1 && t < 0.2) {
+    sectionTag.textContent = 'PORTFOLIO AUDIO LAB';
+    lineActive.textContent = 'Press Play to Start Robo-Karaoke! 🎤';
+    lineNext.textContent = LYRICS[0] ? LYRICS[0].text : '';
+    micBouncer.style.opacity = 0;
+  }
+
+  // WORD-BY-WORD HIGHLIGHTING AND PRECISION UNDERNEATH MIC BOUNCE
+  if (currentLineIndex !== -1) {
+    const words = LYRICS[currentLineIndex].words;
+    let activeWordSpan = null;
+
+    for (let idx = 0; idx < words.length; idx++) {
+      const span = document.getElementById(`word_${idx}`);
+      if (!span) continue;
+      const wordStart = words[idx].t;
+      const nextWordStart = words[idx + 1] ? words[idx + 1].t : LYRICS[currentLineIndex].end;
+
+      if (t >= wordStart && t < nextWordStart) {
+        span.className = 'word-span highlight-now';
+        activeWordSpan = span;
+      } else if (t >= nextWordStart) {
+        span.className = 'word-span sung';
+      } else {
+        span.className = 'word-span';
+      }
+    }
+
+    if (activeWordSpan) {
+      // Direct viewport coordinates because micBouncer is position: fixed
+      const rect = activeWordSpan.getBoundingClientRect();
+      const targetX = rect.left + (rect.width / 2);
+      
+      // Placed directly UNDERNEATH the word with tempo-synced beat bounce
+      const beat = (t * (172 / 60)) % 1;
+      const hopY = Math.sin(beat * Math.PI) * 4;
+      const targetY = rect.bottom + 6 - hopY;
+
+      micBouncer.style.left = targetX + 'px';
+      micBouncer.style.top = targetY + 'px';
+      micBouncer.style.transform = 'translate(-50%, 0) scale(1.1)';
+      micBouncer.style.opacity = 1;
+    }
+  }
+
+  requestAnimationFrame(updateLyrics);
+}
+requestAnimationFrame(updateLyrics);
+
+// PLAY / PAUSE CONTROLS
+playBtn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+    playBtn.textContent = '❚❚';
+    vcrState.className = 'vcr-play playing';
+    vcrStateText.textContent = 'PLAY ▶';
+  } else {
+    audio.pause();
+    playBtn.textContent = '▶';
+    vcrState.className = 'vcr-play';
+    vcrStateText.textContent = 'PAUSE ❚❚';
+  }
+});
+
+// AUDIO ENDED EVENT (STOPS CLEANLY & FREEZES)
+audio.addEventListener('ended', () => {
+  playBtn.textContent = '▶';
+  vcrState.className = 'vcr-play stopped';
+  vcrStateText.textContent = 'STOPPED ⏹';
+  micBouncer.style.opacity = 0;
+  sectionTag.textContent = '★ PERFECT SCORE: 100 PTS ★';
+  lineActive.textContent = '★ GREAT JOB! ROBOT KARAOKE MASTER ★';
+  lineNext.textContent = 'Press Play to Sing Again! 🔁';
+});
+
+// PROGRESS BAR SEEK
+progressBarBg.addEventListener('click', (e) => {
+  const rect = progressBarBg.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = pct * (audio.duration || 149.5);
+});
+
+// SCENE SWITCHER
+sceneBtn.addEventListener('click', () => {
+  sceneIndex = (sceneIndex + 1) % 5;
+  sceneBtn.textContent = sceneIndex === 0 ? 'Scene: Auto Cycle 🔄' : 'Scene: ' + SCENES[sceneIndex - 1];
+});
+
+// VHS TOGGLE
+vhsBtn.addEventListener('click', () => {
+  if (vhsOverlay.style.display === 'none') {
+    vhsOverlay.style.display = 'block';
+    vhsBtn.textContent = 'CRT: ON 📺';
+  } else {
+    vhsOverlay.style.display = 'none';
+    vhsBtn.textContent = 'CRT: OFF 📺';
+  }
+});
+
+// FULLSCREEN
+fsBtn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+// KEYBOARD SHORTCUTS
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    playBtn.click();
+  }
+});
+</script>
+</body>
+</html>

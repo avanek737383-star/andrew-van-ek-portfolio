@@ -307,6 +307,27 @@
                         <p class="oceanscape-render__link"><a href="images/oceanscape-4k.png">View the full 4K underwater image (PNG, 15 MB)</a></p>
                     </figure>
 
+                    <figure class="karaoke-experiment" id="karaoke-experiment" style="margin: 32px 0; background: #001226; border-radius: 16px; border: 1.5px solid rgba(147, 197, 253, 0.35); overflow: hidden; box-shadow: 0 12px 36px rgba(0, 18, 38, 0.35);">
+                        <div style="padding: 18px 24px 14px; background: linear-gradient(180deg, rgba(0, 45, 90, 0.9) 0%, rgba(0, 18, 38, 0.95) 100%); border-bottom: 1px solid rgba(147, 197, 253, 0.2);">
+                            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                                <h3 style="margin: 0; font-size: 1.15rem; color: #f8f9fa; display: flex; align-items: center; gap: 8px;">
+                                    <span>🎤</span> Robo-Karaoke Studio (Interactive Player)
+                                </h3>
+                                <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(147, 197, 253, 0.15); color: #93c5fd; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(147, 197, 253, 0.3);">Live Audio &middot; 172 BPM Sync</span>
+                            </div>
+                            <p style="margin: 8px 0 0; font-size: 0.9rem; color: #cbd5e1; line-height: 1.5;">
+                                A retro Japanese arcade-style karaoke experience built for the upbeat rockabilly remix of <em>Mike's Theme</em> (Super Smash Bros. Brawl). Instead of heavy generative AI video diffusion that risks visual hallucinations and lip desynchronization, this player pairs Whisper-CPP RMS audio transient slicing with a fixed-coordinate bouncing mic and a 60 FPS HTML5 Canvas B-roll engine. See the <a href="projects.html#robo-karaoke-title" style="color: #93c5fd; text-decoration: underline;">full project writeup</a> for details.
+                            </p>
+                        </div>
+                        <div style="position: relative; width: 100%; height: 580px; background: #001226;">
+                            <iframe src="karaoke.html" style="width: 100%; height: 100%; border: none; display: block;" title="Robo-Karaoke Studio - Mike's Theme" loading="lazy"></iframe>
+                        </div>
+                        <figcaption style="padding: 12px 20px; font-size: 0.85rem; color: #94a3b8; background: #000c1a; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <span>Hit <strong>PLAY</strong> above to test audio sync, switch B-roll themes, or open the standalone view.</span>
+                            <a href="karaoke.html" target="_blank" rel="noopener" style="color: #93c5fd; text-decoration: underline; font-weight: 500;">Launch Fullscreen Player &rarr;</a>
+                        </figcaption>
+                    </figure>
+
 					<section class="computing-experiments" aria-labelledby="computing-title">
                         <h2 id="computing-title">Computing for Research &amp; Experimentation</h2>
                         <p>I contribute spare computing power to <a href="https://foldingathome.org/" target="_blank" rel="noopener">Folding@Home</a>, helping researchers simulate how proteins behave and study diseases. Through BananoMiner, that work also earns small BANANO rewards. Getting back into folding gave me a chance to trace payout records, restore my existing wallet, and learn how pending transfers are received.</p>
