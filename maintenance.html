@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">506 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-14T13:52:00-05:00">November 14, 2026 at 1:52:00 PM EST</time></p>
+<p class="maintenance-updated">507 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-14T13:55:00-05:00">November 14, 2026 at 1:55:00 PM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -544,6 +544,11 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="boincmgr-flatpak-recovery-and-background-daemonization"><strong>BOINC Manager Flatpak process recovery, terminal session decoupling &amp; background daemonization:</strong> In pair programming with Antigravity AI, diagnosed, recovered, and daemonized the graphical BOINC Manager interface (Flatpak <code>edu.berkeley.BOINC</code> 8.2.12) on the Alpine Linux NUC gateway following a frozen wizard state during project onboarding.
+<br><br>
+<em>Process Recovery &amp; Memory Reclaim:</em> Following high memory consumption in the embedded WebKitGTK component of BOINC Manager, cleanly terminated the hung Flatpak application instance using <code>flatpak kill edu.berkeley.BOINC</code>. Reclaimed ~850 MB of RSS/virtual memory, instantly recovering system available memory from ~400 MB to 1.39 GB and stabilizing desktop responsiveness. Audited the core distributed computing engine (<code>boinc_client</code>, PID 3345), verifying that all active Einstein@Home compute tasks continued executing uninterrupted under OpenRC service management.
+<br><br>
+<em>Terminal Decoupling &amp; Daemonization:</em> Identified that launching BOINC Manager from an interactive terminal (LXTerminal on <code>pts/4</code>) bound the application to the terminal's controlling session, risking process termination via SIGHUP upon tab closure or terminal exit. Engineered a fully detached launch routine utilizing <code>setsid</code> and <code>nohup</code> bound to <code>DISPLAY=:22</code> with standard input, output, and error streams redirected to <code>/dev/null</code>. Verified the newly spawned instance runs under init (PPID 1) with no controlling terminal (<code>TT ?</code>), guaranteeing persistent, uninterrupted GUI operation regardless of terminal window or tab lifecycles.</li>
 <li id="boinc-secondary-project-resource-allocation-and-throttle"><strong>Intel NUC BOINC multi-project resource allocation, Asteroids@home memory profiling &amp; CPU throttle hardening:</strong> In pair programming with Antigravity AI, evaluated and configured multi-project distributed computing on the Alpine Linux Intel NUC gateway (<code>nucWOL2-0--HDD</code>, quad-core Intel Pentium N3700 with 4 GB RAM) to utilize spare CPU cycles alongside an existing Einstein@Home workload. Researched low-overhead secondary candidate projects (Asteroids@home, Universe@home, SiDock@home, and NumberFields@home), vetting memory footprints to avoid memory starvation or swap thrashing on 4 GB RAM.
 <br><br>
 <em>Diagnostic &amp; Load Spike Triage:</em> During the &ldquo;Add Project&rdquo; wizard handshake for Asteroids@home (<code>https://asteroidsathome.net/boinc/</code>), investigated a sudden desktop load spike (system load rising past 6.5) and UI unresponsiveness. Diagnosed that BOINC Manager's embedded WebKitGTK browser engine spiked to ~90% CPU and consumed ~600 MB of RAM while fetching and parsing XML configuration payloads (<code>get_project_config.php</code>), creating temporary memory pressure alongside concurrent Firefox browsing and Duino-Coin background mining. Confirmed the underlying Linux system was stable and that the wizard had simply finished behind an active terminal window.
@@ -1070,8 +1075,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-14T13:52:00-05:00">November 14, 2026 at 1:52:00 PM EST</time></p>
-				<p class="footer-version">Version v2.6.360 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-14T13:55:00-05:00">November 14, 2026 at 1:55:00 PM EST</time></p>
+				<p class="footer-version">Version v2.6.361 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
