@@ -4,7 +4,8 @@
 	<head>
 		<title>Andrew Van Ek Portfolio | IT Specialist | Home</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261103-clock-weather-fix-1">
+	<link rel="stylesheet" href="css/styles.css?v=20261103-clock-weather-fix-1">
+	<link rel="stylesheet" href="css/room-sensors.css?v=20261114-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -206,6 +207,34 @@
 					
 					<p>If you have any questions or would like to connect, please visit the <a href="contact.html" style="color: #0056b3; font-weight: bold;">Contact</a> page.</p>
 				</article>
+				<section class="room-sensors" id="room-sensors" aria-labelledby="room-sensors-title" data-state="waiting">
+					<div class="room-sensors-heading">
+						<h3 id="room-sensors-title">Live from my workspace</h3>
+						<span class="room-sensors-status" id="room-sensors-status" role="status">Connecting</span>
+					</div>
+					<div class="room-sensor-cards">
+						<article class="room-sensor-card" aria-labelledby="room-temperature-title">
+							<h4 id="room-temperature-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14.8V5a3 3 0 0 1 6 0v9.8a5 5 0 1 1-6 0Z"/><path d="M12 8v10"/><circle cx="12" cy="18" r="1"/></svg>Room temperature</h4>
+							<p class="room-sensor-value"><output id="room-temperature-value">&mdash;</output><span>&deg;F</span></p>
+							<p class="room-sensor-description" id="room-temperature-description">Waiting for a reading</p>
+							<div class="room-reference room-reference-temperature" id="room-temperature-meter" role="img" aria-label="Temperature reference from 50 to 95 degrees Fahrenheit; waiting for a reading">
+								<span class="room-reference-marker" aria-hidden="true"></span>
+							</div>
+							<div class="room-reference-labels" aria-hidden="true"><span>50&deg;</span><span>72&deg;</span><span>95&deg;</span></div>
+						</article>
+						<article class="room-sensor-card" aria-labelledby="room-light-title">
+							<h4 id="room-light-title"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Room light</h4>
+							<p class="room-sensor-value"><output id="room-light-value">&mdash;</output><span>%</span></p>
+							<p class="room-sensor-description" id="room-light-description">Waiting for a reading</p>
+							<div class="room-reference room-reference-light" id="room-light-meter" role="img" aria-label="Relative light reference from dark to bright; waiting for a reading">
+								<span class="room-reference-marker" aria-hidden="true"></span>
+							</div>
+							<div class="room-reference-labels" aria-hidden="true"><span>Dark</span><span>Moderate</span><span>Bright</span></div>
+						</article>
+					</div>
+					<div class="room-sensors-meta"><span id="room-sensors-updated">Checking the board&hellip;</span><span id="room-mining-status">Miner status pending</span></div>
+					<p class="room-sensors-note">Onboard thermistor: approximate ambient temperature. Light is a relative sensor scale, not lux. <a href="maintenance.html#bluefruit-room-sensors-boot-telemetry">How it works</a></p>
+				</section>
 				</div>
 
 				<section class="home-weather-section" id="home-weather-section" aria-labelledby="weather-widget-title">
@@ -454,5 +483,6 @@
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 		<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
+		<script src="scripts/room-sensors.js?v=20261114-1" defer></script>
 	</body>
 </html>

@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+description="Read-only portfolio room sensor telemetry"
+supervisor="supervise-daemon"
+command="/usr/bin/python3"
+command_args="/home/avanek/agy-work/portfolio/services/room-sensors/server.py"
+command_user="avanek:avanek"
+directory="/home/avanek/agy-work/portfolio/services/room-sensors"
+respawn_delay=5
+respawn_max=0
+output_log="/var/log/portfolio-room-sensors.log"
+error_log="/var/log/portfolio-room-sensors-error.log"
+
+depend() {
+    need net
+    after tailscale
+}
+
+start_pre() {
+    checkpath --file --owner avanek:avanek --mode 0640 "$output_log" "$error_log"
+}
