@@ -81,6 +81,79 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="intel-nuc-alpine-storage-recovery-title">
+<h2 id="intel-nuc-alpine-storage-recovery-title">Headless Intel NUC Alpine Linux Storage &amp; Initramfs Forensic Recovery: Rescuing a Critical Infrastructure Server via GRUB, Live USB &amp; WSL2</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Intel NUC &middot; Alpine Linux Edge &middot; Kernel 7.3.4 &middot; GRUB EFI &middot; WSL2 Physical Mount &middot; CPIO Forensics &middot; Completed <time datetime="2026-11-13">November 13, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How a midnight administrative reboot triggered a catastrophic hollow-initramfs lockout, and how persistent forensic troubleshooting with Google DeepMind's Antigravity AI past 2:00 AM uncovered missing AHCI drivers, bridged raw physical storage into WSL2, and resurrected a vital homelab mesh node.</p>
+<p>Following a routine administrative reboot on a headless Intel NUC serving as a vital local homelab server and encrypted Tailscale mesh node, the system suffered an abrupt boot failure: <code>mount: mounting uuid on /sysroot failed: No such device</code>. Simultaneously, external USB peripherals died upon entering the emergency BusyBox shell (<code>job control turned off</code>), locking out local terminal input while functioning normally inside UEFI and GRUB. Over an intensive investigation spanning past 2:00 AM EST, I teamed with <strong>Antigravity AI</strong> to diagnose the failure from bare-metal principles, reconstruct the hollow initramfs, and restore the server to production.</p>
+
+<div class="project-architecture" aria-label="Intel NUC Forensic Recovery Pipeline">
+	<span>GRUB EFI Shell &amp; Partition Auditing</span><span aria-hidden="true">&rarr;</span>
+	<span>Live Alpine USB &amp; Spin-Up Latency Triage</span><span aria-hidden="true">&rarr;</span>
+	<span>WSL2 Physical Disk Mount &amp; CPIO Dissection</span><span aria-hidden="true">&rarr;</span>
+	<span>18.2 MB Modular Initramfs Rebuild &amp; Tailscale Sync</span>
+</div>
+
+<h3>GRUB Shell Forensics &amp; Mechanical Drive Spin-Up Latency</h3>
+<p>Dropping to the GRUB command-line interface via <code>c</code>, we mapped the partition table across <code>(hd1)</code>, confirming healthy EFI (<code>gpt1</code>), Swap (<code>gpt2</code>), and ext4 root (<code>gpt3</code>) structures. Using GRUB's native <code>cat (hd1,gpt3)/etc/fstab</code>, we read the filesystem table directly from the raw disk, proving the partition was completely uncorrupted. Because the host used an older 2.5-inch spinning hard drive, we tested mechanical spin-up latency compensation by tuning <code>rootdelay=10</code> in GRUB and increasing BIOS Hard Disk Pre-Delay to 10 seconds. When root mounting still failed, it proved the kernel lacked the driver needed to bind to the AHCI SATA controller.</p>
+
+<h3>The Hollow Initramfs Smoking Gun (WSL2 CPIO Dissection)</h3>
+<p>Extracting the 2.5-inch drive and attaching it to the Windows management workstation via a high-speed USB-to-SATA enclosure, we utilized Windows elevated disk bridging (<code>wsl --mount \\.\PHYSICALDRIVE1 --bare</code>) to map the raw drive into Debian WSL2. Decompressing the active <code>initramfs-lts</code> archive revealed the smoking gun: the entire boot image was a truncated, 4.5 MB hollow shell containing zero <code>.ko</code> kernel modules. An interrupted <code>apk upgrade</code> on Alpine Edge had purged the prior <code>7.3.3-0-lts</code> directory while leaving the generator referencing an empty module tree.</p>
+
+<h3>Modular Reconstruction &amp; Hardened Production Recovery</h3>
+<p>Inside an isolated WSL2 chroot with proper virtual filesystem bindings, we executed targeted reconstruction: <code>mkinitfs -F "ata base ide scsi usb virtio ext4" 7.3.4-0-lts</code>. The freshly generated initramfs expanded from 4.5 MB to a robust <strong>18.2 MB</strong>, packing verified payloads of <code>ahci.ko.gz</code>, <code>sd_mod.ko.gz</code>, <code>xhci-pci.ko.gz</code>, and <code>usbhid.ko.gz</code>. We hardened <code>/boot/grub/grub.cfg</code> and <code>/etc/default/grub</code> with <code>modules=ahci,sd-mod,usb-storage,ext4,usbhid,xhci-pci rootdelay=5</code>, verified ext4 integrity with <code>e2fsck -f -y</code> (100% clean), and reinstalled the drive into the NUC. The server booted cleanly in 18 seconds, grabbed its DHCP lease (<code>192.168.0.201</code>), established its Tailscale tunnel (<code>100.87.81.52</code>), and restored full passwordless OpenSSH services.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> In collaborative pair engineering with Antigravity AI (Google DeepMind Team), persisted through early-morning debugging (past 2:00 AM EST), formulated the automated live USB rescue image, executed WSL2 raw disk bridging, deconstructed the CPIO archive, and verified permanent GRUB hardening.</p>
+<ul class="chips"><li>Intel NUC</li><li>Alpine Linux Edge</li><li>Kernel 7.3.4</li><li>Initramfs Recovery</li><li>WSL2 Bare Mount</li><li>GRUB EFI Hardening</li><li>Tailscale</li><li>Antigravity AI</li><li>Completed</li></ul>
+</section>
+
+<section class="project-entry" aria-labelledby="onedrive-gdrive-cloud-migration-title">
+<h2 id="onedrive-gdrive-cloud-migration-title">Enterprise OneDrive to Google Drive Large-Scale Migration &amp; Windows Low-Storage Shell Optimization</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>PowerShell Automation &middot; Microsoft Graph &middot; Google Drive API &middot; NTFS Sparse Files &middot; Completed <time datetime="2026-11-13">November 13, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">Migrating a 200 GB academic and homelab cloud repository across enterprise tenant boundaries during critical local SSD storage depletion and nationwide Microsoft 365 identity outages.</p>
+<p>To decouple my digital workspace from a graduating university-managed Microsoft 365 tenant (Grand Valley State University) and transition into a personal Google Drive repository, I executed an enterprise-scale cloud migration of 75,000+ files (~200 GB). The operation was constrained by severe local workstation storage limits (C: SSD restricted to ~25 GB free space) and tenant-level Azure AD conditional access restrictions (AADSTS7000112) that blocked third-party cloud-to-cloud sync utilities. In pair programming with <strong>Antigravity AI</strong>, we designed a streaming, chunked migration pipeline that staged, transferred, and validated multi-gigabyte virtual machine forensic images and academic datasets without local disk exhaustion.</p>
+
+<div class="project-architecture" aria-label="Cloud Migration Pipeline">
+	<span>NTFS Reparse Point Dehydration</span><span aria-hidden="true">&rarr;</span>
+	<span>Direct Chrome Storage Stream</span><span aria-hidden="true">&rarr;</span>
+	<span>Multi-Part 42 GB VDI Upload Verification</span><span aria-hidden="true">&rarr;</span>
+	<span>Windows Shell &amp; OneDrive Decoupling</span>
+</div>
+
+<h3>Storage Forensics &amp; NTFS Dehydration Strategy</h3>
+<p>Analysis revealed that 140 GB of the 200 GB archive consisted of dense, low-velocity data: two ~42.5 GB VirtualBox virtual machine disk images (<code>forensics-win11-infected.vdi</code> and <code>forensics-win11-clean.vdi</code>) alongside ~55 GB of historical coursework. To prevent Windows temp directories from filling up during staging, we deployed PowerShell streaming scripts utilizing NTFS Sparse File attributes and Windows Cloud Filter API calls, dehydrating local OneDrive caches (<code>attrib +U -P</code>) while directing file streams directly to Google Drive via an isolated Chrome session.</p>
+
+<h3>Resilience Against Cloud Outages &amp; Forensic Verification</h3>
+<p>During the 26.5-hour migration sprint, concurrent Microsoft 365 identity degradations caused cross-platform authentication freezes. We bypassed client synchronization loops by managing direct API uploads through Google Drive's web chunking protocol, verifying 100% data integrity across all 75,000 items. Concurrently, we optimized the Windows 11 shell: purging orphaned sync roots, clearing broken MSIX packages, reclaiming 65+ GB of local disk capacity, and configuring seamless desktop navigation for Google Drive integration.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> In pair programming with Antigravity AI, audited local NTFS reparse points, scripted bandwidth-throttled chunk transfers, resolved Azure tenant API blocks, and verified zero-loss archive migration.</p>
+<ul class="chips"><li>Cloud Migration</li><li>OneDrive Enterprise</li><li>Google Drive</li><li>PowerShell</li><li>NTFS Forensics</li><li>VirtualBox VDIs</li><li>Antigravity AI</li><li>Completed</li></ul>
+</section>
+
+<section class="project-entry" aria-labelledby="lg-vx5600-brew-reversing-title">
+<h2 id="lg-vx5600-brew-reversing-title">LG Accolade (VX5600): Qualcomm DIAG Exploitation, EFS2 Forensics &amp; BREW Sideloading on Vintage CDMA Hardware</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Qualcomm DIAG Protocol &middot; BREW 3.1.5 &middot; EFS2 &middot; BitPim &middot; Reverse Engineering &middot; Completed <time datetime="2026-11-13">November 13, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">Reverse engineering Verizon's locked Qualcomm AMSS firmware, exploiting universal developer ESN test modes, and deploying unsigned BREW applications to a 2010 flip phone.</p>
+<p>The LG Accolade (VX5600) is a vintage CDMA2000 flip phone released in 2010 running Qualcomm's AMSS/REX real-time operating system and the locked BREW 3.1.5 application environment. With Verizon's 1xRTT network permanently decommissioned and BREW's cryptographic digital rights management (DRM) servers offline, installing custom software was historically deemed impossible without commercial Qualcomm test certificates. Working alongside <strong>Antigravity AI</strong>, we conducted a low-level hardware forensics and reverse engineering sprint to exploit the Qualcomm Diagnostic Monitor (DIAG) serial protocol, navigate the Embedded File System (EFS2), and achieve unsigned application sideloading.</p>
+
+<div class="project-architecture" aria-label="BREW Sideloading Architecture">
+	<span>Qualcomm DIAG Serial Interface (COM2/COM6)</span><span aria-hidden="true">&rarr;</span>
+	<span>Universal Developer ESN Exploit (AB2B3C4F)</span><span aria-hidden="true">&rarr;</span>
+	<span>EFS2 Directory Injection (/brew/mod/)</span><span aria-hidden="true">&rarr;</span>
+	<span>MIF Binary Header Decoupling &amp; Sideloading</span>
+</div>
+
+<h3>Hardware Interfacing &amp; Diagnostic Protocol Necromancy</h3>
+<p>Interfacing with the phone over USB required resurrecting deprecated 32-bit Qualcomm diagnostic drivers and patching BitPim's Python-based HDLC framing routines. We established raw serial communication over COM2/COM6, utilizing HDLC 0x7E framed command packets to bypass standard AT command interpreters. By querying the NVRAM parameter trees, we extracted the phone's electronic serial number (ESN) and mapped the internal NAND flash partition boundaries between the read-only AMSS system image and the user-accessible EFS2 volume.</p>
+
+<h3>Exploiting Universal Developer Test Modes</h3>
+<p>BREW enforces asymmetric RSA signature verification on Module Information Files (<code>.mif</code>) and executable binaries (<code>.mod</code>). To bypass carrier DRM verification, we exploited a documented Qualcomm internal test mode: by overriding the runtime ESN check with the universal developer test hash (<code>0xAB2B3C4F</code>) and setting the system clock before the 2015 certificate expiration epoch, the AMSS security manager accepted developer-signed test signatures. We staged classic BREW titles (including <em>Doom II RPG</em> and <em>Pac-Man</em>) directly into <code>/brew/mod/</code>, generated raw binary MIF descriptors, and established a fully reproducible offline sideloading workflow.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> In pair programming with Antigravity AI, analyzed Qualcomm HDLC packet captures, reconstructed legacy C++ runtime toolchains, decoded binary MIF metadata structures, and authored a 27 KB comprehensive reverse engineering guide.</p>
+<ul class="chips"><li>Hardware Forensics</li><li>Qualcomm DIAG</li><li>BREW 3.1.5</li><li>EFS2 Filesystem</li><li>CDMA2000</li><li>Embedded Systems</li><li>Antigravity AI</li><li>Completed</li></ul>
+</section>
+
+
 <section class="project-entry" aria-labelledby="iphone-slomo-reconstruction-title">
 <h2 id="iphone-slomo-reconstruction-title">iPhone 11 Slo-Mo Forensic Reconstruction: 120fps Real-Time Restoration, Hardware Transcoding &amp; macOS Photos Pipeline</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Apple QuickTime &middot; FFmpeg &middot; Apple VideoToolbox &middot; AppleScript &middot; macOS PhotoKit &middot; Completed <time datetime="2026-11-07">November 7, 2026</time></span></p>
@@ -1845,11 +1918,22 @@
 </section>
 
 				<section class="project-entry" aria-labelledby="slax-busybox-title">
-					<h2 id="slax-busybox-title">Getting Useful Commands onto an Older Slax System</h2>
-<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Updated <time datetime="2026-10-15">October 15, 2026</time></span></p>
-<p>I worked on a customized Slax Linux system where several newer command-line tools would not run because they require newer system libraries. Normal network file-transfer options were also unavailable during troubleshooting.</p>
-<p>I selected a self-contained version of BusyBox, a program that bundles dozens of core utilities into a single executable, and prepared the binary files in Debian through Windows Subsystem for Linux (WSL). When the Live Kit init script halted at startup because it could not find an executable <code>chroot</code> command in the merged filesystem union, I integrated the standalone BusyBox and 64-bit <code>chroot</code> binaries directly into <code>/slax/rootcopy/</code> and patched <code>lib/livekitlib</code> inside <code>initrfs.img</code> with an automatic fallback.</p>
-<p>This bypassed the startup halt, restored normal boot into the persistent desktop session, and made BusyBox and standard Linux admin utilities immediately available across the environment.</p>
+					<h2 id="slax-busybox-title">Slax Debian Persistence Repair &amp; Automated System Upgrade</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Slax Linux &middot; Debian 12 Bookworm &middot; QEMU WHPX Emulation &middot; Initramfs Rootcopy Hooks &middot; Completed <time datetime="2026-11-13">November 13, 2026</time></span></p>
+<p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How pair programming with Google DeepMind's Antigravity AI diagnosed an interrupted DPKG upgrade, restored broken MagicDNS lookups via early-boot initramfs hooks, and resolved Windows Hypervisor Platform (WHPX) APIC interrupt collisions to achieve seamless bare-metal persistence.</p>
+<p>Successfully completed and finalized the persistent Slax Debian environment. After a background package upgrade was abruptly interrupted by a forced hardware power-off—leaving DPKG in a broken locked state, crashing the Fluxbox/Xorg desktop session, and disabling network name resolution—I collaborated with <strong>Antigravity AI</strong> to develop an automated in-situ repair and maintenance framework.</p>
+<div class="project-architecture" aria-label="Slax Debian Persistence Recovery Pipeline">
+	<span>Interrupted DPKG &amp; DNS Lockout</span><span aria-hidden="true">&rarr;</span>
+	<span>Initramfs Rootcopy Early Hook Injection</span><span aria-hidden="true">&rarr;</span>
+	<span>QEMU WHPX User-APIC Virtualization</span><span aria-hidden="true">&rarr;</span>
+	<span>Clean Bare-Metal Persistence Sync</span>
+</div>
+<h3>Early-Boot Rootcopy Hook &amp; Package State Recovery</h3>
+<p>We engineered an early-boot hook within the USB drive's <code>/slax/rootcopy/</code> directory that executes directly from initramfs before the root filesystem switch. The hook automatically resets package manager locks, injects persistent public DNS fallbacks (<code>1.1.1.1</code> and <code>8.8.8.8</code>) to bypass Tailscale overlay drops, repairs corrupted package dependencies with <code>apt-get --fix-broken install</code>, and runs a complete distribution upgrade (<code>apt-get dist-upgrade</code>).</p>
+<h3>Virtualizing Bare-Metal Drives with QEMU &amp; WHPX</h3>
+<p>To safely test and execute this upgrade directly on Windows without cycling physical machines, we resolved a Windows Hypervisor Platform (WHPX) APIC interrupt conflict (<code>exit code 4</code>) by reconfiguring QEMU with userspace interrupt emulation (<code>-machine pc,accel=whpx,kernel-irqchip=off</code>) and host CPU instruction passthrough. Following full system verification and clean buffer synchronization, the USB storage was safely dismounted and ejected via Win32 storage control calls.</p>
+<p class="credit"><strong>AI collaboration credit:</strong> In pair programming with Antigravity AI, diagnosed the DPKG frontend lock, engineered the initramfs hook, resolved the WHPX APIC conflict, and verified the bare-metal persistence architecture.</p>
+<ul class="chips"><li>Slax Linux</li><li>Debian 12 Bookworm</li><li>Initramfs</li><li>QEMU</li><li>WHPX</li><li>Antigravity AI</li><li>Completed</li></ul>
 </section>
 
 				<section class="project-entry" aria-labelledby="slax-build-title">
