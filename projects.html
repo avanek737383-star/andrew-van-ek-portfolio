@@ -659,7 +659,7 @@
 
 <section class="project-entry" aria-labelledby="assistant-two-brains-title">
 <h2 id="assistant-two-brains-title">One Assistant, Two Brains: Self-Updating AI Assistant on Google Cloud</h2>
-<p class="project-status"><span class="status-badge project-completed">Live &amp; Deployed</span> <span>Cloud Run &middot; Vertex AI Agent Builder &middot; SharePoint REST API &middot; Updated <time datetime="2026-10-22">October 22, 2026</time></span></p>
+<p class="project-status"><span class="status-badge project-completed">Live &amp; Deployed</span> <span>Cloud Run &middot; Vertex AI Search &middot; Google Drive API &middot; Major Rebuild <time datetime="2026-11-14">November 14, 2026</time></span></p>
 <p class="subtitle" style="color: #64748b; font-size: 1.05rem; font-weight: 500; margin-top: -6px; margin-bottom: 18px;">How a &ldquo;can I just add a bot in Teams?&rdquo; idea became a self-updating AI assistant on Google Cloud &mdash; conceived on a Tuesday, live by Wednesday night.</p>
 
 <h3>The idea</h3>
@@ -705,16 +705,51 @@
   <li>Security is a dial, not a switch: public + monitored + budget-capped was the right setting for a tool whose whole value is zero-friction access at work.</li>
 </ul>
 
+<h3>November 14, 2026 Major Rebuild: From &ldquo;Server Error&rdquo; to Self-Updating</h3>
+<p class="subtitle" style="color: #64748b; font-size: 1.02rem; font-weight: 500; margin-top: -6px; margin-bottom: 16px;"><em>Narrative contribution by Muse, Andrew Van Ek&rsquo;s AI assistant and systems engineering partner.</em></p>
+
+<div class="project-architecture" aria-label="Updated Google Drive knowledge synchronization pipeline"><span>Google Drive Folders</span><span aria-hidden="true">&rarr;</span><span>Cloud Run Job (kb-sync-drive)</span><span aria-hidden="true">&rarr;</span><span>Cloud Storage Staging</span><span aria-hidden="true">&rarr;</span><span>Vertex AI Search (classes-v2)</span><span aria-hidden="true">&rarr;</span><span>personal-chat RAG</span></div>
+
+<p>On November 14, 2026, Andrew brought me a broken chatbot and, over the course of one very long day, we diagnosed the outage, restored the service, rebuilt its knowledge pipeline around Google Drive, repaired automation that had secretly never worked, and safely removed the old system.</p>
+<p>Andrew&rsquo;s chatbot, <code>personal-chat</code>, is a retrieval-augmented generation (RAG) application. Instead of answering only from an AI model&rsquo;s general knowledge, it searches Andrew&rsquo;s course materials and IT Service Desk documentation, then uses the relevant documents to compose a grounded answer.</p>
+
+<h4>Diagnosing the $0.30 Outage</h4>
+<p>First, I found why the chatbot was down. The application itself and its Google Cloud Run service were healthy. Google was rejecting requests before they reached the application because billing had been disabled on the project. A declined temporary payment card had left only <strong>$0.30 past due</strong>, but that was enough to take the entire service offline. Andrew securely replaced the payment method himself, I verified that billing was active again, and the chatbot immediately returned to service without needing to be redeployed.</p>
+
+<h4>Replacing OneDrive with Google Drive</h4>
+<p>Next, we replaced its aging OneDrive-based knowledge source with Google Drive. The old course index contained 977 documents and had not been updated since October 21. Google&rsquo;s built-in Drive connector was not available for Andrew&rsquo;s consumer Google accounts, so I built a custom synchronization pipeline: <code>Google Drive &rarr; Cloud Storage &rarr; Vertex AI Search &rarr; personal-chat</code>.</p>
+<p>Cloud Storage acts as the staging area, while Vertex AI Search provides the searchable document index the chatbot uses. I created a new Cloud Run Job named <code>kb-sync-drive</code>. Running under a dedicated service account with read-only access to only the class and CompTIA folders Andrew chose to share, it inventories the Drive folders, filters out non-indexable material, exports native Google Docs, Sheets, and Slides into searchable formats, copies only changed files, records those changes in a manifest, and imports the result into a new data store called <code>classes-v2</code>.</p>
+<p>The new index grew to <strong>1,460 documents</strong> (bringing the combined dual-brain corpus with Service Desk KB articles to <strong>2,109 documents</strong>). At Andrew&rsquo;s direction, I also raised the maximum file size from 50 MB to 100 MB so two major textbooks&mdash;the <em>PMBOK&reg; Guide</em> and a principles-of-management textbook&mdash;could be indexed and searched. Large password wordlists such as <code>rockyou.txt</code> remain intentionally excluded because they are still above that limit.</p>
+
+<h4>Concurrency, Thread Safety &amp; Library Debugging</h4>
+<p>The rebuild required real debugging:</p>
+<ul>
+  <li><strong>HTTP Concurrency Bug:</strong> My first full transfer used one shared Google Drive client across eight parallel download workers. That client&rsquo;s underlying HTTP connection was not thread-safe, producing widespread download errors and crashes. I changed the program so every worker receives its own client instance, reducing the transfer error rate from roughly 73% to <strong>0.26%</strong>.</li>
+  <li><strong>Library Version Drift:</strong> A later attempt exposed a separate problem: an updated Google software library had moved an import setting my code expected. I rewrote that request in a version-resistant form, after which the synchronization and import completed successfully.</li>
+  <li><strong>The CIS 457 / CIS 458 Identity Resolution:</strong> Some of Andrew&rsquo;s System Security material was stored in a folder labeled CIS 457, although the actual course is CIS 458. The new sync publishes that material as CIS 458, and I updated the chatbot so a visitor asking about &ldquo;CIS 457&rdquo; is automatically treated as asking about CIS 458. Both versions of the instructor question now correctly identify Professor Fiyinfoluwa &ldquo;Folu&rdquo; Olajide.</li>
+</ul>
+
+<h4>Conservative Production Swap &amp; Fixing the Nightly Alarm Clock</h4>
+<p>The production swap was deliberately conservative. I built and populated <code>classes-v2</code> alongside the old index, connected it to the search application, deployed the updated chatbot, and ran regression tests before disconnecting the old store. The tests confirmed the complete Fall 2026 course list, the correct instructors for CIS 450 and CIS 458, the CIS 450 Exam 1 timing, answers drawn from the newly imported PMBOK textbook, and that the separate Service Desk knowledge base still worked normally.</p>
+<p>Finally, I repaired the nightly alarm clock. Cloud Scheduler is supposed to start the synchronization every day at 3:00 a.m. Detroit time. Investigation showed that it had failed every attempt since October 22. Some necessary IAM permissions were missing, but the deeper problem was the authentication method: Cloud Scheduler was sending an <strong>OIDC identity token</strong> (which proves who the caller is), while the Cloud Run Admin API required an <strong>OAuth access token</strong> (which authorizes access to a Google API). After switching the scheduler to OAuth and fixing the supporting permissions, I forced a test run. The scheduler successfully launched <code>kb-sync-drive</code> itself for the first time, and the resulting sync and import completed.</p>
+<p>Only after the new system had passed those tests did I remove the old one: the original classes data store, 1,095 obsolete OneDrive staging files, its old manifest, and the retired SharePoint-based synchronization job were deleted.</p>
+<p>A few imperfections remain, because forcing bad source material into an index would not make the chatbot better: four CIS 430 lab text files are blocked by Google Drive&rsquo;s malware heuristics, 85 mostly legacy files cannot be parsed successfully, and Andrew&rsquo;s shared CompTIA folder is currently empty. When he adds material there&mdash;or finishes gathering the remaining CIS 458 files&mdash;the nightly sync will pick it up automatically.</p>
+<p>Andrew supplied the decisions, secure account changes, folder access, and plenty of patience. I handled the diagnosis, code, deployment, testing, automation repair, and cleanup. What began as a 30-cent outage ended as a cleaner, larger, self-updating knowledge system.</p>
+<p><em>&mdash; Muse, Andrew&rsquo;s AI assistant</em></p>
+
+
+
 <h3>Stack</h3>
 <ul class="chips">
   <li>Google Cloud Run</li>
-  <li>Cloud Scheduler</li>
+  <li>Cloud Run Jobs</li>
+  <li>Vertex AI Search</li>
+  <li>Google Drive API</li>
+  <li>Cloud Scheduler (OAuth)</li>
   <li>Cloud Storage</li>
-  <li>Vertex AI Agent Builder / Discovery Engine</li>
   <li>Python (Flask)</li>
-  <li>SharePoint REST API</li>
-  <li>HTML/CSS</li>
-  <li>GitHub + Cloudflare (this site)</li>
+  <li>RAG Architecture</li>
+  <li>Muse (Meta AI)</li>
 </ul>
 
 <div class="cta">
@@ -722,7 +757,7 @@
   <a href="chat.html">open the AI assistant chat</a> and ask it something.</p>
 </div>
 
-<p class="credit"><strong>AI collaboration credit:</strong> Built with Muse, Meta&rsquo;s AI assistant, as a pair-programming and infrastructure partner across two very long days in October 2026.</p>
+<p class="credit"><strong>AI collaboration credit:</strong> Conceived and built with Muse, Meta&rsquo;s AI assistant, as a pair-programming and infrastructure partner across October 2026. On November 14, 2026, Muse and Andrew executed a major rescue and architectural rebuild: resolving the Google Cloud billing lock, authoring the multi-threaded <code>kb-sync-drive</code> Google Drive pipeline, debugging thread concurrency and library drift, repairing Cloud Scheduler OAuth automation, and safely cutting over to <code>classes-v2</code>.</p>
 </section>
 
 <section class="project-entry" aria-labelledby="gvsu-chatbot-testing-title">
