@@ -10,9 +10,13 @@ forced-command SSH key. Neither the browser nor public HTTP API can control mini
 ## Current deployment
 
 Live collection, pool acceptance, SSH publishing, and HTTPS readback have been
-verified. Server startup is enabled. The Windows administrator installation is
-prepared; SYSTEM execution and a full Windows reboot still need verification.
-The portfolio records this distinction explicitly.
+verified. Server startup is enabled. The owner ran the Windows administrator
+installer on November 14, 2026 at 4:21 PM EST; both installed tasks started.
+The installed host passed its board self-test and submitted accepted shares near
+2.4 kH/s, while the installed publisher delivered fresh readings to the public
+cards. The old sign-in launcher was removed from Startup and preserved in the
+installation backup, and development workers stopped. A full Windows reboot
+test remains pending; the portfolio records this distinction explicitly.
 
 ## Windows boot installation
 
