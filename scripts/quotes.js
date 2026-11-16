@@ -204,7 +204,7 @@
 		},
 		{
 			id: 'never-hear-noise-before',
-			quote: 'And may you never hear the words: “Huh... it wasn't making that noise before.”',
+			quote: "And may you never hear the words: “Huh... it wasn't making that noise before.”",
 			category: 'Philosophy & Mindset',
 			context: 'The seven most terrifying words in systems engineering, usually whispered immediately after pressing the power button following a routine hardware overhaul. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
 			projectTitle: 'Headless Intel NUC & Fleet Diagnostics',
@@ -268,17 +268,23 @@
 		}
 	];
 
+	var toastTimeout = null;
 	function showToast(msg) {
 		var existing = document.getElementById('quote-toast');
 		if (!existing) {
 			existing = document.createElement('div');
 			existing.id = 'quote-toast';
 			existing.className = 'quote-toast';
+			existing.setAttribute('role', 'status');
+			existing.setAttribute('aria-live', 'polite');
 			document.body.appendChild(existing);
 		}
 		existing.textContent = msg;
 		existing.classList.add('show');
-		setTimeout(function () {
+		if (toastTimeout) {
+			clearTimeout(toastTimeout);
+		}
+		toastTimeout = setTimeout(function () {
 			existing.classList.remove('show');
 		}, 2200);
 	}
@@ -356,6 +362,11 @@
 			copyFeatBtn.addEventListener('click', function () {
 				var item = HOMELAB_QUOTES[currentFeatIndex];
 				copyToClipboard('“' + item.quote + '” — ' + item.projectTitle);
+				var originalHtml = copyFeatBtn.innerHTML;
+				copyFeatBtn.innerHTML = '<span>✓</span> Copied!';
+				setTimeout(function () {
+					copyFeatBtn.innerHTML = originalHtml;
+				}, 1600);
 			});
 		}
 
@@ -388,6 +399,10 @@
 				copyBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
 				copyBtn.addEventListener('click', function () {
 					copyToClipboard('“' + item.quote + '” — ' + item.projectTitle);
+					copyBtn.classList.add('copied');
+					setTimeout(function () {
+						copyBtn.classList.remove('copied');
+					}, 1600);
 				});
 				header.appendChild(copyBtn);
 
