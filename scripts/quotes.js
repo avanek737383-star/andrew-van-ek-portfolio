@@ -211,6 +211,54 @@
 			projectHref: 'projects.html#intel-nuc-alpine-storage-recovery-title'
 		},
 		{
+			id: 'gpa-vs-cpu-temps',
+			quote: 'May your GPA rise faster than your CPU temperatures.',
+			category: 'College & Computing',
+			context: 'The ultimate prayer for engineering midterms, computer science finals, and all-night project compile marathons. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Career, Education & About Andrew Van Ek',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'battery-swelling-theoretical',
+			quote: 'May your battery swelling remain strictly theoretical.',
+			category: 'Thermals & Hardware',
+			context: 'Staring anxiously at your aluminum trackpad to confirm it still clicks, rather than morphing into a puffed-up lithium spicy pillow. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: '2011 MacBook Pro Battery Removal & Hardware Isolation',
+			projectHref: 'projects.html#macbook-2011-battery-removal-title'
+		},
+		{
+			id: 'zoom-chrome-ram-exam',
+			quote: 'May Zoom not crash during exams, and may Chrome consume only a reasonable amount of RAM.',
+			category: 'College & Computing',
+			context: 'Testing the limits of browser stability and unified memory while juggling lockdown exam browsers and 47 reference tabs. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'GVSU IT Service Desk & Class Assistant Bot',
+			projectHref: 'chat.html'
+		},
+		{
+			id: 'm-series-efficiency-gaming-envy',
+			quote: 'May your efficiency cores stay efficient, may your performance cores perform, and may every Windows gaming laptop owner begrudgingly admit: “Okay, that is actually pretty good battery life.”',
+			category: 'Apple Silicon & Mining',
+			context: 'Unplugging an M1 MacBook Air at 8:00 AM, taking notes in four lectures, compiling code, mining in the background, and still having 60% battery at sunset. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'MacBook Air M1 MoneroOcean Stratum Worker Telemetry',
+			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
+		},
+		{
+			id: 'macbook-shapeshifter-incognito',
+			quote: 'May your MacBook be cool during class, hot during mining, silent during lectures, and loud during benchmarks.',
+			category: 'Apple Silicon & Mining',
+			context: 'Operating a mobile workstation that seamlessly shapeshifts between an obedient lecture notepad and a high-hash-rate stratum worker. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'MacBook Air M1 MoneroOcean Stratum Worker Telemetry',
+			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
+		},
+		{
+			id: 'eight-hundred-percent-cpu-cowboy',
+			quote: 'And may no professor ever glance over your shoulder at Activity Monitor and ask: “Why is your laptop utilizing 800% CPU?” Because some questions, cowboy, are best left unanswered.',
+			category: 'Apple Silicon & Mining',
+			context: 'When all eight cores of Apple Silicon are pinned at full throttle compiling cryptographic hashes in the back row of a 200-person lecture hall. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'MacBook Air M1 MoneroOcean Stratum Worker Telemetry',
+			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
+		},
+		{
 			id: 'avahi-mdns-local',
 			quote: 'You can take the engineer out of the LAN, but you cannot stop Avahi mDNS from claiming .local.',
 			category: 'Networking & DNS',
@@ -407,7 +455,7 @@
 			sloganEl.textContent = '“' + item.quote + '”';
 			if (authorEl) {
 				if (item.id === 'if-it-isnt-broke') {
-					authorEl.innerHTML = '&ndash; Andrew Van Ek';
+					authorEl.innerHTML = '&ndash; <a href="about.html" style="color: inherit; text-decoration: underline;" title="About Andrew Van Ek">Andrew Van Ek</a>';
 				} else {
 					authorEl.innerHTML = '&ndash; <a href="' + item.projectHref + '" style="color: inherit; text-decoration: underline;" title="' + item.projectTitle + '">' + item.category + '</a>';
 				}
