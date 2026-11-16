@@ -155,6 +155,62 @@
 			projectHref: 'projects.html#hp-thermal-refresh-title'
 		},
 		{
+			id: 'workstation-screw-surplus',
+			quote: 'A workstation taken apart in two hours shall be reassembled in six. A workstation taken apart in six hours shall still somehow have one screw left over.',
+			category: 'Thermals & Hardware',
+			context: 'The unwritten law of hardware repair: no matter how meticulously you organize your magnetic screw trays, the chassis always claims a surplus tribute. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP ZBook Fury & Hardware Teardowns',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'fury-performance-not-temps',
+			quote: 'May your Fury be furious only in performance, never in temperatures.',
+			category: 'Thermals & Hardware',
+			context: 'Dedicated to the HP ZBook Fury Mobile Workstation (FREEHPGAMER) pushing max multi-threaded compute while keeping its dual vapor chamber chill. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP ZBook Fury MoneroOcean Stratum Worker Telemetry',
+			projectHref: 'maintenance.html#hp-zbook-fury-moneroocean-worker-naming-and-rig-telemetry'
+		},
+		{
+			id: 'thanksgiving-turkey-troubleshooting',
+			quote: 'May Thanksgiving bring more turkey than troubleshooting.',
+			category: 'Philosophy & Mindset',
+			context: 'The ultimate holiday homelab blessing for IT specialists and homelabbers tasked with family tech support between dinner courses. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Intranet Gathering Slideshow & Homelab Platforms',
+			projectHref: 'projects.html#slideshow-party-intranet-title'
+		},
+		{
+			id: 'connector-satisfying-click',
+			quote: 'May every connector click satisfyingly into place.',
+			category: 'Thermals & Hardware',
+			context: 'That sublime, unmistakable tactile snap when an internal motherboard socket, battery harness, or front panel cable locks in securely on the first try. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'MacBook & Lenovo Teardowns: Power Isolation',
+			projectHref: 'projects.html#macbook-2011-battery-removal-title'
+		},
+		{
+			id: 'three-disassemblies-cable',
+			quote: 'The first disassembly builds confidence. The second disassembly builds skill. The third disassembly exists because you forgot a cable.',
+			category: 'Thermals & Hardware',
+			context: 'The universal three-stage cycle of laptop maintenance known to every engineer who has had to reopen a fully snapped chassis to plug in a trapped trackpad lead. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh & Chassis Maintenance',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'ptm7950-schrodinger-spread',
+			quote: 'May your PTM7950 spread perfectly despite your inability to actually see it spread.',
+			category: 'Thermals & Hardware',
+			context: 'The Schrödinger’s thermal paste paradox: you torque down the heatsink, turn on the machine, and can only trust the thermodynamics working unseen beneath the copper. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'never-hear-noise-before',
+			quote: 'And may you never hear the words: “Huh... it wasn't making that noise before.”',
+			category: 'Philosophy & Mindset',
+			context: 'The seven most terrifying words in systems engineering, usually whispered immediately after pressing the power button following a routine hardware overhaul. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Headless Intel NUC & Fleet Diagnostics',
+			projectHref: 'projects.html#intel-nuc-alpine-storage-recovery-title'
+		},
+		{
 			id: 'avahi-mdns-local',
 			quote: 'You can take the engineer out of the LAN, but you cannot stop Avahi mDNS from claiming .local.',
 			category: 'Networking & DNS',

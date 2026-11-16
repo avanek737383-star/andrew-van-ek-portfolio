@@ -684,24 +684,29 @@
 
 	var TECH_ANALOGIES = {
 		"cache-archive": {
-			title: "Cache Archives & Temporary Files",
-			analogy: "Like keeping old grocery receipts and shopping bags crammed in a kitchen drawer 'just in case'—eventually, the drawer is so full it jams the whole cabinet.",
-			techFact: "Programs save temporary installer files, download caches, and crash logs to speed up repeated tasks. Over months, these hidden archives quietly grow to tens of gigabytes, eating up valuable C: drive space."
+			title: "Cache Archives & Temporary Clutter",
+			analogy: "Buying groceries and saving every single brown paper grocery bag and plastic takeout container in your kitchen cabinet 'just in case'—eventually, the cabinets are bursting and you have no room for actual food.",
+			techFact: "Programs save temporary installer files, download caches, and crash logs to speed up repeated tasks. Over months, these hidden archives quietly hoard tens of gigabytes of your primary drive until manually cleared out."
 		},
 		"dot-local-domain": {
-			title: ".local Domain (Multicast DNS)",
-			analogy: "Like shouting someone's nickname across the living room instead of looking up their official address in the global phone book and mailing a postcard.",
-			techFact: "The .local top-level domain uses mDNS (Multicast DNS / Bonjour / Avahi) to find devices directly on your physical home Wi-Fi without needing an external public DNS server or GoDaddy registration."
+			title: ".local Domain (Multicast Network Discovery)",
+			analogy: "Calling out someone's nickname across the dinner table to pass the salt, instead of hiring a postal carrier to drive an envelope across town and back.",
+			techFact: "The .local top-level domain uses Multicast DNS (mDNS) to discover devices directly on your physical home Wi-Fi without needing an external public DNS server or domain registrar."
 		},
 		"doh-private-relay": {
 			title: "Apple DoH & iCloud Private Relay",
-			analogy: "Like putting all your web requests into a sealed, locked envelope so your local Wi-Fi router can't peek at what websites you visit—even if you're trying to visit a computer sitting right next to you.",
+			analogy: "Writing a note to your next-door neighbor, but handing it to an armored courier who drives it 50 miles away to a private post office before bringing it right back to your street—keeping your local neighborhood mailman completely out of the loop.",
 			techFact: "DNS-over-HTTPS (DoH) and Apple's Private Relay encrypt domain lookups and route them through Apple proxy relays. While great for privacy on public Wi-Fi, it unintentionally bypasses local home network DNS servers like AdGuard Home."
 		},
 		"homelab-silicon": {
-			title: "Homelab Silicon",
-			analogy: "A fun, slightly fancy way of saying the microchips, processors, and graphics cards inside the computers running on your home desk.",
-			techFact: "Computer processors (CPUs, GPUs, and Apple M-series chips) are manufactured out of etched semiconductor silicon wafers. 'Running on local silicon' means computing right on physical hardware in your room rather than renting someone else's server in the cloud."
+			title: "Local Silicon vs. Cloud Renting",
+			analogy: "Baking fresh bread in your own kitchen oven with your own flour and pans, rather than ordering delivery slices from an industrial bakery across the country.",
+			techFact: "Computer processors (CPUs, GPUs, and Apple M-series chips) are manufactured out of etched semiconductor silicon wafers. 'Running on local silicon' means computing directly on physical hardware in your room rather than renting someone else's server in the cloud."
+		},
+		"ptm7950": {
+			title: "Honeywell PTM7950 Phase-Change Material",
+			analogy: "A chilled butter pad that stays solid and neat on your plate while you slice it, but melts into smooth liquid the second it touches hot toast to fill every single nook and cranny.",
+			techFact: "PTM7950 is an advanced polymer phase-change material that transitions from solid to liquid at 45°C. It creates flawless thermal contact between a hot processor and a copper heatsink without pumping out, leaking, or drying out over time."
 		},
 		"photo-profile": {"title": "Automatic photo settings", "analogy": "Like a camera preset matched to the film you loaded: turning every dial up can make the picture look worse.", "techFact": "This installed Realistic Vision Hyper model is designed for low guidance and few sampling steps. The fixed profile uses CFG 2, six steps, DPM++ 2M SDE, and Karras scheduling."},
 		"live-network-speed": {"title": "Live upload and download speed", "analogy": "A speedometer for the traffic flowing right now, rather than a test of how fast the road could go.", "techFact": "Mbps means megabits per second: eight megabits equal one megabyte. This monitor measures current traffic on the default internet interface. Idle readings can be near zero even on a fast connection."},
@@ -997,11 +1002,7 @@
 			analogy: "Like an inter-office motorized file cart that rolls between desks on the same floor, allowing coworkers to view and modify shared folders as if they were sitting on their own desk.",
 			techFact: "SMB is an application-layer network protocol primarily used by Windows and Samba for sharing files, printers, and serial ports over a local TCP/IP network (port 445)."
 		},
-		"ptm7950": {
-			title: "Honeywell PTM7950 Phase-Change Thermal Pad",
-			analogy: "Like a butter-like pad between a hot frying pan and a stove burner that is solid at room temperature, but melts into microscopic metal grooves under heat to conduct warmth away with zero trapped air bubbles.",
-			techFact: "PTM7950 is a polymer phase-change material with extreme thermal conductivity (~8.5 W/mK) that transitions to molten phase at ~45°C, offering superior longevity and pump-out resistance compared to standard thermal pastes."
-		},
+
 		"rsat": {
 			title: "RSAT (Remote Server Administration Tools)",
 			analogy: "Like a universal management remote that lets building superintendents adjust lights, keycards, and elevator permissions across all company skyscrapers right from their living room sofa.",
