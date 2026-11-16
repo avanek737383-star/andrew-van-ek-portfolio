@@ -1,0 +1,359 @@
+/* Homelab Quotes & Proverbs Styles */
+
+.quotes-page-header {
+	margin-bottom: 2rem;
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+}
+
+.quotes-page-title {
+	font-size: 2.2rem;
+	font-weight: 800;
+	margin-bottom: 0.5rem;
+	letter-spacing: -0.02em;
+	background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.quotes-page-subtitle {
+	font-size: 1.05rem;
+	color: var(--text-muted, #94a3b8);
+	max-width: 720px;
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* Featured / Random Proverb Banner */
+.featured-proverb-card {
+	background: linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+	border: 1px solid rgba(96, 165, 250, 0.3);
+	border-radius: 1rem;
+	padding: 1.75rem 2rem;
+	margin-bottom: 2.5rem;
+	box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px rgba(96, 165, 250, 0.1);
+	position: relative;
+	overflow: hidden;
+}
+
+.featured-proverb-card::before {
+	content: "“";
+	position: absolute;
+	right: 1.5rem;
+	bottom: -2.5rem;
+	font-size: 10rem;
+	font-family: Georgia, serif;
+	color: rgba(96, 165, 250, 0.06);
+	line-height: 1;
+	pointer-events: none;
+	user-select: none;
+}
+
+.featured-proverb-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	padding: 0.25rem 0.65rem;
+	border-radius: 9999px;
+	background: rgba(96, 165, 250, 0.15);
+	color: #93c5fd;
+	border: 1px solid rgba(96, 165, 250, 0.3);
+	margin-bottom: 1rem;
+}
+
+.featured-quote-text {
+	font-size: 1.35rem;
+	font-weight: 600;
+	line-height: 1.45;
+	color: #f8fafc;
+	margin: 0 0 0.85rem 0;
+	font-style: italic;
+}
+
+.featured-quote-context {
+	font-size: 0.95rem;
+	color: #cbd5e1;
+	line-height: 1.5;
+	margin: 0 0 1.25rem 0;
+}
+
+.featured-proverb-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.featured-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.proverb-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	background: #2563eb;
+	color: #fff;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	font-size: 0.88rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.proverb-btn:hover {
+	background: #1d4ed8;
+	transform: translateY(-1px);
+}
+
+.proverb-btn-secondary {
+	background: rgba(255, 255, 255, 0.08);
+	color: #e2e8f0;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.proverb-btn-secondary:hover {
+	background: rgba(255, 255, 255, 0.15);
+	color: #fff;
+}
+
+.proverb-project-link {
+	font-size: 0.88rem;
+	font-weight: 600;
+	color: #60a5fa;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	transition: color 0.15s ease;
+}
+
+.proverb-project-link:hover {
+	color: #93c5fd;
+	text-decoration: underline;
+}
+
+/* Category Filter Bar */
+.quotes-filter-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-bottom: 1.75rem;
+}
+
+.quotes-filter-pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.quotes-count-badge {
+	font-size: 0.85rem;
+	color: var(--text-muted, #94a3b8);
+	font-weight: 500;
+}
+
+/* Quotes Grid */
+.quotes-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 1.25rem;
+	margin-bottom: 3rem;
+}
+
+.quote-card {
+	background: rgba(30, 41, 59, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 0.85rem;
+	padding: 1.35rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: all 0.2s ease;
+	position: relative;
+}
+
+.quote-card:hover {
+	transform: translateY(-2px);
+	border-color: rgba(96, 165, 250, 0.4);
+	box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
+	background: rgba(30, 41, 59, 0.7);
+}
+
+.quote-card-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.85rem;
+}
+
+.quote-category-tag {
+	font-size: 0.72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	padding: 0.2rem 0.55rem;
+	border-radius: 0.4rem;
+	background: rgba(255, 255, 255, 0.07);
+	color: #94a3b8;
+}
+
+.quote-card-body blockquote {
+	margin: 0 0 0.75rem 0;
+	padding: 0;
+	border: none;
+	font-size: 1.08rem;
+	font-weight: 600;
+	line-height: 1.4;
+	color: #f1f5f9;
+	font-style: italic;
+}
+
+.quote-card-context {
+	font-size: 0.85rem;
+	color: #94a3b8;
+	line-height: 1.45;
+	margin: 0 0 1rem 0;
+}
+
+.quote-card-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	padding-top: 0.75rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+	margin-top: auto;
+}
+
+.quote-card-link {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #60a5fa;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.quote-card-link:hover {
+	text-decoration: underline;
+	color: #93c5fd;
+}
+
+.quote-copy-btn {
+	background: none;
+	border: none;
+	color: #64748b;
+	cursor: pointer;
+	padding: 0.25rem 0.4rem;
+	border-radius: 0.35rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.15s ease;
+}
+
+.quote-copy-btn:hover {
+	color: #f8fafc;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Homepage Widget Style */
+.homelab-quote-widget {
+	background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.7));
+	border: 1px solid rgba(96, 165, 250, 0.25);
+	border-radius: 0.85rem;
+	padding: 1.25rem 1.5rem;
+	margin: 1.75rem 0;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.homelab-quote-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.homelab-quote-title {
+	font-size: 1rem;
+	font-weight: 700;
+	color: #93c5fd;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.homelab-quote-body {
+	font-size: 1.05rem;
+	font-weight: 600;
+	font-style: italic;
+	color: #f8fafc;
+	line-height: 1.4;
+	margin: 0 0 0.75rem 0;
+	border: none;
+	padding: 0;
+}
+
+.homelab-quote-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	font-size: 0.82rem;
+}
+
+.homelab-quote-source {
+	color: #94a3b8;
+}
+
+.homelab-quote-all-link {
+	color: #60a5fa;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.homelab-quote-all-link:hover {
+	text-decoration: underline;
+}
+
+/* Toast message for copy */
+.quote-toast {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	background: #10b981;
+	color: #fff;
+	padding: 0.6rem 1.1rem;
+	border-radius: 0.5rem;
+	font-size: 0.88rem;
+	font-weight: 600;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+	z-index: 9999;
+	opacity: 0;
+	transform: translateY(10px);
+	transition: all 0.2s ease;
+	pointer-events: none;
+}
+
+.quote-toast.show {
+	opacity: 1;
+	transform: translateY(0);
+}
