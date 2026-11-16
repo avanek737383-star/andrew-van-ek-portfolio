@@ -413,6 +413,18 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
+<li id="fah-vnc-capslock-state-and-persistence-remediation"><strong>Virtual X11 / Xvfb / x11vnc Caps Lock desynchronization &amp; persistent modifier latch remediation:</strong> In pair programming with <strong>Antigravity AI</strong>, diagnosed and resolved an X11 Caps Lock modifier latch and keysym desynchronization issue affecting remote VNC sessions on the headless virtual X11 desktop (<code>fah-cpu-8</code>, running Xvfb, XFCE4, and x11vnc over Tailscale).
+<br><br>
+<em>RFB Protocol Lock Desynchronization &amp; XKB Latch Diagnostics:</em> Discovered that remote VNC viewers transmit raw lock keysyms or toggle events without matching release semantics across the RFB protocol boundary. When Caps Lock is pressed or desynchronized between client and server, the X11 server latches the modifier state (<code>LockMask = 2</code>, device <code>0x0100</code>), forcing all remote keyboard input into uppercase and obstructing password entry. Standard desktop modifier clearing commands (such as <code>xmodmap -e "clear lock"</code>) clear the modifier map entry but fail to clear active XKB latched states if the keycode remains bound, requiring direct XKB extension interaction to force-clear the internal indicator and modifier latch.
+<br><br>
+<em>Live Non-Disruptive Reset via Xlib &amp; x11vnc IPC:</em> Developed an immediate Python ctypes reset routine targeting <code>libX11.so.6</code> using <code>XkbLockModifiers(dpy, 0x0100, 2, 0)</code> on core keyboard device <code>0x0100</code> to instantly disarm the Caps Lock state without disconnecting the active session. Sent dynamic runtime commands to the active server via <code>x11vnc -R skip_lockkeys</code> (instructing x11vnc to ignore incoming viewer lock keysyms while passing through shifted characters cleanly) and <code>x11vnc -R clear_locks</code>, and applied <code>setxkbmap -option caps:none</code> to map keycode 66 to <code>VoidSymbol</code>.
+<br><br>
+<em>Persistent Systemd Hardening &amp; Standalone Reset Utility:</em> Hardened the systemd service definitions in <code>/etc/systemd/system/fah-vnc.service</code> (incorporating <code>-skip_lockkeys -clear_locks</code>) and <code>/etc/systemd/system/fah-desktop.service</code> (injecting <code>ExecStartPre=/usr/bin/setxkbmap -option caps:none</code>). Deployed session autostart enforcement via <code>~/.xprofile</code> and <code>~/.config/autostart/disable-capslock.desktop</code>. Deployed a standalone executable command at <code>/home/fold/.local/bin/reset-caps</code> for instant reference and reuse:
+<br><br>
+<code>reset-caps</code>
+<br><br>
+(or run with explicit display: <code>DISPLAY=:0 reset-caps</code>). This utility clears the active XKB latch via libX11 ctypes, issues IPC clear commands to x11vnc, and applies <code>setxkbmap -option caps:none</code> in a single idempotent step.</li>
+
 <li id="lenovo-yoga-x11vnc-tailscale-dpi-150-scaling"><strong>Lenovo Yoga 2 11 persistent Tailscale X11 VNC endpoints 150% display zoom &amp; vector DPI scaling:</strong> In pair programming with Antigravity AI, investigated and resolved small text rendering and high-DPI scaling limitations across the dual persistent Tailscale X11 VNC endpoints on the Lenovo Yoga 2 11 (<code>avanek-Lenovo-Yoga-2-11</code>, Tailscale <code>100.87.219.5</code>).
 <br><br>
 <em>Dual VNC Architecture &amp; Framebuffer Downscaling Analysis:</em> The host machine runs an XFCE desktop session on physical display <code>:0</code> at a native resolution of <code>1920x1200</code>. To accommodate remote clients with varying network bandwidths and display aspect ratios, two persistent <code>x11vnc</code> services supervise mirrored VNC streams: <code>desktop-vnc-tailscale-1200x720.service</code> (port 5903, scaled to <code>1200x720</code>) and <code>desktop-vnc-tailscale-1600x900.service</code> (port 5904, scaled to <code>1600x900</code>). Analysis revealed why remote text appeared microscopic: with standard baseline X11 rendering fixed at 96 DPI (100% scale), standard 10pt/13px application fonts were being downscaled by <code>x11vnc</code>'s raster downsampling to ~7.8px on the 1200x720 endpoint (62.5% scale) and ~9.7px on the 1600x900 endpoint (83.3% scale), severely hindering legibility on client laptops.
@@ -1222,8 +1234,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-16T11:45:00-05:00">November 16, 2026 at 11:45:00 AM EST</time></p>
-				<p class="footer-version">Version v2.6.369 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-16T11:55:00-05:00">November 16, 2026 at 11:55:00 AM EST</time></p>
+				<p class="footer-version">Version v2.6.370 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
