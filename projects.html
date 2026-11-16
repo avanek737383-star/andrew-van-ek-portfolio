@@ -81,6 +81,25 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="samsung-i435-rooting-title">
+<h2 id="samsung-i435-rooting-title">Samsung Galaxy S4 Mini (SCH-I435): USB Troubleshooting &amp; Rooting Preparation</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Windows USB drivers &middot; Android Debug Bridge &middot; Legacy Android &middot; <time datetime="2026-11-15">November 15, 2026</time></span></p>
+<p>I am working with <strong>OpenAI Codex through ChatGPT</strong> to prepare my own Samsung Galaxy S4 Mini (SCH-I435) for rooting. The first challenge is establishing a reliable USB data connection: the phone can charge and briefly appear as an installer or MTP device, then disappear from Windows. A loose-fitting micro-USB cable prompted a cable swap, but intermittent driver and connection failures still need to be resolved.</p>
+<h3>Diagnostics &amp; Current State</h3>
+<ul>
+<li>Used Windows Plug and Play queries and Google's official Android SDK Platform-Tools to check device detection and ADB connectivity. Recorded the original Code 38 report, subsequent Code 10 failures, and the latest Code 43 error: &ldquo;The USB set address request failed.&rdquo;</li>
+<li>Briefly observed healthy Samsung composite, modem, ADB, and SCH-I435 device interfaces. ADB saw the phone as offline once, but an authorized debugging session has not been established.</li>
+<li>Found an active Samsung driver dated 2014, downloaded the current official Samsung USB driver installer, verified its valid Samsung digital signature, and started a reinstall. The installer reported that a package was already installed; a reinstall was selected. Installation completion and post-restart behavior remain to be checked.</li>
+</ul>
+<p><strong>Next steps:</strong> Finish the driver installation, restart Windows with the phone unplugged, reconnect using the replacement data cable, and recheck USB and ADB stability. Once an authorized ADB connection works, read the exact Android version, firmware build, and bootloader details before selecting a compatible rooting method. <strong>Rooting has not started, and no firmware has been flashed.</strong> The remaining connection problem could involve the cable, phone socket, USB port, or driver; the cause is not yet confirmed.</p>
+<h3>Resume the Troubleshooting Session</h3>
+<p>Run this command in a terminal on the original Windows PC, using the same Windows account and Codex installation that hold the conversation history:</p>
+<p><code>codex resume 01a1dfb9-ed55-78c3-813d-4ee224dbb52a</code></p>
+<p>Conversation title: <strong>Fix driver issue, then root</strong>. The conversation is stored on that PC; running the command on the portfolio server will not transfer its history.</p>
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew supplied the phone, tested cables and USB modes, reported Device Manager errors, and operated the driver installer. <strong>OpenAI Codex through ChatGPT</strong> inspected Windows device and driver status, installed official ADB tools, verified the Samsung installer signature, guided troubleshooting, and wrote this project entry.</p>
+<ul class="chips"><li>Samsung SCH-I435</li><li>USB Diagnostics</li><li>Windows Drivers</li><li>ADB</li><li>Android Rooting</li><li>OpenAI Codex</li><li>In Progress</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="adguard-home-scheduled-traffic-filtering-title">
 <h2 id="adguard-home-scheduled-traffic-filtering-title">Scheduled App Traffic Filtering: AdGuard Home Dockerization, Encrypted DNS &amp; Router-Level Enforcement</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>AdGuard Home &middot; Docker Host Networking &middot; Alpine Linux &middot; DNS-over-HTTPS &middot; TP-Link AX3000 &middot; November 14, 2026</span></p>
