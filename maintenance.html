@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">529 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-16T11:30:00-05:00">November 16, 2026 at 11:30:00 AM EST</time></p>
+<p class="maintenance-updated">530 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-16T11:35:00-05:00">November 16, 2026 at 11:35:00 AM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -600,6 +600,11 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="linux-mint-lm-studio-update-loop-resolution"><strong>LM Studio restart-to-update loop diagnostic &amp; manual package deployment:</strong> In pair programming with <strong>Antigravity AI</strong>, diagnosed and resolved a recursive update loop affecting LM Studio (<code>0.4.26+4</code> &rarr; <code>0.4.28+2</code>) on Linux Mint (<code>avanek-HP-Laptop-15-db0xxx</code>).
+<br><br>
+<em>Root Cause Analysis &amp; Privileged Sandbox Diagnostics:</em> Inspected main application runtime logs (<code>~/.config/LM-Studio/logs/main.log</code>) and updater cache states (<code>~/.cache/lm-studio-updater/pending/</code>). Uncovered that while the auto-updater successfully downloaded the new release Debian package (<code>LM-Studio-0.4.28-2-linux-x64.deb</code>), the automated installation routine failed silently upon restart. Because the application was installed system-wide in <code>/opt/LM-Studio</code>, the in-app installer invoked <code>pkexec --disable-internal-agent /bin/bash -c 'dpkg -i ...'</code>. However, Electron's Linux sandboxing enforces kernel-level privilege restrictions (<code>no_new_privs</code>), preventing the setuid bit on <code>/usr/bin/pkexec</code> from granting EUID 0 and returning exit code 127 (<code>pkexec must be setuid root</code>). Consequently, the app restarted into the existing <code>0.4.26</code> build, which immediately re-detected the pending update and prompted for another restart.
+<br><br>
+<em>Package Verification &amp; Resolution:</em> Verified the SHA-512 cryptographic checksum of the cached installer against <code>update-info.json</code> and inspected package metadata via <code>dpkg -I</code>. Manually deployed the updated package into <code>/opt/LM-Studio</code> with elevated privileges using <code>sudo dpkg -i ~/.cache/lm-studio-updater/pending/LM-Studio-0.4.28-2-linux-x64.deb</code>, upgrading the system installation cleanly to <code>0.4.28+2</code> and permanently clearing the recursive update notification loop.</li>
 <li id="lenovo-yoga-2-11-moneroocean-worker-naming-and-rig-telemetry"><strong>Lenovo Yoga 2 11 MoneroOcean stratum worker telemetry, DMI hardware resolution &amp; tier disambiguation:</strong> In pair programming with <strong>Antigravity AI</strong>, re-engineered the Monero mining automation suite and desktop launchers on the Lenovo Yoga 2 11 (<code>avanek-Lenovo-Yoga-2-11</code>, Linux Mint 22.3 Zena) to deliver dynamic device identity and difficulty tier telemetry to the MoneroOcean pool.
 <br><br>
 <em>Worker Telemetry &amp; Stratum Stratification:</em> Diagnosed pool dashboard worker aggregation where mining sessions from different thread tiers and devices collapsed under generic or static identifiers (<code>avanek-yoga</code> and <code>heavy-linux</code>), obscuring comparative hashrate, active profit-switching algorithms, and thermal throttle behavior across the multi-rig fleet. Re-architected the launcher controller (<code>/home/avanek/.local/bin/monero-toggle</code>) to eliminate hardcoded password arguments and construct dynamic worker identifiers matching <code>&lt;device_name&gt;-&lt;Tier&gt;</code> (<code>Lenovo Yoga 2 11-Light</code>, <code>Lenovo Yoga 2 11-Medium</code>, and <code>Lenovo Yoga 2 11-Heavy</code>) based on the active thread profile (1, 2, or 3 threads).
@@ -1207,8 +1212,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-16T11:30:00-05:00">November 16, 2026 at 11:30:00 AM EST</time></p>
-				<p class="footer-version">Version v2.6.366 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-16T11:35:00-05:00">November 16, 2026 at 11:35:00 AM EST</time></p>
+				<p class="footer-version">Version v2.6.367 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
