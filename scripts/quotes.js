@@ -118,7 +118,7 @@
 			id: 'heatsink-cpu-lift',
 			quote: 'May your heatsinks lift cleanly and not take the CPU with them.',
 			category: 'Thermals & Hardware',
-			context: 'A prayer for anyone who has ever pried up an AMD or laptop heatsink only to find the socketed CPU vacuum-glued directly to the copper heatpipe. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			context: 'A troubleshooting maxim for anyone who has ever pried up an AMD or laptop heatsink only to find the socketed CPU vacuum-glued directly to the copper heatpipe. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
 			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
 			projectHref: 'projects.html#hp-thermal-refresh-title'
 		},
@@ -214,7 +214,7 @@
 			id: 'gpa-vs-cpu-temps',
 			quote: 'May your GPA rise faster than your CPU temperatures.',
 			category: 'College & Computing',
-			context: 'The ultimate prayer for engineering midterms, computer science finals, and all-night project compile marathons. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			context: 'The ultimate survival proverb for engineering midterms, computer science finals, and all-night project compile marathons. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
 			projectTitle: 'Career, Education & About Andrew Van Ek',
 			projectHref: 'about.html'
 		},
@@ -243,18 +243,10 @@
 			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
 		},
 		{
-			id: 'macbook-shapeshifter-incognito',
-			quote: 'May your MacBook be cool during class, hot during mining, silent during lectures, and loud during benchmarks.',
+			id: 'macbook-mining-and-activity-monitor',
+			quote: 'May your MacBook be cool during class, hot during mining, silent during lectures, and loud during benchmarks—and may no professor ever glance over your shoulder at Activity Monitor and ask: “Why is your laptop utilizing 800% CPU?” Because some questions are best left unanswered.',
 			category: 'Apple Silicon & Mining',
-			context: 'Operating a mobile workstation that seamlessly shapeshifts between an obedient lecture notepad and a high-hash-rate stratum worker. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
-			projectTitle: 'MacBook Air M1 MoneroOcean Stratum Worker Telemetry',
-			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
-		},
-		{
-			id: 'eight-hundred-percent-cpu-cowboy',
-			quote: 'And may no professor ever glance over your shoulder at Activity Monitor and ask: “Why is your laptop utilizing 800% CPU?” Because some questions, cowboy, are best left unanswered.',
-			category: 'Apple Silicon & Mining',
-			context: 'When all eight cores of Apple Silicon are pinned at full throttle compiling cryptographic hashes in the back row of a 200-person lecture hall. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			context: 'Operating an Apple Silicon workstation that seamlessly shapeshifts between an obedient lecture notepad and an 8-core MoneroOcean stratum worker in the back row of class. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
 			projectTitle: 'MacBook Air M1 MoneroOcean Stratum Worker Telemetry',
 			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
 		},
@@ -265,6 +257,167 @@
 			context: 'Circumventing <span class="tech-term" data-term="doh-private-relay">Apple iOS DoH proxy redirects</span> by broadcasting zero-configuration Multicast DNS to claim the <span class="tech-term" data-term="dot-local-domain">.local domain</span>.',
 			projectTitle: 'Intranet Gathering Slideshow, TLS, Facial Moderation & Avahi mDNS',
 			projectHref: 'projects.html#slideshow-party-intranet-title'
+		}
+,
+		{
+			id: 'button-click-user-expectation',
+			quote: 'May every button click do exactly what the user expects, and not what the software intended.',
+			category: 'Philosophy & Mindset',
+			context: 'Bridging the timeless chasm between what a human intuitively expects an interface to do and what the software architecture assumed they wanted. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'customers-describe-only-what-matters',
+			quote: 'May your customers describe only what matters to resolving their issue.',
+			category: 'Philosophy & Mindset',
+			context: 'Forged during marathon hour-plus support calls where ten minutes of diagnostic triage is preceded by fifty minutes determining whether to left-click or right-click. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Career, Education & About Andrew Van Ek',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'impossible-problem-tomorrows-funny-story',
+			quote: 'May every impossible problem become tomorrow’s funny story.',
+			category: 'Philosophy & Mindset',
+			context: 'The ultimate systems administration coping mechanism: knowing that today’s catastrophic, head-scratching downtime will eventually become tomorrow’s legendary team-chat war story. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'ambition-never-exceed-backup-plan',
+			quote: 'May your ambition exceed your fear, but never exceed your backup plan.',
+			category: 'Storage & Recovery',
+			context: 'The cardinal rule of homelab engineering: dream big and experiment boldly, but never run a destructive terminal command without an offline snapshot and verified restore path. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Headless Intel NUC Alpine Storage Recovery',
+			projectHref: 'projects.html#intel-nuc-alpine-storage-recovery-title'
+		},
+		{
+			id: 'uptime-in-months-outages-in-seconds',
+			quote: 'May your uptime be measured in months and your outages in seconds.',
+			category: 'Storage & Recovery',
+			context: 'The gold standard of homelab server resilience, automated daemon supervision, and rapid zero-downtime micro-maintenance. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Stats for Nerds & Homelab Telemetry',
+			projectHref: 'stats.html'
+		},
+		{
+			id: 'group-project-contain-group',
+			quote: 'May your group project contain a group.',
+			category: 'College & Computing',
+			context: 'The universal engineering student wish for genuine collegiate collaboration where more than one person actually opens the repository, writes code, and submits commits. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Career, Education & About Andrew Van Ek',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'workstation-cooler-than-room',
+			quote: 'May your workstation remain cooler than the room it occupies.',
+			category: 'Thermals & Hardware',
+			context: 'Striving for thermodynamic defiance during all-day stress testing, multi-threaded rendering, and aggressive negative fan curve tuning. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'laptop-mine-never-on-classroom-screen',
+			quote: 'May your laptop mine only when appropriate and never when projected onto the classroom screen.',
+			category: 'Apple Silicon & Mining',
+			context: 'The cardinal rule of covert lecture-hall hash rate generation: background mining is fine, until you plug into HDMI and your 800% CPU terminal is mirrored on the 100-inch projector. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'MacBook Air M1 MoneroOcean Stratum Worker Telemetry',
+			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
+		},
+		{
+			id: 'future-you-understand-present-you',
+			quote: 'May future-you understand what present-you configured.',
+			category: 'Philosophy & Mindset',
+			context: 'The rationale behind clean shell comments, documented iptables chains, and self-documenting commit logs before technical amnesia inevitably strikes three months later. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'intel-nuc-faithful-grub-after-midnight',
+			quote: 'May your Intel NUC remain faithful, and may GRUB never summon you after midnight.',
+			category: 'Storage & Recovery',
+			context: 'A tribute to headless mini-PCs humming quietly in closets that should never demand an emergency serial console or a rescue USB in the dead of night. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Headless Intel NUC Alpine Storage Recovery',
+			projectHref: 'projects.html#intel-nuc-alpine-storage-recovery-title'
+		},
+		{
+			id: 'reboot-login-prompt-not-adventure',
+			quote: 'May every reboot return a login prompt rather than an adventure.',
+			category: 'Storage & Recovery',
+			context: 'Honoring the universal tension of typing "sudo reboot" over SSH on a critical remote box and waiting for ping responses rather than an emergency drive recovery. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Headless Intel NUC Alpine Storage Recovery',
+			projectHref: 'projects.html#intel-nuc-alpine-storage-recovery-title'
+		},
+		{
+			id: 'evening-maintenance-window-remain-evening',
+			quote: 'May your evening maintenance window remain an evening maintenance window.',
+			category: 'Philosophy & Mindset',
+			context: 'A tribute to routine 8:00 PM "quick 15-minute package updates" that threaten to snowball into 4:00 AM kernel recompilations, broken package audits, and cold coffee. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Portfolio Infrastructure Maintenance Log',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'temps-low-voltages-steady-logs-boring',
+			quote: 'May your temperatures remain low, your voltages remain steady, and your event logs remain boring.',
+			category: 'Thermals & Hardware',
+			context: 'The holy trinity of server peace of mind: cool copper heatsinks, clean wall power delivery, and a system event log completely devoid of kernel alerts or red error badges. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Dell Inspiron 3668 CPU Repaste & Thermal Audit',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'maintenance-window-reboot-not-research-project',
+			quote: 'May every maintenance window end with a reboot and not a research project.',
+			category: 'Philosophy & Mindset',
+			context: 'The razor-thin line between an uneventful service restart and an involuntary six-hour deep dive into deprecated glibc headers, kernel source trees, and forgotten forum threads. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Portfolio Infrastructure Maintenance Log',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'no-system-inspire-wonder-why',
+			quote: 'May no system ever inspire the words: “I wonder why it would do that.”',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to all who have uttered the phrase, "Huh. I’ve never seen that before" right before losing an entire Saturday afternoon to an undocumented edge case. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'troubleshooting-known-issues-not-discoveries',
+			quote: 'May your troubleshooting begin with known issues and not entirely new discoveries.',
+			category: 'Philosophy & Mindset',
+			context: 'Famous last words in systems administration: hoping against hope that the flashing red diagnostic light is a documented FAQ rather than an uncharted scientific breakthrough. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Homelab Diagnostics & Systems Administration',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'problem-solvable-by-ai-not-huh-weird',
+			quote: 'May your problem be solvable by AI and not one of those issues that inspires AI to say: “Huh... that’s weird.”',
+			category: 'AI & Local Models',
+			context: 'Dedicated to accidental pioneers confronting bizarre driver collisions, obscure firmware panics, and edge cases so uncanny that even state-of-the-art LLMs pause in bewilderment. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Persistent Homelab LLM Inference & Private Tailscale Mesh Streaming',
+			projectHref: 'projects.html#glm4-tailscale-homelab-title'
+		},
+		{
+			id: 'error-message-age-window-ai',
+			quote: 'May your error message be old enough for AI to recognize yet new enough for the fix to still exist.',
+			category: 'AI & Local Models',
+			context: 'Navigating the narrow golden window of computing history: a bug indexed well enough for AI to diagnose instantly, but not so ancient that the solution depends on a 404 dead link from 2008. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Code Runner & AI Coach Infrastructure',
+			projectHref: 'code-runner.html'
+		},
+		{
+			id: 'google-ai-neither-new-research-project',
+			quote: 'If Google knows the answer, the problem is routine. If AI knows the answer, the problem is manageable. If neither knows the answer, congratulations on your new research project.',
+			category: 'AI & Local Models',
+			context: 'The three definitive tiers of modern technical problem-solving, inevitably culminating in you becoming the world’s reluctant leading authority on an obscure kernel flag. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'AI Labs & Technical Troubleshooting',
+			projectHref: 'lab.html'
+		},
+		{
+			id: 'every-bug-already-known-somebody',
+			quote: 'May every bug already be known to somebody else.',
+			category: 'Philosophy & Mindset',
+			context: 'The pure relief of searching a bizarre compiler error and finding an existing GitHub issue with a closed green badge and "Fixed in v2.4" waiting for you. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'Andrew Van Ek &mdash; Engineering Discipline',
+			projectHref: 'changelog.html'
 		}
 	];
 
