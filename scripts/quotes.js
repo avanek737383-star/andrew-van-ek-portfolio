@@ -115,6 +115,46 @@
 			projectHref: 'maintenance.html#macbook-air-m1-moneroocean-worker-naming-and-rig-telemetry'
 		},
 		{
+			id: 'heatsink-cpu-lift',
+			quote: 'May your heatsinks lift cleanly and not take the CPU with them.',
+			category: 'Thermals & Hardware',
+			context: 'A prayer for anyone who has ever pried up an AMD or laptop heatsink only to find the socketed CPU vacuum-glued directly to the copper heatpipe. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'thermal-pad-origins',
+			quote: 'May every thermal pad stay in one piece long enough for you to figure out where it came from.',
+			category: 'Thermals & Hardware',
+			context: 'Dedicated to the mysterious crumbling blue and pink VRM pads that tear in half when separating the vapor chamber from the motherboard. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'ptm7950-perfect-contact',
+			quote: 'May your PTM7950 make perfect contact on the first mount.',
+			category: 'Thermals & Hardware',
+			context: 'A tribute to the delicate art of peeling microscopic plastic backing film off <span class="tech-term" data-term="ptm7950">PTM7950 phase-change material</span> without ripping the pad before screw torquedown. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'idle-temps-cool-fans-quiet',
+			quote: 'May your idle temps be cool, your fans be quiet, and your benchmarks be stable.',
+			category: 'Thermals & Hardware',
+			context: 'The ultimate trifecta of homelab bliss after repasting copper heatsinks and stress-testing Cinebench loops with zero thermal throttling. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'ribbon-cable-beneath-keyboard',
+			quote: 'May not a single ribbon cable be forgotten beneath the keyboard.',
+			category: 'Thermals & Hardware',
+			context: 'Because snapping all 36 plastic chassis clips back together only to discover the trackpad or keyboard ribbon cable is trapped underneath the board is true pain. (Courtesy of Microsoft 365 Copilot & Andrew Van Ek)',
+			projectTitle: 'HP Laptop Cooling Refresh & MacBook Hardware Teardowns',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
 			id: 'avahi-mdns-local',
 			quote: 'You can take the engineer out of the LAN, but you cannot stop Avahi mDNS from claiming .local.',
 			category: 'Networking & DNS',
