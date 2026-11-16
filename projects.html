@@ -81,6 +81,27 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="slideshow-party-intranet-title">
+<h2 id="slideshow-party-intranet-title">Intranet Gathering Slideshow &amp; Moderation Platform (Intel NUC)</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed</span> <span>Alpine Linux &middot; FastAPI &middot; Nginx Reverse Proxy &middot; AdGuard DNS &middot; Data Recovery &middot; <time datetime="2026-11-15">November 15, 2026</time></span></p>
+<p>In preparation for family coming over for Friday night, I worked with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> over an SSH session to build and deploy an intranet-only family gathering slideshow and collaborative guest photo upload platform on my Alpine Linux Intel NUC.</p>
+<p>The goal was to create a friction-free, shared experience on home Wi-Fi: guests can open a personalized digital photo frame on any phone, tablet, or laptop, view random photos from family collections, toggle continuous screen wakefulness, and upload photos under 5 MB for review before they enter the live rotation.</p>
+
+<h3>Architecture &amp; Core Features</h3>
+<ul>
+<li><strong>FastAPI &amp; Uvicorn Backend:</strong> Built a lightweight asynchronous application in an isolated Python virtual environment on the NUC. The service manages an in-memory image pool with instant dynamic rescanning, serving non-repeating random images with caching headers. It starts paused by default, allowing each client to independently play, pause, change interval speeds (4s to 20s), and step back through browsing history.</li>
+<li><strong>Screen Wake Lock &amp; Ambient Frame Mode:</strong> Integrated the HTML5 Screen Wake Lock API (<code>navigator.wakeLock</code>) with automated re-acquisition on tab visibility changes, keeping propped-up tablets and phones awake indefinitely without system display sleep. Controls auto-hide after 3.5 seconds into a clean edge-to-edge frame with ambient blurred backdrops.</li>
+<li><strong>Guest Upload Queue &amp; Master Review Dashboard:</strong> Created an upload endpoint enforcing strict 5 MB file size bounds and Pillow image integrity verification. Submissions are queued in a dedicated pending directory with metadata (timestamp, client IP, original filename). Built a password-protected master review dashboard at <code>/admin</code> allowing one-click approval into the active rotation or rejection.</li>
+<li><strong>Local DNS Rewrite &amp; Port 80 Reverse Proxy:</strong> To eliminate the need for guests to type custom port numbers (e.g. <code>:5999</code>), we reconfigured the NUC's Dockerized AdGuard Home instance—shifting its HTTP dashboard from port 80 to 8080 while keeping DNS port 53 active—and created an authoritative DNS rewrite for <code>slideshow.info</code> pointing to <code>192.168.0.201</code>. We then deployed Nginx on port 80 to proxy <code>slideshow.info</code> requests to the slideshow service while transparently falling back to AdGuard Home for direct IP access.</li>
+<li><strong>Party QR Code Generation:</strong> Generated and embedded high-resolution scannable QR codes in the web UI and admin dashboard so family members can join the photo stream instantly using their phone cameras.</li>
+<li><strong>OpenRC Supervisor Daemon:</strong> Packaged the entire server into an OpenRC service (<code>/etc/init.d/slideshow-party</code>) configured with <code>supervise-daemon</code>, automatic crash recovery, and added to the <code>default</code> runlevel for persistent boot on the NUC.</li>
+</ul>
+
+<h3>Storage Diagnostics &amp; Samba Recovery</h3>
+<p>During deployment, both my Windows PC and Mac reported that the root of my 500 GB USB network drive (<code>ONEFIVE</code>) was completely empty. Inspecting kernel logs (<code>dmesg</code>) revealed that a brief hardware disconnect had caused Linux to re-enumerate the drive as <code>/dev/sdc1</code> instead of <code>/dev/sdb1</code>, leaving the mount point at <code>/media/onefive</code> attached to a dead node and causing Samba to report I/O errors.</p>
+<p>We safely unmounted the dead mount (<code>umount -l /media/onefive</code>), cleanly remounted the filesystem using its persistent partition UUID (<code>6A0A-49C9</code>), and restarted the Samba daemons. All data across music, counseling, and backup folders was verified 100% intact. We then indexed the drive's <code>03. Google Photos</code> archive directly into the slideshow sources, expanding the live collection pool to 30,083 photos.</p>
+</section>
+
 <section class="project-entry" aria-labelledby="samsung-i435-rooting-title">
 <h2 id="samsung-i435-rooting-title">Samsung Galaxy S4 Mini (SCH-I435): USB Troubleshooting &amp; Rooting Preparation</h2>
 <p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Windows USB drivers &middot; Android Debug Bridge &middot; Legacy Android &middot; <time datetime="2026-11-15">November 15, 2026</time></span></p>
