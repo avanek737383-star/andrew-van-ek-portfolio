@@ -81,6 +81,42 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="adguard-dns-focus-profile-title">
+<h2 id="adguard-dns-focus-profile-title">Distraction-Free Workstation Filtering: AdGuard Cloud DNS, Apple DoH Configuration Profile &amp; Tailscale Coexistence (MacBook Air M1)</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed</span> <span>AdGuard DNS (Cloud) &middot; Apple Configuration Profile (.mobileconfig) &middot; DNS-over-HTTPS (DoH) &middot; Tailscale Mesh &amp; MagicDNS &middot; macOS Sequoia / Apple Silicon &middot; <time datetime="2026-11-16">November 16, 2026</time></span></p>
+<p>Having previously deployed an automated, schedule-driven DNS blackout on my home Intel NUC server to eliminate late-night dopamine loops on home Wi-Fi, I wanted an on-demand, toggleable focus profile directly on my primary mobile workstation (MacBook Air M1 / <code>The Macsimal Computing Experience</code>). Unlike the scheduled home router blackout, this system needed to be portable across all networks (home, campus, hotspots) and instantly toggleable on demand to kill digital distractions like Facebook and social media during deep work sprints.</p>
+
+<h3>Evaluation of Alternatives &amp; The Standalone Desktop App Conflict</h3>
+<p>I worked alongside <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> to evaluate four potential architectures:</p>
+<ul>
+<li><strong>Local Focus Apps (SelfControl / Cold Turkey):</strong> While effective for irreversible timed lockouts, they lack unified network-level DNS telemetry, cross-device rulesets, and granular service toggles.</li>
+<li><strong>AdGuard for Mac (Standalone Desktop App):</strong> I downloaded and installed the standalone desktop application. However, local ad-blocking apps deploy system-level Network Extensions or local proxy tunnels. Because I actively rely on <strong>Tailscale</strong> for remote homelab management and multi-node compute access, desktop VPN/network filters risk socket collisions, routing loops, or knocking active mesh VPN tunnels offline.</li>
+<li><strong>Remote Routing to Home AdGuard Home via Tailscale:</strong> While routing mobile DNS queries back through my home NUC over Tailscale is possible, it tightly couples my laptop's filtering rules to the household sleep schedule and home upstream ISP bandwidth.</li>
+<li><strong>AdGuard DNS (Cloud) via Apple Native Configuration Profile (Chosen Architecture):</strong> We selected a cloud-hosted AdGuard DNS profile deployed via a signed Apple Configuration Profile (<code>.mobileconfig</code>). This leverages Apple's native <code>com.apple.dnsSettings.managed</code> framework (DNS-over-HTTPS), routing encrypted queries directly through macOS's internal <code>mDNSResponder</code> without creating synthetic VPN interfaces, consuming VPN slots, or touching Tailscale routing tables.</li>
+</ul>
+
+<h3>Tailscale MagicDNS Diagnostics &amp; Priority Re-Ordering</h3>
+<p>Upon installing the configuration profile (<code>com.adguard-dns.cb553bc6</code>) and binding it to <code>The Macsimal Computing Experience</code>, the AdGuard dashboard reported an anomalous status: <em>&ldquo;This device is not protected &mdash; connect it to AdGuard DNS&rdquo;</em> with only 3 historical requests and 0 blocked domains.</p>
+<p>Using <code>scutil --dns</code> to inspect the Darwin resolver table, Antigravity AI diagnosed that Tailscale's <strong>MagicDNS</strong> service (listening on <code>100.100.100.100</code> on virtual interface <code>utun9</code>) had bound to resolver slot <code>#1</code> with high priority order <code>100400</code>. Because I had previously configured Cloudflare DNS (<code>1.1.1.1</code>) inside Tailscale to circumvent local network DNS restrictions on cryptocurrency mining, Tailscale's global DNS override was intercepting 100% of outbound DNS queries before Apple's DoH profile could inspect them.</p>
+<p>We cleanly resolved the collision without breaking homelab connectivity:</p>
+<ul>
+<li>In the macOS Tailscale menu, we toggled off <strong>&ldquo;Use Tailscale DNS Settings&rdquo;</strong> while keeping <strong>&ldquo;Use Tailscale Subnets&rdquo;</strong> enabled.</li>
+<li>This immediately demoted Tailscale from the primary resolver slot, allowing outbound Internet DNS queries to fall through to the native AdGuard encrypted DoH profile.</li>
+<li>Simultaneously, all internal mesh routes to homelab nodes (Intel NUC, Windows gaming PC, Linux laptops) remained 100% operational with full peer-to-peer connectivity.</li>
+</ul>
+
+<h3>Service Blacklisting, RFC 8484 Payload Verification &amp; Sinkholing</h3>
+<p>With DNS routing verified, we configured parental control filters and user rules within the AdGuard dashboard:</p>
+<ul>
+<li><strong>Service Blocklists:</strong> Added <strong>Facebook</strong> and high-distraction social platforms to the blocked services ruleset, alongside explicit User Rules (<code>||facebook.com^</code>).</li>
+<li><strong>Direct DoH Payload Auditing:</strong> Using Python, we constructed raw binary DNS queries conforming to RFC 8484 (<code>application/dns-message</code>) and dispatched them directly against the custom DoH endpoint (<code>https://d.adguard-dns.com/dns-query/cb553bc6</code>). While initial tests returned Facebook's live edge IP (<code>157.240.26.35</code>) prior to dashboard rule propagation, subsequent tests verified that tracking domains (<code>doubleclick.net</code>) and Facebook were immediately intercepted and sinkholed to <code>0.0.0.0</code>.</li>
+<li><strong>End-to-End Browser Validation:</strong> System cache queries via <code>dscacheutil -q host -a name facebook.com</code> confirmed instantaneous <code>0.0.0.0</code> resolution. Attempting to browse to <code>www.facebook.com</code> yielded an immediate socket termination (<code>ERR_CONNECTION_REFUSED</code>), establishing a clean, distraction-free environment that can be toggled on or off at will with zero VPN disruption.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek identified the need for an on-demand focus profile, tested the standalone desktop app, diagnosed the Tailscale operational requirement, configured dashboard service blacklists, and performed browser validation. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> evaluated architectural trade-offs, inspected Darwin resolver tables via <code>scutil --dns</code>, isolated the Tailscale MagicDNS override, guided the non-conflicting profile configuration, formulated raw RFC 8484 DoH test harnesses, verified the <code>0.0.0.0</code> sinkhole, and authored this writeup.</p>
+<ul class="chips"><li>AdGuard DNS (Cloud)</li><li>Apple Configuration Profile (.mobileconfig)</li><li>DNS-over-HTTPS (DoH)</li><li>Tailscale VPN</li><li>MagicDNS</li><li>macOS Sequoia</li><li>Apple Silicon (M1)</li><li>Antigravity (Google DeepMind)</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="slideshow-party-intranet-title">
 <h2 id="slideshow-party-intranet-title">Intranet Gathering Slideshow, TLS, Facial Moderation, iCloud Sync &amp; Recovery (Intel NUC)</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed</span> <span>Alpine Linux &middot; FastAPI &middot; Nginx Reverse Proxy &middot; mkcert TLS &middot; mDNS (Avahi) &middot; OpenCV Face Detection &middot; EXIF Forensics &middot; iCloud Photos Docker Sync &middot; Storage Recovery &middot; <time datetime="2026-11-15">November 15, 2026</time></span></p>
@@ -2312,8 +2348,8 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-05T09:02:08-05:00">November 5, 2026 at 9:02:08 AM EST</time></p>
-				<p class="footer-version">Version v2.6.356 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-16T12:40:00-05:00">November 16, 2026 at 12:40:00 PM EST</time></p>
+				<p class="footer-version">Version v2.6.372 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
