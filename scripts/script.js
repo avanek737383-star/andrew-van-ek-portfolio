@@ -683,6 +683,26 @@
 	}
 
 	var TECH_ANALOGIES = {
+		"cache-archive": {
+			title: "Cache Archives & Temporary Files",
+			analogy: "Like keeping old grocery receipts and shopping bags crammed in a kitchen drawer 'just in case'—eventually, the drawer is so full it jams the whole cabinet.",
+			techFact: "Programs save temporary installer files, download caches, and crash logs to speed up repeated tasks. Over months, these hidden archives quietly grow to tens of gigabytes, eating up valuable C: drive space."
+		},
+		"dot-local-domain": {
+			title: ".local Domain (Multicast DNS)",
+			analogy: "Like shouting someone's nickname across the living room instead of looking up their official address in the global phone book and mailing a postcard.",
+			techFact: "The .local top-level domain uses mDNS (Multicast DNS / Bonjour / Avahi) to find devices directly on your physical home Wi-Fi without needing an external public DNS server or GoDaddy registration."
+		},
+		"doh-private-relay": {
+			title: "Apple DoH & iCloud Private Relay",
+			analogy: "Like putting all your web requests into a sealed, locked envelope so your local Wi-Fi router can't peek at what websites you visit—even if you're trying to visit a computer sitting right next to you.",
+			techFact: "DNS-over-HTTPS (DoH) and Apple's Private Relay encrypt domain lookups and route them through Apple proxy relays. While great for privacy on public Wi-Fi, it unintentionally bypasses local home network DNS servers like AdGuard Home."
+		},
+		"homelab-silicon": {
+			title: "Homelab Silicon",
+			analogy: "A fun, slightly fancy way of saying the microchips, processors, and graphics cards inside the computers running on your home desk.",
+			techFact: "Computer processors (CPUs, GPUs, and Apple M-series chips) are manufactured out of etched semiconductor silicon wafers. 'Running on local silicon' means computing right on physical hardware in your room rather than renting someone else's server in the cloud."
+		},
 		"photo-profile": {"title": "Automatic photo settings", "analogy": "Like a camera preset matched to the film you loaded: turning every dial up can make the picture look worse.", "techFact": "This installed Realistic Vision Hyper model is designed for low guidance and few sampling steps. The fixed profile uses CFG 2, six steps, DPM++ 2M SDE, and Karras scheduling."},
 		"live-network-speed": {"title": "Live upload and download speed", "analogy": "A speedometer for the traffic flowing right now, rather than a test of how fast the road could go.", "techFact": "Mbps means megabits per second: eight megabits equal one megabyte. This monitor measures current traffic on the default internet interface. Idle readings can be near zero even on a fast connection."},
 		"memory-temperature": {"title": "Memory-proximity temperature", "analogy": "A thermometer near the memory chips, giving a useful nearby reading rather than pretending every RAM module has its own probe.", "techFact": "This machine exposes the Apple SMC TM0P memory-proximity sensor. The panel converts its Celsius reading to Fahrenheit."},
@@ -2058,6 +2078,69 @@
 						t.setAttribute("aria-selected", isActive ? "true" : "false");
 					});
 				}, 60);
+			});
+		}
+
+		
+		// Swipe and drag support for weather carousel
+		if (carousel) {
+			var touchStartX = 0;
+			var touchStartY = 0;
+			var isDragging = false;
+			var currentActiveIndex = 0;
+
+			carousel.addEventListener("touchstart", function(e) {
+				if (e.touches && e.touches.length === 1) {
+					touchStartX = e.touches[0].clientX;
+					touchStartY = e.touches[0].clientY;
+				}
+			}, { passive: true });
+
+			carousel.addEventListener("touchend", function(e) {
+				if (!touchStartX) return;
+				var touchEndX = e.changedTouches[0].clientX;
+				var touchEndY = e.changedTouches[0].clientY;
+				var diffX = touchEndX - touchStartX;
+				var diffY = touchEndY - touchStartY;
+
+				if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+					// Read active slide index
+					slides.forEach(function(s, idx) {
+						if (s.classList.contains("active")) currentActiveIndex = idx;
+					});
+					if (diffX < 0) {
+						setActiveSlide(Math.min(2, currentActiveIndex + 1));
+					} else {
+						setActiveSlide(Math.max(0, currentActiveIndex - 1));
+					}
+				}
+				touchStartX = 0;
+				touchStartY = 0;
+			}, { passive: true });
+
+			carousel.addEventListener("mousedown", function(e) {
+				if (e.target.closest("button") || e.target.closest("a")) return;
+				isDragging = true;
+				touchStartX = e.clientX;
+				touchStartY = e.clientY;
+			});
+
+			window.addEventListener("mouseup", function(e) {
+				if (!isDragging) return;
+				isDragging = false;
+				var diffX = e.clientX - touchStartX;
+				var diffY = e.clientY - touchStartY;
+				if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+					slides.forEach(function(s, idx) {
+						if (s.classList.contains("active")) currentActiveIndex = idx;
+					});
+					if (diffX < 0) {
+						setActiveSlide(Math.min(2, currentActiveIndex + 1));
+					} else {
+						setActiveSlide(Math.max(0, currentActiveIndex - 1));
+					}
+				}
+				touchStartX = 0;
 			});
 		}
 

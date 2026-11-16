@@ -2531,7 +2531,8 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 .weather-tab-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 12px;
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 14px;
@@ -7250,5 +7251,59 @@ body.search-modal-open {
     }
     .changelog-metrics-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Hero Quote Caption & Dice Roller */
+.hero-quote-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-quote-byline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.hero-quote-dice-btn {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.15s ease;
+}
+
+.hero-quote-dice-btn:hover {
+    background: #e0f2fe;
+    border-color: #38bdf8;
+    transform: scale(1.1);
+}
+
+@media (max-width: 859px) {
+    .home-weather-section {
+        padding: 18px 14px;
+        margin: 18px 0 0 0;
+    }
+    .weather-card-panel {
+        padding: 14px 12px;
+        margin-top: 12px;
+    }
+    .weather-current-grid {
+        gap: 14px;
+    }
+    .weather-tab-bar {
+        gap: 6px;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+    }
+    .weather-tab {
+        padding: 7px 12px;
+        font-size: 0.82rem;
     }
 }

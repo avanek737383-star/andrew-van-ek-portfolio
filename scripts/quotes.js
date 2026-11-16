@@ -3,6 +3,14 @@
 
 	var HOMELAB_QUOTES = [
 		{
+			id: 'if-it-isnt-broke',
+			quote: "If it isn't broke, do fix it.",
+			category: 'Philosophy & Mindset',
+			context: 'The foundational engineering philosophy behind continuously optimizing, stress-testing, and upgrading stable homelab systems before failure strikes.',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'index.html'
+		},
+		{
 			id: 'thermal-100-deg',
 			quote: 'May your temperatures be 100 degrees Fahrenheit, not 100 degrees CPU.',
 			category: 'Thermals & Hardware',
@@ -35,11 +43,11 @@
 			projectHref: 'projects.html#intel-nuc-alpine-storage-recovery-title'
 		},
 		{
-			id: 'macbook-stripped-screw',
-			quote: 'Never underestimate a stripped tri-wing screw guarding a swollen lithium battery.',
+			id: 'lenovo-swollen-battery',
+			quote: 'Never underestimate a stripped screw guarding a swollen lithium battery.',
 			category: 'Thermals & Hardware',
-			context: 'Extracting a compromised battery from a vintage 2011 unibody MacBook Pro through mechanical precision, power isolation, and photographic forensics.',
-			projectTitle: '2011 MacBook Pro Battery Removal: Stripped Screws & Power Isolation',
+			context: 'Happened while tearing down a Lenovo IdeaPad 2 11 to safely extract the motherboard and daughterboards. (The 2011 MacBook Pro battery was happily fine).',
+			projectTitle: '2011 MacBook Pro Battery Removal & Hardware Isolation',
 			projectHref: 'projects.html#macbook-2011-battery-removal-title'
 		},
 		{
@@ -70,7 +78,7 @@
 			id: 'bedroom-radiator-llm',
 			quote: 'Why pay monthly cloud GPU fees when your bedroom radiator can stream 9B parameter tokens?',
 			category: 'AI & Local Models',
-			context: 'Deploying persistent GLM-4-9B quantized inference across a private Tailscale mesh streaming directly from local homelab silicon.',
+			context: 'Deploying persistent GLM-4-9B quantized inference across a private Tailscale mesh streaming directly from local <span class="tech-term" data-term="homelab-silicon">homelab silicon</span>.',
 			projectTitle: 'Persistent Homelab LLM Inference & Private Tailscale Mesh Streaming',
 			projectHref: 'projects.html#glm4-tailscale-homelab-title'
 		},
@@ -94,7 +102,7 @@
 			id: 'drive-c-archaeology',
 			quote: 'Drive C: never actually runs out of space; it merely accumulates forgotten cache archives.',
 			category: 'Storage & Recovery',
-			context: 'Executing precision filesystem forensics to liberate 65+ GB of trapped installer caches, shadow logs, and temp staging trees on Windows.',
+			context: 'Executing precision filesystem forensics to liberate 65+ GB of trapped installer caches, shadow logs, and temp staging trees on Windows (<span class="tech-term" data-term="cache-archive">cache archives</span>).',
 			projectTitle: 'Autonomous Drive C Forensics & Precision Reclamation',
 			projectHref: 'projects.html#internal-drive-c-forensics-title'
 		},
@@ -110,7 +118,7 @@
 			id: 'avahi-mdns-local',
 			quote: 'You can take the engineer out of the LAN, but you cannot stop Avahi mDNS from claiming .local.',
 			category: 'Networking & DNS',
-			context: 'Circumventing Apple iOS DoH proxy redirects by broadcasting zero-configuration Multicast DNS to deliver local gathering photo feeds.',
+			context: 'Circumventing <span class="tech-term" data-term="doh-private-relay">Apple iOS DoH proxy redirects</span> by broadcasting zero-configuration Multicast DNS to claim the <span class="tech-term" data-term="dot-local-domain">.local domain</span>.',
 			projectTitle: 'Intranet Gathering Slideshow, TLS, Facial Moderation & Avahi mDNS',
 			projectHref: 'projects.html#slideshow-party-intranet-title'
 		}
@@ -173,17 +181,20 @@
 
 		if (!grid) return;
 
-		var currentFeatIndex = 0;
+		var currentFeatIndex = 1; // Start on the signature thermal quote
 
 		function setFeatured(index) {
 			currentFeatIndex = index;
 			var item = HOMELAB_QUOTES[index];
 			if (featQuote) featQuote.textContent = '“' + item.quote + '”';
-			if (featContext) featContext.textContent = item.context;
+			if (featContext) featContext.innerHTML = item.context;
 			if (featCategory) featCategory.textContent = item.category;
 			if (featLink) {
 				featLink.href = item.projectHref;
 				featLink.innerHTML = 'View Project: ' + item.projectTitle + ' &rarr;';
+			}
+			if (window.initTechAnalogies) {
+				window.initTechAnalogies();
 			}
 		}
 
@@ -242,7 +253,7 @@
 				bq.textContent = '“' + item.quote + '”';
 				var ctx = document.createElement('p');
 				ctx.className = 'quote-card-context';
-				ctx.textContent = item.context;
+				ctx.innerHTML = item.context;
 				body.appendChild(bq);
 				body.appendChild(ctx);
 
@@ -264,6 +275,10 @@
 			if (countBadge) {
 				countBadge.textContent = 'Showing ' + count + ' of ' + HOMELAB_QUOTES.length + ' proverbs';
 			}
+
+			if (window.initTechAnalogies) {
+				window.initTechAnalogies();
+			}
 		}
 
 		filterPills.forEach(function (pill) {
@@ -276,50 +291,61 @@
 		});
 
 		// Initial setup
-		setFeatured(0); // Starts on user's thermal quote!
+		setFeatured(1); // Signature thermal quote
 		renderGrid('all');
 	}
 
-	// 2. Homepage Widget Logic
-	function initHomeWidget() {
-		var quoteDisplay = document.getElementById('homelab-quote-display');
-		var quoteSource = document.getElementById('homelab-quote-source');
-		var rerollBtn = document.getElementById('quote-reroll-btn');
+	// 2. Homepage Header Slogan Randomizer (Sleek, Compact, Zero Wasted Space!)
+	function initHeroQuote() {
+		var sloganEl = document.getElementById('hero-quote-text');
+		var authorEl = document.getElementById('hero-quote-author');
+		var diceBtn = document.getElementById('hero-quote-dice-btn');
 
-		if (!quoteDisplay) return;
+		if (!sloganEl) return;
 
-		var currentIndex = Math.floor(Math.random() * HOMELAB_QUOTES.length);
+		var currentHeroIndex = 0; // Starts on "If it isn't broke, do fix it."
 
-		function updateHomeQuote(idx) {
-			currentIndex = idx;
+		function rotateHeroQuote(idx) {
+			currentHeroIndex = idx;
 			var item = HOMELAB_QUOTES[idx];
-			quoteDisplay.textContent = '“' + item.quote + '”';
-			if (quoteSource) {
-				quoteSource.innerHTML = '&mdash; <a href="' + item.projectHref + '" style="color: inherit; text-decoration: underline;">' + item.projectTitle + '</a>';
+			sloganEl.textContent = '“' + item.quote + '”';
+			if (authorEl) {
+				if (item.id === 'if-it-isnt-broke') {
+					authorEl.innerHTML = '&ndash; Andrew Van Ek';
+				} else {
+					authorEl.innerHTML = '&ndash; <a href="' + item.projectHref + '" style="color: inherit; text-decoration: underline;" title="' + item.projectTitle + '">' + item.category + '</a>';
+				}
 			}
 		}
 
-		if (rerollBtn) {
-			rerollBtn.addEventListener('click', function () {
-				var nextIdx;
-				do {
-					nextIdx = Math.floor(Math.random() * HOMELAB_QUOTES.length);
-				} while (nextIdx === currentIndex && HOMELAB_QUOTES.length > 1);
-				updateHomeQuote(nextIdx);
+		function rollRandomHero() {
+			var nextIdx;
+			do {
+				nextIdx = Math.floor(Math.random() * HOMELAB_QUOTES.length);
+			} while (nextIdx === currentHeroIndex && HOMELAB_QUOTES.length > 1);
+			rotateHeroQuote(nextIdx);
+		}
+
+		if (diceBtn) {
+			diceBtn.addEventListener('click', function (e) {
+				e.preventDefault();
+				rollRandomHero();
 			});
 		}
 
-		// Initial display
-		updateHomeQuote(0); // Highlight thermal paste quote by default or random
+		sloganEl.style.cursor = 'pointer';
+		sloganEl.addEventListener('click', function () {
+			rollRandomHero();
+		});
 	}
 
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', function () {
 			initQuotesPage();
-			initHomeWidget();
+			initHeroQuote();
 		});
 	} else {
 		initQuotesPage();
-		initHomeWidget();
+		initHeroQuote();
 	}
 })();
