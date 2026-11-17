@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">542 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-16T22:05:00-05:00">November 16, 2026 at 10:05:00 PM EST</time></p>
+<p class="maintenance-updated">543 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-17T08:45:00-05:00">November 17, 2026 at 08:45:00 AM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -620,6 +620,11 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="hero-quote-dice-shrink-and-right-alignment"><strong>Homepage hero quote dice button height reduction &amp; persistent right-anchored clock alignment:</strong> In pair programming with <strong>Antigravity AI</strong>, resolved a visual disproportion and horizontal jitter defect with the random homelab wisdom selector button (<code>#hero-quote-dice-btn</code>) in the homepage hero header (<code>index.html</code> and <code>css/styles.css</code>).
+<br><br>
+<em>Box Geometry &amp; Height Reduction:</em> Remediated a layout defect where the dice emoji button container was visibly taller than the accompanying author text line. Reduced button box dimensions from 26px down to an 18px &times; 18px compact square with <code>box-sizing: border-box</code>, <code>border-radius: 3px</code>, and a <code>0.72rem</code> emoji glyph, bringing the box height flush with the 17.3px text line height and eliminating disproportionate vertical overshoot.
+<br><br>
+<em>Persistent Right-Anchored Clock Alignment:</em> Eliminated horizontal layout shifting where the dice button hopped left and right with every roll as quote author and category strings varied in length. Expanded <code>.hero-quote-caption</code> to fill available horizontal hero space (<code>flex: 1 1 auto; min-width: 0;</code>) and refactored <code>.hero-quote-byline</code> into a full-width flex container (<code>width: 100%; display: flex; align-items: center; justify-content: space-between;</code>) with <code>margin-left: auto;</code> on the dice button. This anchors the selector button consistently at the far right edge of the byline immediately adjacent to the live station clock (<code>#home-est-clock</code>) across all quote lengths and categories, while collapsing smoothly to a centered alignment on mobile displays (&le;768px).</li>
 <li id="homelab-proverbs-expansion-copilot-antigravity"><strong>Homelab proverbs catalog expansion (52 maxims), MacBook mining quote synthesis &amp; prayer secularization:</strong> In pair programming with <strong>Antigravity AI</strong> with creative assistance courtesy of <strong>Microsoft 365 Copilot</strong>, expanded the <code>Quotes &amp; Proverbs</code> catalog from 33 to 52 authentic hardware truths, student engineering maxims, systems administration realities, and user-support proverbs.
 <br><br>
 <em>MacBook Lecture Mining &amp; Activity Monitor Synthesis:</em> Unified two related Apple Silicon mining maxims into a cohesive single quote (<em>&ldquo;May your MacBook be cool during class, hot during mining, silent during lectures, and loud during benchmarks&mdash;and may no professor ever glance over your shoulder at Activity Monitor and ask: &lsquo;Why is your laptop utilizing 800% CPU?&rsquo; Because some questions are best left unanswered&rdquo;</em>), cleanly removing unprofessional slang while preserving the authentic humor of high-hash-rate background mining in lecture halls.
@@ -1307,8 +1312,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-16T22:05:00-05:00">November 16, 2026 at 10:05:00 PM EST</time></p>
-				<p class="footer-version">Version v2.6.382 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-17T08:45:00-05:00">November 17, 2026 at 08:45:00 AM EST</time></p>
+				<p class="footer-version">Version v2.6.383 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>

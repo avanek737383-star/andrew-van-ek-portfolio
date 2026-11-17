@@ -7259,11 +7259,15 @@ body.search-modal-open {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .hero-quote-byline {
-    display: inline-flex;
-    align-items: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 8px;
     margin-top: 5px;
     line-height: 1.2;
@@ -7279,24 +7283,41 @@ body.search-modal-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 18px;
+    height: 18px;
     padding: 0;
     margin: 0;
+    margin-left: auto;
     background: #f1f5f9;
     border: 1px solid #cbd5e1;
-    border-radius: 5px;
-    font-size: 0.95rem;
+    border-radius: 3px;
+    font-size: 0.72rem;
     cursor: pointer;
     line-height: 1;
     transition: all 0.15s ease;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .hero-quote-dice-btn:hover {
     background: #e0f2fe;
     border-color: #38bdf8;
     transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+    .hero-quote-caption {
+        align-items: center;
+        width: 100%;
+    }
+    .hero-quote-byline {
+        justify-content: center;
+        width: auto;
+        gap: 8px;
+    }
+    .hero-quote-dice-btn {
+        margin-left: 0;
+    }
 }
 
 /* Toast message for copy */
