@@ -313,3 +313,32 @@
 		transform: translateX(-50%) translateY(0);
 	}
 }
+
+/* Homelab Quotes Attribution Banner */
+/* Attribution Banner */
+.quotes-attribution-banner {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-left: 4px solid #0284c7;
+	border-radius: 0.5rem;
+	padding: 0.85rem 1.15rem;
+	margin-top: 1.15rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.attribution-badge {
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #0369a1;
+}
+
+.attribution-text {
+	font-size: 0.92rem;
+	color: #475569;
+	line-height: 1.55;
+	margin: 0;
+}

@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">544 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-17T09:06:29-05:00">November 17, 2026 at 9:06:29 AM EST</time></p>
+<p class="maintenance-updated">546 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-17T10:25:00-05:00">November 17, 2026 at 10:25:00 AM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -620,6 +620,23 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="quotes-attribution-disclaimer-centralization"><strong>Quotes &amp; Proverbs attribution disclaimer centralization &amp; repetitive quote credit deduplication:</strong> In pair programming with <strong>Antigravity AI</strong>, audited and refined the presentation architecture across the homelab quotes catalog (<code>quotes.html</code>, <code>scripts/quotes.js</code>, and <code>css/quotes.css</code>).
+<br><br>
+<em>Attribution Banner &amp; Visual Hierarchy:</em> Replaced 37 repetitive, inline quote credit tags (&ldquo;<em>Courtesy of Microsoft 365 Copilot &amp; Andrew Van Ek</em>&rdquo;) appended to individual quote context descriptions with a single, prominent attribution disclaimer banner positioned in the header of <code>quotes.html</code>. Styled the callout (<code>.quotes-attribution-banner</code>) with an accessible high-contrast navy/sky-blue border accent, subtle background card fill, and clean typography, acknowledging Andrew's lived homelab experiences alongside creative collaboration and phrasing synthesis from <strong>Microsoft 365 Copilot</strong> and <strong>Antigravity AI</strong>.
+<br><br>
+<em>Catalog Cleanliness &amp; Card Standardization:</em> Stripped all redundant author strings from <code>HOMELAB_QUOTES</code> in <code>scripts/quotes.js</code>, restoring clean punctuation and uniform sentence terminations across all catalog cards, the featured proverbs hero, and search previews while eliminating visual noise for readers.</li>
+<li id="homelab-quotes-proverbs-expansion-57"><strong>Homelab proverbs catalog expansion (57 maxims): high availability, IoT cyber defense, incident scope &amp; live production maxims:</strong> In pair programming with <strong>Antigravity AI</strong>, expanded the <code>Quotes &amp; Proverbs</code> catalog from 52 to 57 authentic hardware truths, systems administration realities, and infrastructure proverbs (<code>scripts/quotes.js</code> and <code>quotes.html</code>).
+<br><br>
+<em>High Availability, IoT &amp; Systems Resilience Additions:</em> Curated and integrated five humorous, field-tested epigrams:
+<ul>
+<li><strong>High-Availability Architecture:</strong> <em>&ldquo;May your redundancy actually be redundant&rdquo;</em> (Storage &amp; Recovery), highlighting independent failure domains and dual-drive mirror verification over shared upstream choke points.</li>
+<li><strong>IoT Security &amp; Botnet Defense:</strong> <em>&ldquo;May your refrigeration units refrigerate and not participate in cyber warfare&rdquo;</em> (Security &amp; Forensics), inspired by the 2016 Dyn DNS DDoS outage and Mirai IoT botnet infections, linked to containerized AdGuard Home router filtering.</li>
+<li><strong>Incident Management &amp; Blast Radius:</strong> <em>&ldquo;May your outage report contain the phrase &lsquo;brief service interruption&rsquo; and not &lsquo;global event&rsquo;&rdquo;</em> (Philosophy &amp; Mindset), celebrating automated failovers and graceful service degradation.</li>
+<li><strong>Key-Person Dependency &amp; Runbook Hygiene:</strong> <em>&ldquo;May your succession plan be discovered before your successor is needed&rdquo;</em> (Philosophy &amp; Mindset), inspired by corporate tech leadership continuity risks (the NVIDIA CEO dilemma), advocating for deep cross-training and living runbooks.</li>
+<li><strong>Deployment Hygiene &amp; Staging Discipline:</strong> <em>&ldquo;May your production systems never hear the phrase, &lsquo;Let\'s try it live&rsquo;&rdquo;</em> (Philosophy &amp; Mindset), reinforcing sandbox verification and canary stages over live-environment guesswork.</li>
+</ul>
+<br>
+<em>Catalog Synchronization &amp; Validation:</em> Updated category filter counts, active pill labels, and live counter badges across <code>quotes.html</code> (52 &rarr; 57 total proverbs). Rebuilt the client-side search index and validated JavaScript syntax via Node.js with zero runtime regressions.</li>
 <li id="hero-quote-dice-shrink-and-right-alignment"><strong>Homepage hero quote dice button height reduction &amp; persistent right-anchored clock alignment:</strong> In pair programming with <strong>Antigravity AI</strong>, resolved a visual disproportion and horizontal jitter defect with the random homelab wisdom selector button (<code>#hero-quote-dice-btn</code>) in the homepage hero header (<code>index.html</code> and <code>css/styles.css</code>).
 <br><br>
 <em>Box Geometry &amp; Height Reduction:</em> Remediated a layout defect where the dice emoji button container was visibly taller than the accompanying author text line. Reduced button box dimensions from 26px down to an 18px &times; 18px compact square with <code>box-sizing: border-box</code>, <code>border-radius: 3px</code>, and a <code>0.72rem</code> emoji glyph, bringing the box height flush with the 17.3px text line height and eliminating disproportionate vertical overshoot.
@@ -1313,8 +1330,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-17T08:45:00-05:00">November 17, 2026 at 08:45:00 AM EST</time></p>
-				<p class="footer-version">Version v2.6.383 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-17T10:25:00-05:00">November 17, 2026 at 10:25:00 AM EST</time></p>
+				<p class="footer-version">Version v2.6.384 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
