@@ -4332,6 +4332,7 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 .commendations-meta-bar {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     margin: 18px 0 24px 0;
 }
