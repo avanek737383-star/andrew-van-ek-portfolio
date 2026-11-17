@@ -3383,6 +3383,9 @@
 				} else if (buffer.endsWith("iphone")) {
 					buffer = "";
 					triggerIphoneEntrance();
+				} else if (buffer.endsWith("500t")) {
+					buffer = "";
+					triggerAntigravity500TMilestone();
 				}
 			}
 		});
@@ -3859,6 +3862,191 @@
 			}
 
 			requestAnimationFrame(animateIphone);
+		}
+
+		// 6. Antigravity 500 Tasks Milestone Zero-G Confetti Explosion [500T]
+		function triggerAntigravity500TMilestone() {
+			// Web Audio celebratory celestial arpeggio
+			try {
+				var AudioCtx = window.AudioContext || window.webkitAudioContext;
+				if (AudioCtx) {
+					var actx = new AudioCtx();
+					var arpeggio = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98];
+					arpeggio.forEach(function (freq, idx) {
+						var osc = actx.createOscillator();
+						var gain = actx.createGain();
+						osc.type = "sine";
+						osc.frequency.setValueAtTime(freq, actx.currentTime + idx * 0.08);
+						gain.gain.setValueAtTime(0, actx.currentTime + idx * 0.08);
+						gain.gain.linearRampToValueAtTime(0.12, actx.currentTime + idx * 0.08 + 0.02);
+						gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + idx * 0.08 + 0.7);
+						osc.connect(gain);
+						gain.connect(actx.destination);
+						osc.start(actx.currentTime + idx * 0.08);
+						osc.stop(actx.currentTime + idx * 0.08 + 0.75);
+					});
+				}
+			} catch (e) {}
+
+			var container = document.createElement("div");
+			container.className = "antigravity-zero-g-blast";
+			container.style.position = "fixed";
+			container.style.left = "0";
+			container.style.top = "0";
+			container.style.width = "100vw";
+			container.style.height = "100vh";
+			container.style.pointerEvents = "none";
+			container.style.zIndex = "9999999";
+			container.style.overflow = "hidden";
+			document.body.appendChild(container);
+
+			// Milestone Neon HUD Banner
+			var banner = document.createElement("div");
+			banner.style.position = "fixed";
+			banner.style.top = "28px";
+			banner.style.left = "50%";
+			banner.style.transform = "translateX(-50%) translateY(-25px) scale(0.9)";
+			banner.style.background = "linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.94))";
+			banner.style.border = "2px solid #38bdf8";
+			banner.style.boxShadow = "0 0 40px rgba(56, 189, 248, 0.5), 0 0 15px rgba(168, 85, 247, 0.35)";
+			banner.style.borderRadius = "14px";
+			banner.style.padding = "14px 28px";
+			banner.style.textAlign = "center";
+			banner.style.color = "#f8fafc";
+			banner.style.fontFamily = "system-ui, -apple-system, sans-serif";
+			banner.style.pointerEvents = "none";
+			banner.style.zIndex = "10000000";
+			banner.style.opacity = "0";
+			banner.style.transition = "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+			banner.innerHTML = '<div style="font-size:0.75rem; font-weight:800; letter-spacing:0.16em; color:#38bdf8; text-transform:uppercase; margin-bottom:3px;">🚀 500 Tasks Milestone Unlocked 🏆</div>' +
+				'<div style="font-size:1.35rem; font-weight:900; background:linear-gradient(90deg, #38bdf8, #c084fc, #fbbf24); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">ANTIGRAVITY ZERO-G CONFETTI [500T]</div>' +
+				'<div style="font-size:0.8rem; color:#94a3b8; margin-top:3px;">Celebrating 500+ documented homelab tasks across the fleet!</div>';
+			container.appendChild(banner);
+
+			setTimeout(function () {
+				banner.style.opacity = "1";
+				banner.style.transform = "translateX(-50%) translateY(0) scale(1)";
+			}, 30);
+
+			setTimeout(function () {
+				banner.style.opacity = "0";
+				banner.style.transform = "translateX(-50%) translateY(-20px) scale(0.95)";
+			}, 4800);
+
+			function createAgyBadgeSvg(size) {
+				var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+				svg.setAttribute("viewBox", "0 0 100 100");
+				svg.setAttribute("width", size);
+				svg.setAttribute("height", size);
+				svg.style.filter = "drop-shadow(0 0 10px rgba(56, 189, 248, 0.7))";
+				svg.innerHTML = '<polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="#0f172a" stroke="#38bdf8" stroke-width="4" />' +
+					'<polygon points="50,18 82,34 82,66 50,82 18,66 18,34" fill="rgba(30, 41, 59, 0.85)" stroke="#c084fc" stroke-width="2" />' +
+					'<path d="M50 26 L68 56 L56 56 L56 70 L44 70 L44 56 L32 56 Z" fill="url(#agyG)" />' +
+					'<defs><linearGradient id="agyG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#c084fc"/></linearGradient></defs>' +
+					'<text x="50" y="88" font-family="monospace" font-size="11" font-weight="900" fill="#38bdf8" text-anchor="middle">AGY</text>';
+				return svg;
+			}
+
+			function createMilestoneBadgeSvg(size) {
+				var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+				svg.setAttribute("viewBox", "0 0 100 100");
+				svg.setAttribute("width", size);
+				svg.setAttribute("height", size);
+				svg.style.filter = "drop-shadow(0 0 10px rgba(251, 191, 36, 0.75))";
+				svg.innerHTML = '<circle cx="50" cy="50" r="44" fill="#1e293b" stroke="#fbbf24" stroke-width="5" />' +
+					'<circle cx="50" cy="50" r="37" fill="rgba(15, 23, 42, 0.9)" stroke="#fef08a" stroke-dasharray="3,3" stroke-width="1.5" />' +
+					'<text x="50" y="53" font-family="monospace" font-size="20" font-weight="900" fill="#fbbf24" text-anchor="middle">500T</text>' +
+					'<text x="50" y="69" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#38bdf8" text-anchor="middle">TASKS</text>' +
+					'<polygon points="50,14 52,19 57,19 53,22 55,27 50,24 45,27 47,22 43,19 48,19" fill="#fbbf24" />';
+				return svg;
+			}
+
+			function createSparkleSvg(size, color) {
+				var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+				svg.setAttribute("viewBox", "0 0 60 60");
+				svg.setAttribute("width", size);
+				svg.setAttribute("height", size);
+				svg.style.filter = "drop-shadow(0 0 6px " + color + ")";
+				svg.innerHTML = '<path d="M30 0 Q30 30 60 30 Q30 30 30 60 Q30 30 0 30 Q30 30 30 0 Z" fill="' + color + '" />';
+				return svg;
+			}
+
+			var numParticles = 54;
+			var centerX = window.innerWidth / 2;
+			var centerY = window.innerHeight * 0.52;
+			var particles = [];
+
+			for (var i = 0; i < numParticles; i++) {
+				var type = i % 3;
+				var size = (type === 0) ? (34 + Math.random() * 22) : (type === 1) ? (32 + Math.random() * 20) : (18 + Math.random() * 16);
+				var el;
+				if (type === 0) {
+					el = createAgyBadgeSvg(size);
+				} else if (type === 1) {
+					el = createMilestoneBadgeSvg(size);
+				} else {
+					var colors = ["#38bdf8", "#c084fc", "#fbbf24", "#34d399", "#f43f5e"];
+					el = createSparkleSvg(size, colors[i % colors.length]);
+				}
+				el.style.position = "absolute";
+				el.style.left = (centerX - size / 2) + "px";
+				el.style.top = (centerY - size / 2) + "px";
+				el.style.willChange = "transform, opacity";
+				container.appendChild(el);
+
+				var angle = Math.random() * Math.PI * 2;
+				var speed = 3.0 + Math.random() * 9.0;
+				var vx = Math.cos(angle) * speed;
+				var vy = Math.sin(angle) * speed - (1.5 + Math.random() * 3.5);
+				var spin = (Math.random() - 0.5) * 8.0;
+
+				particles.push({
+					el: el,
+					x: centerX - size / 2,
+					y: centerY - size / 2,
+					vx: vx,
+					vy: vy,
+					rotation: Math.random() * 360,
+					spin: spin,
+					opacity: 1,
+					scale: 0.3 + Math.random() * 0.7,
+					wobble: Math.random() * Math.PI * 2,
+					decay: 0.0035 + Math.random() * 0.003
+				});
+			}
+
+			function animateZeroG() {
+				var alive = false;
+				for (var j = 0; j < particles.length; j++) {
+					var p = particles[j];
+					p.x += p.vx;
+					p.y += p.vy;
+					p.vx *= 0.988;
+					p.vy *= 0.988;
+					p.vy -= 0.038; // Anti-gravity upward buoyancy!
+					p.x += Math.sin(p.wobble) * 0.4;
+					p.wobble += 0.04;
+					p.rotation += p.spin;
+					p.opacity -= p.decay;
+					p.scale = Math.min(1.15, p.scale + 0.02);
+
+					if (p.opacity > 0) {
+						alive = true;
+						p.el.style.transform = "translate3d(" + (p.x - centerX) + "px, " + (p.y - centerY) + "px, 0) rotate(" + p.rotation + "deg) scale(" + p.scale + ")";
+						p.el.style.opacity = p.opacity;
+					} else {
+						p.el.style.opacity = "0";
+					}
+				}
+
+				if (alive) {
+					requestAnimationFrame(animateZeroG);
+				} else {
+					if (container.parentNode) container.parentNode.removeChild(container);
+				}
+			}
+
+			requestAnimationFrame(animateZeroG);
 		}
 	}
 
