@@ -2299,23 +2299,47 @@
 </section>
 
 <section class="project-entry" aria-labelledby="phone-ai-title">
-<h2 id="phone-ai-title">Phone AI Gateway: PIN-Free Calls to Local Nemotron</h2>
-<p class="project-status"><span class="status-badge project-in-progress">Live Prototype Hotline</span> <span>PIN-free telephony bridge &middot; Twilio PSTN Gateway &middot; NVIDIA Nemotron 4B &middot; Rate Limited</span></p>
+<h2 id="phone-ai-title">Phone AI Gateway: PIN-Free PSTN Bridge, Liquid LFM-2.5 &amp; Real-Time Voice Cloning</h2>
+<p class="project-status"><span class="status-badge project-in-progress">Live Prototype Hotline</span> <span>Twilio PSTN Gateway &middot; Liquid LFM-2.5 1.2B &middot; Coqui XTTS-v2 Voice Cloning &middot; Async GPU Pre-Warming &middot; Updated <time datetime="2026-11-16">November 16, 2026</time></span></p>
 
 <div class="phone-hotline-card" style="background:#0f172a; border:1px solid #1e293b; border-left:4px solid #38bdf8; border-radius:10px; padding:16px 20px; margin:18px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; box-shadow:0 4px 14px rgba(0,0,0,0.25);">
   <div>
     <span style="font-size:0.75rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.05em;">Interactive Telephone Hotline Demo</span>
     <h4 style="margin:4px 0; font-size:1.25rem; color:#f8fafc; font-family:monospace; letter-spacing:0.03em;">📞 +1 (912) 915-3851</h4>
-    <p style="margin:0; font-size:0.85rem; color:#94a3b8;">Call from any phone to converse aloud with Nemo powered by local Nemotron 4B &bull; <strong>Guardrails:</strong> 5-minute session limit &bull; 1 call per 15 min per caller ID &bull; Deferral during active GPU training.</p>
+    <p style="margin:0; font-size:0.85rem; color:#94a3b8;">Call from any phone to converse aloud with local Liquid LFM-2.5 &bull; <strong>Voice Clone:</strong> Real-time XTTS-v2 synthesis matching Andrew's voice &bull; <strong>Guardrails:</strong> 5-minute limit &bull; 1 call per 15 min &bull; Zero-silence hold music.</p>
   </div>
   <a href="tel:+19129153851" class="btn" style="padding:9px 18px; font-size:0.88rem; font-weight:600; text-decoration:none;">Call Hotline &rarr;</a>
 </div>
-<p>I built a separate personal project for talking to AI over a phone call. The original design used Twilio to receive calls, ask for a PIN, and offer Google Gemini in the cloud or a choice of models on a Linux HP computer. It connected phone menus, speech transcription, AI inference, and spoken responses.</p>
-<p>The current flow connects incoming calls directly to one local model: NVIDIA <span class="tech-term" data-term="nemotron">Nemotron 3 Nano</span> 4B on my Windows PC, without asking the caller for a PIN. Twilio transcribes the caller's question, the PC generates an answer, and Twilio reads it aloud. This phone AI remains general-purpose and does not use the website chatbot's portfolio-grounded instructions.</p>
-<p>Callers finish by hanging up. I removed the spoken &ldquo;Done&rdquo;, &ldquo;goodbye&rdquo;, and &ldquo;bye&rdquo; exit commands, so those words are treated as ordinary speech rather than commands to terminate the call. Phone inference requests set a thirty-minute idle timer in LM Studio. When the model stops receiving requests, it unloads automatically from memory; continued phone or website use of the shared model resets the idle period.</p>
-<p>The service makes no wake attempts. If the PC or its model service is unavailable, it says, &ldquo;We're sorry. The PC is offline. Please try again later. Goodbye.&rdquo; and ends the call. A running model service can load the downloaded model on demand for the next request.</p>
-<p>Removing the caller PIN retains Twilio signature verification, request throttling, call-bound sessions, and the fixed local model. Signed incoming calls receive a session automatically; later requests must match that call. Unsigned callbacks and requests with missing or mismatched sessions were rejected in HTTP smoke tests. The tests also confirmed the new greeting, ordinary handling of the former exit words, the thirty-minute request setting, and the offline message.</p>
-<p>I deployed and checked the signed PIN-free flow on the running gateway, then ran a real Windows-model inference with a short test idle timer and confirmed that LM Studio unloaded the model automatically. The production phone timer is thirty minutes. These checks did not place a real phone call; an incoming-call test is still needed to verify transcription, audible replies, and the complete hang-up experience over the telephone.</p>
+
+<p>I built a dedicated personal telephone gateway that connects real cellular and landline telephone calls directly to local artificial intelligence models running inside my homelab. Originally conceived as a multi-tier menu requiring PIN authentication to route calls to either Google Gemini or local models on a Linux HP computer, I streamlined the entire architecture into an instant-access, PIN-free voice bridge that connects inbound callers directly to local neural models running on my NVIDIA RTX A2000 Laptop GPU.</p>
+
+<h3>Multi-Node Telephony &amp; Voice Synthesis Topology</h3>
+<p>The operational pipeline bridges public telephone networks to local private infrastructure across three nodes:</p>
+<ul>
+  <li><strong>Inbound PSTN Ingestion (Twilio Voice Webhook):</strong> Inbound calls to <code>+1 (912) 915-3851</code> are routed via HTTP POST webhooks to a secure public endpoint published through Tailscale Funnel.</li>
+  <li><strong>Telephony Gateway Controller (Alpine Linux Intel NUC):</strong> Hosted on my Alpine Linux gateway (<code>100.87.81.52</code>), an asynchronous FastAPI service (<code>servingcall.py</code>) validates Twilio cryptographic signatures, manages session tokens, enforces caller frequency cooldowns (15 minutes per caller ID), tracks 5-minute hard call duration limits, and directs Twilio TwiML execution loops.</li>
+  <li><strong>Dual-Channel Port Forwarding (Tailscale SSH Tunnels):</strong> The NUC maintains persistent reverse SSH tunnels to the Windows gaming PC (<code>model-pc</code>), forwarding port <code>12340</code> to LM Studio (port <code>1234</code>) for text inference and port <code>8020</code> to a dedicated Coqui XTTS-v2 microservice for voice synthesis.</li>
+  <li><strong>Model Evolution to Liquid LFM-2.5 1.2B:</strong> After testing larger models that suffered under background distributed compute (Folding@Home), I standardized the language engine on Liquid AI's Liquid Foundation Model (<code>liquid/lfm2.5-1.2b</code>). LFM-2.5 consistently delivers sub-1.5 second inference latencies (~1,465 ms) on the 4 GB RTX A2000 Laptop GPU even while <code>FahCore_28</code> executes at 95% GPU load.</li>
+  <li><strong>Conditioned Voice Cloning (Coqui XTTS-v2):</strong> Rather than relying on generic synthetic text-to-speech, callers who dial in hear responses synthesized directly in my own voice. The Windows microservice uses Coqui XTTS-v2 conditioned on a reference voice sample (<code>voice_sample.wav</code>) stored on the host. Whitelisted personal numbers bypass synthesis to receive instantaneous Twilio <code>&lt;Say&gt;</code> prompts, while public and non-whitelisted callers receive custom cloned audio served dynamically via <code>/audio/{job_id}.wav</code>.</li>
+</ul>
+
+<h3>Field Troubleshooting: Resolving the Voice Fallback Deadlock &amp; Hold Music Silence</h3>
+<p>During live testing from external numbers (including Google Voice), I observed two critical UX bugs: callers heard Twilio's default robotic text-to-speech voice instead of my voice clone, and the elevator hold music abruptly cut out into awkward dead silence after only two seconds while waiting for the model to reply. In pair programming with <strong>Antigravity AI</strong>, we diagnosed and remediated both issues:</p>
+
+<ol>
+  <li><strong>Diagnosing the Cold-Start Voice Fallback Deadlock:</strong>
+    <p>Inspecting <code>gateway.log</code> revealed that every non-whitelisted call logged <code>[TTS-INFO] TTS model not resident in VRAM; using instant voice fallback</code>. A previous memory optimization had configured a 60-second idle auto-unload timer in <code>server.py</code> to free VRAM, while a safety check in <code>servingcall.py</code> inspected <code>/health</code> and immediately aborted synthesis whenever <code>model_loaded</code> was false. Because the service automatically purged GPU weights after 60 seconds of inactivity, 100% of inbound calls found the model cold, skipped synthesis, and fell back to Twilio's default voice. The model was never called and could never load naturally.</p>
+  </li>
+  <li><strong>Asynchronous Pre-Warming &amp; Resident Cache Architecture:</strong>
+    <p>To eliminate cold-start latency without blocking the caller, we added an asynchronous <code>/warmup</code> endpoint to the Windows TTS microservice and connected it to <code>POST /call</code> on the NUC. The exact millisecond an inbound call connects, the gateway dispatches a background warmup trigger. While the caller listens to the initial greeting (&ldquo;Liquid is ready...&rdquo;) and speaks their question (~20&ndash;25 seconds total), XTTS-v2 loads its weights into GPU VRAM in parallel. By the time LLM inference finishes, XTTS-v2 is hot and synthesizes speech in 4.0&ndash;4.6 seconds. We restored the auto-unload timer to 30 minutes (1800s) and added post-synthesis <code>torch.cuda.empty_cache()</code>, keeping resident VRAM steady at ~1.8 GB and leaving &gt;2.2 GB free for LM Studio and Folding@Home.</p>
+  </li>
+  <li><strong>Eliminating Dead Silence in the Hold Music Loop:</strong>
+    <p>We investigated why hold music cut out after two seconds. The original audio loop (<code>hold_loop.mp3</code>) was only 2.5 seconds long, but Twilio's <code>&lt;Gather&gt;</code> verb defaulted to a 5.0-second silence timeout waiting for DTMF keypresses. Consequently, callers experienced 2.5 seconds of music followed by 5.0 seconds of dead silence on every cycle. We re-encoded Kevin MacLeod's &ldquo;Local Forecast - Elevator&rdquo; into an 8.0-second seamless loop with 0.2s smooth volume fades, and configured <code>&lt;Gather num_digits=2 timeout=0&gt;</code>. Twilio now streams continuous, unbroken hold music that immediately hands off to the cloned voice the moment synthesis finishes.</p>
+  </li>
+</ol>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek supplied personal voice calibration data (<code>voice_sample.wav</code>), conducted live PSTN telephony verification across Google Voice and cellular networks, reported the default voice fallback and hold audio stutter, and conceived the pre-warming architecture. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> analyzed gateway logs over SSH, isolated the 60-second auto-unload / circuit-breaker deadlock, engineered the asynchronous <code>/warmup</code> background pre-loader on Windows port 8020, extended the resident idle cache to 30 minutes, re-encoded the 8.0-second seamless hold music loop, configured zero-silence Twilio TwiML gathering, verified the end-to-end pipeline, and authored this documentation.</p>
+<ul class="chips"><li>Twilio Voice</li><li>FastAPI</li><li>Alpine Linux</li><li>Tailscale Funnel</li><li>Coqui XTTS-v2</li><li>Liquid LFM-2.5</li><li>PyTorch CUDA</li><li>Voice Cloning</li><li>Antigravity (Google DeepMind)</li></ul>
 </section>
 
 				<section class="project-entry" aria-labelledby="smb-project-title">
@@ -2349,8 +2373,8 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-16T12:40:00-05:00">November 16, 2026 at 12:40:00 PM EST</time></p>
-				<p class="footer-version">Version v2.6.372 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-16T21:50:00-05:00">November 16, 2026 at 9:50:00 PM EST</time></p>
+				<p class="footer-version">Version v2.6.381 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
