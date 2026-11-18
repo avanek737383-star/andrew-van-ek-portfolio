@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">558 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-18T11:45:00-05:00">November 18, 2026 at 11:45:00 AM EST</time></p>
+<p class="maintenance-updated">559 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-18T11:58:00-05:00">November 18, 2026 at 11:58:00 AM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -1000,6 +1000,12 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
+<li id="sdxl-turbo-gdrive-shortcut-autosave-and-cross-account-storage"><strong>SDXL-Turbo Wallpaper Generator Google Drive cross-account shortcut auto-save &amp; 3-tier fallback pipeline (AI-Wallpapers):</strong> In pair programming with <strong>Antigravity AI</strong>, enhanced the local SDXL-Turbo image generation engine (<code>image_gui.py</code> and <code>generate_image.py</code>) to automatically direct newly generated wallpaper batches to a Google Drive shortcut directory (<code>~/GoogleDrive/AI-Wallpapers</code>) referencing an external secondary Google Drive account.
+<br><br>
+<em>Cross-Account Shortcut Resolution &amp; FUSE Write Verification:</em> Audited Rclone's FUSE traversal behavior over Google Drive shortcut objects (<code>application/vnd.google-apps.shortcut</code>). Confirmed that the active Rclone VFS user mount transparently resolves the remote shortcut pointer, enumerating existing render history without intermediate redirect latency. Successfully executed end-to-end write-probe validation within the cross-account destination folder, confirming full write, file creation, and deletion permissions across Google Drive organizational boundaries.
+<br><br>
+<em>Three-Tier Resilient Storage Resolution:</em> Re-engineered the application's runtime storage validator (<code>resolve_runs_dir()</code>) with an automated multi-tier failover structure prioritizing: (1) primary Google Drive cross-account cloud storage (<code>~/GoogleDrive/AI-Wallpapers</code>), (2) secondary central Samba persistent automount storage (<code>/mnt/ONEFIVE/_TEMP/Image_Gen_Runz</code>), and (3) tertiary local disk storage (<code>BASE_DIR/runs</code>). Preserved standard timestamp PNG naming syntax (<code>YYYYMMDD-HHMMSS.png</code>), ensuring zero generation disruptions during offline or intermittent network states.</li>
+
 <li id="sdxl-turbo-wallpaper-generator-network-runs-autosave-pipeline"><strong>SDXL-Turbo Wallpaper Generator Plank dock launcher &amp; persistent network auto-save pipeline (Image_Gen_Runz):</strong> In pair programming with <strong>Antigravity AI</strong>, enhanced the local SDXL-Turbo image generation application (<code>image_gui.py</code> and <code>generate_image.py</code>) accessible from the primary desktop Plank dock to route all generated imagery directly to the central network storage array.
 <br><br>
 <em>Dynamic Storage Resolution &amp; Fallback Architecture:</em> Re-engineered the application's output path determination logic with a resilient <code>resolve_runs_dir()</code> validator. The generator dynamically probes the persistent Samba storage volume at <code>/mnt/ONEFIVE/_TEMP/Image_Gen_Runz</code>, verifies real-time write permissions, and transparently saves all single and batch runs to the network share while preserving the exact timestamp-based PNG filename structure (<code>YYYYMMDD-HHMMSS.png</code>). If the network share is ever offline, the pipeline seamlessly falls back to local disk storage (<code>BASE_DIR/runs</code>) without disrupting generation cycles. Updated user GUI telemetry and completion banners to report active target destinations and latest file paths.</li>
@@ -1411,7 +1417,7 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-18T11:50:00-05:00">November 18, 2026 at 11:50:00 AM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-18T11:58:00-05:00">November 18, 2026 at 11:58:00 AM EST</time></p>
 				<p class="footer-version">Version v2.6.385 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
