@@ -90,7 +90,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">560 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-18T12:05:00-05:00">November 18, 2026 at 12:05:00 PM EST</time></p>
+<p class="maintenance-updated">561 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-18T12:12:00-05:00">November 18, 2026 at 12:12:00 PM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -1007,6 +1007,12 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
+<li id="sdxl-turbo-continuous-unattended-generation-loop-and-progress-bar"><strong>SDXL-Turbo Wallpaper Generator continuous unattended generation loop (<em>ad infinitum</em>), real-time percentage progress bar &amp; responsive interrupt engine:</strong> In pair programming with <strong>Antigravity AI</strong>, upgraded the local SDXL-Turbo image generation desktop GUI (<code>image_gui.py</code> and <code>generate_image.py</code>) on the Debian Mac (<code>andrews2011DebianMac</code>) to transition from fixed batch increments to continuous, unattended wallpaper generation (<em>"cooking ad infinitum"</em>) coupled with real-time percentage progress tracking and responsive interrupt control.
+<br><br>
+<em>Continuous Generation Engine &amp; Safe Halting:</em> Replaced the legacy batch spinbox input with an autonomous generation loop (<code>while not self.stop_requested:</code>) that continuously synthesizes and auto-saves 1080p desktop wallpapers directly to the active destination (Google Drive <code>AI-Wallpapers</code> shortcut or failover mounts). Enhanced the interactive UI with a dedicated Stop button wired directly to Diffusers step interrupts and pipeline cancel checks, allowing users to cleanly halt generation immediately after an active step without file corruption or orphaned process locks.
+<br><br>
+<em>Real-Time Percentage Progress Bar &amp; Multi-Stage Telemetry:</em> Implemented a determinate <code>ttk.Progressbar</code> (0%&ndash;100%) paired with dynamic phase status telemetry (<code>5% Initializing</code> &rarr; <code>15% Diffusion Step 1/2</code> &rarr; <code>50% Step 2/2</code> &rarr; <code>90% Decoding Latents</code> &rarr; <code>95% Saving Rendered PNG</code> &rarr; <code>100% Complete</code>). Engineered a smooth UI interpolation ticker running on the Tkinter main event loop that smoothly advances percentage indicators during compute-intensive CPU inference intervals, accompanied by a cumulative cooked-image counter and target path indicator for unattended background operation.</li>
+
 <li id="sdxl-turbo-gdrive-shortcut-autosave-and-cross-account-storage"><strong>SDXL-Turbo Wallpaper Generator Google Drive cross-account shortcut auto-save &amp; 3-tier fallback pipeline (AI-Wallpapers):</strong> In pair programming with <strong>Antigravity AI</strong>, enhanced the local SDXL-Turbo image generation engine (<code>image_gui.py</code> and <code>generate_image.py</code>) to automatically direct newly generated wallpaper batches to a Google Drive shortcut directory (<code>~/GoogleDrive/AI-Wallpapers</code>) referencing an external secondary Google Drive account.
 <br><br>
 <em>Cross-Account Shortcut Resolution &amp; FUSE Write Verification:</em> Audited Rclone's FUSE traversal behavior over Google Drive shortcut objects (<code>application/vnd.google-apps.shortcut</code>). Confirmed that the active Rclone VFS user mount transparently resolves the remote shortcut pointer, enumerating existing render history without intermediate redirect latency. Successfully executed end-to-end write-probe validation within the cross-account destination folder, confirming full write, file creation, and deletion permissions across Google Drive organizational boundaries.
@@ -1424,7 +1430,7 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-18T12:05:00-05:00">November 18, 2026 at 12:05:00 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-18T12:12:00-05:00">November 18, 2026 at 12:12:00 PM EST</time></p>
 				<p class="footer-version">Version v2.6.385 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
