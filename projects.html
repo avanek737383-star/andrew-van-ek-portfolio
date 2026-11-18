@@ -82,6 +82,46 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="cross-platform-spacedesk-tailscale-mesh-title">
+<h2 id="cross-platform-spacedesk-tailscale-mesh-title">Cross-Platform Multi-OS Display Mesh &amp; Window Virtualization: Remote Windows 11 to macOS Multi-Monitor Extension via Spacedesk &amp; Encrypted Tailscale Mesh</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Spacedesk WDDM &middot; Tailscale (WireGuard) &middot; Windows 11 &middot; macOS Sequoia &middot; Virtual Display Network Driver &middot; Cross-Platform Ergonomics &middot; <time datetime="2026-11-18">November 18, 2026</time></span></p>
+<div class="project-architecture" aria-label="Cross-Platform Multi-OS Display Mesh Architecture"><span>Remote Windows 11 Host (Workstation PC)</span><span aria-hidden="true">&rarr;</span><span>Spacedesk WDDM Virtual Display Server</span><span aria-hidden="true">&rarr;</span><span>Point-to-Point Tailscale WireGuard Mesh (100.x.y.z)</span><span aria-hidden="true">&rarr;</span><span>macOS Spacedesk Client / Viewer</span><span aria-hidden="true">&rarr;</span><span>Instant Win+Shift+Arrow Window Teleportation</span><span aria-hidden="true">&rarr;</span><span>Seamless Tri-Window Panoramic Workstation Canvas</span></div>
+
+<p>Working across multiple machines often presents an ergonomic bottleneck: high-compute workflows or Windows-exclusive applications (like CAD, forensic suites, and Office tools) remain locked inside a remote desktop window, while local macOS development happens on a separate physical screen. Rather than settling for a constrained single-window RDP box or physical KVM switches, I wanted the ultimate form of cross-platform flexibility: the ability to seamlessly pull an active, already-running window off my remote Windows PC and display it natively on my Mac as if it had magically transferred between operating systems.</p>
+
+<h3>Feasibility Analysis: RemoteApp vs. Software KVMs vs. Virtual Network Displays</h3>
+<p>In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, we explored the technical boundaries of what is possible between macOS and Windows:</p>
+<ul>
+<li><strong>RDP RemoteApp (RAIL Protocol):</strong> We evaluated Microsoft RemoteApp, which renders individual Windows apps without a desktop frame, presenting them as standalone floating macOS windows with Dock icons and <code>Cmd+Tab</code> switching. However, RemoteApp requires launching applications through dedicated shortcut profiles; it cannot easily &ldquo;pop off&rdquo; an already-open, live window from an active desktop session without closing and relaunching.</li>
+<li><strong>Software KVMs (Synergy / Barrier / Input Leap):</strong> Software KVM solutions allow one mouse and keyboard to glide across physical screens and share clipboard buffers, but they cannot move application windows across differing OS window servers (Quartz/Metal vs Windows Desktop Window Manager).</li>
+<li><strong>Virtual Network Display Adapters (Spacedesk):</strong> We identified Spacedesk as the ideal architectural solution. By generating a virtual secondary WDDM display adapter on the Windows host and streaming framebuffers over TCP/IP, the Mac acts as a zero-latency secondary monitor. This preserves all existing running applications while providing an infinite desktop canvas.</li>
+</ul>
+
+<h3>Driver Orchestration &amp; The Bidirectional Extension Discovery</h3>
+<p>Deploying virtual display drivers requires clear separation between the broadcast server and the receiver client. During setup, we encountered and resolved key configuration stages:</p>
+<ul>
+<li><strong>Server vs. Viewer Role Resolution:</strong> Initial installation on macOS downloaded the Primary PC / Server driver instead of the client receiver. After identifying the distinction, we kept the Mac driver in place upon realizing its bidirectional value: the Mac can now act as a primary display server to extend its desktop out onto Windows monitors, while Windows can act as the primary host streaming to the Mac.</li>
+<li><strong>Multi-Client Flexibility:</strong> On macOS, Spacedesk supports both a zero-install HTML5 browser viewer (<code>viewer.spacedesk.net</code>) and native client viewports, enabling instant connection from any workstation or tablet on the local subnet.</li>
+</ul>
+
+<h3>Zero-Configuration Mesh Security via Tailscale (WireGuard)</h3>
+<p>To eliminate the need for insecure local port forwarding or physical proximity, the entire display stream was routed through our private <strong>Tailscale WireGuard mesh</strong>:</p>
+<ul>
+<li><strong>Encrypted Point-to-Point Tunneling:</strong> Spacedesk communicates over TCP port 28252. By directing the Mac viewer to the Windows host's Tailscale IP (<code>100.x.y.z</code>), all display frames and input packets are encrypted peer-to-peer across the network mesh.</li>
+<li><strong>Cross-Network Portability:</strong> The multi-monitor mesh operates reliably whether working on the local home LAN or remotely across external subnets, maintaining high-throughput video streaming without router configuration.</li>
+</ul>
+
+<h3>Active Window Relocation via Built-in Keystroke Teleportation</h3>
+<p>When operating a remote Windows machine from a Mac, dragging a window off an invisible primary monitor presents a usability challenge. We solved this without needing a secondary viewer:</p>
+<ul>
+<li><strong>The <code>Win + Shift + Arrow</code> Teleportation Engine:</strong> Windows includes a native multi-monitor keystroke shortcut (<code>Win + Shift + Left Arrow / Right Arrow</code>). Tapping this instantly teleports any currently focused application from the remote primary display straight onto the Mac's extended Spacedesk screen.</li>
+<li><strong>Panoramic Triple-Screen Production:</strong> We verified the live setup in full operation: an OnlyOffice slide presentation (<em>Exploitation Details, 2</em>) anchored on the left display, terminal inspection of Linux <code>iptables</code> firewall rules in the center, and extensive cybersecurity vulnerability documentation on the right. Both Spacedesk notification icons confirmed active, uninterrupted network streaming.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceptualized the multi-OS window drag workflow, framed the remote architecture challenge across Mac and Windows, executed the Spacedesk driver and client setups, discovered the reverse Mac-to-Windows extension capability, conducted active multi-window verification, and captured the live multi-monitor panoramic workbench. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> evaluated the feasibility of RemoteApp vs Virtual Displays vs KVMs, guided the network routing strategy across Tailscale L3 endpoints, diagnosed server vs viewer software roles, provided the <code>Win + Shift + Arrow</code> keystroke teleportation mechanism to move active Windows applications onto the Mac screen, authored this project documentation, and integrated the workbench capture into the portfolio gallery and maintenance logs.</p>
+<ul class="chips"><li>Spacedesk</li><li>Tailscale (WireGuard)</li><li>Virtual Display (WDDM)</li><li>Windows 11</li><li>macOS Sequoia</li><li>Cross-Platform Fleet</li><li>Antigravity (Google DeepMind)</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="ai-sheet-music-video-engine-title">
 <h2 id="ai-sheet-music-video-engine-title">Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving &amp; Real-Time Dynamic Inverted Melody Spotlight Engine</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Demucs v4 (MPS) &middot; Basic Pitch (CoreML) &middot; MuseScore 4 CLI &middot; MusicXML &middot; OpenCV / PIL &middot; FFmpeg VideoToolbox &middot; Apple Silicon &middot; <time datetime="2026-11-17">November 17, 2026</time></span></p>

@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 132 Workbench Captures across 6 Curated Categories
+ * - 133 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,30 @@
     "use strict";
 
     var galleryItems = [
+        {
+            id: "spacedesk-tailscale-multi-os-display-mesh",
+            title: "Cross-platform virtual display mesh: Windows 11 remote desktop extended to macOS over Tailscale",
+            category: "homelab",
+            categoryLabel: "Cross-Platform Virtual Display",
+            badgeClass: "badge-success",
+            image: "images/gallery/multiple-windows-viewer.png",
+            thumb: "images/gallery/multiple-windows-viewer-thumb.jpg",
+            tags: ["Spacedesk", "Tailscale", "Virtual Display", "Multi-Monitor", "macOS", "Windows 11", "Homelab Fleet"],
+            summary: "A tri-monitor panoramic workstation mesh connecting a remote Windows 11 host to macOS via Spacedesk over an encrypted Tailscale WireGuard mesh, enabling dynamic window teleportation across operating systems.",
+            sandboxObservation: "The multi-monitor panoramic capture shows an expansive triple-screen workspace spanning across displays. On the left display, OnlyOffice is running an active slide presentation ('Exploitation Details, 2') covering Cupsd.conf and unencrypted web server architecture; the center screen hosts a dark-mode terminal analyzing system iptables firewall rules alongside structured markdown lab notes; the right screen renders detailed cybersecurity vulnerability documentation. The system tray confirms active Spacedesk TCP/IP display streaming and Tailscale mesh telemetry running continuously.",
+            technicalBreakdown: "Spacedesk leverages an indirect display driver (IDD / WDDM) on the Windows host to create virtual network display adapters, compressing and packetizing hardware-accelerated desktop video frames over TCP/IP to client viewports. Paired with Tailscale's point-to-point WireGuard mesh (100.x.y.z), virtual display extension routes directly across remote network subnets with zero port forwarding.",
+            defensePlaybook: [
+                "Host environment: Windows 11 with Spacedesk Driver (WDDM Virtual Display Adapter)",
+                "Client environment: macOS with Spacedesk Viewer",
+                "Mesh networking: Encrypted Tailscale WireGuard L3 peer tunnel (100.x.y.z)",
+                "Active window relocation: Windows native Win + Shift + Left/Right Arrow keyboard shortcut for sub-second display teleportation",
+                "Reverse architecture capability: Bidirectional Spacedesk driver configuration allowing macOS screens to extend back onto Windows displays"
+            ],
+            playbookHeading: "Deployment & Orchestration",
+            outcomeHeading: "Workstation Ergonomics & Verification",
+            containment: "Successfully unified heterogeneous macOS and Windows 11 operating systems into an expansive, low-latency multi-monitor productivity workspace without dedicated KVM switch hardware or physical display cables.",
+            credit: "Engineered by Andrew Van Ek with Google DeepMind Antigravity AI pair programming."
+        },
         {
             id: "kroll-identity-theft-monitoring-dashboard",
             title: "Identity theft defense: reviewing Kroll monitoring dashboard and security alerts",
