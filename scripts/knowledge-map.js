@@ -12,8 +12,8 @@
     var selectedNode = null;
     var activeDomain = "all";
     var activeStatus = "all";
-    var autoRotate = true;
-    var isUserInteracting = false;
+    var autoRotateActive = true;
+    var autoRotatePermanentlyStopped = false;
     var currentDimensions = 3;
 
     var highlightNodes = new Set();
@@ -42,6 +42,25 @@
     var dimBtn = document.getElementById("hud-dim-btn");
     var filterPills = document.querySelectorAll(".filter-pill");
 
+    function stopAutoRotationPermanently() {
+        if (autoRotatePermanentlyStopped) return;
+        autoRotatePermanentlyStopped = true;
+        autoRotateActive = false;
+
+        if (Graph) {
+            var controls = Graph.controls();
+            if (controls) {
+                controls.autoRotate = false;
+            }
+        }
+
+        if (rotateBtn) {
+            rotateBtn.classList.remove("active");
+            rotateBtn.setAttribute("aria-pressed", "false");
+            rotateBtn.title = "Auto-rotation paused. Click to manually resume.";
+        }
+    }
+
     function initGraph(data) {
         rawGraphData = data;
 
@@ -55,6 +74,8 @@
             .graphData(filterGraphData(data))
             .backgroundColor("#040711")
             .showNavInfo(false)
+            .warmupTicks(35)
+            .cooldownTime(4000)
             .nodeId("id")
             .nodeVal(function (n) { return n.val || 10; })
             .nodeLabel(function (n) {
@@ -105,14 +126,27 @@
             return l.distance || 60;
         });
 
-        // Set initial camera perspective
-        Graph.cameraPosition({ x: 0, y: 30, z: 420 }, { x: 0, y: 0, z: 0 }, 1800);
+        // Set stable initial camera without animated tween collision
+        Graph.cameraPosition({ x: 0, y: 25, z: 420 });
+
+        // Configure native Three.js OrbitControls for silky auto-rotation
+        var controls = Graph.controls();
+        if (controls) {
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.8;
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.08;
+
+            // When the user starts dragging or rotating via controls, stop auto-rotation permanently
+            controls.addEventListener("start", function () {
+                stopAutoRotationPermanently();
+            });
+        }
 
         // Setup Controls & Handlers
         setupInteractionListeners();
         setupSearch();
         setupFilters();
-        startAutoRotation();
     }
 
     function filterGraphData(data) {
@@ -178,10 +212,11 @@
     function handleNodeClick(node) {
         if (!node) return;
         selectedNode = node;
+        stopAutoRotationPermanently();
 
-        // Smooth camera fly-to
+        // Smooth camera fly-to without resetting base perspective
         var currentPos = Graph.cameraPosition();
-        var targetDist = (node.type === "domain") ? 200 : (node.type === "project" ? 110 : 70);
+        var targetDist = (node.type === "domain") ? 180 : (node.type === "project" ? 110 : 70);
         var hyp = Math.hypot(node.x, node.y, node.z) || 1;
         var ratio = 1 + (targetDist / hyp);
 
@@ -344,6 +379,7 @@
     function setupFilters() {
         filterPills.forEach(function (pill) {
             pill.addEventListener("click", function () {
+                stopAutoRotationPermanently();
                 var domainKey = pill.getAttribute("data-domain");
                 if (activeDomain === domainKey) {
                     activeDomain = "all";
@@ -370,20 +406,25 @@
         if (resetBtn) {
             resetBtn.addEventListener("click", function () {
                 closeDrawer();
-                Graph.cameraPosition({ x: 0, y: 30, z: 420 }, { x: 0, y: 0, z: 0 }, 1500);
+                Graph.cameraPosition({ x: 0, y: 25, z: 420 }, { x: 0, y: 0, z: 0 }, 1400);
             });
         }
 
         if (rotateBtn) {
             rotateBtn.addEventListener("click", function () {
-                autoRotate = !autoRotate;
-                rotateBtn.classList.toggle("active", autoRotate);
-                rotateBtn.setAttribute("aria-pressed", autoRotate ? "true" : "false");
+                autoRotateActive = !autoRotateActive;
+                var controls = Graph.controls();
+                if (controls) {
+                    controls.autoRotate = autoRotateActive;
+                }
+                rotateBtn.classList.toggle("active", autoRotateActive);
+                rotateBtn.setAttribute("aria-pressed", autoRotateActive ? "true" : "false");
             });
         }
 
         if (dimBtn) {
             dimBtn.addEventListener("click", function () {
+                stopAutoRotationPermanently();
                 currentDimensions = (currentDimensions === 3) ? 2 : 3;
                 dimBtn.textContent = currentDimensions === 3 ? "★ 3D Constellation" : "⊞ 2D Force Map";
                 dimBtn.classList.toggle("active", currentDimensions === 2);
@@ -391,24 +432,10 @@
             });
         }
 
-        container.addEventListener("mousedown", function () { isUserInteracting = true; });
-        container.addEventListener("mouseup", function () { setTimeout(function () { isUserInteracting = false; }, 1200); });
-        container.addEventListener("touchstart", function () { isUserInteracting = true; });
-        container.addEventListener("touchend", function () { setTimeout(function () { isUserInteracting = false; }, 1200); });
-    }
-
-    function startAutoRotation() {
-        var angle = 0;
-        setInterval(function () {
-            if (autoRotate && !isUserInteracting && Graph && !hoverNode && !selectedNode) {
-                angle += Math.PI / 1600;
-                var dist = Math.hypot(Graph.cameraPosition().x, Graph.cameraPosition().z) || 420;
-                Graph.cameraPosition({
-                    x: dist * Math.sin(angle),
-                    z: dist * Math.cos(angle)
-                });
-            }
-        }, 30);
+        // Stop auto-rotation permanently as soon as the user touches, scrolls, or drags the scene
+        container.addEventListener("pointerdown", stopAutoRotationPermanently, { passive: true });
+        container.addEventListener("wheel", stopAutoRotationPermanently, { passive: true });
+        container.addEventListener("touchstart", stopAutoRotationPermanently, { passive: true });
     }
 
     function escapeHtml(text) {
