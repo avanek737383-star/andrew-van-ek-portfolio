@@ -82,6 +82,54 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="samsung-s4mini-duco-miner-title">
+<h2 id="samsung-s4mini-duco-miner-title">Samsung Galaxy S4 Mini (SCH-I435) Persistent Duino-Coin Web Miner: Local LAN Deployment, Dual Krait 300 Tuning, Vanilla ES5 WebKit Optimization &amp; Permanent Screen Keep-Awake</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Samsung Galaxy S4 Mini &middot; SCH-I435 &middot; Qualcomm Snapdragon 400 &middot; Duino-Coin (DUCO) &middot; Python WebSocket Proxy &middot; Strict ES5 Web Worker &middot; OpenRC Service &middot; Android Developer Stay-Awake &middot; <time datetime="2026-11-18">November 18, 2026</time></span></p>
+<div class="project-architecture" aria-label="Samsung S4 Mini Duino-Coin LAN Web Miner Architecture"><span>Client: Samsung Galaxy S4 Mini (Android 4.x / WebKit)</span><span aria-hidden="true">&rarr;</span><span>Local LAN Wi-Fi (http://192.168.0.202:8097)</span><span aria-hidden="true">&rarr;</span><span>Alpine Linux NUC Python HTTP &amp; WS Reverse Proxy</span><span aria-hidden="true">&rarr;</span><span>Upstream TLS WebSocket (wss://server.duinocoin.com/ws)</span><span aria-hidden="true">&rarr;</span><span>Duino-Coin S1 Mining Pool</span></div>
+
+<p>My existing Duino-Coin web miner (hosted on the Alpine Linux NUC at <code>100.87.81.52:8095</code>) was engineered specifically for an Apple iPhone roaming across school Wi-Fi via an encrypted Tailscale WireGuard mesh. That version relies on 4-thread parallel concurrency, modern Bulma CSS, FontAwesome SVGs, Bodymovin animations, canvas gauge dials, and ES2017+ <code>async</code>/<code>await</code> syntax. When commissioning a repurposed <strong>Verizon Samsung Galaxy S4 Mini (SCH-I435)</strong> as a dedicated 24/7 miner node on my home network, this modern stack hit fundamental barriers: legacy Android 4.x cannot run modern Tailscale, and vintage Android WebKit immediately crashes when parsing modern ES6+ JavaScript. Collaborating with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, I architected and deployed a dedicated, persistent local LAN web miner service tailored specifically for the S4 Mini's dual-core architecture, vintage browser constraints, and uninterrupted screen-awake requirements.</p>
+
+<h3>Snapdragon 400 Dual-Core Krait Tuning (2 Threads)</h3>
+<p>The Samsung SCH-I435 is powered by a Qualcomm Snapdragon 400 (MSM8930AB) SoC featuring two asynchronous Krait 300 cores clocked at 1.7 GHz with 1.5 GB of RAM:</p>
+<ul>
+<li><strong>Eliminating Context-Switching Thrash:</strong> Running a 4-thread miner on dual-core hardware forces constant thread preemption and CPU cache eviction, drastically reducing hashing throughput while driving thermal dissipation up to dangerous throttling thresholds.</li>
+<li><strong>Strict 2-Thread Allocation:</strong> We tuned the miner's concurrency model to spawn exactly 2 Web Workers matching the physical core topology (1 worker per Krait core). This delivers stable, uninterrupted hashing throughput (~10&ndash;25 kH/s) while keeping battery and SoC temperatures cool during continuous 24/7 operation.</li>
+</ul>
+
+<h3>Zero-Bloat Vanilla WebKit &amp; Strict ECMAScript 5 Engine</h3>
+<p>The native Android 4.x stock browser (WebKit 534.30 / Chromium 30) predates modern ECMAScript standards and crashes on modern syntax:</p>
+<ul>
+<li><strong>Strict ES5 Syntax Isolation:</strong> Completely eliminated all modern JS constructs&mdash;replacing <code>const</code>, <code>let</code>, arrow functions (<code>() =&gt;</code>), <code>class</code>, <code>async/await</code>, <code>Promise</code>, and <code>fetch()</code> with rock-solid, standards-compliant ES5 (<code>var</code>, standard functions, and callback-driven WebSocket lifecycle handlers).</li>
+<li><strong>Zero-Allocation Embedded SHA-1:</strong> Embedded a custom, optimized SHA-1 hashing engine directly into the worker script. Replaced unsupported modern APIs (such as <code>Uint8Array.prototype.fill</code> and <code>String.prototype.padStart</code>) with native loop zeroing and custom integer padding, while maintaining pre-allocated <code>Int32Array</code> state buffers and direct 32-bit hash comparison without garbage-collection latency.</li>
+<li><strong>Zero-Framework Monospace Dashboard:</strong> Stripped out Bulma CSS, heavy external webfonts, and animation scripts. Designed a sleek, high-contrast dark monospace terminal interface (under 20 KB total payload) optimized for the S4 Mini's 4.3-inch Super AMOLED (540&times;960) display, minimizing memory pressure and preventing Android's Low Memory Killer (OOM) from terminating the browser tab.</li>
+</ul>
+
+<h3>Permanent Screen Keep-Awake Architecture: Hardware vs. Software</h3>
+<p>A primary failure mode of mobile browser mining is Android OS display timeouts: when the screen locks, the operating system aggressively suspends background JavaScript timers and severs active network sockets. We engineered a dual-layer strategy to guarantee permanent, unthrottled execution:</p>
+<ul>
+<li><strong>Native Hardware Stay-Awake (The Definitive Solution):</strong> Rather than relying solely on fragile web-based wake-lock hacks, we leveraged Android's native developer controls: unlocked Developer Options by tapping <em>Build number</em> 7 times in <em>About phone</em>, and enabled <strong>Stay awake</strong> (<em>Screen will never sleep while charging</em>). Connected to a dedicated 5V USB wall charger, the S4 Mini's display remains permanently on at the hardware level, completely impervious to OS sleep policies or tab throttling.</li>
+<li><strong>Client DOM Heartbeat Loop:</strong> Implemented a 1,000ms visual heartbeat pulse in <code>index.html</code> that updates an inline uptime counter and pulsates a status indicator, ensuring the WebKit rendering thread stays active without CPU overhead.</li>
+</ul>
+
+<h3>OpenRC Daemonization &amp; Local LAN WebSocket Reverse Proxy</h3>
+<p>To eliminate reliance on Tailscale, we deployed the service natively across the local home subnet:</p>
+<ul>
+<li><strong>Local Subnet Accessibility:</strong> Deployed the backend daemon at <code>/home/avanek/duino-s4mini-miner</code> on the Alpine Linux Intel NUC gateway, bound to <code>0.0.0.0:8097</code> and accessible to all LAN devices at <code>http://192.168.0.202:8097</code>.</li>
+<li><strong>In-Process TLS WebSocket Proxy:</strong> Integrated a lightweight Python WebSocket reverse proxy at <code>/ws</code>. When the S4 Mini connects via <code>ws://192.168.0.202:8097/ws</code>, the NUC terminates the local connection and transparently bridges traffic over an encrypted TLS socket to the upstream pool (<code>wss://server.duinocoin.com:443</code>), eliminating SSL handshake overhead and legacy CA certificate errors on ancient Android devices.</li>
+<li><strong>OpenRC Supervised Boot Persistence:</strong> Created an OpenRC service definition (<code>/etc/init.d/duino-s4mini-miner</code>) managed by <code>supervise-daemon</code> with automatic respawn hooks (<code>respawn_delay=5</code>, <code>respawn_max=10</code>) and registered it in the <code>default</code> runlevel (<code>rc-update add duino-s4mini-miner default</code>), guaranteeing persistent auto-start on boot.</li>
+</ul>
+
+<h3>Live Fleet Telemetry &amp; Portfolio Integration</h3>
+<p>With both mobile miners running concurrently, we synchronized the portfolio's Live AI Lab telemetry:</p>
+<ul>
+<li><strong>Combined Wallet 2 Holdings:</strong> Updated <code>lab.html</code> to reclassify Wallet 2 (<code>avanek2005</code>) as <strong>Wallet 2 &middot; iPhone &amp; S4 Mini DUCO Coin Balance</strong>, reflecting combined mobile fleet rewards.</li>
+<li><strong>Device Fleet Enumeration:</strong> Registered both hardware nodes under assigned mining hardware&mdash;distinguishing the high-throughput <strong>Apple iPhone (Tailscale Mesh Node &middot; 4 Threads)</strong> from the dedicated legacy <strong>Samsung Galaxy S4 Mini (Local LAN Node &middot; 2 Threads)</strong>.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew supplied the Samsung Galaxy S4 Mini (SCH-I435) hardware, defined the local 192 LAN networking requirements, specified the 2-thread dual-core constraints, and configured the physical device stay-awake settings. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> engineered the strict ES5 Web Worker and zero-bloat dashboard, built the Python WebSocket reverse proxy, implemented the OpenRC persistence daemon on the NUC, updated the Live AI Lab telemetry, and authored this project case study.</p>
+<ul class="chips"><li>Samsung SCH-I435</li><li>Snapdragon 400</li><li>Dual-Core Mining</li><li>Duino-Coin (DUCO)</li><li>ES5 Web Worker</li><li>WebSocket Proxy</li><li>Alpine Linux NUC</li><li>OpenRC</li><li>Completed Project</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="local-media-converter-title">
 <h2 id="local-media-converter-title">Local Media &amp; Offline File Converter: Apple Silicon Metal Hardware Acceleration, Tailscale Mesh Accessibility &amp; Lid-Safe Process Suspension</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Apple Silicon VideoToolbox &middot; Tailscale Mesh &middot; FastAPI &middot; FFmpeg &middot; Server-Sent Events (SSE) &middot; UNIX Signal Process Freezing &middot; <time datetime="2026-11-18">November 18, 2026</time></span></p>
