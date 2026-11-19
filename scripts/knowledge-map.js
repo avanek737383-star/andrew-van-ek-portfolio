@@ -20,6 +20,11 @@
     var highlightLinks = new Set();
     var hoverNode = null;
 
+    // Smooth hover transition state
+    var hoverFactor = 0; // 0.0 (no hover) to 1.0 (fully highlighted)
+    var hoverAnimId = null;
+    var colorRgbCache = {};
+
     // DOM Elements
     var drawer = document.getElementById("telemetry-drawer");
     var drawerTitle = document.getElementById("drawer-title");
@@ -42,6 +47,99 @@
     var dimBtn = document.getElementById("hud-dim-btn");
     var filterPills = document.querySelectorAll(".filter-pill");
 
+    function getRgb(colorStr) {
+        if (!colorStr) return [56, 189, 248];
+        if (colorRgbCache[colorStr]) return colorRgbCache[colorStr];
+        var rgb = [56, 189, 248];
+        if (typeof colorStr === "string" && colorStr.charAt(0) === "#") {
+            var hex = colorStr.slice(1);
+            if (hex.length === 3) {
+                rgb = [parseInt(hex[0] + hex[0], 16), parseInt(hex[1] + hex[1], 16), parseInt(hex[2] + hex[2], 16)];
+            } else if (hex.length === 6) {
+                rgb = [parseInt(hex.slice(0, 2), 16), parseInt(hex.slice(2, 4), 16), parseInt(hex.slice(4, 6), 16)];
+            }
+        }
+        colorRgbCache[colorStr] = rgb;
+        return rgb;
+    }
+
+    function getNodeColor(n) {
+        var baseColor = n.color || "#38bdf8";
+        if (hoverFactor <= 0.001) return baseColor;
+
+        if (highlightNodes.has(n)) {
+            return baseColor;
+        }
+
+        var rgb = getRgb(baseColor);
+        // Smoothly fade alpha from 1.0 down to 0.18 based on cubic hover factor
+        var alpha = 1.0 - (0.82 * hoverFactor);
+        return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + alpha.toFixed(3) + ")";
+    }
+
+    function getLinkColor(l) {
+        if (hoverFactor <= 0.001) {
+            if (l.type === "domain-project") return "rgba(56,189,248,0.3)";
+            if (l.type === "project-tech") return "rgba(148,163,184,0.35)";
+            if (l.type === "project-task") return "rgba(16,185,129,0.25)";
+            return "rgba(255,255,255,0.15)";
+        }
+
+        if (highlightLinks.has(l)) {
+            // Smoothly brighten highlighted link
+            var hiAlpha = 0.3 + (0.65 * hoverFactor);
+            return "rgba(56,189,248," + hiAlpha.toFixed(3) + ")";
+        }
+
+        // Smoothly fade out non-highlighted links
+        var dimAlpha = Math.max(0.02, 0.2 * (1.0 - hoverFactor));
+        return "rgba(148,163,184," + dimAlpha.toFixed(3) + ")";
+    }
+
+    function getLinkWidth(l) {
+        var baseW = (l.type === "domain-project") ? 1.4 : 0.8;
+        if (highlightLinks.has(l)) {
+            return baseW + (1.4 * hoverFactor);
+        }
+        return baseW * (1.0 - (0.4 * hoverFactor));
+    }
+
+    function startHoverTransition() {
+        if (hoverAnimId) {
+            cancelAnimationFrame(hoverAnimId);
+            hoverAnimId = null;
+        }
+
+        var target = (hoverNode !== null || highlightNodes.size > 0) ? 1.0 : 0.0;
+        var startVal = hoverFactor;
+        var startTime = performance.now();
+        var duration = 260; // ms transition
+
+        function animate(now) {
+            var elapsed = now - startTime;
+            var p = Math.min(1.0, elapsed / duration);
+            // Smooth cubic ease out
+            var ease = 1 - Math.pow(1 - p, 3);
+            hoverFactor = startVal + (target - startVal) * ease;
+
+            if (Graph) {
+                Graph
+                    .nodeColor(getNodeColor)
+                    .linkColor(getLinkColor)
+                    .linkWidth(getLinkWidth);
+            }
+
+            if (p < 1.0) {
+                hoverAnimId = requestAnimationFrame(animate);
+            } else {
+                hoverFactor = target;
+                hoverAnimId = null;
+            }
+        }
+
+        hoverAnimId = requestAnimationFrame(animate);
+    }
+
     function stopAutoRotationPermanently() {
         if (autoRotatePermanentlyStopped) return;
         autoRotatePermanentlyStopped = true;
@@ -61,10 +159,18 @@
         }
     }
 
+    function clearHoverState() {
+        if (!hoverNode && highlightNodes.size === 0) return;
+        hoverNode = null;
+        highlightNodes.clear();
+        highlightLinks.clear();
+        container.style.cursor = "default";
+        startHoverTransition();
+    }
+
     function initGraph(data) {
         rawGraphData = data;
 
-        // Verify ForceGraph3D is available
         if (typeof ForceGraph3D === "undefined") {
             container.innerHTML = "<div style='color:#fff;padding:40px;text-align:center;'><h3>Loading 3D Engine...</h3><p>Please refresh in a moment if the graphics do not render automatically.</p></div>";
             return;
@@ -86,26 +192,10 @@
                     "<span style='font-size:11px;color:#94a3b8;'>" + typeLabel + statusLabel + "</span>" +
                 "</div>";
             })
-            .nodeColor(function (n) {
-                if (highlightNodes.size > 0 && !highlightNodes.has(n)) {
-                    return "rgba(100,116,139,0.2)";
-                }
-                return n.color || "#38bdf8";
-            })
+            .nodeColor(getNodeColor)
             .nodeResolution(24)
-            .linkColor(function (l) {
-                if (highlightLinks.size > 0) {
-                    return highlightLinks.has(l) ? "#38bdf8" : "rgba(255,255,255,0.04)";
-                }
-                if (l.type === "domain-project") return "rgba(56,189,248,0.3)";
-                if (l.type === "project-tech") return "rgba(148,163,184,0.35)";
-                if (l.type === "project-task") return "rgba(16,185,129,0.25)";
-                return "rgba(255,255,255,0.15)";
-            })
-            .linkWidth(function (l) {
-                if (highlightLinks.has(l)) return 2.2;
-                return l.type === "domain-project" ? 1.4 : 0.8;
-            })
+            .linkColor(getLinkColor)
+            .linkWidth(getLinkWidth)
             .linkDirectionalParticles(function (l) {
                 if (highlightLinks.has(l)) return 4;
                 return l.type === "project-tech" ? 2 : 1;
@@ -120,16 +210,13 @@
             .onNodeClick(handleNodeClick)
             .onBackgroundClick(handleBackgroundClick);
 
-        // Adjust force simulation for organic clustering
         Graph.d3Force("charge").strength(-160);
         Graph.d3Force("link").distance(function (l) {
             return l.distance || 60;
         });
 
-        // Set stable initial camera without animated tween collision
         Graph.cameraPosition({ x: 0, y: 25, z: 420 });
 
-        // Configure native Three.js OrbitControls for silky auto-rotation
         var controls = Graph.controls();
         if (controls) {
             controls.autoRotate = true;
@@ -137,13 +224,11 @@
             controls.enableDamping = true;
             controls.dampingFactor = 0.08;
 
-            // When the user starts dragging or rotating via controls, stop auto-rotation permanently
             controls.addEventListener("start", function () {
                 stopAutoRotationPermanently();
             });
         }
 
-        // Setup Controls & Handlers
         setupInteractionListeners();
         setupSearch();
         setupFilters();
@@ -203,19 +288,16 @@
             container.style.cursor = "default";
         }
 
-        Graph
-            .nodeColor(Graph.nodeColor())
-            .linkColor(Graph.linkColor())
-            .linkWidth(Graph.linkWidth());
+        // Animate smooth transition into/out of hover
+        startHoverTransition();
     }
 
     function handleNodeClick(node) {
         if (!node) return;
         selectedNode = node;
         stopAutoRotationPermanently();
+        clearHoverState();
 
-        // Smooth camera fly-to without resetting base perspective
-        var currentPos = Graph.cameraPosition();
         var targetDist = (node.type === "domain") ? 180 : (node.type === "project" ? 110 : 70);
         var hyp = Math.hypot(node.x, node.y, node.z) || 1;
         var ratio = 1 + (targetDist / hyp);
@@ -232,6 +314,7 @@
     function handleBackgroundClick() {
         closeDrawer();
         selectedNode = null;
+        clearHoverState();
     }
 
     function openDrawer(node) {
@@ -254,7 +337,6 @@
         }
         drawer.style.setProperty("--domain-color", domainColor);
 
-        // Status Badge
         if (node.statusLabel) {
             drawerStatusBadge.style.display = "inline-flex";
             drawerStatusBadge.className = "drawer-status-badge " + (node.status === "in-progress" ? "in-progress" : "completed");
@@ -263,10 +345,8 @@
             drawerStatusBadge.style.display = "none";
         }
 
-        // Summary
         drawerSummary.textContent = node.summary || "Exploratory technical architecture node within Andrew Van Ek's portfolio ecosystem.";
 
-        // Tasks Checklist
         if (node.tasks && node.tasks.length > 0) {
             drawerTasksSection.style.display = "block";
             drawerTasksList.innerHTML = "";
@@ -286,7 +366,6 @@
             drawerTasksSection.style.display = "none";
         }
 
-        // Tech chips
         if (node.tech && node.tech.length > 0) {
             drawerTechSection.style.display = "block";
             drawerTechTags.innerHTML = "";
@@ -300,7 +379,6 @@
             drawerTechSection.style.display = "none";
         }
 
-        // Link CTA
         if (node.url) {
             drawerProjectLink.style.display = "block";
             drawerProjectLink.href = node.url;
@@ -318,6 +396,7 @@
 
     function closeDrawer() {
         if (drawer) drawer.classList.remove("open");
+        clearHoverState();
     }
 
     function setupSearch() {
@@ -380,6 +459,7 @@
         filterPills.forEach(function (pill) {
             pill.addEventListener("click", function () {
                 stopAutoRotationPermanently();
+                clearHoverState();
                 var domainKey = pill.getAttribute("data-domain");
                 if (activeDomain === domainKey) {
                     activeDomain = "all";
@@ -406,6 +486,7 @@
         if (resetBtn) {
             resetBtn.addEventListener("click", function () {
                 closeDrawer();
+                clearHoverState();
                 Graph.cameraPosition({ x: 0, y: 25, z: 420 }, { x: 0, y: 0, z: 0 }, 1400);
             });
         }
@@ -425,6 +506,7 @@
         if (dimBtn) {
             dimBtn.addEventListener("click", function () {
                 stopAutoRotationPermanently();
+                clearHoverState();
                 currentDimensions = (currentDimensions === 3) ? 2 : 3;
                 dimBtn.textContent = currentDimensions === 3 ? "★ 3D Constellation" : "⊞ 2D Force Map";
                 dimBtn.classList.toggle("active", currentDimensions === 2);
@@ -432,10 +514,22 @@
             });
         }
 
-        // Stop auto-rotation permanently as soon as the user touches, scrolls, or drags the scene
+        // Stop auto-rotation permanently when the user interacts
         container.addEventListener("pointerdown", stopAutoRotationPermanently, { passive: true });
         container.addEventListener("wheel", stopAutoRotationPermanently, { passive: true });
         container.addEventListener("touchstart", stopAutoRotationPermanently, { passive: true });
+
+        // Unstick hover immediately when cursor leaves canvas or enters any HUD overlay or drawer
+        container.addEventListener("mouseleave", clearHoverState);
+
+        if (drawer) {
+            drawer.addEventListener("mouseenter", clearHoverState);
+        }
+
+        var hudOverlays = document.querySelectorAll(".hud-top-bar, .hud-filter-bar, .hud-actions-toolbar, .hud-legend, .hud-search-box");
+        hudOverlays.forEach(function (el) {
+            el.addEventListener("mouseenter", clearHoverState);
+        });
     }
 
     function escapeHtml(text) {
@@ -448,7 +542,6 @@
             .replace(/'/g, "&#039;");
     }
 
-    // Load data and start
     fetch("data/knowledge-map.json?v=" + Date.now())
         .then(function (res) {
             if (!res.ok) throw new Error("HTTP " + res.status);
