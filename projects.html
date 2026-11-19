@@ -50,6 +50,7 @@
 						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
 					</button>
 					<ul class="nav-dropdown-menu">
+						<li><a href="map.html">3D Knowledge Map</a></li>
 						<li><a href="stats.html">Stats for Nerds</a></li>
 						<li><a href="maintenance.html">Maintenance Log</a></li>
 						<li><a href="changelog.html">Changelog &amp; Releases</a></li>
@@ -81,6 +82,42 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+
+<section class="project-entry" aria-labelledby="interactive-3d-knowledge-map-title">
+<h2 id="interactive-3d-knowledge-map-title">Interactive 3D Knowledge Map &amp; Homelab Project Constellation: Three.js WebGL Force Graph, Dynamic Node Clustering &amp; Task Orbiters</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Three.js &middot; WebGL &middot; 3d-force-graph &middot; Dynamic Force Simulation &middot; Client-Side Static Architecture &middot; Kinetic Orbiters &middot; Antigravity AI &middot; <time datetime="2026-11-19">November 19, 2026</time></span></p>
+<div class="project-architecture" aria-label="Interactive 3D Knowledge Map Architecture"><span>projects.html Source Archive</span><span aria-hidden="true">&rarr;</span><span>Python Graph Extraction Pipeline</span><span aria-hidden="true">&rarr;</span><span>Hierarchical Graph JSON (Domains, Projects, Tasks, Tech)</span><span aria-hidden="true">&rarr;</span><span>WebGL Three.js / 3d-force-graph Engine</span><span aria-hidden="true">&rarr;</span><span>Zero-Backend Client-Side Rendering</span><span aria-hidden="true">&rarr;</span><span>Kinetic Camera Fly-To &amp; Telemetry Drawer</span></div>
+
+<p>With over 75 active, completed, and experimental projects spanning physical homelab infrastructure, self-hosted AI models, legacy hardware reversing, and enterprise automation, standard linear lists make it difficult to visualize the complex interconnections between systems. To transform this documentation archive into an engaging, living exploratory experience—accessible to anyone on the public web without requiring private Tailscale tunnels or specialized backend proxies—I collaborated with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> to engineer and deploy an interactive 3D WebGL knowledge map and project constellation accessible under the <em>Systems &amp; Stats</em> navigation menu.</p>
+
+<h3>3D Force-Directed Constellation Engine &amp; Spatial Clustering</h3>
+<p>We built the visualization engine upon <strong>Three.js</strong> and <strong>3d-force-graph</strong>, leveraging hardware-accelerated WebGL to render an interactive celestial node system running smoothly at 60 frames per second on both mobile touchscreens and desktop viewports:</p>
+<ul>
+<li><strong>Hierarchical Galactic Clustering:</strong> The universe is anchored by six major domain galaxy hubs (<em>AI &amp; Agentic Systems</em>, <em>Homelab &amp; Networking</em>, <em>Digital Forensics &amp; Recovery</em>, <em>Embedded Hardware &amp; Mining</em>, <em>Audio/Video &amp; Creative</em>, and <em>Enterprise IT &amp; Automation</em>). Physics repulsion forces cluster related projects naturally in 3D space around their domain anchors.</li>
+<li><strong>Dynamic Project Nodes &amp; Status Badges:</strong> Each project exists as an interactive celestial body sized by scope and colored by operational status (Completed Project 🟢 vs. In Progress 🟡), rendering high-resolution billboard sprite labels that face the camera dynamically during rotation.</li>
+<li><strong>Satellite Task Orbiters:</strong> Individual milestones, architectural subsystems, and active tasks orbit parent projects as satellite sub-nodes, allowing visitors to inspect granular progress and sub-features at a glance.</li>
+<li><strong>Cross-Project Technology Bridges:</strong> Shared technologies (such as <em>Alpine Linux</em>, <em>Tailscale</em>, <em>FastAPI</em>, <em>Python</em>, and <em>Docker</em>) act as gravitational bridges, illuminating shared architectural patterns across homelab, cloud, and edge systems.</li>
+</ul>
+
+<h3>Zero-Tailscale Client-Side Static Architecture</h3>
+<p>A critical architectural priority was ensuring that <strong>any public visitor</strong> on the open internet can seamlessly interact with the 3D map without encountering network authentication walls, Tailscale mesh requirements, or proxy bottlenecks:</p>
+<ul>
+<li><strong>Automated Graph Extraction Pipeline:</strong> Developed an automated Python builder (<code>scripts/build-knowledge-graph.py</code>) that extracts semantic metadata, technological tags, sub-tasks, and relationships directly from <code>projects.html</code> and compiles a static, optimized payload at <code>data/knowledge-map.json</code>.</li>
+<li><strong>Client-Side WebGL Rendering:</strong> The entire force simulation, collision detection, and camera choreography execute directly inside the client's web browser. The application requires zero active backend runtime, ensuring instant sub-second page loads globally via Cloudflare / GitHub Pages CDN.</li>
+</ul>
+
+<h3>Cinematic Flight Navigation, Search Indexing &amp; Telemetry HUD</h3>
+<p>To deliver an intuitive and fluid user experience, the 3D map features an ambient glassmorphism Heads-Up Display (HUD):</p>
+<ul>
+<li><strong>Smooth Camera Fly-To Interpolation:</strong> Clicking any project or domain node activates a smooth cinematic camera flight that glides the viewport directly toward the target coordinate while preserving orbit angles.</li>
+<li><strong>Real-Time Search &amp; Auto-Focus:</strong> An integrated search bar filters nodes dynamically as the user types, highlighting matches in the 3D space and enabling instant keyboard flight to any project or task.</li>
+<li><strong>Slide-Out Telemetry Drawer:</strong> Selecting any node opens a responsive frosted-glass side panel presenting project metadata, status chips, sub-task breakdowns, technology tags, and a direct deep link to the complete writeup in <code>projects.html</code>.</li>
+<li><strong>Display Mode &amp; Rotation Controls:</strong> Visitors can toggle continuous auto-orbit rotation, reset camera perspectives, switch between 3D spherical constellation and 2D planar force layouts, or filter the graph by specific domains and statuses.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the interactive 3D knowledge map and task visualizer, designed the domain hierarchy and telemetry UX requirements, and verified public cross-device rendering. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> architected the client-side WebGL force simulation, developed the automated multi-layer graph extraction pipeline, built the responsive glassmorphism HUD and fly-to camera controls, integrated the map into the site navigation under Systems &amp; Stats, and authored this documentation.</p>
+<ul class="chips"><li>Three.js</li><li>WebGL</li><li>3d-force-graph</li><li>Interactive Visualization</li><li>Knowledge Graph</li><li>Static Web Architecture</li><li>Antigravity AI (Google DeepMind)</li><li>In Progress</li></ul>
+</section>
 
 <section class="project-entry" aria-labelledby="gcp-vm-realistic-vision-rclone-title">
 <h2 id="gcp-vm-realistic-vision-rclone-title">Google Cloud VM (Debian 12) Realistic Vision V6 Wallpaper Generator: Continuous Ad Infinitum Inference, Minimalist 1080p Web UI &amp; Zero-Prompt Rclone Google Drive Sync</h2>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3D Knowledge Map &amp; Project Constellation | Andrew Van Ek Portfolio</title>
+	<meta name="description" content="Interactive 3D WebGL knowledge map and project constellation connecting over 75 homelab, AI agent, vintage hardware, and forensic recovery systems by Andrew Van Ek.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://andrewtvanekportfolio.online/map.html">
+	<meta property="og:title" content="3D Knowledge Map &amp; Project Constellation | Andrew Van Ek Portfolio">
+	<meta property="og:description" content="Explore an interactive 3D WebGL constellation connecting 76 homelab, AI agent, embedded hardware, and forensic systems.">
+	<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
+	<link rel="icon" href="favicon.ico" sizes="any">
+	<link rel="icon" href="favicon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="css/styles.css?v=20261103-clock-weather-fix-1">
+	<link rel="stylesheet" href="css/knowledge-map.css?v=20261119-map-1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="map-page-body">
+	<div class="container">
+		<nav class="tablet-desktop">
+			<ul id="site-navigation">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li><a href="gallery.html">Gallery</a></li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+						<li><a href="lab.html">Live AI Lab</a></li>
+						<li><a href="council.html">AI Chatroom</a></li>
+						<li><a href="moltbook.html">Moltbook Agent</a></li>
+						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
+						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="map.html" aria-current="page">3D Knowledge Map</a></li>
+						<li><a href="stats.html">Stats for Nerds</a></li>
+						<li><a href="maintenance.html">Maintenance Log</a></li>
+						<li><a href="changelog.html">Changelog &amp; Releases</a></li>
+						<li><a href="clock.html">Homelab Desk Clock</a></li>
+						<li><a href="quotes.html">Quotes &amp; Proverbs</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="job.html">Skills &amp; Toolkit</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-search">
+					<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+						<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						<span>Search</span>
+						<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<header style="margin: 25px 0 10px 0; color: #f8fafc;">
+			<h1 style="font-size: 1.85rem; font-weight: 700; margin-bottom: 6px; color: #f8fafc;">3D Knowledge Map &amp; Project Constellation</h1>
+			<p style="color: #94a3b8; font-size: 0.95rem; max-width: 860px; line-height: 1.5;">
+				An interactive WebGL force-directed graph connecting 76 homelab systems, neural agents, embedded devices, and forensics milestones. Powered by client-side Three.js with zero backend dependency—accessible publicly on any device without VPN or Tailscale peering.
+			</p>
+		</header>
+
+		<main>
+			<div class="map-viewport-wrapper">
+				<div id="knowledge-graph-container" tabindex="0" role="region" aria-label="3D Knowledge Graph Canvas"></div>
+
+				<!-- Top HUD Controls -->
+				<div class="hud-overlay hud-top-bar">
+					<div class="hud-badge-group">
+						<span class="hud-badge-pill"><span class="pulse-dot"></span> 76 Projects &middot; 215 Nodes &middot; 437 Links</span>
+					</div>
+
+					<div class="hud-search-box">
+						<input type="search" id="hud-search-input" class="hud-search-input" placeholder="Search systems or tasks..." autocomplete="off" aria-label="Search systems or tasks" />
+						<svg class="hud-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						<ul id="hud-search-results" class="hud-search-results" role="listbox" aria-label="Search suggestions"></ul>
+					</div>
+				</div>
+
+				<!-- Domain Filter Bar -->
+				<div class="hud-overlay hud-filter-bar">
+					<button class="filter-pill active" data-domain="all"><span class="pill-dot" style="background:#38bdf8;"></span> All Domains</button>
+					<button class="filter-pill" data-domain="ai-agents" style="--pill-color:#c084fc;"><span class="pill-dot"></span> AI &amp; Agents</button>
+					<button class="filter-pill" data-domain="homelab-infra" style="--pill-color:#38bdf8;"><span class="pill-dot"></span> Homelab &amp; Networking</button>
+					<button class="filter-pill" data-domain="embedded-hardware" style="--pill-color:#fbbf24;"><span class="pill-dot"></span> Hardware &amp; Mobile</button>
+					<button class="filter-pill" data-domain="forensics-recovery" style="--pill-color:#34d399;"><span class="pill-dot"></span> Forensics &amp; Recovery</button>
+					<button class="filter-pill" data-domain="media-creative" style="--pill-color:#2dd4bf;"><span class="pill-dot"></span> Audio &amp; Creative</button>
+					<button class="filter-pill" data-domain="enterprise-workflow" style="--pill-color:#f43f5e;"><span class="pill-dot"></span> Enterprise IT</button>
+				</div>
+
+				<!-- Actions Toolbar (Bottom Left) -->
+				<div class="hud-overlay hud-actions-toolbar">
+					<button id="hud-rotate-btn" class="hud-btn active" type="button" aria-pressed="true" title="Toggle continuous camera rotation">&#8635; Orbit</button>
+					<button id="hud-reset-btn" class="hud-btn" type="button" title="Reset camera to default view">&#9678; Reset View</button>
+					<button id="hud-dim-btn" class="hud-btn" type="button" title="Switch between 3D Constellation and 2D Planar Layout">&#9733; 3D Constellation</button>
+				</div>
+
+				<!-- Legend (Bottom Right) -->
+				<div class="hud-overlay hud-legend">
+					<span class="legend-item"><span class="legend-dot" style="background:#c084fc;"></span> Domain Galaxy</span>
+					<span class="legend-item"><span class="legend-dot" style="background:#38bdf8;"></span> Project Node</span>
+					<span class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Sub-Task Orbiter</span>
+					<span class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> In Progress</span>
+					<span class="legend-item"><span class="legend-dot" style="background:#94a3b8;"></span> Tech Bridge</span>
+				</div>
+
+				<!-- Slide-Out Telemetry Drawer -->
+				<aside id="telemetry-drawer" class="hud-drawer" aria-label="Selected system details">
+					<div class="drawer-header">
+						<div class="drawer-badges">
+							<span id="drawer-type-badge" class="drawer-type-badge">Project</span>
+							<span id="drawer-status-badge" class="drawer-status-badge completed"><span>&#10003;</span> Completed</span>
+						</div>
+						<button id="drawer-close-btn" class="drawer-close-btn" aria-label="Close details drawer">&times;</button>
+					</div>
+
+					<div class="drawer-body">
+						<h2 id="drawer-title" class="drawer-title">System Node</h2>
+						<div class="drawer-domain">
+							<span id="drawer-domain-dot" class="drawer-domain-dot"></span>
+							<span id="drawer-domain">Homelab Constellation</span>
+						</div>
+
+						<p id="drawer-summary" class="drawer-summary">Click any node in the constellation to view live system architecture, operational milestones, and connected technologies.</p>
+
+						<div id="drawer-tasks-section">
+							<h3 class="drawer-section-title">Key Milestones &amp; Tasks</h3>
+							<ul id="drawer-tasks-list" class="drawer-tasks-list"></ul>
+						</div>
+
+						<div id="drawer-tech-section">
+							<h3 class="drawer-section-title">Connected Technologies</h3>
+							<div id="drawer-tech-tags" class="drawer-tech-tags"></div>
+						</div>
+					</div>
+
+					<div class="drawer-footer">
+						<a id="drawer-project-link" href="projects.html" class="drawer-project-link">Explore Full Project Writeup in Projects &rarr;</a>
+					</div>
+				</aside>
+			</div>
+
+			<section style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px; margin-bottom: 30px; color: #cbd5e1;">
+				<h3 style="font-size: 1.1rem; color: #f8fafc; margin-bottom: 8px;">How to Navigate the 3D Constellation</h3>
+				<ul style="padding-left: 20px; line-height: 1.7; font-size: 0.9rem;">
+					<li><strong>Orbit &amp; Rotate:</strong> Click and drag anywhere in open space to rotate the camera around the 3D universe.</li>
+					<li><strong>Zoom &amp; Pan:</strong> Scroll your mouse wheel or pinch on touchscreens to zoom. Right-click and drag (or two-finger drag) to pan across clusters.</li>
+					<li><strong>Inspect &amp; Fly-To:</strong> Click any node to fly the camera into it, highlight its connections, and open the architectural telemetry drawer.</li>
+					<li><strong>Search:</strong> Type in the search box to highlight matching projects and instantly jump to them.</li>
+					<li><strong>Zero Tailscale Dependency:</strong> The entire constellation executes client-side in WebGL, rendering natively on mobile and desktop browsers worldwide.</li>
+				</ul>
+			</section>
+		</main>
+
+		<footer style="color: #94a3b8; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px;">
+			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html" style="color: #38bdf8;">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com" style="color: #38bdf8;">avanek737383@gmail.com</a></p>
+			<p>Website last modified: <time datetime="2026-11-19T10:35:00-05:00">November 19, 2026 at 10:35:00 AM EST</time></p>
+			<p class="footer-version">Version v2.6.357 &middot; <a href="changelog.html" style="color: #38bdf8;">Read what's new &rarr;</a></p>
+		</footer>
+	</div>
+
+	<!-- Vendor 3D Engine: Local copy with CDN fallback -->
+	<script src="scripts/vendor/3d-force-graph.min.js"></script>
+	<script>
+		if (typeof ForceGraph3D === "undefined") {
+			var fallbackScript = document.createElement("script");
+			fallbackScript.src = "https://cdn.jsdelivr.net/npm/3d-force-graph@1.73.4/dist/3d-force-graph.min.js";
+			document.head.appendChild(fallbackScript);
+		}
+	</script>
+	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
+	<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
+	<script src="scripts/knowledge-map.js?v=20261119-map-1"></script>
+</body>
+</html>
