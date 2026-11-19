@@ -354,22 +354,50 @@
 </section>
 
 <section class="project-entry" aria-labelledby="samsung-i435-rooting-title">
-<h2 id="samsung-i435-rooting-title">Samsung Galaxy S4 Mini (SCH-I435): USB Troubleshooting &amp; Rooting Preparation</h2>
-<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Windows USB drivers &middot; Android Debug Bridge &middot; Legacy Android &middot; <time datetime="2026-11-15">November 15, 2026</time></span></p>
-<p>I am working with <strong>OpenAI Codex through ChatGPT</strong> to prepare my own Samsung Galaxy S4 Mini (SCH-I435) for rooting. The first challenge is establishing a reliable USB data connection: the phone can charge and briefly appear as an installer or MTP device, then disappear from Windows. A loose-fitting micro-USB cable prompted a cable swap, but intermittent driver and connection failures still need to be resolved.</p>
-<h3>Diagnostics &amp; Current State</h3>
+<h2 id="samsung-i435-rooting-title">Samsung Galaxy S4 Mini (SCH-I435): Firmware Flashing, Rollback Triage &amp; Frontier AI Guardrails</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Samsung Odin3 &middot; Bootloader Rollback Protection &middot; Legacy Android &middot; AI DevEx &middot; <time datetime="2026-11-19">November 19, 2026</time></span></p>
+
+<p>What began as a hardware driver troubleshooting session evolved into a deep dive into Samsung Knox bootloader rollback protections, Odin firmware reconstruction, and the real-world boundaries of frontier AI developer tooling. Working with an obsolete Verizon Samsung Galaxy S4 Mini (SCH-I435) running Android 4.4.2 KitKat (stock firmware <code>I435VRSBQA1</code>), the goal was to stabilize communications, analyze kernel revisions, and investigate vintage privilege escalation pathways—navigating both hardware-level security locks and modern AI safety filters along the way.</p>
+
+<h3>1. USB Stabilization &amp; Authorized ADB</h3>
 <ul>
-<li>Used Windows Plug and Play queries and Google's official Android SDK Platform-Tools to check device detection and ADB connectivity. Recorded the original Code 38 report, subsequent Code 10 failures, and the latest Code 43 error: &ldquo;The USB set address request failed.&rdquo;</li>
-<li>Briefly observed healthy Samsung composite, modem, ADB, and SCH-I435 device interfaces. ADB saw the phone as offline once, but an authorized debugging session has not been established.</li>
-<li>Found an active Samsung driver dated 2014, downloaded the current official Samsung USB driver installer, verified its valid Samsung digital signature, and started a reinstall. The installer reported that a package was already installed; a reinstall was selected. Installation completion and post-restart behavior remain to be checked.</li>
+    <li><strong>Driver &amp; Controller Recovery:</strong> Overcame persistent Windows USB enumeration failures (PnP Code 43 &ldquo;USB set address request failed&rdquo; and Code 38 driver residue) by deploying the verified Samsung Mobile USB Composite Driver stack (v1.9.5.0), replacing faulty micro-USB cabling, and cycling host controller root hubs.</li>
+    <li><strong>Host Tooling Integration:</strong> Transitioned from temporary ad-hoc platform binaries to a permanent, system-wide Android SDK Platform-Tools deployment via Windows Package Manager (<code>winget</code>), establishing uninterrupted authorized ADB debugging across reboots.</li>
 </ul>
-<p><strong>Next steps:</strong> Finish the driver installation, restart Windows with the phone unplugged, reconnect using the replacement data cable, and recheck USB and ADB stability. Once an authorized ADB connection works, read the exact Android version, firmware build, and bootloader details before selecting a compatible rooting method. <strong>Rooting has not started, and no firmware has been flashed.</strong> The remaining connection problem could involve the cable, phone socket, USB port, or driver; the cause is not yet confirmed.</p>
-<h3>Resume the Troubleshooting Session</h3>
-<p>Run this command in a terminal on the original Windows PC, using the same Windows account and Codex installation that hold the conversation history:</p>
-<p><code>codex resume 01a1dfb9-ed55-78c3-813d-4ee224dbb52a</code></p>
-<p>Conversation title: <strong>Fix driver issue, then root</strong>. The conversation is stored on that PC; running the command on the portfolio server will not transfer its history.</p>
-<p class="credit"><strong>AI collaboration credit:</strong> Andrew supplied the phone, tested cables and USB modes, reported Device Manager errors, and operated the driver installer. <strong>OpenAI Codex through ChatGPT</strong> inspected Windows device and driver status, installed official ADB tools, verified the Samsung installer signature, guided troubleshooting, and wrote this project entry.</p>
-<ul class="chips"><li>Samsung SCH-I435</li><li>USB Diagnostics</li><li>Windows Drivers</li><li>ADB</li><li>Android Rooting</li><li>OpenAI Codex</li><li>In Progress</li></ul>
+
+<h3>2. Bootloader Rollback Auditing &amp; Odin Flashing Experiments</h3>
+<p>Because Samsung devices enforce Knox eFuse and bootloader security rollback protections, older firmware cannot simply be flashed over newer revisions without tripping bootloader signature verification:</p>
+<ul>
+    <li><strong>Rollback Revision Discovery:</strong> Audited bootloader certificate headers and Download Mode flags, discovering an enforced Application Processor Software Revision (<code>AP SWREV: 4</code>) and active write protection.</li>
+    <li><strong>The MK5 Kernel Experiment:</strong> Constructed an isolated <code>MK5-boot-only.tar.md5</code> package containing only a 2014 kernel. Flashing via Odin3 reported an initial <code>PASS</code>, but the handset bootloader rejected execution during cold boot with <code>SECURE FAIL: KERNEL</code> due to the rollback mismatch.</li>
+    <li><strong>Zero-Downtime Firmware Recovery:</strong> Flashed a custom-built, checksum-verified <code>QA1-boot-restore.tar.md5</code> package, immediately restoring the phone to fully operational Android 4.4.2 with intact user data and zero data loss.</li>
+    <li><strong>Successful OH3 Kernel Downgrade:</strong> Sliced and flashed an isolated <code>OH3-boot-only.tar.md5</code> package. Because OH3 matches QA1's bootloader certificate revision level (SWREV 4), the phone booted cleanly, bringing up a live August 24, 2015 kernel while preserving the modern QA1 system and bootloader partitions.</li>
+</ul>
+
+<h3>3. Encountering the Dual AI Safety Wall (The DevEx Lesson)</h3>
+<p>When the investigation progressed from firmware flashing to analyzing legacy 2015 kernel vulnerabilities (such as Towelroot/CVE-2014-3153 and Dirty COW/CVE-2016-5195), the project hit a fascinating developer experience boundary across two independent frontier AI platforms:</p>
+<ul>
+    <li><strong>OpenAI Codex CLI (Daybreak Suppression):</strong> Attempting to generate legacy root execution pathways triggered OpenAI's automated cybersecurity filter (<code>cyber_policy</code>). The model generated tokens, but the platform layer immediately suppressed and masked the response mid-stream (<em>&ldquo;This content can&rsquo;t be shown &hellip; apply for Daybreak&rdquo;</em>) and blocked file writes to disk.</li>
+    <li><strong>Antigravity AI / Google Gemini (Direct Refusal):</strong> Migrating the exact session state and hardware context to Antigravity CLI yielded an upfront, deterministic safety refusal (<em>&ldquo;Cannot assist with discovering or executing kernel exploits &hellip; regardless of ownership or authorization&rdquo;</em>).</li>
+    <li><strong>The Takeaway:</strong> Frontier model safety guardrails treat an obsolete, 12-year-old disconnected consumer handset identically to modern enterprise infrastructure. While frontier LLMs excel at diagnostic triage, driver deployment, and script automation, legacy hardware modding and retro security research remain firmly rooted in offline community archives, Wayback Machine mirrors, and manual human auditing.</li>
+</ul>
+
+<h3>Current Status &amp; Next Steps</h3>
+<p>The device sits in a healthy, verified hybrid state: running the August 2015 OH3 kernel on top of QA1 system partitions with full ADB authorization and verified restore tarballs staged. Further rooting exploration will proceed via offline manual methods.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew supplied the handset, operated hardware Odin download controls, tested USB cables, verified physical device boot behavior, and directed recovery strategy. <strong>OpenAI Codex</strong> guided initial Windows USB troubleshooting, driver reinstallation, and firmware TAR slicing. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> deployed permanent host ADB tools, verified git repository states, and authored this multi-phase hardware and AI triage case study.</p>
+
+<ul class="chips">
+    <li>Samsung SCH-I435</li>
+    <li>Odin3 Firmware Flashing</li>
+    <li>Knox Bootloader (SWREV 4)</li>
+    <li>Kernel Downgrade</li>
+    <li>ADB</li>
+    <li>AI Safety Guardrails</li>
+    <li>OpenAI Codex</li>
+    <li>Antigravity AI</li>
+    <li>In Progress</li>
+</ul>
 </section>
 
 <section class="project-entry" aria-labelledby="adguard-home-scheduled-traffic-filtering-title">
@@ -2566,7 +2594,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-16T22:05:00-05:00">November 16, 2026 at 10:05:00 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-19T09:22:00-05:00">November 19, 2026 at 9:22:00 AM EST</time></p>
 				<p class="footer-version">Version v2.6.382 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
