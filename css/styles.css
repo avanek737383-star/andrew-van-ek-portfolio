@@ -4559,6 +4559,8 @@ nav.tablet-desktop > ul { flex-wrap: wrap; row-gap: 6px; }
 
     .home-intro-col .header-content {
         justify-content: flex-start;
+        align-items: center;
+        min-height: 108px;
         gap: 18px;
     }
 
@@ -7259,9 +7261,35 @@ body.search-modal-open {
 .hero-quote-caption {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
     flex: 1 1 auto;
     min-width: 0;
+    min-height: 104px;
+    height: 104px;
+    box-sizing: border-box;
+}
+
+.hero-slogan {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9em;
+    line-height: 1.32;
+    color: #475569;
+    font-style: italic;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: font-size 0.15s ease, line-height 0.15s ease;
+}
+
+.hero-slogan.hero-quote-compact {
+    font-size: 0.77rem;
+    line-height: 1.22;
 }
 
 .hero-quote-byline {
@@ -7270,7 +7298,8 @@ body.search-modal-open {
     justify-content: space-between;
     width: 100%;
     gap: 8px;
-    margin-top: 5px;
+    margin-top: auto;
+    padding-top: 4px;
     line-height: 1.2;
 }
 
@@ -7278,6 +7307,9 @@ body.search-modal-open {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .hero-quote-dice-btn {
@@ -7295,7 +7327,7 @@ body.search-modal-open {
     font-size: 0.72rem;
     cursor: pointer;
     line-height: 1;
-    transition: all 0.15s ease;
+    transition: transform 0.2s ease, background 0.15s ease, border-color 0.15s ease;
     box-sizing: border-box;
     flex-shrink: 0;
 }
@@ -7306,15 +7338,23 @@ body.search-modal-open {
     transform: scale(1.08);
 }
 
+.hero-quote-dice-btn.rolling {
+    transform: rotate(360deg) scale(1.08);
+}
+
 @media (max-width: 768px) {
     .hero-quote-caption {
+        height: auto;
+        min-height: 88px;
         align-items: center;
+        text-align: center;
         width: 100%;
     }
     .hero-quote-byline {
         justify-content: center;
         width: auto;
         gap: 8px;
+        margin-top: auto;
     }
     .hero-quote-dice-btn {
         margin-left: 0;

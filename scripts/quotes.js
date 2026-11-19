@@ -661,6 +661,12 @@
 			currentHeroIndex = idx;
 			var item = HOMELAB_QUOTES[idx];
 			sloganEl.textContent = '“' + item.quote + '”';
+			sloganEl.title = item.quote + ' (Click to roll another quote)';
+			if (item.quote.length > 130) {
+				sloganEl.classList.add('hero-quote-compact');
+			} else {
+				sloganEl.classList.remove('hero-quote-compact');
+			}
 			if (authorEl) {
 				if (item.id === 'if-it-isnt-broke') {
 					authorEl.innerHTML = '&ndash; <a href="about.html" style="color: inherit; text-decoration: underline;" title="About Andrew Van Ek">Andrew Van Ek</a>';
@@ -675,6 +681,14 @@
 			do {
 				nextIdx = Math.floor(Math.random() * HOMELAB_QUOTES.length);
 			} while (nextIdx === currentHeroIndex && HOMELAB_QUOTES.length > 1);
+			if (diceBtn) {
+				diceBtn.classList.remove('rolling');
+				void diceBtn.offsetWidth;
+				diceBtn.classList.add('rolling');
+				setTimeout(function () {
+					if (diceBtn) diceBtn.classList.remove('rolling');
+				}, 220);
+			}
 			rotateHeroQuote(nextIdx);
 		}
 
