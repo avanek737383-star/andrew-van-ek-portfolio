@@ -82,6 +82,54 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="gcp-vm-realistic-vision-rclone-title">
+<h2 id="gcp-vm-realistic-vision-rclone-title">Google Cloud VM (Debian 12) Realistic Vision V6 Wallpaper Generator: Continuous Ad Infinitum Inference, Minimalist 1080p Web UI &amp; Zero-Prompt Rclone Google Drive Sync</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Google Cloud Platform (GCP) &middot; Debian 12 &middot; Realistic Vision V6 &middot; stable-diffusion.cpp &middot; Rclone &middot; Google Drive OAuth2 &middot; Headless Web Architecture &middot; Ad Infinitum Inference &middot; <time datetime="2026-11-19">November 19, 2026</time></span></p>
+<div class="project-architecture" aria-label="GCP VM Realistic Vision Continuous Wallpaper Engine Architecture"><span>GCP VM Desktop UI / Web Browser (http://127.0.0.1:1234)</span><span aria-hidden="true">&rarr;</span><span>Python Launcher &amp; Micro-Server (Port 1234)</span><span aria-hidden="true">&rarr;</span><span>stable-diffusion.cpp Engine (Realistic Vision V6 / CPU Port)</span><span aria-hidden="true">&rarr;</span><span>Continuous Ad Infinitum Loop (1920&times;1080, DPM++ 2M, Karras)</span><span aria-hidden="true">&rarr;</span><span>Local Storage (~/AI-Wallpapers)</span><span aria-hidden="true">&rarr;</span><span>Rclone Background Queue (--no-traverse)</span><span aria-hidden="true">&rarr;</span><span>Google Drive (gdrive:AI-Wallpapers)</span></div>
+
+<p>On my 8-vCPU Google Cloud Compute Engine VM (<code>fah-cpu-8</code>, <code>c2-standard-8</code> in <code>us-central1-c</code> running Debian 12 with an XFCE desktop accessible over Tailscale VNC), I had an existing "Local Photo" desktop shortcut running a heavy upstream <code>stable-diffusion.cpp</code> WebUI. While functional, it suffered from friction: generating images required navigating complex sub-panels and sliders, resolutions varied, batch generation was capped, users had to click manual browser "Download" buttons on every single image before closing the terminal, and output images were discarded on exit if not saved manually. Collaborating with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, we overhauled the entire architecture into an unattended, continuous 1080p wallpaper generation pipeline that automatically saves renders locally and streams them directly into my 5.0 TiB Google Drive storage under <code>avanek2005@gmail.com</code>.</p>
+
+<h3>Minimalist 1080p Web UI &amp; Photorealistic Parameter Locking</h3>
+<p>We replaced the monolithic upstream Vue WebUI with an ultra-clean, dark-themed responsive interface designed for distraction-free prompting:</p>
+<ul>
+<li><strong>Locked 1920&times;1080 Full HD Geometry:</strong> Completely eliminated dimension sliders and aspect ratio inputs. Generation geometry is permanently hardcoded to 1920&times;1080 Full HD across both frontend payloads and the C++ engine invocation (<code>-W 1920 -H 1080</code>).</li>
+<li><strong>Automated Negative Prompt &amp; Sampler Injection:</strong> Pre-configured the engine with Realistic Vision V6 photorealism negative prompts (eradicating painting, cartoon, 3D render, blur, and artifacts) alongside optimal inference settings (20 sampling steps, CFG scale 5.0, DPM++ 2M sampler, and Karras sigma scheduler).</li>
+<li><strong>Live 16:9 Viewport &amp; Session Lightbox:</strong> Built a 16:9 presentation container that displays the active wallpaper with live step/elapsed timers, dynamic generation overlays, and an interactive horizontal session gallery strip allowing instant full-resolution inspection.</li>
+</ul>
+
+<h3>Continuous Unattended Generation Loop (<em>Ad Infinitum</em>)</h3>
+<p>To eliminate manual batch size limits and browser download popups, we re-architected the Python launcher service (<code>/home/fold/.local/bin/local-photo</code>):</p>
+<ul>
+<li><strong>Autonomous Multi-Threaded Generator:</strong> Clicking "Start Continuous Generation" launches an unattended background worker loop. Each iteration generates a cryptographically random seed (<code>random.randint(1, 2147483647)</code>), submits the job to the local <code>stable-diffusion.cpp</code> HTTP engine, polls status, decodes the rendered base64 PNG directly from inference memory, and writes it to disk (<code>~/AI-Wallpapers/rv1080p_YYYYMMDD-HHMMSS_s&lt;seed&gt;.png</code>).</li>
+<li><strong>Ad Infinitum Persistence:</strong> The generator immediately cycles to the next image without stopping, continuing forever until explicitly halted. Because generation runs in a backend daemon thread rather than frontend JavaScript timers, background browser tab throttling cannot stall or drop active rendering passes.</li>
+<li><strong>Responsive Interrupt Engine:</strong> Clicking "Stop Generation" seamlessly signals the worker, transmits a non-blocking cancellation request to the engine (<code>/sdcpp/v1/jobs/{id}/cancel</code>), and cleanly halts the loop without file corruption or deadlocks.</li>
+</ul>
+
+<h3>Rclone Google Drive Deployment &amp; Headless Loopback OAuth Triage</h3>
+<p>To automatically sync generated wallpapers to cloud storage without manual intervention, we integrated Rclone with Google Drive for <code>avanek2005@gmail.com</code>:</p>
+<ul>
+<li><strong>Port 53682 Connection Refusal Diagnosis:</strong> During initial configuration, executing <code>rclone config reconnect</code> resulted in an immediate browser error (<code>Firefox can't connect to 127.0.0.1:53682</code>). Investigating the execution lifecycle revealed that standard interactive reconnection commands paused waiting for an unprompted <code>y/n</code> (auto config) input on stdin; when executed headless or via desktop shortcuts, EOF was triggered, causing Rclone to terminate before the local HTTP callback listener could bind to port 53682.</li>
+<li><strong>Dedicated Zero-Prompt OAuth Wrapper (<code>setup-rclone-gdrive</code>):</strong> Engineered a Python setup utility that directly launches <code>rclone authorize "drive"</code>. This bypasses all interactive stdin prompts, immediately binds port 53682, automatically launches Firefox to Google's OAuth consent screen on the VM desktop (<code>DISPLAY=:0.0</code>), captures the returned JSON token upon user approval, and safely commits it into <code>~/.config/rclone/rclone.conf</code>.</li>
+</ul>
+
+<h3>Directory Traversal Optimization (<code>--no-traverse</code>) &amp; Background Sync</h3>
+<p>My Google Drive account hosts thousands of existing wallpapers within the target <code>AI-Wallpapers</code> shortcut folder:</p>
+<ul>
+<li><strong>Eliminating API Traversal Latency:</strong> In standard mode, Rclone performs full remote directory listings prior to uploading. With thousands of files in <code>AI-Wallpapers</code>, scanning the remote directory caused 15–20 second latency penalties per file. We implemented the <code>--no-traverse</code> flag in the background synchronization worker (<code>rclone copy --no-traverse file.png gdrive:AI-Wallpapers/</code>), allowing each finished wallpaper to stream to Google Drive within sub-second intervals.</li>
+<li><strong>Local Desktop Symlink Integration:</strong> Symlinked <code>~/AI-Wallpapers</code> directly to <code>~/Desktop/AI-Wallpapers</code>, allowing local file browsing and cloud synchronization to happen simultaneously. An in-memory cache check verifies token validity in sub-milliseconds, displaying a real-time green cloud synchronization indicator in the Web UI header.</li>
+</ul>
+
+<h3>Process Supervision &amp; Safe RAM Cleanup</h3>
+<p>Because the Google Cloud VM operates under strict RAM constraints, lingering background inference servers can exhaust memory:</p>
+<ul>
+<li><strong>Parent Death Signaling:</strong> Configured <code>prctl(PR_SET_PDEATHSIG, SIGTERM)</code> so that if the parent terminal session terminates, all child C++ inference processes immediately terminate.</li>
+<li><strong>Signal Interception &amp; Mutex Locking:</strong> Bound <code>SIGINT</code>, <code>SIGTERM</code>, and <code>SIGHUP</code> to gracefully shut down the embedded Python HTTP server, terminate the engine subprocess, release the <code>launcher.lock</code> file, and completely free the 2.3 GB model weights from system RAM.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek defined the continuous generation requirements, specified the 1080p locked UI and rclone Google Drive integration for avanek2005@gmail.com, completed the browser OAuth consent on the VM desktop, and verified live sync to the AI-Wallpapers folder. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> inspected the existing GCP VM environment, designed and deployed the streamlined web UI, re-engineered the multi-threaded Python server and continuous generation loop, diagnosed and resolved the rclone port 53682 OAuth loopback failure, implemented the --no-traverse cloud sync queue, verified end-to-end cloud persistence, and authored this documentation.</p>
+<ul class="chips"><li>Google Cloud Platform (GCP)</li><li>Debian 12</li><li>Realistic Vision V6</li><li>stable-diffusion.cpp</li><li>1080p Wallpaper Engine</li><li>Continuous Inference</li><li>Rclone</li><li>Google Drive</li><li>OAuth2 Automation</li><li>Antigravity AI (Google DeepMind)</li><li>Completed Project</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="samsung-s4mini-duco-miner-title">
 <h2 id="samsung-s4mini-duco-miner-title">Samsung Galaxy S4 Mini (SCH-I435) Persistent Duino-Coin Web Miner: Local LAN Deployment, Dual Krait 300 Tuning, Vanilla ES5 WebKit Optimization &amp; Permanent Screen Keep-Awake</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Samsung Galaxy S4 Mini &middot; SCH-I435 &middot; Qualcomm Snapdragon 400 &middot; Duino-Coin (DUCO) &middot; Python WebSocket Proxy &middot; Strict ES5 Web Worker &middot; OpenRC Service &middot; Android Developer Stay-Awake &middot; <time datetime="2026-11-18">November 18, 2026</time></span></p>
