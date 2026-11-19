@@ -82,6 +82,46 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="local-media-converter-title">
+<h2 id="local-media-converter-title">Local Media &amp; Offline File Converter: Apple Silicon Metal Hardware Acceleration, Tailscale Mesh Accessibility &amp; Lid-Safe Process Suspension</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Apple Silicon VideoToolbox &middot; Tailscale Mesh &middot; FastAPI &middot; FFmpeg &middot; Server-Sent Events (SSE) &middot; UNIX Signal Process Freezing &middot; <time datetime="2026-11-18">November 18, 2026</time></span></p>
+<div class="project-architecture" aria-label="Local Media Converter Architecture"><span>Client (Mac, iPhone, iPad, Windows)</span><span aria-hidden="true">&rarr;</span><span>Tailscale Encrypted Mesh (100.67.172.15:8090)</span><span aria-hidden="true">&rarr;</span><span>FastAPI + Uvicorn Local Daemon</span><span aria-hidden="true">&rarr;</span><span>FFmpeg / SIPS / Pandoc Engine</span><span aria-hidden="true">&rarr;</span><span>Hardware VideoToolbox / H.264 / HEVC</span><span aria-hidden="true">&rarr;</span><span>SSE Live Encoding Telemetry</span></div>
+
+<p>Frequently converting media and document files across varied workflows often forces a compromise: commercial web-based converters enforce arbitrary file size bounds, restrict audio duration, require repetitive re-uploading over metered connections, and present privacy risks. To eliminate these constraints, I worked in pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> to engineer and deploy a 100% offline, self-hosted media conversion microservice hosted natively on my Apple Silicon Mac, seamlessly accessible to all devices across my private Tailscale mesh.</p>
+
+<h3>Category-Locked Format Routing &amp; Input Sanitation</h3>
+<p>Unlike blunt multi-format utilities that overwhelm users with incompatible choices, we designed a dynamic client-side and server-side categorization matrix:</p>
+<ul>
+<li><strong>Smart Category Isolation:</strong> Selecting an input file dynamically probes its MIME type and extension, immediately restricting output format selectors strictly to compatible targets. Choosing a <code>.png</code> or <code>.jpg</code> restricts output options to image formats (<code>WebP</code>, <code>AVIF</code>, <code>GIF</code>, <code>TIFF</code>, <code>ICO</code>, <code>PDF</code>), preventing accidental cross-category mismatches like attempting to encode a PNG into an MP4.</li>
+<li><strong>Video &amp; Audio Processing Matrix:</strong> Video files (<code>.mp4</code>, <code>.mov</code>, <code>.mkv</code>, <code>.webm</code>, <code>.avi</code>) unlock universal encoding along with high-quality animated GIF synthesis (via a custom two-pass <code>palettegen</code> and <code>paletteuse</code> pipeline for smooth 15 fps color rendering) and audio extraction (320 kbps MP3 or uncompressed WAV).</li>
+<li><strong>Document Transformation:</strong> Text and markup files (<code>.docx</code>, <code>.md</code>, <code>.html</code>, <code>.epub</code>) leverage <code>pandoc</code> and headless Google Chrome rendering to compile print-ready, CSS-styled PDFs locally.</li>
+</ul>
+
+<h3>Granular Visual Media Trimming &amp; Audio Bitrate Controls</h3>
+<p>To avoid needing heavy non-linear video editors for quick clips or audio extraction, we engineered inline media controls:</p>
+<ul>
+<li><strong>Interactive Trimming Sliders:</strong> When video or audio files are selected, client-side HTML5 media elements asynchronously probe duration without server upload roundtrips. Interactive dual-range sliders and timestamp inputs allow defining exact start (<code>-ss</code>) and end (<code>-to</code>) seek boundaries down to half-second increments.</li>
+<li><strong>Audio Bitrate Tuning Knobs:</strong> Audio conversions expose selectable bitrate presets (<code>64 kbps</code> voice/speech, <code>96 kbps</code> podcast, <code>128 kbps</code> standard, <code>192 kbps</code> high, <code>256 kbps</code> very high, and <code>320 kbps</code> studio maximum). The backend dynamically configures <code>libmp3lame</code> and <code>libopus</code> encoder arguments to produce optimized file sizes.</li>
+</ul>
+
+<h3>&ldquo;Lid-Safe&rdquo; Process Suspension via OS-Level UNIX Signals</h3>
+<p>A common problem with long-running encodes on laptops is having to close the lid to transition between rooms or commute to class, which ordinarily terminates active jobs and corrupts output headers. We implemented an OS-level suspension engine:</p>
+<ul>
+<li><strong>Instant Memory Freezing (<code>SIGSTOP</code>):</strong> Clicking &ldquo;Pause&rdquo; issues an asynchronous <code>POST /api/jobs/{id}/pause</code> request, dispatching an OS-level <code>SIGSTOP</code> signal to the underlying child worker PID. macOS immediately deschedules the thread, dropping CPU utilization to 0% while retaining the exact encoding state resident in RAM. The user can safely close their laptop lid or put the machine to sleep.</li>
+<li><strong>Zero-Loss Resumption (<code>SIGCONT</code>):</strong> Reopening the machine and clicking &ldquo;Resume&rdquo; issues <code>SIGCONT</code>, instantly reactivating the encoder right where it paused without dropped frames or muxing errors.</li>
+</ul>
+
+<h3>Real-Time Telemetry &amp; Terminal QR Mesh Deployment</h3>
+<p>To elevate everyday usability and visibility:</p>
+<ul>
+<li><strong>Real-Time SSE Telemetry:</strong> An asynchronous Server-Sent Events stream (<code>EventSource</code>) pipes real-time telemetry from FFmpeg progress pipe to the web client every 300ms, displaying percentage progress bars, live encoding speeds (e.g., <code>42x</code> to <code>127x</code> realtime on Apple Silicon), frame counters (FPS), and bitrates.</li>
+<li><strong>Tailnet Terminal QR Launcher:</strong> Packaged the server into a double-clickable macOS desktop shortcut (<code>Local File Converter.command</code>). On launch, the startup script interrogates the local Tailscale daemon, displays the secure node IP (<code>100.67.172.15:8090</code>), generates an inverted high-contrast ASCII QR code directly inside the terminal window for instant phone camera scanning, and automatically opens Google Chrome. Pressing <code>Ctrl+C</code> triggers a clean bash <code>trap</code> that gracefully releases sockets and terminates background workers.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the local converter project, specified the offline requirement to eliminate web service duration caps, defined the category-locking UX behavior, requested the lid-safe pause/resume capability for classroom commutes, designed the media trimming sliders and audio bitrate knobs, and tested mobile file conversions over Tailscale. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> architected the Python FastAPI and FFmpeg backend, implemented the Apple Silicon VideoToolbox hardware encoding pipeline, engineered the OS-level <code>SIGSTOP</code>/<code>SIGCONT</code> pause/resume mechanism, developed the real-time SSE progress streaming protocol, created the responsive dark-mode web interface with HTML5 metadata probing, generated the terminal ASCII QR code launcher, and authored this case study.</p>
+<ul class="chips"><li>FastAPI</li><li>Apple Silicon VideoToolbox</li><li>Tailscale Mesh</li><li>FFmpeg</li><li>Server-Sent Events</li><li>SIPS</li><li>Pandoc</li><li>macOS Sequoia</li><li>Antigravity (Google DeepMind)</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="cross-platform-spacedesk-tailscale-mesh-title">
 <h2 id="cross-platform-spacedesk-tailscale-mesh-title">Cross-Platform Multi-OS Display Mesh &amp; Window Virtualization: Remote Windows 11 to macOS Dual-Monitor Workstation via MNN Portable Display, Spacedesk &amp; Native RDP over Tailscale</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Spacedesk WDDM &middot; Tailscale (WireGuard) &middot; Windows 11 &middot; macOS Sequoia &middot; Virtual Display Network Driver &middot; Cross-Platform Ergonomics &middot; <time datetime="2026-11-18">November 18, 2026</time></span></p>
