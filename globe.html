@@ -4,17 +4,17 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>3D Planetary Radar &amp; Global Internet Backbone | Andrew Van Ek Portfolio</title>
-	<meta name="description" content="Interactive 3D WebGL planetary radar streaming subsea fiber optic cables, coastal landing stations, international IXPs, and private homelab mesh nodes with real-time fly-to telemetry.">
+	<meta name="description" content="Interactive 3D WebGL planetary radar streaming subsea fiber optic cables, coastal landing stations, and international IXPs with real-time fly-to telemetry and ground street view.">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://andrewtvanekportfolio.online/globe.html">
 	<meta property="og:title" content="3D Planetary Radar &amp; Global Internet Backbone | Andrew Van Ek Portfolio">
-	<meta property="og:description" content="Interactive 3D WebGL planetary radar streaming subsea fiber optic cables, coastal landing stations, international IXPs, and private homelab mesh nodes with real-time fly-to telemetry.">
+	<meta property="og:description" content="Interactive 3D WebGL planetary radar streaming subsea fiber optic cables, coastal landing stations, and international IXPs with real-time fly-to telemetry and ground street view.">
 	<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261103-clock-weather-fix-1">
-	<link rel="stylesheet" href="css/globe.css?v=20261120-globe-1">
+	<link rel="stylesheet" href="css/globe.css?v=20261120-globe-2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -79,7 +79,7 @@
 		<header style="margin: 25px 0 10px 0; color: #f8fafc;">
 			<h1 style="font-size: 1.85rem; font-weight: 700; margin-bottom: 6px; color: #f8fafc;">3D Planetary Radar &amp; Global Internet Backbone</h1>
 			<p style="color: #94a3b8; font-size: 0.95rem; max-width: 860px; line-height: 1.5;">
-				An interactive WebGL 3D planetary radar mapping the physical underpinnings of the global internet: 400+ international subsea fiber optic cables, 1,900+ coastal landing stations, Tier 1 Internet Exchange Points (IXPs), and private homelab mesh nodes with ground-level street exploration.
+				An interactive WebGL 3D planetary radar mapping the physical underpinnings of the global internet: 400+ international subsea fiber optic cables, 1,900+ coastal landing stations, and Tier 1 Internet Exchange Points (IXPs) with ground-level street exploration.
 			</p>
 		</header>
 
@@ -94,7 +94,7 @@
 					</div>
 
 					<div class="hud-search-box">
-						<input type="search" id="hud-search-input" class="hud-search-input" placeholder="Search cable, city, or node..." autocomplete="off" aria-label="Search cable, city, or node" />
+						<input type="search" id="hud-search-input" class="hud-search-input" placeholder="Search cable, city, or station..." autocomplete="off" aria-label="Search cable, city, or station" />
 						<svg class="hud-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 						<ul id="hud-search-results" class="hud-search-results" role="listbox" aria-label="Search suggestions"></ul>
 					</div>
@@ -105,7 +105,6 @@
 					<button class="filter-pill active" data-filter="all"><span class="pill-dot" style="background:#38bdf8;"></span> All Layers</button>
 					<button class="filter-pill" data-filter="cables" style="--pill-color:#00f0ff;"><span class="pill-dot"></span> Subsea Fiber</button>
 					<button class="filter-pill" data-filter="landings" style="--pill-color:#fbbf24;"><span class="pill-dot"></span> Landing Stations</button>
-					<button class="filter-pill" data-filter="homelab" style="--pill-color:#10b981;"><span class="pill-dot"></span> Homelab &amp; Cloud</button>
 					<button class="filter-pill" data-filter="ixps" style="--pill-color:#ec4899;"><span class="pill-dot"></span> Tier 1 IXPs</button>
 				</div>
 
@@ -113,7 +112,6 @@
 				<div class="hud-overlay hud-actions-toolbar">
 					<button id="hud-rotate-btn" class="hud-btn active" type="button" aria-pressed="true" title="Toggle continuous planetary rotation">&#8635; Orbit</button>
 					<button id="hud-reset-btn" class="hud-btn" type="button" title="Reset camera to global Atlantic view">&#9678; Reset View</button>
-					<button id="hud-homelab-btn" class="hud-btn globe-hud-homelab-btn" type="button" title="Fly camera straight to Grand Rapids Homelab">&#127968; Homelab Focus</button>
 					<button id="hud-atmos-btn" class="hud-btn active" type="button" title="Toggle atmospheric scattering glow">&#127757; Atmosphere</button>
 					<button id="hud-texture-btn" class="hud-btn" type="button" title="Toggle between Night Lights and Day Topography">&#127747; Night Lights</button>
 				</div>
@@ -122,9 +120,8 @@
 				<div class="hud-overlay hud-legend">
 					<span class="legend-item"><span class="legend-dot" style="background:#00f0ff;"></span> Subsea Optical Fiber</span>
 					<span class="legend-item"><span class="legend-dot" style="background:#fbbf24;"></span> Coastal Landing Station</span>
-					<span class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Homelab &amp; Cloud</span>
 					<span class="legend-item"><span class="legend-dot" style="background:#ec4899;"></span> Tier 1 IXP</span>
-					<span class="legend-item"><span class="legend-dot" style="background:#a855f7;"></span> Packet Transit Arc</span>
+					<span class="legend-item"><span class="legend-dot" style="background:#38bdf8;"></span> Optical Transit Arc</span>
 				</div>
 
 				<!-- Slide-Out Telemetry Drawer -->
@@ -144,7 +141,7 @@
 							<span id="drawer-domain">Global Internet Backbone</span>
 						</div>
 
-						<div id="drawer-summary" class="drawer-summary">Click any subsea optical fiber, coastal landing station, or homelab beacon on the globe to inspect real-time specs, vector geometry, and ground-level street views.</div>
+						<div id="drawer-summary" class="drawer-summary">Click any subsea optical fiber, coastal landing station, or peering exchange on the globe to inspect real-time specs, vector geometry, and ground-level street views.</div>
 
 						<div id="drawer-tasks-section">
 							<h3 class="drawer-section-title">Telemetry &amp; Inspection</h3>
@@ -169,7 +166,7 @@
 					3D Planetary Radar Architecture &amp; Physical Internet Telemetry
 				</h2>
 				<p style="color: #cbd5e1; line-height: 1.6; margin: 12px 0 16px 0;">
-					While the internet is often abstracted as an ephemeral "cloud", in physical reality over 95% of international data transit relies on dense glass fibers no thicker than a human hair traversing extreme ocean trenches. This planetary radar maps the physical layer of the web alongside my personal homelab infrastructure:
+					While the internet is often abstracted as an ephemeral "cloud", in physical reality over 95% of international data transit relies on dense glass fibers traversing extreme ocean trenches. This planetary radar maps the physical layer of the global web:
 				</p>
 
 				<div class="tech-stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0;">
@@ -188,9 +185,9 @@
 					</div>
 
 					<div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
-						<h3 style="color: #10b981; font-size: 1.05rem; margin-top: 0;">Homelab &amp; Cloud Mesh Telemetry</h3>
+						<h3 style="color: #ec4899; font-size: 1.05rem; margin-top: 0;">Tier 1 Global Peering &amp; Backhaul</h3>
 						<p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5;">
-							Overlays private infrastructure nodes—including my Grand Rapids Intel NUC homelab, Google Cloud Debian VM in Iowa, Azure Linux compute node in Virginia, and Tailscale mesh gateways—demonstrating real-world packet routing from homelab to cloud.
+							Maps core international Internet Exchange Points (including Equinix Ashburn, DE-CIX Frankfurt, AMS-IX Amsterdam, and LINX London), tracing high-capacity optical transit arcs between subsea landings and continental backbones.
 						</p>
 					</div>
 				</div>
@@ -199,8 +196,8 @@
 
 		<footer style="color: #94a3b8; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: 30px;">
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html" style="color: #38bdf8;">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com" style="color: #38bdf8;">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-20T16:10:00-05:00">November 20, 2026 at 4:10:00 PM EST</time></p>
-			<p class="footer-version">Version v2.6.358 &middot; <a href="changelog.html" style="color: #38bdf8;">Read what's new &rarr;</a></p>
+			<p>Website last modified: <time datetime="2026-11-20T16:17:00-05:00">November 20, 2026 at 4:17:00 PM EST</time></p>
+			<p class="footer-version">Version v2.6.359 &middot; <a href="changelog.html" style="color: #38bdf8;">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
@@ -215,6 +212,6 @@
 	</script>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 	<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
-	<script src="scripts/globe.js?v=20261120-globe-1"></script>
+	<script src="scripts/globe.js?v=20261120-globe-2"></script>
 </body>
 </html>

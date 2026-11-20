@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 78,
     "totalNodes": 225,
-    "totalLinks": 457,
+    "totalLinks": 456,
     "domains": 6,
     "techBridges": 10
   },
@@ -416,7 +416,7 @@
     },
     {
       "id": "interactive-3d-planetary-backbone-title",
-      "name": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "name": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
@@ -458,7 +458,7 @@
       "id": "task-interactive-3d-planetary-backbone-title-0",
       "name": "MultiLineString Geospatial Parsing",
       "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
       "parentId": "interactive-3d-planetary-backbone-title",
       "status": "completed",
       "val": 5,
@@ -470,7 +470,7 @@
       "id": "task-interactive-3d-planetary-backbone-title-1",
       "name": "Kinetic Photon Pulse Shaders",
       "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
       "parentId": "interactive-3d-planetary-backbone-title",
       "status": "completed",
       "val": 5,
@@ -482,7 +482,7 @@
       "id": "task-interactive-3d-planetary-backbone-title-2",
       "name": "Dynamic Palette Categorization",
       "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
       "parentId": "interactive-3d-planetary-backbone-title",
       "status": "completed",
       "val": 5,
@@ -494,7 +494,7 @@
       "id": "task-interactive-3d-planetary-backbone-title-3",
       "name": "Coordinate Fly-To Choreography",
       "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
       "parentId": "interactive-3d-planetary-backbone-title",
       "status": "completed",
       "val": 5,
@@ -4035,12 +4035,6 @@
     {
       "source": "interactive-3d-planetary-backbone-title",
       "target": "tech-threejs-webgl",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "interactive-3d-planetary-backbone-title",
-      "target": "tech-gcp-cloud",
       "type": "project-tech",
       "distance": 85
     },
