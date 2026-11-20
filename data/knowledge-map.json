@@ -440,16 +440,16 @@
           "desc": "Maps precise horizontal coordinates for every surface sunbreak (including the far upper-left opening at x: 6.5%, upper-right inboard sunburs..."
         },
         {
-          "title": "4 Submerged In-Water Caustic Focal Points",
+          "title": "6 Submerged In-Water Caustic Focal Points",
           "desc": "Extends volumetric emission to light prisms suspended directly within the water column (including the glowing upper-middle caustic below the..."
+        },
+        {
+          "title": "Pure Volumetric Optics (Zero Artificial Cursor Dots)",
+          "desc": "Removed synthetic cursor glow dots and tutorial badges so all 14 light shafts gravitate organically toward the pointer coordinate, preservin..."
         },
         {
           "title": "Gravitational Cursor Attraction",
           "desc": "When hovering over the canvas on desktop, all 12 surface and submerged light shafts dynamically calculate real-time vectors that bend and gr..."
-        },
-        {
-          "title": "Suspended Marine Dust Motes",
-          "desc": "A physics array of 48 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ..."
         }
       ],
       "url": "projects.html#oceanscape-gyro-lightbeams-title"
@@ -468,7 +468,7 @@
     },
     {
       "id": "task-oceanscape-gyro-lightbeams-title-1",
-      "name": "4 Submerged In-Water Caustic Focal Points",
+      "name": "6 Submerged In-Water Caustic Focal Points",
       "type": "task",
       "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
       "parentId": "oceanscape-gyro-lightbeams-title",
@@ -480,6 +480,18 @@
     },
     {
       "id": "task-oceanscape-gyro-lightbeams-title-2",
+      "name": "Pure Volumetric Optics (Zero Artificial Cursor Dots)",
+      "type": "task",
+      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
+      "parentId": "oceanscape-gyro-lightbeams-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Removed synthetic cursor glow dots and tutorial badges so all 14 light shafts gravitate organically toward the pointer coordinate, preservin...",
+      "url": "projects.html#oceanscape-gyro-lightbeams-title"
+    },
+    {
+      "id": "task-oceanscape-gyro-lightbeams-title-3",
       "name": "Gravitational Cursor Attraction",
       "type": "task",
       "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
@@ -488,18 +500,6 @@
       "val": 5,
       "color": "#10b981",
       "summary": "When hovering over the canvas on desktop, all 12 surface and submerged light shafts dynamically calculate real-time vectors that bend and gr...",
-      "url": "projects.html#oceanscape-gyro-lightbeams-title"
-    },
-    {
-      "id": "task-oceanscape-gyro-lightbeams-title-3",
-      "name": "Suspended Marine Dust Motes",
-      "type": "task",
-      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
-      "parentId": "oceanscape-gyro-lightbeams-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "A physics array of 48 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ...",
       "url": "projects.html#oceanscape-gyro-lightbeams-title"
     },
     {

@@ -535,17 +535,17 @@
             "<div class='cable-spec-box'><div class='cable-spec-label'>Geometry Nodes</div><div class='cable-spec-value'>" + cable.coords.length + " Coordinates</div></div>" +
             "<div class='cable-spec-box'><div class='cable-spec-label'>Optical Shader</div><div class='cable-spec-value' style='color:" + cable.color + ";'>" + cable.color + "</div></div>" +
             "</div>" +
-            "<p style='color:#cbd5e1;line-height:1.55;font-size:0.92rem;margin-top:10px;'>This subsea optical fiber link forms a physical artery of the international internet, transporting multi-terabit dense wavelength division multiplexing (DWDM) optical signals across ocean seabeds to coastal landing terminals.</p>";
+            "<p style='color:#cbd5e1;line-height:1.55;font-size:0.92rem;margin-top:10px;'>This subsea optical fiber link forms a physical artery of the international internet, transporting multi-<span class='tech-term' data-term='tbps'>terabit</span> <span class='tech-term' data-term='dwdm'>dense wavelength division multiplexing (DWDM)</span> optical signals across ocean seabeds to coastal <span class='tech-term' data-term='cable-landing-station'>landing terminals</span>.</p>";
         drawerSummary.innerHTML = summaryHtml;
 
         drawerTasksSection.style.display = "block";
         var taskTitle = document.querySelector("#drawer-tasks-section h3");
         if (taskTitle) taskTitle.textContent = "Cable System Overview";
-        drawerTasksList.innerHTML = "<li><strong>Physical Seabed Route:</strong> Mapped via TeleGeography geospatial coordinates.</li>" +
-            "<li><strong>Kinetic Photon Simulation:</strong> Dashed optical pulses indicate light signal propagation across continental corridors.</li>";
+        drawerTasksList.innerHTML = "<li><strong>Physical Seabed Route:</strong> Mapped via <span class='tech-term' data-term='telegeography'>TeleGeography</span> geospatial telemetry.</li>" +
+            "<li><strong>Kinetic Photon Simulation:</strong> Dashed optical pulses indicate light signal propagation across continental corridors powered by <span class='tech-term' data-term='subsea-repeater'>underwater optical repeaters</span>.</li>";
 
         drawerTechSection.style.display = "block";
-        drawerTechTags.innerHTML = "<span class='tech-tag'>DWDM Optical</span><span class='tech-tag'>Subsea Fiber</span><span class='tech-tag'>TeleGeography</span><span class='tech-tag'>Three.js</span>";
+        drawerTechTags.innerHTML = "<span class='drawer-tech-tag tech-term' data-term='dwdm'>DWDM Optical</span><span class='drawer-tech-tag tech-term' data-term='subsea-fiber'>Subsea Fiber</span><span class='drawer-tech-tag tech-term' data-term='telegeography'>TeleGeography</span><span class='drawer-tech-tag tech-term' data-term='subsea-repeater'>Subsea Repeaters</span><span class='drawer-tech-tag tech-term' data-term='dark-fiber'>Dark Fiber</span>";
 
         drawerProjectLink.href = "projects.html#interactive-3d-planetary-backbone-title";
         drawerProjectLink.textContent = "Read 3D Planetary Radar Project Writeup in Projects \u2192";
@@ -588,10 +588,10 @@
             var ixpTaskTitle = document.querySelector("#drawer-tasks-section h3");
             if (ixpTaskTitle) ixpTaskTitle.textContent = "Interconnection Details";
             drawerTasksList.innerHTML = "<li><strong>Facility Location:</strong> " + pt.location + "</li>" +
-                "<li><strong>Transit Interconnect:</strong> Direct optical cross-connects between subsea fiber terminals and continental backbones.</li>";
+                "<li><strong>Transit Interconnect:</strong> Direct <span class='tech-term' data-term='optical-transit-arc'>optical cross-connects</span> between subsea fiber terminals and continental backbones via <span class='tech-term' data-term='bgp-peering'>BGP peering</span>.</li>";
 
             drawerTechSection.style.display = "block";
-            drawerTechTags.innerHTML = "<span class='tech-tag'>Tier 1 IXP</span><span class='tech-tag'>BGP Peering</span><span class='tech-tag'>Subsea Backhaul</span><span class='tech-tag'>DWDM</span>";
+            drawerTechTags.innerHTML = "<span class='drawer-tech-tag tech-term' data-term='ixp'>Tier 1 IXP</span><span class='drawer-tech-tag tech-term' data-term='bgp-peering'>BGP Peering</span><span class='drawer-tech-tag tech-term' data-term='tier-1-carrier'>Tier 1 Transit</span><span class='drawer-tech-tag tech-term' data-term='dwdm'>DWDM Optical</span><span class='drawer-tech-tag tech-term' data-term='tbps'>Tbps Throughput</span>";
 
             drawerProjectLink.href = "projects.html#interactive-3d-planetary-backbone-title";
             drawerProjectLink.textContent = "Read 3D Planetary Radar Project Writeup in Projects \u2192";
@@ -604,7 +604,7 @@
             drawerStatusBadge.innerHTML = "<span>&#10003;</span> Operational Landing Terminal";
 
             drawerSummary.innerHTML = "<span class='drawer-coords-badge'>LAT: " + pt.lat.toFixed(4) + " &middot; LNG: " + pt.lng.toFixed(4) + "</span>" +
-                "<p style='color:#cbd5e1;line-height:1.55;font-size:0.92rem;margin-top:10px;'>Physical coastal facility where submarine optical telecommunication cables make landfall, connecting wet deep-sea armored cables to terrestrial power feed equipment (PFE) and terrestrial optical backhaul networks.</p>" +
+                "<p style='color:#cbd5e1;line-height:1.55;font-size:0.92rem;margin-top:10px;'>Physical coastal facility where submarine optical telecommunication cables make landfall, connecting wet deep-sea armored cables to terrestrial <span class='tech-term' data-term='power-feed-equipment'>power feed equipment (PFE)</span>, <span class='tech-term' data-term='beach-manhole'>beach manholes</span>, and terrestrial <span class='tech-term' data-term='subsea-fiber'>optical backhaul</span> networks.</p>" +
                 "<div class='globe-actions-row'>" +
                 "<a href='" + streetViewUrl + "' target='_blank' rel='noopener' class='ground-btn ground-btn-street'>&#128065; Street View (Landing Site)</a>" +
                 "<a href='" + mapillaryUrl + "' target='_blank' rel='noopener' class='ground-btn ground-btn-mapillary'>&#127916; Mapillary Panorama</a>" +
@@ -618,7 +618,7 @@
                 "<li><strong>Interactive Ground View:</strong> Click the Street View or Mapillary buttons above to inspect the physical coastline, beach manhole infrastructure, and surrounding geography in full-resolution panorama.</li>";
 
             drawerTechSection.style.display = "block";
-            drawerTechTags.innerHTML = "<span class='tech-tag'>Cable Landing Station</span><span class='tech-tag'>Power Feed Equipment</span><span class='tech-tag'>Beach Manhole</span><span class='tech-tag'>TeleGeography</span>";
+            drawerTechTags.innerHTML = "<span class='drawer-tech-tag tech-term' data-term='cable-landing-station'>Cable Landing Station</span><span class='drawer-tech-tag tech-term' data-term='power-feed-equipment'>Power Feed Equipment</span><span class='drawer-tech-tag tech-term' data-term='beach-manhole'>Beach Manhole</span><span class='drawer-tech-tag tech-term' data-term='telegeography'>TeleGeography</span><span class='drawer-tech-tag tech-term' data-term='subsea-repeater'>Subsea Repeaters</span>";
 
             drawerProjectLink.href = "projects.html#interactive-3d-planetary-backbone-title";
             drawerProjectLink.textContent = "Read 3D Planetary Radar Project Writeup in Projects \u2192";
@@ -631,6 +631,9 @@
         if (!drawer) return;
         drawer.classList.add("open");
         drawer.setAttribute("aria-hidden", "false");
+        if (typeof window.initTechAnalogies === "function") {
+            window.initTechAnalogies();
+        }
     }
 
     function closeDrawer() {

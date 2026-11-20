@@ -1122,6 +1122,76 @@
 			title: "SSH (Secure Shell Protocol)",
 			analogy: "Like an encrypted private phone line connecting your keyboard directly to a remote server, ensuring that no eavesdropper on the local network can read passwords or keystrokes.",
 			techFact: "SSH is a cryptographic network protocol operating on TCP port 22 for secure remote administration and encrypted command execution."
+		},
+		"dwdm": {
+			title: "DWDM (Dense Wavelength Division Multiplexing)",
+			analogy: "Shining dozens of flashlights of completely different rainbow colors down the exact same hollow glass tube at the same moment. Even though they travel together down the same pipe, each color beam never gets mixed up and can be separated cleanly at the other end.",
+			techFact: "DWDM (Dense Wavelength Division Multiplexing) packs up to 96+ distinct optical wavelengths (colors of light) into a single hair-thin glass strand, scaling deep-sea subsea cables to transport hundreds of Terabits per second across oceans."
+		},
+		"subsea-fiber": {
+			title: "Subsea Optical Fiber Cable",
+			analogy: "A heavy garden hose wrapped in thick steel armor and waterproof tar laying across thousands of miles of pitch-black ocean floor, carrying microscopic laser pulses back and forth between continents at nearly the speed of light.",
+			techFact: "Submarine telecommunications cables span over 1.4 million kilometers across ocean seabeds, carrying over 99% of all international intercontinental data traffic using silica glass fiber pairs."
+		},
+		"ixp": {
+			title: "Internet Exchange Point (IXP)",
+			analogy: "A giant international airport terminal where dozens of different airlines park their planes at adjacent gates, allowing passengers to switch flights by walking across the hallway rather than flying to another city first.",
+			techFact: "An Internet Exchange Point (IXP) is a physical data center facility where Internet Service Providers (ISPs), CDNs, and backbone carriers connect their autonomous systems together directly via BGP peering without paying third-party transit fees."
+		},
+		"cable-landing-station": {
+			title: "Cable Landing Station (CLS)",
+			analogy: "The coastal ferry dock where giant ocean car carriers pull up to shore, offloading thousands of vehicles directly onto the coastal highway system.",
+			techFact: "A Cable Landing Station (CLS) is a hardened terrestrial shore facility where undersea submarine cables emerge from the ocean bed, housing high-voltage power feed equipment (PFE) and optical terminal transmission equipment (SLTE)."
+		},
+		"bgp-peering": {
+			title: "BGP Peering (Border Gateway Protocol)",
+			analogy: "Two major courier companies agreeing to open an interior doorway between their adjacent sorting warehouses, so they can hand packages directly to each other instead of buying retail postage stamps.",
+			techFact: "Border Gateway Protocol (BGP) is the routing protocol of the global internet. Peering allows two independent network autonomous systems (AS) to exchange routing prefixes and traffic directly on equal settlement-free terms."
+		},
+		"beach-manhole": {
+			title: "Beach Manhole (BMH)",
+			analogy: "The underground concrete cellar hatch right near the tide line where heavy reinforced outdoor storm pipes transition into lightweight indoor household plumbing.",
+			techFact: "A Beach Manhole (BMH) is a reinforced concrete chamber built just above the high-water shoreline where heavily armored wet-plant ocean cables are anchored, spliced, and transitioned into lighter terrestrial duct cables heading inland."
+		},
+		"power-feed-equipment": {
+			title: "Power Feed Equipment (PFE)",
+			analogy: "An ultra-high-voltage power plant on shore pumping thousands of volts down a single continuous copper wire buried in the seabed, keeping emergency water pumps running along thousands of miles of underwater pipeline.",
+			techFact: "Power Feed Equipment (PFE) delivers constant direct current (typically up to 10,000–15,000 Volts DC at ~1 Ampere) through the cable's internal copper conductor to power underwater optical repeaters stationed every 50–100 km across the ocean."
+		},
+		"dark-fiber": {
+			title: "Dark Fiber",
+			analogy: "Building an 8-lane concrete highway through the countryside but leaving 6 lanes unpainted with no toll booths open yet, ready to be used the second traffic surges in future years.",
+			techFact: "Dark fiber refers to unlit optical fiber strands laid in the ground or seabed that currently have no laser transmitters or receivers attached, providing reserve capacity for future network expansion without digging up new cables."
+		},
+		"tbps": {
+			title: "Tbps (Terabits Per Second)",
+			analogy: "Water flowing through a pipe so massive that an entire Olympic swimming pool's worth of water pours through every single second.",
+			techFact: "One Terabit per second (1 Tbps) equals 1,000 Gigabits per second, or 1,000,000,000,000 bits per second—enough capacity to stream hundreds of thousands of simultaneous 4K HDR movies concurrently."
+		},
+		"tier-1-carrier": {
+			title: "Tier 1 Transit Carrier",
+			analogy: "The global railroad owner that owns all the primary coast-to-coast transcontinental rail tracks: they never have to pay a toll to anyone else to run their trains, while every local commuter train must pay them for track access.",
+			techFact: "A Tier 1 network is an Internet Service Provider (ISP) with a global reach that can reach every other network on the internet entirely through settlement-free peering agreements without paying for upstream IP transit."
+		},
+		"subsea-repeater": {
+			title: "Subsea Optical Repeater (EDFA)",
+			analogy: "Relay runners stationed every few miles along a 100-mile mountain trail, grabbing the baton from an exhausted runner and sprinting forward at full speed so momentum is never lost.",
+			techFact: "Subsea optical repeaters use Erbium-Doped Fiber Amplifiers (EDFA) placed every 50 to 90 km along the seabed to re-amplify decaying laser signals optically without converting photons into electrical signals."
+		},
+		"optical-transit-arc": {
+			title: "Optical Transit Arc",
+			analogy: "A non-stop express bullet train shuttling between two major capitals on a dedicated elevated monorail without making a single intermediate stop.",
+			techFact: "High-capacity point-to-point optical wavelength circuits running between core Tier 1 data centers, routing tens of Terabits of intercontinental traffic over pre-provisioned photonic paths."
+		},
+		"webgl": {
+			title: "WebGL 3D Planetary Graphics",
+			analogy: "An architect spinning a glowing, physical miniature globe on a display pedestal in a showroom, letting you walk around and zoom into any corner with your own eyes.",
+			techFact: "WebGL (Web Graphics Library) is a JavaScript API for rendering high-performance 2D and 3D computer graphics inside any standard web browser using the device's hardware graphics card (GPU) without third-party plugins."
+		},
+		"telegeography": {
+			title: "TeleGeography Telecom Cartography",
+			analogy: "An international oceanographic atlas that meticulously maps every underwater shipping lane, lighthouse, and port across all seven seas.",
+			techFact: "TeleGeography is the industry-standard telecommunications market research and cartography firm that tracks global submarine cables, landing stations, bandwidth pricing, and international fiber routes."
 		}
 	};
 

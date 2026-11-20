@@ -72,7 +72,9 @@
             { rx: 0.480, ry: 0.124, baseSpread: 90, maxAlpha: 0.60, tint: "240, 253, 250", orbRadius: 9, name: "Upper-Middle Submerged" },
             { rx: 0.168, ry: 0.124, baseSpread: 65, maxAlpha: 0.45, tint: "186, 230, 253", orbRadius: 7, name: "Upper-Left Submerged" },
             { rx: 0.767, ry: 0.240, baseSpread: 100, maxAlpha: 0.62, tint: "255, 255, 255", orbRadius: 11, name: "Mid-Right Submerged Core" },
-            { rx: 0.288, ry: 0.356, baseSpread: 85, maxAlpha: 0.55, tint: "224, 250, 255", orbRadius: 10, name: "Mid-Left Submerged Core" }
+            { rx: 0.288, ry: 0.356, baseSpread: 85, maxAlpha: 0.55, tint: "224, 250, 255", orbRadius: 10, name: "Mid-Left Submerged Core" },
+            { rx: 0.446, ry: 0.698, baseSpread: 95, maxAlpha: 0.65, tint: "210, 248, 255", orbRadius: 10, name: "Lower-Middle Center Caustic" },
+            { rx: 0.494, ry: 0.480, baseSpread: 80, maxAlpha: 0.52, tint: "199, 240, 255", orbRadius: 8, name: "Mid-Center Caustic Cluster" }
         ];
 
         // Underwater floating marine motes

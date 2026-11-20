@@ -159,3 +159,52 @@
     font-weight: 600;
     color: #f8fafc;
 }
+
+/* Tech Term Analogy Styling for Globe Dark HUD & Telemetry Drawer */
+.map-page-body .tech-term,
+.hud-drawer .tech-term,
+.hud-legend .tech-term {
+    display: inline-block;
+    position: relative;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border: none;
+    border-bottom: 2px dotted #38bdf8;
+    padding: 1px 6px;
+    margin: 0 2px;
+    border-radius: 4px;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: inherit;
+    cursor: help;
+    transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.map-page-body .tech-term:hover,
+.hud-drawer .tech-term:hover,
+.hud-legend .tech-term:hover,
+.map-page-body .tech-term:focus-visible,
+.hud-drawer .tech-term:focus-visible,
+.hud-legend .tech-term:focus-visible {
+    background: rgba(56, 189, 248, 0.28);
+    color: #f0f9ff;
+    border-bottom-style: solid;
+    outline: none;
+}
+
+.drawer-tech-tags .drawer-tech-tag.tech-term {
+    cursor: help;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-bottom: 2px dotted #38bdf8;
+    color: #bae6fd;
+    transition: all 0.18s ease;
+}
+
+.drawer-tech-tags .drawer-tech-tag.tech-term:hover,
+.drawer-tech-tags .drawer-tech-tag.tech-term:focus-visible {
+    background: rgba(56, 189, 248, 0.28);
+    border-color: #38bdf8;
+    border-bottom-style: solid;
+    color: #ffffff;
+}
