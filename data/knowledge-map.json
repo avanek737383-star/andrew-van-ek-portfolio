@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 76,
     "totalNodes": 215,
-    "totalLinks": 437,
+    "totalLinks": 438,
     "domains": 6,
     "techBridges": 10
   },
@@ -680,48 +680,49 @@
     },
     {
       "id": "local-media-converter-title",
-      "name": "Local Media & Offline File Converter: Apple Silicon Metal Hardware Acceleration, Tailscale Mesh Accessibility & Lid-Safe Process Suspension",
+      "name": "Local Media & Offline File Converter: Apple Silicon Metal Acceleration, VTracer SVG Vectorization, Rembg AI Cutouts & macOS Trash Safety",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 18, 2026",
+      "date": "November 18\u201319, 2026",
       "val": 24,
       "color": "#c084fc",
       "summary": "Frequently converting media and document files across varied workflows often forces a compromise: commercial web-based converters enforce arbitrary file size bounds, restrict audio duration, require repetitive re-uploading over metered connections, and present privacy risks. T...",
       "tech": [
         "Tailscale Mesh",
         "FastAPI",
-        "FFmpeg",
-        "Server-Sent Events (SSE)",
-        "UNIX Signal Process Freezing"
+        "VTracer SVG",
+        "Rembg Cutouts",
+        "macOS Trash Safety",
+        "UNIX Signal Freezing"
       ],
       "tasks": [
         {
-          "title": "Smart Category Isolation",
+          "title": "Smart Category Isolation & Same-Format Processing",
           "desc": "Selecting an input file dynamically probes its MIME type and extension, immediately restricting output format selectors strictly to compatib..."
+        },
+        {
+          "title": "Visioncortex VTracer SVG Vectorization",
+          "desc": "Integrated vtracer (compiled in Rust) directly into the converter runtime. Rather than merely wrapping raster bitmaps inside an SVG shell, t..."
+        },
+        {
+          "title": "Offline Neural Background Removal & Transparency",
+          "desc": "Added an optional cutout toggle (\u2728 Remove background & make transparent, unchecked by default) for all image formats. Powered by rembg and o..."
         },
         {
           "title": "Video & Audio Processing Matrix",
           "desc": "Video files (.mp4, .mov, .mkv, .webm, .avi) unlock universal encoding along with high-quality animated GIF synthesis (via a custom two-pass ..."
-        },
-        {
-          "title": "Document Transformation",
-          "desc": "Text and markup files (.docx, .md, .html, .epub) leverage pandoc and headless Google Chrome rendering to compile print-ready, CSS-styled PDF..."
-        },
-        {
-          "title": "Interactive Trimming Sliders",
-          "desc": "When video or audio files are selected, client-side HTML5 media elements asynchronously probe duration without server upload roundtrips. Int..."
         }
       ],
       "url": "projects.html#local-media-converter-title"
     },
     {
       "id": "task-local-media-converter-title-0",
-      "name": "Smart Category Isolation",
+      "name": "Smart Category Isolation & Same-Format Processing",
       "type": "task",
-      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Hardware Acceleration, Tailscale Mesh Accessibility & Lid-Safe Process Suspension",
+      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Acceleration, VTracer SVG Vectorization, Rembg AI Cutouts & macOS Trash Safety",
       "parentId": "local-media-converter-title",
       "status": "completed",
       "val": 5,
@@ -731,38 +732,38 @@
     },
     {
       "id": "task-local-media-converter-title-1",
+      "name": "Visioncortex VTracer SVG Vectorization",
+      "type": "task",
+      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Acceleration, VTracer SVG Vectorization, Rembg AI Cutouts & macOS Trash Safety",
+      "parentId": "local-media-converter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Integrated vtracer (compiled in Rust) directly into the converter runtime. Rather than merely wrapping raster bitmaps inside an SVG shell, t...",
+      "url": "projects.html#local-media-converter-title"
+    },
+    {
+      "id": "task-local-media-converter-title-2",
+      "name": "Offline Neural Background Removal & Transparency",
+      "type": "task",
+      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Acceleration, VTracer SVG Vectorization, Rembg AI Cutouts & macOS Trash Safety",
+      "parentId": "local-media-converter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Added an optional cutout toggle (\u2728 Remove background & make transparent, unchecked by default) for all image formats. Powered by rembg and o...",
+      "url": "projects.html#local-media-converter-title"
+    },
+    {
+      "id": "task-local-media-converter-title-3",
       "name": "Video & Audio Processing Matrix",
       "type": "task",
-      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Hardware Acceleration, Tailscale Mesh Accessibility & Lid-Safe Process Suspension",
+      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Acceleration, VTracer SVG Vectorization, Rembg AI Cutouts & macOS Trash Safety",
       "parentId": "local-media-converter-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
       "summary": "Video files (.mp4, .mov, .mkv, .webm, .avi) unlock universal encoding along with high-quality animated GIF synthesis (via a custom two-pass ...",
-      "url": "projects.html#local-media-converter-title"
-    },
-    {
-      "id": "task-local-media-converter-title-2",
-      "name": "Document Transformation",
-      "type": "task",
-      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Hardware Acceleration, Tailscale Mesh Accessibility & Lid-Safe Process Suspension",
-      "parentId": "local-media-converter-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Text and markup files (.docx, .md, .html, .epub) leverage pandoc and headless Google Chrome rendering to compile print-ready, CSS-styled PDF...",
-      "url": "projects.html#local-media-converter-title"
-    },
-    {
-      "id": "task-local-media-converter-title-3",
-      "name": "Interactive Trimming Sliders",
-      "type": "task",
-      "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Hardware Acceleration, Tailscale Mesh Accessibility & Lid-Safe Process Suspension",
-      "parentId": "local-media-converter-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "When video or audio files are selected, client-side HTML5 media elements asynchronously probe duration without server upload roundtrips. Int...",
       "url": "projects.html#local-media-converter-title"
     },
     {
@@ -4062,6 +4063,12 @@
     {
       "source": "local-media-converter-title",
       "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "local-media-converter-title",
+      "target": "tech-docker-containers",
       "type": "project-tech",
       "distance": 85
     },
