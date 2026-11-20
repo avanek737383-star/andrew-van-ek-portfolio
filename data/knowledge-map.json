@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 76,
-    "totalNodes": 215,
-    "totalLinks": 438,
+    "totalProjects": 77,
+    "totalNodes": 220,
+    "totalLinks": 447,
     "domains": 6,
     "techBridges": 10
   },
@@ -501,6 +501,94 @@
       "color": "#facc15",
       "summary": "Shared technologies (such as Alpine Linux, Tailscale, FastAPI, Python, and Docker) act as gravitational bridges, illuminating shared archite...",
       "url": "projects.html#interactive-3d-knowledge-map-title"
+    },
+    {
+      "id": "hp-laptop-realistic-vision-rclone-title",
+      "name": "HP Laptop 15 (Linux Mint) Realistic Vision 5.1 Wallpaper Generator: Interface Simplification, Fixed 1080p LCM Inference, Continuous Ad Infinitum Loop & Persistent Rclone Google Drive Cloud Sync",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 20, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "On my primary HP laptop (avanek-hp-laptop-15-db0xxx, AMD Ryzen 3 2200U with Radeon Vega Mobile Graphics, 16 GB RAM running Linux Mint 22.3), I maintain a local desktop shortcut for Realistic Vision 5.1 that launches a local C++ inference backend (stable-diffusion.cpp). While t...",
+      "tech": [
+        "Realistic Vision V5.1",
+        "stable-diffusion.cpp",
+        "LCM LoRA",
+        "Fixed 1080p",
+        "Ad Infinitum Inference",
+        "Python Reverse Proxy"
+      ],
+      "tasks": [
+        {
+          "title": "Eradication of UI Clutter",
+          "desc": "Completely stripped away extraneous UI controls including manual LoRA configuration tables, multi-modal image inputs (Init image, Mask, Cont..."
+        },
+        {
+          "title": "Fixed 1920\u00d71080 Geometry",
+          "desc": "Eliminated manual resolution dropdowns and sliders. Generation dimensions are locked permanently to 1920\u00d71080 (Full HD) across both frontend..."
+        },
+        {
+          "title": "Streamlined Controls",
+          "desc": "Reduced the interactive footprint to a clean prompt description textarea paired with a high-contrast \u201c\u25b6 Start Generating\u201d button that dynami..."
+        },
+        {
+          "title": "Live Telemetry & Showcase Viewport",
+          "desc": "Integrated a 16:9 full-viewport output preview frame, real-time step and session elapsed timers, cumulative cooked-image counter, active tar..."
+        }
+      ],
+      "url": "projects.html#hp-laptop-realistic-vision-rclone-title"
+    },
+    {
+      "id": "task-hp-laptop-realistic-vision-rclone-title-0",
+      "name": "Eradication of UI Clutter",
+      "type": "task",
+      "parentProject": "HP Laptop 15 (Linux Mint) Realistic Vision 5.1 Wallpaper Generator: Interface Simplification, Fixed 1080p LCM Inference, Continuous Ad Infinitum Loop & Persistent Rclone Google Drive Cloud Sync",
+      "parentId": "hp-laptop-realistic-vision-rclone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Completely stripped away extraneous UI controls including manual LoRA configuration tables, multi-modal image inputs (Init image, Mask, Cont...",
+      "url": "projects.html#hp-laptop-realistic-vision-rclone-title"
+    },
+    {
+      "id": "task-hp-laptop-realistic-vision-rclone-title-1",
+      "name": "Fixed 1920\u00d71080 Geometry",
+      "type": "task",
+      "parentProject": "HP Laptop 15 (Linux Mint) Realistic Vision 5.1 Wallpaper Generator: Interface Simplification, Fixed 1080p LCM Inference, Continuous Ad Infinitum Loop & Persistent Rclone Google Drive Cloud Sync",
+      "parentId": "hp-laptop-realistic-vision-rclone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Eliminated manual resolution dropdowns and sliders. Generation dimensions are locked permanently to 1920\u00d71080 (Full HD) across both frontend...",
+      "url": "projects.html#hp-laptop-realistic-vision-rclone-title"
+    },
+    {
+      "id": "task-hp-laptop-realistic-vision-rclone-title-2",
+      "name": "Streamlined Controls",
+      "type": "task",
+      "parentProject": "HP Laptop 15 (Linux Mint) Realistic Vision 5.1 Wallpaper Generator: Interface Simplification, Fixed 1080p LCM Inference, Continuous Ad Infinitum Loop & Persistent Rclone Google Drive Cloud Sync",
+      "parentId": "hp-laptop-realistic-vision-rclone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Reduced the interactive footprint to a clean prompt description textarea paired with a high-contrast \u201c\u25b6 Start Generating\u201d button that dynami...",
+      "url": "projects.html#hp-laptop-realistic-vision-rclone-title"
+    },
+    {
+      "id": "task-hp-laptop-realistic-vision-rclone-title-3",
+      "name": "Live Telemetry & Showcase Viewport",
+      "type": "task",
+      "parentProject": "HP Laptop 15 (Linux Mint) Realistic Vision 5.1 Wallpaper Generator: Interface Simplification, Fixed 1080p LCM Inference, Continuous Ad Infinitum Loop & Persistent Rclone Google Drive Cloud Sync",
+      "parentId": "hp-laptop-realistic-vision-rclone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Integrated a 16:9 full-viewport output preview frame, real-time step and session elapsed timers, cumulative cooked-image counter, active tar...",
+      "url": "projects.html#hp-laptop-realistic-vision-rclone-title"
     },
     {
       "id": "gcp-vm-realistic-vision-rclone-title",
@@ -3882,6 +3970,60 @@
     },
     {
       "source": "interactive-3d-knowledge-map-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-ai-agents",
+      "target": "hp-laptop-realistic-vision-rclone-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
+      "target": "task-hp-laptop-realistic-vision-rclone-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
+      "target": "task-hp-laptop-realistic-vision-rclone-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
+      "target": "task-hp-laptop-realistic-vision-rclone-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
+      "target": "task-hp-laptop-realistic-vision-rclone-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hp-laptop-realistic-vision-rclone-title",
       "target": "tech-forensics-reversing",
       "type": "project-tech",
       "distance": 85

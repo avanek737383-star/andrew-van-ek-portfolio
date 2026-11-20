@@ -127,6 +127,52 @@
 <ul class="chips"><li>Three.js</li><li>WebGL</li><li>3d-force-graph</li><li>Interactive Visualization</li><li>Knowledge Graph</li><li>Static Web Architecture</li><li>Antigravity AI (Google DeepMind)</li><li>In Progress</li></ul>
 </section>
 
+<section class="project-entry" aria-labelledby="hp-laptop-realistic-vision-rclone-title">
+<h2 id="hp-laptop-realistic-vision-rclone-title">HP Laptop 15 (Linux Mint) Realistic Vision 5.1 Wallpaper Generator: Interface Simplification, Fixed 1080p LCM Inference, Continuous Ad Infinitum Loop &amp; Persistent Rclone Google Drive Cloud Sync</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Linux Mint 22.3 &middot; Realistic Vision V5.1 &middot; stable-diffusion.cpp &middot; LCM LoRA &middot; Fixed 1080p &middot; Ad Infinitum Inference &middot; Python Reverse Proxy &middot; Rclone FUSE Mount &middot; Google Drive OAuth2 &middot; Systemd User Service &middot; Antigravity AI &middot; <time datetime="2026-11-20">November 20, 2026</time></span></p>
+<div class="project-architecture" aria-label="HP Laptop Realistic Vision 5.1 Wallpaper Engine Architecture"><span>HP Laptop Desktop UI / Web Browser (http://127.0.0.1:7865)</span><span aria-hidden="true">&rarr;</span><span>Python Launcher &amp; Reverse Proxy (Port 7865)</span><span aria-hidden="true">&rarr;</span><span>stable-diffusion.cpp Engine (Internal Port 7866 / CPU Backend)</span><span aria-hidden="true">&rarr;</span><span>Continuous Ad Infinitum Loop (1920&times;1080, LCM 6 Steps, CFG 1.0, VAE Tiling)</span><span aria-hidden="true">&rarr;</span><span>Server-Side Persistence (/api/save)</span><span aria-hidden="true">&rarr;</span><span>Persistent Rclone FUSE Mount (~/GoogleDrive/AI-Wallpapers)</span><span aria-hidden="true">&rarr;</span><span>Google Drive (avanek2005@gmail.com)</span></div>
+
+<p>On my primary HP laptop (<code>avanek-hp-laptop-15-db0xxx</code>, AMD Ryzen 3 2200U with Radeon Vega Mobile Graphics, 16 GB RAM running Linux Mint 22.3), I maintain a local desktop shortcut for <strong>Realistic Vision 5.1</strong> that launches a local C++ inference backend (<code>stable-diffusion.cpp</code>). While the local CPU model was capable of generating photorealistic imagery, the default setup suffered from high operational friction: it loaded a heavy 128 KB monolithic Vue web interface cluttered with multi-panel LoRA tables, multi-modal image dropzones (Init image, Mask, ControlNet, Ref images), VAE tiling parameter inputs, and cache toggles, as well as an AnimateDiff v3 motion module that consumed 836 MB of memory even for static renders. Furthermore, generation was capped to manual single-run requests, image resolution was unfixed, and newly rendered wallpapers required clicking manual browser "Download" buttons on every single image before closing the terminal, risking output loss on exit.</p>
+
+<p>Collaborating with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, we overhauled the application end-to-end into an autonomous, friction-free wallpaper synthesis engine: locked permanently to 1920&times;1080 Full HD, running fast Latent Consistency Model (LCM) inference in 6 steps, rendering continuously in an unattended infinite loop (<em>cooking ad infinitum</em>), and streaming every finished render directly to persistent cloud storage on Google Drive under <code>avanek2005@gmail.com</code>.</p>
+
+<h3>Minimalist Single-View Web UI &amp; Fixed 1080p Standard</h3>
+<p>To eliminate interface clutter and streamline the generation workflow, we completely redesigned and replaced the monolithic frontend (<code>ui.html</code>) with a clean, responsive dark-mode interface:</p>
+<ul>
+<li><strong>Eradication of UI Clutter:</strong> Completely stripped away extraneous UI controls including manual LoRA configuration tables, multi-modal image inputs (Init image, Mask, ControlNet, Ref images), VAE tiling toggles, DiT/UNET cache selectors, and AnimateDiff video generation tabs. Unhooked the 836 MB video motion module from the launcher, reclaiming substantial system memory for inference.</li>
+<li><strong>Fixed 1920&times;1080 Geometry:</strong> Eliminated manual resolution dropdowns and sliders. Generation dimensions are locked permanently to 1920&times;1080 (Full HD) across both frontend API payloads and the backend engine invocation (<code>-W 1920 -H 1080</code>).</li>
+<li><strong>Streamlined Controls:</strong> Reduced the interactive footprint to a clean prompt description textarea paired with a high-contrast <strong>&ldquo;▶ Start Generating&rdquo;</strong> button that dynamically transforms into a pulsing <strong>&ldquo;⏹ Stop Generation&rdquo;</strong> interrupt button while rendering.</li>
+<li><strong>Live Telemetry &amp; Showcase Viewport:</strong> Integrated a 16:9 full-viewport output preview frame, real-time step and session elapsed timers, cumulative cooked-image counter, active target destination indicator, and a session render history strip with an interactive lightbox modal for full-resolution review.</li>
+</ul>
+
+<h3>Fast LCM Inference &amp; Autonomous Continuous Loop (<em>Ad Infinitum</em>)</h3>
+<p>On CPU hardware, standard diffusion samplers (such as DPM++ 2M / Karras at 20 steps) take 40+ minutes per image. We re-engineered the pipeline around speed and autonomy:</p>
+<ul>
+<li><strong>Fast LCM Acceleration:</strong> Configured the Latent Consistency Model speed adapter (<code>lcm.safetensors</code>, multiplier 1.0) with 6 sampling steps, CFG scale 1.0, and the LCM sampler/scheduler. VAE tiling (<code>--vae-tiling</code>) is permanently enforced in the backend to ensure stable 1080p latent decoding within CPU memory bounds without UI intervention.</li>
+<li><strong>Continuous Unattended Synthesis Loop:</strong> Transformed manual single-image generation into an automated, unattended infinite generation loop (<code>while (isGenerating)</code>). The engine automatically synthesizes wallpaper after wallpaper with dynamic randomized seeds (<code>seed: -1</code>), polling engine status every 800ms.</li>
+<li><strong>Responsive Halting Engine:</strong> Programmed a non-blocking interrupt mechanism: clicking &ldquo;Stop Generation&rdquo; immediately transmits an engine cancellation request (<code>POST /sdcpp/v1/jobs/{id}/cancel</code>) and halts the loop cleanly without process deadlock, orphaned locks, or corrupted outputs.</li>
+</ul>
+
+<h3>Dual-Port Reverse Proxy &amp; Server-Side Auto-Save Persistence</h3>
+<p>Modern browser sandboxes restrict automated file downloads, triggering intrusive multi-file security prompts or saving files to random default browser directories. We solved this at the architecture layer:</p>
+<ul>
+<li><strong>Python Reverse Proxy Architecture (<code>launch.py</code>):</strong> Restructured the application launcher into a dual-tiered architecture. The native <code>stable-diffusion.cpp</code> binary (<code>sd-server</code>) is isolated on internal loopback port <code>7866</code>, while a multi-threaded Python HTTP proxy server listens on public port <code>7865</code>, serving <code>ui.html</code>, handling configuration discovery (<code>/api/config</code>), and proxying engine calls.</li>
+<li><strong>Automated <code>/api/save</code> Persistence Endpoint:</strong> As each 1080p wallpaper finishes in memory, the client immediately POSTs the decoded base64 PNG data to <code>/api/save</code>. The Python backend writes the binary directly to disk using standardized timestamps and seed metadata (<code>rv1080p_YYYYMMDD-HHMMSS_s&lt;seed&gt;.png</code>), logging file path and byte telemetry directly to the terminal.</li>
+<li><strong>Multi-Tier Storage Failover:</strong> Engineered a resilient storage resolver (<code>resolve_output_dir()</code>) prioritizing: (1) Primary Google Drive cloud storage (<code>~/GoogleDrive/AI-Wallpapers</code>), (2) Secondary central network Samba automount (<code>/mnt/ONEFIVE/_TEMP/Image_Gen_Runz</code>), and (3) Tertiary local disk fallback (<code>ROOT/outputs</code>).</li>
+</ul>
+
+<h3>Persistent Rclone Cloud Mount &amp; Google Drive Shortcut Traversal</h3>
+<p>To ensure newly synthesized wallpapers are immediately accessible across all laptops, phones, and workstations without manual network copies, we integrated persistent cloud storage under my personal account:</p>
+<ul>
+<li><strong>Remote Credential Migration &amp; Quota Audit:</strong> Retired the legacy university cloud mount (<code>rclone-gdrive.service</code> referencing <code>vaneka@mail.gvsu.edu</code>). Imported and validated the authenticated OAuth2 token for the <code>avanek2005</code> Google Drive remote in <code>~/.config/rclone/rclone.conf</code>, verifying access to my 5.0 TiB storage quota (146.9 GiB used) and discovering the dedicated <code>AI-Wallpapers</code> destination folder.</li>
+<li><strong>Transparent Cross-Account Shortcut Resolution:</strong> In Google Drive, <code>AI-Wallpapers</code> is configured as a cross-account shortcut pointer (<code>application/vnd.google-apps.shortcut</code>). Rclone's FUSE VFS layer transparently traverses the shortcut pointer, exposing the remote folder as a standard writable Linux directory.</li>
+<li><strong>Systemd User Service Modernization:</strong> Deployed and enabled <code>~/.config/systemd/user/rclone-google-drive.service</code> with write-back caching (<code>--vfs-cache-mode writes --vfs-cache-max-age 24h --dir-cache-time 5m --drive-pacer-min-sleep 10ms</code>) registered on <code>default.target</code> for persistent boot mounting to <code>~/GoogleDrive</code>. Validated full write, read, and deletion capabilities with live FUSE filesystem probes.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek defined the continuous infinite generation loop, locked 1080p resolution, and interface simplification requirements, designated the <code>avanek2005@gmail.com</code> Google Drive cloud target, and tested and validated live unattended wallpaper synthesis. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> inspected the existing HP laptop workspace, authored the streamlined dark-mode <code>ui.html</code>, re-engineered <code>launch.py</code> into a dual-port reverse proxy with automated server-side base64 persistence, eliminated memory overhead by decoupling the AnimateDiff module, configured and deployed the persistent systemd Rclone user mount for <code>avanek2005@gmail.com</code>, validated FUSE shortcut traversal, resolved multi-tier storage failover, and authored this case study.</p>
+<ul class="chips"><li>HP Laptop 15</li><li>Linux Mint 22.3</li><li>Realistic Vision V5.1</li><li>stable-diffusion.cpp</li><li>LCM LoRA</li><li>1080p Wallpaper Engine</li><li>Continuous Inference</li><li>Reverse Proxy</li><li>Rclone</li><li>Google Drive FUSE</li><li>Systemd User Service</li><li>Antigravity AI (Google DeepMind)</li><li>Completed Project</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="gcp-vm-realistic-vision-rclone-title">
 <h2 id="gcp-vm-realistic-vision-rclone-title">Google Cloud VM (Debian 12) Realistic Vision V6 Wallpaper Generator: Continuous Ad Infinitum Inference, Minimalist 1080p Web UI &amp; Zero-Prompt Rclone Google Drive Sync</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Google Cloud Platform (GCP) &middot; Debian 12 &middot; Realistic Vision V6 &middot; stable-diffusion.cpp &middot; Rclone &middot; Google Drive OAuth2 &middot; Headless Web Architecture &middot; Ad Infinitum Inference &middot; <time datetime="2026-11-19">November 19, 2026</time></span></p>
@@ -2748,7 +2794,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-19T20:02:54-05:00">November 19, 2026 at 8:02:54 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-20T10:44:55-05:00">November 20, 2026 at 10:44:55 AM EST</time></p>
 				<p class="footer-version">Version v2.6.413 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
