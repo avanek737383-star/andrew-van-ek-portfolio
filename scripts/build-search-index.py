@@ -141,6 +141,9 @@ def build_index():
 
     # 4. Static Pages
     static_pages = [
+        ("fleet.html", "Hardware Fleet & Salvage Architecture Hub", "Systems & Stats", "Interactive 3D-ready topology viewport, GLPI ITAM integration, and hardware longevity ROI calculator detailing Andrew's 7-node salvaged computing fleet."),
+        ("incident-sim.html", "Homelab Incident Response & Chaos Simulator", "Systems & Stats", "Interactive browser terminal troubleshooting realistic homelab incidents: DNS blackholes, serial desyncs, SCSI shifts, and OOM killer terminations."),
+        ("ai-bias.html", "AI Bias & Algorithmic Fairness Audit Lab", "AI Labs", "Interactive machine learning laboratory inspecting algorithmic fairness, vector embedding debiasing, and disparate impact calibration."),
         ("globe.html", "3D Planetary Radar & Global Internet Backbone", "Systems & Stats", "Interactive 3D WebGL planetary radar mapping 400+ subsea optical cables, 1,900+ coastal landing stations, Tier 1 IXPs, homelab mesh nodes, and ground-level street view panoramas."),
         ("map.html", "3D Knowledge Map & Project Constellation", "Systems & Stats", "Interactive 3D WebGL force-directed graph connecting 76 homelab systems, neural agents, embedded devices, and forensics milestones."),
         ("karaoke.html", "Robo-Karaoke Studio: Retro 172 BPM B-Roll & Audio Alignment Player", "AI Labs", "Interactive retro arcade karaoke player featuring Mike's Theme rockabilly remix, 172 BPM beat bounce, procedural canvas B-roll, and Whisper-CPP RMS audio transient alignment."),

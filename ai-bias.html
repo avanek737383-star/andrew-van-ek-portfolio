@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AI Bias &amp; Algorithmic Fairness Audit Lab | Andrew Van Ek</title>
+	<meta name="description" content="Interactive laboratory inspecting how algorithmic bias manifests in training data, embeddings, and decision thresholds, with hands-on debiasing simulations.">
+	<link rel="icon" href="favicon.ico" sizes="any">
+	<link rel="icon" href="favicon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="css/styles.css?v=20261120-nav-1">
+	<link rel="stylesheet" href="css/ai-bias.css?v=20261120-bias-1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="ai-bias-body">
+	<div class="container">
+		<nav class="tablet-desktop">
+			<ul id="site-navigation">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li><a href="gallery.html">Gallery</a></li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+						<li><a href="lab.html">Live AI Lab</a></li>
+						<li><a href="council.html">AI Chatroom</a></li>
+						<li><a href="moltbook.html">Moltbook Agent</a></li>
+						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
+						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
+						<li><a href="ai-bias.html" aria-current="page">AI Bias &amp; Fairness Lab</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="map.html">3D Knowledge Map</a></li>
+						<li><a href="globe.html">3D Planetary Backbone</a></li>
+						<li><a href="stats.html">Stats for Nerds</a></li>
+						<li><a href="maintenance.html">Maintenance Log</a></li>
+						<li><a href="changelog.html">Changelog &amp; Releases</a></li>
+						<li><a href="clock.html">Homelab Desk Clock</a></li>
+						<li><a href="quotes.html">Quotes</a></li>
+						<li><a href="incident-sim.html">Incident Command Simulator</a></li>
+						<li><a href="fleet.html">Hardware Fleet &amp; Salvage Hub</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="job.html">Skills &amp; Toolkit</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-search">
+					<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+						<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						<span>Search</span>
+						<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<main class="ai-bias-main">
+			<header class="bias-header">
+				<div class="bias-eyebrow">Interactive Ethical AI &amp; Governance Lab</div>
+				<h1 class="bias-title">AI Bias &amp; Algorithmic Fairness Audit Lab</h1>
+				<p class="bias-subtitle">Machine learning algorithms don't develop bias in a vacuum—they inherit, reflect, and mathematically amplify the historical imbalances embedded within their training corpora. Explore three real-world simulations examining how bias creeps into modern models, and test mathematical debiasing remediations in real time.</p>
+				<div class="bias-tags-row">
+					<span class="bias-badge">⚖️ Four-Fifths Rule (EEOC 80%)</span>
+					<span class="bias-badge">🔬 Embedding Orthogonal Projection</span>
+					<span class="bias-badge">📊 Accuracy Paradox</span>
+					<span class="bias-badge">🛡️ Demographic Parity</span>
+					<span class="bias-badge">⚡ Equalized Odds</span>
+				</div>
+			</header>
+
+			<!-- Lab Module 1: Resume Screening & Embedding Bias Auditor -->
+			<section class="bias-card" id="module-resume">
+				<div class="bias-card-header">
+					<span class="module-number">Module 01</span>
+					<h2>Resume Screening &amp; Embedding Bias Simulator</h2>
+					<p class="module-desc">Natural language processing pipelines evaluating applicant text frequently score resumes based on semantic embedding distance to historical "high-performer" archetypes. Adjust candidate features below to observe how demographic proxy variables alter ranking scores before and after applying mathematical fairness constraints.</p>
+				</div>
+
+				<div class="bias-grid-split">
+					<!-- Left: Candidate Attributes Controls -->
+					<div class="bias-controls-pane">
+						<h3>Candidate Attribute Configuration</h3>
+						<div class="control-group">
+							<label for="cand-name">Candidate Name / Proxy Background:</label>
+							<select id="cand-name" class="bias-select">
+								<option value="majority_male">Johnathan Vance (Traditional Archetype)</option>
+								<option value="female_leader">Emily Davies (Women in Tech President)</option>
+								<option value="diverse_male">Jamal Washington (Urban STEM Fellow)</option>
+								<option value="hispanic_male">Alejandro Hernandez (First-Gen Tech Scholar)</option>
+								<option value="gender_neutral">Taylor Smith (Non-Binary / Gender-Neutral)</option>
+							</select>
+						</div>
+
+						<div class="control-group">
+							<label for="grad-year">College Graduation Year (Age Proxy):</label>
+							<select id="grad-year" class="bias-select">
+								<option value="2024">2024 (Recent Graduate &middot; Early Career)</option>
+								<option value="2016" selected>2016 (Mid-Level &middot; 8 Years Experience)</option>
+								<option value="2002">2002 (Senior / Mid-Career &middot; Age Proxy Warning)</option>
+								<option value="1992">1992 (Veteran Professional &middot; High Age Proxy Risk)</option>
+							</select>
+						</div>
+
+						<div class="control-group">
+							<label for="career-gap">Work History Continuity:</label>
+							<select id="career-gap" class="bias-select">
+								<option value="none" selected>Continuous Employment (Zero Gap)</option>
+								<option value="caregiving">2-Year Family Caregiving / Parental Leave</option>
+								<option value="military">3-Year Military Service Transition</option>
+								<option value="medical">18-Month Medical Leave / Recovery</option>
+							</select>
+						</div>
+
+						<div class="control-group">
+							<label for="pedigree">Education Institution Tier:</label>
+							<select id="pedigree" class="bias-select">
+								<option value="ivy">Ivy League / Elite Private University</option>
+								<option value="state" selected>Regional State University (e.g. Grand Valley State / GVSU)</option>
+								<option value="community">Community College &rarr; State Transfer</option>
+								<option value="bootcamp">Self-Taught / Open Source Contributor</option>
+							</select>
+						</div>
+
+						<div class="debias-toggles-box">
+							<h4>Fairness &amp; Remediation Toggles</h4>
+							<label class="toggle-row">
+								<input type="checkbox" id="toggle-masking">
+								<span><strong>Blind Feature Masking:</strong> Strip name, graduation year &amp; institutional pedigree before tokenization</span>
+							</label>
+							<label class="toggle-row">
+								<input type="checkbox" id="toggle-orthogonal">
+								<span><strong>Orthogonal Embedding Projection:</strong> Project embeddings onto subspace orthogonal to demographic vectors</span>
+							</label>
+							<label class="toggle-row">
+								<input type="checkbox" id="toggle-parity">
+								<span><strong>Demographic Parity Thresholding:</strong> Calibrate decision cutoff to satisfy EEOC 80% Rule</span>
+							</label>
+						</div>
+					</div>
+
+					<!-- Right: Live Model Telemetry & Audit Results -->
+					<div class="bias-results-pane">
+						<h3>Algorithmic Decision Telemetry</h3>
+						<div class="score-display-card">
+							<div class="score-row">
+								<div class="score-item">
+									<span class="score-label">Raw Model Score</span>
+									<span class="score-val" id="raw-score">--</span>
+								</div>
+								<div class="score-arrow">&rarr;</div>
+								<div class="score-item">
+									<span class="score-label">Fairness-Calibrated Score</span>
+									<span class="score-val fair" id="calib-score">--</span>
+								</div>
+							</div>
+
+							<div class="meter-bar-wrap">
+								<div class="meter-track">
+									<div class="meter-fill raw" id="raw-meter" style="width: 50%;"></div>
+									<div class="meter-fill fair" id="fair-meter" style="width: 50%;"></div>
+								</div>
+								<div class="meter-legend">
+									<span><span class="dot raw"></span> Raw Model (Biased)</span>
+									<span><span class="dot fair"></span> Post-Remediation</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="audit-status-box" id="audit-status">
+							<div class="audit-badge" id="dir-badge">Evaluating...</div>
+							<div class="audit-details">
+								<p><strong>Disparate Impact Ratio (DIR):</strong> <span id="dir-metric">0.00</span></p>
+								<p id="dir-explanation">The EEOC 80% Rule specifies that selection rates for protected classes must be at least 80% of the highest group's rate.</p>
+							</div>
+						</div>
+
+						<div class="feature-penalty-breakdown">
+							<h4>Detected Implicit Penalties &amp; Boosts:</h4>
+							<ul id="penalty-list" class="penalty-list">
+								<!-- Populated via JS -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Lab Module 2: LLM Probability & Stereotype Explorer -->
+			<section class="bias-card" id="module-llm">
+				<div class="bias-card-header">
+					<span class="module-number">Module 02</span>
+					<h2>LLM Next-Token Probability &amp; Stereotype Explorer</h2>
+					<p class="module-desc">Autoregressive Large Language Models predict next-token distributions based on conditional probabilities learned from massive Internet scrapes (Common Crawl, Reddit, C4). When training corpora reflect occupational stereotypes, the model's logits strongly diverge based on demographic pronouns.</p>
+				</div>
+
+				<div class="llm-lab-wrap">
+					<div class="prompt-builder">
+						<label for="prompt-preset">Select Context Prompt Scenario:</label>
+						<select id="prompt-preset" class="bias-select">
+							<option value="doctor">"The doctor stepped out of the operating room and explained that..."</option>
+							<option value="nurse">"The nurse arrived early at the clinic and checked that..."</option>
+							<option value="executive">"The Chief Executive Officer addressed the boardroom and announced that..."</option>
+							<option value="assistant">"The executive assistant rescheduled the calendar appointments and confirmed that..."</option>
+							<option value="programmer">"The software architect refactored the legacy codebase because..."</option>
+						</select>
+					</div>
+
+					<div class="llm-distribution-container">
+						<div class="prob-bars-grid" id="prob-bars">
+							<!-- Populated via JS: compares He vs She vs They probabilities -->
+						</div>
+					</div>
+
+					<div class="llm-insight-box">
+						<div class="insight-icon">&#9889;</div>
+						<div class="insight-text">
+							<h4>Why this happens in Foundation Models:</h4>
+							<p id="llm-insight-content">In web-scraped training datasets, occupational titles appear co-located with gendered pronouns in asymmetrical proportions. Transformer self-attention heads learn these associative vectors as high-confidence statistical priors. Without RLHF steering, DPO (Direct Preference Optimization), or activation steering, standard greedily sampled generation mirrors these legacy occupational imbalances.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Lab Module 3: Class Imbalance & The Accuracy Paradox -->
+			<section class="bias-card" id="module-imbalance">
+				<div class="bias-card-header">
+					<span class="module-number">Module 03</span>
+					<h2>The Accuracy Paradox &amp; Class Imbalance Simulator</h2>
+					<p class="module-desc">In high-stakes fraud detection, cybersecurity malware scanning, and healthcare diagnostics, minority groups or anomalous classes often represent less than 5% of the total dataset. A naive classifier can achieve a stellar 95%+ overall accuracy score simply by predicting "Negative" for every single sample—completely failing the protected subgroup.</p>
+				</div>
+
+				<div class="imbalance-grid">
+					<div class="imbalance-sliders">
+						<div class="slider-group">
+							<div class="slider-label-row">
+								<span>Class Distribution Imbalance:</span>
+								<span id="ratio-display" class="slider-val">90% Majority / 10% Minority</span>
+							</div>
+							<input type="range" id="ratio-slider" min="50" max="98" value="90" class="bias-slider" aria-label="Class Distribution Ratio">
+						</div>
+
+						<div class="slider-group">
+							<div class="slider-label-row">
+								<span>Model Decision Threshold:</span>
+								<span id="threshold-display" class="slider-val">0.50</span>
+							</div>
+							<input type="range" id="threshold-slider" min="10" max="90" value="50" class="bias-slider" aria-label="Decision Threshold">
+						</div>
+
+						<div class="imbalance-toggles">
+							<h4>Remediation Method:</h4>
+							<label class="radio-row">
+								<input type="radio" name="rebalance-method" value="none" checked>
+								<span><strong>No Intervention:</strong> Standard Empirical Risk Minimization (ERM)</span>
+							</label>
+							<label class="radio-row">
+								<input type="radio" name="rebalance-method" value="weights">
+								<span><strong>Cost-Sensitive Loss Weighting:</strong> Inverse frequency loss penalty</span>
+							</label>
+							<label class="radio-row">
+								<input type="radio" name="rebalance-method" value="smote">
+								<span><strong>Synthetic Oversampling (SMOTE):</strong> Synthesize minority feature space</span>
+							</label>
+						</div>
+					</div>
+
+					<div class="imbalance-telemetry">
+						<div class="stats-metric-cards">
+							<div class="stat-card">
+								<span class="stat-num" id="stat-accuracy">90.0%</span>
+								<span class="stat-desc">Overall Accuracy</span>
+							</div>
+							<div class="stat-card">
+								<span class="stat-num" id="stat-maj-recall">99.0%</span>
+								<span class="stat-desc">Majority Group Recall</span>
+							</div>
+							<div class="stat-card highlight">
+								<span class="stat-num" id="stat-min-recall">12.0%</span>
+								<span class="stat-desc">Protected Group Recall</span>
+							</div>
+						</div>
+
+						<div class="paradox-callout" id="paradox-callout">
+							<span class="callout-badge">&#9888;&#65039; Accuracy Paradox in Action</span>
+							<p>Notice how overall model accuracy remains misleadingly high, while the model is failing to identify the protected minority class! Without fairness metrics (True Positive Rate Parity), stakeholders are blinded by aggregate statistics.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Lab Module 4: Solutions Analyst Governance Framework -->
+			<section class="bias-card" id="module-governance">
+				<div class="bias-card-header">
+					<span class="module-number">Framework</span>
+					<h2>Solutions Analyst AI Fairness &amp; Governance Matrix</h2>
+					<p class="module-desc">Addressing bias requires deliberate engineering checkpoints throughout the machine learning development lifecycle (MLDLC). Here is the mitigation framework I follow across enterprise solution architectures:</p>
+				</div>
+
+				<div class="framework-table-wrap">
+					<table class="framework-table">
+						<thead>
+							<tr>
+								<th>Stage</th>
+								<th>Diagnostic Technique</th>
+								<th>Engineering Intervention</th>
+								<th>Key Metric / Standard</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>Pre-Processing</strong></td>
+								<td>Representation Auditing &amp; Correlation Mapping</td>
+								<td>Synthetic re-sampling (SMOTE), re-weighing, and proxy attribute disentanglement</td>
+								<td>Disparate Impact Ratio (DIR &ge; 0.80)</td>
+							</tr>
+							<tr>
+								<td><strong>In-Processing</strong></td>
+								<td>Adversarial Debiasing &amp; Fairness Loss Regularization</td>
+								<td>Add a discriminator gradient penalty that penalizes predicting protected attributes from latent features</td>
+								<td>Demographic Parity Difference (&Delta;DP &le; 0.05)</td>
+							</tr>
+							<tr>
+								<td><strong>Post-Processing</strong></td>
+								<td>ROC Curve Calibration &amp; Equalized Odds Tuning</td>
+								<td>Calibrate separate classification thresholds per group to align True Positive and False Positive rates</td>
+								<td>Equal Opportunity Difference (&Delta;EOD &le; 0.05)</td>
+							</tr>
+							<tr>
+								<td><strong>Continuous Monitoring</strong></td>
+								<td>Embedding Drift &amp; Logit Telemetry</td>
+								<td>Automated drift detection alerts when inference inputs deviate from certified distribution baselines</td>
+								<td>Population Stability Index (PSI &lt; 0.10)</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+			<p>Website last modified: <time datetime="2026-11-20T17:35:00-05:00">November 20, 2026 at 05:35:00 PM EST</time></p>
+			<p class="footer-version">Version v2.6.415 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+		</footer>
+	</div>
+
+	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
+	<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
+	<script src="scripts/ai-bias.js?v=20261120-bias-1"></script>
+</body>
+</html>
