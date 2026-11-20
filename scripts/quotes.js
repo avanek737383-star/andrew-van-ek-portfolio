@@ -3,6 +3,278 @@
 
 	var HOMELAB_QUOTES = [
 		{
+			id: 'mystery-cannot-survive-sufficient-logs',
+			quote: "A mystery cannot survive indefinitely in the presence of sufficient log files.",
+			category: "The \"That's Weird...\" Collection",
+			context: "No bug, daemon crash, or network glitch can stay hidden once diagnostic log levels are elevated and timestamps are cross-correlated.",
+			projectTitle: "Systems Administration & Log Forensics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'technical-expertise-faster-than-ownership',
+			quote: "Nothing increases technical expertise faster than ownership.",
+			category: "Philosophy & Mindset",
+			context: "Running your own bare-metal services and taking responsibility for production uptime teaches systems engineering ten times faster than read-only theory.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Philosophy",
+			projectHref: "index.html"
+		},
+		{
+			id: 'dashboard-so-uneventful-forget-exists',
+			quote: "May your monitoring dashboard remain so uneventful that you forget it exists.",
+			category: "Philosophy & Mindset",
+			context: "The highest mark of infrastructure engineering is silent, uninterrupted reliability where green status indicators become mundane background scenery.",
+			projectTitle: "Homelab Fleet Telemetry & Monitoring",
+			projectHref: "stats.html"
+		},
+		{
+			id: 'true-benchmark-ai-explain-the-printer',
+			quote: "The true benchmark of artificial intelligence is whether it can explain the printer.",
+			category: "AI & Local Models",
+			context: "Multimodal reasoning models can solve advanced calculus, but explaining why the network printer paused queue job #384 remains the ultimate frontier.",
+			projectTitle: "AI Labs & Diagnostics",
+			projectHref: "lab.html"
+		},
+		{
+			id: 'every-terminal-command-harmless-until-proven',
+			quote: "Every terminal command is harmless until proven otherwise.",
+			category: "The \"That's Weird...\" Collection",
+			context: "Dedicated to the fleeting moment of supreme confidence right before pressing Enter and noticing an unintended wildcard expansion.",
+			projectTitle: "Systems Administration & CLI Automation",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'system-stable-until-decided-to-improve',
+			quote: "The system was stable right up until you decided to improve it.",
+			category: "The \"That's Weird...\" Collection",
+			context: "Dedicated to the irresistible temptation to apply 'one tiny harmless optimization' to a server that had been humming flawlessly for six months.",
+			projectTitle: "Homelab Systems Maintenance",
+			projectHref: "maintenance.html"
+		},
+		{
+			id: 'may-your-quick-fixes-remain-quick',
+			quote: "May your quick fixes remain quick.",
+			category: "Philosophy & Mindset",
+			context: "Honoring the temporary five-minute shell alias or cron workaround that quietly anchors critical production infrastructure three years later.",
+			projectTitle: "Andrew Van Ek \u2014 Systems Philosophy",
+			projectHref: "index.html"
+		},
+		{
+			id: 'saturday-projects-conclude-on-saturday',
+			quote: "May your Saturday projects conclude on Saturday.",
+			category: "Philosophy & Mindset",
+			context: "Dedicated to the casual Saturday morning homelab tune-up that mysteriously escalates into a bare-metal OS reinstall at 11:45 PM on Sunday.",
+			projectTitle: "Homelab Weekend Engineering",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'curiosity-not-exceed-available-free-time',
+			quote: "May your curiosity not exceed your available free time.",
+			category: "College & Computing",
+			context: "A gentle warning for student systems engineers tempted to explore kernel tracepoints and compiler optimizations at 2:00 AM before an 8:00 AM exam.",
+			projectTitle: "College & Computing Field Notes",
+			projectHref: "about.html"
+		},
+		{
+			id: 'nuc-performing-duties-nobody-assigned',
+			quote: "May your Intel NUC continue performing duties nobody formally assigned to it.",
+			category: "Thermals & Hardware",
+			context: "Celebrating the headless NUC quietly running DNS proxies, container clusters, mining relays, and backup daemons simultaneously.",
+			projectTitle: "Headless Intel NUC Alpine Storage Recovery",
+			projectHref: "projects.html#intel-nuc-alpine-storage-recovery-title"
+		},
+		{
+			id: 'faithful-server-asks-for-little-inconvenient-moments',
+			quote: "A faithful server asks for little and chooses inconvenient moments to ask.",
+			category: "Philosophy & Mindset",
+			context: "Home servers run silently without intervention for months until deciding to report SMART disk degradation right as you head out of town.",
+			projectTitle: "Homelab Storage Reliability",
+			projectHref: "stats.html"
+		},
+		{
+			id: 'van-ek-first-law-infrastructure',
+			quote: "Van Ek's First Law of Infrastructure: Every machine eventually becomes important.",
+			category: "Laws & Axioms",
+			context: "No matter how modest or temporary a node's initial deployment is, vital automated dependencies will inevitably migrate to it.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
+			id: 'van-ek-second-law-infrastructure',
+			quote: "Van Ek's Second Law of Infrastructure: The importance of a service is discovered only after it stops running.",
+			category: "Laws & Axioms",
+			context: "Documenting service dependencies is optional until an unannounced reboot reveals which automated workflows fail first.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
+			id: 'van-ek-third-law-infrastructure',
+			quote: "Van Ek's Third Law of Infrastructure: The machine I understand the least performs the most critical task.",
+			category: "Laws & Axioms",
+			context: "The black-box appliance configured during a late-night troubleshooting session quietly underpins the entire local subnet.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
+			id: 'van-ek-fourth-law-infrastructure',
+			quote: "Van Ek's Fourth Law of Infrastructure: If a system has operated flawlessly for a year, it will be improved even if it didn't want to be.",
+			category: "Laws & Axioms",
+			context: "Uninterrupted stability is perceived as an open invitation for an unplanned feature upgrade or kernel reconfiguration.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
+			id: 'van-ek-fifth-law-infrastructure',
+			quote: "Van Ek's Fifth Law of Infrastructure: No spare computer remains spare forever.",
+			category: "Laws & Axioms",
+			context: "Any functional motherboard or surplus laptop will inevitably find itself commissioned as a dedicated node within 72 hours.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
+			id: 'van-ek-sixth-law-infrastructure',
+			quote: "Van Ek's Sixth Law of Infrastructure: Every homelab contains one machine carrying responsibilities it never agreed to.",
+			category: "Laws & Axioms",
+			context: "Dedicated to the low-power mini-PC simultaneously hosting DNS sinks, container registries, reverse proxies, and cron pipelines.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
+			id: 'van-ek-seventh-law-infrastructure',
+			quote: "Van Ek's Seventh Law of Infrastructure: Removing a server reveals at least three things that secretly depended on it.",
+			category: "Laws & Axioms",
+			context: "Decommissioning any hardware always triggers immediate cascading discovery of undocumented background synchronization tasks.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
+			id: 'first-law-of-troubleshooting',
+			quote: "The First Law of Troubleshooting: The problem is always simpler than your third theory and more complicated than your first.",
+			category: "Laws & Axioms",
+			context: "Root-cause diagnostics rarely conform to the initial obvious assumption or the elaborate multi-layer conspiracy hypothesis.",
+			projectTitle: "Field Troubleshooting & Diagnostics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'second-law-of-troubleshooting',
+			quote: "The Second Law of Troubleshooting: The probability of solving a problem rises dramatically five minutes before asking for help.",
+			category: "Laws & Axioms",
+			context: "Formulating the diagnostic question or typing the service desk ticket immediately exposes the missing configuration detail.",
+			projectTitle: "Field Troubleshooting & Diagnostics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'third-law-of-troubleshooting',
+			quote: "The Third Law of Troubleshooting: Reading logs is easier after you've guessed incorrectly.",
+			category: "Laws & Axioms",
+			context: "Observing what failed under a mistaken assumption illuminates the exact line in syslog explaining the true underlying issue.",
+			projectTitle: "Field Troubleshooting & Diagnostics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'fourth-law-of-troubleshooting',
+			quote: "The Fourth Law of Troubleshooting: The issue will reproduce flawlessly until somebody important begins watching.",
+			category: "Laws & Axioms",
+			context: "The Heisenberg principle of systems administration: the act of observation temporarily restores optimal operation.",
+			projectTitle: "Field Troubleshooting & Diagnostics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'fifth-law-of-troubleshooting',
+			quote: "The Fifth Law of Troubleshooting: Every error message contains useful information except the one currently displayed.",
+			category: "Laws & Axioms",
+			context: "Generic modal dialogs mask the single underlying stack trace buried three levels deep in a rotated diagnostic log.",
+			projectTitle: "Field Troubleshooting & Diagnostics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'sixth-law-of-troubleshooting',
+			quote: "The Sixth Law of Troubleshooting: The final fix will seem obvious enough to be annoying.",
+			category: "Laws & Axioms",
+			context: "Hours of packet tracing and registry audits culminate in toggling a single mismatched Boolean flag.",
+			projectTitle: "Field Troubleshooting & Diagnostics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'seventh-law-of-troubleshooting',
+			quote: "The Seventh Law of Troubleshooting: Every investigation eventually answers a different question than the one that started it.",
+			category: "Laws & Axioms",
+			context: "Tracing an unexpected DNS query timeout inevitably uncovers and resolves a long-forgotten cron syntax error.",
+			projectTitle: "Field Troubleshooting & Diagnostics",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'first-law-of-documentation',
+			quote: "The First Law of Documentation: Documentation is never consulted until after the third failed attempt.",
+			category: "Laws & Axioms",
+			context: "Trial and error remains the default runbook until repeated CLI syntax rejections force opening the documentation.",
+			projectTitle: "Systems Documentation & Runbooks",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'second-law-of-documentation',
+			quote: "The Second Law of Documentation: The accuracy of documentation is inversely proportional to its confidence.",
+			category: "Laws & Axioms",
+			context: "The most definitive, boldfaced troubleshooting wikis are the most likely to reference deprecated command-line flags.",
+			projectTitle: "Systems Documentation & Runbooks",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'fourth-law-of-documentation',
+			quote: "The Fourth Law of Documentation: The most valuable note is the one explaining why.",
+			category: "Laws & Axioms",
+			context: "Configuration parameters describe what changed; only the rationale prevents someone from reverting it six months later.",
+			projectTitle: "Systems Documentation & Runbooks",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'second-law-of-upgrades',
+			quote: "The Second Law of Upgrades: Compatibility is temporary.",
+			category: "Laws & Axioms",
+			context: "Every stable driver-library pairing exists on borrowed time pending the next upstream release cycle.",
+			projectTitle: "Software Upgrades & Infrastructure",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'third-law-of-upgrades',
+			quote: "The Third Law of Upgrades: The phrase \"while we're at it\" doubles project duration.",
+			category: "Laws & Axioms",
+			context: "Minor routine package maintenance expands into a complete architectural migration the moment scope creep enters the discussion.",
+			projectTitle: "Software Upgrades & Infrastructure",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'fourth-law-of-upgrades',
+			quote: "The Fourth Law of Upgrades: The safest system is the one nobody has touched recently.",
+			category: "Laws & Axioms",
+			context: "Record uptime figures are preserved through disciplined restraint and resisting the urge to touch running production configs.",
+			projectTitle: "Software Upgrades & Infrastructure",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'fifth-law-of-upgrades',
+			quote: "The Fifth Law of Upgrades: There is no such thing as changing only one thing.",
+			category: "Laws & Axioms",
+			context: "Every isolated configuration parameter carries an invisible blast radius across interconnected network services.",
+			projectTitle: "Software Upgrades & Infrastructure",
+			projectHref: "projects.html"
+		},
+		{
+			id: 'fifth-law-of-semester-planning',
+			quote: "The Fifth Law of Semester Planning: Every organized folder eventually becomes a miscellaneous folder.",
+			category: "Laws & Axioms",
+			context: "Carefully constructed academic directory taxonomies inevitably surrender to 11:59 PM deadline desktop file dumps.",
+			projectTitle: "College & Computing Field Notes",
+			projectHref: "about.html"
+		},
+		{
+			id: 'law-of-saturday-projects',
+			quote: "The Law of Saturday Projects: A project scheduled for Saturday concludes at the first of the following: project completion, exhaustion, or Monday.",
+			category: "Laws & Axioms",
+			context: "Weekend engineering sprints expand to fill all available waking hours until the Monday work week intervenes.",
+			projectTitle: "Andrew Van Ek \u2014 Homelab Axioms",
+			projectHref: "quotes.html"
+		},
+		{
 			id: 'if-it-isnt-broke',
 			quote: "If it isn't broke, do fix it.",
 			category: 'Philosophy & Mindset',
