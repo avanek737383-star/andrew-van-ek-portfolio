@@ -246,23 +246,6 @@
                 ctx.fill();
             });
 
-            // C. Focal Caustic Pool at the Gravitational Attractor (where mouse / tilt focuses)
-            if (hasUserInteracted) {
-                var focalGlow = ctx.createRadialGradient(
-                    currentAttractorX, currentAttractorY, 4,
-                    currentAttractorX, currentAttractorY, 115
-                );
-                focalGlow.addColorStop(0, "rgba(240, 253, 250, 0.42)");
-                focalGlow.addColorStop(0.35, "rgba(56, 189, 248, 0.24)");
-                focalGlow.addColorStop(0.75, "rgba(14, 165, 233, 0.08)");
-                focalGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
-
-                ctx.fillStyle = focalGlow;
-                ctx.beginPath();
-                ctx.arc(currentAttractorX, currentAttractorY, 115, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
             // D. Floating Marine Motes illuminated by light
             particles.forEach(function (p) {
                 p.y -= p.speedY;
