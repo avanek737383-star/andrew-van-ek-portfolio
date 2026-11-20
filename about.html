@@ -301,12 +301,12 @@
 					</div>
                     <figure class="oceanscape-render" id="oceanscape-experiment">
                         <figcaption><strong>A 19-hour image experiment:</strong> This 4K underwater image took my HP laptop 19 hours, 24 minutes, and 31 seconds to generate locally with Realistic Vision. After an earlier attempt ran out of memory, tiled decoding—converting the result into pixels in small, overlapping sections—finally got it across the finish line.</figcaption>
-                        <a class="oceanscape-render__preview" href="images/oceanscape-4k.png" aria-label="Open the full 4K underwater image">
+                        <div class="oceanscape-render__preview" id="oceanscape-preview" role="region" aria-label="Interactive 4K underwater image with motion-reactive light beams">
                             <picture>
                                 <source srcset="images/oceanscape-preview.webp" type="image/webp">
                                 <img src="images/oceanscape-preview.webp" width="1600" height="900" loading="lazy" decoding="async" alt="AI-generated turquoise underwater scene with rippling surface water and sunlight streaming into the depths.">
                             </picture>
-                        </a>
+                        </div>
                         <p class="oceanscape-render__link"><a href="images/oceanscape-4k.png">View the full 4K underwater image (PNG, 15 MB)</a></p>
                     </figure>
 
@@ -404,6 +404,6 @@
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 		<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
 		<script src="scripts/computing.js?v=20261013-computing-1" defer></script>
-		<script src="scripts/oceanscape-lightbeams.js?v=20261120-1"></script>
+		<script src="scripts/oceanscape-lightbeams.js?v=20261120-2"></script>
 </body>
 </html>
