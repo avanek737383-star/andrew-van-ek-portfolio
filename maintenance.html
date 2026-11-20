@@ -91,7 +91,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">572 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-19T18:45:15-05:00">November 19, 2026 at 6:45:15 PM EST</time></p>
+<p class="maintenance-updated">573 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-19T19:10:00-05:00">November 19, 2026 at 7:10:00 PM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -660,6 +660,11 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="homelab-quotes-proverbs-expansion-82"><strong>Homelab Quotes &amp; Proverbs catalog expansion (82 maxims), &ldquo;That's Weird...&rdquo; troubleshooting collection &amp; student computing maxims:</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, expanded the <code>Quotes &amp; Proverbs</code> repository (<code>quotes.html</code>, <code>scripts/quotes.js</code>) from 57 to 82 verified homelab maxims, IT service desk truths, student computing epigrams, and systems diagnostics field observations.
+<br><br>
+<em>Catalog Architecture &amp; Dedicated &ldquo;That's Weird...&rdquo; Category:</em> Introduced a specialized category (<code>The "That's Weird..." Collection</code>) complete with dedicated filter navigation pills, highlighting the mysterious, elusive edge cases of systems administration (<em>&ldquo;May your troubleshooting path contain more answers than tabs&rdquo;</em>, <em>&ldquo;May the phrase 'that's weird' not be followed by a four-hour investigation&rdquo;</em>, <em>&ldquo;May your first guess be correct and not merely optimistic&rdquo;</em>, <em>&ldquo;May your users report symptoms instead of conclusions&rdquo;</em>, and <em>&ldquo;May the issue reproduce while support is watching and mysteriously disappear when management arrives&rdquo;</em>). Integrated dedicated dedications recognizing real engineering frustrations, midnight Google queries, and elusive Heisenbugs.
+<br><br>
+<em>Student Computing &amp; IT Service Desk Expansion:</em> Added high-impact student programming and IT service desk maxims under <code>College &amp; Computing</code> and <code>Philosophy &amp; Mindset</code> (covering compiler deadlines, online LMS submission stability, single missing semicolons, password manager recovery keys, and hardware audio anomalies). Synchronized dynamic category counter pills, updated cache-busting references (<code>v=20261119-quotes-expansion-82</code>), refreshed search indexing, and validated all JavaScript syntax.</li>
 <li id="windows-11-userchoice-protocol-association-firefox-default-hardening"><strong>Windows 11 UserChoice URL protocol association hardening &amp; Firefox default browser restoration:</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, audited and remediated an operating system web navigation defect where external application links, HTML documents, and HTTP/HTTPS protocol requests persistently opened inside Microsoft Edge despite Mozilla Firefox being the configured primary daily-driver browser.
 <br><br>
 <em>Registry Forensics &amp; UserChoice Cryptographic Hash Inspection:</em> Queried the Windows Shell URL protocol handler registry branches at <code>HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice</code> and <code>https\UserChoice</code>. Discovered that both core web schemes remained bound to <code>ProgId: MSEdgeHTM</code> with a proprietary Microsoft verification hash (<code>Hash: kPzk2pbaP+8=</code> and <code>1R0YbZ0WJ1k=</code>). Audited the installed browser packages via PowerShell (<code>Get-AppxPackage *firefox*</code>), confirming that Mozilla Firefox was cleanly deployed as a 64-bit modern package (<code>Mozilla.Firefox_160.0.0.0_x64__n80bbvh6b1yt2</code>) under <code>C:\Program Files\WindowsApps\</code> with execution alias at <code>%LOCALAPPDATA%\Microsoft\WindowsApps\firefox.exe</code>.
@@ -1523,8 +1528,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-19T18:45:33-05:00">November 19, 2026 at 6:45:33 PM EST</time></p>
-				<p class="footer-version">Version v2.6.408 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-19T19:10:00-05:00">November 19, 2026 at 7:10:00 PM EST</time></p>
+				<p class="footer-version">Version v2.6.409 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>

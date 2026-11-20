@@ -366,8 +366,8 @@
 		{
 			id: 'maintenance-window-reboot-not-research-project',
 			quote: 'May every maintenance window end with a reboot and not a research project.',
-			category: 'Philosophy & Mindset',
-			context: 'The razor-thin line between an uneventful service restart and an involuntary six-hour deep dive into deprecated glibc headers, kernel source trees, and forgotten forum threads.',
+			category: 'The "That\'s Weird..." Collection',
+			context: 'Dedicated to those who schedule thirty minutes and block out three hours. The razor-thin line between an uneventful service restart and an involuntary six-hour deep dive into deprecated glibc headers, kernel source trees, and forgotten forum threads.',
 			projectTitle: 'Portfolio Infrastructure Maintenance Log',
 			projectHref: 'maintenance.html'
 		},
@@ -458,6 +458,206 @@
 			context: 'The golden rule of infrastructure engineering and continuous deployment: test in sandbox, verify in staging, and leave live production unthreatened by impromptu guesswork.',
 			projectTitle: 'Code Runner & AI Coach Infrastructure',
 			projectHref: 'code-runner.html'
+		},
+		{
+			id: 'software-update-finish-before-patience',
+			quote: 'May your software update finish before your patience does.',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to mandatory OS restarts and multi-gigabyte background updater cycles that spin their progress wheel indefinitely at 99%.',
+			projectTitle: 'Portfolio Infrastructure Maintenance Log',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'password-manager-remember-what-you-cannot',
+			quote: 'May your password manager remember what you cannot.',
+			category: 'Security & Forensics',
+			context: 'Dedicated to 32-character high-entropy master passwords, forgotten vault passphrases, and zero-knowledge encryption recovery keys.',
+			projectTitle: 'GLPI Asset & Credentials Architecture',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'charger-exactly-where-you-left-it',
+			quote: 'May your charger be exactly where you left it.',
+			category: 'Thermals & Hardware',
+			context: 'Dedicated to missing USB-C PD bricks, proprietary barrel plugs, and charging cables that mysteriously vanish right as your battery hits 3%.',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'browser-tabs-close-only-after-saving',
+			quote: "May your browser tabs close only after you've saved what's important.",
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to unexpected browser crashes, accidental window closures, and the frantic Ctrl+Shift+T recovery prayers.',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'index.html'
+		},
+		{
+			id: 'package-arrive-before-interest-expires',
+			quote: 'May your package arrive before your interest in it expires.',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to three-week overseas shipping for vintage microcontrollers and replacement parts that arrive long after you solved the problem another way.',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'index.html'
+		},
+		{
+			id: 'reboot-solve-problem-not-create-three',
+			quote: 'May every reboot solve the problem and not create three new ones.',
+			category: 'Storage & Recovery',
+			context: 'Dedicated to the delicate art of the system restart, where fixing a hung daemon might trigger a kernel panic, a missing mount, and a failing NIC.',
+			projectTitle: 'Headless Intel NUC Alpine Storage Recovery',
+			projectHref: 'projects.html#intel-nuc-alpine-storage-recovery-title'
+		},
+		{
+			id: 'strange-noise-reveal-harmless',
+			quote: 'May every strange noise reveal itself to be harmless.',
+			category: 'Thermals & Hardware',
+			context: 'Dedicated to everyone who has heard a computer make a sound it definitely wasn\'t supposed to make.',
+			projectTitle: 'HP Laptop Cooling Refresh: Thermal Interface Replacement',
+			projectHref: 'projects.html#hp-thermal-refresh-title'
+		},
+		{
+			id: 'issue-reproduce-consistently',
+			quote: 'May every issue reproduce consistently.',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to those who have ever heard, &ldquo;Well, it was doing it five minutes ago.&rdquo;',
+			projectTitle: 'GVSU IT Service Desk & Class Assistant Bot',
+			projectHref: 'chat.html'
+		},
+		{
+			id: 'problems-obvious-fixes-simple-root-causes',
+			quote: 'May your problems be obvious, your fixes be simple, and your root causes be exactly what you suspected they were.',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to the rare and blessed moments in engineering when troubleshooting goes smoothly without unmasking an architectural disaster.',
+			projectTitle: 'Andrew Van Ek &mdash; Homelab Philosophy',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'phrase-thats-weird-not-four-hour-investigation',
+			quote: 'May the phrase "that\'s weird" not be followed by a four-hour investigation.',
+			category: 'The "That\'s Weird..." Collection',
+			context: 'Dedicated to every innocent muttered observation that rapidly spirals into disassembling an entire production stack on a Friday evening.',
+			projectTitle: 'Portfolio Infrastructure Maintenance Log',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'problem-documented-somewhere',
+			quote: 'May the problem be documented somewhere.',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to every desperate Google search at 1:37 AM.',
+			projectTitle: 'Portfolio Infrastructure Maintenance Log',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'user-try-turning-off-and-on',
+			quote: 'May the user actually try turning it off and back on before calling.',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to the timeless first step of IT triage and the enduring mystery of why power cycling works so miraculously well.',
+			projectTitle: 'GVSU IT Service Desk & Class Assistant Bot',
+			projectHref: 'chat.html'
+		},
+		{
+			id: 'users-remember-what-they-clicked',
+			quote: 'May users remember what they clicked immediately before everything exploded.',
+			category: 'Philosophy & Mindset',
+			context: 'Dedicated to the classic incident response interrogation: &ldquo;I didn\'t touch anything, it just broke on its own.&rdquo;',
+			projectTitle: 'GVSU IT Service Desk & Class Assistant Bot',
+			projectHref: 'chat.html'
+		},
+		{
+			id: 'critical-outage-turn-out-loose-cable',
+			quote: 'May every "critical outage" turn out to be a loose cable.',
+			category: 'Networking & DNS',
+			context: 'Dedicated to severity-1 alerts, flashing status lights, and emergency escalations that resolve with a single satisfying click of an RJ45 jack.',
+			projectTitle: 'Distraction-Free Workstation Filtering: AdGuard Cloud DNS & Tailscale Coexistence',
+			projectHref: 'projects.html#adguard-dns-focus-profile-title'
+		},
+		{
+			id: 'disk-space-alerts-arrive-before-full',
+			quote: 'May your disk space alerts arrive before the disk runs out of space.',
+			category: 'Storage & Recovery',
+			context: 'Dedicated to runaway log files, filled root partitions, and the sudden realization that Docker containers have consumed 100% of available inodes.',
+			projectTitle: 'Autonomous Drive C Forensics & Precision Reclamation',
+			projectHref: 'projects.html#internal-drive-c-forensics-title'
+		},
+		{
+			id: 'semicolon-exactly-where-it-belongs',
+			quote: 'May every semicolon be exactly where it belongs.',
+			category: 'College & Computing',
+			context: 'Dedicated to hunting down the single missing semicolon across four hundred lines of code that generated seventy-eight compiler errors.',
+			projectTitle: 'Code Runner & AI Coach Infrastructure',
+			projectHref: 'code-runner.html'
+		},
+		{
+			id: 'homework-compile-five-minutes-before-deadline',
+			quote: 'May your homework compile five minutes before the deadline and not one minute after.',
+			category: 'College & Computing',
+			context: 'Dedicated to the adrenaline rush of late-night programming submissions, build scripts, and racing the canvas timer.',
+			projectTitle: 'Career, Education & About Andrew Van Ek',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'professors-example-work-as-shown',
+			quote: "May the professor's example work exactly as shown in class.",
+			category: 'College & Computing',
+			context: 'Dedicated to code snippets that ran flawlessly on the lecture projector but refuse to compile in your local development environment.',
+			projectTitle: 'GVSU IT Service Desk & Class Assistant Bot',
+			projectHref: 'chat.html'
+		},
+		{
+			id: 'discussion-post-insightful-at-1157-pm',
+			quote: 'May your discussion post sound insightful despite being written at 11:57 PM.',
+			category: 'College & Computing',
+			context: 'Dedicated to Sunday midnight deadlines, peer replies that begin with &ldquo;I agree with your point&hellip;&rdquo;, and academic caffeine endurance.',
+			projectTitle: 'Career, Education & About Andrew Van Ek',
+			projectHref: 'about.html'
+		},
+		{
+			id: 'browser-never-crash-during-submission',
+			quote: 'May your browser never crash during an online submission.',
+			category: 'College & Computing',
+			context: 'Dedicated to the ultimate test of faith: clicking &ldquo;Submit Assessment&rdquo; on an unstable Wi-Fi connection with twenty seconds remaining.',
+			projectTitle: 'GVSU IT Service Desk & Class Assistant Bot',
+			projectHref: 'chat.html'
+		},
+		{
+			id: 'first-guess-correct-not-merely-optimistic',
+			quote: 'May your first guess be correct and not merely optimistic.',
+			category: 'The "That\'s Weird..." Collection',
+			context: 'Dedicated to the initial hypothesis that feels so right in your gut until tcpdump, strace, and log grep mercilessly prove it wrong.',
+			projectTitle: 'Homelab Diagnostics & Systems Administration',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'troubleshooting-path-more-answers-than-tabs',
+			quote: 'May your troubleshooting path contain more answers than tabs.',
+			category: 'The "That\'s Weird..." Collection',
+			context: 'Dedicated to having 83 Stack Overflow, Reddit, and GitHub issue tabs open across four browser windows while diagnosing a single segmentation fault.',
+			projectTitle: 'Homelab Diagnostics & Systems Administration',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'never-seen-that-before-know-whats-wrong',
+			quote: 'May "I\'ve never seen that before" be followed immediately by "but I know exactly what\'s wrong."',
+			category: 'The "That\'s Weird..." Collection',
+			context: 'Dedicated to senior engineer intuition when encountering unprecedented edge cases and instantly connecting the clues to a solution.',
+			projectTitle: 'Homelab Diagnostics & Systems Administration',
+			projectHref: 'maintenance.html'
+		},
+		{
+			id: 'users-report-symptoms-not-conclusions',
+			quote: 'May your users report symptoms instead of conclusions.',
+			category: 'The "That\'s Weird..." Collection',
+			context: 'Dedicated to everyone who has ever received the ticket: &ldquo;The server is down.&rdquo;',
+			projectTitle: 'GVSU IT Service Desk & Class Assistant Bot',
+			projectHref: 'chat.html'
+		},
+		{
+			id: 'issue-reproduce-support-watching-vanish-management',
+			quote: 'May the issue reproduce while support is watching and mysteriously disappear when management arrives.',
+			category: 'The "That\'s Weird..." Collection',
+			context: 'Dedicated to elusive Heisenbugs that vanish the moment an executive looks at the screen but strike reliably during technician observation.',
+			projectTitle: 'Homelab Diagnostics & Systems Administration',
+			projectHref: 'maintenance.html'
 		}
 	];
 
