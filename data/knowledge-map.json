@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 77,
-    "totalNodes": 220,
-    "totalLinks": 447,
+    "totalProjects": 78,
+    "totalNodes": 225,
+    "totalLinks": 457,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "interactive-3d-planetary-backbone-title",
+      "name": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 20, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Following the successful deployment of the 3D Homelab Project Constellation, I engineered an interactive 3D WebGL planetary radar (3D Planetary Backbone) under the Systems & Stats navigation menu. While the internet is frequently conceptualized as a weightless cloud, over 95% ...",
+      "tech": [
+        "WebGL",
+        "globe.gl",
+        "TeleGeography GeoJSON",
+        "Client-Side Static Architecture",
+        "Kinetic Fly-To",
+        "Street View"
+      ],
+      "tasks": [
+        {
+          "title": "MultiLineString Geospatial Parsing",
+          "desc": "Ingested TeleGeography's global subsea cable geometries (cable-geo.json), developing an automated parser in scripts/globe.js to normalize co..."
+        },
+        {
+          "title": "Kinetic Photon Pulse Shaders",
+          "desc": "Implemented animated dash shaders across international optical corridors (Transatlantic, Transpacific, and Arctic routes) simulating physica..."
+        },
+        {
+          "title": "Dynamic Palette Categorization",
+          "desc": "Key hyperscaler and high-capacity transatlantic arteries (such as Google Dunant, Grace Hopper, Firmina, Equiano, and MAREA) are accentuated ..."
+        },
+        {
+          "title": "Coordinate Fly-To Choreography",
+          "desc": "Clicking any coastal terminal or subsea cable triggers a smooth quaternion camera interpolation down to low-orbit altitude (altitude: 0.45),..."
+        }
+      ],
+      "url": "projects.html#interactive-3d-planetary-backbone-title"
+    },
+    {
+      "id": "task-interactive-3d-planetary-backbone-title-0",
+      "name": "MultiLineString Geospatial Parsing",
+      "type": "task",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentId": "interactive-3d-planetary-backbone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Ingested TeleGeography's global subsea cable geometries (cable-geo.json), developing an automated parser in scripts/globe.js to normalize co...",
+      "url": "projects.html#interactive-3d-planetary-backbone-title"
+    },
+    {
+      "id": "task-interactive-3d-planetary-backbone-title-1",
+      "name": "Kinetic Photon Pulse Shaders",
+      "type": "task",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentId": "interactive-3d-planetary-backbone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Implemented animated dash shaders across international optical corridors (Transatlantic, Transpacific, and Arctic routes) simulating physica...",
+      "url": "projects.html#interactive-3d-planetary-backbone-title"
+    },
+    {
+      "id": "task-interactive-3d-planetary-backbone-title-2",
+      "name": "Dynamic Palette Categorization",
+      "type": "task",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentId": "interactive-3d-planetary-backbone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Key hyperscaler and high-capacity transatlantic arteries (such as Google Dunant, Grace Hopper, Firmina, Equiano, and MAREA) are accentuated ...",
+      "url": "projects.html#interactive-3d-planetary-backbone-title"
+    },
+    {
+      "id": "task-interactive-3d-planetary-backbone-title-3",
+      "name": "Coordinate Fly-To Choreography",
+      "type": "task",
+      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Homelab Constellation",
+      "parentId": "interactive-3d-planetary-backbone-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Clicking any coastal terminal or subsea cable triggers a smooth quaternion camera interpolation down to low-orbit altitude (altitude: 0.45),...",
+      "url": "projects.html#interactive-3d-planetary-backbone-title"
     },
     {
       "id": "interactive-3d-knowledge-map-title",
@@ -3902,6 +3990,66 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "interactive-3d-planetary-backbone-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "task-interactive-3d-planetary-backbone-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "task-interactive-3d-planetary-backbone-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "task-interactive-3d-planetary-backbone-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "task-interactive-3d-planetary-backbone-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "tech-threejs-webgl",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "tech-gcp-cloud",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "interactive-3d-planetary-backbone-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "interactive-3d-knowledge-map-title",

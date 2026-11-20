@@ -141,6 +141,8 @@ def build_index():
 
     # 4. Static Pages
     static_pages = [
+        ("globe.html", "3D Planetary Radar & Global Internet Backbone", "Systems & Stats", "Interactive 3D WebGL planetary radar mapping 400+ subsea optical cables, 1,900+ coastal landing stations, Tier 1 IXPs, homelab mesh nodes, and ground-level street view panoramas."),
+        ("map.html", "3D Knowledge Map & Project Constellation", "Systems & Stats", "Interactive 3D WebGL force-directed graph connecting 76 homelab systems, neural agents, embedded devices, and forensics milestones."),
         ("karaoke.html", "Robo-Karaoke Studio: Retro 172 BPM B-Roll & Audio Alignment Player", "AI Labs", "Interactive retro arcade karaoke player featuring Mike's Theme rockabilly remix, 172 BPM beat bounce, procedural canvas B-roll, and Whisper-CPP RMS audio transient alignment."),
         ("gallery.html", "Visual Gallery & Malware Sandbox Lab", "Showcase", "Hands-on security research, live malware detonations, ransomware file destruction, screen lockers, and threat forensics analyzed in Windows Sandbox."),
         ("quotes.html", "Homelab Quotes & Proverbs: Engineering Epigrams & Troubleshooting Maxims", "Systems & Stats", "Humorous homelab proverbs, hardware maxims, and engineering wisdom forged from real projects: thermals, DNS sinkholes, USB enclosure recovery, and stripped screws."),
