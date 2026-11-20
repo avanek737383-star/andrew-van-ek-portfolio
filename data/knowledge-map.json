@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 79,
     "totalNodes": 230,
-    "totalLinks": 463,
+    "totalLinks": 464,
     "domains": 6,
     "techBridges": 10
   },
@@ -436,50 +436,62 @@
       ],
       "tasks": [
         {
-          "title": "Trapezoidal Optical Ray Modeling",
-          "desc": "Simulates multiple independent volumetric sun shafts refracting through surface ripples. Each ray is mathematically defined with unique angu..."
+          "title": "8 Surface Sunlight Apertures",
+          "desc": "Maps precise horizontal coordinates for every surface sunbreak (including the far upper-left opening at x: 6.5%, upper-right inboard sunburs..."
         },
         {
-          "title": "Organic Sinusoidal Swell & Shimmer",
-          "desc": "Individual rays oscillate with randomized sine-wave phase offsets, generating the optical illusion of natural ocean swells and shifting surf..."
+          "title": "4 Submerged In-Water Caustic Focal Points",
+          "desc": "Extends volumetric emission to light prisms suspended directly within the water column (including the glowing upper-middle caustic below the..."
+        },
+        {
+          "title": "Gravitational Cursor Attraction",
+          "desc": "When hovering over the canvas on desktop, all 12 surface and submerged light shafts dynamically calculate real-time vectors that bend and gr..."
         },
         {
           "title": "Suspended Marine Dust Motes",
-          "desc": "A physics array of 45 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ..."
-        },
-        {
-          "title": "Hardware Gyroscope Integration",
-          "desc": "Captures real-time device orientation angles via DeviceOrientationEvent. Tilting the phone left or right along the gamma axis smoothly shift..."
+          "desc": "A physics array of 48 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ..."
         }
       ],
       "url": "projects.html#oceanscape-gyro-lightbeams-title"
     },
     {
       "id": "task-oceanscape-gyro-lightbeams-title-0",
-      "name": "Trapezoidal Optical Ray Modeling",
+      "name": "8 Surface Sunlight Apertures",
       "type": "task",
       "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
       "parentId": "oceanscape-gyro-lightbeams-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Simulates multiple independent volumetric sun shafts refracting through surface ripples. Each ray is mathematically defined with unique angu...",
+      "summary": "Maps precise horizontal coordinates for every surface sunbreak (including the far upper-left opening at x: 6.5%, upper-right inboard sunburs...",
       "url": "projects.html#oceanscape-gyro-lightbeams-title"
     },
     {
       "id": "task-oceanscape-gyro-lightbeams-title-1",
-      "name": "Organic Sinusoidal Swell & Shimmer",
+      "name": "4 Submerged In-Water Caustic Focal Points",
       "type": "task",
       "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
       "parentId": "oceanscape-gyro-lightbeams-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Individual rays oscillate with randomized sine-wave phase offsets, generating the optical illusion of natural ocean swells and shifting surf...",
+      "summary": "Extends volumetric emission to light prisms suspended directly within the water column (including the glowing upper-middle caustic below the...",
       "url": "projects.html#oceanscape-gyro-lightbeams-title"
     },
     {
       "id": "task-oceanscape-gyro-lightbeams-title-2",
+      "name": "Gravitational Cursor Attraction",
+      "type": "task",
+      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
+      "parentId": "oceanscape-gyro-lightbeams-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "When hovering over the canvas on desktop, all 12 surface and submerged light shafts dynamically calculate real-time vectors that bend and gr...",
+      "url": "projects.html#oceanscape-gyro-lightbeams-title"
+    },
+    {
+      "id": "task-oceanscape-gyro-lightbeams-title-3",
       "name": "Suspended Marine Dust Motes",
       "type": "task",
       "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
@@ -487,19 +499,7 @@
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "A physics array of 45 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ...",
-      "url": "projects.html#oceanscape-gyro-lightbeams-title"
-    },
-    {
-      "id": "task-oceanscape-gyro-lightbeams-title-3",
-      "name": "Hardware Gyroscope Integration",
-      "type": "task",
-      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
-      "parentId": "oceanscape-gyro-lightbeams-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Captures real-time device orientation angles via DeviceOrientationEvent. Tilting the phone left or right along the gamma axis smoothly shift...",
+      "summary": "A physics array of 48 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ...",
       "url": "projects.html#oceanscape-gyro-lightbeams-title"
     },
     {
@@ -4107,6 +4107,12 @@
       "target": "task-oceanscape-gyro-lightbeams-title-3",
       "type": "project-task",
       "distance": 26
+    },
+    {
+      "source": "oceanscape-gyro-lightbeams-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
     },
     {
       "source": "oceanscape-gyro-lightbeams-title",

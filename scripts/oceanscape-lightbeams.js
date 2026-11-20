@@ -1,5 +1,5 @@
 // Andrew Van Ek Portfolio | 19-Hour Oceanscape Interactive Gyroscope & Cursor Gravitational Sunbeams (Easter Egg)
-// Light beams originate from the image's actual surface light hotspots and gravitate toward the mouse cursor or phone tilt.
+// Light beams originate from the image's actual surface light hotspots & in-water caustic focal points, gravitating toward the cursor or phone tilt.
 
 (function () {
     "use strict";
@@ -20,7 +20,7 @@
         previewContainer.style.cursor = "crosshair";
         previewContainer.style.touchAction = "none";
 
-        // Prevent accidental link navigation on image tap (the explicit text link remains below)
+        // Prevent accidental link navigation on image tap
         previewContainer.addEventListener("click", function (e) {
             if (e.target.tagName !== "A" || e.currentTarget === previewContainer) {
                 e.preventDefault();
@@ -55,14 +55,24 @@
         var targetAttractorY = 0;
         var time = 0;
 
-        // Exact Surface Light Hotspots identified from the 4K render
+        // 1. Surface Sunlight Hotspots (Exact coordinates matching the 4K render)
         var surfaceHotspots = [
-            { rx: 0.14, ry: 0.025, baseSpread: 70, maxAlpha: 0.45, tint: "224, 250, 255" }, // Left Sunbreak
-            { rx: 0.32, ry: 0.045, baseSpread: 65, maxAlpha: 0.40, tint: "186, 230, 253" }, // Mid-Left Caustic
-            { rx: 0.48, ry: 0.020, baseSpread: 110, maxAlpha: 0.58, tint: "240, 253, 250" }, // Center Core Beam
-            { rx: 0.56, ry: 0.035, baseSpread: 80, maxAlpha: 0.46, tint: "199, 240, 255" }, // Center-Right Shaft
-            { rx: 0.81, ry: 0.018, baseSpread: 130, maxAlpha: 0.65, tint: "255, 255, 255" }, // Major Right Sunburst
-            { rx: 0.89, ry: 0.050, baseSpread: 75, maxAlpha: 0.38, tint: "186, 230, 253" }  // Far-Right Caustic Fringe
+            { rx: 0.065, ry: 0.035, baseSpread: 60, maxAlpha: 0.40, tint: "186, 230, 253", name: "Far Upper-Left" },
+            { rx: 0.162, ry: 0.012, baseSpread: 75, maxAlpha: 0.50, tint: "224, 250, 255", name: "Left Surface Aperture" },
+            { rx: 0.319, ry: 0.040, baseSpread: 70, maxAlpha: 0.42, tint: "199, 240, 255", name: "Mid-Left Surface" },
+            { rx: 0.470, ry: 0.024, baseSpread: 110, maxAlpha: 0.58, tint: "240, 253, 250", name: "Center Core Sunbreak" },
+            { rx: 0.616, ry: 0.050, baseSpread: 80, maxAlpha: 0.48, tint: "199, 240, 255", name: "Center-Right Surface" },
+            { rx: 0.722, ry: 0.012, baseSpread: 95, maxAlpha: 0.55, tint: "224, 250, 255", name: "Upper-Right Inboard" },
+            { rx: 0.807, ry: 0.018, baseSpread: 130, maxAlpha: 0.65, tint: "255, 255, 255", name: "Major Right Sunburst" },
+            { rx: 0.893, ry: 0.027, baseSpread: 70, maxAlpha: 0.40, tint: "186, 230, 253", name: "Far-Right Fringe" }
+        ];
+
+        // 2. Submerged In-Water Caustic Focal Points (Points suspended in the water body)
+        var inWaterHotspots = [
+            { rx: 0.480, ry: 0.124, baseSpread: 90, maxAlpha: 0.60, tint: "240, 253, 250", orbRadius: 9, name: "Upper-Middle Submerged" },
+            { rx: 0.168, ry: 0.124, baseSpread: 65, maxAlpha: 0.45, tint: "186, 230, 253", orbRadius: 7, name: "Upper-Left Submerged" },
+            { rx: 0.767, ry: 0.240, baseSpread: 100, maxAlpha: 0.62, tint: "255, 255, 255", orbRadius: 11, name: "Mid-Right Submerged Core" },
+            { rx: 0.288, ry: 0.356, baseSpread: 85, maxAlpha: 0.55, tint: "224, 250, 255", orbRadius: 10, name: "Mid-Left Submerged Core" }
         ];
 
         // Underwater floating marine motes
@@ -130,14 +140,15 @@
             ctx.save();
             ctx.globalCompositeOperation = "screen";
 
-            // 1. Render Pulsing Caustic Hotspots on the water surface (the exact light spots)
+            // A. Surface Sunlight Beams (from water surface downwards toward attractor)
             surfaceHotspots.forEach(function (spot, idx) {
                 var hx = spot.rx * width;
                 var hy = spot.ry * height;
 
-                var pulse = (Math.sin(time * 2.2 + idx * 1.1) + 1) * 0.5;
-                var ringRadius = 14 + (pulse * 18);
-                var ringAlpha = (spot.maxAlpha * (1.0 - (pulse * 0.6))).toFixed(3);
+                // Pulsing ripple ring at surface
+                var pulse = (Math.sin(time * 2.2 + idx * 0.9) + 1) * 0.5;
+                var ringRadius = 12 + (pulse * 16);
+                var ringAlpha = (spot.maxAlpha * (1.0 - (pulse * 0.65))).toFixed(3);
 
                 var spotGlow = ctx.createRadialGradient(hx, hy, 2, hx, hy, ringRadius * 1.8);
                 spotGlow.addColorStop(0, "rgba(" + spot.tint + ", " + (spot.maxAlpha * 0.9).toFixed(3) + ")");
@@ -148,18 +159,12 @@
                 ctx.beginPath();
                 ctx.arc(hx, hy, ringRadius * 1.8, 0, Math.PI * 2);
                 ctx.fill();
-            });
 
-            // 2. Render Volumetric Beams EMANATING from the surface spots and GRAVITATING to the attractor
-            surfaceHotspots.forEach(function (spot, idx) {
-                var hx = spot.rx * width;
-                var hy = spot.ry * height;
-
+                // Beam vector towards gravitational attractor
                 var dx = currentAttractorX - hx;
                 var dy = Math.max(currentAttractorY - hy, height * 0.35);
                 var angle = Math.atan2(dy, dx);
-
-                var waveSway = Math.sin(time * 1.4 + idx * 0.8) * 0.04;
+                var waveSway = Math.sin(time * 1.4 + idx * 0.7) * 0.035;
                 var finalAngle = angle + waveSway;
 
                 var rayLength = height * 1.4;
@@ -188,24 +193,77 @@
                 ctx.fill();
             });
 
-            // 3. Focal Caustic Pool at the Gravitational Attractor (where the mouse / tilt focuses)
+            // B. Submerged In-Water Caustic Focal Points (Points in the water column emitting shafts)
+            inWaterHotspots.forEach(function (spot, idx) {
+                var hx = spot.rx * width;
+                var hy = spot.ry * height;
+
+                // Glowing underwater caustic prism orb
+                var pulse = (Math.sin(time * 2.8 + idx * 1.3) + 1) * 0.5;
+                var orbR = spot.orbRadius * (0.9 + pulse * 0.35);
+
+                var orbGlow = ctx.createRadialGradient(hx, hy, 1, hx, hy, orbR * 2.5);
+                orbGlow.addColorStop(0, "rgba(255, 255, 255, " + (spot.maxAlpha * 0.95).toFixed(3) + ")");
+                orbGlow.addColorStop(0.35, "rgba(" + spot.tint + ", " + (spot.maxAlpha * 0.7).toFixed(3) + ")");
+                orbGlow.addColorStop(0.7, "rgba(56, 189, 248, " + (spot.maxAlpha * 0.3).toFixed(3) + ")");
+                orbGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+                ctx.fillStyle = orbGlow;
+                ctx.beginPath();
+                ctx.arc(hx, hy, orbR * 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Secondary refracted beam emanating downward toward the attractor
+                var dx = currentAttractorX - hx;
+                var dy = Math.max(currentAttractorY - hy, height * 0.25);
+                var angle = Math.atan2(dy, dx);
+                var waveSway = Math.sin(time * 1.8 + idx * 1.1) * 0.04;
+                var finalAngle = angle + waveSway;
+
+                var rayLength = height * 1.2;
+                var endCenterX = hx + Math.cos(finalAngle) * rayLength;
+                var endCenterY = hy + Math.sin(finalAngle) * rayLength;
+
+                var bottomWidth = spot.baseSpread * (1.0 + Math.cos(time * 1.1 + idx) * 0.2);
+                var perpX = -Math.sin(finalAngle) * bottomWidth;
+                var perpY = Math.cos(finalAngle) * bottomWidth;
+
+                var grad = ctx.createLinearGradient(hx, hy, endCenterX, endCenterY);
+                var alphaMultiplier = spot.maxAlpha * (0.8 + Math.sin(time * 1.6 + idx * 0.9) * 0.2);
+
+                grad.addColorStop(0, "rgba(" + spot.tint + ", " + (alphaMultiplier * 0.9).toFixed(3) + ")");
+                grad.addColorStop(0.3, "rgba(224, 250, 255, " + (alphaMultiplier * 0.55).toFixed(3) + ")");
+                grad.addColorStop(0.7, "rgba(56, 189, 248, " + (alphaMultiplier * 0.25).toFixed(3) + ")");
+                grad.addColorStop(1, "rgba(2, 132, 199, 0)");
+
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.moveTo(hx - 6, hy);
+                ctx.lineTo(hx + 6, hy);
+                ctx.lineTo(endCenterX + perpX, endCenterY + perpY);
+                ctx.lineTo(endCenterX - perpX, endCenterY - perpY);
+                ctx.closePath();
+                ctx.fill();
+            });
+
+            // C. Focal Caustic Pool at the Gravitational Attractor (where mouse / tilt focuses)
             if (hasUserInteracted) {
                 var focalGlow = ctx.createRadialGradient(
                     currentAttractorX, currentAttractorY, 4,
-                    currentAttractorX, currentAttractorY, 110
+                    currentAttractorX, currentAttractorY, 115
                 );
-                focalGlow.addColorStop(0, "rgba(240, 253, 250, 0.40)");
-                focalGlow.addColorStop(0.35, "rgba(56, 189, 248, 0.22)");
+                focalGlow.addColorStop(0, "rgba(240, 253, 250, 0.42)");
+                focalGlow.addColorStop(0.35, "rgba(56, 189, 248, 0.24)");
                 focalGlow.addColorStop(0.75, "rgba(14, 165, 233, 0.08)");
                 focalGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
 
                 ctx.fillStyle = focalGlow;
                 ctx.beginPath();
-                ctx.arc(currentAttractorX, currentAttractorY, 110, 0, Math.PI * 2);
+                ctx.arc(currentAttractorX, currentAttractorY, 115, 0, Math.PI * 2);
                 ctx.fill();
             }
 
-            // 4. Floating Marine Motes illuminated by light
+            // D. Floating Marine Motes illuminated by light
             particles.forEach(function (p) {
                 p.y -= p.speedY;
                 p.x += p.speedX;
@@ -278,17 +336,14 @@
             }
         }
 
-        // Tap on canvas seamlessly triggers permission on iOS without interrupting the experience
-        canvas.addEventListener("touchend", function (e) {
+        canvas.addEventListener("touchend", function () {
             triggerMotionPermission();
         }, { passive: true });
 
-        // Non-iOS or pre-authorized browsers automatically listen
         if (typeof window.DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission !== "function") {
             window.addEventListener("deviceorientation", handleOrientation, { passive: true });
         }
 
-        // Start render loop
         animId = requestAnimationFrame(render);
     }
 
