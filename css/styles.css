@@ -1225,7 +1225,7 @@ footer {
 }
 @media (max-width: 760px) {
     .oceanscape-render__preview {
-        display: none;
+        display: block;
     }
 }
 

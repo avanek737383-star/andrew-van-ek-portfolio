@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 78,
-    "totalNodes": 225,
-    "totalLinks": 456,
+    "totalProjects": 79,
+    "totalNodes": 230,
+    "totalLinks": 463,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "oceanscape-gyro-lightbeams-title",
+      "name": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 20, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "On my About page, I showcase a 4K underwater render that pushed my HP laptop (AMD Ryzen 3 2200U, 16 GB RAM) through a grueling 19-hour, 24-minute, and 31-second continuous local inference run with Realistic Vision 5.1\u2014using tiled VAE decoding in small, overlapping pixel chunks...",
+      "tech": [
+        "DeviceOrientationEvent",
+        "Gyroscope Parallax",
+        "Volumetric Sunbeams",
+        "Apple iOS Tilt Effect",
+        "Tiled VAE Decoding",
+        "Realistic Vision 5.1"
+      ],
+      "tasks": [
+        {
+          "title": "Trapezoidal Optical Ray Modeling",
+          "desc": "Simulates multiple independent volumetric sun shafts refracting through surface ripples. Each ray is mathematically defined with unique angu..."
+        },
+        {
+          "title": "Organic Sinusoidal Swell & Shimmer",
+          "desc": "Individual rays oscillate with randomized sine-wave phase offsets, generating the optical illusion of natural ocean swells and shifting surf..."
+        },
+        {
+          "title": "Suspended Marine Dust Motes",
+          "desc": "A physics array of 45 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ..."
+        },
+        {
+          "title": "Hardware Gyroscope Integration",
+          "desc": "Captures real-time device orientation angles via DeviceOrientationEvent. Tilting the phone left or right along the gamma axis smoothly shift..."
+        }
+      ],
+      "url": "projects.html#oceanscape-gyro-lightbeams-title"
+    },
+    {
+      "id": "task-oceanscape-gyro-lightbeams-title-0",
+      "name": "Trapezoidal Optical Ray Modeling",
+      "type": "task",
+      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
+      "parentId": "oceanscape-gyro-lightbeams-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Simulates multiple independent volumetric sun shafts refracting through surface ripples. Each ray is mathematically defined with unique angu...",
+      "url": "projects.html#oceanscape-gyro-lightbeams-title"
+    },
+    {
+      "id": "task-oceanscape-gyro-lightbeams-title-1",
+      "name": "Organic Sinusoidal Swell & Shimmer",
+      "type": "task",
+      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
+      "parentId": "oceanscape-gyro-lightbeams-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Individual rays oscillate with randomized sine-wave phase offsets, generating the optical illusion of natural ocean swells and shifting surf...",
+      "url": "projects.html#oceanscape-gyro-lightbeams-title"
+    },
+    {
+      "id": "task-oceanscape-gyro-lightbeams-title-2",
+      "name": "Suspended Marine Dust Motes",
+      "type": "task",
+      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
+      "parentId": "oceanscape-gyro-lightbeams-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "A physics array of 45 floating marine particles drifts vertically through the water column, dynamically catching the shifting sunbeams with ...",
+      "url": "projects.html#oceanscape-gyro-lightbeams-title"
+    },
+    {
+      "id": "task-oceanscape-gyro-lightbeams-title-3",
+      "name": "Hardware Gyroscope Integration",
+      "type": "task",
+      "parentProject": "Underwater 4K Caustic Light Beam Engine: HTML5 Canvas Gyroscope Parallax, iOS Orientation Sensors & 19-Hour Tiled Diffusion Post-Processing",
+      "parentId": "oceanscape-gyro-lightbeams-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Captures real-time device orientation angles via DeviceOrientationEvent. Tilting the phone left or right along the gamma axis smoothly shift...",
+      "url": "projects.html#oceanscape-gyro-lightbeams-title"
     },
     {
       "id": "interactive-3d-planetary-backbone-title",
@@ -3990,6 +4078,48 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "oceanscape-gyro-lightbeams-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "oceanscape-gyro-lightbeams-title",
+      "target": "task-oceanscape-gyro-lightbeams-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "oceanscape-gyro-lightbeams-title",
+      "target": "task-oceanscape-gyro-lightbeams-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "oceanscape-gyro-lightbeams-title",
+      "target": "task-oceanscape-gyro-lightbeams-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "oceanscape-gyro-lightbeams-title",
+      "target": "task-oceanscape-gyro-lightbeams-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "oceanscape-gyro-lightbeams-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "oceanscape-gyro-lightbeams-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "interactive-3d-planetary-backbone-title",

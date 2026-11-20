@@ -303,8 +303,8 @@
                         <figcaption><strong>A 19-hour image experiment:</strong> This 4K underwater image took my HP laptop 19 hours, 24 minutes, and 31 seconds to generate locally with Realistic Vision. After an earlier attempt ran out of memory, tiled decoding—converting the result into pixels in small, overlapping sections—finally got it across the finish line.</figcaption>
                         <a class="oceanscape-render__preview" href="images/oceanscape-4k.png" aria-label="Open the full 4K underwater image">
                             <picture>
-                                <source media="(min-width: 761px)" srcset="images/oceanscape-preview.webp" type="image/webp">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1600" height="900" loading="lazy" decoding="async" alt="AI-generated turquoise underwater scene with rippling surface water and sunlight streaming into the depths.">
+                                <source srcset="images/oceanscape-preview.webp" type="image/webp">
+                                <img src="images/oceanscape-preview.webp" width="1600" height="900" loading="lazy" decoding="async" alt="AI-generated turquoise underwater scene with rippling surface water and sunlight streaming into the depths.">
                             </picture>
                         </a>
                         <p class="oceanscape-render__link"><a href="images/oceanscape-4k.png">View the full 4K underwater image (PNG, 15 MB)</a></p>
@@ -321,6 +321,15 @@
                             <p style="margin: 8px 0 0; font-size: 0.9rem; color: #cbd5e1; line-height: 1.5;">
                                 A retro Japanese arcade-style karaoke experience built for the upbeat rockabilly remix of <em>Mike's Theme</em> (Super Smash Bros. Brawl). Instead of heavy generative AI video diffusion that risks visual hallucinations and lip desynchronization, this player pairs Whisper-CPP RMS audio transient slicing with a fixed-coordinate bouncing mic and a 60 FPS HTML5 Canvas B-roll engine. See the <a href="projects.html#robo-karaoke-title" style="color: #93c5fd; text-decoration: underline;">full project writeup</a> for details.
                             </p>
+                        </div>
+                        <!-- Mobile Landscape Indicator & Direct Fullscreen Launch Link -->
+                        <div class="karaoke-mobile-banner" style="background: rgba(30, 58, 138, 0.45); border-bottom: 1px solid rgba(147, 197, 253, 0.25); padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                            <span style="font-size: 0.85rem; color: #93c5fd; display: inline-flex; align-items: center; gap: 6px;">
+                                <span style="font-size: 1.1rem;">📱 ↻</span> <strong>Mobile Notice:</strong> Rotate phone to landscape or open in new tab for optimal arcade view
+                            </span>
+                            <a href="karaoke.html" target="_blank" rel="noopener" class="btn" style="padding: 6px 14px; font-size: 0.82rem; background: #2563eb; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+                                🚀 Open Video in New Tab (Fullscreen) &rarr;
+                            </a>
                         </div>
                         <div style="position: relative; width: 100%; height: 580px; background: #001226;">
                             <iframe src="karaoke.html" style="width: 100%; height: 100%; border: none; display: block;" title="Robo-Karaoke Studio - Mike's Theme" loading="lazy"></iframe>
@@ -395,5 +404,6 @@
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 		<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
 		<script src="scripts/computing.js?v=20261013-computing-1" defer></script>
-	</body>
+		<script src="scripts/oceanscape-lightbeams.js?v=20261120-1"></script>
+</body>
 </html>

@@ -349,7 +349,7 @@
                     escapeHtml(d.name) + "</strong><div style='font-size:0.78rem;color:#94a3b8;margin-top:2px;'>" + d.type + "</div></div>";
             });
 
-        world.pointOfView({ lat: 28, lng: -40, altitude: 2.2 }, 1200);
+        world.pointOfView({ lat: 20, lng: -20, altitude: 2.1 }, 1200);
 
         var controls = world.controls();
         if (controls) {
@@ -655,7 +655,7 @@
     if (resetBtn) {
         resetBtn.addEventListener("click", function () {
             if (world) {
-                world.pointOfView({ lat: 28, lng: -40, altitude: 2.2 }, 1500);
+                world.pointOfView({ lat: 20, lng: -20, altitude: 2.1 }, 1500);
             }
         });
     }
