@@ -695,8 +695,8 @@
         "FastAPI",
         "VTracer SVG",
         "Rembg Cutouts",
-        "macOS Trash Safety",
-        "UNIX Signal Freezing"
+        "50% Rounded Corners",
+        "macOS Trash Safety"
       ],
       "tasks": [
         {
@@ -712,8 +712,8 @@
           "desc": "Added an optional cutout toggle (\u2728 Remove background & make transparent, unchecked by default) for all image formats. Powered by rembg and o..."
         },
         {
-          "title": "Video & Audio Processing Matrix",
-          "desc": "Video files (.mp4, .mov, .mkv, .webm, .avi) unlock universal encoding along with high-quality animated GIF synthesis (via a custom two-pass ..."
+          "title": "50% Anti-Aliased Rounded Corners & Intelligent Pre-Detection",
+          "desc": "Added an optional toggle (\ud83d\udd18 Add rounded corners (50%)) for all image formats. The engine synthesizes a 2x supersampled anti-aliased alpha ma..."
         }
       ],
       "url": "projects.html#local-media-converter-title"
@@ -756,14 +756,14 @@
     },
     {
       "id": "task-local-media-converter-title-3",
-      "name": "Video & Audio Processing Matrix",
+      "name": "50% Anti-Aliased Rounded Corners & Intelligent Pre-Detection",
       "type": "task",
       "parentProject": "Local Media & Offline File Converter: Apple Silicon Metal Acceleration, VTracer SVG Vectorization, Rembg AI Cutouts & macOS Trash Safety",
       "parentId": "local-media-converter-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Video files (.mp4, .mov, .mkv, .webm, .avi) unlock universal encoding along with high-quality animated GIF synthesis (via a custom two-pass ...",
+      "summary": "Added an optional toggle (\ud83d\udd18 Add rounded corners (50%)) for all image formats. The engine synthesizes a 2x supersampled anti-aliased alpha ma...",
       "url": "projects.html#local-media-converter-title"
     },
     {
