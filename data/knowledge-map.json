@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 79,
-    "totalNodes": 230,
-    "totalLinks": 464,
+    "totalProjects": 80,
+    "totalNodes": 235,
+    "totalLinks": 477,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,93 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "hardware-fleet-salvage-and-interactive-labs-title",
+      "name": "Heterogeneous 7-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Across homelab engineering, enterprise IT administration, and machine learning, true technical expertise does not come from observing sanitized environments\u2014it is forged through direct ownership, unexpected system dependencies, thermal troubleshooting, and resolving failures u...",
+      "tech": [
+        "ITAM / GLPI",
+        "Chaos Engineering",
+        "Algorithmic Fairness",
+        "E-Waste ROI",
+        "Antigravity AI"
+      ],
+      "tasks": [
+        {
+          "title": "Samsung Galaxy S4 Mini (SCH-I435)",
+          "desc": "Dual-core Krait 300 @ 1.7 GHz running vintage Android 4.x. Optimized with a zero-dependency, pure ES5 WebKit worker engine mining Duino-Coin..."
+        },
+        {
+          "title": "Lenovo Yoga 2 11 Bare-Board Rig",
+          "desc": "An e-waste logic board rescued after catastrophic chassis and LCD destruction. Stripped down to bare motherboard and daughterboard on an ope..."
+        },
+        {
+          "title": "Mid-2011 MacBook Pro 13\" (A1278)",
+          "desc": "Aluminum unibody rescued from retirement with degraded lithium battery removed for fire safety, upgraded with a SATA SSD and industrial Hone..."
+        },
+        {
+          "title": "Legacy HP Laptop 15",
+          "desc": "Linux Mint 21 worker hosting local Realistic Vision 5.1 diffusion inference with Latent Consistency Model (LCM) LoRA 4-step sampling, automa..."
+        }
+      ],
+      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
+    },
+    {
+      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-0",
+      "name": "Samsung Galaxy S4 Mini (SCH-I435)",
+      "type": "task",
+      "parentProject": "Heterogeneous 7-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
+      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Dual-core Krait 300 @ 1.7 GHz running vintage Android 4.x. Optimized with a zero-dependency, pure ES5 WebKit worker engine mining Duino-Coin...",
+      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
+    },
+    {
+      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-1",
+      "name": "Lenovo Yoga 2 11 Bare-Board Rig",
+      "type": "task",
+      "parentProject": "Heterogeneous 7-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
+      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "An e-waste logic board rescued after catastrophic chassis and LCD destruction. Stripped down to bare motherboard and daughterboard on an ope...",
+      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
+    },
+    {
+      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
+      "name": "Mid-2011 MacBook Pro 13\" (A1278)",
+      "type": "task",
+      "parentProject": "Heterogeneous 7-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
+      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Aluminum unibody rescued from retirement with degraded lithium battery removed for fire safety, upgraded with a SATA SSD and industrial Hone...",
+      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
+    },
+    {
+      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
+      "name": "Legacy HP Laptop 15",
+      "type": "task",
+      "parentProject": "Heterogeneous 7-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
+      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Linux Mint 21 worker hosting local Realistic Vision 5.1 diffusion inference with Latent Consistency Model (LCM) LoRA 4-step sampling, automa...",
+      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "oceanscape-gyro-lightbeams-title",
@@ -4078,6 +4165,84 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "hardware-fleet-salvage-and-interactive-labs-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "task-hardware-fleet-salvage-and-interactive-labs-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "task-hardware-fleet-salvage-and-interactive-labs-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-gcp-cloud",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "oceanscape-gyro-lightbeams-title",
