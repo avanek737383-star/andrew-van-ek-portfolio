@@ -88,6 +88,452 @@
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
 
+<section class="project-entry" aria-labelledby="fishdepth-marine-chartplotter-title">
+<h2 id="fishdepth-marine-chartplotter-title">FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake &amp; Nav Channel Depths with Dead-Reckoning Compass Engine</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Alpine Linux NUC &middot; OpenRC &middot; Leaflet.js &middot; NOAA &amp; Michigan DNR GIS Bathymetry &middot; Grand River Channel Depths &middot; Dead-Reckoning Gyro Compass &middot; DeviceOrientation API &middot; Wake Lock API &middot; Tailscale HTTPS :8446 &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<div class="project-architecture" aria-label="FishDepth Chartplotter Architecture"><span>Mobile Gyroscope &amp; Geolocation Sensors</span><span aria-hidden="true">&rarr;</span><span>DeviceOrientation Heading &amp; Calibration Matrix</span><span aria-hidden="true">&rarr;</span><span>Michigan DNR GIS (Layers 1, 4, 17) &amp; OpenSeaMap Bathymetry</span><span aria-hidden="true">&rarr;</span><span>LOD Depth Contour &amp; Sounding Engine</span><span aria-hidden="true">&rarr;</span><span>Alpine NUC Port 8098 (Tailscale HTTPS :8446)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">🎣 FishDepth Marine &amp; Inland Lake Chartplotter Topology</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">DeviceOrientation Dead-Reckoning &bull; MI DNR ArcGIS Layers 1/4/17 &bull; Grand River Channel Soundings &bull; Tailscale HTTPS :8446</span>
+    </div>
+    <span style="background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Marine Chartplotter &bull; Alpine NUC</span>
+  </div>
+
+  <svg viewBox="0 0 920 250" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="FishDepth Architecture Diagram">
+    <defs>
+      <linearGradient id="fdGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0369a1" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="fdGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="fdGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#059669" stop-opacity="0.08"/>
+      </linearGradient>
+    </defs>
+    <rect x="20" y="30" width="260" height="190" rx="10" fill="url(#fdGrad1)" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="35" y="60" fill="#38bdf8" font-size="14" font-weight="700">📱 Client Sensor &amp; Dead-Reckoning</text>
+    <text x="35" y="88" fill="#94a3b8" font-size="12">&bull; HTML5 Geolocation (Lat/Lon/Alt)</text>
+    <text x="35" y="112" fill="#94a3b8" font-size="12">&bull; DeviceOrientation (Alpha/Beta/Gamma)</text>
+    <text x="35" y="136" fill="#94a3b8" font-size="12">&bull; Persistent Gyro Calibration Offset</text>
+    <text x="35" y="160" fill="#94a3b8" font-size="12">&bull; Screen Wake Lock API Active Loop</text>
+    <text x="35" y="184" fill="#38bdf8" font-size="12" font-weight="600">&bull; Dynamic Heading Cone Rendering</text>
+
+    <path d="M 280 125 L 325 125" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="325,121 333,125 325,129" fill="#38bdf8"/>
+
+    <rect x="335" y="30" width="270" height="190" rx="10" fill="url(#fdGrad2)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="350" y="60" fill="#e0f2fe" font-size="14" font-weight="700">🗺️ Multi-Scale Bathymetry Pipeline</text>
+    <text x="350" y="88" fill="#94a3b8" font-size="12">&bull; NOAA Great Lakes Nav Soundings</text>
+    <text x="350" y="112" fill="#94a3b8" font-size="12">&bull; MI DNR ArcGIS Layer 1 (Great Lakes)</text>
+    <text x="350" y="136" fill="#94a3b8" font-size="12">&bull; MI DNR Layer 4 (Major Inland Lakes)</text>
+    <text x="350" y="160" fill="#94a3b8" font-size="12">&bull; MI DNR Layer 17 (Ponds / Gravel Pits)</text>
+    <text x="350" y="184" fill="#38bdf8" font-size="12" font-weight="600">&bull; Grand River Channel Nav Vectors</text>
+
+    <path d="M 605 125 L 650 125" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="650,121 658,125 650,129" fill="#10b981"/>
+
+    <rect x="660" y="30" width="240" height="190" rx="10" fill="url(#fdGrad3)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="675" y="60" fill="#34d399" font-size="14" font-weight="700">⚡ Alpine NUC &amp; Tailnet Edge</text>
+    <text x="675" y="88" fill="#94a3b8" font-size="12">&bull; OpenRC Daemon (marine-depth-fish)</text>
+    <text x="675" y="112" fill="#94a3b8" font-size="12">&bull; Local Python 3 HTTP Server (:8098)</text>
+    <text x="675" y="136" fill="#94a3b8" font-size="12">&bull; Tailscale Serve HTTPS TLS Proxy</text>
+    <text x="675" y="160" fill="#94a3b8" font-size="12">&bull; Port 8446 Encrypted Ingress</text>
+    <text x="675" y="184" fill="#34d399" font-size="12" font-weight="600">&bull; Zero-Cloud Autonomous Execution</text>
+  </svg>
+</div>
+
+<p>Commercial marine navigation and fishing mobile applications like Fishbrain have succumbed to heavy monetization, locking basic depth contours, bathymetric maps, and navigational soundings behind recurring subscription paywalls ($70+/year) while cluttering the user interface with ad trackers and social feeds. To liberate waterbody exploration on my fishing trips across Michigan, I engineered <strong>FishDepth</strong>: an ad-free, subscription-free, low-latency mobile marine chartplotter hosted on my home Alpine Linux NUC and delivered securely across my private Tailscale network at <a href="https://nucwol2-0--hdd.taile72a68.ts.net:8446/" target="_blank" rel="noopener noreferrer"><code>https://nucwol2-0--hdd.taile72a68.ts.net:8446/</code></a>.</p>
+
+<p>FishDepth combines high-precision HTML5 Geolocation with continuous device orientation telemetry, projecting a live 3D dead-reckoning navigational cone directly onto marine cartography. As the boater moves and rotates their phone in real time, the chartplotter rotates an azimuth steering reticle pointing toward true heading, augmented by an on-screen cardinal compass and persistent manual calibration offset stored in <code>localStorage</code> to correct for local electromagnetic interference from outboard motors.</p>
+
+<p>The cartographic backplane implements a hierarchical multi-tier bathymetry engine. While offshore navigation utilizes OpenSeaMap nautical seamarks and NOAA Great Lakes bathymetry, inland bodies of water dynamically tap the Michigan Department of Natural Resources (DNR) GIS vector services:</p>
+<ul>
+  <li><strong>DNR Layer 1 (Great Lakes Basins):</strong> Full bathymetric contours spanning Lake Michigan, Lake Huron, and Lake Superior with depth intervals calibrated to international feet.</li>
+  <li><strong>DNR Layer 4 (Major Inland Lakes):</strong> Detailed 5-foot and 10-foot depth gradients for hundreds of Michigan recreational inland lakes, including Reeds Lake, Gun Lake, and Houghton Lake.</li>
+  <li><strong>DNR Layer 17 (Ponds, Reservoirs &amp; Gravel Pits):</strong> Micro-topography for local impoundments and university campus waterbodies such as Grand Valley State University (GVSU) Zumberge Pond.</li>
+  <li><strong>Grand River Navigability Soundings:</strong> Channel depth markers and hazard shoals along western Michigan navigable waterways.</li>
+</ul>
+
+<p>To eliminate visual clutter on constrained mobile screens, I engineered a Level-of-Detail (LOD) display engine in Leaflet.js. Individual depth badges and sounding labels automatically suppress below zoom level 12 to maintain clean lake overview boundaries, and smoothly reveal legible gold badge overlays when zooming into specific structure, drop-offs, and fishing holes. An active Screen Wake Lock API prevents phone displays from sleeping while underway.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Designed and engineered in partnership with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>. Antigravity AI architected the multi-tier Michigan DNR ArcGIS REST ingestion pipeline, built the Leaflet.js level-of-detail depth rendering system, developed the dead-reckoning gyroscopic calibration logic, and deployed the production OpenRC daemon service on the Alpine Linux NUC.</p>
+
+<ul class="chips">
+  <li><a href="https://nucwol2-0--hdd.taile72a68.ts.net:8446/" target="_blank" rel="noopener noreferrer">FishDepth Live (Tailscale Port 8446)</a></li>
+  <li>Marine Bathymetry</li>
+  <li>Michigan DNR GIS</li>
+  <li>OpenSeaMap</li>
+  <li>Dead-Reckoning</li>
+  <li>DeviceOrientation API</li>
+  <li>Leaflet.js</li>
+  <li>Alpine Linux NUC</li>
+  <li>OpenRC</li>
+  <li>Tailscale HTTPS</li>
+</ul>
+</section>
+
+<section class="project-entry" aria-labelledby="cellradar-directional-hunter-title">
+<h2 id="cellradar-directional-hunter-title">CellRadar: Hyper-Local Cellular RF Hunter, Dynamic Multi-Carrier Azimuth Steering Engine, Free-Space Path Loss Modeling &amp; Dynamic Viewport Ingestion</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Alpine Linux NUC &middot; OpenRC &middot; Leaflet.js &middot; Great-Circle Azimuth Formula &middot; Free-Space Path Loss (FSPL) RSSI &middot; Dynamic Viewport Ingestion &middot; OpenCellID / FCC DB &middot; AT&amp;T / FirstNet / Verizon / T-Mobile &middot; Tailscale HTTPS :8447 &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<div class="project-architecture" aria-label="CellRadar Architecture"><span>Client GPS &amp; Gyro Telemetry</span><span aria-hidden="true">&rarr;</span><span>Dynamic Viewport Bounding-Box Query</span><span aria-hidden="true">&rarr;</span><span>Multi-Carrier Tower DB (OpenCellID/FCC)</span><span aria-hidden="true">&rarr;</span><span>Great-Circle Azimuth &amp; FSPL Signal Propagation</span><span aria-hidden="true">&rarr;</span><span>Alpine NUC Port 8099 (Tailscale HTTPS :8447)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">📡 CellRadar Cellular RF Hunter &amp; Azimuth Steering Topology</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">Dynamic Leaflet Viewport Ingestion &bull; FSPL Path Loss Model &bull; US Mobile Dark Star (AT&amp;T) &bull; Tailscale HTTPS :8447</span>
+    </div>
+    <span style="background:rgba(234,179,8,0.15); color:#facc15; border:1px solid rgba(234,179,8,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">RF Directional Hunter &bull; Alpine NUC</span>
+  </div>
+
+  <svg viewBox="0 0 920 250" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="CellRadar Architecture Diagram">
+    <defs>
+      <linearGradient id="crGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#eab308" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#ca8a04" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="crGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="crGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#059669" stop-opacity="0.08"/>
+      </linearGradient>
+    </defs>
+    <rect x="20" y="30" width="260" height="190" rx="10" fill="url(#crGrad1)" stroke="#eab308" stroke-width="1.5"/>
+    <text x="35" y="60" fill="#fde047" font-size="14" font-weight="700">🎯 Azimuth Steering Reticle</text>
+    <text x="35" y="88" fill="#94a3b8" font-size="12">&bull; Great-Circle Forward Azimuth (&theta;)</text>
+    <text x="35" y="112" fill="#94a3b8" font-size="12">&bull; Compass Relative Target Offset</text>
+    <text x="35" y="136" fill="#94a3b8" font-size="12">&bull; Monospace Non-Jumping HUD</text>
+    <text x="35" y="160" fill="#94a3b8" font-size="12">&bull; Interactive Zero-Bearing Recalibrate</text>
+    <text x="35" y="184" fill="#facc15" font-size="12" font-weight="600">&bull; Active Radar Beam Projection</text>
+
+    <path d="M 280 125 L 325 125" stroke="#facc15" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="325,121 333,125 325,129" fill="#facc15"/>
+
+    <rect x="335" y="30" width="270" height="190" rx="10" fill="url(#crGrad2)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="350" y="60" fill="#e0f2fe" font-size="14" font-weight="700">📶 RF Path Loss &amp; Ingestion</text>
+    <text x="350" y="88" fill="#94a3b8" font-size="12">&bull; Free-Space Path Loss (FSPL) Model</text>
+    <text x="350" y="112" fill="#94a3b8" font-size="12">&bull; Simulated RSSI (dBm) &amp; Signal Quality</text>
+    <text x="350" y="136" fill="#94a3b8" font-size="12">&bull; Dynamic Viewport Bounding Queries</text>
+    <text x="350" y="160" fill="#94a3b8" font-size="12">&bull; AT&amp;T FirstNet (Dark Star Priority)</text>
+    <text x="350" y="184" fill="#38bdf8" font-size="12" font-weight="600">&bull; CartoDB Positron &amp; Satellite Views</text>
+
+    <path d="M 605 125 L 650 125" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="650,121 658,125 650,129" fill="#10b981"/>
+
+    <rect x="660" y="30" width="240" height="190" rx="10" fill="url(#crGrad3)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="675" y="60" fill="#34d399" font-size="14" font-weight="700">⚡ Service &amp; Tailscale Ingress</text>
+    <text x="675" y="88" fill="#94a3b8" font-size="12">&bull; OpenRC Daemon (cell-tower-radar)</text>
+    <text x="675" y="112" fill="#94a3b8" font-size="12">&bull; Python 3 Backend Server (:8099)</text>
+    <text x="675" y="136" fill="#94a3b8" font-size="12">&bull; Tailscale Serve HTTPS :8447</text>
+    <text x="675" y="160" fill="#94a3b8" font-size="12">&bull; Dynamic Bounding Fetch Handlers</text>
+    <text x="675" y="184" fill="#34d399" font-size="12" font-weight="600">&bull; Instant Reload &amp; Cache-Bust API</text>
+  </svg>
+</div>
+
+<p>When operating mobile devices in remote or fringe coverage areas, understanding which physical cellular tower an antenna is connecting to is crucial for optimizing RF reception and deploying high-gain external antennas. I built <strong>CellRadar</strong>, a directional cellular RF hunting web application hosted on my Alpine Linux NUC at <a href="https://nucwol2-0--hdd.taile72a68.ts.net:8447/" target="_blank" rel="noopener noreferrer"><code>https://nucwol2-0--hdd.taile72a68.ts.net:8447/</code></a>, that turns any smartphone into an augmented-reality cellular antenna direction finder.</p>
+
+<p>CellRadar pairs live device GPS location with dynamic gyroscopic orientation to calculate the exact great-circle forward azimuth to surrounding cellular base stations:</p>
+<ul>
+  <li><strong>Great-Circle Azimuth Formula:</strong> Evaluates forward bearing &theta; = atan2(sin(&Delta;&lambda;) &middot; cos(&phi;<sub>2</sub>), cos(&phi;<sub>1</sub>) &middot; sin(&phi;<sub>2</sub>) - sin(&phi;<sub>1</sub>) &middot; cos(&phi;<sub>2</sub>) &middot; cos(&Delta;&lambda;)), rotating an interactive radar beam directly toward the serving cell tower.</li>
+  <li><strong>Free-Space Path Loss (FSPL) Modeling:</strong> Approximates received signal strength indicators (RSSI in dBm) across carrier frequency bands (700 MHz, 850 MHz, 1900 MHz PCS, and 2.1 GHz AWS) based on distance attenuation: FSPL(dB) = 20log<sub>10</sub>(d) + 20log<sub>10</sub>(f) + 32.44.</li>
+  <li><strong>Carrier Filtering:</strong> Defaults specifically to AT&amp;T (optimized for my US Mobile Dark Star carrier profile) while supporting live toggle switches for Verizon, T-Mobile, FirstNet, and Dish Wireless.</li>
+  <li><strong>Dynamic Viewport Ingestion:</strong> Replaces static municipal fallback lists with dynamic spatial bounding-box querying (<code>map.getBounds()</code>). When the user pans or zooms across West Michigan or the broader Midwest, the system automatically fetches and caches towers within the active viewport.</li>
+</ul>
+
+<p>During initial field tests, dynamic text updates above the compass reticle caused the layout to jump and jitter. I solved this by decoupling HUD telemetry into fixed-height monospace readout containers, eliminating DOM reflows. I also added a 1-tap compass recalibration button and a high-contrast CartoDB Positron and ESRI Satellite map layer switcher for tactical field visualization.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Designed and engineered in partnership with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>. Antigravity AI implemented the great-circle azimuth and FSPL attenuation math, created the dynamic Leaflet viewport bounding-box ingestion engine, eliminated DOM reflow shifting on mobile browsers, and deployed the OpenRC daemon service on the Alpine Linux NUC.</p>
+
+<ul class="chips">
+  <li><a href="https://nucwol2-0--hdd.taile72a68.ts.net:8447/" target="_blank" rel="noopener noreferrer">CellRadar Live (Tailscale Port 8447)</a></li>
+  <li>Cellular RF Hunter</li>
+  <li>Azimuth Steering</li>
+  <li>FSPL Signal Modeling</li>
+  <li>OpenCellID / FCC DB</li>
+  <li>US Mobile Dark Star</li>
+  <li>Leaflet.js</li>
+  <li>Alpine Linux NUC</li>
+  <li>OpenRC</li>
+  <li>Tailscale HTTPS</li>
+</ul>
+</section>
+
+<section class="project-entry" aria-labelledby="skytrack-airspace-radar-title">
+<h2 id="skytrack-airspace-radar-title">SkyTrack: Zero-Subscription ADS-B Airspace Radar, OpenSky Network Telemetry Ingestion, Spatial Cluster Tracking &amp; Kinematic Velocity Vector Engine</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Alpine Linux NUC &middot; OpenRC &middot; Leaflet.js &middot; OpenSky Network REST API &middot; WGS84 Geodetic Kinematics &middot; Velocity Vectors &middot; Touch-Optimized Telemetry Drawer &middot; Tailscale HTTPS :8448 &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<div class="project-architecture" aria-label="SkyTrack Architecture"><span>OpenSky Network ADS-B Ingestion</span><span aria-hidden="true">&rarr;</span><span>In-Memory State Cache &amp; Geodetic Kinematics</span><span aria-hidden="true">&rarr;</span><span>WGS84 Velocity Vectors &amp; Heading Sprites</span><span aria-hidden="true">&rarr;</span><span>Leaflet Spatial Airspace HUD</span><span aria-hidden="true">&rarr;</span><span>Alpine NUC Port 8100 (Tailscale HTTPS :8448)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">✈️ SkyTrack ADS-B Airspace Radar &amp; Kinematic Telemetry Topology</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">Zero-Ad Flight Tracker &bull; OpenSky Network REST API &bull; Velocity Vectors &bull; Tailscale HTTPS :8448</span>
+    </div>
+    <span style="background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Airspace Radar &bull; Alpine NUC</span>
+  </div>
+
+  <svg viewBox="0 0 920 250" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="SkyTrack Architecture Diagram">
+    <defs>
+      <linearGradient id="stGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="stGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0369a1" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="stGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#059669" stop-opacity="0.08"/>
+      </linearGradient>
+    </defs>
+    <rect x="20" y="30" width="260" height="190" rx="10" fill="url(#stGrad1)" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="35" y="60" fill="#93c5fd" font-size="14" font-weight="700">🛰️ ADS-B Telemetry Ingestion</text>
+    <text x="35" y="88" fill="#94a3b8" font-size="12">&bull; OpenSky Network REST Ingestion</text>
+    <text x="35" y="112" fill="#94a3b8" font-size="12">&bull; ICAO 24-Bit Transponder Address</text>
+    <text x="35" y="136" fill="#94a3b8" font-size="12">&bull; Barometric &amp; Geometric Altitude</text>
+    <text x="35" y="160" fill="#94a3b8" font-size="12">&bull; Groundspeed &amp; Vertical Rate FPM</text>
+    <text x="35" y="184" fill="#60a5fa" font-size="12" font-weight="600">&bull; True Track Heading (&deg;) Vectors</text>
+
+    <path d="M 280 125 L 325 125" stroke="#60a5fa" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="325,121 333,125 325,129" fill="#60a5fa"/>
+
+    <rect x="335" y="30" width="270" height="190" rx="10" fill="url(#stGrad2)" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="350" y="60" fill="#e0f2fe" font-size="14" font-weight="700">🖥️ Mobile Cartographic HUD</text>
+    <text x="350" y="88" fill="#94a3b8" font-size="12">&bull; Dynamic CSS Aircraft Glyph Rotation</text>
+    <text x="350" y="112" fill="#94a3b8" font-size="12">&bull; Altitude Color Palette Rank (FL10-450)</text>
+    <text x="350" y="136" fill="#94a3b8" font-size="12">&bull; Elevated Floating Map Controls</text>
+    <text x="350" y="160" fill="#94a3b8" font-size="12">&bull; Non-Obstructing Bottom Drawer</text>
+    <text x="350" y="184" fill="#38bdf8" font-size="12" font-weight="600">&bull; Instant Fallback Airspace Telemetry</text>
+
+    <path d="M 605 125 L 650 125" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="650,121 658,125 650,129" fill="#10b981"/>
+
+    <rect x="660" y="30" width="240" height="190" rx="10" fill="url(#stGrad3)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="675" y="60" fill="#34d399" font-size="14" font-weight="700">⚡ Alpine NUC Service Daemon</text>
+    <text x="675" y="88" fill="#94a3b8" font-size="12">&bull; OpenRC Daemon (skytrack-flight-radar)</text>
+    <text x="675" y="112" fill="#94a3b8" font-size="12">&bull; Local Python 3 HTTP Server (:8100)</text>
+    <text x="675" y="136" fill="#94a3b8" font-size="12">&bull; Tailscale Serve HTTPS :8448</text>
+    <text x="675" y="160" fill="#94a3b8" font-size="12">&bull; On-Demand ✈️ SCAN Trigger</text>
+    <text x="675" y="184" fill="#34d399" font-size="12" font-weight="600">&bull; Zero-Latency Telemetry Cache</text>
+  </svg>
+</div>
+
+<p>Commercial flight tracking platforms such as Flightradar24 and FlightAware have become increasingly hostile to users, gating historical flight trails, 3D cockpits, and high-rate position feeds behind expensive monthly tiers while cluttering displays with animated banner advertisements. I developed <strong>SkyTrack</strong>, a high-performance, zero-subscription ADS-B airspace radar service hosted on my Alpine Linux NUC at <a href="https://nucwol2-0--hdd.taile72a68.ts.net:8448/" target="_blank" rel="noopener noreferrer"><code>https://nucwol2-0--hdd.taile72a68.ts.net:8448/</code></a>.</p>
+
+<p>SkyTrack polls real-time ADS-B transponder telemetry from the OpenSky Network community sensor grid, ingesting Mode-S and ADS-B state vectors across a dynamic geographical bounding box centered automatically on the client device's GPS coordinates:</p>
+<ul>
+  <li><strong>Kinematic State Vector Ingestion:</strong> Ingests ICAO 24-bit transponder addresses, callsigns, latitude, longitude, barometric and geometric altitude, groundspeed (knots), true track heading angle (&deg;), and vertical velocity rate (feet per minute).</li>
+  <li><strong>Dynamic Airframe Glyphs:</strong> Rotates vectorized aircraft SVG icons smoothly along their true track trajectory, with distinct chromatic tiers representing altitude brackets from low-level general aviation (under 5,000 ft) to commercial cruising flight levels (FL300+).</li>
+  <li><strong>Ergonomic Mobile UX:</strong> Solved UI collision on smartphones by elevating the geolocation and scan triggers above the bottom telemetry sheet. When no single aircraft is locked, the lower drawer displays comprehensive regional airspace statistics (tracked aircraft count, highest altitude, fastest speed, and nearest airfield).</li>
+  <li><strong>On-Demand Radar Sweeper:</strong> Features an instant <code>✈️ SCAN</code> button that queries the nearest 250 nautical miles of airspace on demand, complete with an interactive reload and cache-busting engine.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Designed and engineered in partnership with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>. Antigravity AI built the OpenSky Network REST ingestion layer, engineered the client-side kinematic SVG flight rotation renderer, resolved mobile viewport touch obstructions, and configured the OpenRC background service daemon on Alpine Linux.</p>
+
+<ul class="chips">
+  <li><a href="https://nucwol2-0--hdd.taile72a68.ts.net:8448/" target="_blank" rel="noopener noreferrer">SkyTrack Live (Tailscale Port 8448)</a></li>
+  <li>ADS-B Airspace Radar</li>
+  <li>OpenSky Network</li>
+  <li>Kinematic Velocity Vectors</li>
+  <li>Aviation Telemetry</li>
+  <li>Leaflet.js</li>
+  <li>Alpine Linux NUC</li>
+  <li>OpenRC</li>
+  <li>Tailscale HTTPS</li>
+</ul>
+</section>
+
+<section class="project-entry" aria-labelledby="clearcast-weather-radar-title">
+<h2 id="clearcast-weather-radar-title">ClearCast: Zero-Ad Hyper-Granular Weather System, 4-Hour Doppler &amp; NOAA HRRR Numerical Simulated Reflectivity Radar, Wind Streamlines &amp; Stacked Timeline Engine</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Alpine Linux NUC &middot; OpenRC &middot; Leaflet.js &middot; Iowa Environmental Mesonet (IEM) NEXRAD &middot; NOAA HRRR Numerical Model &middot; Open-Meteo High-Res API &middot; Canvas Wind Streamlines &middot; Pre-Attached GPU Tile Crossfading &middot; Tailscale HTTPS :8449 &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<div class="project-architecture" aria-label="ClearCast Architecture"><span>NOAA NEXRAD &amp; HRRR Numerical Ingestion</span><span aria-hidden="true">&rarr;</span><span>IEM TMS Tile Server Farm</span><span aria-hidden="true">&rarr;</span><span>Leaflet Pre-Attached Tile Crossfader</span><span aria-hidden="true">&rarr;</span><span>Open-Meteo High-Res Forecast &amp; Wind Particle Canvas</span><span aria-hidden="true">&rarr;</span><span>Alpine NUC Port 8101 (Tailscale HTTPS :8449)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">⛈️ ClearCast Hyper-Granular Weather &amp; 4-Hour Doppler Radar Topology</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">NOAA HRRR Simulated Reflectivity &bull; Zero-Flicker Pre-Cached GPU Crossfade &bull; Open-Meteo &bull; Tailscale HTTPS :8449</span>
+    </div>
+    <span style="background:rgba(14,165,233,0.15); color:#38bdf8; border:1px solid rgba(14,165,233,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Meteorological Radar &bull; Alpine NUC</span>
+  </div>
+
+  <svg viewBox="0 0 920 250" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="ClearCast Architecture Diagram">
+    <defs>
+      <linearGradient id="ccGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0369a1" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="ccGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="ccGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#059669" stop-opacity="0.08"/>
+      </linearGradient>
+    </defs>
+    <rect x="20" y="30" width="260" height="190" rx="10" fill="url(#ccGrad1)" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="35" y="60" fill="#38bdf8" font-size="14" font-weight="700">🛰️ Doppler &amp; HRRR Pipeline</text>
+    <text x="35" y="88" fill="#94a3b8" font-size="12">&bull; Past 50 Min: IEM NEXRAD Base Refl</text>
+    <text x="35" y="112" fill="#94a3b8" font-size="12">&bull; Present: Real-Time Composite Doppler</text>
+    <text x="35" y="136" fill="#94a3b8" font-size="12">&bull; Future +3h: NOAA HRRR 3km Model</text>
+    <text x="35" y="160" fill="#94a3b8" font-size="12">&bull; IEM TMS Layer Format (-0 Suffix Fix)</text>
+    <text x="35" y="184" fill="#38bdf8" font-size="12" font-weight="600">&bull; 18 High-Resolution Radar Frames</text>
+
+    <path d="M 280 125 L 325 125" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="325,121 333,125 325,129" fill="#38bdf8"/>
+
+    <rect x="335" y="30" width="270" height="190" rx="10" fill="url(#ccGrad2)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="350" y="60" fill="#e0f2fe" font-size="14" font-weight="700">🔄 Zero-Flicker Crossfader</text>
+    <text x="350" y="88" fill="#94a3b8" font-size="12">&bull; Pre-Attached GPU Tile Layers</text>
+    <text x="350" y="112" fill="#94a3b8" font-size="12">&bull; Smooth Opacity Transition (0.78 &rarr; 0)</text>
+    <text x="350" y="136" fill="#94a3b8" font-size="12">&bull; Infinite Seamless Radar Timeline Loop</text>
+    <text x="350" y="160" fill="#94a3b8" font-size="12">&bull; HTML5 Canvas Dynamic Wind Vectors</text>
+    <text x="350" y="184" fill="#38bdf8" font-size="12" font-weight="600">&bull; Stacked 24-Hour Telemetry Drawer</text>
+
+    <path d="M 605 125 L 650 125" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="650,121 658,125 650,129" fill="#10b981"/>
+
+    <rect x="660" y="30" width="240" height="190" rx="10" fill="url(#ccGrad3)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="675" y="60" fill="#34d399" font-size="14" font-weight="700">⚡ Alpine NUC Service Daemon</text>
+    <text x="675" y="88" fill="#94a3b8" font-size="12">&bull; OpenRC Daemon (clearcast-weather-radar)</text>
+    <text x="675" y="112" fill="#94a3b8" font-size="12">&bull; Local Python 3 HTTP Server (:8101)</text>
+    <text x="675" y="136" fill="#94a3b8" font-size="12">&bull; Tailscale Serve HTTPS :8449</text>
+    <text x="675" y="160" fill="#94a3b8" font-size="12">&bull; Instant Hard-Refresh &amp; Cache Clear</text>
+    <text x="675" y="184" fill="#34d399" font-size="12" font-weight="600">&bull; Zero-Tracking High-Performance Edge</text>
+  </svg>
+</div>
+
+<p>Mainstream consumer weather applications like The Weather Channel and AccuWeather have transformed into adware-bloated ecosystems, forcing intrusive video advertisements, intrusive pop-ups, slow loading times, and paywalled radar loops onto users. I built <strong>ClearCast</strong>, an ultra-fast, zero-ad, privacy-respecting weather radar and meteorological intelligence station running locally on my Alpine Linux NUC at <a href="https://nucwol2-0--hdd.taile72a68.ts.net:8449/" target="_blank" rel="noopener noreferrer"><code>https://nucwol2-0--hdd.taile72a68.ts.net:8449/</code></a>.</p>
+
+<p>ClearCast unifies real-time empirical radar observations with advanced atmospheric numerical models into a continuous, seamless 4-hour temporal slider:</p>
+<ul>
+  <li><strong>Empirical Past to Present:</strong> Ingests 50 minutes of high-resolution base reflectivity tiles from Iowa Environmental Mesonet (IEM) NEXRAD composite radar.</li>
+  <li><strong>Future Predictive Radar (+3 Hours):</strong> Integrates NOAA's High-Resolution Rapid Refresh (HRRR) 3-kilometer numerical atmospheric simulation model (<code>hrrr::REFP-F0015-0</code> through <code>hrrr::REFP-F0180-0</code>), computing predicted precipitation reflectivity forward into the future.</li>
+  <li><strong>Zero-Flicker Pre-Cached GPU Crossfade:</strong> Conventional radar apps re-create DOM tile layers during frame transitions, causing jarring visual blinks ("clunking"). ClearCast mounts all 18 past and future radar tile layers into Leaflet upfront with <code>opacity: 0</code>, executing silky smooth hardware-accelerated transitions via CSS GPU opacity transitions, looping indefinitely across the timeline.</li>
+  <li><strong>Meteorological Intelligence Stack:</strong> Features interactive layer switches for Wind Streamline vector particle flow and Isobaric Surface Pressure contours, alongside an Open-Meteo hyper-local forecast drawer displaying single-line high/low temperatures, UV index, and precipitation probabilities.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Designed and engineered in partnership with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>. Antigravity AI diagnosed and fixed the IEM TMS tile URL schema (appending the required <code>-0</code> suffix to avoid upstream tile server errors), engineered the zero-flicker pre-rendered layer crossfading system, integrated the NOAA HRRR numerical forecast model, and deployed the OpenRC daemon service on the Alpine Linux NUC.</p>
+
+<ul class="chips">
+  <li><a href="https://nucwol2-0--hdd.taile72a68.ts.net:8449/" target="_blank" rel="noopener noreferrer">ClearCast Live (Tailscale Port 8449)</a></li>
+  <li>NOAA NEXRAD Radar</li>
+  <li>NOAA HRRR Model</li>
+  <li>Meteorological Forecasting</li>
+  <li>Zero-Flicker GPU Crossfade</li>
+  <li>Wind Streamlines</li>
+  <li>Open-Meteo API</li>
+  <li>Leaflet.js</li>
+  <li>Alpine Linux NUC</li>
+  <li>OpenRC</li>
+  <li>Tailscale HTTPS</li>
+</ul>
+</section>
+
+<section class="project-entry" aria-labelledby="sattrack-3d-globe-title">
+<h2 id="sattrack-3d-globe-title">SatTrack 3D: WebGL Interactive Earth Globe Satellite Tracker, SGP4 Analytical Orbital Mechanics, Live CelesTrak TLE Ingestion &amp; 3D Ephemeris Trajectory Engine</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Alpine Linux NUC &middot; OpenRC &middot; Three.js WebGL &middot; Satellite.js SGP4/SDP4 Analytical Propagator &middot; CelesTrak NORAD TLE Ingestion &middot; TEME-to-ECF Geodetics &middot; 3D Ephemeris Trajectory Splines &middot; Tailscale HTTPS :8450 &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<div class="project-architecture" aria-label="SatTrack 3D Architecture"><span>CelesTrak NORAD TLE Stream</span><span aria-hidden="true">&rarr;</span><span>SGP4 Analytical Orbital Propagator</span><span aria-hidden="true">&rarr;</span><span>TEME Celestial to ECF Geodetic Matrix</span><span aria-hidden="true">&rarr;</span><span>Three.js WebGL Interactive 3D Globe &amp; Ephemeris Splines</span><span aria-hidden="true">&rarr;</span><span>Alpine NUC Port 8102 (Tailscale HTTPS :8450)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">🛰️ SatTrack 3D Earth Globe &amp; SGP4 Orbital Propagator Topology</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">WebGL Three.js Sphere &bull; CelesTrak Two-Line Elements &bull; SGP4/SDP4 Orbit Mechanics &bull; Tailscale HTTPS :8450</span>
+    </div>
+    <span style="background:rgba(192,132,252,0.15); color:#c084fc; border:1px solid rgba(192,132,252,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Orbital Mechanics &bull; Alpine NUC</span>
+  </div>
+
+  <svg viewBox="0 0 920 250" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="SatTrack 3D Architecture Diagram">
+    <defs>
+      <linearGradient id="st3Grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#9333ea" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#7e22ce" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="st3Grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.08"/>
+      </linearGradient>
+      <linearGradient id="st3Grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#059669" stop-opacity="0.08"/>
+      </linearGradient>
+    </defs>
+    <rect x="20" y="30" width="260" height="190" rx="10" fill="url(#st3Grad1)" stroke="#9333ea" stroke-width="1.5"/>
+    <text x="35" y="60" fill="#d8b4fe" font-size="14" font-weight="700">🌌 NORAD TLE &amp; SGP4 Physics</text>
+    <text x="35" y="88" fill="#94a3b8" font-size="12">&bull; CelesTrak Two-Line Element Feed</text>
+    <text x="35" y="112" fill="#94a3b8" font-size="12">&bull; SGP4/SDP4 Analytical Propagator</text>
+    <text x="35" y="136" fill="#94a3b8" font-size="12">&bull; Earth Oblateness Perturbations (J2/J3/J4)</text>
+    <text x="35" y="160" fill="#94a3b8" font-size="12">&bull; TEME Celestial to ECF Frame Transform</text>
+    <text x="35" y="184" fill="#c084fc" font-size="12" font-weight="600">&bull; GMST Greenwich Sidereal Calculation</text>
+
+    <path d="M 280 125 L 325 125" stroke="#c084fc" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="325,121 333,125 325,129" fill="#c084fc"/>
+
+    <rect x="335" y="30" width="270" height="190" rx="10" fill="url(#st3Grad2)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="350" y="60" fill="#e0f2fe" font-size="14" font-weight="700">🌍 Three.js WebGL Scene</text>
+    <text x="350" y="88" fill="#94a3b8" font-size="12">&bull; NASA Blue Marble Photorealistic Texture</text>
+    <text x="350" y="112" fill="#94a3b8" font-size="12">&bull; 300% Scaled Glowing Billboard Sprites</text>
+    <text x="350" y="136" fill="#94a3b8" font-size="12">&bull; 3D Ephemeris Orbit Trajectory Curves</text>
+    <text x="350" y="160" fill="#94a3b8" font-size="12">&bull; Smooth OrbitControls with Touch-Pause</text>
+    <text x="350" y="184" fill="#38bdf8" font-size="12" font-weight="600">&bull; ISS, Hubble, Starlink, GPS Constellations</text>
+
+    <path d="M 605 125 L 650 125" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <polygon points="650,121 658,125 650,129" fill="#10b981"/>
+
+    <rect x="660" y="30" width="240" height="190" rx="10" fill="url(#st3Grad3)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="675" y="60" fill="#34d399" font-size="14" font-weight="700">⚡ Alpine NUC Service Daemon</text>
+    <text x="675" y="88" fill="#94a3b8" font-size="12">&bull; OpenRC Daemon (sattrack-3d-globe)</text>
+    <text x="675" y="112" fill="#94a3b8" font-size="12">&bull; Local Python 3 HTTP Server (:8102)</text>
+    <text x="675" y="136" fill="#94a3b8" font-size="12">&bull; Tailscale Serve HTTPS :8450</text>
+    <text x="675" y="160" fill="#94a3b8" font-size="12">&bull; Mobile Touch-Friendly Roster Drawer</text>
+    <text x="675" y="184" fill="#34d399" font-size="12" font-weight="600">&bull; Zero-Cloud Autonomous Execution</text>
+  </svg>
+</div>
+
+<p>Visualizing low Earth orbit (LEO), medium Earth orbit (MEO), and geostationary (GEO) satellites on conventional flat Mercator map projections introduces extreme spatial distortion near the poles and fails to convey the true geometry of orbital inclination planes. To track the International Space Station, Hubble Space Telescope, NOAA weather orbiters, and active satellite constellations in high fidelity, I built <strong>SatTrack 3D</strong>: a real-time, interactive WebGL 3D Earth globe satellite tracker hosted on my Alpine Linux NUC at <a href="https://nucwol2-0--hdd.taile72a68.ts.net:8450/" target="_blank" rel="noopener noreferrer"><code>https://nucwol2-0--hdd.taile72a68.ts.net:8450/</code></a>.</p>
+
+<p>SatTrack 3D implements the analytical Simplified General Perturbations (SGP4/SDP4) mathematical propagator to model satellite positions directly from live NORAD Two-Line Element (TLE) ephemeris sets ingested from CelesTrak:</p>
+<ul>
+  <li><strong>Orbital Mechanics &amp; Frame Conversion:</strong> Ingests Keplerian elements (inclination, right ascension of ascending node, eccentricity, argument of perigee, mean anomaly, and mean motion). Evaluates gravitational perturbations caused by Earth's oblate geoid (J2, J3, and J4 spherical harmonics) and atmospheric drag, transforming vectors from the True Equator, Mean Equinox (TEME) inertial celestial frame into the Earth-Centered Fixed (ECF) geodetic coordinate system via Greenwich Mean Sidereal Time (GMST).</li>
+  <li><strong>3D Ephemeris Trajectory Splines:</strong> Propagates 90 minutes of future orbital motion, rendering a continuous 3D elliptical trajectory spline that accurately curves across the WebGL sphere, depicting real-world ground tracks and orbital passes.</li>
+  <li><strong>Optimized Mobile Touch Targets:</strong> Solved mobile touch visibility by enlarging satellite billboard sprites by 300% (scaling factors 9.5 to 14.0) with custom radial-glow canvas textures and high-contrast color codes for distinct mission profiles (ISS, Starlink, GPS, Weather, and Science).</li>
+  <li><strong>Ergonomic Earth Controls:</strong> Features gentle inertial auto-rotation that gracefully pauses upon user touch or mouse interaction, a touch-friendly satellite roster drawer, and an on-demand reload button with zero-latency cache-busting.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Designed and engineered in partnership with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>. Antigravity AI built the SGP4 celestial-to-geodetic coordinate conversion pipeline, engineered the Three.js 3D WebGL sphere and ephemeris trajectory spline renderer, optimized billboard sprite sizes for mobile touchscreens, and deployed the OpenRC service daemon on the Alpine Linux NUC.</p>
+
+<ul class="chips">
+  <li><a href="https://nucwol2-0--hdd.taile72a68.ts.net:8450/" target="_blank" rel="noopener noreferrer">SatTrack 3D Live (Tailscale Port 8450)</a></li>
+  <li>WebGL 3D Globe</li>
+  <li>Three.js</li>
+  <li>SGP4 Orbital Propagator</li>
+  <li>CelesTrak NORAD TLE</li>
+  <li>Ephemeris Trajectories</li>
+  <li>Satellite Telemetry</li>
+  <li>Alpine Linux NUC</li>
+  <li>OpenRC</li>
+  <li>Tailscale HTTPS</li>
+</ul>
+</section>
+
 <section class="project-entry" aria-labelledby="vintage-hardware-mining-fleet-and-file-vault-title">
 <h2 id="vintage-hardware-mining-fleet-and-file-vault-title">Vintage Homelab Fleet: Samsung Galaxy Player (YP-G1) &amp; Apple iPod Touch 1G Single-Core Duino-Coin Miners with Subnet Legacy File Vault &amp; APK Archival Hub</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Samsung Galaxy Player YP-G1 &middot; Apple iPod Touch 1G (MA627LL) &middot; iOS 3.1.3 Mobile Safari &middot; Android 2.3 Gingerbread &middot; Single-Core Cortex-A8 / ARM11 &middot; Pure Array SHA-1 &middot; Dual-Engine (Worker/MozWebSocket vs. In-Thread/REST) &middot; Subnet File Vault &middot; OpenRC &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>

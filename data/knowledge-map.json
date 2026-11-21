@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 82,
-    "totalNodes": 245,
-    "totalLinks": 496,
+    "totalProjects": 87,
+    "totalNodes": 270,
+    "totalLinks": 553,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,446 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "fishdepth-marine-chartplotter-title",
+      "name": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Commercial marine navigation and fishing mobile applications like Fishbrain have succumbed to heavy monetization, locking basic depth contours, bathymetric maps, and navigational soundings behind recurring subscription paywalls ($70+/year) while cluttering the user interface w...",
+      "tech": [
+        "OpenRC",
+        "Leaflet.js",
+        "NOAA & Michigan DNR GIS Bathymetry",
+        "Grand River Channel Depths",
+        "Dead-Reckoning Gyro Compass",
+        "DeviceOrientation API"
+      ],
+      "tasks": [
+        {
+          "title": "DNR Layer 1 (Great Lakes Basins)",
+          "desc": "Full bathymetric contours spanning Lake Michigan, Lake Huron, and Lake Superior with depth intervals calibrated to international feet."
+        },
+        {
+          "title": "DNR Layer 4 (Major Inland Lakes)",
+          "desc": "Detailed 5-foot and 10-foot depth gradients for hundreds of Michigan recreational inland lakes, including Reeds Lake, Gun Lake, and Houghton..."
+        },
+        {
+          "title": "DNR Layer 17 (Ponds, Reservoirs & Gravel Pits)",
+          "desc": "Micro-topography for local impoundments and university campus waterbodies such as Grand Valley State University (GVSU) Zumberge Pond."
+        },
+        {
+          "title": "Grand River Navigability Soundings",
+          "desc": "Channel depth markers and hazard shoals along western Michigan navigable waterways."
+        }
+      ],
+      "url": "projects.html#fishdepth-marine-chartplotter-title"
+    },
+    {
+      "id": "task-fishdepth-marine-chartplotter-title-0",
+      "name": "DNR Layer 1 (Great Lakes Basins)",
+      "type": "task",
+      "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
+      "parentId": "fishdepth-marine-chartplotter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Full bathymetric contours spanning Lake Michigan, Lake Huron, and Lake Superior with depth intervals calibrated to international feet.",
+      "url": "projects.html#fishdepth-marine-chartplotter-title"
+    },
+    {
+      "id": "task-fishdepth-marine-chartplotter-title-1",
+      "name": "DNR Layer 4 (Major Inland Lakes)",
+      "type": "task",
+      "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
+      "parentId": "fishdepth-marine-chartplotter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Detailed 5-foot and 10-foot depth gradients for hundreds of Michigan recreational inland lakes, including Reeds Lake, Gun Lake, and Houghton...",
+      "url": "projects.html#fishdepth-marine-chartplotter-title"
+    },
+    {
+      "id": "task-fishdepth-marine-chartplotter-title-2",
+      "name": "DNR Layer 17 (Ponds, Reservoirs & Gravel Pits)",
+      "type": "task",
+      "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
+      "parentId": "fishdepth-marine-chartplotter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Micro-topography for local impoundments and university campus waterbodies such as Grand Valley State University (GVSU) Zumberge Pond.",
+      "url": "projects.html#fishdepth-marine-chartplotter-title"
+    },
+    {
+      "id": "task-fishdepth-marine-chartplotter-title-3",
+      "name": "Grand River Navigability Soundings",
+      "type": "task",
+      "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
+      "parentId": "fishdepth-marine-chartplotter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Channel depth markers and hazard shoals along western Michigan navigable waterways.",
+      "url": "projects.html#fishdepth-marine-chartplotter-title"
+    },
+    {
+      "id": "cellradar-directional-hunter-title",
+      "name": "CellRadar: Hyper-Local Cellular RF Hunter, Dynamic Multi-Carrier Azimuth Steering Engine, Free-Space Path Loss Modeling & Dynamic Viewport Ingestion",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "When operating mobile devices in remote or fringe coverage areas, understanding which physical cellular tower an antenna is connecting to is crucial for optimizing RF reception and deploying high-gain external antennas. I built CellRadar, a directional cellular RF hunting web ...",
+      "tech": [
+        "OpenRC",
+        "Leaflet.js",
+        "Great-Circle Azimuth Formula",
+        "Free-Space Path Loss (FSPL) RSSI",
+        "Dynamic Viewport Ingestion",
+        "OpenCellID / FCC DB"
+      ],
+      "tasks": [
+        {
+          "title": "Great-Circle Azimuth Formula",
+          "desc": "Evaluates forward bearing \u03b8 = atan2(sin(\u0394\u03bb) \u00b7 cos(\u03c62), cos(\u03c61) \u00b7 sin(\u03c62) - sin(\u03c61) \u00b7 cos(\u03c62) \u00b7 cos(\u0394\u03bb)), rotating an interactive radar beam ..."
+        },
+        {
+          "title": "Free-Space Path Loss (FSPL) Modeling",
+          "desc": "Approximates received signal strength indicators (RSSI in dBm) across carrier frequency bands (700 MHz, 850 MHz, 1900 MHz PCS, and 2.1 GHz A..."
+        },
+        {
+          "title": "Carrier Filtering",
+          "desc": "Defaults specifically to AT&T (optimized for my US Mobile Dark Star carrier profile) while supporting live toggle switches for Verizon, T-Mo..."
+        },
+        {
+          "title": "Dynamic Viewport Ingestion",
+          "desc": "Replaces static municipal fallback lists with dynamic spatial bounding-box querying (map.getBounds()). When the user pans or zooms across We..."
+        }
+      ],
+      "url": "projects.html#cellradar-directional-hunter-title"
+    },
+    {
+      "id": "task-cellradar-directional-hunter-title-0",
+      "name": "Great-Circle Azimuth Formula",
+      "type": "task",
+      "parentProject": "CellRadar: Hyper-Local Cellular RF Hunter, Dynamic Multi-Carrier Azimuth Steering Engine, Free-Space Path Loss Modeling & Dynamic Viewport Ingestion",
+      "parentId": "cellradar-directional-hunter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Evaluates forward bearing \u03b8 = atan2(sin(\u0394\u03bb) \u00b7 cos(\u03c62), cos(\u03c61) \u00b7 sin(\u03c62) - sin(\u03c61) \u00b7 cos(\u03c62) \u00b7 cos(\u0394\u03bb)), rotating an interactive radar beam ...",
+      "url": "projects.html#cellradar-directional-hunter-title"
+    },
+    {
+      "id": "task-cellradar-directional-hunter-title-1",
+      "name": "Free-Space Path Loss (FSPL) Modeling",
+      "type": "task",
+      "parentProject": "CellRadar: Hyper-Local Cellular RF Hunter, Dynamic Multi-Carrier Azimuth Steering Engine, Free-Space Path Loss Modeling & Dynamic Viewport Ingestion",
+      "parentId": "cellradar-directional-hunter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Approximates received signal strength indicators (RSSI in dBm) across carrier frequency bands (700 MHz, 850 MHz, 1900 MHz PCS, and 2.1 GHz A...",
+      "url": "projects.html#cellradar-directional-hunter-title"
+    },
+    {
+      "id": "task-cellradar-directional-hunter-title-2",
+      "name": "Carrier Filtering",
+      "type": "task",
+      "parentProject": "CellRadar: Hyper-Local Cellular RF Hunter, Dynamic Multi-Carrier Azimuth Steering Engine, Free-Space Path Loss Modeling & Dynamic Viewport Ingestion",
+      "parentId": "cellradar-directional-hunter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Defaults specifically to AT&T (optimized for my US Mobile Dark Star carrier profile) while supporting live toggle switches for Verizon, T-Mo...",
+      "url": "projects.html#cellradar-directional-hunter-title"
+    },
+    {
+      "id": "task-cellradar-directional-hunter-title-3",
+      "name": "Dynamic Viewport Ingestion",
+      "type": "task",
+      "parentProject": "CellRadar: Hyper-Local Cellular RF Hunter, Dynamic Multi-Carrier Azimuth Steering Engine, Free-Space Path Loss Modeling & Dynamic Viewport Ingestion",
+      "parentId": "cellradar-directional-hunter-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Replaces static municipal fallback lists with dynamic spatial bounding-box querying (map.getBounds()). When the user pans or zooms across We...",
+      "url": "projects.html#cellradar-directional-hunter-title"
+    },
+    {
+      "id": "skytrack-airspace-radar-title",
+      "name": "SkyTrack: Zero-Subscription ADS-B Airspace Radar, OpenSky Network Telemetry Ingestion, Spatial Cluster Tracking & Kinematic Velocity Vector Engine",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Commercial flight tracking platforms such as Flightradar24 and FlightAware have become increasingly hostile to users, gating historical flight trails, 3D cockpits, and high-rate position feeds behind expensive monthly tiers while cluttering displays with animated banner advert...",
+      "tech": [
+        "OpenRC",
+        "Leaflet.js",
+        "OpenSky Network REST API",
+        "WGS84 Geodetic Kinematics",
+        "Velocity Vectors",
+        "Touch-Optimized Telemetry Drawer"
+      ],
+      "tasks": [
+        {
+          "title": "Kinematic State Vector Ingestion",
+          "desc": "Ingests ICAO 24-bit transponder addresses, callsigns, latitude, longitude, barometric and geometric altitude, groundspeed (knots), true trac..."
+        },
+        {
+          "title": "Dynamic Airframe Glyphs",
+          "desc": "Rotates vectorized aircraft SVG icons smoothly along their true track trajectory, with distinct chromatic tiers representing altitude bracke..."
+        },
+        {
+          "title": "Ergonomic Mobile UX",
+          "desc": "Solved UI collision on smartphones by elevating the geolocation and scan triggers above the bottom telemetry sheet. When no single aircraft ..."
+        },
+        {
+          "title": "On-Demand Radar Sweeper",
+          "desc": "Features an instant \u2708\ufe0f SCAN button that queries the nearest 250 nautical miles of airspace on demand, complete with an interactive reload an..."
+        }
+      ],
+      "url": "projects.html#skytrack-airspace-radar-title"
+    },
+    {
+      "id": "task-skytrack-airspace-radar-title-0",
+      "name": "Kinematic State Vector Ingestion",
+      "type": "task",
+      "parentProject": "SkyTrack: Zero-Subscription ADS-B Airspace Radar, OpenSky Network Telemetry Ingestion, Spatial Cluster Tracking & Kinematic Velocity Vector Engine",
+      "parentId": "skytrack-airspace-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Ingests ICAO 24-bit transponder addresses, callsigns, latitude, longitude, barometric and geometric altitude, groundspeed (knots), true trac...",
+      "url": "projects.html#skytrack-airspace-radar-title"
+    },
+    {
+      "id": "task-skytrack-airspace-radar-title-1",
+      "name": "Dynamic Airframe Glyphs",
+      "type": "task",
+      "parentProject": "SkyTrack: Zero-Subscription ADS-B Airspace Radar, OpenSky Network Telemetry Ingestion, Spatial Cluster Tracking & Kinematic Velocity Vector Engine",
+      "parentId": "skytrack-airspace-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Rotates vectorized aircraft SVG icons smoothly along their true track trajectory, with distinct chromatic tiers representing altitude bracke...",
+      "url": "projects.html#skytrack-airspace-radar-title"
+    },
+    {
+      "id": "task-skytrack-airspace-radar-title-2",
+      "name": "Ergonomic Mobile UX",
+      "type": "task",
+      "parentProject": "SkyTrack: Zero-Subscription ADS-B Airspace Radar, OpenSky Network Telemetry Ingestion, Spatial Cluster Tracking & Kinematic Velocity Vector Engine",
+      "parentId": "skytrack-airspace-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Solved UI collision on smartphones by elevating the geolocation and scan triggers above the bottom telemetry sheet. When no single aircraft ...",
+      "url": "projects.html#skytrack-airspace-radar-title"
+    },
+    {
+      "id": "task-skytrack-airspace-radar-title-3",
+      "name": "On-Demand Radar Sweeper",
+      "type": "task",
+      "parentProject": "SkyTrack: Zero-Subscription ADS-B Airspace Radar, OpenSky Network Telemetry Ingestion, Spatial Cluster Tracking & Kinematic Velocity Vector Engine",
+      "parentId": "skytrack-airspace-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Features an instant \u2708\ufe0f SCAN button that queries the nearest 250 nautical miles of airspace on demand, complete with an interactive reload an...",
+      "url": "projects.html#skytrack-airspace-radar-title"
+    },
+    {
+      "id": "clearcast-weather-radar-title",
+      "name": "ClearCast: Zero-Ad Hyper-Granular Weather System, 4-Hour Doppler & NOAA HRRR Numerical Simulated Reflectivity Radar, Wind Streamlines & Stacked Timeline Engine",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Mainstream consumer weather applications like The Weather Channel and AccuWeather have transformed into adware-bloated ecosystems, forcing intrusive video advertisements, intrusive pop-ups, slow loading times, and paywalled radar loops onto users. I built ClearCast, an ultra-f...",
+      "tech": [
+        "OpenRC",
+        "Leaflet.js",
+        "Iowa Environmental Mesonet (IEM) NEXRAD",
+        "NOAA HRRR Numerical Model",
+        "Open-Meteo High-Res API",
+        "Canvas Wind Streamlines"
+      ],
+      "tasks": [
+        {
+          "title": "Empirical Past to Present",
+          "desc": "Ingests 50 minutes of high-resolution base reflectivity tiles from Iowa Environmental Mesonet (IEM) NEXRAD composite radar."
+        },
+        {
+          "title": "Future Predictive Radar (+3 Hours)",
+          "desc": "Integrates NOAA's High-Resolution Rapid Refresh (HRRR) 3-kilometer numerical atmospheric simulation model (hrrr::REFP-F0015-0 through hrrr::..."
+        },
+        {
+          "title": "Zero-Flicker Pre-Cached GPU Crossfade",
+          "desc": "Conventional radar apps re-create DOM tile layers during frame transitions, causing jarring visual blinks (\"clunking\"). ClearCast mounts all..."
+        },
+        {
+          "title": "Meteorological Intelligence Stack",
+          "desc": "Features interactive layer switches for Wind Streamline vector particle flow and Isobaric Surface Pressure contours, alongside an Open-Meteo..."
+        }
+      ],
+      "url": "projects.html#clearcast-weather-radar-title"
+    },
+    {
+      "id": "task-clearcast-weather-radar-title-0",
+      "name": "Empirical Past to Present",
+      "type": "task",
+      "parentProject": "ClearCast: Zero-Ad Hyper-Granular Weather System, 4-Hour Doppler & NOAA HRRR Numerical Simulated Reflectivity Radar, Wind Streamlines & Stacked Timeline Engine",
+      "parentId": "clearcast-weather-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Ingests 50 minutes of high-resolution base reflectivity tiles from Iowa Environmental Mesonet (IEM) NEXRAD composite radar.",
+      "url": "projects.html#clearcast-weather-radar-title"
+    },
+    {
+      "id": "task-clearcast-weather-radar-title-1",
+      "name": "Future Predictive Radar (+3 Hours)",
+      "type": "task",
+      "parentProject": "ClearCast: Zero-Ad Hyper-Granular Weather System, 4-Hour Doppler & NOAA HRRR Numerical Simulated Reflectivity Radar, Wind Streamlines & Stacked Timeline Engine",
+      "parentId": "clearcast-weather-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Integrates NOAA's High-Resolution Rapid Refresh (HRRR) 3-kilometer numerical atmospheric simulation model (hrrr::REFP-F0015-0 through hrrr::...",
+      "url": "projects.html#clearcast-weather-radar-title"
+    },
+    {
+      "id": "task-clearcast-weather-radar-title-2",
+      "name": "Zero-Flicker Pre-Cached GPU Crossfade",
+      "type": "task",
+      "parentProject": "ClearCast: Zero-Ad Hyper-Granular Weather System, 4-Hour Doppler & NOAA HRRR Numerical Simulated Reflectivity Radar, Wind Streamlines & Stacked Timeline Engine",
+      "parentId": "clearcast-weather-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Conventional radar apps re-create DOM tile layers during frame transitions, causing jarring visual blinks (\"clunking\"). ClearCast mounts all...",
+      "url": "projects.html#clearcast-weather-radar-title"
+    },
+    {
+      "id": "task-clearcast-weather-radar-title-3",
+      "name": "Meteorological Intelligence Stack",
+      "type": "task",
+      "parentProject": "ClearCast: Zero-Ad Hyper-Granular Weather System, 4-Hour Doppler & NOAA HRRR Numerical Simulated Reflectivity Radar, Wind Streamlines & Stacked Timeline Engine",
+      "parentId": "clearcast-weather-radar-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Features interactive layer switches for Wind Streamline vector particle flow and Isobaric Surface Pressure contours, alongside an Open-Meteo...",
+      "url": "projects.html#clearcast-weather-radar-title"
+    },
+    {
+      "id": "sattrack-3d-globe-title",
+      "name": "SatTrack 3D: WebGL Interactive Earth Globe Satellite Tracker, SGP4 Analytical Orbital Mechanics, Live CelesTrak TLE Ingestion & 3D Ephemeris Trajectory Engine",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Visualizing low Earth orbit (LEO), medium Earth orbit (MEO), and geostationary (GEO) satellites on conventional flat Mercator map projections introduces extreme spatial distortion near the poles and fails to convey the true geometry of orbital inclination planes. To track the ...",
+      "tech": [
+        "OpenRC",
+        "Three.js WebGL",
+        "Satellite.js SGP4/SDP4 Analytical Propagator",
+        "CelesTrak NORAD TLE Ingestion",
+        "TEME-to-ECF Geodetics",
+        "3D Ephemeris Trajectory Splines"
+      ],
+      "tasks": [
+        {
+          "title": "Orbital Mechanics & Frame Conversion",
+          "desc": "Ingests Keplerian elements (inclination, right ascension of ascending node, eccentricity, argument of perigee, mean anomaly, and mean motion..."
+        },
+        {
+          "title": "3D Ephemeris Trajectory Splines",
+          "desc": "Propagates 90 minutes of future orbital motion, rendering a continuous 3D elliptical trajectory spline that accurately curves across the Web..."
+        },
+        {
+          "title": "Optimized Mobile Touch Targets",
+          "desc": "Solved mobile touch visibility by enlarging satellite billboard sprites by 300% (scaling factors 9.5 to 14.0) with custom radial-glow canvas..."
+        },
+        {
+          "title": "Ergonomic Earth Controls",
+          "desc": "Features gentle inertial auto-rotation that gracefully pauses upon user touch or mouse interaction, a touch-friendly satellite roster drawer..."
+        }
+      ],
+      "url": "projects.html#sattrack-3d-globe-title"
+    },
+    {
+      "id": "task-sattrack-3d-globe-title-0",
+      "name": "Orbital Mechanics & Frame Conversion",
+      "type": "task",
+      "parentProject": "SatTrack 3D: WebGL Interactive Earth Globe Satellite Tracker, SGP4 Analytical Orbital Mechanics, Live CelesTrak TLE Ingestion & 3D Ephemeris Trajectory Engine",
+      "parentId": "sattrack-3d-globe-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Ingests Keplerian elements (inclination, right ascension of ascending node, eccentricity, argument of perigee, mean anomaly, and mean motion...",
+      "url": "projects.html#sattrack-3d-globe-title"
+    },
+    {
+      "id": "task-sattrack-3d-globe-title-1",
+      "name": "3D Ephemeris Trajectory Splines",
+      "type": "task",
+      "parentProject": "SatTrack 3D: WebGL Interactive Earth Globe Satellite Tracker, SGP4 Analytical Orbital Mechanics, Live CelesTrak TLE Ingestion & 3D Ephemeris Trajectory Engine",
+      "parentId": "sattrack-3d-globe-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Propagates 90 minutes of future orbital motion, rendering a continuous 3D elliptical trajectory spline that accurately curves across the Web...",
+      "url": "projects.html#sattrack-3d-globe-title"
+    },
+    {
+      "id": "task-sattrack-3d-globe-title-2",
+      "name": "Optimized Mobile Touch Targets",
+      "type": "task",
+      "parentProject": "SatTrack 3D: WebGL Interactive Earth Globe Satellite Tracker, SGP4 Analytical Orbital Mechanics, Live CelesTrak TLE Ingestion & 3D Ephemeris Trajectory Engine",
+      "parentId": "sattrack-3d-globe-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Solved mobile touch visibility by enlarging satellite billboard sprites by 300% (scaling factors 9.5 to 14.0) with custom radial-glow canvas...",
+      "url": "projects.html#sattrack-3d-globe-title"
+    },
+    {
+      "id": "task-sattrack-3d-globe-title-3",
+      "name": "Ergonomic Earth Controls",
+      "type": "task",
+      "parentProject": "SatTrack 3D: WebGL Interactive Earth Globe Satellite Tracker, SGP4 Analytical Orbital Mechanics, Live CelesTrak TLE Ingestion & 3D Ephemeris Trajectory Engine",
+      "parentId": "sattrack-3d-globe-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Features gentle inertial auto-rotation that gracefully pauses upon user touch or mouse interaction, a touch-friendly satellite roster drawer...",
+      "url": "projects.html#sattrack-3d-globe-title"
     },
     {
       "id": "vintage-hardware-mining-fleet-and-file-vault-title",
@@ -4340,6 +4780,348 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "fishdepth-marine-chartplotter-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "task-fishdepth-marine-chartplotter-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "task-fishdepth-marine-chartplotter-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "task-fishdepth-marine-chartplotter-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "task-fishdepth-marine-chartplotter-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "fishdepth-marine-chartplotter-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-ai-agents",
+      "target": "cellradar-directional-hunter-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "task-cellradar-directional-hunter-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "task-cellradar-directional-hunter-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "task-cellradar-directional-hunter-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "task-cellradar-directional-hunter-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cellradar-directional-hunter-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-ai-agents",
+      "target": "skytrack-airspace-radar-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "task-skytrack-airspace-radar-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "task-skytrack-airspace-radar-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "task-skytrack-airspace-radar-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "task-skytrack-airspace-radar-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "skytrack-airspace-radar-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-ai-agents",
+      "target": "clearcast-weather-radar-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "task-clearcast-weather-radar-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "task-clearcast-weather-radar-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "task-clearcast-weather-radar-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "task-clearcast-weather-radar-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "clearcast-weather-radar-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-ai-agents",
+      "target": "sattrack-3d-globe-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "task-sattrack-3d-globe-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "task-sattrack-3d-globe-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "task-sattrack-3d-globe-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "task-sattrack-3d-globe-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "tech-threejs-webgl",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "sattrack-3d-globe-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-embedded-hardware",
       "target": "vintage-hardware-mining-fleet-and-file-vault-title",
