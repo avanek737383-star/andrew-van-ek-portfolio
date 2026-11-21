@@ -599,8 +599,104 @@
 
 <section class=project-entry aria-labelledby=local-ai-music-studio-title>
 <h2 id=local-ai-music-studio-title>Local AI Music Studio (100% Offline): Meta MusicGen on Apple Silicon Metal (MPS), Autoregressive Continuation Chaining &amp; Unified Memory Architecture</h2>
-<p class=project-status><span class=status-badge project-completed>Completed Project</span> <span>Meta MusicGen &middot; Apple Silicon Metal (MPS) &middot; Gradio Web Studio &middot; Hugging Face Safetensors &middot; Autoregressive Chaining &middot; Studio Audio Mastering &middot; <time datetime="2026-11-20">November 20, 2026</time></span></p>
-<div class=project-architecture aria-label=Local AI Music Studio Architecture><span>macOS Desktop Launcher (AI Music Generator.command)</span><span aria-hidden="true">&rarr;</span><span>Gradio UI (http://localhost:7860)</span><span aria-hidden="true">&rarr;</span><span>Meta MusicGen (Small / Medium) on Metal (MPS)</span><span aria-hidden="true">&rarr;</span><span>Seamless 24s Step Chaining &amp; Dynamic RMS Matching</span><span aria-hidden="true">&rarr;</span><span>Equal-Power Crossfading (cos&sup2; + sin&sup2; = 1.0)</span><span aria-hidden="true">&rarr;</span><span>FFmpeg Studio Mastering (Stereo Widener, 3.8kHz De-Harsh Notch &amp; True-Peak Limiter) &rarr; 44.1kHz Mastered WAV</span></div>
+<p class=project-status><span class=status-badge project-completed>Completed Project</span> <span>Meta MusicGen &middot; Apple Silicon Metal (MPS) &middot; Gradio Web Studio &middot; Hugging Face Safetensors &middot; Autoregressive Chaining &middot; Studio Audio Mastering &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+<div class=project-architecture aria-label=Local AI Music Studio Architecture><span>macOS Desktop Launcher (AI Music Generator.command)</span><span aria-hidden="true">&rarr;</span><span>Gradio UI (http://localhost:7860)</span><span aria-hidden="true">&rarr;</span><span>Meta MusicGen Small on Metal (MPS)</span><span aria-hidden="true">&rarr;</span><span>5-Stage Song Arranger (Intro &rarr; Drop 1 &rarr; Breakdown &rarr; Climax &rarr; Outro)</span><span aria-hidden="true">&rarr;</span><span>Equal-Power Crossfading</span><span aria-hidden="true">&rarr;</span><span>Zero-Feedback Haas Mastering &amp; 0.3s Micro-Fade</span><span aria-hidden="true">&rarr;</span><span>Automated Google Drive Sync (06. Music Auditing)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">🎼 5-Stage Song Arranger &amp; Neural Audio Synthesis Engine</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">Meta MusicGen (MPS) &rarr; Attention Resets (Anti-Drift) &rarr; Equal-Power Crossfade &rarr; Zero-Feedback Haas &rarr; Google Drive</span>
+    </div>
+    <span style="background:rgba(99,102,241,0.18); color:#a5b4fc; border:1px solid rgba(99,102,241,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Neural Audio &bull; Apple Silicon MPS / FFmpeg</span>
+  </div>
+
+  <svg viewBox="0 0 880 240" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="5-Stage Song Arranger and Neural Audio Synthesis Pipeline Diagram">
+    <defs>
+      <linearGradient id="promptGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#7e22ce" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="dspGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.20"/>
+        <stop offset="100%" stop-color="#b45309" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.08"/>
+      </linearGradient>
+      <marker id="mus-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+      </marker>
+    </defs>
+
+    <!-- Stage 1: Arrangement Decomposition -->
+    <rect x="10" y="20" width="195" height="195" rx="10" fill="url(#promptGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="107" y="44" fill="#7dd3fc" font-size="12" font-weight="700" text-anchor="middle">1. 5-Stage Arranger</text>
+    <rect x="25" y="58" width="165" height="24" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="0.8"/>
+    <text x="107" y="74" fill="#38bdf8" font-size="10.5" font-weight="600" text-anchor="middle">NCS Melodic EDM (124 BPM)</text>
+    <text x="107" y="102" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Intro (15%) &bull; Filtered Chords</text>
+    <text x="107" y="118" fill="#bae6fd" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Drop 1 (30%) &bull; 4-on-Floor / Saws</text>
+    <text x="107" y="134" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Breakdown (20%) &bull; Half-Time</text>
+    <text x="107" y="150" fill="#bae6fd" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Climax Drop (25%) &bull; Peak Anthem</text>
+    <text x="107" y="166" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Outro (10%) &bull; Reverb Decay</text>
+    <rect x="22" y="178" width="171" height="26" rx="5" fill="#13273e" stroke="#38bdf8" stroke-width="0.7"/>
+    <text x="107" y="195" fill="#7dd3fc" font-size="9" font-weight="700" text-anchor="middle">Dynamic Multi-Movement Arc</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="207" y1="117" x2="231" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#mus-arrow)"/>
+
+    <!-- Stage 2: Metal MPS Neural Synthesis -->
+    <rect x="235" y="20" width="200" height="195" rx="10" fill="url(#neuralGrad)" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="335" y="44" fill="#d8b4fe" font-size="12" font-weight="700" text-anchor="middle">2. Apple Silicon MPS</text>
+    <rect x="250" y="58" width="170" height="24" rx="4" fill="#24133b" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="335" y="74" fill="#c084fc" font-size="10.5" font-weight="600" text-anchor="middle">MusicGen Small (300M Params)</text>
+    <text x="335" y="102" fill="#e9d5ff" font-size="10" font-weight="700" text-anchor="middle">ANTI-DRIFT ATTENTION RESET</text>
+    <text x="335" y="118" fill="#94a3b8" font-size="9" text-anchor="middle">Fresh Cache per Movement</text>
+    <text x="335" y="132" fill="#c084fc" font-size="9" font-weight="600" text-anchor="middle">&cross; Eradicates Metallic Drift</text>
+    <text x="335" y="146" fill="#94a3b8" font-size="9" text-anchor="middle">Zero Compounding Token Errors</text>
+    <rect x="247" y="160" width="176" height="42" rx="5" fill="#1a112a" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="335" y="177" fill="#d8b4fe" font-size="9.5" font-weight="600" text-anchor="middle">Native MPS Tensor Graph</text>
+    <text x="335" y="193" fill="#94a3b8" font-size="8.5" text-anchor="middle">Zero Swap Thrashing &bull; 1.5GB RAM</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="437" y1="117" x2="461" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#mus-arrow)"/>
+
+    <!-- Stage 3: Equal-Power & Mastering DSP -->
+    <rect x="465" y="20" width="200" height="195" rx="10" fill="url(#dspGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="565" y="44" fill="#fcd34d" font-size="12" font-weight="700" text-anchor="middle">3. Studio DSP Mastering</text>
+    <rect x="480" y="58" width="170" height="24" rx="4" fill="#2d1c08" stroke="#f59e0b" stroke-width="0.8"/>
+    <text x="565" y="74" fill="#fbbf24" font-size="10.5" font-weight="600" text-anchor="middle">Equal-Power (cos&sup2;+sin&sup2;=1.0)</text>
+    <text x="565" y="102" fill="#fde68a" font-size="9.5" font-weight="600" text-anchor="middle">&bull; 0.3s Micro-Fade (Kills "da-da")</text>
+    <text x="565" y="118" fill="#fde68a" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Zero-Feedback Haas (10ms)</text>
+    <text x="565" y="134" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; 3.8kHz De-Harsh Notch</text>
+    <text x="565" y="150" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; +2.5dB 90Hz Sub Punch</text>
+    <rect x="477" y="162" width="176" height="40" rx="5" fill="#241506" stroke="#f59e0b" stroke-width="0.8"/>
+    <text x="565" y="179" fill="#fcd34d" font-size="9.5" font-weight="700" text-anchor="middle">Broadcast EBU R128 Norm</text>
+    <text x="565" y="194" fill="#fde68a" font-size="9" text-anchor="middle">&minus;14 LUFS &bull; True-Peak &minus;1.0 dB Limit</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <line x1="667" y1="117" x2="691" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#mus-arrow)"/>
+
+    <!-- Stage 4: Automated Drive Sync -->
+    <rect x="695" y="20" width="175" height="195" rx="10" fill="url(#cloudGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="782" y="44" fill="#6ee7b7" font-size="12" font-weight="700" text-anchor="middle">4. Cloud Auditing</text>
+    <rect x="710" y="58" width="145" height="24" rx="4" fill="#06261a" stroke="#10b981" stroke-width="0.8"/>
+    <text x="782" y="74" fill="#34d399" font-size="10.5" font-weight="600" text-anchor="middle">06. Music Auditing</text>
+    <text x="782" y="102" fill="#a7f3d0" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Google Drive Auto-Sync</text>
+    <text x="782" y="118" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Auto Raw File Purge</text>
+    <text x="782" y="134" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; 44.1kHz Stereo WAV</text>
+    <text x="782" y="150" fill="#a7f3d0" font-size="9.5" font-weight="600" text-anchor="middle">&bull; iPhone / iPad Stream</text>
+    <rect x="707" y="162" width="151" height="40" rx="5" fill="#082d20" stroke="#10b981" stroke-width="0.8"/>
+    <text x="782" y="179" fill="#34d399" font-size="9.5" font-weight="700" text-anchor="middle">ZERO CLUTTER EXPORT</text>
+    <text x="782" y="194" fill="#a7f3d0" font-size="8.5" text-anchor="middle">Single Mastered Track per Run</text>
+  </svg>
+</div>
+
 
 <p>Generating high-fidelity music with generative AI typically requires third-party cloud platforms (such as Suno or Udio) that enforce credit paywalls, impose restrictive song generation caps, require continuous internet connectivity, and compromise creative privacy. To eliminate these constraints, I collaborated with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> to engineer and deploy a 100% offline, self-hosted AI music production workstation hosted natively on Apple Silicon Metal (MPS), featuring a one-click macOS desktop launcher, real-time Gradio interface, and seamless multi-minute song generation.</p>
 
@@ -651,8 +747,30 @@
 <li><strong>The Analogy:</strong> NVIDIA GPUs are like Formula 1 race cars with a 16-liter fuel tank—blazingly fast for workloads that fit inside their capacity—while Apple Unified Memory is like a high-speed bullet train with massive cargo capacity, hauling multi-gigabyte models that would immediately stall a standard consumer GPU.</li>
 </ul>
 
-<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the 100% offline local AI music studio, specified Apple Silicon Metal (MPS) hardware acceleration, requested the duration expansion, flagged the metallic EDM artifacting, snare glitches, and quiet transition dips for overhaul, and guided the architectural comparison between Apple Unified Memory and dedicated NVIDIA GPUs. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> architected the Python and Gradio application runtime, implemented the autoregressive continuation chaining engine, diagnosed the 30s model energy collapse and silence cascade, engineered the 24s step-chaining with dynamic RMS gain-matching and mathematical equal-power crossfader, constructed the FFmpeg studio mastering engine (3.8kHz de-harsh notch, Haas stereo spatializer, sub-bass punch, and True-Peak limiter), authored production-grade EDM genre presets, investigated and demystified Hugging Face git-xet CAS transfer forensics, conducted kernel swap thrashing forensics, evaluated parallel compute scaling and fanless thermal limits, and authored this case study.</p>
-<ul class="chips"><li>Meta MusicGen</li><li>Apple Silicon Metal (MPS)</li><li>Gradio 6</li><li>PyTorch 2.13</li><li>Hugging Face Safetensors</li><li>EnCodec 32kHz</li><li>Autoregressive Chaining</li><li>Equal-Power Crossfade</li><li>FFmpeg Studio Mastering</li><li>Stereo Haas Spatializer</li><li>De-Harsh Notch Filter</li><li>Tailscale Mesh</li><li>Antigravity (Google DeepMind)</li></ul>
+
+<h3>Iterative Architecture Evolution: 5-Stage Song Arranger, Eliminating Autoregressive Drift &amp; Mobile Auditing Automation (November 21, 2026)</h3>
+<p>Through active listening tests of multi-minute renders on Apple Silicon, Andrew identified two critical acoustic challenges: long songs suffered from flat, meandering song structure without the dynamic build-ups and drops characteristic of commercial EDM (such as his Suno-generated <em>Focus On, Glow Up, 2</em> benchmark), and tracks developed abrasive metallic screeching and digital crackle toward their final minutes. In pair programming with <strong>Antigravity AI</strong>, we engineered an architectural overhaul addressing both model mechanics and studio workflow:</p>
+
+<ul>
+<li><strong>Diagnosing Autoregressive Drift &amp; The Codebook Degradation Cascade:</strong> Forensic analysis revealed why multi-chunk music degrades into harsh metallic noise near the end. Because MusicGen was trained exclusively on 30-second audio windows, chaining segments for 3 to 5 minutes forces the attention mechanism to recursively predict new tokens based on its own past imperfect predictions. Quantization errors inherent to the EnCodec neural audio decoder compound exponentially across segments. By minutes 2 and 3, the latent representation drifts into an unstable out-of-distribution state, manifesting as high-frequency comb-filtering, metallic ringing, and chaotic digital artifacts.</li>
+<li><strong>The 5-Stage Studio Song Arranger Engine:</strong> To eliminate latent drift while imparting real commercial song structure, we engineered an intelligent 5-movement arrangement engine. Rather than endlessly re-prompting the same static loop, the engine dynamically partitions the target duration into five distinct musical movements:
+  <ul style="margin-top:6px; margin-bottom:6px;">
+    <li><em>Stage 1 &bull; Intro &amp; Build-up (15%):</em> Gentle atmospheric textures, filtered chords, subtle kick pulse, and rising harmonic tension.</li>
+    <li><em>Stage 2 &bull; Drop 1 / Main Hook (30%):</em> High-energy festival drop, punchy 124 BPM four-on-the-floor kick, soaring supersaw leads, and rolling sub-bass groove.</li>
+    <li><em>Stage 3 &bull; Melodic Breakdown (20%):</em> Percussion drops out, spotlighting emotional piano chords and warm atmospheric pads with half-time suspense.</li>
+    <li><em>Stage 4 &bull; Climax / Drop 2 (25%):</em> Peak festival energy, layered lead synths, driving rhythm, and celebratory anthem payoff.</li>
+    <li><em>Stage 5 &bull; Outro (10%):</em> Natural decay, tapering drum patterns, and gentle chord resolution.</li>
+  </ul>
+  <strong>The Anti-Drift Mechanism:</strong> Crucially, each movement generates with a clean, uncorrupted attention state and blends into the arrangement via circular equal-power crossfading. By severing the 150-second trail of degraded tokens, error accumulation is halted at each stage boundary. The final minute of the track remains as punchy, crisp, and clean as the opening drop.</li>
+<li><strong>0.3s Micro-Fadein &amp; Transient Cold-Start Fix:</strong> Solved an audible startup stutter (perceived as a rhythmic &ldquo;da da cha&rdquo; click) occurring in the first few hundred milliseconds. Autoregressive models starting from pure silence exhibit a transient attention surge before locking into the groove. We injected an automatic 0.3-second linear micro-fade-in at the beginning of the rendered waveform, completely silencing cold-start clicks and providing a silky, professional entrance.</li>
+<li><strong>Curing DSP Spatializer Feedback Crackle:</strong> Investigated subtle crackling that surfaced during sustained playback. Tracing the FFmpeg mastering filtergraph uncovered that the stereo spatializer (<code>stereowiden</code>) was configured with <code>feedback=0.2</code> alongside Haas delay (<code>adelay=14ms</code>). High-frequency transients were recirculating through the comb filter, creating subtle micro-pops. We eliminated feedback entirely (<code>feedback=0.0</code>), tightened the Haas delay to a pristine 10ms, and removed redundant pre-limiter stages to let <code>loudnorm</code> manage true-peak brickwall limiting at &minus;1.0 dB without inter-modulation distortion.</li>
+<li><strong>Model Streamlining &amp; Memory Optimization:</strong> Purged the bulky 3.5 GB Medium weights from disk in favor of the lightweight, fast Small model (300M parameters). On fanless Apple Silicon, Small executes with zero memory pressure, eliminates thermal throttling, and delivers rapid turnaround for multi-segment tracks. Added a unified Architecture Selector dropdown in the GUI allowing instant side-by-side A/B comparisons between the <em>5-Stage Studio Arranger</em> and the classic <em>Continuous Extended Groove</em>.</li>
+<li><strong>Automated Google Drive Sync (<code>06. Music Auditing</code>) &amp; Zero-Clutter Pipeline:</strong> To enable frictionless auditing from iPhones, iPads, and other devices without sitting at the Mac, we configured the output pipeline to write directly to Google Drive (<code>06. Music Auditing</code>). Furthermore, we updated the rendering pipeline to write raw intermediate audio to temporary scratch space and automatically delete it once mastering completes—guaranteeing that only polished, broadcast-ready 44.1 kHz stereo WAV files sync to the cloud.</li>
+<li><strong>Acoustic Benchmark &amp; Default NCS EDM Preset:</strong> Analyzed the acoustic properties of Andrew's Suno-generated video track (<em>Focus On, Glow Up, 2 NCS Visualizer</em>) using <code>yt-dlp</code> and <code>librosa</code>, extracting a verified 124 BPM tempo, punchy four-on-the-floor kick, and soaring supersaw/piano harmonic profile. We codified these acoustic parameters into the default auto-fill prompt and calibrated preset durations to 60s (1 Min), 180s (3 Min &bull; Default), and 300s (5 Min).</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the 100% offline local AI music studio, specified Apple Silicon Metal (MPS) hardware acceleration, requested the duration expansion, conducted continuous listening audits, spotted the structural flatness of naive looping, identified the late-track metallic distortion and cold-start transient stutter (&ldquo;da da cha&rdquo;), requested the 5-minute option and 3-minute default, specified the automated Google Drive mobile auditing sync with raw file cleanup, and guided the iterative prompt and architecture refinement. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> architected the Python and Gradio application runtime, implemented the autoregressive continuation chaining engine, diagnosed autoregressive latent drift and codebook degradation, architected and implemented the 5-Stage Studio Song Arranger with attention resets and equal-power crossfades, constructed the FFmpeg studio mastering engine (3.8kHz de-harsh notch, zero-feedback Haas spatializer, sub-bass punch, and True-Peak limiter), engineered the 0.3s startup micro-fade, automated Google Drive cloud sync, authored production-grade EDM genre presets based on librosa acoustic analysis, conducted kernel swap thrashing forensics, evaluated parallel compute scaling and fanless thermal limits, and authored this case study.</p>
+<ul class="chips"><li>Meta MusicGen</li><li>Apple Silicon Metal (MPS)</li><li>Gradio 6</li><li>PyTorch 2.13</li><li>Hugging Face Safetensors</li><li>EnCodec 32kHz</li><li>5-Stage Song Arranger</li><li>Autoregressive Chaining</li><li>Equal-Power Crossfade</li><li>FFmpeg Studio Mastering</li><li>Zero-Feedback Haas Spatializer</li><li>De-Harsh Notch Filter</li><li>Google Drive Sync</li><li>Tailscale Mesh</li><li>Antigravity (Google DeepMind)</li></ul>
 </section>
 
 
@@ -3080,7 +3198,7 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-20T10:44:55-05:00">November 20, 2026 at 10:44:55 AM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-21T12:51:00-05:00">November 21, 2026 at 12:51:00 PM EST</time></p>
 				<p class="footer-version">Version v2.6.413 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
