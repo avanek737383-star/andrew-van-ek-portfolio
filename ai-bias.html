@@ -4,12 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>AI Bias &amp; Algorithmic Fairness Audit Lab | Andrew Van Ek</title>
-	<meta name="description" content="Interactive laboratory inspecting how algorithmic bias manifests in training data, embeddings, and decision thresholds, with hands-on debiasing simulations.">
+	<meta name="description" content="Interactive laboratory inspecting how algorithmic bias creeps into training data, word embeddings, and pass/fail thresholds, with real-world comparisons and live debiasing tools.">
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261120-nav-1">
-	<link rel="stylesheet" href="css/ai-bias.css?v=20261120-bias-1">
+	<link rel="stylesheet" href="css/ai-bias.css?v=20261121-bias-2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
@@ -78,13 +78,13 @@
 			<header class="bias-header">
 				<div class="bias-eyebrow">Interactive Ethical AI &amp; Governance Lab</div>
 				<h1 class="bias-title">AI Bias &amp; Algorithmic Fairness Audit Lab</h1>
-				<p class="bias-subtitle">Machine learning algorithms don't develop bias in a vacuum—they inherit, reflect, and mathematically amplify the historical imbalances embedded within their training corpora. Explore three real-world simulations examining how bias creeps into modern models, and test mathematical debiasing remediations in real time.</p>
+				<p class="bias-subtitle">AI models don't wake up with personal opinions—they learn from the examples we feed them. If the training data is full of past hiring habits, historical imbalances, or skewed numbers, the computer treats those patterns like math rules. Hover on desktop or tap on mobile on any highlighted term to see an everyday real-world comparison that doesn't involve computer jargon.</p>
 				<div class="bias-tags-row">
-					<span class="bias-badge">⚖️ Four-Fifths Rule (EEOC 80%)</span>
-					<span class="bias-badge">🔬 Embedding Orthogonal Projection</span>
-					<span class="bias-badge">📊 Accuracy Paradox</span>
-					<span class="bias-badge">🛡️ Demographic Parity</span>
-					<span class="bias-badge">⚡ Equalized Odds</span>
+					<span class="bias-badge">&#9878;&#65039; Four-Fifths Rule (EEOC 80%)</span>
+					<span class="bias-badge">&#128065;&#65039; Blind Auditions &amp; Debiasing</span>
+					<span class="bias-badge">&#128202; The Accuracy Paradox</span>
+					<span class="bias-badge">&#128737;&#65039; Fair Representation</span>
+					<span class="bias-badge">&#9889; Pass/Fail Cutoff Tuning</span>
 				</div>
 			</header>
 
@@ -92,47 +92,47 @@
 			<section class="bias-card" id="module-resume">
 				<div class="bias-card-header">
 					<span class="module-number">Module 01</span>
-					<h2>Resume Screening &amp; Embedding Bias Simulator</h2>
-					<p class="module-desc">Natural language processing pipelines evaluating applicant text frequently score resumes based on semantic embedding distance to historical "high-performer" archetypes. Adjust candidate features below to observe how demographic proxy variables alter ranking scores before and after applying mathematical fairness constraints.</p>
+					<h2>Resume Screening &amp; Word Bias Simulator</h2>
+					<p class="module-desc">Automated resume screeners look at word similarities using <span class="tech-term" data-term="word-embeddings">word maps (embeddings)</span>. If historical hires at a company were mostly from one background, resumes with different hobbies, names, or graduation years get penalized—even when their actual skills are identical. Test how background clues change scores, and see how simple fairness fixes level the playing field.</p>
 				</div>
 
 				<div class="bias-grid-split">
 					<!-- Left: Candidate Attributes Controls -->
 					<div class="bias-controls-pane">
-						<h3>Candidate Attribute Configuration</h3>
+						<h3>Candidate Profile Setup</h3>
 						<div class="control-group">
-							<label for="cand-name">Candidate Name / Proxy Background:</label>
+							<label for="cand-name">Candidate Background &amp; Profile Clues:</label>
 							<select id="cand-name" class="bias-select">
-								<option value="majority_male">Johnathan Vance (Traditional Archetype)</option>
-								<option value="female_leader">Emily Davies (Women in Tech President)</option>
-								<option value="diverse_male">Jamal Washington (Urban STEM Fellow)</option>
+								<option value="majority_male">Johnathan Vance (Traditional Background)</option>
+								<option value="female_leader">Emily Davies (Women in Tech Club President)</option>
+								<option value="diverse_male">Jamal Washington (Urban STEM Leadership Fellow)</option>
 								<option value="hispanic_male">Alejandro Hernandez (First-Gen Tech Scholar)</option>
-								<option value="gender_neutral">Taylor Smith (Non-Binary / Gender-Neutral)</option>
+								<option value="gender_neutral">Taylor Smith (Non-Binary / Gender-Neutral Phrasing)</option>
 							</select>
 						</div>
 
 						<div class="control-group">
-							<label for="grad-year">College Graduation Year (Age Proxy):</label>
+							<label for="grad-year">College Graduation Year (Age Clue):</label>
 							<select id="grad-year" class="bias-select">
 								<option value="2024">2024 (Recent Graduate &middot; Early Career)</option>
 								<option value="2016" selected>2016 (Mid-Level &middot; 8 Years Experience)</option>
-								<option value="2002">2002 (Senior / Mid-Career &middot; Age Proxy Warning)</option>
-								<option value="1992">1992 (Veteran Professional &middot; High Age Proxy Risk)</option>
+								<option value="2002">2002 (Senior Engineer &middot; 22 Years Experience)</option>
+								<option value="1992">1992 (Veteran Professional &middot; 32 Years Experience)</option>
 							</select>
 						</div>
 
 						<div class="control-group">
 							<label for="career-gap">Work History Continuity:</label>
 							<select id="career-gap" class="bias-select">
-								<option value="none" selected>Continuous Employment (Zero Gap)</option>
+								<option value="none" selected>Continuous Employment (No gaps)</option>
 								<option value="caregiving">2-Year Family Caregiving / Parental Leave</option>
 								<option value="military">3-Year Military Service Transition</option>
-								<option value="medical">18-Month Medical Leave / Recovery</option>
+								<option value="medical">18-Month Medical Leave &amp; Recovery</option>
 							</select>
 						</div>
 
 						<div class="control-group">
-							<label for="pedigree">Education Institution Tier:</label>
+							<label for="pedigree">College / Education Background:</label>
 							<select id="pedigree" class="bias-select">
 								<option value="ivy">Ivy League / Elite Private University</option>
 								<option value="state" selected>Regional State University (e.g. Grand Valley State / GVSU)</option>
@@ -142,25 +142,25 @@
 						</div>
 
 						<div class="debias-toggles-box">
-							<h4>Fairness &amp; Remediation Toggles</h4>
+							<h4>Fairness Fixes (Try turning these on!):</h4>
 							<label class="toggle-row">
 								<input type="checkbox" id="toggle-masking">
-								<span><strong>Blind Feature Masking:</strong> Strip name, graduation year &amp; institutional pedigree before tokenization</span>
+								<span><strong>Blind Screen:</strong> Hide names, graduation years, and school logos before the computer reads the skills</span>
 							</label>
 							<label class="toggle-row">
 								<input type="checkbox" id="toggle-orthogonal">
-								<span><strong>Orthogonal Embedding Projection:</strong> Project embeddings onto subspace orthogonal to demographic vectors</span>
+								<span><strong><span class="tech-term" data-term="nullspace-debiasing">Blind Audition Filter</span>:</strong> Strip out gender and demographic stereotypes from word associations</span>
 							</label>
 							<label class="toggle-row">
 								<input type="checkbox" id="toggle-parity">
-								<span><strong>Demographic Parity Thresholding:</strong> Calibrate decision cutoff to satisfy EEOC 80% Rule</span>
+								<span><strong><span class="tech-term" data-term="demographic-parity">Fair Passing Rate</span>:</strong> Ensure pass rates meet the <span class="tech-term" data-term="disparate-impact">EEOC 80% Rule</span></span>
 							</label>
 						</div>
 					</div>
 
 					<!-- Right: Live Model Telemetry & Audit Results -->
 					<div class="bias-results-pane">
-						<h3>Algorithmic Decision Telemetry</h3>
+						<h3>How the Algorithm Grades Them</h3>
 						<div class="score-display-card">
 							<div class="score-row">
 								<div class="score-item">
@@ -169,7 +169,7 @@
 								</div>
 								<div class="score-arrow">&rarr;</div>
 								<div class="score-item">
-									<span class="score-label">Fairness-Calibrated Score</span>
+									<span class="score-label">Fairness-Fixed Score</span>
 									<span class="score-val fair" id="calib-score">--</span>
 								</div>
 							</div>
@@ -180,22 +180,22 @@
 									<div class="meter-fill fair" id="fair-meter" style="width: 50%;"></div>
 								</div>
 								<div class="meter-legend">
-									<span><span class="dot raw"></span> Raw Model (Biased)</span>
-									<span><span class="dot fair"></span> Post-Remediation</span>
+									<span><span class="dot raw"></span> Raw Score (Unchecked)</span>
+									<span><span class="dot fair"></span> Score After Fairness Fixes</span>
 								</div>
 							</div>
 						</div>
 
 						<div class="audit-status-box" id="audit-status">
-							<div class="audit-badge" id="dir-badge">Evaluating...</div>
+							<div class="audit-badge" id="dir-badge">Checking...</div>
 							<div class="audit-details">
-								<p><strong>Disparate Impact Ratio (DIR):</strong> <span id="dir-metric">0.00</span></p>
-								<p id="dir-explanation">The EEOC 80% Rule specifies that selection rates for protected classes must be at least 80% of the highest group's rate.</p>
+								<p><strong><span class="tech-term" data-term="disparate-impact">Passing Rate Ratio (DIR)</span>:</strong> <span id="dir-metric">0.00</span></p>
+								<p id="dir-explanation">The 80% Rule means applicants from minority groups must pass at least 80% as often as the highest group, or the test is considered unfairly tilted.</p>
 							</div>
 						</div>
 
 						<div class="feature-penalty-breakdown">
-							<h4>Detected Implicit Penalties &amp; Boosts:</h4>
+							<h4>Hidden Penalties &amp; Bonuses Caught:</h4>
 							<ul id="penalty-list" class="penalty-list">
 								<!-- Populated via JS -->
 							</ul>
@@ -208,13 +208,13 @@
 			<section class="bias-card" id="module-llm">
 				<div class="bias-card-header">
 					<span class="module-number">Module 02</span>
-					<h2>LLM Next-Token Probability &amp; Stereotype Explorer</h2>
-					<p class="module-desc">Autoregressive Large Language Models predict next-token distributions based on conditional probabilities learned from massive Internet scrapes (Common Crawl, Reddit, C4). When training corpora reflect occupational stereotypes, the model's logits strongly diverge based on demographic pronouns.</p>
+					<h2>AI Word Predictions &amp; Job Stereotypes</h2>
+					<p class="module-desc">Language models predict the next word in a sentence based on millions of public articles and forum posts. If past articles usually talked about doctors as men or nurses as women, the AI repeats that exact same assumption. Pick a sentence below to see which pronoun the model expects next.</p>
 				</div>
 
 				<div class="llm-lab-wrap">
 					<div class="prompt-builder">
-						<label for="prompt-preset">Select Context Prompt Scenario:</label>
+						<label for="prompt-preset">Select a Job Scenario:</label>
 						<select id="prompt-preset" class="bias-select">
 							<option value="doctor">"The doctor stepped out of the operating room and explained that..."</option>
 							<option value="nurse">"The nurse arrived early at the clinic and checked that..."</option>
@@ -226,15 +226,15 @@
 
 					<div class="llm-distribution-container">
 						<div class="prob-bars-grid" id="prob-bars">
-							<!-- Populated via JS: compares He vs She vs They probabilities -->
+							<!-- Populated via JS -->
 						</div>
 					</div>
 
 					<div class="llm-insight-box">
 						<div class="insight-icon">&#9889;</div>
 						<div class="insight-text">
-							<h4>Why this happens in Foundation Models:</h4>
-							<p id="llm-insight-content">In web-scraped training datasets, occupational titles appear co-located with gendered pronouns in asymmetrical proportions. Transformer self-attention heads learn these associative vectors as high-confidence statistical priors. Without RLHF steering, DPO (Direct Preference Optimization), or activation steering, standard greedily sampled generation mirrors these legacy occupational imbalances.</p>
+							<h4>Why this happens in plain English:</h4>
+							<p id="llm-insight-content">The AI isn't thinking for itself—it is simply playing a high-speed guessing game of 'what word usually comes next?' If the older books and websites it studied wrote 'he' after doctor and 'she' after nurse, it guesses those words every time unless engineers deliberately teach it to stay neutral.</p>
 						</div>
 					</div>
 				</div>
@@ -244,41 +244,43 @@
 			<section class="bias-card" id="module-imbalance">
 				<div class="bias-card-header">
 					<span class="module-number">Module 03</span>
-					<h2>The Accuracy Paradox &amp; Class Imbalance Simulator</h2>
-					<p class="module-desc">In high-stakes fraud detection, cybersecurity malware scanning, and healthcare diagnostics, minority groups or anomalous classes often represent less than 5% of the total dataset. A naive classifier can achieve a stellar 95%+ overall accuracy score simply by predicting "Negative" for every single sample—completely failing the protected subgroup.</p>
+					<h2>The Accuracy Trap: Why 95% Can Still Be Completely Broken</h2>
+					<p class="module-desc">Think of a security guard watching 1,000 people enter a stadium, where only 2 people are carrying fake tickets. If the guard falls asleep and waves everyone through without checking a single ticket, they were '99.8% accurate' on paper—yet they failed at the one job they were hired to do. That's the <span class="tech-term" data-term="training-bias">Accuracy Trap</span>.</p>
 				</div>
 
 				<div class="imbalance-grid">
 					<div class="imbalance-sliders">
 						<div class="slider-group">
 							<div class="slider-label-row">
-								<span>Class Distribution Imbalance:</span>
+								<span>Group Balance in the Data:</span>
 								<span id="ratio-display" class="slider-val">90% Majority / 10% Minority</span>
 							</div>
-							<input type="range" id="ratio-slider" min="50" max="98" value="90" class="bias-slider" aria-label="Class Distribution Ratio">
+							<input type="range" id="ratio-slider" min="50" max="98" value="90" class="bias-slider" aria-label="Group Balance Ratio">
+							<small class="slider-hint">Slide right to see what happens when one group has almost zero examples.</small>
 						</div>
 
 						<div class="slider-group">
 							<div class="slider-label-row">
-								<span>Model Decision Threshold:</span>
+								<span><span class="tech-term" data-term="decision-threshold">Pass / Fail Cutoff Line</span>:</span>
 								<span id="threshold-display" class="slider-val">0.50</span>
 							</div>
-							<input type="range" id="threshold-slider" min="10" max="90" value="50" class="bias-slider" aria-label="Decision Threshold">
+							<input type="range" id="threshold-slider" min="10" max="90" value="50" class="bias-slider" aria-label="Pass / Fail Cutoff Line">
+							<small class="slider-hint">Raise or lower the score required to pass.</small>
 						</div>
 
 						<div class="imbalance-toggles">
-							<h4>Remediation Method:</h4>
+							<h4>How to Fix It:</h4>
 							<label class="radio-row">
 								<input type="radio" name="rebalance-method" value="none" checked>
-								<span><strong>No Intervention:</strong> Standard Empirical Risk Minimization (ERM)</span>
+								<span><strong>No Fix (Standard Raw Training):</strong> The computer guesses the majority every time</span>
 							</label>
 							<label class="radio-row">
 								<input type="radio" name="rebalance-method" value="weights">
-								<span><strong>Cost-Sensitive Loss Weighting:</strong> Inverse frequency loss penalty</span>
+								<span><strong>Extra Attention Penalty:</strong> Penalize the AI harder when it makes mistakes on rare cases</span>
 							</label>
 							<label class="radio-row">
 								<input type="radio" name="rebalance-method" value="smote">
-								<span><strong>Synthetic Oversampling (SMOTE):</strong> Synthesize minority feature space</span>
+								<span><strong><span class="tech-term" data-term="smote-resampling">SMOTE Balancing</span>:</strong> Fill in the missing shelves with realistic sample examples</span>
 							</label>
 						</div>
 					</div>
@@ -287,68 +289,70 @@
 						<div class="stats-metric-cards">
 							<div class="stat-card">
 								<span class="stat-num" id="stat-accuracy">90.0%</span>
-								<span class="stat-desc">Overall Accuracy</span>
+								<span class="stat-lbl">Overall Accuracy</span>
+								<small class="stat-note">(Sounds great on paper)</small>
 							</div>
 							<div class="stat-card">
-								<span class="stat-num" id="stat-maj-recall">99.0%</span>
-								<span class="stat-desc">Majority Group Recall</span>
+								<span class="stat-num" id="stat-maj-rec">98.0%</span>
+								<span class="stat-lbl">Majority Catch Rate</span>
+								<small class="stat-note">(Passes easily)</small>
 							</div>
-							<div class="stat-card highlight">
-								<span class="stat-num" id="stat-min-recall">12.0%</span>
-								<span class="stat-desc">Protected Group Recall</span>
+							<div class="stat-card alert-card">
+								<span class="stat-num alert" id="stat-min-rec">18.0%</span>
+								<span class="stat-lbl">Minority Catch Rate</span>
+								<small class="stat-note" id="min-rec-note">(Completely left behind!)</small>
+							</div>
+							<div class="stat-card">
+								<span class="stat-num" id="stat-eod">0.80</span>
+								<span class="stat-lbl"><span class="tech-term" data-term="equal-opportunity-diff">Opportunity Gap</span></span>
+								<small class="stat-note" id="eod-note">(Target: under 0.05)</small>
 							</div>
 						</div>
 
-						<div class="paradox-callout" id="paradox-callout">
-							<span class="callout-badge">&#9888;&#65039; Accuracy Paradox in Action</span>
-							<p>Notice how overall model accuracy remains misleadingly high, while the model is failing to identify the protected minority class! Without fairness metrics (True Positive Rate Parity), stakeholders are blinded by aggregate statistics.</p>
+						<div class="imbalance-callout">
+							<div class="callout-icon">&#128161;</div>
+							<p id="imbalance-takeaway"><strong>The Big Takeaway:</strong> When an AI is tested on skewed data, a high accuracy score is often just a lazy guess. Adjusting the pass line or using SMOTE balancing forces the model to actually look at qualifications instead of taking the easy way out.</p>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<!-- Lab Module 4: Solutions Analyst Governance Framework -->
-			<section class="bias-card" id="module-governance">
+			<!-- Lab Module 4: Fairness Playbook & Architecture Cheat-Sheet -->
+			<section class="bias-card" id="module-playbook">
 				<div class="bias-card-header">
-					<span class="module-number">Framework</span>
-					<h2>Solutions Analyst AI Fairness &amp; Governance Matrix</h2>
-					<p class="module-desc">Addressing bias requires deliberate engineering checkpoints throughout the machine learning development lifecycle (MLDLC). Here is the mitigation framework I follow across enterprise solution architectures:</p>
+					<span class="module-number">Module 04</span>
+					<h2>The 3 Ways Engineers Fix Algorithmic Bias</h2>
+					<p class="module-desc">You don't fix bias by hoping the computer is nice—you fix it by engineering checks before, during, and after the model makes decisions.</p>
 				</div>
 
-				<div class="framework-table-wrap">
-					<table class="framework-table">
+				<div class="table-responsive">
+					<table class="bias-playbook-table">
 						<thead>
 							<tr>
 								<th>Stage</th>
-								<th>Diagnostic Technique</th>
-								<th>Engineering Intervention</th>
-								<th>Key Metric / Standard</th>
+								<th>What It Means</th>
+								<th>Everyday Real-World Comparison</th>
+								<th>The Measurement Rule</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td><strong>Pre-Processing</strong></td>
-								<td>Representation Auditing &amp; Correlation Mapping</td>
-								<td>Synthetic re-sampling (SMOTE), re-weighing, and proxy attribute disentanglement</td>
-								<td>Disparate Impact Ratio (DIR &ge; 0.80)</td>
+								<td><strong>Before Training (Pre-Processing)</strong></td>
+								<td>Cleaning the data and balancing the groups before teaching the computer</td>
+								<td>Making sure a cookbook has healthy recipes from all over the world instead of 50 pages of just cupcakes</td>
+								<td><span class="tech-term" data-term="disparate-impact">Passing Rate Ratio (DIR &ge; 0.80)</span></td>
 							</tr>
 							<tr>
-								<td><strong>In-Processing</strong></td>
-								<td>Adversarial Debiasing &amp; Fairness Loss Regularization</td>
-								<td>Add a discriminator gradient penalty that penalizes predicting protected attributes from latent features</td>
-								<td>Demographic Parity Difference (&Delta;DP &le; 0.05)</td>
+								<td><strong>During Training (In-Processing)</strong></td>
+								<td>Penalizing the AI whenever it relies on shortcuts like names, gender, or age</td>
+								<td>Telling a music judge they get docked points if they look at who is playing instead of listening to the song</td>
+								<td><span class="tech-term" data-term="demographic-parity">Demographic Parity (&le; 0.05 gap)</span></td>
 							</tr>
 							<tr>
-								<td><strong>Post-Processing</strong></td>
-								<td>ROC Curve Calibration &amp; Equalized Odds Tuning</td>
-								<td>Calibrate separate classification thresholds per group to align True Positive and False Positive rates</td>
-								<td>Equal Opportunity Difference (&Delta;EOD &le; 0.05)</td>
-							</tr>
-							<tr>
-								<td><strong>Continuous Monitoring</strong></td>
-								<td>Embedding Drift &amp; Logit Telemetry</td>
-								<td>Automated drift detection alerts when inference inputs deviate from certified distribution baselines</td>
-								<td>Population Stability Index (PSI &lt; 0.10)</td>
+								<td><strong>After Training (Post-Processing)</strong></td>
+								<td>Adjusting the pass/fail line so equally qualified people get fair results</td>
+								<td>Calibrating sports tryout cutoffs so honest players aren't eliminated by bad weather on their tryout day</td>
+								<td><span class="tech-term" data-term="equal-opportunity-diff">Equal Opportunity Gap (&le; 0.05)</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -358,13 +362,13 @@
 
 		<footer>
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-21T12:51:00-05:00">November 21, 2026 at 12:51:00 PM EST</time></p>
-			<p class="footer-version">Version v2.6.415 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p>Website last modified: <time datetime="2026-11-21T14:20:00-05:00">November 21, 2026 at 02:20:00 PM EST</time></p>
+			<p class="footer-version">Version v2.6.416 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
-	<script src="scripts/ai-bias.js?v=20261120-bias-1"></script>
+	<script src="scripts/script.js?v=20261121-analogies-1"></script>
+	<script src="scripts/ai-bias.js?v=20261121-bias-2"></script>
 </body>
 </html>

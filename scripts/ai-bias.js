@@ -1,3 +1,5 @@
+/* AI Bias & Algorithmic Fairness Audit Lab Interactivity */
+
 (function () {
 	'use strict';
 
@@ -31,92 +33,99 @@
 		var orthogonal = toggleOrthogonal.checked;
 		var parity = toggleParity.checked;
 
-		// Base candidate capability score
+		// Base candidate capability score (Everyone is well qualified at baseline ~78)
 		var baseScore = 78;
 		var rawModifier = 0;
 		var penalties = [];
 
-		// Name / Background proxy weights
+		// Name & Demographic Proxy Weights
 		if (name === 'majority_male') {
 			rawModifier += 7;
-			penalties.push({ label: 'Statistical Archetype Affinity (Traditional Male)', val: '+7%', type: 'positive' });
+			penalties.push({ label: 'Traditional Background Match (matches most historical hires)', val: '+7% bonus', type: 'positive' });
 		} else if (name === 'female_leader') {
 			rawModifier -= 8;
-			penalties.push({ label: 'Gendered Leadership Affinity ("Women in Tech" Penalty)', val: '-8%', type: 'negative' });
+			penalties.push({ label: '"Women in Tech" Club Title Penalty (flagged as non-standard keyword)', val: '-8% penalty', type: 'negative' });
 		} else if (name === 'diverse_male') {
 			rawModifier -= 6;
-			penalties.push({ label: 'Implicit Lexical Cosine Distance Penalty', val: '-6%', type: 'negative' });
+			penalties.push({ label: 'Non-traditional phrasing / civic fellowship keyword penalty', val: '-6% penalty', type: 'negative' });
 		} else if (name === 'hispanic_male') {
 			rawModifier -= 5;
-			penalties.push({ label: 'Demographic Proxy Embedding Shift', val: '-5%', type: 'negative' });
+			penalties.push({ label: 'First-gen scholar title penalty', val: '-5% penalty', type: 'negative' });
 		} else if (name === 'gender_neutral') {
 			rawModifier -= 4;
-			penalties.push({ label: 'Non-Conforming Profile Vector Distance', val: '-4%', type: 'negative' });
+			penalties.push({ label: 'Gender-neutral wording penalty (less frequent in historical hires)', val: '-4% penalty', type: 'negative' });
 		}
 
-		// Graduation Year (Age proxy)
+		// Graduation Year (Age Proxy)
 		if (year <= 1995) {
 			rawModifier -= 14;
-			penalties.push({ label: 'Age Proxy Penalty (>25 yrs exp / "Overqualified" bias)', val: '-14%', type: 'negative' });
+			penalties.push({ label: 'Graduation Year Penalty (>25 yrs exp / assumed "overqualified")', val: '-14% penalty', type: 'negative' });
 		} else if (year <= 2005) {
-			rawModifier -= 7;
-			penalties.push({ label: 'Mid-Career Seniority Shift', val: '-7%', type: 'negative' });
+			rawModifier -= 6;
+			penalties.push({ label: 'Graduation Year Penalty (>15 yrs exp)', val: '-6% penalty', type: 'negative' });
 		} else if (year >= 2023) {
-			rawModifier += 3;
-			penalties.push({ label: 'Recent Graduate Entry Bias', val: '+3%', type: 'positive' });
+			rawModifier -= 2;
+			penalties.push({ label: 'Recent Grad Entry Penalty (<2 yrs exp)', val: '-2% penalty', type: 'negative' });
+		} else {
+			rawModifier += 4;
+			penalties.push({ label: 'Sweet-Spot Experience Bonus (Mid-Career 8-10 yrs)', val: '+4% bonus', type: 'positive' });
 		}
 
 		// Career Gap
 		if (gap === 'caregiving') {
 			rawModifier -= 11;
-			penalties.push({ label: 'Employment Gap Penalty (Parental/Caregiver Leave)', val: '-11%', type: 'negative' });
+			penalties.push({ label: 'Resume Gap Penalty (Parental / Family Caregiving leave)', val: '-11% penalty', type: 'negative' });
 		} else if (gap === 'military') {
 			rawModifier -= 4;
-			penalties.push({ label: 'Non-Standard Skillset Translation Penalty', val: '-4%', type: 'negative' });
+			penalties.push({ label: 'Service Transition Penalty (Military skills phrasing mismatch)', val: '-4% penalty', type: 'negative' });
 		} else if (gap === 'medical') {
 			rawModifier -= 9;
-			penalties.push({ label: 'Unexplained Continuity Flag', val: '-9%', type: 'negative' });
+			penalties.push({ label: 'Employment Gap Penalty (Medical recovery period)', val: '-9% penalty', type: 'negative' });
 		} else {
-			rawModifier += 4;
-			penalties.push({ label: 'Uninterrupted Linear Career Progression', val: '+4%', type: 'positive' });
+			rawModifier += 3;
+			penalties.push({ label: 'Continuous Employment Bonus (Zero career interruptions)', val: '+3% bonus', type: 'positive' });
 		}
 
-		// Institutional Pedigree
+		// Education Pedigree
 		if (school === 'ivy') {
-			rawModifier += 12;
-			penalties.push({ label: 'Elite Institution Affinity (Ivy League)', val: '+12%', type: 'positive' });
-		} else if (school === 'state') {
-			rawModifier += 2;
-			penalties.push({ label: 'Accredited Regional State University Baseline', val: '+2%', type: 'neutral' });
+			rawModifier += 8;
+			penalties.push({ label: 'Elite Institution Brand Bonus (Ivy League keyword)', val: '+8% bonus', type: 'positive' });
 		} else if (school === 'community') {
-			rawModifier -= 5;
-			penalties.push({ label: 'Non-Traditional Higher Ed Penalty', val: '-5%', type: 'negative' });
+			rawModifier -= 7;
+			penalties.push({ label: 'Community College Route Penalty', val: '-7% penalty', type: 'negative' });
 		} else if (school === 'bootcamp') {
 			rawModifier -= 8;
-			penalties.push({ label: 'Alternative Education Filter Flag', val: '-8%', type: 'negative' });
+			penalties.push({ label: 'Self-Taught / Open Source Path Penalty', val: '-8% penalty', type: 'negative' });
+		} else {
+			rawModifier += 1;
+			penalties.push({ label: 'State University Benchmark (GVSU / Regional State)', val: '+1% neutral', type: 'positive' });
 		}
 
-		var rawScore = Math.max(10, Math.min(99, baseScore + rawModifier));
+		var rawScore = Math.min(99, Math.max(30, baseScore + rawModifier));
+		var fairScore = rawScore;
 
-		// Calculate Fair / Calibrated score based on toggles
-		var fairModifier = rawModifier;
+		// Apply Toggles
 		if (masking) {
-			// Strips demographic name & graduation year penalties
-			fairModifier = fairModifier * 0.4;
+			// Strip name and school pedigree
+			fairScore = baseScore;
+			if (gap === 'none') fairScore += 2;
+			if (year >= 2010 && year <= 2020) fairScore += 3;
 		}
+
 		if (orthogonal) {
-			// Subspace projection zeroes out gendered & demographic vectors
-			fairModifier = fairModifier * 0.15;
+			// Neutralize demographic and gender bias vectors
+			if (fairScore < 76) fairScore += 10;
 		}
+
 		if (parity) {
-			// Boosts score to demographic baseline
-			fairModifier = Math.max(0, fairModifier);
+			// Ensure passing rate satisfies 80% rule
+			fairScore = Math.max(82, fairScore);
 		}
 
-		var fairScore = Math.max(10, Math.min(99, Math.round(baseScore + fairModifier)));
-
-		// Disparate Impact Ratio (DIR) relative to traditional archetype benchmark (~92)
-		var dir = (fairScore / 92).toFixed(2);
+		// Disparate Impact Ratio (DIR)
+		var benchmarkScore = 88; // traditional archetype baseline
+		var dir = (fairScore / benchmarkScore).toFixed(2);
+		if (parseFloat(dir) > 1.0) dir = '1.00';
 
 		rawScoreEl.textContent = rawScore + '%';
 		calibScoreEl.textContent = fairScore + '%';
@@ -126,10 +135,10 @@
 
 		if (parseFloat(dir) >= 0.80) {
 			dirBadgeEl.className = 'audit-badge pass';
-			dirBadgeEl.textContent = 'PASS: EEOC Compliant';
+			dirBadgeEl.textContent = 'PASS: 80% Rule Satisfied';
 		} else {
 			dirBadgeEl.className = 'audit-badge fail';
-			dirBadgeEl.textContent = 'FAIL: Adverse Impact';
+			dirBadgeEl.textContent = 'FAIL: Adverse Bias Detected';
 		}
 
 		// Render penalty items
@@ -162,7 +171,7 @@
 				{ label: 'she', pct: 28 },
 				{ label: 'they', pct: 8 }
 			],
-			insight: 'Training data reflects historical medical workforce distributions from 20th-century texts, driving the model to assign over 2.2x greater next-token probability to masculine pronouns for physician titles unless neutralized.'
+			insight: 'Because older medical articles and classic literature wrote "he" after "doctor" over twice as often, the model guesses "he" 64% of the time, even though over half of modern medical students are women.'
 		},
 		nurse: {
 			title: 'Nurse Scenario',
@@ -171,7 +180,7 @@
 				{ label: 'he', pct: 16 },
 				{ label: 'they', pct: 8 }
 			],
-			insight: 'Caregiving professions in public web text exhibit steep gender asymmetry. The next-token logit for feminine pronouns dominates by nearly 5:1, illustrating severe occupational stereotyping.'
+			insight: 'Caregiving and nursing titles in public web text skew heavily female. The model guesses "she" almost 5 times more often than "he", repeating the historical stereotype.'
 		},
 		executive: {
 			title: 'CEO Scenario',
@@ -180,7 +189,7 @@
 				{ label: 'she', pct: 22 },
 				{ label: 'they', pct: 7 }
 			],
-			insight: 'Corporate SEC filings and news scrapes over-index male Fortune 500 leadership, creating strong directional bias in executive role completions.'
+			insight: 'Business news and corporate filings over-index male leadership, so the model assumes a Chief Executive is male over 70% of the time.'
 		},
 		assistant: {
 			title: 'Executive Assistant Scenario',
@@ -189,7 +198,7 @@
 				{ label: 'they', pct: 18 },
 				{ label: 'he', pct: 14 }
 			],
-			insight: 'Administrative support titles mirror historical secretarial associations, revealing persistent linguistic bias in generative drafting tools.'
+			insight: 'Secretarial and administrative titles lean heavily toward "she" in historical articles, showing how easily job assumptions get baked into automated writing assistants.'
 		},
 		programmer: {
 			title: 'Software Architect Scenario',
@@ -198,7 +207,7 @@
 				{ label: 'she', pct: 21 },
 				{ label: 'they', pct: 13 }
 			],
-			insight: 'Technical forums and open-source commit history reflect acute gender imbalance, which autoregressive models directly codify without targeted fine-tuning.'
+			insight: 'Tech forums and open-source commit history have historical gender imbalances, which standard language models blindly copy unless engineers explicitly calibrate them.'
 		}
 	};
 
@@ -223,58 +232,83 @@
 	updateLLMModule();
 
 	// ==========================================
-	// MODULE 3: Accuracy Paradox & Class Imbalance
+	// MODULE 3: Class Imbalance & The Accuracy Trap
 	// ==========================================
 	var ratioSlider = document.getElementById('ratio-slider');
-	var ratioDisplay = document.getElementById('ratio-display');
 	var thresholdSlider = document.getElementById('threshold-slider');
+	var ratioDisplay = document.getElementById('ratio-display');
 	var thresholdDisplay = document.getElementById('threshold-display');
-	var rebalanceRadios = document.querySelectorAll('input[name="rebalance-method"]');
 
 	var statAccuracy = document.getElementById('stat-accuracy');
-	var statMajRecall = document.getElementById('stat-maj-recall');
-	var statMinRecall = document.getElementById('stat-min-recall');
+	var statMajRec = document.getElementById('stat-maj-rec');
+	var statMinRec = document.getElementById('stat-min-rec');
+	var minRecNote = document.getElementById('min-rec-note');
+	var statEod = document.getElementById('stat-eod');
+	var eodNote = document.getElementById('eod-note');
+	var imbalanceTakeaway = document.getElementById('imbalance-takeaway');
 
-	function updateImbalanceModule() {
-		var majRatio = parseInt(ratioSlider.value, 10);
-		var minRatio = 100 - majRatio;
+	function updateImbalance() {
+		var majPct = parseInt(ratioSlider.value, 10);
+		var minPct = 100 - majPct;
 		var threshold = parseInt(thresholdSlider.value, 10) / 100;
 
-		ratioDisplay.textContent = majRatio + '% Majority / ' + minRatio + '% Minority';
+		ratioDisplay.textContent = majPct + '% Majority / ' + minPct + '% Minority';
 		thresholdDisplay.textContent = threshold.toFixed(2);
 
-		var method = 'none';
-		rebalanceRadios.forEach(function (r) {
-			if (r.checked) method = r.value;
-		});
+		var method = document.querySelector('input[name="rebalance-method"]:checked').value;
 
-		// Compute simulated metrics
-		var majRecall, minRecall, accuracy;
+		var majCatch = Math.min(99, Math.round(98 - (threshold - 0.50) * 30));
+		var minCatch = Math.max(5, Math.round(minPct * 1.8 - (threshold - 0.50) * 45));
 
-		if (method === 'none') {
-			majRecall = Math.min(99.5, 95 + (1 - threshold) * 8);
-			// Low recall on minority due to threshold suppression
-			minRecall = Math.max(0.5, Math.min(85, (1 - threshold) * 50 * (minRatio / 30)));
-			accuracy = ((majRecall * majRatio) + (minRecall * minRatio)) / 100;
-		} else if (method === 'weights') {
-			majRecall = Math.max(88, 92 - (threshold * 5));
-			minRecall = Math.min(92, Math.max(50, 80 - (threshold * 25)));
-			accuracy = ((majRecall * majRatio) + (minRecall * minRatio)) / 100;
-		} else { // smote
-			majRecall = Math.max(90, 94 - (threshold * 6));
-			minRecall = Math.min(96, Math.max(65, 88 - (threshold * 20)));
-			accuracy = ((majRecall * majRatio) + (minRecall * minRatio)) / 100;
+		if (method === 'weights') {
+			minCatch = Math.min(92, minCatch + 45);
+			majCatch = Math.max(86, majCatch - 6);
+		} else if (method === 'smote') {
+			minCatch = Math.min(95, minCatch + 60);
+			majCatch = Math.max(90, majCatch - 3);
 		}
 
-		statAccuracy.textContent = accuracy.toFixed(1) + '%';
-		statMajRecall.textContent = majRecall.toFixed(1) + '%';
-		statMinRecall.textContent = minRecall.toFixed(1) + '%';
+		var overallAcc = ((majCatch * majPct + minCatch * minPct) / 100).toFixed(1);
+		var eod = Math.abs((majCatch - minCatch) / 100).toFixed(2);
+
+		statAccuracy.textContent = overallAcc + '%';
+		statMajRec.textContent = majCatch + '%';
+		statMinRec.textContent = minCatch + '%';
+		statEod.textContent = eod;
+
+		if (minCatch < 40) {
+			minRecNote.textContent = '(Virtually ignored by model!)';
+			minRecNote.style.color = '#ef4444';
+		} else if (minCatch < 75) {
+			minRecNote.textContent = '(Needs attention)';
+			minRecNote.style.color = '#f59e0b';
+		} else {
+			minRecNote.textContent = '(Fair & balanced)';
+			minRecNote.style.color = '#22c55e';
+		}
+
+		if (parseFloat(eod) <= 0.08) {
+			eodNote.textContent = '(Clean & Fair: Gap < 0.08)';
+			eodNote.style.color = '#22c55e';
+		} else {
+			eodNote.textContent = '(Unfair Gap: Target < 0.05)';
+			eodNote.style.color = '#ef4444';
+		}
+
+		if (method === 'none' && minCatch < 35) {
+			imbalanceTakeaway.innerHTML = '<strong>The Big Takeaway:</strong> Notice how overall accuracy stays high (' + overallAcc + '%) even though the model is failing ' + (100 - minCatch) + '% of the minority group! Try turning on <strong>SMOTE Balancing</strong> to force the algorithm to treat both groups fairly.';
+		} else if (method === 'smote') {
+			imbalanceTakeaway.innerHTML = '<strong>SMOTE In Action:</strong> By generating balanced training examples for the minority group, the model learned to recognize qualified candidates in both groups, dropping the fairness gap down to ' + eod + '!';
+		} else {
+			imbalanceTakeaway.innerHTML = '<strong>Cost Weighting In Action:</strong> Penalizing the algorithm harder for making mistakes on minority cases improved the catch rate to ' + minCatch + '%.';
+		}
 	}
 
-	ratioSlider.addEventListener('input', updateImbalanceModule);
-	thresholdSlider.addEventListener('input', updateImbalanceModule);
-	rebalanceRadios.forEach(function (r) {
-		r.addEventListener('change', updateImbalanceModule);
+	ratioSlider.addEventListener('input', updateImbalance);
+	thresholdSlider.addEventListener('input', updateImbalance);
+	document.querySelectorAll('input[name="rebalance-method"]').forEach(function (radio) {
+		radio.addEventListener('change', updateImbalance);
 	});
-	updateImbalanceModule();
+
+	updateImbalance();
 })();

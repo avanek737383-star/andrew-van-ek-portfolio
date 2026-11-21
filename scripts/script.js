@@ -683,6 +683,57 @@
 	}
 
 	var TECH_ANALOGIES = {
+		"training-bias": {
+			title: "Training Bias (Skewed Practice Material)",
+			analogy: "Teaching an apprentice chef how to cook for a restaurant, but only ever giving them recipes for frosted birthday cakes—when a customer suddenly orders a steak and baked potato, the chef gets confused and pours sugar and vanilla frosting all over the beef.",
+			techFact: "When an AI model is trained mostly on examples from one specific demographic or background, it makes inaccurate, erratic predictions whenever it encounters anyone outside that group."
+		},
+		"word-embeddings": {
+			title: "Vector Embeddings (The Kitchen Spice Rack)",
+			analogy: "Organizing an enormous spice cabinet by flavor: sweet baking spices like cinnamon, nutmeg, and allspice live right next to each other on the top shelf, while garlic powder, dried oregano, and crushed red pepper sit together on the savory rack. If you reach for a random jar near cinnamon, you are almost guaranteed to pull out something sweet.",
+			techFact: "High-dimensional coordinate maps where computers convert words or tokens into numbers. Concepts used in similar contexts sit near each other in geometric vector space."
+		},
+		"disparate-impact": {
+			title: "Disparate Impact (Unfair Passing Rates / The 80% Rule)",
+			analogy: "A bowling alley requiring every single bowler to reach a hand-dryer mounted 7 feet high before they can step onto a lane. On paper, it sounds like one universal rule for everyone—in practice, it quietly locks out almost every child under age 12, even though height has zero connection to throwing a strike.",
+			techFact: "A legal and statistical benchmark: if the approval rate for a protected demographic group is less than 80% (four-fifths) of the highest-performing group's rate, the algorithm is flagged for systemic disparate impact."
+		},
+		"equal-opportunity-diff": {
+			title: "Equal Opportunity Difference",
+			analogy: "Two students who studied the exact same 20 hours for a driving exam driving the identical test route. One tester passes their student with flying colors, while the other tester fails theirs for taking an extra two seconds to parallel park.",
+			techFact: "Measures whether equally qualified candidates from different demographic groups have the exact same True Positive probability of being approved by the model."
+		},
+		"smote-resampling": {
+			title: "SMOTE (Balancing Empty Shelves)",
+			analogy: "A school history teacher noticing their textbook has 40 chapters about ancient Rome and only half a page about ancient Peru. To keep students from thinking Peru never existed, the teacher writes extra study guides and class handouts so students spend equal time learning both civilizations.",
+			techFact: "Synthetic Minority Over-sampling Technique: creates synthetic, realistic variations between existing underrepresented data points to prevent algorithms from ignoring minority groups."
+		},
+		"decision-threshold": {
+			title: "Decision Threshold (The Pass/Fail Line)",
+			analogy: "Setting the high jump crossbar at track tryouts: lower the bar to 2 feet and virtually everyone makes the team (including folks who cannot jump); raise the bar to 7 feet and you turn away championship athletes having a slightly windy day.",
+			techFact: "The numerical confidence cutoff (such as 0.50 or 0.65) where a model divides predictions into 'Approved' vs 'Rejected'. Shifting this line directly re-balances false alarms against missed opportunities."
+		},
+		"demographic-parity": {
+			title: "Demographic Parity (Equal Representation)",
+			analogy: "Handing out concert backstage passes equally across every row in the stadium, rather than letting the front row monopolize every single lanyard.",
+			techFact: "Requires that the overall approval percentage is equal across demographic groups, regardless of differences in historical qualification base rates."
+		},
+		"nullspace-debiasing": {
+			title: "Nullspace Debiasing (The Blind Audition Curtain)",
+			analogy: "Grading symphony orchestra tryouts from behind an opaque cloth curtain: judges can hear the musician's tempo, pitch, tone, and musicality with crystal clarity, but they cannot see their age, gender, clothing, or pedigree.",
+			techFact: "Mathematically projects embedding vectors into a subspace perpendicular to identified bias axes, erasing demographic associations without degrading the core semantic meaning of words."
+		},
+		"duino-mining": {
+			title: "Duino-Coin (Micro-Scale Hardware Mining)",
+			analogy: "A group of friends earning tiny copper pennies by solving mini crossword puzzles on cheap pocket notepads, rather than needing an entire factory of industrial laser printers to print currency.",
+			techFact: "An accessible, low-power cryptocurrency designed to be mined on microcontrollers, vintage smartphones, and mobile devices using lightweight SHA-1 algorithms without heavy electrical draw."
+		},
+		"diskless-ram": {
+			title: "Diskless RAM Overlay (Running on Pure Memory)",
+			analogy: "Working entirely on a clean dry-erase whiteboard rather than carving words into a brittle stone slab: you can write, erase, and draw at lightning speed, and if the power cuts out, you just wipe the board clean without cracking any stone.",
+			techFact: "Operating system runtimes (like custom Slax Linux) that load entirely into physical RAM memory from a USB flash drive. The system operates completely without spinning mechanical hard drives, immune to disk wear or filesystem corruption."
+		},
+
 		"cache-archive": {
 			title: "Cache Archives & Temporary Clutter",
 			analogy: "Buying groceries and saving every single brown paper grocery bag and plastic takeout container in your kitchen cabinet 'just in case'—eventually, the cabinets are bursting and you have no room for actual food.",

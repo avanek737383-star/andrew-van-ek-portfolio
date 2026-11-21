@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	initRoiCalculator();
 });
 
-// Telemetry & Hardware Node Dictionary
+// Telemetry & Hardware Node Dictionary (9 Nodes)
 const FLEET_DATA = {
 	'nuc': {
 		tag: 'HL-NODE-06-NUC-CORE',
 		title: 'Headless Intel NUC LAN Backbone',
 		os: 'Alpine Linux 3.x (musl)',
 		power: '~12.5 W',
-		uptime: '99.98% (Always-On)',
+		uptime: 'Middle Rack Tier (Always-On)',
 		status: 'ONLINE',
 		workloads: 'Central LAN AdGuard Home DNS sinkhole, dual BOINC distributed research compute (Rosetta@home disease modeling & Universe@home astrophysics), Tailscale WireGuard gateway.',
 		salvage: 'Compact ultra-low-idle compute node running musl/busybox minimal userspace to maximize CPU cycles dedicated directly to volunteer astrophysics and biomedical simulations.',
@@ -23,7 +23,7 @@ const FLEET_DATA = {
 			cat: 'Core Compute / Infrastructure',
 			state: 'In Production / Mission Critical',
 			depr: '100% Amortized (Salvage Reclaim)',
-			service: '2026-11-20 (Antigravity Sync)',
+			service: '2026-11-21 (Verified)',
 			net: 'Gigabit LAN + Tailscale Mesh'
 		}
 	},
@@ -32,17 +32,71 @@ const FLEET_DATA = {
 		title: 'Samsung Galaxy S4 Mini (SCH-I435)',
 		os: 'Android 4.4.2 / WebKit ES5',
 		power: '~1.8 W',
-		uptime: '99.4%',
+		uptime: 'Bottom Shelf &middot; USB Host Connected',
 		status: 'ONLINE',
 		workloads: 'Dedicated 24/7 Duino-Coin web worker node running continuous WebKit multithreaded JavaScript hashing. Local telemetry monitoring web UI hosted on port 8097.',
-		salvage: 'Retired 2013 mobile handset diverted from landfill. Stripped of background mobile services; powered by continuous regulated USB 5V DC line with display sleep-override.',
+		salvage: 'Sits directly on the bottom shelf alongside the 2011 Mac, plugged straight into the Mac via physical USB for continuous regulated host power and connection with screen keep-awake.',
 		glpi: {
 			tag: 'HL-NODE-01-S4MINI',
 			cat: 'Mobile Silicon Reclamation',
 			state: 'In Production / Dedicated Miner',
 			depr: 'Zero Net Book Value ($0 Reclaim)',
-			service: '2026-11-18 (Battery Safety Check)',
+			service: '2026-11-21 (USB Host Link Verified)',
 			net: 'Wi-Fi 802.11n (Port 8097 Web UI)'
+		}
+	},
+	'mbp2011': {
+		tag: 'HL-NODE-03-MBP2011',
+		title: 'Mid-2011 Mac (A1278) &middot; Bottom Shelf',
+		os: 'Debian 12 Bookworm (Minimal)',
+		power: '~18.5 W',
+		uptime: 'Bottom Shelf Anchor (99.8%)',
+		status: 'ONLINE',
+		workloads: 'Batch CPU image generation queue processing, background cryptocurrency mining, automated build worker, and USB host provider for the Samsung S4 Mini.',
+		salvage: 'Rescued 2011 Apple unibody anchoring the bottom shelf. Internal bloated battery removed for fire safety; repasted with industrial Honeywell PTM7950 phase-change material on copper heatsink.',
+		glpi: {
+			tag: 'HL-NODE-03-MBP2011',
+			cat: 'Server / Compute Node & Host',
+			state: 'In Production / Stable',
+			depr: 'Salvaged Legacy Hardware',
+			service: '2026-11-21 (PTM7950 & USB Host Audit)',
+			net: 'Gigabit LAN (VLAN 10)'
+		}
+	},
+	'ypgi1': {
+		tag: 'HL-NODE-08-GALPLAYER',
+		title: 'Samsung Galaxy Player (YP-GI1)',
+		os: 'Android Lightweight WebKit',
+		power: '~1.2 W',
+		uptime: 'Wall Powered (Charging Strip)',
+		status: 'ONLINE',
+		workloads: 'Dedicated 24/7 Duino-Coin web worker hashing continuously over local Wi-Fi, contributing micro-scale crypto shares without electrical overhead.',
+		salvage: 'Rescued vintage Samsung portable media player repurposed into permanent volunteer silicon. Plugged directly into wall AC power alongside the iPod Touch.',
+		glpi: {
+			tag: 'HL-NODE-08-GALPLAYER',
+			cat: 'Mobile Silicon Reclamation',
+			state: 'In Production / Companion Miner',
+			depr: 'Zero Net Book Value ($0 Reclaim)',
+			service: '2026-11-21 (AC Power Verified)',
+			net: 'Wi-Fi 802.11b/g'
+		}
+	},
+	'ipodtouch': {
+		tag: 'HL-NODE-09-IPODTOUCH',
+		title: 'Apple iPod Touch Miner',
+		os: 'iOS WebKit Minimal Engine',
+		power: '~1.4 W',
+		uptime: 'Wall Powered (Charging Strip)',
+		status: 'ONLINE',
+		workloads: 'Continuous in-browser Duino-Coin JavaScript hashing engine executing 24/7 over local Wi-Fi.',
+		salvage: 'Legacy Apple iPod Touch hardware diverted from electronics waste, mounted on the mobile charging dock running persistent mining loops on wall AC power.',
+		glpi: {
+			tag: 'HL-NODE-09-IPODTOUCH',
+			cat: 'Mobile Silicon Reclamation',
+			state: 'In Production / Companion Miner',
+			depr: 'Zero Net Book Value ($0 Reclaim)',
+			service: '2026-11-21 (AC Power Verified)',
+			net: 'Wi-Fi 802.11b/g/n'
 		}
 	},
 	'yoga': {
@@ -50,35 +104,17 @@ const FLEET_DATA = {
 		title: 'Lenovo Yoga 2 11 Bare-Board Rig',
 		os: 'Headless Linux x86_64',
 		power: '~6.2 W',
-		uptime: '99.1%',
+		uptime: 'Middle Shelf &middot; Open Testbench',
 		status: 'ONLINE',
-		workloads: 'Continuous crypto mining and lightweight local utility daemon. Completely open-air testbench rig operating 24/7 without thermal accumulation.',
-		salvage: 'Rescued from landfill after catastrophic chassis and screen fracture. Motherboard and daughterboard extracted and bench-mounted with a dedicated 5V USB cooling blower.',
+		workloads: 'Continuous crypto mining and lightweight local utility daemon. Completely open-air testbench rig operating 24/7 on the middle shelf tier without thermal accumulation.',
+		salvage: 'Rescued from landfill after catastrophic chassis and screen fracture. Motherboard and daughterboard extracted and bench-mounted with a dedicated 5V USB cooling blower fan.',
 		glpi: {
 			tag: 'HL-NODE-02-YOGA-BB',
 			cat: 'Open-Bench Compute',
 			state: 'Active Testbench / Utility',
 			depr: '100% Amortized E-Waste',
-			service: '2026-11-15 (Thermal Fan Re-seat)',
+			service: '2026-11-21 (Thermal Fan Check)',
 			net: 'Integrated LAN / USB Ethernet'
-		}
-	},
-	'mbp2011': {
-		tag: 'HL-NODE-03-MBP2011',
-		title: 'Mid-2011 MacBook Pro 13" (A1278)',
-		os: 'Debian 12 Bookworm (Minimal)',
-		power: '~18.5 W',
-		uptime: '99.8%',
-		status: 'ONLINE',
-		workloads: 'Batch CPU image generation queue processing, background cryptocurrency mining, and automated project build worker.',
-		salvage: 'Rescued 2011 Apple aluminum unibody. Internal bloated battery removed for fire safety; repasted with industrial Honeywell PTM7950 phase-change material on copper heatsink.',
-		glpi: {
-			tag: 'HL-NODE-03-MBP2011',
-			cat: 'Server / Compute Node',
-			state: 'In Production / Stable',
-			depr: 'Salvaged Legacy Hardware',
-			service: '2026-11-10 (PTM7950 Repaste)',
-			net: 'Gigabit LAN (VLAN 10)'
 		}
 	},
 	'hp15': {
@@ -86,7 +122,7 @@ const FLEET_DATA = {
 		title: 'Legacy HP Laptop 15 Workhorse',
 		os: 'Linux Mint 21 (Cinnamon)',
 		power: '~24.0 W',
-		uptime: '98.9%',
+		uptime: 'Top Bench Surface (98.9%)',
 		status: 'ONLINE',
 		workloads: 'Continuous local diffusion batch image generation running Realistic Vision 5.1 with LCM LoRA 4-step sampling, background mining, and persistent Rclone Google Drive cloud sync.',
 		salvage: 'Repurposed domestic laptop. Configured with headless automated startup daemons and thermal-throttled thread concurrency limits for non-stop generative workflows.',
@@ -95,7 +131,7 @@ const FLEET_DATA = {
 			cat: 'AI Synthesis / Cloud Gateway',
 			state: 'In Production / Media Node',
 			depr: 'Repurposed Asset',
-			service: '2026-11-20 (Rclone Sync Audit)',
+			service: '2026-11-21 (Rclone Sync Audit)',
 			net: 'Wi-Fi 802.11ac + Rclone Daemon'
 		}
 	},
@@ -104,7 +140,7 @@ const FLEET_DATA = {
 		title: 'Dell Inspiron Desktop ("Hopes & Dreams")',
 		os: 'Custom Slax Linux (Live USB)',
 		power: '~38.0 W',
-		uptime: '97.6%',
+		uptime: 'Top Bench Surface (97.6%)',
 		status: 'ONLINE',
 		workloads: 'Batch image generation and crypto mining operating entirely in RAM off a customized Slax USB live drive with persistence overlay. Zero spinning mechanical drive dependency.',
 		salvage: 'Resurrected surplus office desktop tower following primary hard drive failure. Configured to boot completely into RAM overlay, eliminating disk wear and surviving sudden power interrupts.',
@@ -113,7 +149,7 @@ const FLEET_DATA = {
 			cat: 'Diskless RAM Compute',
 			state: 'Active Experimental Rig',
 			depr: 'Surplus Reclaim',
-			service: '2026-11-19 (Slax Kernel Update)',
+			service: '2026-11-21 (Slax Kernel Update)',
 			net: 'Gigabit Onboard Ethernet'
 		}
 	},
@@ -122,7 +158,7 @@ const FLEET_DATA = {
 		title: 'Windows Multi-Role Laptop Workstation',
 		os: 'Windows 11 Pro (x86_64)',
 		power: '~45.0 W (Dynamic)',
-		uptime: '99.2%',
+		uptime: 'Top Bench Surface (99.2%)',
 		status: 'ONLINE',
 		workloads: 'Folding@home molecular dynamics simulations, burst crypto mining, physical optical media archiving / DVD ripping, and local CIS virtualization hypervisor (Hyper-V).',
 		salvage: 'Hybrid academic workstation: dynamically schedules distributed medical research and mining workloads during idle hours while providing immediate hardware access for CIS coursework.',
@@ -131,14 +167,13 @@ const FLEET_DATA = {
 			cat: 'Hybrid Workstation / Hypervisor',
 			state: 'Primary Academic & Compute Node',
 			depr: 'Active Educational Hardware',
-			service: '2026-11-20 (Folding Client Check)',
+			service: '2026-11-21 (Folding Client Check)',
 			net: 'Gigabit LAN / Wi-Fi 6'
 		}
 	}
 };
 
 function initNodeFleetData() {
-	// Default inspector on NUC
 	selectNode('nuc');
 }
 
@@ -146,7 +181,6 @@ function selectNode(nodeId) {
 	const data = FLEET_DATA[nodeId];
 	if (!data) return;
 
-	// Update Inspector DOM
 	document.getElementById('insp-tag').textContent = data.tag;
 	document.getElementById('insp-title').textContent = data.title;
 	document.getElementById('insp-os').textContent = data.os;
@@ -155,7 +189,6 @@ function selectNode(nodeId) {
 	document.getElementById('insp-workloads').textContent = data.workloads;
 	document.getElementById('insp-salvage').textContent = data.salvage;
 
-	// GLPI
 	document.getElementById('glpi-tag').textContent = data.glpi.tag;
 	document.getElementById('glpi-cat').textContent = data.glpi.cat;
 	document.getElementById('glpi-state').textContent = data.glpi.state;
@@ -163,7 +196,6 @@ function selectNode(nodeId) {
 	document.getElementById('glpi-service').textContent = data.glpi.service;
 	document.getElementById('glpi-net').textContent = data.glpi.net;
 
-	// Highlight SVG node
 	document.querySelectorAll('.svg-node-group').forEach(el => {
 		if (el.getAttribute('data-node') === nodeId) {
 			el.classList.add('active-node');
@@ -174,7 +206,6 @@ function selectNode(nodeId) {
 }
 
 function initViewportInteractivity() {
-	// Click SVG node
 	document.querySelectorAll('.svg-node-group').forEach(group => {
 		group.addEventListener('click', () => {
 			const nodeId = group.getAttribute('data-node');
@@ -182,7 +213,6 @@ function initViewportInteractivity() {
 		});
 	});
 
-	// View buttons
 	const viewBtns = document.querySelectorAll('.view-btn');
 	const viewIndicator = document.getElementById('current-view-name');
 	const netLines = document.getElementById('network-lines');
@@ -194,7 +224,7 @@ function initViewportInteractivity() {
 			const view = btn.getAttribute('data-view');
 
 			if (view === 'topology') {
-				viewIndicator.textContent = 'VIEW: Physical Workbench Layout';
+				viewIndicator.textContent = 'VIEW: Physical Shelves & Workbench Layout';
 				netLines.style.opacity = '0.6';
 				resetNodeColors();
 			} else if (view === 'network') {
@@ -233,13 +263,15 @@ function highlightNetworkPorts() {
 
 function applyThermalOverlay() {
 	const colors = {
-		's4mini': '#166534', // very cool ~1.8W
-		'yoga': '#15803d',   // ~6W
-		'mbp2011': '#b45309',// ~18.5W
-		'hp15': '#c2410c',   // ~24W
-		'dell': '#b91c1c',   // ~38W
-		'nuc': '#15803d',    // ~12.5W
-		'winws': '#dc2626'   // ~45W
+		's4mini': '#166534',
+		'ypgi1': '#166534',
+		'ipodtouch': '#166534',
+		'yoga': '#15803d',
+		'mbp2011': '#b45309',
+		'hp15': '#c2410c',
+		'dell': '#b91c1c',
+		'nuc': '#15803d',
+		'winws': '#dc2626'
 	};
 	document.querySelectorAll('.svg-node-group').forEach(group => {
 		const node = group.getAttribute('data-node');
@@ -277,7 +309,6 @@ function initNodeFilter() {
 		});
 	});
 
-	// Clicking card selects node in inspector & scrolls smoothly
 	cards.forEach(card => {
 		card.addEventListener('click', () => {
 			const id = card.getAttribute('data-id');
@@ -288,7 +319,7 @@ function initNodeFilter() {
 }
 
 // -------------------------------------------------------------
-// Hardware Longevity & Salvage ROI Calculator (Option D)
+// Hardware Longevity & Salvage ROI Calculator (Option D - 9 Nodes)
 // -------------------------------------------------------------
 function initRoiCalculator() {
 	const slNodes = document.getElementById('sl-nodes');
@@ -305,7 +336,6 @@ function initRoiCalculator() {
 	const valPower = document.getElementById('val-power');
 	const valKwh = document.getElementById('val-kwh');
 
-	// Results
 	const roiNetSavings = document.getElementById('roi-net-savings');
 	const roiCapex = document.getElementById('roi-capex');
 	const roiCloud = document.getElementById('roi-cloud');
@@ -322,7 +352,6 @@ function initRoiCalculator() {
 		const wattsPerNode = parseFloat(slPower.value);
 		const tariffKwh = parseFloat(slKwh.value);
 
-		// Label updates
 		valNodes.textContent = `${nodes} nodes`;
 		valLifespan.textContent = `${years.toFixed(1)} years`;
 		valCost.textContent = `$${Math.round(costPerNode)}`;
@@ -330,23 +359,20 @@ function initRoiCalculator() {
 		valPower.textContent = `${Math.round(wattsPerNode)} W / node`;
 		valKwh.textContent = `$${tariffKwh.toFixed(2)} / kWh`;
 
-		// Core Computations
 		const capexAvoided = nodes * costPerNode;
 		const totalMonths = years * 12;
 		const cloudAvoided = nodes * cloudPerMonth * totalMonths;
 		const grossSavings = capexAvoided + cloudAvoided;
 
-		// Power consumption: (watts * 24 hrs * 365.25 days * years) / 1000 * tariff
 		const totalHoursPerNode = years * 8766;
 		const totalKwh = (nodes * wattsPerNode * totalHoursPerNode) / 1000;
 		const electricityCost = totalKwh * tariffKwh;
 
 		const netSavings = grossSavings - electricityCost;
-		const ewasteKg = nodes * 3.2; // approx 3.2 kg average device weight
+		const ewasteKg = nodes * 2.7; // average device weight across laptops, towers and mobile
 		const computeHours = nodes * totalHoursPerNode;
 		const roiPct = electricityCost > 0 ? ((netSavings / (electricityCost + (nodes * 20))) * 100) : 999;
 
-		// Update UI
 		roiNetSavings.textContent = `$${Math.round(netSavings).toLocaleString()}`;
 		roiCapex.textContent = `$${Math.round(capexAvoided).toLocaleString()}`;
 		roiCloud.textContent = `$${Math.round(cloudAvoided).toLocaleString()}`;
@@ -355,7 +381,6 @@ function initRoiCalculator() {
 		roiHours.textContent = `${Math.round(computeHours).toLocaleString()} hrs`;
 		roiPercentage.textContent = `${Math.round(roiPct)}%`;
 
-		// Header Hero Sync
 		const kpiTotalSaved = document.getElementById('kpi-total-saved');
 		const kpiComputeHours = document.getElementById('kpi-compute-hours');
 		const kpiLifespanExt = document.getElementById('kpi-lifespan-ext');
@@ -371,7 +396,6 @@ function initRoiCalculator() {
 		input.addEventListener('input', calculate);
 	});
 
-	// Presets
 	const presetBtns = document.querySelectorAll('.preset-btn');
 	presetBtns.forEach(btn => {
 		btn.addEventListener('click', () => {
@@ -380,25 +404,25 @@ function initRoiCalculator() {
 			const preset = btn.getAttribute('data-preset');
 
 			if (preset === 'current') {
-				slNodes.value = 7;
+				slNodes.value = 9;
 				slLifespan.value = 3.5;
-				slCost.value = 450;
-				slCloud.value = 25;
-				slPower.value = 21;
+				slCost.value = 380;
+				slCloud.value = 22;
+				slPower.value = 17;
 				slKwh.value = 0.16;
 			} else if (preset === 'lowpower') {
-				slNodes.value = 5;
+				slNodes.value = 6;
 				slLifespan.value = 4.0;
-				slCost.value = 350;
+				slCost.value = 250;
 				slCloud.value = 15;
-				slPower.value = 8;
+				slPower.value = 6;
 				slKwh.value = 0.14;
 			} else if (preset === 'cloud') {
-				slNodes.value = 10;
+				slNodes.value = 12;
 				slLifespan.value = 5.0;
-				slCost.value = 600;
-				slCloud.value = 40;
-				slPower.value = 35;
+				slCost.value = 550;
+				slCloud.value = 35;
+				slPower.value = 28;
 				slKwh.value = 0.18;
 			}
 			calculate();

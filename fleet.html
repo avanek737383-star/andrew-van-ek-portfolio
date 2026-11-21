@@ -4,12 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Hardware Fleet &amp; Salvage Architecture Hub | Andrew Van Ek</title>
-	<meta name="description" content="Interactive 3D-ready topology, GLPI asset inventory, and salvage ROI calculator for Andrew Van Ek's 7-node heterogeneous homelab fleet and e-waste reclamation lab.">
+	<meta name="description" content="Interactive 3D-ready topology, shelf layout, GLPI asset inventory, and salvage ROI calculator for Andrew Van Ek's 9-node heterogeneous homelab fleet and e-waste reclamation lab.">
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261120-nav-1">
-	<link rel="stylesheet" href="css/fleet.css?v=20261120-fleet-1">
+	<link rel="stylesheet" href="css/fleet.css?v=20261121-fleet-2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
@@ -58,22 +58,31 @@
 					</button>
 					<ul class="nav-dropdown-menu">
 						<li><a href="job.html">Skills &amp; Toolkit</a></li>
-						<li><a href="experience.html">Experience &amp; Certs</a></li>
-						<li><a href="contact.html">Contact &amp; Keybase</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
 					</ul>
+				</li>
+				<li class="nav-item-search">
+					<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+						<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						<span>Search</span>
+						<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+					</a>
 				</li>
 			</ul>
 		</nav>
 
 		<header class="page-header fleet-header">
 			<div class="fleet-badge-group">
-				<span class="fleet-badge live-badge"><span class="pulse-dot"></span> 7 / 7 Active Nodes</span>
-				<span class="fleet-badge">Heterogeneous Architecture</span>
-				<span class="fleet-badge ewaste-badge">22.6 kg E-Waste Diverted</span>
-				<span class="fleet-badge roi-badge">$10,480+ Reclaimed Value</span>
+				<span class="fleet-badge live-badge"><span class="pulse-dot"></span> 9 / 9 Active Nodes Online</span>
+				<span class="fleet-badge">3-Tier Workbench &amp; Shelf Layout</span>
+				<span class="fleet-badge ewaste-badge">24.2 kg E-Waste Diverted</span>
+				<span class="fleet-badge roi-badge">$11,850+ Reclaimed Value</span>
 			</div>
 			<h1>Hardware Fleet &amp; Salvage Architecture Hub</h1>
-			<p class="subtitle">Where discarded silicon gets a second tour of duty. Explore interactive 3D-ready node topology, GLPI asset lifecycle telemetry, and the real-time financial &amp; environmental ROI of keeping e-waste running 24/7.</p>
+			<p class="subtitle">Where discarded silicon gets a second tour of duty. Explore interactive 3D-ready shelf topologies, physical USB tethering, GLPI asset lifecycle records, and the real-time financial &amp; environmental ROI of keeping e-waste running 24/7.</p>
 		</header>
 
 		<main class="fleet-main">
@@ -81,42 +90,42 @@
 			<section class="fleet-hero-stats">
 				<div class="stat-card">
 					<div class="stat-label">Active Fleet Nodes</div>
-					<div class="stat-value" id="kpi-node-count">7</div>
-					<div class="stat-sub">Across 5 OS families &amp; 4 architectures</div>
+					<div class="stat-value" id="kpi-node-count">9</div>
+					<div class="stat-sub">7 primary rigs + 2 mobile companion miners</div>
 				</div>
 				<div class="stat-card">
 					<div class="stat-label">Total Compute Hours</div>
-					<div class="stat-value" id="kpi-compute-hours">214,620</div>
+					<div class="stat-value" id="kpi-compute-hours">276,000</div>
 					<div class="stat-sub">Distributed science, image gen &amp; miners</div>
 				</div>
 				<div class="stat-card">
-					<div class="stat-label">Hardware Longevity Extension</div>
+					<div class="stat-label">Hardware Lifespan Extension</div>
 					<div class="stat-value" id="kpi-lifespan-ext">+3.5 yrs</div>
 					<div class="stat-sub">Above OEM planned obsolescence</div>
 				</div>
 				<div class="stat-card">
 					<div class="stat-label">Total Avoided Costs</div>
-					<div class="stat-value" id="kpi-total-saved">$10,480</div>
+					<div class="stat-value" id="kpi-total-saved">$11,850</div>
 					<div class="stat-sub">Cloud + replacement hardware avoidance</div>
 				</div>
 			</section>
 
-			<!-- Section 2: Interactive 3D / Workbench Viewport (Option C) -->
+			<!-- Section 2: Interactive 3D / Workbench Shelf Viewport -->
 			<section class="fleet-section">
 				<div class="section-heading-wrap">
-					<h2>1. Visual Fleet Schematic &amp; 3D Topology Viewport</h2>
-					<p>An interactive spatial framework representing the physical and logical placement of Andrew's homelab workbench. Click any node pin or chassis below to inspect its live run-state, telemetry, and GLPI asset records.</p>
+					<h2>1. Visual Fleet Schematic &amp; 3D Shelf Viewport</h2>
+					<p>An interactive spatial framework representing the physical placement of Andrew's homelab workbench and shelving rack. Notice the bottom shelf where the Samsung S4 Mini is physically plugged into the 2011 Mac, and the dedicated wall-powered mobile mining dock. Click any node below to inspect its live run-state and GLPI records.</p>
 				</div>
 
 				<div class="viewport-controls">
 					<div class="view-mode-buttons">
-						<button class="view-btn active" data-view="topology">Physical Workbench &amp; Topology</button>
+						<button class="view-btn active" data-view="topology">Physical Shelves &amp; Workbench</button>
 						<button class="view-btn" data-view="network">Network Mesh &amp; Ports</button>
 						<button class="view-btn" data-view="thermals">Thermal &amp; Power Dissipation</button>
 						<button class="view-btn" data-view="glpi">GLPI Inventory Mode</button>
 					</div>
 					<div class="viewport-meta">
-						<span class="view-indicator" id="current-view-name">VIEW: Physical Workbench Layout</span>
+						<span class="view-indicator" id="current-view-name">VIEW: Physical Shelves &amp; Workbench Layout</span>
 						<button class="view-reset-btn" id="reset-viewport-btn">&#x21bb; Reset View</button>
 					</div>
 				</div>
@@ -124,116 +133,152 @@
 				<div class="fleet-viewport-container" id="fleet-viewport-container">
 					<!-- Interactive Canvas / SVG Topology -->
 					<div class="canvas-viewport" id="viewport-canvas-wrapper">
-						<svg id="fleet-svg-map" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet">
+						<svg id="fleet-svg-map" viewBox="0 0 1000 580" preserveAspectRatio="xMidYMid meet">
 							<defs>
 								<linearGradient id="bench-grad" x1="0%" y1="0%" x2="100%" y2="100%">
 									<stop offset="0%" stop-color="#141923" />
 									<stop offset="100%" stop-color="#0b0e14" />
 								</linearGradient>
-								<linearGradient id="active-pulse" x1="0%" y1="0%" x2="100%" y2="0%">
-									<stop offset="0%" stop-color="#22c55e" />
-									<stop offset="100%" stop-color="#10b981" />
-								</linearGradient>
 								<pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
 									<path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
 								</pattern>
-								<filter id="node-glow" x="-20%" y="-20%" width="140%" height="140%">
-									<feGaussianBlur stdDeviation="6" result="blur" />
-									<feComposite in="SourceGraphic" in2="blur" operator="over" />
-								</filter>
 							</defs>
 
-							<!-- Workbench Grid Backdrop -->
-							<rect width="1000" height="520" fill="url(#bench-grad)" rx="12" />
-							<rect width="1000" height="520" fill="url(#grid-pattern)" rx="12" />
+							<!-- Backdrop -->
+							<rect width="1000" height="580" fill="url(#bench-grad)" rx="12" />
+							<rect width="1000" height="580" fill="url(#grid-pattern)" rx="12" />
 
-							<!-- Workbench Surface Outline -->
-							<polygon points="60,430 940,430 840,110 160,110" fill="rgba(30, 41, 59, 0.4)" stroke="rgba(71, 85, 105, 0.4)" stroke-width="2" />
+							<!-- Shelf Tier 1 (Top Desk Surface): Dell Tower, Windows Workstation, HP 15 -->
+							<rect x="50" y="55" width="900" height="135" rx="8" fill="rgba(30, 41, 59, 0.45)" stroke="rgba(71, 85, 105, 0.5)" stroke-width="1.5" />
+							<text x="65" y="80" fill="#64748b" font-size="10" font-family="'Fira Code', monospace" font-weight="700">TOP BENCH / DESK LEVEL (COMPUTE &amp; WORKSTATIONS)</text>
+
+							<!-- Shelf Tier 2 (Middle Testbench Tier): Intel NUC, Lenovo Yoga Bare-Board -->
+							<rect x="50" y="225" width="900" height="135" rx="8" fill="rgba(30, 41, 59, 0.4)" stroke="rgba(71, 85, 105, 0.45)" stroke-width="1.5" />
+							<text x="65" y="250" fill="#64748b" font-size="10" font-family="'Fira Code', monospace" font-weight="700">MID RACK SHELF (24/7 INFRASTRUCTURE &amp; OPEN-AIR TESTBENCH)</text>
+
+							<!-- Shelf Tier 3 (Bottom Shelf & Mobile Cluster): 2011 Mac + S4 Mini Tether + Wall Powered Devices -->
+							<rect x="50" y="395" width="900" height="155" rx="8" fill="rgba(30, 41, 59, 0.5)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="2" />
+							<text x="65" y="420" fill="#38bdf8" font-size="10" font-family="'Fira Code', monospace" font-weight="700">BOTTOM SHELF: 2011 MAC + TETHERED MOBILE MINING CLUSTER</text>
+
+							<!-- Physical USB Cable connecting 2011 Mac to S4 Mini -->
+							<path d="M 335 480 C 375 480, 395 480, 435 480" fill="none" stroke="#38bdf8" stroke-width="3.5" stroke-dasharray="6 3" />
+							<text x="385" y="468" text-anchor="middle" fill="#38bdf8" font-size="8" font-weight="700" font-family="'Fira Code', monospace">USB HOST</text>
+
+							<!-- Wall AC Power lines for YP-GI1 and iPod Touch -->
+							<path d="M 670 430 L 670 460 L 730 460" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2" />
+							<path d="M 670 430 L 670 460 L 845 460" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2" />
+							<circle cx="670" cy="430" r="4" fill="#f59e0b" />
+							<text x="670" y="420" text-anchor="middle" fill="#f59e0b" font-size="8" font-weight="700" font-family="'Fira Code', monospace">WALL AC</text>
 
 							<!-- Network Mesh Lines (Shown in network view) -->
-							<g id="network-lines" class="network-lines-group">
-								<line x1="500" y1="210" x2="230" y2="340" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="2" opacity="0.6" />
-								<line x1="500" y1="210" x2="370" y2="280" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="2" opacity="0.6" />
-								<line x1="500" y1="210" x2="620" y2="270" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="2" opacity="0.6" />
-								<line x1="500" y1="210" x2="770" y2="330" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="2" opacity="0.6" />
-								<line x1="500" y1="210" x2="280" y2="180" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="2" opacity="0.6" />
-								<line x1="500" y1="210" x2="720" y2="170" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="2" opacity="0.6" />
+							<g id="network-lines" class="network-lines-group" opacity="0.6">
+								<line x1="240" y1="290" x2="160" y2="130" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1.5" />
+								<line x1="240" y1="290" x2="480" y2="130" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1.5" />
+								<line x1="240" y1="290" x2="780" y2="130" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1.5" />
+								<line x1="240" y1="290" x2="620" y2="290" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1.5" />
+								<line x1="240" y1="290" x2="230" y2="475" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1.5" />
+								<line x1="240" y1="290" x2="480" y2="475" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1.5" />
 							</g>
 
-							<!-- Node 6: Intel NUC (Central Backbone Hub) -->
-							<g class="svg-node-group" data-node="nuc" transform="translate(460, 170)">
-								<rect x="0" y="0" width="80" height="70" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5" class="node-box" />
-								<text x="40" y="32" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="700">INTEL NUC</text>
-								<text x="40" y="48" text-anchor="middle" fill="#94a3b8" font-size="9">Alpine Linux</text>
-								<circle cx="70" cy="12" r="4.5" fill="#22c55e" class="status-pulse" />
-								<text x="40" y="62" text-anchor="middle" fill="#38bdf8" font-size="8" font-weight="600">DNS &amp; BOINC</text>
+							<!-- === TOP BENCH NODES === -->
+							<!-- Node 5: Dell Inspiron Desktop Tower -->
+							<g class="svg-node-group" data-node="dell" transform="translate(100, 80)">
+								<rect x="0" y="0" width="130" height="95" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2" class="node-box" />
+								<text x="65" y="28" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="700">DELL TOWER</text>
+								<text x="65" y="44" text-anchor="middle" fill="#fef08a" font-size="8">Custom Slax USB</text>
+								<text x="65" y="60" text-anchor="middle" fill="#cbd5e1" font-size="8">"Hopes &amp; Dreams"</text>
+								<text x="65" y="76" text-anchor="middle" fill="#94a3b8" font-size="8">Diskless RAM Mining</text>
+								<circle cx="115" cy="15" r="4.5" fill="#22c55e" class="status-pulse" />
 							</g>
 
-							<!-- Node 1: Samsung Galaxy S4 Mini -->
-							<g class="svg-node-group" data-node="s4mini" transform="translate(190, 310)">
-								<rect x="0" y="0" width="75" height="110" rx="10" fill="#1e293b" stroke="#a855f7" stroke-width="2" class="node-box" />
-								<rect x="8" y="14" width="59" height="78" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1" />
-								<text x="37" y="50" text-anchor="middle" fill="#c084fc" font-size="9" font-weight="700">S4 MINI</text>
-								<text x="37" y="64" text-anchor="middle" fill="#94a3b8" font-size="8">Duino-Coin</text>
-								<text x="37" y="77" text-anchor="middle" fill="#38bdf8" font-size="8">:8097 Web</text>
-								<circle cx="37" cy="100" r="3.5" fill="#475569" />
-								<circle cx="65" cy="8" r="4" fill="#22c55e" class="status-pulse" />
-							</g>
-
-							<!-- Node 2: Lenovo Yoga Bare-Board -->
-							<g class="svg-node-group" data-node="yoga" transform="translate(330, 260)">
-								<rect x="0" y="0" width="105" height="75" rx="4" fill="#14532d" stroke="#22c55e" stroke-width="2" stroke-dasharray="4 2" class="node-box" />
-								<text x="52" y="24" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">YOGA BARE-BOARD</text>
-								<text x="52" y="38" text-anchor="middle" fill="#cbd5e1" font-size="8">E-Waste Logic Board</text>
-								<text x="52" y="52" text-anchor="middle" fill="#facc15" font-size="8">+ 5V USB Fan Cooling</text>
-								<text x="52" y="65" text-anchor="middle" fill="#94a3b8" font-size="8">Headless Crypto Miner</text>
-								<circle cx="95" cy="10" r="4" fill="#22c55e" class="status-pulse" />
-							</g>
-
-							<!-- Node 3: MacBook Pro 2011 -->
-							<g class="svg-node-group" data-node="mbp2011" transform="translate(240, 150)">
-								<rect x="0" y="0" width="100" height="70" rx="6" fill="#1e293b" stroke="#cbd5e1" stroke-width="2" class="node-box" />
-								<text x="50" y="25" text-anchor="middle" fill="#f8fafc" font-size="10" font-weight="700">MBP 2011 13"</text>
-								<text x="50" y="39" text-anchor="middle" fill="#94a3b8" font-size="8">Debian 12 &middot; SSD</text>
-								<text x="50" y="52" text-anchor="middle" fill="#f97316" font-size="8">PTM7950 &middot; No Batt</text>
-								<text x="50" y="64" text-anchor="middle" fill="#38bdf8" font-size="8">Image Gen + Mining</text>
-								<circle cx="90" cy="10" r="4" fill="#22c55e" class="status-pulse" />
+							<!-- Node 7: Windows Multi-Role Workstation -->
+							<g class="svg-node-group" data-node="winws" transform="translate(400, 80)">
+								<rect x="0" y="0" width="160" height="95" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="2" class="node-box" />
+								<text x="80" y="28" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="700">WINDOWS WORKSTATION</text>
+								<text x="80" y="44" text-anchor="middle" fill="#94a3b8" font-size="8">Win 11 &middot; Optical Drive</text>
+								<text x="80" y="60" text-anchor="middle" fill="#e0e7ff" font-size="8">Folding@home &middot; DVD Archive</text>
+								<text x="80" y="76" text-anchor="middle" fill="#bae6fd" font-size="8">CIS Coursework VMs</text>
+								<circle cx="145" cy="15" r="4.5" fill="#22c55e" class="status-pulse" />
 							</g>
 
 							<!-- Node 4: Legacy HP Laptop 15 -->
-							<g class="svg-node-group" data-node="hp15" transform="translate(580, 250)">
-								<rect x="0" y="0" width="110" height="75" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="2" class="node-box" />
-								<text x="55" y="24" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="700">HP 15 NOTEBOOK</text>
-								<text x="55" y="38" text-anchor="middle" fill="#94a3b8" font-size="8">Linux Mint 21</text>
-								<text x="55" y="51" text-anchor="middle" fill="#e0e7ff" font-size="8">Realistic Vision 5.1 LCM</text>
-								<text x="55" y="64" text-anchor="middle" fill="#a7f3d0" font-size="8">Rclone GDrive Sync</text>
-								<circle cx="100" cy="10" r="4" fill="#22c55e" class="status-pulse" />
+							<g class="svg-node-group" data-node="hp15" transform="translate(700, 80)">
+								<rect x="0" y="0" width="160" height="95" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="2" class="node-box" />
+								<text x="80" y="28" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="700">HP 15 WORKHORSE</text>
+								<text x="80" y="44" text-anchor="middle" fill="#94a3b8" font-size="8">Linux Mint 21</text>
+								<text x="80" y="60" text-anchor="middle" fill="#e0e7ff" font-size="8">Realistic Vision 5.1 LCM</text>
+								<text x="80" y="76" text-anchor="middle" fill="#a7f3d0" font-size="8">Rclone GDrive Sync</text>
+								<circle cx="145" cy="15" r="4.5" fill="#22c55e" class="status-pulse" />
 							</g>
 
-							<!-- Node 5: Dell Inspiron Desktop Tower -->
-							<g class="svg-node-group" data-node="dell" transform="translate(740, 280)">
-								<rect x="0" y="0" width="85" height="120" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2" class="node-box" />
-								<text x="42" y="30" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="700">DELL TOWER</text>
-								<text x="42" y="46" text-anchor="middle" fill="#fef08a" font-size="8">Custom Slax USB</text>
-								<text x="42" y="62" text-anchor="middle" fill="#cbd5e1" font-size="8">"Hopes &amp; Dreams"</text>
-								<text x="42" y="78" text-anchor="middle" fill="#94a3b8" font-size="8">Zero Internal HDD</text>
-								<text x="42" y="94" text-anchor="middle" fill="#38bdf8" font-size="8">RAM Overlay Mining</text>
-								<circle cx="73" cy="12" r="4" fill="#22c55e" class="status-pulse" />
+							<!-- === MIDDLE RACK NODES === -->
+							<!-- Node 6: Headless Intel NUC -->
+							<g class="svg-node-group" data-node="nuc" transform="translate(180, 245)">
+								<rect x="0" y="0" width="130" height="95" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5" class="node-box" />
+								<text x="65" y="30" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="700">INTEL NUC</text>
+								<text x="65" y="48" text-anchor="middle" fill="#94a3b8" font-size="9">Alpine Linux (musl)</text>
+								<text x="65" y="64" text-anchor="middle" fill="#38bdf8" font-size="8" font-weight="600">AdGuard DNS Sinkhole</text>
+								<text x="65" y="80" text-anchor="middle" fill="#86efac" font-size="8">2x BOINC Science</text>
+								<circle cx="115" cy="15" r="4.5" fill="#22c55e" class="status-pulse" />
 							</g>
 
-							<!-- Node 7: Windows Laptop Multi-Role Workstation -->
-							<g class="svg-node-group" data-node="winws" transform="translate(680, 140)">
-								<rect x="0" y="0" width="110" height="75" rx="6" fill="#1e293b" stroke="#0284c7" stroke-width="2" class="node-box" />
-								<text x="55" y="24" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="700">WINDOWS WS</text>
-								<text x="55" y="38" text-anchor="middle" fill="#94a3b8" font-size="8">Win 11 &middot; Optical Drive</text>
-								<text x="55" y="51" text-anchor="middle" fill="#e0e7ff" font-size="8">Folding@home &middot; DVD Rip</text>
-								<text x="55" y="64" text-anchor="middle" fill="#bae6fd" font-size="8">CIS Virtualization VM</text>
-								<circle cx="100" cy="10" r="4" fill="#22c55e" class="status-pulse" />
+							<!-- Node 2: Lenovo Yoga Bare-Board Rig -->
+							<g class="svg-node-group" data-node="yoga" transform="translate(530, 245)">
+								<rect x="0" y="0" width="170" height="95" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="2" stroke-dasharray="4 2" class="node-box" />
+								<text x="85" y="28" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">YOGA BARE-BOARD RIG</text>
+								<text x="85" y="44" text-anchor="middle" fill="#cbd5e1" font-size="8">E-Waste Logic Board Bench</text>
+								<text x="85" y="60" text-anchor="middle" fill="#facc15" font-size="8">+ 5V USB Cooling Blower Fan</text>
+								<text x="85" y="76" text-anchor="middle" fill="#94a3b8" font-size="8">Headless Crypto &amp; Utility</text>
+								<circle cx="155" cy="15" r="4.5" fill="#22c55e" class="status-pulse" />
 							</g>
 
-							<!-- Legend & Helper text inside canvas -->
-							<text x="25" y="35" fill="#64748b" font-size="11" font-family="'Fira Code', monospace">FLEET TOPOLOGY // HOMELAB WORKBENCH INTERACTIVE SCHEMATIC</text>
-							<text x="25" y="495" fill="#475569" font-size="10" font-family="'Fira Code', monospace">[CLICK ANY HARDWARE NODE TO INSPECT LIVE SYSTEM TELEMETRY &amp; GLPI LIFECYCLE DATA]</text>
+							<!-- === BOTTOM SHELF NODES (TETHERED & WALL POWERED) === -->
+							<!-- Node 3: Mid-2011 Mac (Bottom Shelf Host) -->
+							<g class="svg-node-group" data-node="mbp2011" transform="translate(140, 425)">
+								<rect x="0" y="0" width="195" height="105" rx="8" fill="#1e293b" stroke="#cbd5e1" stroke-width="2" class="node-box" />
+								<text x="97" y="28" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="700">MID-2011 MAC (BOTTOM SHELF)</text>
+								<text x="97" y="46" text-anchor="middle" fill="#94a3b8" font-size="9">Debian 12 &middot; SATA SSD</text>
+								<text x="97" y="64" text-anchor="middle" fill="#f97316" font-size="8">Honeywell PTM7950 &middot; No Battery</text>
+								<text x="97" y="80" text-anchor="middle" fill="#38bdf8" font-size="8">Batch Image Gen + Mining Host</text>
+								<text x="97" y="94" text-anchor="middle" fill="#a855f7" font-size="8">&larr; USB Host to S4 Mini</text>
+								<circle cx="180" cy="15" r="4.5" fill="#22c55e" class="status-pulse" />
+							</g>
+
+							<!-- Node 1: Samsung Galaxy S4 Mini (Tethered to 2011 Mac) -->
+							<g class="svg-node-group" data-node="s4mini" transform="translate(435, 430)">
+								<rect x="0" y="0" width="90" height="95" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2.5" class="node-box" />
+								<rect x="10" y="10" width="70" height="60" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1" />
+								<text x="45" y="32" text-anchor="middle" fill="#c084fc" font-size="9" font-weight="700">S4 MINI</text>
+								<text x="45" y="46" text-anchor="middle" fill="#94a3b8" font-size="8">Duino-Coin</text>
+								<text x="45" y="58" text-anchor="middle" fill="#38bdf8" font-size="8">:8097 Web UI</text>
+								<text x="45" y="84" text-anchor="middle" fill="#a855f7" font-size="8">Plugged into Mac</text>
+								<circle cx="78" cy="12" r="4" fill="#22c55e" class="status-pulse" />
+							</g>
+
+							<!-- Node 8: Samsung Galaxy Player YP-GI1 (Wall Powered) -->
+							<g class="svg-node-group" data-node="ypgi1" transform="translate(685, 430)">
+								<rect x="0" y="0" width="95" height="95" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2" class="node-box" />
+								<rect x="10" y="10" width="75" height="60" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1" />
+								<text x="47" y="32" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="700">GALAXY PLAYER</text>
+								<text x="47" y="46" text-anchor="middle" fill="#94a3b8" font-size="8">YP-GI1</text>
+								<text x="47" y="58" text-anchor="middle" fill="#38bdf8" font-size="8">Duino-Coin</text>
+								<text x="47" y="84" text-anchor="middle" fill="#f59e0b" font-size="8">Wall Powered</text>
+								<circle cx="82" cy="12" r="4" fill="#22c55e" class="status-pulse" />
+							</g>
+
+							<!-- Node 9: Apple iPod Touch (Wall Powered) -->
+							<g class="svg-node-group" data-node="ipodtouch" transform="translate(800, 430)">
+								<rect x="0" y="0" width="95" height="95" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="2" class="node-box" />
+								<rect x="10" y="10" width="75" height="60" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1" />
+								<text x="47" y="32" text-anchor="middle" fill="#f472b6" font-size="9" font-weight="700">iPOD TOUCH</text>
+								<text x="47" y="46" text-anchor="middle" fill="#94a3b8" font-size="8">iOS WebKit</text>
+								<text x="47" y="58" text-anchor="middle" fill="#38bdf8" font-size="8">Duino-Coin</text>
+								<text x="47" y="84" text-anchor="middle" fill="#ec4899" font-size="8">Wall Powered</text>
+								<circle cx="82" cy="12" r="4" fill="#22c55e" class="status-pulse" />
+							</g>
+
+							<!-- Schematic Title Tag -->
+							<text x="25" y="30" fill="#64748b" font-size="11" font-family="'Fira Code', monospace">FLEET TOPOLOGY // 3-TIER BENCH &amp; SHELVING RACK SCHEMATIC</text>
 						</svg>
 
 						<!-- Photo / 3D Model Dropzone Slot Overlay -->
@@ -266,8 +311,8 @@
 								<span class="meta-val" id="insp-power">~12.5 W</span>
 							</div>
 							<div class="meta-item">
-								<span class="meta-label">Uptime Baseline</span>
-								<span class="meta-val" id="insp-uptime">99.98% (Always-On)</span>
+								<span class="meta-label">Physical Placement</span>
+								<span class="meta-val" id="insp-uptime">Middle Rack Tier</span>
 							</div>
 						</div>
 
@@ -277,7 +322,7 @@
 						</div>
 
 						<div class="inspector-section">
-							<h4>Salvage History &amp; Engineering Decisions</h4>
+							<h4>Salvage History &amp; Physical Setup</h4>
 							<p id="insp-salvage">Compact ultra-low-idle compute node running musl/busybox minimal userspace to maximize CPU cycles dedicated directly to volunteer astrophysics and biomedical simulations.</p>
 						</div>
 
@@ -288,7 +333,7 @@
 								<div class="glpi-cell"><span>Category:</span> <strong id="glpi-cat">Core Compute / Infrastructure</strong></div>
 								<div class="glpi-cell"><span>State:</span> <strong id="glpi-state">In Production / Mission Critical</strong></div>
 								<div class="glpi-cell"><span>Depreciation:</span> <strong id="glpi-depr">100% Amortized (Salvage Reclaim)</strong></div>
-								<div class="glpi-cell"><span>Last Service:</span> <strong id="glpi-service">2026-11-20 (Antigravity Sync)</strong></div>
+								<div class="glpi-cell"><span>Last Service:</span> <strong id="glpi-service">2026-11-21 (Verified)</strong></div>
 								<div class="glpi-cell"><span>Interface:</span> <strong id="glpi-net">Gigabit LAN + Tailscale Mesh</strong></div>
 							</div>
 						</div>
@@ -304,37 +349,109 @@
 			<section class="fleet-section">
 				<div class="section-heading-wrap">
 					<h2>2. Heterogeneous Node Fleet Inventory</h2>
-					<p>Deep-dive specifications, thermal workarounds, and continuous production duties across all 7 salvaged machines in Andrew's lab.</p>
+					<p>Deep-dive specifications, physical placement, and continuous duties across all 9 machines in Andrew's lab.</p>
 				</div>
 
 				<div class="node-filter-bar">
-					<button class="node-filter-btn active" data-filter="all">All 7 Nodes</button>
-					<button class="node-filter-btn" data-filter="salvage">Pure E-Waste Rescues (4)</button>
-					<button class="node-filter-btn" data-filter="compute">Distributed Science &amp; Crypto (4)</button>
+					<button class="node-filter-btn active" data-filter="all">All 9 Nodes</button>
+					<button class="node-filter-btn" data-filter="mobile">Mobile Mining Cluster (3)</button>
+					<button class="node-filter-btn" data-filter="salvage">E-Waste Rescues (5)</button>
+					<button class="node-filter-btn" data-filter="compute">Distributed Science &amp; Crypto (6)</button>
 					<button class="node-filter-btn" data-filter="ai">AI &amp; Image Synthesis (3)</button>
-					<button class="node-filter-btn" data-filter="server">24/7 LAN Infrastructure (2)</button>
 				</div>
 
 				<div class="fleet-cards-grid" id="fleet-cards-grid">
 					<!-- Node 1: S4 Mini -->
-					<div class="fleet-card" data-category="salvage compute" data-id="s4mini">
+					<div class="fleet-card" data-category="mobile salvage compute" data-id="s4mini">
 						<div class="card-header">
 							<span class="card-tag">HL-NODE-01</span>
-							<span class="card-chip mobile-chip">Mobile Reclaim</span>
+							<span class="card-chip mobile-chip">Bottom Shelf &middot; USB Host</span>
 						</div>
 						<h3>Samsung Galaxy S4 Mini (SCH-I435)</h3>
 						<div class="card-specs">
 							<span class="spec-pill">Qualcomm Snapdragon 400 (Dual Krait 1.7GHz)</span>
 							<span class="spec-pill">1.5 GB RAM</span>
-							<span class="spec-pill">Android / WebKit ES5</span>
+							<span class="spec-pill">Tethered to 2011 Mac via USB</span>
 							<span class="spec-pill">Port 8097 Web UI</span>
 						</div>
-						<p class="card-desc">Dedicated 24/7 Duino-Coin web worker node running continuous WebKit multithreaded JavaScript hashing. Reclaims a 2013 mobile phone, configured with screen keep-awake scripts and local HTTP telemetry monitoring on port 8097.</p>
+						<p class="card-desc">Dedicated 24/7 Duino-Coin web worker node running continuous WebKit multithreaded JavaScript hashing. Sits directly on the bottom shelf plugged into the 2011 Mac via USB for power and host connection, configured with screen keep-awake scripts and local HTTP telemetry monitoring on port 8097.</p>
 						<div class="card-salvage-box">
-							<strong>Salvage Engineering:</strong> Bypassed battery degradation by establishing permanent 5V regulated power; zero thermal throttling maintained via ambient passive airflow.
+							<strong>Physical Setup:</strong> Bottom shelf placement right beside the 2011 Mac. Bypassed battery wear through continuous USB host power; zero thermal throttling maintained via ambient open airflow.
 						</div>
 						<div class="card-footer">
 							<div class="metric"><span class="label">Power:</span> <strong>~1.8 W</strong></div>
+							<div class="metric"><span class="label">Duty:</span> <strong>Duino-Coin Miner</strong></div>
+							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online</span></div>
+						</div>
+					</div>
+
+					<!-- Node 3: MacBook Pro 2011 -->
+					<div class="fleet-card" data-category="salvage ai compute" data-id="mbp2011">
+						<div class="card-header">
+							<span class="card-tag">HL-NODE-03</span>
+							<span class="card-chip linux-chip">Bottom Shelf Host</span>
+						</div>
+						<h3>Mid-2011 Mac (A1278) &middot; Bottom Shelf</h3>
+						<div class="card-specs">
+							<span class="spec-pill">Intel Core i5-2415M (Sandy Bridge 2.3GHz)</span>
+							<span class="spec-pill">8 GB DDR3</span>
+							<span class="spec-pill">Kingston SATA SSD</span>
+							<span class="spec-pill">Honeywell PTM7950 Repaste</span>
+						</div>
+						<p class="card-desc">Rescued 2011 Apple unibody converted into a robust Debian 12 Linux production workhorse. Anchors the bottom shelf, serving as the USB host for the Samsung S4 Mini while executing batch CPU image generation queues, background cryptocurrency mining, and build tasks.</p>
+						<div class="card-salvage-box">
+							<strong>Physical Setup:</strong> Internal lithium battery removed completely for fire safety during 24/7 AC operation. CPU repasted with industrial Honeywell PTM7950 phase-change material for permanent high-temperature stability.
+						</div>
+						<div class="card-footer">
+							<div class="metric"><span class="label">Power:</span> <strong>~18.5 W</strong></div>
+							<div class="metric"><span class="label">Duty:</span> <strong>Image Gen + Mining + USB Host</strong></div>
+							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online</span></div>
+						</div>
+					</div>
+
+					<!-- Node 8: Samsung Galaxy Player YP-GI1 -->
+					<div class="fleet-card" data-category="mobile salvage compute" data-id="ypgi1">
+						<div class="card-header">
+							<span class="card-tag">HL-NODE-08</span>
+							<span class="card-chip mobile-chip">Wall Powered</span>
+						</div>
+						<h3>Samsung Galaxy Player (YP-GI1)</h3>
+						<div class="card-specs">
+							<span class="spec-pill">Single-Core ARM Cortex-A8</span>
+							<span class="spec-pill">512 MB RAM</span>
+							<span class="spec-pill">Wall AC Power Adapter</span>
+							<span class="spec-pill">Duino-Coin Worker</span>
+						</div>
+						<p class="card-desc">Vintage media player rescued from obsolescence and repurposed into a permanent 24/7 Duino-Coin crypto miner. Plugged directly into wall AC power on the mobile charging strip alongside the iPod Touch.</p>
+						<div class="card-salvage-box">
+							<strong>Salvage Engineering:</strong> Zero battery degradation risk; operates as a low-power dedicated hashing node consuming barely over 1 Watt.
+						</div>
+						<div class="card-footer">
+							<div class="metric"><span class="label">Power:</span> <strong>~1.2 W</strong></div>
+							<div class="metric"><span class="label">Duty:</span> <strong>Duino-Coin Miner</strong></div>
+							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online</span></div>
+						</div>
+					</div>
+
+					<!-- Node 9: Apple iPod Touch -->
+					<div class="fleet-card" data-category="mobile salvage compute" data-id="ipodtouch">
+						<div class="card-header">
+							<span class="card-tag">HL-NODE-09</span>
+							<span class="card-chip mobile-chip">Wall Powered</span>
+						</div>
+						<h3>Apple iPod Touch Miner</h3>
+						<div class="card-specs">
+							<span class="spec-pill">Apple A-Series Silicon</span>
+							<span class="spec-pill">iOS WebKit Runtime</span>
+							<span class="spec-pill">Wall AC Power Adapter</span>
+							<span class="spec-pill">Duino-Coin Worker</span>
+						</div>
+						<p class="card-desc">Legacy Apple iPod Touch running a persistent in-browser Duino-Coin web worker over Wi-Fi. Connected to wall power 24/7 on the mobile rack alongside the Galaxy Player.</p>
+						<div class="card-salvage-box">
+							<strong>Salvage Engineering:</strong> Repurposed classic iOS handheld running automated JavaScript hashing loops with screen timeout override.
+						</div>
+						<div class="card-footer">
+							<div class="metric"><span class="label">Power:</span> <strong>~1.4 W</strong></div>
 							<div class="metric"><span class="label">Duty:</span> <strong>Duino-Coin Miner</strong></div>
 							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online</span></div>
 						</div>
@@ -344,7 +461,7 @@
 					<div class="fleet-card" data-category="salvage compute" data-id="yoga">
 						<div class="card-header">
 							<span class="card-tag">HL-NODE-02</span>
-							<span class="card-chip ewaste-chip">Open-Bench Rig</span>
+							<span class="card-chip ewaste-chip">Middle Shelf &middot; Open Bench</span>
 						</div>
 						<h3>Lenovo Yoga 2 11 Bare-Board Rig</h3>
 						<div class="card-specs">
@@ -353,7 +470,7 @@
 							<span class="spec-pill">Bare Motherboard + Daughterboard</span>
 							<span class="spec-pill">5V USB Fan Cooling</span>
 						</div>
-						<p class="card-desc">A complete open-air testbench rig created from an otherwise unsalvageable laptop with smashed plastics and broken LCD. Stripped down to bare motherboard and daughterboard, running headless crypto mining and background computing tasks.</p>
+						<p class="card-desc">A complete open-air testbench rig created from an otherwise unsalvageable laptop with smashed plastics and broken LCD. Stripped down to bare motherboard and daughterboard on the middle rack tier, running headless crypto mining and background computing tasks.</p>
 						<div class="card-salvage-box">
 							<strong>Salvage Engineering:</strong> Zero chassis restriction. A dedicated 5V USB high-CFM blower is focused directly on the exposed copper heatpipe, running at sub-55&deg;C 24/7 under full compute load.
 						</div>
@@ -364,26 +481,50 @@
 						</div>
 					</div>
 
-					<!-- Node 3: MacBook Pro 2011 -->
-					<div class="fleet-card" data-category="salvage ai compute" data-id="mbp2011">
+					<!-- Node 6: Headless Intel NUC -->
+					<div class="fleet-card" data-category="compute server" data-id="nuc">
 						<div class="card-header">
-							<span class="card-tag">HL-NODE-03</span>
-							<span class="card-chip linux-chip">Debian Linux</span>
+							<span class="card-tag">HL-NODE-06</span>
+							<span class="card-chip alpine-chip">Middle Shelf &middot; Core Hub</span>
 						</div>
-						<h3>Mid-2011 MacBook Pro 13" (A1278)</h3>
+						<h3>Headless Intel NUC LAN Backbone</h3>
 						<div class="card-specs">
-							<span class="spec-pill">Intel Core i5-2415M (Sandy Bridge 2.3GHz)</span>
-							<span class="spec-pill">8 GB DDR3</span>
-							<span class="spec-pill">Kingston SATA SSD</span>
-							<span class="spec-pill">PTM7950 Repaste</span>
+							<span class="spec-pill">Intel Core i3 / Celeron NUC</span>
+							<span class="spec-pill">8 GB RAM &middot; NVMe SSD</span>
+							<span class="spec-pill">Alpine Linux 3.x (musl)</span>
+							<span class="spec-pill">Tailscale Mesh Gateway</span>
 						</div>
-						<p class="card-desc">Rescued 2011 Apple aluminum unibody converted into a robust Debian 12 Linux production workhorse. Executes batch CPU image generation queues, background cryptocurrency mining, and remote compilation tasks.</p>
+						<p class="card-desc">The central nervous system of Andrew's homelab on the middle shelf tier. Operates 24/7 running dual distributed BOINC volunteer computing projects (Rosetta@home disease research &amp; Universe@home astrophysics), alongside whole-network AdGuard Home DNS sinkholing.</p>
 						<div class="card-salvage-box">
-							<strong>Salvage Engineering:</strong> Internal lithium battery removed completely to eliminate fire risk during 24/7 AC operation. CPU repasted with industrial Honeywell PTM7950 phase-change material for permanent high-temperature stability.
+							<strong>Salvage Engineering:</strong> Zero desktop overhead. Built on lightweight Alpine Linux with a tiny 40MB memory footprint, dedicating 98% of hardware capacity to volunteer biomedical research and high-performance DNS filtering.
 						</div>
 						<div class="card-footer">
-							<div class="metric"><span class="label">Power:</span> <strong>~18.5 W</strong></div>
-							<div class="metric"><span class="label">Duty:</span> <strong>Image Gen + Mining</strong></div>
+							<div class="metric"><span class="label">Power:</span> <strong>~12.5 W</strong></div>
+							<div class="metric"><span class="label">Duty:</span> <strong>AdGuard DNS + 2x BOINC Science</strong></div>
+							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online (99.98%)</span></div>
+						</div>
+					</div>
+
+					<!-- Node 5: Dell Inspiron Desktop Tower -->
+					<div class="fleet-card" data-category="salvage ai compute" data-id="dell">
+						<div class="card-header">
+							<span class="card-tag">HL-NODE-05</span>
+							<span class="card-chip live-chip">Top Bench &middot; Live RAM OS</span>
+						</div>
+						<h3>Dell Inspiron Desktop Tower ("Hopes &amp; Dreams")</h3>
+						<div class="card-specs">
+							<span class="spec-pill">Intel Core i5-7400 @ 3.00GHz</span>
+							<span class="spec-pill">8 GB DDR4</span>
+							<span class="spec-pill">Custom Slax Linux Live USB</span>
+							<span class="spec-pill">Zero Internal Mechanical HDD</span>
+						</div>
+						<p class="card-desc">The legendary homelab node running entirely in RAM off a custom Slax Linux USB flash drive with persistent overlay. Generates batch image models and mines cryptocurrency without a single internal mechanical hard drive spinning.</p>
+						<div class="card-salvage-box">
+							<strong>Salvage Engineering:</strong> Resurrected an otherwise discarded desktop tower with failed storage by converting it into an immutable diskless node. Completely immune to file system corruption or mechanical disk wear.
+						</div>
+						<div class="card-footer">
+							<div class="metric"><span class="label">Power:</span> <strong>~38.0 W</strong></div>
+							<div class="metric"><span class="label">Duty:</span> <strong>RAM-Based Image Gen + Mining</strong></div>
 							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online</span></div>
 						</div>
 					</div>
@@ -392,7 +533,7 @@
 					<div class="fleet-card" data-category="ai compute" data-id="hp15">
 						<div class="card-header">
 							<span class="card-tag">HL-NODE-04</span>
-							<span class="card-chip linux-chip">Linux Mint</span>
+							<span class="card-chip linux-chip">Top Bench &middot; Linux Mint</span>
 						</div>
 						<h3>Legacy HP Laptop 15 Workhorse</h3>
 						<div class="card-specs">
@@ -412,59 +553,11 @@
 						</div>
 					</div>
 
-					<!-- Node 5: Dell Inspiron Desktop Tower -->
-					<div class="fleet-card" data-category="salvage ai compute" data-id="dell">
-						<div class="card-header">
-							<span class="card-tag">HL-NODE-05</span>
-							<span class="card-chip live-chip">Live USB RAM OS</span>
-						</div>
-						<h3>Dell Inspiron Desktop Tower ("Hopes &amp; Dreams")</h3>
-						<div class="card-specs">
-							<span class="spec-pill">Intel Core i5-7400 @ 3.00GHz</span>
-							<span class="spec-pill">8 GB DDR4</span>
-							<span class="spec-pill">Custom Slax Linux Live USB</span>
-							<span class="spec-pill">Zero Internal HDD</span>
-						</div>
-						<p class="card-desc">The legendary homelab node running entirely in RAM off a custom Slax Linux USB flash drive with persistent overlay. Generates batch image models and mines cryptocurrency without a single internal mechanical hard drive spinning.</p>
-						<div class="card-salvage-box">
-							<strong>Salvage Engineering:</strong> Resurrected an otherwise discarded desktop tower with failed storage by converting it into an immutable diskless node. Completely immune to file system corruption or mechanical disk wear.
-						</div>
-						<div class="card-footer">
-							<div class="metric"><span class="label">Power:</span> <strong>~38.0 W</strong></div>
-							<div class="metric"><span class="label">Duty:</span> <strong>RAM-Based Image Gen + Mining</strong></div>
-							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online</span></div>
-						</div>
-					</div>
-
-					<!-- Node 6: Headless Intel NUC -->
-					<div class="fleet-card" data-category="server compute" data-id="nuc">
-						<div class="card-header">
-							<span class="card-tag">HL-NODE-06</span>
-							<span class="card-chip alpine-chip">Alpine Linux Core</span>
-						</div>
-						<h3>Headless Intel NUC LAN Backbone</h3>
-						<div class="card-specs">
-							<span class="spec-pill">Intel Core i3 / Celeron NUC</span>
-							<span class="spec-pill">8 GB RAM &middot; NVMe SSD</span>
-							<span class="spec-pill">Alpine Linux 3.x (musl)</span>
-							<span class="spec-pill">Tailscale Mesh Gateway</span>
-						</div>
-						<p class="card-desc">The central nervous system of Andrew's homelab. Operates 24/7 running dual distributed BOINC volunteer computing projects (Rosetta@home disease research &amp; Universe@home astrophysics), alongside whole-network AdGuard Home DNS sinkholing.</p>
-						<div class="card-salvage-box">
-							<strong>Salvage Engineering:</strong> Zero desktop overhead. Built on lightweight Alpine Linux with a tiny 40MB memory footprint, dedicating 98% of hardware capacity to volunteer biomedical research and high-performance DNS filtering.
-						</div>
-						<div class="card-footer">
-							<div class="metric"><span class="label">Power:</span> <strong>~12.5 W</strong></div>
-							<div class="metric"><span class="label">Duty:</span> <strong>AdGuard DNS + 2x BOINC Science</strong></div>
-							<div class="metric"><span class="label">Status:</span> <span class="green-text">Online (99.98%)</span></div>
-						</div>
-					</div>
-
 					<!-- Node 7: Windows Laptop Multi-Role Workstation -->
 					<div class="fleet-card" data-category="compute server" data-id="winws">
 						<div class="card-header">
 							<span class="card-tag">HL-NODE-07</span>
-							<span class="card-chip win-chip">Windows 11 Workstation</span>
+							<span class="card-chip win-chip">Top Bench &middot; Windows 11</span>
 						</div>
 						<h3>Windows Multi-Role Laptop Workstation</h3>
 						<div class="card-specs">
@@ -490,13 +583,13 @@
 			<section class="fleet-section roi-section">
 				<div class="section-heading-wrap">
 					<h2>3. Hardware Longevity &amp; Salvage ROI Calculator</h2>
-					<p>Compute the tangible financial savings, cloud workload avoidance, and environmental impact of diverting legacy computers from landfills into productive 24/7 edge nodes.</p>
+					<p>Compute the tangible financial savings, cloud workload avoidance, and environmental impact of diverting legacy computers and mobile devices from landfills into productive edge nodes.</p>
 				</div>
 
 				<div class="calc-presets-bar">
 					<span>Quick Presets:</span>
-					<button class="preset-btn active" data-preset="current">Andrew's 7-Node Fleet (Actual)</button>
-					<button class="preset-btn" data-preset="lowpower">Ultra-Low-Power Edge Lab</button>
+					<button class="preset-btn active" data-preset="current">Andrew's 9-Node Fleet (Actual)</button>
+					<button class="preset-btn" data-preset="lowpower">Ultra-Low-Power Mobile &amp; Edge Lab</button>
 					<button class="preset-btn" data-preset="cloud">Full Cloud VM Replacement</button>
 				</div>
 
@@ -506,10 +599,10 @@
 						<div class="control-group">
 							<div class="control-header">
 								<label for="sl-nodes">Salvaged Fleet Nodes</label>
-								<span class="slider-val" id="val-nodes">7 nodes</span>
+								<span class="slider-val" id="val-nodes">9 nodes</span>
 							</div>
-							<input type="range" id="sl-nodes" min="1" max="20" step="1" value="7">
-							<small class="control-hint">Number of reclaimed physical machines actively operating.</small>
+							<input type="range" id="sl-nodes" min="1" max="20" step="1" value="9">
+							<small class="control-hint">Number of reclaimed physical machines and mobile devices actively operating.</small>
 						</div>
 
 						<div class="control-group">
@@ -524,27 +617,27 @@
 						<div class="control-group">
 							<div class="control-header">
 								<label for="sl-cost">Avoided New Hardware Cost (per node)</label>
-								<span class="slider-val" id="val-cost">$450</span>
+								<span class="slider-val" id="val-cost">$380</span>
 							</div>
-							<input type="range" id="sl-cost" min="100" max="1500" step="50" value="450">
-							<small class="control-hint">Cost of buying an equivalent new mini-PC or server.</small>
+							<input type="range" id="sl-cost" min="100" max="1500" step="20" value="380">
+							<small class="control-hint">Cost of buying an equivalent new mini-PC, SBC, or server.</small>
 						</div>
 
 						<div class="control-group">
 							<div class="control-header">
 								<label for="sl-cloud">Cloud Instance Equivalence (per node / mo)</label>
-								<span class="slider-val" id="val-cloud">$25 / mo</span>
+								<span class="slider-val" id="val-cloud">$22 / mo</span>
 							</div>
-							<input type="range" id="sl-cloud" min="5" max="100" step="5" value="25">
-							<small class="control-hint">Monthly cost of a comparable 2vCPU / 4GB RAM cloud VPS.</small>
+							<input type="range" id="sl-cloud" min="5" max="100" step="1" value="22">
+							<small class="control-hint">Monthly cost of a comparable cloud VPS or edge instance.</small>
 						</div>
 
 						<div class="control-group">
 							<div class="control-header">
 								<label for="sl-power">Average Fleet Power Consumption</label>
-								<span class="slider-val" id="val-power">21 W / node</span>
+								<span class="slider-val" id="val-power">17 W / node</span>
 							</div>
-							<input type="range" id="sl-power" min="2" max="150" step="1" value="21">
+							<input type="range" id="sl-power" min="2" max="150" step="1" value="17">
 							<small class="control-hint">Real average power draw across heterogeneous salvaged devices.</small>
 						</div>
 
@@ -562,51 +655,51 @@
 					<div class="calculator-results">
 						<div class="kpi-banner">
 							<span class="kpi-banner-label">Net Financial Savings (After Electricity)</span>
-							<div class="kpi-banner-number" id="roi-net-savings">$9,088</div>
+							<div class="kpi-banner-number" id="roi-net-savings">$10,230</div>
 							<span class="kpi-banner-sub">Total value generated minus operating electrical overhead</span>
 						</div>
 
 						<div class="results-grid">
 							<div class="result-tile">
 								<span class="tile-label">Capital Expense Avoided</span>
-								<strong class="tile-val" id="roi-capex">$3,150</strong>
+								<strong class="tile-val" id="roi-capex">$3,420</strong>
 								<small>Physical replacement hardware saved</small>
 							</div>
 
 							<div class="result-tile">
 								<span class="tile-label">Cloud Hosting Subscriptions Saved</span>
-								<strong class="tile-val" id="roi-cloud">$7,350</strong>
+								<strong class="tile-val" id="roi-cloud">$8,316</strong>
 								<small>Equivalent VPS rental fees over lifespan</small>
 							</div>
 
 							<div class="result-tile">
 								<span class="tile-label">Cumulative Electricity Cost</span>
-								<strong class="tile-val cost-val" id="roi-electric">-$1,412</strong>
+								<strong class="tile-val cost-val" id="roi-electric">-$1,506</strong>
 								<small>Total continuous kilowatt-hours consumed</small>
 							</div>
 
 							<div class="result-tile">
 								<span class="tile-label">Landfill E-Waste Diverted</span>
-								<strong class="tile-val green-val" id="roi-ewaste">22.4 kg</strong>
+								<strong class="tile-val green-val" id="roi-ewaste">24.2 kg</strong>
 								<small>Heavy metals, batteries &amp; plastics reclaimed</small>
 							</div>
 
 							<div class="result-tile">
 								<span class="tile-label">Compute Cycles Harvested</span>
-								<strong class="tile-val" id="roi-hours">214,620 hrs</strong>
+								<strong class="tile-val" id="roi-hours">276,129 hrs</strong>
 								<small>Productive CPU core uptime reclaimed</small>
 							</div>
 
 							<div class="result-tile">
 								<span class="tile-label">Return on Investment (ROI)</span>
-								<strong class="tile-val green-val" id="roi-percentage">643%</strong>
+								<strong class="tile-val green-val" id="roi-percentage">679%</strong>
 								<small>Net financial gain over total operational spend</small>
 							</div>
 						</div>
 
 						<div class="calculator-takeaway">
 							<div class="takeaway-icon">&#128161;</div>
-							<p><strong>The Homelab Sustainability Principle:</strong> By pairing low-overhead Linux kernels (like Alpine and lightweight Mint) with opportunistic thermal engineering (PTM7950 repasting, bare-board air channels), consumer e-waste outperforms budget cloud infrastructure while keeping toxic electronics out of municipal waste streams.</p>
+							<p><strong>The Homelab Sustainability Principle:</strong> By pairing low-overhead Linux kernels with creative physical placements (tethering the S4 Mini directly to the 2011 Mac, open-air bare-board testbenches with 5V USB blowers, and wall-powered legacy media players), discarded consumer silicon outperforms budget cloud hosting while preventing heavy metals and lithium from entering municipal waste streams.</p>
 						</div>
 					</div>
 				</div>
@@ -623,7 +716,7 @@
 					<div class="playbook-card">
 						<div class="playbook-num">01</div>
 						<h3>Phase-Change Thermal Engineering</h3>
-						<p>Liquid and standard silicone pastes pump out under the thermal expansion cycles of 24/7 100% compute loads. Upgrading legacy laptops (such as the 2011 MacBook Pro) with <strong>Honeywell PTM7950 phase-change pads</strong> prevents dry-out and drops sustained core temperatures by 8-12&deg;C indefinitely.</p>
+						<p>Liquid and standard silicone pastes pump out under the thermal expansion cycles of 24/7 100% compute loads. Upgrading legacy laptops (such as the 2011 Mac) with <strong>Honeywell PTM7950 phase-change pads</strong> prevents dry-out and drops sustained core temperatures by 8-12&deg;C indefinitely.</p>
 					</div>
 
 					<div class="playbook-card">
@@ -634,14 +727,14 @@
 
 					<div class="playbook-card">
 						<div class="playbook-num">03</div>
-						<h3>Fire-Safe Battery Elimination</h3>
-						<p>Lithium-ion pouch batteries in retired mobile devices and laptops will swell when held at 100% state-of-charge on constant AC power. Removing internal batteries and hard-wiring regulated 5V/12V DC lines (or replacing with dummy safety resistors) guarantees safe unmonitored homelab operations.</p>
+						<h3>Fire-Safe Battery Elimination &amp; USB Tethering</h3>
+						<p>Lithium-ion pouch batteries in retired mobile devices and laptops will swell when held at 100% state-of-charge on constant AC power. Removing internal batteries and plugging devices directly into host USB lines (like the S4 Mini plugged into the 2011 Mac on the bottom shelf) guarantees safe, unmonitored homelab operations.</p>
 					</div>
 
 					<div class="playbook-card">
 						<div class="playbook-num">04</div>
 						<h3>GLPI IT Asset Management (ITAM)</h3>
-						<p>Tracking 7 heterogeneous machines with distinct maintenance windows requires disciplined asset lifecycle tracking. Integrating hardware specs, service dates, thermal profiles, and IP/MAC allocations into a centralized <strong>GLPI asset management schema</strong> ensures zero undocumented single-points-of-failure.</p>
+						<p>Tracking 9 heterogeneous devices across multiple shelves requires disciplined asset lifecycle tracking. Integrating hardware specs, service dates, thermal profiles, and IP/MAC allocations into a centralized <strong>GLPI asset management schema</strong> ensures zero undocumented single-points-of-failure.</p>
 					</div>
 				</div>
 			</section>
@@ -649,13 +742,13 @@
 
 		<footer>
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-21T12:51:00-05:00">November 21, 2026 at 12:51:00 PM EST</time></p>
-			<p class="footer-version">Version v2.6.415 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p>Website last modified: <time datetime="2026-11-21T14:20:00-05:00">November 21, 2026 at 02:20:00 PM EST</time></p>
+			<p class="footer-version">Version v2.6.416 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
-	<script src="scripts/fleet.js?v=20261120-fleet-1"></script>
+	<script src="scripts/script.js?v=20261121-analogies-1"></script>
+	<script src="scripts/fleet.js?v=20261121-fleet-2"></script>
 </body>
 </html>

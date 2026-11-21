@@ -4,12 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Homelab Incident Response &amp; Chaos Simulator | Andrew Van Ek</title>
-	<meta name="description" content="Interactive systems engineering and incident command simulator: troubleshoot realistic homelab failures, DNS blackholes, serial desyncs, and SCSI bus shifts in a live terminal.">
+	<meta name="description" content="Interactive systems engineering and incident command simulator: troubleshoot realistic homelab failures, DNS blackholes, serial desyncs, and SCSI bus shifts in an authentic browser terminal.">
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261120-nav-1">
-	<link rel="stylesheet" href="css/incident-sim.css?v=20261120-sim-1">
+	<link rel="stylesheet" href="css/incident-sim.css?v=20261121-sim-2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
@@ -78,14 +78,14 @@
 			<header class="sim-header">
 				<div class="sim-eyebrow">Interactive Break-Fix &amp; Root Cause Challenge</div>
 				<h1 class="sim-title">Homelab Incident Response &amp; Chaos Simulator</h1>
-				<p class="sim-subtitle">Theory is easy; troubleshooting real hardware under live pressure is where systems engineering is forged. Step into the shoes of a Solutions Analyst responding to authentic production incidents across Andrew's homelab infrastructure. Inspect syslogs, query DNS endpoints, analyze kernel descriptors, and remediate failures before SLA burns out.</p>
+				<p class="sim-subtitle">Theory is easy—troubleshooting hardware under pressure is where real engineering happens. Step into an authentic terminal console to diagnose and fix real homelab outages: investigate DNS blackholes, recover hung serial communication lines, fix drive mounts after reboot shifts, and prevent thermal shutdowns. Type commands directly, use Up/Down arrows for history, or click suggested diagnostic buttons.</p>
 			</header>
 
 			<!-- Mission Control Telemetry HUD -->
 			<section class="sim-hud">
 				<div class="hud-col">
 					<span class="hud-label">Incident Command Status</span>
-					<div class="hud-status-badge" id="hud-status">STANDBY</div>
+					<div class="hud-status-badge" id="hud-status">ACTIVE INCIDENT</div>
 				</div>
 				<div class="hud-col">
 					<span class="hud-label">Service Level Agreement (SLA)</span>
@@ -97,7 +97,7 @@
 				<div class="hud-col">
 					<span class="hud-label">Active Scenario</span>
 					<select id="scenario-selector" class="sim-scenario-select">
-						<option value="dns_blackhole">Incident 01: DNS Blackhole &amp; Tailscale Inversion</option>
+						<option value="dns_blackhole">Incident 01: DNS Blackhole &amp; Tailscale Conflict</option>
 						<option value="code10_desync">Incident 02: Qualcomm Baseband Serial Hang (Code 10)</option>
 						<option value="scsi_shift">Incident 03: The Ghost Drive: Sabrent SATA Bus Shift</option>
 						<option value="thermal_runaway">Incident 04: 100&deg;C Thermal Throttling on Diffusion Batch</option>
@@ -105,7 +105,7 @@
 					</select>
 				</div>
 				<div class="hud-col actions">
-					<button type="button" class="sim-btn reset" id="btn-reset-scenario">Restart Scenario</button>
+					<button type="button" class="sim-btn reset" id="btn-reset-scenario">&#x21bb; Restart Incident</button>
 				</div>
 			</section>
 
@@ -127,40 +127,48 @@
 					</div>
 
 					<div class="suggested-actions-card">
-						<h4>Suggested Diagnostic Interventions:</h4>
-						<p class="actions-hint">Click a command to run it in the console, or type directly into the terminal below:</p>
+						<h4>Suggested Diagnostics &amp; Actions:</h4>
+						<p class="actions-hint">Click any button below to run it in the terminal, or type commands freely into the prompt:</p>
 						<div class="action-buttons-grid" id="action-buttons">
 							<!-- Populated via JS -->
 						</div>
 					</div>
 
-					<!-- Post-Mortem Report Card (Hidden until solved or failed) -->
+					<!-- Post-Mortem Report Card (Hidden until solved) -->
 					<div class="postmortem-card" id="postmortem-card" style="display: none;">
-						<div class="postmortem-badge" id="postmortem-badge">INCIDENT RESOLVED</div>
-						<h4 id="postmortem-heading">Root Cause Analysis &amp; Prevention Runbook</h4>
+						<div class="postmortem-badge" id="postmortem-badge">&#10004; INCIDENT RESOLVED</div>
+						<h4 id="postmortem-heading">Root Cause Analysis &amp; Permanent Fix</h4>
 						<div id="postmortem-content" class="postmortem-content"></div>
 					</div>
 				</div>
 
-				<!-- Right: Interactive Terminal Console -->
+				<!-- Right: Authentic Interactive Terminal Console -->
 				<div class="sim-terminal-col">
-					<div class="terminal-window">
+					<div class="terminal-window" id="terminal-window">
 						<div class="terminal-titlebar">
 							<div class="terminal-dots">
 								<span class="dot red"></span>
 								<span class="dot yellow"></span>
 								<span class="dot green"></span>
 							</div>
-							<span class="terminal-host" id="terminal-host">avanek@alpinestorage:~</span>
+							<span class="terminal-host" id="terminal-host">avanek@macbook-pro:~</span>
 							<button type="button" class="terminal-clear-btn" id="terminal-clear">Clear</button>
 						</div>
-						<div class="terminal-viewport" id="terminal-viewport">
-							<!-- Logs and outputs stream here -->
+
+						<!-- Scrollable Terminal Body with Inline Active Prompt -->
+						<div class="terminal-screen" id="terminal-screen" tabindex="0">
+							<div class="terminal-history-log" id="terminal-history-log">
+								<!-- Previous outputs and commands stream here -->
+							</div>
+							<div class="terminal-active-line" id="terminal-active-line">
+								<span class="terminal-prompt" id="terminal-prompt">avanek@macbook-pro:~$</span>
+								<input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="" autofocus>
+							</div>
 						</div>
-						<form class="terminal-input-row" id="terminal-form" autocomplete="off">
-							<span class="terminal-prompt" id="terminal-prompt">avanek@alpinestorage:~$</span>
-							<input type="text" id="terminal-input" class="terminal-input" spellcheck="false" placeholder="Type command (or click a suggested button above)..." autofocus>
-						</form>
+
+						<div class="terminal-footer-hint">
+							<span>Tip: Use <kbd>&uarr;</kbd> <kbd>&darr;</kbd> for command history &middot; Type <code>help</code> for options &middot; Click terminal to focus</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -168,13 +176,13 @@
 
 		<footer>
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-21T12:51:00-05:00">November 21, 2026 at 12:51:00 PM EST</time></p>
-			<p class="footer-version">Version v2.6.415 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p>Website last modified: <time datetime="2026-11-21T14:20:00-05:00">November 21, 2026 at 02:20:00 PM EST</time></p>
+			<p class="footer-version">Version v2.6.416 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
-	<script src="scripts/incident-sim.js?v=20261120-sim-1"></script>
+	<script src="scripts/script.js?v=20261121-analogies-1"></script>
+	<script src="scripts/incident-sim.js?v=20261121-sim-2"></script>
 </body>
 </html>
