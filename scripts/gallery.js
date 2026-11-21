@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 166 Workbench Captures across 6 Curated Categories
+ * - 167 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,27 @@
     "use strict";
 
     var galleryItems = [
+        {
+            id: "fat-cluster-carving-storage-reclamation",
+            title: "Digital Forensics Workbench: FAT32/exFAT Cluster Carving & 44 GB Storage Reclamation",
+            category: "security",
+            categoryLabel: "Digital Forensics & Artifacts",
+            badgeClass: "badge-info",
+            image: "images/gallery/forensic-fat-cluster-carving-reclamation.png",
+            thumb: "images/gallery/forensic-fat-cluster-carving-reclamation-thumb.jpg",
+            tags: ["Digital Forensics", "FAT32", "exFAT", "File Carving", "CHKDSK", "Hex Analysis", "Alpine Linux", "Intel NUC"],
+            summary: "Active forensics terminal workbench session on the Alpine Linux NUC analyzing orphaned .CHK cluster chains from Windows CHKDSK, extracting 135 intact photos via low-level SOI/EOI slicing, and reclaiming 42+ GB of network storage.",
+            sandboxObservation: "Andrew and Antigravity AI performed a live digital forensics recovery and storage optimization triage across a 500 GB USB network volume (/media/onefive). The terminal workbench captures the complete forensic lifecycle: dissecting the raw hex stream of FILE0359.CHK (isolating the 0xFFD8FF JPEG Start-of-Image and Exif camera headers from thousands of glued trailing clusters), verifying 135 intact images via Pillow in-memory validation, and proving the successful release of 42 GB of unallocated disk space (+127% free headroom expansion from 33 GB to 75 GB) after purging the corrupted FOUND.000 directory.",
+            technicalBreakdown: "When an ungraceful hardware unmount or power drop severs the File Allocation Table on FAT/exFAT filesystems, Windows <span class=\"tech-term\" data-term=\"chkdsk\">CHKDSK</span> salvages orphan clusters into monolithic .CHK files. Because directory records and EOF markers are missing, chkdsk often bundles adjacent contiguous sectors onto initial headers, artificially bloating photo files into multi-gigabyte blobs. Automated byte-level file carving scans for magic byte delimiters (0xFFD8 to 0xFFD9), validates structural bitmap integrity, and extracts TIFF EXIF timestamps to reconstruct original filenames without evidence corruption.",
+            defensePlaybook: [
+                "Filesystem Clean Unmounts: Always ensure storage volumes are safely unmounted (sync && umount) before physical disconnection to prevent FAT cluster chain severance.",
+                "Signature-Based File Carving: Utilize byte-level boundary carving (SOI/EOI delimiter extraction) rather than relying on filesystem metadata when recovering media from dirty volumes.",
+                "Cryptographic Evidence Verification: Validate carved bitstream integrity using in-memory bitmap decoders and checksums prior to purging recovery dumps."
+            ],
+            containment: "Live digital forensics terminal session executed on stationary Alpine Linux Intel NUC over Tailscale.",
+            credit: "Digital forensics laboratory triage and capture by Andrew Van Ek. Automated carving pipeline, EXIF reconstruction, and case study co-authored with Google DeepMind Antigravity AI."
+        },
+
         {
             id: "antivirus-mcafee-total-protection-device-management",
             title: "Windows 10 endpoint security: McAfee Total Protection device management console on LAPTOP-T3ETLCNT",
