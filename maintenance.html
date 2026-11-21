@@ -4,7 +4,7 @@
 	<head>
 		<title>Maintenance &amp; Experiments | Andrew Van Ek Portfolio</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261103-clock-weather-fix-1">
+		<link rel="stylesheet" href="css/styles.css?v=20261121-nav-fix-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -93,7 +93,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">585 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-21T16:15:00-05:00">November 21, 2026 at 4:15:00 PM EST</time></p>
+<p class="maintenance-updated">586 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-21T18:15:00-05:00">November 21, 2026 at 6:15:00 PM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -448,6 +448,18 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
+<li id="mobile-nav-drawer-accordion-flex-wrap-and-centering-fix"><strong>Mobile navigation drawer accordion flex-wrap wrap &amp; vertical centering defect resolution:</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, diagnosed and resolved a severe mobile navigation usability defect where expanding multi-item dropdown categories&mdash;specifically <em>Systems &amp; Stats</em> (9 links) and <em>AI Labs</em> (8 links)&mdash;from the expanded hamburger menu pushed top navigation links (Home, Projects, Gallery, AI Labs) into the vertical center of the viewport while wrapping the active category and its sublinks horizontally into an inaccessible second column off the right edge of mobile screens (<code>styles.css</code>, <code>script.js</code>).
+<br><br>
+<em>Root-Cause Collision Analysis:</em> Traced the defect to CSS flexbox rule inheritance on <code>nav.tablet-desktop &gt; ul#site-navigation</code>. In the base desktop navigation rules, <code>#site-navigation</code> is configured with <code>display: flex; flex-wrap: wrap; justify-content: center; align-items: center;</code> to center horizontal navbar items across widescreen displays. Within the mobile breakpoint (<code>@media (max-width: 1024px)</code>), the drawer switched to <code>flex-direction: column</code> and applied <code>max-height: calc(100vh - 70px)</code> with <code>overflow-y: auto</code>, but omitted overrides for <code>flex-wrap</code> and <code>justify-content</code>. Consequently:
+(1) <strong>Multi-Column Horizontal Wrapping:</strong> Because <code>flex-wrap: wrap</code> remained active on a vertical flex column with constrained max-height, expanding the 9-item Systems &amp; Stats category caused total list height to exceed the mobile viewport height; rather than scrolling vertically, flexbox broke into a second column placed horizontally at <code>left: 477px</code> (completely off-screen on typical 375px&ndash;430px smartphone viewports).
+(2) <strong>Main-Axis Centering Distortion:</strong> Because <code>justify-content: center</code> remained active along the vertical flex column axis, the items remaining in the first column (Home, Projects, Gallery, AI Labs) were vertically centered down the screen, shifting Home over 170px downward into the middle of the drawer.
+<br><br>
+<em>CSS &amp; JavaScript Remediation:</em>
+(1) Enforced <code>flex-direction: column !important; flex-wrap: nowrap !important; justify-content: flex-start !important; align-items: stretch !important;</code> alongside <code>overflow-x: hidden; overscroll-behavior: contain; max-height: calc(100dvh - 70px);</code> on <code>#site-navigation</code> across all mobile states, guaranteeing a single vertical accordion stream with smooth internal scrolling;
+(2) Added <code>flex-shrink: 0;</code> to list items to prevent flex compression when multiple accordions expand;
+(3) Hardened the mobile auto-collapse scroll listener in <code>scripts/script.js</code>: synchronized <code>lastScrollY</code> on drawer open and added <code>touchstart</code>/<code>touchend</code> interaction detection (<code>navInteracting</code>) to prevent accidental drawer dismissal while swiping or scrolling inside the menu drawer;
+(4) Added smooth auto-scroll into view when toggling accordion items on touch viewports;
+(5) Updated cache busters (<code>v=20261121-nav-fix-1</code>) across all site pages and regenerated the global search index.</li>
 <li id="macsvg-gray-path-color-repair"><strong>macSVG gray path color repair &amp; SVG fundamentals (November 19, 2026):</strong> I reported a darker gray bottom section in an SVG; deleting it left a bite-shaped gap. <strong>ChatGPT / Codex (OpenAI)</strong> inspected the document in macSVG and found that the upper gray path used <code>#D0CFCF</code> and the lower path used <code>#BFC1C1</code>. The assistant set both the lower path's <code>fill</code> and <code>stroke</code> to <code>#D0CFCF</code>, saved the file, and visually verified the matching gray while keeping the complete outline and colored artwork.
 <br><br><em>What I learned:</em> SVG files store drawing instructions as XML text. Paths describe outlines using coordinates and curves; fill and stroke control their appearance. Visually connected areas can be separate shapes, so recoloring the lower path preserved geometry that deletion removed. Vector geometry can be redrawn at different sizes without stretching a fixed pixel grid. I found the connection between editable text and a scalable image fascinating.
 <br><br><em>Collaboration credit:</em> Andrew Van Ek identified the issue, explained the deletion result, requested assistance, and asked about SVG internals. ChatGPT / Codex performed the repair through computer use, explained the format, and wrote this log. <a href="projects.html#macsvg-gray-path-repair">See the follow-up in the existing Local Media Converter project</a>.</li>
@@ -1583,6 +1595,6 @@
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-		<script src="scripts/script.js?v=20261103-clock-weather-fix-1"></script>
+		<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
 	</body>
 </html>

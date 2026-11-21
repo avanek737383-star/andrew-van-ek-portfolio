@@ -85,6 +85,8 @@
 			button.setAttribute("aria-expanded", String(open));
 			if (!open) {
 				closeAllDropdowns();
+			} else {
+				lastScrollY = window.scrollY;
 			}
 		}
 
@@ -112,6 +114,11 @@
 
 				parentItem.classList.toggle("dropdown-open", !wasOpen);
 				toggle.setAttribute("aria-expanded", String(!wasOpen));
+				if (!wasOpen && window.innerWidth <= 1024) {
+					setTimeout(function () {
+						toggle.scrollIntoView({ behavior: "smooth", block: "nearest" });
+					}, 50);
+				}
 			});
 		});
 
@@ -146,11 +153,22 @@
 			}
 		});
 
-		// Auto-collapse mobile drawer if the page is scrolled
+		// Auto-collapse mobile drawer if the page is scrolled (ignore when interacting inside nav drawer)
+		var navInteracting = false;
+		nav.addEventListener("touchstart", function () {
+			navInteracting = true;
+		}, { passive: true });
+		nav.addEventListener("touchend", function () {
+			setTimeout(function () { navInteracting = false; }, 400);
+		}, { passive: true });
+		nav.addEventListener("touchcancel", function () {
+			navInteracting = false;
+		}, { passive: true });
+
 		var lastScrollY = window.scrollY;
 		window.addEventListener("scroll", function () {
 			if (nav.classList.contains("nav-open")) {
-				if (Math.abs(window.scrollY - lastScrollY) > 25) {
+				if (!navInteracting && Math.abs(window.scrollY - lastScrollY) > 30) {
 					setOpen(false);
 				}
 			}
