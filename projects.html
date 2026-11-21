@@ -93,6 +93,114 @@
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Digital Forensics &middot; File Carving &middot; FAT32/exFAT Clusters &middot; EXIF Reconstruction &middot; Storage Reclamation &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
 <div class="project-architecture" aria-label="Digital Forensics Carving Architecture"><span>44 GB Corrupt FOUND.000 (.CHK) Cluster Chains</span><span aria-hidden="true">&rarr;</span><span>Magic Byte Header Triage (SOI / EOI Markers)</span><span aria-hidden="true">&rarr;</span><span>Automated Python/Pillow Signature Carving</span><span aria-hidden="true">&rarr;</span><span>EXIF Datetime &amp; Camera Hardware Reconstruction</span><span aria-hidden="true">&rarr;</span><span>135 Salvaged Photos &amp; 42 GB Net Space Reclaimed</span></div>
 
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">🔬 Forensic Carving &amp; Cluster Deconstruction Pipeline</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">44 GB Corrupt FAT Chains &rarr; Magic Byte Bounding &rarr; EXIF Timestamp Reconstruction &rarr; 42+ GB Reclaimed</span>
+    </div>
+    <span style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Digital Forensics &bull; Python / Pillow</span>
+  </div>
+
+  <svg viewBox="0 0 880 240" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="Digital Forensics Carving and Storage Reclamation Pipeline Diagram">
+    <defs>
+      <linearGradient id="corruptGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#b91c1c" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="triageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="carveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#7e22ce" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="salvageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.08"/>
+      </linearGradient>
+      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+      </marker>
+      <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+      </marker>
+    </defs>
+
+    <!-- Stage 1: Corrupted FOUND.000 -->
+    <rect x="10" y="20" width="180" height="195" rx="10" fill="url(#corruptGrad)" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4 2"/>
+    <text x="100" y="44" fill="#fca5a5" font-size="12" font-weight="700" text-anchor="middle">1. Corrupt Cluster Dump</text>
+    <rect x="25" y="58" width="150" height="24" rx="4" fill="#1e1b2e" stroke="#ef4444" stroke-width="0.8"/>
+    <text x="100" y="74" fill="#f87171" font-size="11" font-weight="600" text-anchor="middle">/FOUND.000 (44 GB)</text>
+    <text x="100" y="102" fill="#94a3b8" font-size="10" text-anchor="middle">&bull; 368 Orphaned .CHK Files</text>
+    <text x="100" y="118" fill="#94a3b8" font-size="10" text-anchor="middle">&bull; Severed FAT Directory Tables</text>
+    <text x="100" y="134" fill="#fca5a5" font-size="10" font-weight="600" text-anchor="middle">&bull; Up to 2.84 GB / file (Glued)</text>
+    <rect x="22" y="160" width="156" height="42" rx="6" fill="#1e131d" stroke="#f87171" stroke-width="0.8"/>
+    <text x="100" y="177" fill="#f87171" font-size="9.5" font-weight="700" text-anchor="middle">CRITICAL CAPACITY</text>
+    <text x="100" y="193" fill="#fca5a5" font-size="10" text-anchor="middle">93% Used &bull; Only 33 GB Free</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="192" y1="117" x2="228" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Stage 2: Magic Byte Triage -->
+    <rect x="232" y="20" width="190" height="195" rx="10" fill="url(#triageGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="327" y="44" fill="#7dd3fc" font-size="12" font-weight="700" text-anchor="middle">2. Magic Byte Triage</text>
+    <rect x="247" y="58" width="160" height="52" rx="6" fill="#0c2238" stroke="#38bdf8" stroke-width="0.8"/>
+    <text x="327" y="76" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">Header Signature Scan</text>
+    <text x="327" y="92" fill="#93c5fd" font-size="9" text-anchor="middle">JPEG: 0xFFD8FF &bull; PNG: 0x89504E</text>
+    <text x="327" y="104" fill="#bae6fd" font-size="9" text-anchor="middle">&rarr; 135 Valid Media Candidates</text>
+    
+    <rect x="247" y="125" width="160" height="42" rx="6" fill="#171e2e" stroke="#64748b" stroke-width="0.8"/>
+    <text x="327" y="141" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="middle">Non-Media Filter</text>
+    <text x="327" y="157" fill="#64748b" font-size="9" text-anchor="middle">233 Partial Blobs (Wii ISOs/Videos)</text>
+
+    <text x="327" y="197" fill="#38bdf8" font-size="9.5" font-weight="600" text-anchor="middle">Binary Stream Boundary Analysis</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="424" y1="117" x2="460" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Stage 3: Low-Level Carving & EXIF -->
+    <rect x="464" y="20" width="195" height="195" rx="10" fill="url(#carveGrad)" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="561" y="44" fill="#d8b4fe" font-size="12" font-weight="700" text-anchor="middle">3. Pillow Carve &amp; EXIF</text>
+    
+    <rect x="477" y="58" width="169" height="34" rx="5" fill="#201138" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="561" y="73" fill="#c084fc" font-size="10" font-weight="700" text-anchor="middle">True EOF Slicing</text>
+    <text x="561" y="86" fill="#e9d5ff" font-size="9" text-anchor="middle">Trim at ÿÙ &bull; Strip Garbage</text>
+
+    <rect x="477" y="98" width="169" height="44" rx="5" fill="#201138" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="561" y="113" fill="#c084fc" font-size="10" font-weight="700" text-anchor="middle">Pillow img.verify()</text>
+    <text x="561" y="126" fill="#e9d5ff" font-size="9" text-anchor="middle">Strict Bitmap Integrity Check</text>
+    <text x="561" y="137" fill="#94a3b8" font-size="8.5" text-anchor="middle">Catch Faulty Streams In-Memory</text>
+
+    <rect x="477" y="148" width="169" height="52" rx="5" fill="#180b2a" stroke="#d8b4fe" stroke-width="0.8"/>
+    <text x="561" y="164" fill="#f3e8ff" font-size="9.5" font-weight="700" text-anchor="middle">EXIF Metadata Mining</text>
+    <text x="561" y="178" fill="#d8b4fe" font-size="8.5" text-anchor="middle">Tags 0x9003 / 0x0132 &bull; Make &amp; Model</text>
+    <text x="561" y="191" fill="#a855f7" font-size="8.5" font-weight="600" text-anchor="middle">Pixel 9, Pixel 7, Note 10+, S21, iPhone 11</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <line x1="661" y1="117" x2="697" y2="117" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+    <!-- Stage 4: Verified Archive & Reclaimed Drive -->
+    <rect x="701" y="20" width="169" height="195" rx="10" fill="url(#salvageGrad)" stroke="#10b981" stroke-width="1.8"/>
+    <text x="785" y="44" fill="#6ee7b7" font-size="12" font-weight="700" text-anchor="middle">4. Reclaimed Storage</text>
+
+    <rect x="712" y="58" width="147" height="42" rx="5" fill="#063223" stroke="#10b981" stroke-width="0.8"/>
+    <text x="785" y="74" fill="#34d399" font-size="10.5" font-weight="700" text-anchor="middle">135 Salvaged Photos</text>
+    <text x="785" y="90" fill="#a7f3d0" font-size="9.5" text-anchor="middle">1.39 GB Total Payload</text>
+
+    <rect x="712" y="106" width="147" height="38" rx="5" fill="#09291e" stroke="#34d399" stroke-width="0.8"/>
+    <text x="785" y="121" fill="#6ee7b7" font-size="9.5" font-weight="600" text-anchor="middle">Clean Canonical Naming</text>
+    <text x="785" y="135" fill="#94a3b8" font-size="8.5" text-anchor="middle">YYYYMMDD_HHMMSS_cam.jpg</text>
+
+    <rect x="712" y="152" width="147" height="50" rx="6" fill="#05281b" stroke="#10b981" stroke-width="1.2"/>
+    <text x="785" y="170" fill="#34d399" font-size="10" font-weight="800" text-anchor="middle">+42 GB RECLAIMED</text>
+    <text x="785" y="184" fill="#a7f3d0" font-size="9" text-anchor="middle">33 GB &rarr; 75 GB Free Space</text>
+    <text x="785" y="196" fill="#6ee7b7" font-size="8.5" font-weight="600" text-anchor="middle">84% Healthy Drive Capacity</text>
+  </svg>
+</div>
+
+
 <p>During an automated storage and content audit of an Intel NUC's 500 GB network-attached USB drive (<code>ONEFIVE</code>), disk capacity was discovered sitting at a precarious 93% utilization (only 33 GB available), threatening upcoming iCloud photo synchronizations. Diagnostic exploration identified a massive 44 GB legacy directory at <code>/media/onefive/FOUND.000</code> holding 368 orphaned <code>FILExxxx.CHK</code> artifacts. While frequently assumed to be empty zero-byte placeholders, binary analysis revealed non-empty data clusters generated by Windows <code>CHKDSK</code> on July 11, 2026 following an ungraceful hardware disconnect. Rather than blindly purging the folder, we treated it as a real-world digital forensics laboratory exercise to audit, carve, and salvage unbacked-up family media before reclaiming disk capacity.</p>
 
 <h3>1. Forensic Triage &amp; Cluster Concatenation Anomalies</h3>
