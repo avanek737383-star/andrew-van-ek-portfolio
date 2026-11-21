@@ -468,3 +468,27 @@
 	font-size: 0.7rem;
 	color: var(--sim-text);
 }
+
+/* Educational Explanations in Terminal */
+.term-output-block.term-explanation {
+	color: #79c0ff;
+	background: rgba(56, 189, 248, 0.08);
+	border-left: 3px solid #38bdf8;
+	padding: 0.55rem 0.85rem;
+	border-radius: 0 6px 6px 0;
+	margin: 0.45rem 0;
+	line-height: 1.55;
+	font-size: 0.84rem;
+}
+
+.btn-cmd-title {
+	font-weight: 700;
+	color: var(--sim-accent);
+}
+
+.btn-cmd-desc {
+	font-size: 0.75rem;
+	color: #8b949e;
+	font-family: 'Inter', sans-serif;
+	margin-top: 0.15rem;
+}

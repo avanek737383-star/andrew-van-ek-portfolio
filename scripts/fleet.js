@@ -104,9 +104,9 @@ const FLEET_DATA = {
 		title: 'Lenovo Yoga 2 11 Bare-Board Rig',
 		os: 'Headless Linux x86_64',
 		power: '~6.2 W',
-		uptime: 'Middle Shelf &middot; Open Testbench',
+		uptime: 'Shelf 3 (Bottom Shelf) &middot; Open Testbench',
 		status: 'ONLINE',
-		workloads: 'Continuous crypto mining and lightweight local utility daemon. Completely open-air testbench rig operating 24/7 on the middle shelf tier without thermal accumulation.',
+		workloads: 'Continuous crypto mining and lightweight local utility daemon. Completely open-air testbench rig operating 24/7 on the bottom shelf tier cooled directly by the 5V USB blower fan.',
 		salvage: 'Rescued from landfill after catastrophic chassis and screen fracture. Motherboard and daughterboard extracted and bench-mounted with a dedicated 5V USB cooling blower fan.',
 		glpi: {
 			tag: 'HL-NODE-02-YOGA-BB',
@@ -119,10 +119,10 @@ const FLEET_DATA = {
 	},
 	'hp15': {
 		tag: 'HL-NODE-04-HP15',
-		title: 'Legacy HP Laptop 15 Workhorse',
+		title: 'HP Laptop 15 Workhorse (Free HP Laptop, not Fishbeck)',
 		os: 'Linux Mint 21 (Cinnamon)',
 		power: '~24.0 W',
-		uptime: 'Top Bench Surface (98.9%)',
+		uptime: 'Shelf 2 (Middle Shelf) &middot; (98.9%)',
 		status: 'ONLINE',
 		workloads: 'Continuous local diffusion batch image generation running Realistic Vision 5.1 with LCM LoRA 4-step sampling, background mining, and persistent Rclone Google Drive cloud sync.',
 		salvage: 'Repurposed domestic laptop. Configured with headless automated startup daemons and thermal-throttled thread concurrency limits for non-stop generative workflows.',
@@ -137,10 +137,10 @@ const FLEET_DATA = {
 	},
 	'dell': {
 		tag: 'HL-NODE-05-DELLTWR',
-		title: 'Dell Inspiron Desktop ("Hopes & Dreams")',
+		title: 'HOMEDELL 2 (Dell Inspiron &middot; "Hopes & Dreams")',
 		os: 'Custom Slax Linux (Live USB)',
 		power: '~38.0 W',
-		uptime: 'Top Bench Surface (97.6%)',
+		uptime: 'Shelf 2 (Middle Shelf) &middot; (97.6%)',
 		status: 'ONLINE',
 		workloads: 'Batch image generation and crypto mining operating entirely in RAM off a customized Slax USB live drive with persistence overlay. Zero spinning mechanical drive dependency.',
 		salvage: 'Resurrected surplus office desktop tower following primary hard drive failure. Configured to boot completely into RAM overlay, eliminating disk wear and surviving sudden power interrupts.',
@@ -153,12 +153,84 @@ const FLEET_DATA = {
 			net: 'Gigabit Onboard Ethernet'
 		}
 	},
+	'onefive': {
+		tag: 'HL-STOR-01-ONEFIVE',
+		title: 'ONEFIVE Network Storage & Mac VM Target',
+		os: 'Sabrent USB 3.0 SATA Enclosure / ext4',
+		power: '~4.5 W',
+		uptime: 'Shelf 1 (Top Shelf) &middot; USB 3.0 Bus',
+		status: 'ONLINE',
+		workloads: 'Direct central storage pool for fleet backups, image generation dataset staging, and mapped Y: drive target for macOS virtual machine workflows.',
+		salvage: 'High-speed external enclosure housing repurposed high-capacity SATA media, persistent UUID mount to prevent drive lettering drifts during host reboots.',
+		glpi: {
+			tag: 'HL-STOR-01-ONEFIVE',
+			cat: 'Direct Attached Storage / Backup Pool',
+			state: 'In Production / Reliable',
+			depr: 'Zero Net Book Value ($0 Reclaim)',
+			service: '2026-11-21 (UUID & SMART Verified)',
+			net: 'USB 3.0 SuperSpeed / LAN Share'
+		}
+	},
+	'floppy': {
+		tag: 'HL-PERIPH-01-FLOPPY',
+		title: '3.5" USB Floppy Drive Reader & Optical Media Hub',
+		os: 'USB Mass Storage Class (UFI)',
+		power: '~1.5 W (Active Seek)',
+		uptime: 'Shelf 2 (Middle Shelf) &middot; On Demand',
+		status: 'STANDBY',
+		workloads: 'Legacy magnetic diskette recovery, CIS retro media archiving, and CD/DVD physical digitization staging for class curriculum.',
+		salvage: 'Vintage 3.5-inch USB floppy drive reader paired with retro optical CD storage spindle on the middle shelf for hands-on legacy media preservation.',
+		glpi: {
+			tag: 'HL-PERIPH-01-FLOPPY',
+			cat: 'Legacy Media Forensics & Digitization',
+			state: 'In Service / Functional',
+			depr: 'Historical Peripheral Asset',
+			service: '2026-11-21 (Head Cleaning & Alignment)',
+			net: 'Direct USB Host Bus'
+		}
+	},
+	'usbfan': {
+		tag: 'HL-COOL-01-USBFAN',
+		title: '5V USB Blower Fan (Active Yoga Cooling)',
+		os: 'DC 5V Physical Bus (Mac 2011 Powered)',
+		power: '~1.8 W',
+		uptime: 'Shelf 3 (Bottom Shelf) &middot; 24/7 Continuous',
+		status: 'ONLINE',
+		workloads: 'Direct forced-air cooling over the bare-board Lenovo Yoga 2 11 motherboard and daughterboard heatsinks, preventing thermal throttling during 24/7 crypto mining.',
+		salvage: 'External 5V high-CFM blower fan positioned directly adjacent to the stripped Yoga motherboard heatsink, powered entirely through the Debian 2011 Mac\'s rear USB port.',
+		glpi: {
+			tag: 'HL-COOL-01-USBFAN',
+			cat: 'Active Thermal Auxiliary System',
+			state: 'In Production / Continuous Run',
+			depr: 'Salvage Cooling Equipment',
+			service: '2026-11-21 (Bearing & Airflow Audit)',
+			net: 'Hardwired 5V USB Power Circuit'
+		}
+	},
+	'bluefruit': {
+		tag: 'HL-MCU-01-BLUEFRUIT',
+		title: 'Adafruit Circuit Playground Bluefruit',
+		os: 'CircuitPython / Bare-Metal nRF52840',
+		power: '~0.4 W',
+		uptime: 'Raised Tier &middot; USB Powered',
+		status: 'ONLINE',
+		workloads: 'Telemetry beaconing, environmental temperature and light sensing for the rack enclosure, and Bluetooth Low Energy (BLE) peripheral experimentation.',
+		salvage: 'Educational microcontroller board mounted alongside the NUC on the raised back tier, providing hardware sensor monitoring and visual status NeoPixels.',
+		glpi: {
+			tag: 'HL-MCU-01-BLUEFRUIT',
+			cat: 'Microcontroller / Environmental Sensor',
+			state: 'Active Testbench / IoT',
+			depr: 'Educational Hardware Asset',
+			service: '2026-11-21 (Firmware 8.x Flashed)',
+			net: 'USB Serial CDC + Bluetooth LE'
+		}
+	},
 	'winws': {
 		tag: 'HL-NODE-07-WINWS',
-		title: 'Windows Multi-Role Laptop Workstation',
+		title: 'FREEHPGAMER from Fishbeck (Windows 11 Workstation)',
 		os: 'Windows 11 Pro (x86_64)',
 		power: '~45.0 W (Dynamic)',
-		uptime: 'Top Bench Surface (99.2%)',
+		uptime: 'Shelf 1 (Top Shelf / Desk Surface) &middot; (99.2%)',
 		status: 'ONLINE',
 		workloads: 'Folding@home molecular dynamics simulations, burst crypto mining, physical optical media archiving / DVD ripping, and local CIS virtualization hypervisor (Hyper-V).',
 		salvage: 'Hybrid academic workstation: dynamically schedules distributed medical research and mining workloads during idle hours while providing immediate hardware access for CIS coursework.',
@@ -267,11 +339,15 @@ function applyThermalOverlay() {
 		'ypgi1': '#166534',
 		'ipodtouch': '#166534',
 		'yoga': '#15803d',
+		'usbfan': '#0284c7',
 		'mbp2011': '#b45309',
 		'hp15': '#c2410c',
 		'dell': '#b91c1c',
+		'floppy': '#475569',
+		'onefive': '#0369a1',
+		'winws': '#dc2626',
 		'nuc': '#15803d',
-		'winws': '#dc2626'
+		'bluefruit': '#10b981'
 	};
 	document.querySelectorAll('.svg-node-group').forEach(group => {
 		const node = group.getAttribute('data-node');
