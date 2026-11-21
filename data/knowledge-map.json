@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 87,
-    "totalNodes": 270,
-    "totalLinks": 553,
+    "totalProjects": 88,
+    "totalNodes": 271,
+    "totalLinks": 556,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,27 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "muse-meta-account-mismatch-title",
+      "name": "Muse on macOS: Resolving a Meta Account Mismatch in Chrome",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 16,
+      "color": "#c084fc",
+      "summary": "Opening Muse > Settings > General > Meta Account launched Chrome, but Accounts Center reported that the browser was signed into a different Meta account from the Muse desktop app. The goal was to reach settings for the account already active in the Mac app while keeping that a...",
+      "tech": [
+        "Muse",
+        "Chrome",
+        "Meta Account Troubleshooting",
+        "OpenAI Codex"
+      ],
+      "tasks": [],
+      "url": "projects.html#muse-meta-account-mismatch-title"
     },
     {
       "id": "fishdepth-marine-chartplotter-title",
@@ -1821,23 +1842,23 @@
     },
     {
       "id": "ai-sheet-music-video-engine-title",
-      "name": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving & Real-Time Dynamic Inverted Melody Spotlight Engine",
+      "name": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving, 5-Voice Drum Set Integration & Dynamic Sequential Melody Spotlight Engine",
       "type": "project",
       "domain": "media-creative",
       "domainName": "Audio, Video & Creative",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 17, 2026",
+      "date": "November 21, 2026",
       "val": 24,
       "color": "#2dd4bf",
       "summary": "Exploring the intersection of generative AI music and traditional notation, I produced a series of dynamic big band and swing compositions (\u201cSwingin' in the Moonlight\u201d) using Suno AI. Rather than releasing static waveform videos or bouncing-ball lyric animations, I wanted to s...",
       "tech": [
         "Basic Pitch (CoreML)",
+        "Multi-Band Drum DSP",
         "MuseScore 4 CLI",
         "MusicXML",
-        "OpenCV / PIL",
-        "FFmpeg VideoToolbox",
-        "Apple Silicon"
+        "spos Notehead Tracking",
+        "OpenCV / PIL"
       ],
       "tasks": [
         {
@@ -1846,15 +1867,15 @@
         },
         {
           "title": "Neural Polyphonic Pitch to MIDI (Spotify Basic Pitch on CoreML)",
-          "desc": "Each instrumental stem is passed directly to Spotify's Basic Pitch polyphonic neural network serialized for Apple CoreML, extracting note on..."
+          "desc": "Each melodic stem is passed directly to Spotify's Basic Pitch polyphonic neural network serialized for Apple CoreML, extracting note onsets,..."
         },
         {
-          "title": "Multi-Track Instrumental Assembly (Mido Type 1)",
-          "desc": "Individual MIDI stems are merged into a synchronized multi-track MIDI file with standardized General MIDI patches: Brass & Winds (Track 0 / ..."
+          "title": "Multi-Band Transient Drum DSP & MIDI Mapping",
+          "desc": "To capture unpitched percussion transients that defeat pitch-based models, we engineered a dedicated multi-band DSP filter bank in Python us..."
         },
         {
-          "title": "Sub-Pixel Column Ink Barline Snapping",
-          "desc": "MuseScore's raw .mpos coordinate metadata includes variable padding that diverges from visual barlines by 2 to 14 pixels. We developed a Num..."
+          "title": "5-Track Instrumental Assembly (Mido Type 1)",
+          "desc": "Individual MIDI stems are merged into a synchronized 5-track master score: Brass & Winds (Track 0 / Program 61), Jazz Guitar (Track 1 / Prog..."
         }
       ],
       "url": "projects.html#ai-sheet-music-video-engine-title"
@@ -1863,7 +1884,7 @@
       "id": "task-ai-sheet-music-video-engine-title-0",
       "name": "Acoustic Stem Separation (Demucs v4 on Apple MPS)",
       "type": "task",
-      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving & Real-Time Dynamic Inverted Melody Spotlight Engine",
+      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving, 5-Voice Drum Set Integration & Dynamic Sequential Melody Spotlight Engine",
       "parentId": "ai-sheet-music-video-engine-title",
       "status": "completed",
       "val": 5,
@@ -1875,36 +1896,36 @@
       "id": "task-ai-sheet-music-video-engine-title-1",
       "name": "Neural Polyphonic Pitch to MIDI (Spotify Basic Pitch on CoreML)",
       "type": "task",
-      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving & Real-Time Dynamic Inverted Melody Spotlight Engine",
+      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving, 5-Voice Drum Set Integration & Dynamic Sequential Melody Spotlight Engine",
       "parentId": "ai-sheet-music-video-engine-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Each instrumental stem is passed directly to Spotify's Basic Pitch polyphonic neural network serialized for Apple CoreML, extracting note on...",
+      "summary": "Each melodic stem is passed directly to Spotify's Basic Pitch polyphonic neural network serialized for Apple CoreML, extracting note onsets,...",
       "url": "projects.html#ai-sheet-music-video-engine-title"
     },
     {
       "id": "task-ai-sheet-music-video-engine-title-2",
-      "name": "Multi-Track Instrumental Assembly (Mido Type 1)",
+      "name": "Multi-Band Transient Drum DSP & MIDI Mapping",
       "type": "task",
-      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving & Real-Time Dynamic Inverted Melody Spotlight Engine",
+      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving, 5-Voice Drum Set Integration & Dynamic Sequential Melody Spotlight Engine",
       "parentId": "ai-sheet-music-video-engine-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Individual MIDI stems are merged into a synchronized multi-track MIDI file with standardized General MIDI patches: Brass & Winds (Track 0 / ...",
+      "summary": "To capture unpitched percussion transients that defeat pitch-based models, we engineered a dedicated multi-band DSP filter bank in Python us...",
       "url": "projects.html#ai-sheet-music-video-engine-title"
     },
     {
       "id": "task-ai-sheet-music-video-engine-title-3",
-      "name": "Sub-Pixel Column Ink Barline Snapping",
+      "name": "5-Track Instrumental Assembly (Mido Type 1)",
       "type": "task",
-      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving & Real-Time Dynamic Inverted Melody Spotlight Engine",
+      "parentProject": "Autonomous AI Sheet Music Video Pipeline: Multi-Stem Demucs Isolation, CoreML Pitch Transcription, MuseScore Freeflow Engraving, 5-Voice Drum Set Integration & Dynamic Sequential Melody Spotlight Engine",
       "parentId": "ai-sheet-music-video-engine-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "MuseScore's raw .mpos coordinate metadata includes variable padding that diverges from visual barlines by 2 to 14 pixels. We developed a Num...",
+      "summary": "Individual MIDI stems are merged into a synchronized 5-track master score: Brass & Winds (Track 0 / Program 61), Jazz Guitar (Track 1 / Prog...",
       "url": "projects.html#ai-sheet-music-video-engine-title"
     },
     {
@@ -4780,6 +4801,24 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "muse-meta-account-mismatch-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "muse-meta-account-mismatch-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "muse-meta-account-mismatch-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "fishdepth-marine-chartplotter-title",

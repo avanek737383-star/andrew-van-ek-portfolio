@@ -88,6 +88,30 @@
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
 
+<section class="project-entry" aria-labelledby="muse-meta-account-mismatch-title">
+<h2 id="muse-meta-account-mismatch-title">Muse on macOS: Resolving a Meta Account Mismatch in Chrome</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>macOS &middot; Muse &middot; Chrome &middot; Meta Account Troubleshooting &middot; OpenAI Codex &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<p>Opening <strong>Muse &gt; Settings &gt; General &gt; Meta Account</strong> launched Chrome, but Accounts Center reported that the browser was signed into a different Meta account from the Muse desktop app. The goal was to reach settings for the account already active in the Mac app while keeping that app signed in.</p>
+
+<h3>What we troubleshot</h3>
+<p>Signing out of Facebook and the Muse website had not resolved the mismatch. Codex inspected the app and browser interfaces and confirmed that a separate Meta browser session was still active. The inspected Muse settings did not display the app account's email, and the Meta Account button kept opening the mismatched browser session. Codex signed out of that Meta browser session and reopened the account link from Muse to reach a fresh Meta login screen.</p>
+
+<h3>Confirmed workflow: phone number, then the profile with no picture</h3>
+<ol>
+<li>Keep the existing <strong>Muse Mac app</strong> session signed in.</li>
+<li>Open <strong>Settings &gt; General &gt; Meta Account</strong> in Muse. If Chrome reports a mismatch, sign out of the separate Meta browser session and reopen the link from the app.</li>
+<li>At the Meta login screen, use <strong>phone number</strong> to sign in.</li>
+<li>When Meta indicates that multiple accounts are associated with that phone number, select the account labeled <strong>Meta Account</strong> with <strong>NO PROFILE PICTURE</strong>. This was the matching account in this setup.</li>
+<li>Reopen <strong>Muse &gt; Settings &gt; General &gt; Meta Account</strong>. Andrew confirmed that account settings loaded correctly with no mismatch message.</li>
+</ol>
+
+<p><strong>Result:</strong> Access to the correct Meta account settings was restored, and the original Muse desktop session remained signed in. The useful distinction was the selected Meta account, rather than the Chrome browser profile or whether Facebook was logged out. The no-picture account is a recognition cue for this setup, not a universal rule for Meta accounts.</p>
+<p><strong>Privacy:</strong> This entry uses the generic phrase <em>phone number</em> and omits the actual number, email addresses, account identifiers, and authentication links.</p>
+<p class="credit"><strong>AI collaboration credit:</strong> Troubleshooting and documentation completed with <strong>OpenAI Codex</strong>. Codex inspected the visible settings and mismatch, identified the separate browser Meta session, signed it out, and prepared this sanitized project entry. <strong>Andrew</strong> completed the successful phone-number login, selected the Meta Account with no profile picture, and confirmed the fix.</p>
+<ul class="chips"><li>Muse</li><li>macOS</li><li>Meta Account</li><li>Chrome</li><li>Account Troubleshooting</li><li>Phone Number Login</li><li>OpenAI Codex</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="fishdepth-marine-chartplotter-title">
 <h2 id="fishdepth-marine-chartplotter-title">FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake &amp; Nav Channel Depths with Dead-Reckoning Compass Engine</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Alpine Linux NUC &middot; OpenRC &middot; Leaflet.js &middot; NOAA &amp; Michigan DNR GIS Bathymetry &middot; Grand River Channel Depths &middot; Dead-Reckoning Gyro Compass &middot; DeviceOrientation API &middot; Wake Lock API &middot; Tailscale HTTPS :8446 &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
