@@ -853,3 +853,151 @@
 .shelf-model-text strong {
 	color: #f1f5f9;
 }
+
+/* 3D Digital Twin Viewport & Camera Toolbar */
+.view-mode-toggle-bar {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 14px;
+}
+
+.view-toggle-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 8px 16px;
+	border-radius: 999px;
+	font-size: 0.82rem;
+	font-weight: 600;
+	background: #0f172a;
+	color: #94a3b8;
+	border: 1px solid #1e293b;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.view-toggle-pill:hover {
+	color: #f8fafc;
+	border-color: #38bdf8;
+}
+
+.view-toggle-pill.active {
+	background: rgba(56, 189, 248, 0.12);
+	color: #38bdf8;
+	border-color: #38bdf8;
+	box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+.fleet-3d-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+	background: #0f172a;
+	border: 1px solid #1e293b;
+	border-radius: 10px;
+	padding: 9px 14px;
+	margin-bottom: 12px;
+}
+
+.camera-presets-group {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.toolbar-label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: #64748b;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.camera-preset-btn {
+	padding: 5px 11px;
+	background: #1e293b;
+	border: 1px solid #334155;
+	border-radius: 6px;
+	color: #cbd5e1;
+	font-size: 0.76rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.camera-preset-btn:hover {
+	background: #334155;
+	color: #fff;
+	border-color: #38bdf8;
+}
+
+.camera-preset-btn.active {
+	background: #0284c7;
+	color: #fff;
+	border-color: #38bdf8;
+}
+
+.toolbar-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.controls-hint {
+	font-size: 0.72rem;
+	color: #94a3b8;
+	font-family: 'Inter', sans-serif;
+}
+
+.camera-reset-pill {
+	padding: 4px 10px;
+	background: transparent;
+	border: 1px solid #334155;
+	border-radius: 6px;
+	color: #94a3b8;
+	font-size: 0.74rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.camera-reset-pill:hover {
+	color: #f8fafc;
+	border-color: #64748b;
+	background: #1e293b;
+}
+
+.fleet-3d-wrapper {
+	width: 100%;
+	height: 560px;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #090d16;
+	border: 1px solid #1e293b;
+	position: relative;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+#fleet-3d-canvas {
+	width: 100%;
+	height: 100%;
+	display: block;
+	touch-action: none;
+}
+
+@media (max-width: 768px) {
+	.fleet-3d-wrapper {
+		height: 420px;
+	}
+	.controls-hint {
+		display: none;
+	}
+	.fleet-3d-toolbar {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+}

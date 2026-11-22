@@ -596,6 +596,50 @@
 							</div>
 						</div>
 
+												<!-- Card 7: Microcontroller RAM Heap (CircuitPython nRF52840) -->
+						<div class="telemetry-card" title="Active CircuitPython SRAM memory heap load and dynamic allocation on the Nordic nRF52840 microcontroller.">
+							<div class="telemetry-card-top">
+								<div class="telemetry-header-bar">
+									<div class="telemetry-icon-box" aria-hidden="true">
+										<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+									</div>
+									<span class="telemetry-chip tech-term" data-term="microcontroller-heap">nRF52840 RAM</span>
+								</div>
+								<span class="telemetry-label">Microcontroller RAM Heap</span>
+							</div>
+							<div class="telemetry-value-wrap">
+								<strong class="telemetry-value" id="stat-edge-ram-pct">19%</strong>
+								<span class="telemetry-unit">RAM Load</span>
+							</div>
+							<div class="telemetry-meter" aria-hidden="true"><div class="telemetry-meter-bar" id="stat-edge-ram-bar" style="background: linear-gradient(90deg, #99f6e4, #38bdf8); width: 19%;"></div></div>
+							<div class="telemetry-detail">
+								<span class="telemetry-sub" id="stat-edge-ram-detail">25.7 KB utilized of 160 KB total SRAM</span>
+								<p class="telemetry-explainer">Monitors active CircuitPython object allocations and garbage collector headroom to ensure uninterrupted 24/7 multisensor telemetry and mining execution.</p>
+							</div>
+						</div>
+
+						<!-- Card 8: Desk Physical Stability (LIS3DH Accelerometer) -->
+						<div class="telemetry-card" title="Real-time 3-axis accelerometer measuring desk resting stability, vibration, and chassis movement.">
+							<div class="telemetry-card-top">
+								<div class="telemetry-header-bar">
+									<div class="telemetry-icon-box" aria-hidden="true">
+										<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+									</div>
+									<span class="telemetry-chip tech-term" data-term="lis3dh">LIS3DH Motion</span>
+								</div>
+								<span class="telemetry-label">Desk Physical Stability</span>
+							</div>
+							<div class="telemetry-value-wrap">
+								<strong class="telemetry-value" id="stat-edge-accel">1.00</strong>
+								<span class="telemetry-unit">G (Resting)</span>
+							</div>
+							<div class="telemetry-meter" aria-hidden="true"><div class="telemetry-meter-bar" id="stat-edge-accel-bar" style="background: linear-gradient(90deg, #10b981, #06b6d4); width: 50%;"></div></div>
+							<div class="telemetry-detail">
+								<span class="telemetry-sub" id="stat-edge-accel-detail">1.00g Normal Gravitational Resting Field</span>
+								<p class="telemetry-explainer">Detects physical workbench vibrations, testbench bumps, and shelf stability using the high-precision onboard STMicroelectronics 3-axis accelerometer.</p>
+							</div>
+						</div>
+
 						<!-- Card 5: Scam Defense AI Telemetry -->
 						<div class="telemetry-card" title="Supervised local AI telephone counter-operations engaging fraud networks and wasting boiler-room resources.">
 							<div class="telemetry-card-top">
@@ -778,11 +822,12 @@
 
 		<footer>
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-21T12:51:00-05:00">November 21, 2026 at 12:51:00 PM EST</time></p>
-				<p class="footer-version">Version v2.6.356 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p>Website last modified: <time datetime="2026-11-22T14:47:00-05:00">November 22, 2026 at 02:47:00 PM EST</time></p>
+				<p class="footer-version">Version v2.6.418 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
+	<script src="scripts/room-sensors.js" defer></script>
 	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
 </body>
 </html>

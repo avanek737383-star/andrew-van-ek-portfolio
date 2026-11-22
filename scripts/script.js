@@ -1291,7 +1291,7 @@
 			title: "TeleGeography Telecom Cartography",
 			analogy: "An international oceanographic atlas that meticulously maps every underwater shipping lane, lighthouse, and port across all seven seas.",
 			techFact: "TeleGeography is the industry-standard telecommunications market research and cartography firm that tracks global submarine cables, landing stations, bandwidth pricing, and international fiber routes."
-		}
+		},
 	
 		"fast-pair-uuid": {
 			title: "Fast Pair UUID 0xFE2C (Bluetooth Handshake Badge)",

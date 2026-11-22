@@ -3305,6 +3305,177 @@
             ],
             containment: "Isolated within disposable <span class=\"tech-term\" data-term=\"windows-sandbox\">Windows Sandbox</span> session (WDAGUtilityAccount).",
             credit: "Sandbox capture and malware forensics by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-wall-ledge-phones-rack-offset",
+            title: "Homelab Architecture: Built-in Architectural Wall Ledge & Freestanding Rack Offset",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-wall-ledge-phones-rack-offset.jpg",
+            thumb: "images/gallery/approved3/homelab-wall-ledge-phones-rack-offset-thumb.jpg",
+            tags: ["Wall Ledge", "Homelab Architecture", "Spatial Layout", "Mobile Mining", "Dual Tier"],
+            summary: "Establishing the physical relationship between the recessed built-in wall ledge and the freestanding wooden compute rack.",
+            sandboxObservation: "High-angle view of the upper wall ledge stepping down approximately 3.5 inches below the top shelf of the freestanding wooden rack. On the ledge, a retro docking stand holds an active Android handset running a mining loop, alongside a desktop USB fan and a mobile gaming controller clamp. The freestanding laptop sits to the right on an elevated wire cooling grid.",
+            technicalBreakdown: "Diverting low-power mobile compute away from main server surfaces onto an architectural wall ledge isolates ambient heat and minimizes desk footprint while maintaining convenient physical access to touchscreens and USB charging lines.",
+            defensePlaybook: [
+                "Architectural Integration: Utilizes existing built-in wall ledges for zero-footprint accessory and mobile device staging.",
+                "Airflow Isolation: Keeps mobile charging heat sources away from high-density laptop and tower chassis."
+            ],
+            containment: "Documented in live homelab spatial walkthrough by Andrew Van Ek.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-freestanding-rack-hp-nuc",
+            title: "Freestanding Homelab Rack: Upper Tiers with FREEHPGAMER Workstation & Modular NUC Mount",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-freestanding-rack-hp-nuc.jpg",
+            thumb: "images/gallery/approved3/homelab-freestanding-rack-hp-nuc-thumb.jpg",
+            tags: ["HP Laptop", "FREEHPGAMER", "Intel NUC", "Modular Blocks", "Rack Tiers"],
+            summary: "Front elevation of the top two shelves of the light-wood freestanding rack housing primary workstations and the modular sensor mount.",
+            sandboxObservation: "The top shelf holds the high-performance silver HP workstation laptop (FREEHPGAMER from Fishbeck) elevated on a white wire riser for bottom intake airflow. To its right, a custom structure assembled from colorful plastic snap-cubes supports the Sabrent external storage enclosure, elevating the Adafruit sensor board above the Intel NUC. The middle shelf below houses the secondary black HP 15 laptop.",
+            technicalBreakdown: "Elevating laptop chassis on wire grids improves passive convective airflow across bottom intake vents by eliminating thermal boundary layers against solid wooden surfaces.",
+            defensePlaybook: [
+                "Thermal Elevation: White wire riser elevates laptop base, dropping idle component temperatures by up to 4°C.",
+                "Modular Rigging: Interlocking plastic cubes provide vibration-dampened non-conductive open-air framing."
+            ],
+            containment: "Active homelab production rack tier.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-intel-nuc-neopixels-bluefruit",
+            title: "Telemetry Beacon: Adafruit Circuit Playground Bluefruit NeoPixel Ring & Headless Intel NUC",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-intel-nuc-neopixels-bluefruit.jpg",
+            thumb: "images/gallery/approved3/homelab-intel-nuc-neopixels-bluefruit-thumb.jpg",
+            tags: ["Circuit Playground Bluefruit", "NeoPixel", "Intel NUC", "Telemetry", "nRF52840"],
+            summary: "Close-up of the Adafruit Circuit Playground Bluefruit microcontroller with active circular NeoPixel LEDs mounted on modular cubes atop the Intel NUC.",
+            sandboxObservation: "The round Adafruit Bluefruit board glows with vibrant purple and cyan NeoPixels arranged in a circular perimeter ring. It sits on a white mounting plate cradled by interlocking blue, green, and yellow snap-cubes directly over the brushed silver and black chassis of the Intel NUC, with yellow Ethernet and power cables leading out.",
+            technicalBreakdown: "The Nordic nRF52840 ARM Cortex-M4F microcontroller samples ambient light, sound, acceleration, and temperature, driving PWM color feedback to its onboard 10-LED NeoPixel ring while simultaneously hashing cryptocurrency shares.",
+            defensePlaybook: [
+                "Edge Telemetry: Onboard sensors stream real-time workspace environmental metrics directly to web dashboard.",
+                "Hardware Status Beacon: Circular NeoPixel illumination provides immediate visual state confirmation without display monitors."
+            ],
+            containment: "Central LAN DNS and telemetry backbone node.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-navy-blue-usbc-hub-dell-receivers",
+            title: "Fleet Peripheral Gateway: Navy Blue Multiport USB-C Hub with Dual 2.4 GHz RF Receivers",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-navy-blue-usbc-hub-dell-receivers.jpg",
+            thumb: "images/gallery/approved3/homelab-navy-blue-usbc-hub-dell-receivers-thumb.jpg",
+            tags: ["USB-C Hub", "Dell Inspiron", "Wireless Receivers", "Peripheral Gateway", "KVM Access"],
+            summary: "Close-up of the navy blue aluminum USB-C hub resting atop the Dell Inspiron chassis, equipped with two black wireless dongles.",
+            sandboxObservation: "A navy blue multiport hub with an integrated flexible USB cable lies across the matte black top of the Dell Inspiron PC case. Two low-profile black 2.4 GHz wireless USB receivers are inserted into its side ports, serving as a quick-connect input bridge for wireless keyboards and mice across adjacent workstations.",
+            technicalBreakdown: "Centralizing RF dongles on an easily swappable multi-bus hub allows instantaneous reassignment of human interface devices (HID) across heterogeneous towers and laptops without physically reaching into cramped rear motherboard I/O panels.",
+            defensePlaybook: [
+                "Rapid Peripheral Handoff: Eliminates multiple physical keyboards/mice across testbench nodes.",
+                "Accessible Port Hub: Prevents mechanical strain on chassis native USB receptacles."
+            ],
+            containment: "Workbench input distribution hub.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-dell-inspiron-slax-ram-usb",
+            title: "Diskless RAM Compute: Dell Inspiron PC with Silver Slax Live Persistence Boot USB",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-dell-inspiron-slax-ram-usb.jpg",
+            thumb: "images/gallery/approved3/homelab-dell-inspiron-slax-ram-usb-thumb.jpg",
+            tags: ["Dell Inspiron", "Slax Linux", "Diskless Boot", "Live USB", "RAM Compute"],
+            summary: "Front panel of the horizontal Dell Inspiron tower operating diskless Linux from a front-mounted silver USB drive.",
+            sandboxObservation: "The glossy black and chrome Dell Inspiron chassis lies horizontally on the middle shelf tier. Inserted into its front lower USB port is a sleek silver metal flash drive running custom Slax Linux loaded entirely into system RAM, bypassing internal spinning hard drive wear and surviving power interruptions without filesystem corruption.",
+            technicalBreakdown: "Slax utilizes a compressed squashfs root filesystem copied directly into RAM at boot with a tmpfs/overlayfs writable layer, enabling zero-disk I/O operations and silent 24/7 volunteer computing.",
+            defensePlaybook: [
+                "Diskless Architecture: Eliminates hard drive failure points on salvaged desktop hardware.",
+                "Immutable Core OS: System state resets cleanly on power cycle with overlay persistence."
+            ],
+            containment: "HOMEDELL 2 RAM computing node.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-debian-2011-mac-unibody-battery-bay",
+            title: "Bottom Shelf Server Anchor: Mid-2011 MacBook Pro Unibody with Battery Bay & Gigabit LAN",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-debian-2011-mac-unibody-battery-bay.jpg",
+            thumb: "images/gallery/approved3/homelab-debian-2011-mac-unibody-battery-bay-thumb.jpg",
+            tags: ["MacBook Pro 2011", "Debian Linux", "Battery Removal", "Gigabit Ethernet", "PTM7950"],
+            summary: "The rescued 2011 Apple unibody laptop running Debian 12 on the bottom shelf, showing the open battery bay and active Gigabit Ethernet link.",
+            sandboxObservation: "A 13-inch aluminum unibody MacBook Pro (Mid-2011, A1278) rests on the bottom wooden shelf. The internal battery was cleanly removed for desktop fire safety and continuous wall-tethered operation, leaving an open cavity visible beneath the trackpad. An amber/yellow Cat6 Ethernet cable is plugged into the left I/O cluster with its green link LED illuminated, alongside host USB connections.",
+            technicalBreakdown: "Removing legacy laptop batteries eliminates chemical aging risks during non-stop 24/7 server workloads. Running minimal Debian 12 with Honeywell PTM7950 phase-change thermal paste keeps CPU die temperatures under control during continuous background compute.",
+            defensePlaybook: [
+                "Proactive Battery Decommissioning: Clean battery extraction avoids thermal stress during permanent desk power run.",
+                "Hardware USB Host Bridge: 2011 Mac provides continuous 5V DC power to adjacent mining devices and fans."
+            ],
+            containment: "Debian 12 bottom shelf host anchor.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-samsung-s4mini-mac-host-tether",
+            title: "Mobile Silicon Reclaim: Samsung Galaxy S4 Mini (SCH-I435) Tethered to 2011 Mac Host",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-samsung-s4mini-mac-host-tether.jpg",
+            thumb: "images/gallery/approved3/homelab-samsung-s4mini-mac-host-tether-thumb.jpg",
+            tags: ["Samsung Galaxy S4 Mini", "Duino-Coin", "USB Host", "Silicon Reclamation", "Android Mining"],
+            summary: "The white Samsung Galaxy S4 Mini propped vertically against the bottom shelf frame, receiving continuous USB host power from the Debian 2011 Mac.",
+            sandboxObservation: "The white Samsung Galaxy S4 Mini smartphone leans against the vertical wooden upright and red snap-cube support of the bottom shelf. A USB cable runs from its port directly into the adjacent Mid-2011 MacBook Pro, providing continuous 5V DC power and host communication while the phone executes a multithreaded JavaScript mining loop on port 8097.",
+            technicalBreakdown: "Legacy dual-core Krait mobile silicon draws under 1.8 Watts under full JavaScript WebKit hashing load, repurposing decommissioned consumer smartphones into ultra-low-power distributed compute nodes.",
+            defensePlaybook: [
+                "Host USB Tethering: Supplies continuous regulated power without battery swelling or wear.",
+                "Port 8097 Telemetry: Native HTTP microserver serves live hashrate metrics across the local LAN."
+            ],
+            containment: "HL-NODE-01 bottom shelf mobile miner.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-lenovo-yoga-bareboard-vertical-rig",
+            title: "Open-Air E-Waste Rig: Lenovo Yoga 2 11 Bare Motherboard in Modular Cube Airflow Cradle",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-lenovo-yoga-bareboard-vertical-rig.jpg",
+            thumb: "images/gallery/approved3/homelab-lenovo-yoga-bareboard-vertical-rig-thumb.jpg",
+            tags: ["Lenovo Yoga 2", "Bare Motherboard", "Open Testbench", "Airflow Mount", "E-Waste Salvage"],
+            summary: "Close-up of the extracted Lenovo Yoga 2 11 bare motherboard mounted vertically in colorful snap-together plastic cubes.",
+            sandboxObservation: "A stripped laptop motherboard and daughterboard stand vertically, securely wedged and braced between blue, green, and cream-colored plastic snap-cubes on the bottom shelf. The original chassis and puffed battery were completely discarded. Heatsinks are directly exposed to ambient air and aligned with an external 5V USB blower fan.",
+            technicalBreakdown: "Stripping an unrepairable laptop down to its functional PCB assembly eliminates broken chassis plastics and puffed battery hazards, transforming e-waste into a compact open testbench node with unobstructed convective cooling.",
+            defensePlaybook: [
+                "Puffed Battery Remediation: Complete removal of degraded battery pack eliminates fire hazards.",
+                "Vertical PCB Airflow: Natural vertical chimney effect supplemented by 5V USB fan prevents throttling."
+            ],
+            containment: "HL-NODE-02 open-air testbench rig.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "homelab-wall-gap-cabling-power-bricks",
+            title: "Physical Cable Management: Vertical Wire Chase & AC Power Adapter Distribution",
+            category: "homelab",
+            categoryLabel: "Homelab, Cloud & Linux Fleet",
+            badgeClass: "badge-info",
+            image: "images/gallery/approved3/homelab-wall-gap-cabling-power-bricks.jpg",
+            thumb: "images/gallery/approved3/homelab-wall-gap-cabling-power-bricks-thumb.jpg",
+            tags: ["Cable Management", "Power Distribution", "Power Strip", "Vertical Chase", "Rack Clearance"],
+            summary: "Side profile capture showing the 4-inch service gap between the wooden shelving unit and the wall, routing high-current AC power bricks and network cables.",
+            sandboxObservation: "Looking down the narrow clearance between the room white wall and the rear uprights of the wooden shelving rack. Multiple white and black AC power bricks, laptop power supplies, and Cat6 yellow and white network cables are organized along a floor-level power strip, keeping high-voltage adapters away from desk working surfaces.",
+            technicalBreakdown: "Maintaining a dedicated rear air and cable chase prevents heat accumulation behind high-draw power bricks and allows servicing individual power cords without moving the freestanding server rack.",
+            defensePlaybook: [
+                "Thermal Chase Isolation: Separates transformer waste heat from rack-mounted compute hardware.",
+                "High-Current Distribution: Central surge-protected baseline protects heterogeneous homelab hardware."
+            ],
+            containment: "Homelab primary electrical service line.",
+            credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
         }
     ];
 

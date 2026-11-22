@@ -53,7 +53,7 @@ const FLEET_DATA = {
 		uptime: 'Bottom Shelf Anchor (99.8%)',
 		status: 'ONLINE',
 		workloads: 'Batch CPU image generation queue processing, background cryptocurrency mining, automated build worker, and USB host provider for the Samsung S4 Mini.',
-		salvage: 'Rescued 2011 Apple unibody anchoring the bottom shelf. Internal bloated battery removed for fire safety; repasted with industrial Honeywell PTM7950 phase-change material on copper heatsink.',
+		salvage: 'Rescued 2011 Apple unibody anchoring the bottom shelf. Internal battery removed for continuous desk operation and safety (never swollen); repasted with industrial Honeywell PTM7950 phase-change material on copper heatsink.',
 		glpi: {
 			tag: 'HL-NODE-03-MBP2011',
 			cat: 'Server / Compute Node & Host',
@@ -107,7 +107,7 @@ const FLEET_DATA = {
 		uptime: 'Shelf 3 (Bottom Shelf) &middot; Open Testbench',
 		status: 'ONLINE',
 		workloads: 'Continuous crypto mining and lightweight local utility daemon. Completely open-air testbench rig operating 24/7 on the bottom shelf tier cooled directly by the 5V USB blower fan.',
-		salvage: 'Rescued from landfill after catastrophic chassis and screen fracture. Motherboard and daughterboard extracted and bench-mounted with a dedicated 5V USB cooling blower fan.',
+		salvage: 'Rescued from landfill after chassis fracture and puffed lithium battery. Motherboard and daughterboard extracted and bench-mounted in modular plastic cradle with a dedicated 5V USB cooling blower fan.',
 		glpi: {
 			tag: 'HL-NODE-02-YOGA-BB',
 			cat: 'Open-Bench Compute',
@@ -507,3 +507,5 @@ function initRoiCalculator() {
 
 	calculate();
 }
+
+window.selectNode = selectNode;

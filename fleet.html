@@ -130,17 +130,36 @@
 					</div>
 				</div>
 
-				<!-- Model dropzone bar docked cleanly above canvas so it NEVER obstructs text -->
-				<div class="shelf-model-bar">
-					<div class="shelf-model-badge">&#128248; 3D / PHOTOGRAMMETRY READY</div>
-					<div class="shelf-model-text">
-						<strong>Andrew's Workbench 3D / Photo Slot:</strong> Interactive viewport framework ready for custom photogrammetry GLTF asset or high-res workbench capture.
+				<!-- View Mode Switcher: 3D Rotatable Digital Twin vs 2D Schematic Elevation -->
+				<div class="view-mode-toggle-bar">
+					<button type="button" class="view-toggle-pill active" id="toggle-view-3d">&#129482; 3D Interactive Digital Twin</button>
+					<button type="button" class="view-toggle-pill" id="toggle-view-2d">&#128208; 2D Schematic Elevation</button>
+				</div>
+
+				<!-- 3D Camera Focus Toolbar -->
+				<div class="fleet-3d-toolbar" id="fleet-3d-toolbar">
+					<div class="camera-presets-group">
+						<span class="toolbar-label">Camera Angle:</span>
+						<button type="button" class="camera-preset-btn active" data-preset="perspective">&#127760; Master Perspective</button>
+						<button type="button" class="camera-preset-btn" data-preset="shelf1">&#128187; Shelf 1: HP &amp; NUC</button>
+						<button type="button" class="camera-preset-btn" data-preset="shelf2">&#9889; Shelf 2: Dell &amp; Mint</button>
+						<button type="button" class="camera-preset-btn" data-preset="shelf3">&#129514; Shelf 3: Yoga &amp; Mac</button>
+						<button type="button" class="camera-preset-btn" data-preset="wall">&#128241; Built-in Wall Ledge</button>
+					</div>
+					<div class="toolbar-actions">
+						<span class="controls-hint">Drag: Orbit &middot; Scroll: Zoom &middot; Click: Inspect Part</span>
+						<button type="button" class="camera-reset-pill" id="reset-3d-camera-btn">&#x21bb; Reset Camera</button>
 					</div>
 				</div>
 
 				<div class="fleet-viewport-container" id="fleet-viewport-container">
-					<!-- Interactive SVG Canvas -->
-					<div class="canvas-viewport" id="viewport-canvas-wrapper">
+					<!-- Interactive 3D WebGL Digital Twin -->
+					<div class="fleet-3d-wrapper" id="fleet-3d-wrapper">
+						<canvas id="fleet-3d-canvas"></canvas>
+					</div>
+
+					<!-- Interactive SVG Canvas (2D Elevation fallback) -->
+					<div class="canvas-viewport" id="viewport-canvas-wrapper" style="display: none;">
 						<svg id="fleet-svg-map" viewBox="0 0 1060 760" preserveAspectRatio="xMidYMid meet">
 							<defs>
 								<linearGradient id="bench-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -365,7 +384,7 @@
 
 						<div class="inspector-section">
 							<h4>Salvage History &amp; Physical Setup</h4>
-							<p id="insp-salvage">Rescued 2011 Apple unibody anchoring the bottom shelf. Internal bloated battery removed for fire safety; repasted with industrial Honeywell PTM7950 phase-change material on copper heatsink.</p>
+							<p id="insp-salvage">Rescued 2011 Apple unibody anchoring the bottom shelf. Internal battery removed for continuous desk operation and safety (never swollen); repasted with industrial Honeywell PTM7950 phase-change material on copper heatsink.</p>
 						</div>
 
 						<div class="inspector-section glpi-details">
@@ -784,13 +803,16 @@
 
 		<footer>
 			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-21T14:45:00-05:00">November 21, 2026 at 02:45:00 PM EST</time></p>
-			<p class="footer-version">Version v2.6.417 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p>Website last modified: <time datetime="2026-11-22T14:47:00-05:00">November 22, 2026 at 02:47:00 PM EST</time></p>
+			<p class="footer-version">Version v2.6.418 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
+	<script src="scripts/vendor/three.min.js"></script>
+	<script src="scripts/vendor/OrbitControls.js"></script>
+	<script src="scripts/fleet-3d.js?v=20261122-3d-1"></script>
 	<script src="scripts/fleet.js?v=20261121-fleet-3"></script>
 </body>
 </html>

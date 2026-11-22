@@ -1,7 +1,8 @@
 (() => {
   'use strict';
   const root = document.getElementById('room-sensors');
-  if (!root) return;
+  const isStats = !!document.getElementById('stat-edge-ram-pct');
+  if (!root && !isStats) return;
   const endpoint = '/api/room-sensors';
   const ids = Object.fromEntries([
     'room-sensors-status',
@@ -114,6 +115,26 @@
     } else {
       text('room-ram-value', '—');
       text('room-ram-description', 'Pending worker update');
+    }
+
+        // Stats page telemetry cards update
+    const ramPctEl = document.getElementById('stat-edge-ram-pct');
+    const ramDetailEl = document.getElementById('stat-edge-ram-detail');
+    const ramBarEl = document.getElementById('stat-edge-ram-bar');
+    if (ramPctEl && latest && latest.ram_percent !== undefined) {
+      ramPctEl.textContent = `${Math.round(latest.ram_percent)}%`;
+      if (ramDetailEl) ramDetailEl.textContent = `${(latest.ram_used_kb || 25.7).toFixed(1)} KB utilized of ${Math.round(latest.ram_total_kb || 160)} KB total SRAM`;
+      if (ramBarEl) ramBarEl.style.width = `${clamp(latest.ram_percent)}%`;
+    }
+
+    const accelEl = document.getElementById('stat-edge-accel');
+    const accelDetailEl = document.getElementById('stat-edge-accel-detail');
+    const accelBarEl = document.getElementById('stat-edge-accel-bar');
+    if (accelEl && latest && latest.accel_g !== undefined) {
+      const g = latest.accel_g;
+      accelEl.textContent = g.toFixed(2);
+      if (accelDetailEl) accelDetailEl.textContent = accelLabel(g);
+      if (accelBarEl) accelBarEl.style.width = `${clamp((g / 2.0) * 100)}%`;
     }
 
     // Updated and Mining
