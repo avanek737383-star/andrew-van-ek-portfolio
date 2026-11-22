@@ -1262,6 +1262,108 @@
 			analogy: "An international oceanographic atlas that meticulously maps every underwater shipping lane, lighthouse, and port across all seven seas.",
 			techFact: "TeleGeography is the industry-standard telecommunications market research and cartography firm that tracks global submarine cables, landing stations, bandwidth pricing, and international fiber routes."
 		}
+	
+		"fast-pair-uuid": {
+			title: "Fast Pair UUID 0xFE2C (Bluetooth Handshake Badge)",
+			analogy: "Think of it like wearing a bright yellow backstage VIP wristband at a concert: the bouncers (your phone) immediately recognize the wristband from across the room and wave you right through the door without demanding your passport or making you fill out a 3-page visitor log.",
+			techFact: "A registered 16-bit Bluetooth Low Energy service identifier. Accessories broadcast this short code so nearby Android and compatible devices immediately display an automatic one-tap connection card with the accessory's picture and name."
+		},
+		"bluetooth-classic-a2dp": {
+			title: "Bluetooth Classic & A2DP (The Firehose Audio Highway)",
+			analogy: "Think of it like a heavy firehose pumping gallons of water per second into a swimming pool: it is unbeatable for blasting rich, continuous high-quality stereo sound, but the hose is thick, heavy, and drains the battery reservoir rapidly.",
+			techFact: "Advanced Audio Distribution Profile on Bluetooth Classic: streams uncompressed or high-bitrate audio (SBC, AAC, LDAC) at 250-990 kbps over dedicated radio channels, requiring continuous radio power."
+		},
+		"bluetooth-low-energy": {
+			title: "Bluetooth Low Energy / BLE (The Pocket Walkie-Talkie)",
+			analogy: "Think of it like tapping someone on the shoulder once every ten minutes to whisper 'Left battery 85%' or 'Switch to Noise Cancelling': it consumes almost zero electrical power, but cannot stream a continuous song.",
+			techFact: "A low-power 2.4 GHz radio specification optimized for transmitting small attribute packets intermittently. Devices run for months on coin-cell batteries while sleeping 99% of the time."
+		},
+		"corebluetooth": {
+			title: "Apple CoreBluetooth (The Strict Courthouse Guard)",
+			analogy: "Think of it like a courthouse security checkpoint with a metal detector: if a visitor doesn't have an approved, pre-authorized plastic visitor badge pinned to their jacket, the guard turns them away at the front door without even asking for their name.",
+			techFact: "Apple's native iOS framework for managing BLE peripherals. It aggressively filters scan results and strips device names unless an app explicitly requests approved service UUIDs or initiates open discovery."
+		},
+		"web-bluetooth-api": {
+			title: "Web Bluetooth API (Browser Hardware Bridge)",
+			analogy: "Think of it like a website for a smart lightbulb being able to reach right out through your computer monitor, walk into your living room, and twist the bulb on without requiring you to download an app from an app store.",
+			techFact: "A standardized W3C browser interface allowing web applications to directly scan, pair, read, and write GATT characteristics to local Bluetooth Low Energy peripherals using client-side JavaScript."
+		},
+		"gatt-services": {
+			title: "GATT (The Labeled Tool Pegboard)",
+			analogy: "Think of it like a well-organized garage workbench where every tool has its own labeled outline on the wall: Hammer goes on Hook #1, Screwdriver on Hook #2. Any mechanic walking into the garage knows exactly where to reach without rummaging.",
+			techFact: "Generic Attribute Profile: the hierarchical structure of Bluetooth Low Energy, grouping related parameters into standardized Services and Characteristics identified by 16-bit or 128-bit UUIDs."
+		},
+		"tailscale-serve": {
+			title: "Tailscale Serve (The Private Intercom Tube)",
+			analogy: "Think of it like a private pneumatic delivery tube connecting your basement hobby shop straight to your nightstand: completely hidden and inaccessible to anyone walking down the street outside, but instantly serving private tools inside your own home.",
+			techFact: "A Tailscale feature that routes local port traffic through private WireGuard tunnels, automatically provisioning and terminating valid public Let's Encrypt TLS certificates for your tailnet domain."
+		},
+		"wii-optical-disc": {
+			title: "Wii Optical Disc (Proprietary Encrypted Media)",
+			analogy: "Think of it like a vinyl record with grooves cut in a reverse spiral and stamped with a secret wax stamp: normal record players scrape and skip off the edge, but a custom needle reads the hidden grooves flawlessly.",
+			techFact: "A proprietary DVD-based optical media format engineered by Panasonic and Nintendo for the Wii console. It incorporates physical disc burst cutting areas and hardware-encrypted partition blocks."
+		},
+		"aes-128-cbc": {
+			title: "AES-128-CBC (The Interlocking Padlocks)",
+			analogy: "Think of it like a chain of 100 padlocks where each lock can only be opened if you use the key AND the exact scrap of metal that fell out of the previous lock: you cannot tamper with Lock #40 without breaking every single lock after it.",
+			techFact: "Advanced Encryption Standard in Cipher Block Chaining mode: an algorithm where each 128-bit block of plain data is blended (XORed) with the previous encrypted block before transformation, ensuring identical patterns become completely randomized."
+		},
+		"fst-filesystem": {
+			title: "Nintendo FST (The Secret Game Index Card)",
+			analogy: "Think of it like a treasure map index scribbled in secret code in a captain's notebook: instead of searching every island, the captain looks at Line 12 to find the exact compass bearing and depth of the treasure chest.",
+			techFact: "A compact binary directory table used in GameCube and Wii optical disc images, mapping string filename offsets directly to sector clusters and byte lengths on the disc."
+		},
+		"brstm": {
+			title: "Nintendo BRSTM (Looping Studio Master)",
+			analogy: "Think of it like a vintage magnetic tape cassette with the ends spliced together in an endless circle: the console plays the intro once, and then seamlessly loops the middle battle theme for four hours without a single audible seam or pause.",
+			techFact: "Binary Revolution Stream: Nintendo's proprietary audio container for Wii and GameCube titles. It pairs ADPCM audio streams with precise start/end sample markers for gapless runtime music looping."
+		},
+		"adpcm-thp": {
+			title: "ADPCM (Difference Sound Recorder)",
+			analogy: "Think of it like hiking up a rocky hill and only recording how many inches you stepped up or down from your last step, rather than measuring your total elevation from sea level each second: it cuts the size of your notepad by 75%.",
+			techFact: "Adaptive Differential Pulse Code Modulation used in THP video/audio: compresses audio by quantizing the delta between consecutive waveform samples rather than storing absolute 16-bit linear PCM numbers."
+		},
+		"thread-pool-executor": {
+			title: "ThreadPoolExecutor (The Multi-Chef Kitchen)",
+			analogy: "Think of it like a busy pizzeria kitchen with 16 identical pizza ovens and 16 line cooks: instead of baking one personal pizza at a time and waiting 10 minutes for each, all 16 cooks slide their pizzas into all 16 ovens at the exact same second.",
+			techFact: "A Python concurrency manager from concurrent.futures that maintains a pool of worker threads, asynchronously distributing batches of execution jobs across available CPU cores."
+		},
+		"id3-metadata": {
+			title: "ID3 Metadata Tags (Digital Album Liner Notes)",
+			analogy: "Think of it like laser-engraving the band name, album title, track number, and cover art directly onto the shiny surface of an audio CD so your car's dashboard screen displays the song title the second you insert the disc.",
+			techFact: "A standardized metadata container format stored at the beginning or end of MP3 audio files, containing structured text fields (TIT2 title, TPE1 artist, TALB album, TRCK track number) and embedded artwork."
+		},
+		"bathymetry": {
+			title: "Bathymetry (Underwater Topography)",
+			analogy: "Think of it like draining all the water out of a lake and driving a 4x4 truck across the dry mud: bathymetry is the map of all the underwater valleys, steep cliffs, flat plateaus, and deep trenches hidden beneath the waves.",
+			techFact: "The measurement and mapping of water depth in oceans, seas, and lakes. Depths are surveyed via echo sounders (sonar) or lidar to produce isobath depth contour vectors."
+		},
+		"screen-wake-lock": {
+			title: "Screen Wake Lock (The Constant Finger on the Glass)",
+			analogy: "Think of it like politely resting your index finger on your phone's power button while steering a boat at night, keeping the flashlight from turning off so you don't crash into a pier while your hands are busy.",
+			techFact: "A modern Web API (navigator.wakeLock) that prevents the host mobile device or desktop operating system from dimming the display, entering sleep mode, or locking the screen."
+		},
+		"dead-reckoning": {
+			title: "Dead Reckoning (Blindfolded Step Counting)",
+			analogy: "Think of it like closing your eyes in your bedroom, taking 10 steps forward, turning 90 degrees right, and taking 5 steps: even without seeing the room, you can calculate that you are standing right in front of your closet.",
+			techFact: "A navigational process that calculates one's current position and heading by estimating the direction, speed, and elapsed time traveled from a previously known fix without relying solely on external GPS satellites."
+		},
+		"free-space-path-loss": {
+			title: "Free-Space Path Loss / FSPL (The Flashlight in Fog)",
+			analogy: "Think of it like shining a small pocket flashlight across an enormous soccer field: the beam is blindingly bright an inch from the lens, but spreads out thin and dim by the time it reaches the goal line 100 yards away.",
+			techFact: "The mathematical attenuation of an electromagnetic radio wave as it radiates through open space, proportional to the square of the distance and the square of the radio frequency."
+		},
+		"sgp4-sdp4": {
+			title: "SGP4/SDP4 (Planetary Orbit Clockwork)",
+			analogy: "Think of it like knowing the exact speed and swing of a giant grandfather clock pendulum: by timing one swing, you can calculate with pinpoint accuracy where the brass pendulum will be at 3:15 PM next Thursday.",
+			techFact: "Simplified General Perturbations models: analytical mathematical equations that calculate orbital state vectors (position and velocity) of near-Earth satellites at any given second using NORAD two-line elements (TLE)."
+		},
+		"exif-metadata": {
+			title: "EXIF Metadata (The Camera's Black Box)",
+			analogy: "Think of it like a receipt printed on the back of every photograph listing the exact camera model, lens shutter speed, f-stop aperture, timestamp, and GPS coordinates where the photographer was standing.",
+			techFact: "Exchangeable Image File Format: a specification embedded in JPEG and TIFF headers that logs camera serial numbers, focal length, exposure time, ISO speed, and date/time."
+		}
+
 	};
 
 	function initTechAnalogies() {
