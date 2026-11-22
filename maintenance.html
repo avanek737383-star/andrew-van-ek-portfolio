@@ -93,11 +93,23 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">594 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-22T15:35:00-05:00">November 22, 2026 at 03:35:00 PM EST</time></p>
+<p class="maintenance-updated">595 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-22T16:05:00-05:00">November 22, 2026 at 04:05:00 PM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
+<li id="homelab-4-tier-rack-inspiron-3668-and-site-theme-harmonization"><strong>Homelab 4-tier physical rack architecture upgrade (Dell Inspiron 3668 dedicated shelf tier) &amp; portfolio light theme design harmonization (November 22, 2026):</strong> In pair programming with <strong>Antigravity AI</strong>, overhauled the 3D homelab digital twin on <code>/fleet.html</code> to mirror Andrew's physical 4-shelf rack layout and harmonized the page styling with the portfolio's native light aesthetic.
+<br><br>
+<em>4-Tier Physical Rack Geometry:</em> Restructured the 3D freestanding rack from 3 to 4 distinct vertical tiers (total height 20.5 units):
+<ul>
+<li><strong>Shelf 1 (Top Shelf, y = 16.2):</strong> FREEHPGAMER from Fishbeck on wire mesh riser, ONEFIVE Sabrent external storage enclosure, and modular snap-cube tower housing the Headless Intel NUC LAN Backbone and Adafruit Circuit Playground Bluefruit.</li>
+<li><strong>Shelf 2 (Upper-Middle Shelf, y = 11.4):</strong> HP Laptop 15 Workhorse (Linux Mint 21) running diffusion image generation and the 3.5&quot; USB floppy drive reader.</li>
+<li><strong>Shelf 3 (Lower-Middle Shelf, y = 6.6):</strong> Dedicated horizontal shelf for the <strong>Dell Inspiron 3668</strong> running Slax Linux in RAM with front persistence USB, topped with the Navy Blue USB-C multiport hub (dual 2.4 GHz nano-receivers), alongside the 8-port Gigabit switch backbone.</li>
+<li><strong>Shelf 4 (Bottom Shelf, y = 1.6):</strong> Mid-2011 Mac unibody (Debian 12 Bookworm, battery proactively removed), bare-board Lenovo Yoga 2 11 rig (puffed battery removed), 5V USB cooling blower fan, and tethered Samsung Galaxy S4 Mini miner.</li>
+<li><strong>Architectural Wall Ledge (y = 9.3):</strong> Wall-powered miners (Samsung Galaxy Player YP-GI1 and Apple iPod Touch) resting safely behind the rack on the built-in ledge with the jutted lower wall.</li>
+</ul>
+<br>
+<em>Site-Wide Theme &amp; Typography Harmonization:</em> Eliminated the black background (<code>--fleet-bg: #0b0e14</code>) on <code>fleet.html</code>, unifying the page container with the portfolio's clean light background (<code>#f8f9fa</code> body, <code>#ffffff</code> main card). Standardized all section titles (<em>1. Visual Fleet Schematic &amp; Physical Shelf Viewport</em> and <em>2. The Homelab Salvage Playbook &amp; ITAM Architecture</em>) into the portfolio's classic Navy Blue (<code>#002d5a</code>) with 2px bottom underlines, matching the visual hierarchy of the homepage, Projects, and Stats pages.</li>
 <li id="site-navigation-search-and-gallery-cursor-pointer-affordance-audit"><strong>Site navigation dropdowns, search modal, and gallery media cursor pointer affordance audit &amp; interaction triage (November 22, 2026):</strong> In pair programming with <strong>Antigravity AI</strong>, resolved a site-wide interaction friction where hovering over navigation dropdown links, menu labels, search triggers, search modal items, search close buttons, gallery cards, and the lightbox modal close button (<code>&times;</code>) displayed a default OS arrow pointer or text-selection I-beam rather than an active finger clicker (<code>cursor: pointer</code>).
 <br><br>
 <em>Navigation &amp; Dropdown Architecture:</em> Enforced explicit <code>cursor: pointer !important;</code> and <code>user-select: none;</code> across desktop and mobile navigation hierarchies (<code>#site-navigation a</code>, <code>.nav-dropdown-toggle</code>, <code>.nav-dropdown-menu li a</code>, nested labels, SVGs, and keyboard shortcut badges) eliminating dead spots.
@@ -1672,7 +1684,7 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-22T15:35:00-05:00">November 22, 2026 at 03:35:00 PM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-22T16:05:00-05:00">November 22, 2026 at 04:05:00 PM EST</time></p>
 				<p class="footer-version">Version v2.6.418 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
