@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 91,
-    "totalNodes": 290,
-    "totalLinks": 597,
+    "totalProjects": 92,
+    "totalNodes": 295,
+    "totalLinks": 604,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "esp32-travel-enclosure-3d-print-title",
+      "name": "ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure: 3D CAD Engineering, Pin Suspension Architecture & Rapid Maker Lab Slicing",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 22, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Following acquisition of an ELEGOO 3-Pack ESP-32 Development Board suite (ESP-WROOM-32, USB-C, CP2102, 30-pin layout, ASIN B0D8T53CQ5) for mobile IoT prototyping and the WatchMouse BLE bridge, the hardware faced a physical deployment obstacle: the 30 GPIO header pins came fact...",
+      "tech": [
+        "USB-C",
+        "OpenSCAD",
+        "Parametric CAD",
+        "3D Printing (FDM / PLA / PETG)",
+        "RF Dielectric Detuning Prevention",
+        "Grand Valley State University (GVSU) Atomic Object Tech Showcase"
+      ],
+      "tasks": [
+        {
+          "title": "Pin Suspension Chamber",
+          "desc": "Factory pre-soldered header pins extend 6.0 mm below the 2.5 mm plastic header spacer (8.5 mm total downward depth). The base shell incorpor..."
+        },
+        {
+          "title": "Zero-Collision Split Line Architecture",
+          "desc": "On the top side of the board, the ESP32 metal RF shield can and USB-C port shell rise 3.2 mm above the PCB surface to Z = 15.8 mm. To preven..."
+        },
+        {
+          "title": "Snap-Fit Ridge Clearance",
+          "desc": "The lid's perimeter retention skirt inserts 1.8 mm downward into the base (terminating at Z = 15.7 mm). Because the snap skirt is positioned..."
+        },
+        {
+          "title": "Braided Cable Collar Clearance",
+          "desc": "The front USB-C port entry is sized to 12.5 mm wide \u00d7 6.3 mm tall, beginning flush at PCB shelf level (Z = 11.2 mm) to accommodate oversized..."
+        }
+      ],
+      "url": "projects.html#esp32-travel-enclosure-3d-print-title"
+    },
+    {
+      "id": "task-esp32-travel-enclosure-3d-print-title-0",
+      "name": "Pin Suspension Chamber",
+      "type": "task",
+      "parentProject": "ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure: 3D CAD Engineering, Pin Suspension Architecture & Rapid Maker Lab Slicing",
+      "parentId": "esp32-travel-enclosure-3d-print-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Factory pre-soldered header pins extend 6.0 mm below the 2.5 mm plastic header spacer (8.5 mm total downward depth). The base shell incorpor...",
+      "url": "projects.html#esp32-travel-enclosure-3d-print-title"
+    },
+    {
+      "id": "task-esp32-travel-enclosure-3d-print-title-1",
+      "name": "Zero-Collision Split Line Architecture",
+      "type": "task",
+      "parentProject": "ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure: 3D CAD Engineering, Pin Suspension Architecture & Rapid Maker Lab Slicing",
+      "parentId": "esp32-travel-enclosure-3d-print-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "On the top side of the board, the ESP32 metal RF shield can and USB-C port shell rise 3.2 mm above the PCB surface to Z = 15.8 mm. To preven...",
+      "url": "projects.html#esp32-travel-enclosure-3d-print-title"
+    },
+    {
+      "id": "task-esp32-travel-enclosure-3d-print-title-2",
+      "name": "Snap-Fit Ridge Clearance",
+      "type": "task",
+      "parentProject": "ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure: 3D CAD Engineering, Pin Suspension Architecture & Rapid Maker Lab Slicing",
+      "parentId": "esp32-travel-enclosure-3d-print-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "The lid's perimeter retention skirt inserts 1.8 mm downward into the base (terminating at Z = 15.7 mm). Because the snap skirt is positioned...",
+      "url": "projects.html#esp32-travel-enclosure-3d-print-title"
+    },
+    {
+      "id": "task-esp32-travel-enclosure-3d-print-title-3",
+      "name": "Braided Cable Collar Clearance",
+      "type": "task",
+      "parentProject": "ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure: 3D CAD Engineering, Pin Suspension Architecture & Rapid Maker Lab Slicing",
+      "parentId": "esp32-travel-enclosure-3d-print-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "The front USB-C port entry is sized to 12.5 mm wide \u00d7 6.3 mm tall, beginning flush at PCB shelf level (Z = 11.2 mm) to accommodate oversized...",
+      "url": "projects.html#esp32-travel-enclosure-3d-print-title"
     },
     {
       "id": "watchmouse-ble-bridge-title",
@@ -5129,6 +5217,48 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "esp32-travel-enclosure-3d-print-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "esp32-travel-enclosure-3d-print-title",
+      "target": "task-esp32-travel-enclosure-3d-print-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-travel-enclosure-3d-print-title",
+      "target": "task-esp32-travel-enclosure-3d-print-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-travel-enclosure-3d-print-title",
+      "target": "task-esp32-travel-enclosure-3d-print-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-travel-enclosure-3d-print-title",
+      "target": "task-esp32-travel-enclosure-3d-print-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-travel-enclosure-3d-print-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "esp32-travel-enclosure-3d-print-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-embedded-hardware",
       "target": "watchmouse-ble-bridge-title",

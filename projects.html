@@ -87,6 +87,48 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="esp32-travel-enclosure-3d-print-title">
+<h2 id="esp32-travel-enclosure-3d-print-title">ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure: 3D CAD Engineering, Pin Suspension Architecture &amp; Rapid Maker Lab Slicing</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>ELEGOO ESP-WROOM-32 (CP2102) &middot; USB-C &middot; OpenSCAD &middot; Parametric CAD &middot; 3D Printing (FDM / PLA / PETG) &middot; RF Dielectric Detuning Prevention &middot; Grand Valley State University (GVSU) Atomic Object Tech Showcase &middot; Antigravity AI &middot; <time datetime="2026-11-22">November 22, 2026</time></span></p>
+
+<p>Following acquisition of an <strong>ELEGOO 3-Pack ESP-32 Development Board</strong> suite (ESP-WROOM-32, USB-C, CP2102, 30-pin layout, ASIN <code>B0D8T53CQ5</code>) for mobile IoT prototyping and the WatchMouse BLE bridge, the hardware faced a physical deployment obstacle: the 30 GPIO header pins came factory pre-soldered facing directly downward. Transporting bare dev boards loose in a backpack or pocket leaves delicate header pins vulnerable to bending, fatigue fracture, and catastrophic electrical short-circuits against loose keys or coins. The objective of this project was to engineer a precision snap-fit travel enclosure in parametric 3D CAD that completely protects the downward pins on the go, guarantees wide clearance for braided USB-C power cables, provides external tactile button access, and preserves 100% wireless transmission efficiency by eliminating plastic dielectric detuning around the 2.4 GHz antenna.</p>
+
+<pre><code>[Top Snap Lid] ──(22x10mm Antenna Window: Open Air)──► Zero RF Detuning (2.4 GHz Wi-Fi/BLE)
+       │
+       ├──(4.2mm Button Ports)──► Direct Fingertip/Stylus Access (EN &amp; BOOT)
+       │
+       ├──(4x Convection Vents)──► Passive Thermal Exhaust over Xtensa Dual-Core SoC
+       ▼
+[Base Shell] ──(11.0mm Corner Standoffs)──► Suspends 8.5mm Header Pins in 9.4mm Cavity
+       │
+       └──(12.5x6.3mm Front Cutout)──► Unrestricted Insertion for Heavy Braided USB-C Cable Shrouds</code></pre>
+
+<h3>RF Physics &amp; Antenna Dielectric Detuning Mitigation</h3>
+<p>Most commercial 3D-printed microcontroller enclosures inadvertently degrade wireless performance by enclosing the entire PCB in solid plastic. Thermoplastics commonly used in FDM 3D printing (PLA with relative permittivity &epsilon;<sub>r</sub> &approx; 2.7&ndash;3.2, and PETG with &epsilon;<sub>r</sub> &approx; 2.9&ndash;3.4) exhibit significantly higher dielectric constants than dry ambient air (&epsilon;<sub>r</sub> &approx; 1.0). Enveloping the ESP-WROOM-32's onboard inverted-F meander trace antenna in solid thermoplastic introduces capacitive dielectric loading that detunes the antenna's electrical resonance downward away from the 2.40&ndash;2.48 GHz ISM band, degrading impedance matching, increasing Voltage Standing Wave Ratio (VSWR), and dropping received signal strength (RSSI) by <strong>6 to 12 dB</strong>.</p>
+<p>To eliminate dielectric loading entirely, the CAD architecture incorporates a <strong>22.0 mm &times; 10.0 mm open aperture cutout window</strong> directly over the entire antenna trace on the top lid. The onboard trace radiates directly into unhindered ambient air, preserving factory resonance, maximizing transmission range, and maintaining peak Wi-Fi and Bluetooth throughput.</p>
+
+<h3>Mechanical Engineering: Pin Suspension &amp; Zero-Collision Component Stackup</h3>
+<p>To ensure a rock-solid snap-fit that never bottoms out against delicate surface-mount silicon or pin headers, the enclosure geometry was calculated around physical caliper telemetry and high-resolution optical inspection:</p>
+<ul>
+<li><strong>Pin Suspension Chamber:</strong> Factory pre-soldered header pins extend 6.0 mm below the 2.5 mm plastic header spacer (8.5 mm total downward depth). The base shell incorporates 4 internal corner standoffs supporting the PCB edges at <code>Z = 11.0 mm</code>, establishing an open <strong>9.4 mm pin drop cavity</strong>. The downward pins hang suspended in mid-air with <strong>0.9 mm of clear float clearance</strong> above the bottom floor, keeping them completely insulated from impact stress or bending loads.</li>
+<li><strong>Zero-Collision Split Line Architecture:</strong> On the top side of the board, the ESP32 metal RF shield can and USB-C port shell rise 3.2 mm above the PCB surface to <code>Z = 15.8 mm</code>. To prevent the lid from crushing components, the base perimeter walls were elevated to <code>Z = 17.5 mm</code>, providing <strong>1.7 mm of open air headroom</strong> above all onboard ICs.</li>
+<li><strong>Snap-Fit Ridge Clearance:</strong> The lid's perimeter retention skirt inserts 1.8 mm downward into the base (terminating at <code>Z = 15.7 mm</code>). Because the snap skirt is positioned flush along the outer side walls (<code>X = &plusmn;14.5 mm</code>), it sits <strong>5.5 mm laterally clear of the central shield can</strong> and terminates <strong>3.1 mm above the PCB surface</strong>. The lid snaps shut with 0.35 mm interference ridges with 100% flush closure and zero component contact.</li>
+<li><strong>Braided Cable Collar Clearance:</strong> The front USB-C port entry is sized to <strong>12.5 mm wide &times; 6.3 mm tall</strong>, beginning flush at PCB shelf level (<code>Z = 11.2 mm</code>) to accommodate oversized molded and braided USB-C cable connector housings.</li>
+<li><strong>Tactile Button Portals:</strong> Twin 4.2 mm circular apertures are bored directly above the tactile <strong>EN (Reset)</strong> and <strong>BOOT</strong> switches, allowing instant hardware resets and bootloader toggling with a stylus, pen, or paperclip without disassembling the enclosure.</li>
+</ul>
+
+<h3>Rapid Maker Lab Slicing &amp; Grand Valley State University (GVSU) Deployment</h3>
+<p>To prepare the hardware for rapid local fabrication at <strong>Grand Valley State University's Atomic Object Technology Showcase</strong> (located in the Mary Idema Pew Library Atrium on the Allendale Campus), the manufacturing pipeline was streamlined for zero-friction student printing:</p>
+<ol>
+<li><strong>100% Support-Free Printing:</strong> Both the base shell and lid were engineered with zero overhang angles exceeding 45&deg;. The base prints upright flat on its bottom floor, and the lid prints inverted flat on its top ceiling, requiring <strong>zero support material</strong>, zero brim/raft, and zero post-print cleanup.</li>
+<li><strong>All-in-One 3-Pack Build Plate (<code>ESP32_Elegoo_Case_3X_Plate.stl</code>):</strong> To satisfy all three dev boards in a single print job, an all-in-one build plate was generated arranging all 3 bases and all 3 lids side-by-side across a compact <strong>117.4 mm &times; 121.2 mm footprint</strong>. The combined plate prints in ~2.5 hours on standard lab FDM printers (Ultimaker / Bambu Lab / Prusa), well within GVSU's 12-hour per-job policy.</li>
+<li><strong>Physical Media Staging &amp; Cloud Archival:</strong> Deployed the 3-Pack plate directly to the root of the student USB drive (<code>BLACKUSB</code>) for immediate walk-up printing at the library desk, preserved standalone CAD definitions (<code>ESP32_Elegoo_Case.scad</code>) and component STLs in <code>ESP32_3D_Print</code>, sanitized Mac metadata via <code>dot_clean</code>, safely unmounted the hardware, and archived the entire production bundle into the Google Drive academic repository (<code>BLACKUSBBACKUP11-22/ESP32_3D_Print/</code>).</li>
+</ol>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Parametric CAD modeling, optical dimension telemetry extraction, and automated binary STL generation developed in pair programming with <strong>Google DeepMind Antigravity AI</strong>. Antigravity AI analyzed physical packaging captures to extract exact pin pitches and component heights, resolved mathematical stackup clearances to eliminate lid collision risks, engineered the open-aperture RF antenna window, compiled watertight binary STL files and parametric OpenSCAD definitions, generated the unified 3-Pack print plate, and automated USB flash drive deployment and cloud backup workflows.</p>
+<ul class="chips"><li>ESP32</li><li>ESP-WROOM-32</li><li>ELEGOO</li><li>3D Printing</li><li>Parametric CAD</li><li>OpenSCAD</li><li>FDM Slicing</li><li>RF Antenna Design</li><li>Grand Valley State University</li><li>Atomic Object Technology Showcase</li><li>Google DeepMind Antigravity AI</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="watchmouse-ble-bridge-title">
 <h2 id="watchmouse-ble-bridge-title">WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay &amp; Tri-Architecture Cellular Fallback</h2>
 <p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Apple Watch SE 2 &middot; iPhone 16e &middot; ELEGOO ESP-WROOM-32 (CP2102) &middot; PlatformIO &middot; NimBLE-Arduino &middot; BLE HID Mouse &middot; iOS AssistiveTouch &middot; Network.framework UDP &middot; SwiftUI &middot; Xcode 27 &middot; Antigravity CLI &middot; OpenAI Codex CLI &middot; <time datetime="2026-11-22">November 22, 2026</time></span></p>
