@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 90,
-    "totalNodes": 285,
-    "totalLinks": 588,
+    "totalProjects": 91,
+    "totalNodes": 290,
+    "totalLinks": 597,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "watchmouse-ble-bridge-title",
+      "name": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "type": "project",
+      "domain": "embedded-hardware",
+      "domainName": "Embedded Hardware & Mobile",
+      "status": "in-progress",
+      "statusLabel": "In Progress",
+      "date": "November 22, 2026",
+      "val": 24,
+      "color": "#f59e0b",
+      "summary": "The goal of this project is to convert an Apple Watch SE 2 touchscreen and Digital Crown into an ultra-low-latency wireless trackpad for an Apple iPhone 16e (paired via native AssistiveTouch cursor navigation), utilizing an ELEGOO ESP-WROOM-32 development board as an autonomou...",
+      "tech": [
+        "iPhone 16e",
+        "ELEGOO ESP-WROOM-32 (CP2102)",
+        "PlatformIO",
+        "NimBLE-Arduino",
+        "BLE HID Mouse",
+        "iOS AssistiveTouch"
+      ],
+      "tasks": [
+        {
+          "title": "NimBLE-Arduino Stack Integration",
+          "desc": "Replaced the heavy default Bluedroid stack with h2zero/NimBLE-Arduino coupled with a custom GCC-14 patched BleMouse HID driver, shrinking st..."
+        },
+        {
+          "title": "Flash Partition Optimization",
+          "desc": "Reconfigured the partition layout using min_spiffs.csv, expanding the main application partition to 1.96 MB and reducing total flash usage t..."
+        },
+        {
+          "title": "Wire Protocol & Jitter-Free Clamping",
+          "desc": "Implemented a compact ASCII CSV UDP stream (dx,dy,scroll,click\\n) on port 4210. Incoming packet deltas are hardware-clamped to signed 8-bit ..."
+        },
+        {
+          "title": "Autonomous Telemetry & Signal Probe",
+          "desc": "Serves an embedded HTTP WebServer on port 80 (GET /status) returning live JSON telemetry (ip, rssi_dbm, channel, ble_connected, uptime_s, an..."
+        }
+      ],
+      "url": "projects.html#watchmouse-ble-bridge-title"
+    },
+    {
+      "id": "task-watchmouse-ble-bridge-title-0",
+      "name": "NimBLE-Arduino Stack Integration",
+      "type": "task",
+      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentId": "watchmouse-ble-bridge-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Replaced the heavy default Bluedroid stack with h2zero/NimBLE-Arduino coupled with a custom GCC-14 patched BleMouse HID driver, shrinking st...",
+      "url": "projects.html#watchmouse-ble-bridge-title"
+    },
+    {
+      "id": "task-watchmouse-ble-bridge-title-1",
+      "name": "Flash Partition Optimization",
+      "type": "task",
+      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentId": "watchmouse-ble-bridge-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Reconfigured the partition layout using min_spiffs.csv, expanding the main application partition to 1.96 MB and reducing total flash usage t...",
+      "url": "projects.html#watchmouse-ble-bridge-title"
+    },
+    {
+      "id": "task-watchmouse-ble-bridge-title-2",
+      "name": "Wire Protocol & Jitter-Free Clamping",
+      "type": "task",
+      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentId": "watchmouse-ble-bridge-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Implemented a compact ASCII CSV UDP stream (dx,dy,scroll,click\\n) on port 4210. Incoming packet deltas are hardware-clamped to signed 8-bit ...",
+      "url": "projects.html#watchmouse-ble-bridge-title"
+    },
+    {
+      "id": "task-watchmouse-ble-bridge-title-3",
+      "name": "Autonomous Telemetry & Signal Probe",
+      "type": "task",
+      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentId": "watchmouse-ble-bridge-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Serves an embedded HTTP WebServer on port 80 (GET /status) returning live JSON telemetry (ip, rssi_dbm, channel, ble_connected, uptime_s, an...",
+      "url": "projects.html#watchmouse-ble-bridge-title"
     },
     {
       "id": "pixel-buds-ios-ble-companion-title",
@@ -1251,16 +1339,16 @@
           "desc": "Accurately models physical vertical spacing across all four tiers where the upright poles terminate flush with the topmost shelf (zero exten..."
         },
         {
-          "title": "Flush Upright Pole Geometry & Rotated Secondary Shelf Unit",
+          "title": "Flush Upright Pole Geometry & Compact Secondary Shelf Unit",
           "desc": "Both the main 4-tier rack and secondary side unit vertical posts terminate flush with their respective topmost shelves (y = 16.2 on main rac..."
         },
         {
-          "title": "Secondary Shelf Hardware (Managed Switch & HP Network Printer)",
-          "desc": "The middle tier (y = 6.6) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the..."
+          "title": "Secondary Shelf Hardware (Compact Switch & HP Wi-Fi Printer)",
+          "desc": "The middle tier (y = 4.2) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the..."
         },
         {
-          "title": "Architectural Wall Ledge & Propped-Up Mobile Miners",
-          "desc": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3 with the lower wall jutting forward f..."
+          "title": "Architectural Wall Ledge, Landscape Miners & Duplex AC Wall Charging Station",
+          "desc": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3. Resting on the ledge on desktop kick..."
         }
       ],
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
@@ -1279,7 +1367,7 @@
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-1",
-      "name": "Flush Upright Pole Geometry & Rotated Secondary Shelf Unit",
+      "name": "Flush Upright Pole Geometry & Compact Secondary Shelf Unit",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
@@ -1291,26 +1379,26 @@
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
-      "name": "Secondary Shelf Hardware (Managed Switch & HP Network Printer)",
+      "name": "Secondary Shelf Hardware (Compact Switch & HP Wi-Fi Printer)",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "The middle tier (y = 6.6) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the...",
+      "summary": "The middle tier (y = 4.2) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
-      "name": "Architectural Wall Ledge & Propped-Up Mobile Miners",
+      "name": "Architectural Wall Ledge, Landscape Miners & Duplex AC Wall Charging Station",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3 with the lower wall jutting forward f...",
+      "summary": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3. Resting on the ledge on desktop kick...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
@@ -5042,6 +5130,66 @@
   ],
   "links": [
     {
+      "source": "domain-embedded-hardware",
+      "target": "watchmouse-ble-bridge-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "task-watchmouse-ble-bridge-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "task-watchmouse-ble-bridge-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "task-watchmouse-ble-bridge-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "task-watchmouse-ble-bridge-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "watchmouse-ble-bridge-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
       "source": "domain-ai-agents",
       "target": "pixel-buds-ios-ble-companion-title",
       "type": "domain-project",
@@ -5698,12 +5846,6 @@
     {
       "source": "hardware-fleet-salvage-and-interactive-labs-title",
       "target": "tech-docker-containers",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "hardware-fleet-salvage-and-interactive-labs-title",
-      "target": "tech-apple-metal",
       "type": "project-tech",
       "distance": 85
     },

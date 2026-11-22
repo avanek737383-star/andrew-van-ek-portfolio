@@ -24,7 +24,7 @@ const FLEET_DATA = {
 			state: 'In Production / Auxiliary',
 			depr: '100% Amortized (Salvage Reclaim)',
 			service: '2026-11-21 (Cleaned & Calibrated)',
-			net: 'Gigabit Ethernet + 802.11n Wi-Fi'
+			net: '802.11b/g/n Wi-Fi (CUPS Mesh Spooler)'
 		}
 	},
 	'switch': {
@@ -150,7 +150,7 @@ const FLEET_DATA = {
 			state: 'Active Testbench / Utility',
 			depr: '100% Amortized E-Waste',
 			service: '2026-11-21 (Thermal Fan Check)',
-			net: 'Integrated LAN / USB Ethernet'
+			net: 'Gigabit Cat6 via Rear USB-A Adapter'
 		}
 	},
 	'hp15': {
@@ -168,7 +168,7 @@ const FLEET_DATA = {
 			state: 'In Production / Media Node',
 			depr: 'Repurposed Asset',
 			service: '2026-11-21 (Rclone Sync Audit)',
-			net: 'Wi-Fi 802.11ac + Rclone Daemon'
+			net: 'Gigabit Cat6 via USB-C Adapter + Wi-Fi 802.11ac'
 		}
 	},
 	'dell': {
