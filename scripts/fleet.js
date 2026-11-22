@@ -9,6 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Telemetry & Hardware Node Dictionary (9 Nodes)
 const FLEET_DATA = {
+	'printer': {
+		tag: 'HL-PERIPH-01-HPPRINT',
+		title: 'HP Salvage Network Multifunction Printer',
+		os: 'Embedded RTOS / IPP Everywhere / CUPS v2.4.x',
+		power: '~3.2 W (Sleep) / ~28 W (Active)',
+		uptime: 'Secondary Right Shelf · Bottom Tier',
+		status: 'ONLINE',
+		workloads: 'Automated physical log sheet printing, diagnostic telemetry summary dumps, QR-code asset tag generation, local network printing for all subnet VLANs via CUPS.',
+		salvage: 'Commercial office reclaim restored with thorough carriage cleaning, roller reconditioning, and static IP configuration for 24/7 zero-maintenance LAN spooling.',
+		glpi: {
+			tag: 'HL-PERIPH-01-HPPRINT',
+			cat: 'Peripherals / Print & Imaging',
+			state: 'In Production / Auxiliary',
+			depr: '100% Amortized (Salvage Reclaim)',
+			service: '2026-11-21 (Cleaned & Calibrated)',
+			net: 'Gigabit Ethernet + 802.11n Wi-Fi'
+		}
+	},
 	'switch': {
 		tag: 'HL-NET-01-SWITCH',
 		title: '8-Port Gigabit Managed Switch Backbone',

@@ -288,9 +288,12 @@
 
 	// Secondary Shelf Unit: Separate shelving unit completely to the right of the main unit, rotated 90°
 	function buildSecondaryShelfUnit() {
+		// Secondary Shelf Unit: Separate shelving unit positioned to the right of the main unit.
+		// User requirement: The post farthest away from us and to the left (rear-left post facing head-on)
+		// ends just before the front-right post of the main shelf (which sits at x = 10.2, z = 2.8).
+		// Posts DO NOT stick above the top shelf (terminating flush at y = 11.65).
+		// Bottom shelf holds an HP salvage network multifunction printer.
 		const sideUnitGroup = new THREE.Group();
-		sideUnitGroup.position.set(14.8, 0, 0.5);
-		sideUnitGroup.rotation.y = -Math.PI / 2; // rotated 90° facing inward/outward
 
 		const woodMat = new THREE.MeshStandardMaterial({
 			color: 0xdcb68a,
@@ -298,13 +301,19 @@
 			metalness: 0.08
 		});
 
-		// 4 Uprights for secondary unit (Height 13.5, centered at y = 6.75)
-		const sidePostGeo = new THREE.BoxGeometry(0.7, 13.5, 0.7);
+		// Secondary Unit Center & Dimensions:
+		// Center: x = 13.5, z = 4.9. Width = 4.8, Depth = 4.8.
+		// Uprights height = 11.65 (from y = 0 to y = 11.65, centered at y = 5.825, flush with top shelf!).
+		const sidePostGeo = new THREE.BoxGeometry(0.7, 11.65, 0.7);
 		const sidePostPositions = [
-			[-2.2, 6.75, -2.2],
-			[-2.2, 6.75, 2.2],
-			[2.2, 6.75, -2.2],
-			[2.2, 6.75, 2.2]
+			// Rear-left post: x = 11.4, z = 2.8 -> Farthest away from us and to the left, ending right by main front-right post (10.2, 2.8)
+			[11.4, 5.825, 2.8],
+			// Front-left post: x = 11.4, z = 7.0
+			[11.4, 5.825, 7.0],
+			// Rear-right post: x = 15.6, z = 2.8
+			[15.6, 5.825, 2.8],
+			// Front-right post: x = 15.6, z = 7.0
+			[15.6, 5.825, 7.0]
 		];
 		sidePostPositions.forEach(pos => {
 			const post = new THREE.Mesh(sidePostGeo, woodMat);
@@ -314,42 +323,106 @@
 			sideUnitGroup.add(post);
 		});
 
-		// 3 Tiers on secondary shelf: y = 1.6, 6.6, 11.4
-		const sideShelfGeo = new THREE.BoxGeometry(5.2, 0.5, 5.2);
+		// 3 Shelves on secondary unit:
+		// Bottom Tier: y = 1.6 (thickness 0.5, top surface y = 1.85) -> HP Printer
+		// Middle Tier: y = 6.6 (thickness 0.5, top surface y = 6.85) -> 8-Port Switch
+		// Top Tier: y = 11.4 (thickness 0.5, top surface y = 11.65 -> flush with upright posts!)
+		const sideShelfGeo = new THREE.BoxGeometry(4.9, 0.5, 4.9);
 		[1.6, 6.6, 11.4].forEach(y => {
 			const shelf = new THREE.Mesh(sideShelfGeo, woodMat);
-			shelf.position.set(0, y, 0);
+			shelf.position.set(13.5, y, 4.9);
 			shelf.receiveShadow = true;
 			shelf.castShadow = true;
 			sideUnitGroup.add(shelf);
 		});
 
-		// 8-Port Gigabit Managed Switch Backbone (Mounted on the middle tier y = 6.6 of secondary shelf)
-		const switchGeo = new THREE.BoxGeometry(4.0, 0.8, 2.6);
+		// --- 8-Port Gigabit Managed Switch Backbone (Mounted on Middle Tier y = 6.6) ---
+		// Front face points towards -X (towards main rack) for clean, natural cabling
+		const switchGeo = new THREE.BoxGeometry(2.4, 0.8, 3.8);
 		const switchMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.25 });
 		const ethSwitch = new THREE.Mesh(switchGeo, switchMat);
-		ethSwitch.position.set(0, 7.15, 0.4);
+		ethSwitch.position.set(13.4, 7.25, 4.9);
 		ethSwitch.castShadow = true;
 
-		// Front RJ45 ports
+		// 8 Front RJ45 Ports facing -X towards main rack
 		for (let p = 0; p < 8; p++) {
 			const portJack = new THREE.Mesh(
-				new THREE.BoxGeometry(0.28, 0.2, 0.1),
+				new THREE.BoxGeometry(0.1, 0.2, 0.28),
 				new THREE.MeshBasicMaterial({ color: 0x09090b })
 			);
-			portJack.position.set(-1.4 + p * 0.4, -0.1, 1.31);
+			portJack.position.set(-1.21, -0.1, -1.4 + p * 0.4);
 			ethSwitch.add(portJack);
 
-			// Status LED above port
+			// Port Activity LED
 			const portLed = new THREE.Mesh(
-				new THREE.BoxGeometry(0.1, 0.08, 0.05),
+				new THREE.BoxGeometry(0.05, 0.08, 0.1),
 				new THREE.MeshBasicMaterial({ color: p % 2 === 0 ? 0x22c55e : 0xeab308 })
 			);
-			portLed.position.set(-1.4 + p * 0.4, 0.18, 1.31);
+			portLed.position.set(-1.21, 0.18, -1.4 + p * 0.4);
 			ethSwitch.add(portLed);
 		}
-		registerNode(ethSwitch, 'switch', '8-Port Gigabit Managed Switch Backbone (Secondary Right Shelf)');
+		registerNode(ethSwitch, 'switch', '8-Port Gigabit Managed Switch Backbone (Secondary Right Shelf · Middle Tier)');
 		sideUnitGroup.add(ethSwitch);
+
+		// --- HP Network Multifunction Printer (Bottom Shelf y = 1.6) ---
+		const printerGroup = new THREE.Group();
+		printerGroup.userData.nodeId = 'printer';
+
+		// Main Printer Body (Matte light gray casing with dark slate scanner base)
+		const printerBodyGeo = new THREE.BoxGeometry(3.6, 1.4, 3.4);
+		const printerBodyMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.45 });
+		const printerBody = new THREE.Mesh(printerBodyGeo, printerBodyMat);
+		printerBody.position.set(13.5, 2.55, 4.9);
+		printerBody.castShadow = true;
+		printerBody.receiveShadow = true;
+		printerGroup.add(printerBody);
+
+		// Top Scanner Flatbed Lid (Dark contrast glass & lid)
+		const lidGeo = new THREE.BoxGeometry(3.7, 0.15, 3.5);
+		const lidMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.35 });
+		const lid = new THREE.Mesh(lidGeo, lidMat);
+		lid.position.set(13.5, 3.32, 4.9);
+		lid.castShadow = true;
+		printerGroup.add(lid);
+
+		// HP Blue Emblem on lid
+		const hpLogoGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.04, 16);
+		const hpLogoMat = new THREE.MeshBasicMaterial({ color: 0x0284c7 });
+		const hpLogo = new THREE.Mesh(hpLogoGeo, hpLogoMat);
+		hpLogo.position.set(13.5, 3.42, 4.9);
+		printerGroup.add(hpLogo);
+
+		// Front Paper Input / Output Cassette Tray
+		const trayGeo = new THREE.BoxGeometry(2.6, 0.35, 1.0);
+		const trayMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.5 });
+		const tray = new THREE.Mesh(trayGeo, trayMat);
+		tray.position.set(13.5, 2.05, 6.7);
+		printerGroup.add(tray);
+
+		// Front Angled Control Panel with LCD display and Power LED
+		const panelGeo = new THREE.BoxGeometry(1.2, 0.5, 0.4);
+		const panelMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.3 });
+		const panel = new THREE.Mesh(panelGeo, panelMat);
+		panel.position.set(14.4, 2.9, 6.65);
+		panel.rotation.x = -Math.PI / 6;
+		printerGroup.add(panel);
+
+		const screenGeo = new THREE.PlaneGeometry(0.7, 0.3);
+		const screenMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+		const screen = new THREE.Mesh(screenGeo, screenMat);
+		screen.position.set(14.4, 2.92, 6.86);
+		screen.rotation.x = -Math.PI / 6;
+		printerGroup.add(screen);
+
+		// Rear Ethernet RJ45 Jack on printer
+		const printerRj45Geo = new THREE.BoxGeometry(0.2, 0.15, 0.1);
+		const printerRj45Mat = new THREE.MeshBasicMaterial({ color: 0x09090b });
+		const printerRj45 = new THREE.Mesh(printerRj45Geo, printerRj45Mat);
+		printerRj45.position.set(12.6, 2.4, 3.2);
+		printerGroup.add(printerRj45);
+
+		registerNode(printerBody, 'printer', 'HP Salvage Network Multifunction Printer (Secondary Shelf · Bottom Tier)');
+		sideUnitGroup.add(printerGroup);
 
 		scene.add(sideUnitGroup);
 	}
@@ -722,58 +795,90 @@
 		const blackUsbMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.6 });
 		const powerCordMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.7 });
 
-		// Switch front ports originate at (14.8, 7.15, 0.9) on the Rotated Secondary Right Shelf
+		// Managed Switch sits on Secondary Shelf Middle Tier at (13.4, 7.25, 4.9).
+		// Front RJ45 ports face -X at x = 12.2, spanning z = 3.5 to 6.3.
+		// All 6 primary compute nodes + HP printer are wired with yellow Cat6 Ethernet cables!
 
-		// 1. Yellow Cat6 Ethernet: Secondary Switch to Intel NUC Rear RJ45 (Shelf 1)
-		// Bridges across from right side shelf, routes up outside right rear upright, directly into NUC rear
+		// 1. Yellow Cat6: Switch Port 1 (12.2, 7.3, 3.5) -> FREEHPGAMER (Shelf 1 Top Shelf, x = -5.0)
+		const hpEthCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(12.2, 7.3, 3.5),
+			new THREE.Vector3(10.2, 8.5, 2.0),
+			new THREE.Vector3(10.2, 12.0, -1.8),
+			new THREE.Vector3(2.0, 16.6, -1.8),
+			new THREE.Vector3(-4.0, 16.8, -1.8),
+			new THREE.Vector3(-6.2, 17.2, -1.2)
+		]);
+		const hpTube = new THREE.Mesh(new THREE.TubeGeometry(hpEthCurve, 55, 0.085, 8, false), yellowCableMat);
+		scene.add(hpTube);
+
+		// 2. Yellow Cat6: Switch Port 2 (12.2, 7.3, 3.9) -> Intel NUC Core (Shelf 1 Top Shelf, x = 5.2)
 		const nucEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(14.8, 7.15, 0.9),
-			new THREE.Vector3(12.5, 9.5, -0.5),
-			new THREE.Vector3(10.5, 13.5, -1.8),
-			new THREE.Vector3(10.2, 16.5, -1.8),
-			new THREE.Vector3(7.5, 17.2, -2.4),
+			new THREE.Vector3(12.2, 7.3, 3.9),
+			new THREE.Vector3(10.2, 10.5, 1.0),
+			new THREE.Vector3(10.0, 15.0, -1.8),
+			new THREE.Vector3(8.0, 17.0, -2.4),
 			new THREE.Vector3(5.5, 17.2, -2.4)
 		]);
 		const nucTube = new THREE.Mesh(new THREE.TubeGeometry(nucEthCurve, 45, 0.085, 8, false), yellowCableMat);
 		scene.add(nucTube);
 
-		// 2. Yellow Cat6 Ethernet: Secondary Switch to Dell Inspiron 3668 Rear I/O (Shelf 3)
-		// Bridges across into Shelf 3, curves into Dell rear Gigabit port without clipping
+		// 3. Yellow Cat6: Switch Port 3 (12.2, 7.3, 4.3) -> HP Laptop 15 Workhorse (Shelf 2, x = -5.2)
+		const hp15EthCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(12.2, 7.3, 4.3),
+			new THREE.Vector3(10.2, 8.5, 1.5),
+			new THREE.Vector3(10.2, 11.6, -0.8),
+			new THREE.Vector3(2.0, 11.6, -1.0),
+			new THREE.Vector3(-2.0, 11.6, -0.6),
+			new THREE.Vector3(-4.8, 11.75, 0.2)
+		]);
+		const hp15Tube = new THREE.Mesh(new THREE.TubeGeometry(hp15EthCurve, 48, 0.085, 8, false), yellowCableMat);
+		scene.add(hp15Tube);
+
+		// 4. Yellow Cat6: Switch Port 4 (12.2, 7.3, 4.7) -> HomeDell 2 / Inspiron 3668 (Shelf 3, x = 0.0)
 		const dellEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(14.6, 7.15, 0.9),
-			new THREE.Vector3(12.0, 7.0, -1.0),
-			new THREE.Vector3(6.5, 7.2, -2.0),
+			new THREE.Vector3(12.2, 7.3, 4.7),
+			new THREE.Vector3(10.2, 7.1, 1.8),
+			new THREE.Vector3(8.5, 6.9, -0.5),
+			new THREE.Vector3(5.0, 7.2, -2.0),
 			new THREE.Vector3(3.2, 7.5, -2.2)
 		]);
-		const dellTube = new THREE.Mesh(new THREE.TubeGeometry(dellEthCurve, 28, 0.085, 8, false), yellowCableMat);
+		const dellTube = new THREE.Mesh(new THREE.TubeGeometry(dellEthCurve, 32, 0.085, 8, false), yellowCableMat);
 		scene.add(dellTube);
 
-		// 3. Yellow Cat6 Ethernet: Secondary Switch to FREEHPGAMER Rear/Left Port (Shelf 1)
-		// Bridges across, runs along rear crossbar, up left rear post, terminates at HP rear left corner
-		const hpEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(14.4, 7.15, 0.9),
-			new THREE.Vector3(11.0, 7.0, -1.8),
-			new THREE.Vector3(0.0, 7.2, -2.0),
-			new THREE.Vector3(-10.0, 11.5, -1.8),
-			new THREE.Vector3(-10.0, 16.5, -1.8),
-			new THREE.Vector3(-8.2, 17.2, -1.4)
-		]);
-		const hpTube = new THREE.Mesh(new THREE.TubeGeometry(hpEthCurve, 52, 0.085, 8, false), yellowCableMat);
-		scene.add(hpTube);
-
-		// 4. Yellow Cat6 Ethernet: Secondary Switch to Debian 2011 Mac Left Port (Shelf 4)
-		// Bridges across from right shelf, down right rear post, into Mac side port
+		// 5. Yellow Cat6: Switch Port 5 (12.2, 7.3, 5.1) -> Debian 2011 Mac (Shelf 4, x = 4.8)
 		const macEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(14.6, 7.0, 0.9),
-			new THREE.Vector3(12.0, 5.0, -1.0),
-			new THREE.Vector3(10.0, 2.4, -1.5),
-			new THREE.Vector3(7.2, 1.9, -1.2),
+			new THREE.Vector3(12.2, 7.3, 5.1),
+			new THREE.Vector3(10.5, 5.0, 2.0),
+			new THREE.Vector3(10.2, 2.8, -0.5),
+			new THREE.Vector3(7.5, 2.0, -1.0),
 			new THREE.Vector3(5.2, 1.9, -1.0)
 		]);
 		const macTube = new THREE.Mesh(new THREE.TubeGeometry(macEthCurve, 36, 0.085, 8, false), yellowCableMat);
 		scene.add(macTube);
 
-		// 5. Black USB 5V Power Cable: 2011 Mac left USB port to 5V Yoga Cooling Blower Fan (Shelf 4)
+		// 6. Yellow Cat6: Switch Port 6 (12.2, 7.3, 5.5) -> Lenovo Yoga 2 Bare-Board (Shelf 4, x = -5.0)
+		const yogaEthCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(12.2, 7.3, 5.5),
+			new THREE.Vector3(10.8, 4.5, 2.5),
+			new THREE.Vector3(10.2, 2.2, -1.0),
+			new THREE.Vector3(2.0, 1.8, -1.4),
+			new THREE.Vector3(-3.0, 1.8, -0.8),
+			new THREE.Vector3(-4.4, 2.0, -0.2)
+		]);
+		const yogaTube = new THREE.Mesh(new THREE.TubeGeometry(yogaEthCurve, 52, 0.085, 8, false), yellowCableMat);
+		scene.add(yogaTube);
+
+		// 7. Yellow Cat6: Switch Port 7 (12.2, 7.1, 5.9) -> HP Salvage Printer (Secondary Shelf Bottom Tier)
+		const printerEthCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(12.2, 7.1, 5.9),
+			new THREE.Vector3(11.8, 5.0, 4.5),
+			new THREE.Vector3(11.8, 2.8, 3.8),
+			new THREE.Vector3(12.6, 2.4, 3.3)
+		]);
+		const printerTube = new THREE.Mesh(new THREE.TubeGeometry(printerEthCurve, 24, 0.085, 8, false), yellowCableMat);
+		scene.add(printerTube);
+
+		// 8. Black USB 5V Power Cable: 2011 Mac left USB port to 5V Yoga Cooling Blower Fan (Shelf 4)
 		const fanUsbCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(4.5, 2.0, -0.4),
 			new THREE.Vector3(1.5, 1.8, -0.5),
@@ -783,7 +888,7 @@
 		const fanUsbTube = new THREE.Mesh(new THREE.TubeGeometry(fanUsbCurve, 26, 0.07, 8, false), blackUsbMat);
 		scene.add(fanUsbTube);
 
-		// 6. Black USB Cable: 2011 Mac to Samsung Galaxy S4 Mini (Shelf 4 front)
+		// 9. Black USB Cable: 2011 Mac to Samsung Galaxy S4 Mini (Shelf 4 front)
 		const s4UsbCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(4.8, 2.0, 0.0),
 			new THREE.Vector3(5.4, 1.8, 1.0),
@@ -792,7 +897,7 @@
 		const s4UsbTube = new THREE.Mesh(new THREE.TubeGeometry(s4UsbCurve, 18, 0.065, 8, false), blackUsbMat);
 		scene.add(s4UsbTube);
 
-		// 7. Rear AC Power Drops along rear uprights
+		// 10. Rear AC Power Drops along rear uprights
 		const pwrCurve1 = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(-9.8, 16.0, -2.0),
 			new THREE.Vector3(-9.8, 11.0, -2.0),

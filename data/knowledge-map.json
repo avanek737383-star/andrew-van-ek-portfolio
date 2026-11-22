@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 90,
     "totalNodes": 285,
-    "totalLinks": 587,
+    "totalLinks": 588,
     "domains": 6,
     "techBridges": 10
   },
@@ -1251,16 +1251,16 @@
           "desc": "Accurately models physical vertical spacing across all four tiers where the upright poles terminate flush with the topmost shelf (zero exten..."
         },
         {
-          "title": "Dedicated Secondary Shelf Unit (Rotated 90\u00b0 on Right)",
-          "desc": "Positioned completely to the right of the main shelving rack sits a separate secondary shelf unit rotated 90 degrees facing inward, housing ..."
+          "title": "Flush Upright Pole Geometry & Rotated Secondary Shelf Unit",
+          "desc": "Both the main 4-tier rack and secondary side unit vertical posts terminate flush with their respective topmost shelves (y = 16.2 on main rac..."
+        },
+        {
+          "title": "Secondary Shelf Hardware (Managed Switch & HP Network Printer)",
+          "desc": "The middle tier (y = 6.6) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the..."
         },
         {
           "title": "Architectural Wall Ledge & Propped-Up Mobile Miners",
           "desc": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3 with the lower wall jutting forward f..."
-        },
-        {
-          "title": "Non-Clipping 3D Cat6 & USB Cabling Infrastructure",
-          "desc": "Rendered with Three.js CatmullRomCurve3 splines and TubeGeometry, yellow Cat6 Ethernet patch cables originate from the managed switch on She..."
         }
       ],
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
@@ -1279,18 +1279,30 @@
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-1",
-      "name": "Dedicated Secondary Shelf Unit (Rotated 90\u00b0 on Right)",
+      "name": "Flush Upright Pole Geometry & Rotated Secondary Shelf Unit",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Positioned completely to the right of the main shelving rack sits a separate secondary shelf unit rotated 90 degrees facing inward, housing ...",
+      "summary": "Both the main 4-tier rack and secondary side unit vertical posts terminate flush with their respective topmost shelves (y = 16.2 on main rac...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
+      "name": "Secondary Shelf Hardware (Managed Switch & HP Network Printer)",
+      "type": "task",
+      "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
+      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "The middle tier (y = 6.6) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the...",
+      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
+    },
+    {
+      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
       "name": "Architectural Wall Ledge & Propped-Up Mobile Miners",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
@@ -1299,18 +1311,6 @@
       "val": 5,
       "color": "#10b981",
       "summary": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3 with the lower wall jutting forward f...",
-      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
-    },
-    {
-      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
-      "name": "Non-Clipping 3D Cat6 & USB Cabling Infrastructure",
-      "type": "task",
-      "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
-      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Rendered with Three.js CatmullRomCurve3 splines and TubeGeometry, yellow Cat6 Ethernet patch cables originate from the managed switch on She...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
@@ -5698,6 +5698,12 @@
     {
       "source": "hardware-fleet-salvage-and-interactive-labs-title",
       "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-apple-metal",
       "type": "project-tech",
       "distance": 85
     },
