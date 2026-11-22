@@ -1248,7 +1248,11 @@
       "tasks": [
         {
           "title": "4-Tier Freestanding Rack Architecture",
-          "desc": "Accurately models vertical spacing across all four tiers: Shelf 1 (Top) anchors the primary administrative FREEHPGAMER workstation on a wire..."
+          "desc": "Accurately models physical vertical spacing across all four tiers where the upright poles terminate flush with the topmost shelf (zero exten..."
+        },
+        {
+          "title": "Dedicated Secondary Shelf Unit (Rotated 90\u00b0 on Right)",
+          "desc": "Positioned completely to the right of the main shelving rack sits a separate secondary shelf unit rotated 90 degrees facing inward, housing ..."
         },
         {
           "title": "Architectural Wall Ledge & Propped-Up Mobile Miners",
@@ -1257,10 +1261,6 @@
         {
           "title": "Non-Clipping 3D Cat6 & USB Cabling Infrastructure",
           "desc": "Rendered with Three.js CatmullRomCurve3 splines and TubeGeometry, yellow Cat6 Ethernet patch cables originate from the managed switch on She..."
-        },
-        {
-          "title": "OrbitControls Kinematics, Camera Angle Dropdown & Real-Time Hover Illumination",
-          "desc": "Features state-tracked cursor ergonomics (grabbing fist on orbit drag, open hand on empty space hover, finger pointer on hardware), a camera..."
         }
       ],
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
@@ -1274,11 +1274,23 @@
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Accurately models vertical spacing across all four tiers: Shelf 1 (Top) anchors the primary administrative FREEHPGAMER workstation on a wire...",
+      "summary": "Accurately models physical vertical spacing across all four tiers where the upright poles terminate flush with the topmost shelf (zero exten...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-1",
+      "name": "Dedicated Secondary Shelf Unit (Rotated 90\u00b0 on Right)",
+      "type": "task",
+      "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
+      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Positioned completely to the right of the main shelving rack sits a separate secondary shelf unit rotated 90 degrees facing inward, housing ...",
+      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
+    },
+    {
+      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
       "name": "Architectural Wall Ledge & Propped-Up Mobile Miners",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
@@ -1290,7 +1302,7 @@
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
-      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
+      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
       "name": "Non-Clipping 3D Cat6 & USB Cabling Infrastructure",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
@@ -1299,18 +1311,6 @@
       "val": 5,
       "color": "#10b981",
       "summary": "Rendered with Three.js CatmullRomCurve3 splines and TubeGeometry, yellow Cat6 Ethernet patch cables originate from the managed switch on She...",
-      "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
-    },
-    {
-      "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
-      "name": "OrbitControls Kinematics, Camera Angle Dropdown & Real-Time Hover Illumination",
-      "type": "task",
-      "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
-      "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Features state-tracked cursor ergonomics (grabbing fist on orbit drag, open hand on empty space hover, finger pointer on hardware), a camera...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {

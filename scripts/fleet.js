@@ -9,6 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Telemetry & Hardware Node Dictionary (9 Nodes)
 const FLEET_DATA = {
+	'switch': {
+		tag: 'HL-NET-01-SWITCH',
+		title: '8-Port Gigabit Managed Switch Backbone',
+		os: 'SwitchOS / Layer 2 Managed VLAN Firmware',
+		power: '~6.5 W',
+		uptime: 'Secondary Right Shelf Tier (Rotated)',
+		status: 'ONLINE',
+		workloads: 'Central LAN distribution backbone, isolated homelab VLAN routing, 8-port gigabit switching connecting NUC, Dell, Mac, and FREEHPGAMER.',
+		salvage: 'Dedicated network distribution hub positioned on the separate rotated side shelf unit to the right of the main rack, anchoring all patch cabling away from compute thermals.',
+		glpi: {
+			tag: 'HL-NET-01-SWITCH',
+			cat: 'Network Backbone / Managed Switch',
+			state: 'In Production / Mission Critical',
+			depr: 'Enterprise Infrastructure Asset',
+			service: '2026-11-21 (VLAN Tagging & Link Audit)',
+			net: '8x Gigabit RJ45 Ports (VLAN 10/20)'
+		}
+	},
 	'nuc': {
 		tag: 'HL-NODE-06-NUC-CORE',
 		title: 'Headless Intel NUC LAN Backbone',

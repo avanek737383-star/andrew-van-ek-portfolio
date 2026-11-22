@@ -1,12 +1,16 @@
 /* Interactive 3D Digital-Twin & Photogrammetry-Ready Homelab Fleet Viewport
  * Built with Three.js (r128) & OrbitControls
  * Author: Andrew Van Ek & Antigravity AI
- * 4-Shelf Physical Rack Configuration:
- * - Shelf 1 (Top): FREEHPGAMER from Fishbeck, ONEFIVE Storage, Modular NUC Tower & Bluefruit
- * - Shelf 2 (Upper-Middle): HP Laptop 15 Workhorse, 3.5" USB Floppy & Optical Drive
- * - Shelf 3 (Lower-Middle): Dell Inspiron 3668 (horizontal), Navy Blue USB-C Hub with Dual 2.4GHz Dongles, 8-Port Switch
- * - Shelf 4 (Bottom): Debian Mid-2011 Mac, Lenovo Yoga 2 11 Bare-Board Rig, 5V USB Fan, Samsung S4 Mini
- * - Built-in Wall Ledge (Propped on Left): Samsung Galaxy Player YP-GI1, Apple iPod Touch Miner
+ * Physical Workbench Configuration:
+ * - Main 4-Shelf Rack: Upright poles terminate flush with Shelf 1 (zero extension above top shelf)
+ *   - Shelf 1 (Top): FREEHPGAMER from Fishbeck, ONEFIVE Storage, Modular NUC Tower & Bluefruit
+ *   - Shelf 2 (Upper-Middle): HP Laptop 15 Workhorse, 3.5" USB Floppy & Optical Drive
+ *   - Shelf 3 (Lower-Middle): HOMEDELL 2 (Dell Inspiron 3668 horizontal), Navy Blue USB-C Hub
+ *   - Shelf 4 (Bottom): Debian Mid-2011 Mac, Lenovo Yoga 2 11 Bare-Board Rig, 5V USB Fan, Samsung S4 Mini
+ * - Secondary Rotated Shelf Unit (To the Right of Main Rack):
+ *   - Dedicated side shelf unit rotated 90° holding the 8-Port Gigabit Managed Switch Backbone
+ * - Built-in Wall Ledge (To the Left of Main Rack):
+ *   - Propped-up Samsung Galaxy Player YP-GI1 & Apple iPod Touch Miner on desktop stands
  */
 
 (function () {
@@ -23,11 +27,12 @@
 	let isDragging = false;
 
 	const CAMERA_PRESETS = {
-		'perspective': { pos: [0, 17, 28], target: [0, 9.0, 0] },
+		'perspective': { pos: [0.5, 17, 29], target: [0.5, 9.0, 0] },
 		'shelf1': { pos: [-1.5, 18.5, 11], target: [0, 16.5, 0] },
 		'shelf2': { pos: [-2.5, 13.5, 11], target: [-2.0, 11.5, 0] },
 		'shelf3': { pos: [0.0, 9.2, 11.5], target: [0.0, 7.5, 0] },
 		'shelf4': { pos: [0.0, 4.0, 10.5], target: [0.0, 2.2, 0] },
+		'switch': { pos: [14.0, 11.0, 9.0], target: [14.8, 7.5, 0.5] },
 		'wall': { pos: [-13.5, 13.0, 5.0], target: [-13.0, 10.2, -3.4] }
 	};
 
@@ -74,7 +79,7 @@
 		const width = container.clientWidth || 900;
 		const height = container.clientHeight || 420;
 		camera = new THREE.PerspectiveCamera(44, width / height, 0.5, 200);
-		camera.position.set(0, 17, 28);
+		camera.position.set(0.5, 17, 29);
 
 		// 3. Renderer setup
 		renderer = new THREE.WebGLRenderer({
@@ -94,7 +99,7 @@
 			controls = new THREE.OrbitControls(camera, renderer.domElement);
 			controls.enableDamping = true;
 			controls.dampingFactor = 0.05;
-			controls.target.set(0, 9.0, 0);
+			controls.target.set(0.5, 9.0, 0);
 			controls.minDistance = 6;
 			controls.maxDistance = 55;
 			controls.maxPolarAngle = Math.PI / 2 + 0.04;
@@ -112,9 +117,10 @@
 		// 5. Lighting
 		setupLighting();
 
-		// 6. Geometry construction: 4 Tiers + Wall Ledge
+		// 6. Geometry construction: Environment + Main 4-Tier Rack + Secondary Rotated Rack + Wall Ledge + Cables
 		buildEnvironment();
 		buildFreestandingRack();
+		buildSecondaryShelfUnit();
 		buildShelf1Hardware();
 		buildShelf2Hardware();
 		buildShelf3Hardware();
@@ -153,15 +159,15 @@
 		neoPixelLight.position.set(5.5, 19.4, -0.8);
 		scene.add(neoPixelLight);
 
-		// Ethernet green activity link light on Shelf 3 Switch
-		const ethLight = new THREE.PointLight(0x22c55e, 0.6, 5);
-		ethLight.position.set(7.0, 7.2, 0.6);
+		// Ethernet green activity link light on Secondary Shelf Switch
+		const ethLight = new THREE.PointLight(0x22c55e, 0.65, 6);
+		ethLight.position.set(14.8, 7.8, 0.5);
 		scene.add(ethLight);
 	}
 
 	function buildEnvironment() {
 		// Floor
-		const floorGeo = new THREE.PlaneGeometry(65, 50);
+		const floorGeo = new THREE.PlaneGeometry(70, 50);
 		const floorMat = new THREE.MeshStandardMaterial({
 			color: 0x0f172a,
 			roughness: 0.85,
@@ -178,48 +184,47 @@
 		grid.position.y = 0.01;
 		scene.add(grid);
 
-		// Upper Wall (above ledge y >= 9.3 at z = -4.8) - proportioned neatly around rack without giant awkward overlap
-		const upperWallGeo = new THREE.PlaneGeometry(36, 14);
+		// Upper Wall (above ledge y >= 9.3 at z = -4.8) - frames room from left mobile miners to right secondary shelf
+		const upperWallGeo = new THREE.PlaneGeometry(42, 14);
 		const wallMat = new THREE.MeshStandardMaterial({
 			color: 0x334155,
 			roughness: 0.85,
 			metalness: 0.1
 		});
 		const upperWall = new THREE.Mesh(upperWallGeo, wallMat);
-		upperWall.position.set(-2.0, 16.3, -4.8);
+		upperWall.position.set(0.0, 16.3, -4.8);
 		upperWall.receiveShadow = true;
 		scene.add(upperWall);
 
 		// Built-in Architectural Wall Ledge (at y = 9.3, extends forward to z = -2.8)
-		// Extended to the left (x = -17 to +11) to comfortably hold propped mobile miners
-		const ledgeGeo = new THREE.BoxGeometry(36, 0.6, 2.0);
+		const ledgeGeo = new THREE.BoxGeometry(42, 0.6, 2.0);
 		const ledgeMat = new THREE.MeshStandardMaterial({
 			color: 0xe2e8f0,
 			roughness: 0.6,
 			metalness: 0.1
 		});
 		const ledge = new THREE.Mesh(ledgeGeo, ledgeMat);
-		ledge.position.set(-2.0, 9.0, -3.8); // top surface is at y = 9.3
+		ledge.position.set(0.0, 9.0, -3.8); // top surface is at y = 9.3
 		ledge.receiveShadow = true;
 		ledge.castShadow = true;
 		scene.add(ledge);
 
 		// Ledge decorative molding lip along front face at z = -2.8
-		const lipGeo = new THREE.BoxGeometry(36.2, 0.35, 0.3);
+		const lipGeo = new THREE.BoxGeometry(42.2, 0.35, 0.3);
 		const lipMat = new THREE.MeshStandardMaterial({ color: 0xcfd9e5, roughness: 0.5 });
 		const lip = new THREE.Mesh(lipGeo, lipMat);
-		lip.position.set(-2.0, 9.15, -2.7);
+		lip.position.set(0.0, 9.15, -2.7);
 		scene.add(lip);
 
 		// Lower Wall (BELOW ledge: y < 9.3 juts out / fills in flush underneath the ledge front at z = -2.8!)
-		const lowerWallGeo = new THREE.BoxGeometry(36, 8.7, 2.0);
+		const lowerWallGeo = new THREE.BoxGeometry(42, 8.7, 2.0);
 		const lowerWallMat = new THREE.MeshStandardMaterial({
 			color: 0x1e293b,
 			roughness: 0.9,
 			metalness: 0.05
 		});
 		const lowerWall = new THREE.Mesh(lowerWallGeo, lowerWallMat);
-		lowerWall.position.set(-2.0, 4.35, -3.8);
+		lowerWall.position.set(0.0, 4.35, -3.8);
 		lowerWall.receiveShadow = true;
 		scene.add(lowerWall);
 	}
@@ -233,15 +238,17 @@
 
 		const rackGroup = new THREE.Group();
 
-		// 4 Upright Posts (Height 20.5 units tall, accommodating 4 tiers)
-		// Rear posts sit at z = -2.2 (strictly IN FRONT of the ledge at z = -2.8 with 0.6 units clearance!).
+		// 4 Upright Posts:
+		// User requirement: The poles DO NOT extend beyond the topmost shelf (Shelf 1 at y = 16.2).
+		// Height = 16.2 (from y = 0 to y = 16.2, centered at y = 8.1).
+		// Rear posts sit at z = -2.2 (strictly in front of the wall ledge at z = -2.8).
 		// Front posts sit at z = +2.8.
-		const postGeo = new THREE.BoxGeometry(0.8, 20.5, 0.8);
+		const postGeo = new THREE.BoxGeometry(0.8, 16.2, 0.8);
 		const postPositions = [
-			[-10.2, 10.25, -2.2],
-			[-10.2, 10.25, 2.8],
-			[10.2, 10.25, -2.2],
-			[10.2, 10.25, 2.8]
+			[-10.2, 8.1, -2.2],
+			[-10.2, 8.1, 2.8],
+			[10.2, 8.1, -2.2],
+			[10.2, 8.1, 2.8]
 		];
 		postPositions.forEach(pos => {
 			const post = new THREE.Mesh(postGeo, woodMat);
@@ -252,7 +259,7 @@
 		});
 
 		// 4 Shelves:
-		// Shelf 1 (Top): y = 16.2
+		// Shelf 1 (Top): y = 16.2 (flush with the top of the upright poles!)
 		// Shelf 2 (Upper-Middle): y = 11.4
 		// Shelf 3 (Lower-Middle): y = 6.6
 		// Shelf 4 (Bottom): y = 1.6
@@ -277,6 +284,74 @@
 		});
 
 		scene.add(rackGroup);
+	}
+
+	// Secondary Shelf Unit: Separate shelving unit completely to the right of the main unit, rotated 90°
+	function buildSecondaryShelfUnit() {
+		const sideUnitGroup = new THREE.Group();
+		sideUnitGroup.position.set(14.8, 0, 0.5);
+		sideUnitGroup.rotation.y = -Math.PI / 2; // rotated 90° facing inward/outward
+
+		const woodMat = new THREE.MeshStandardMaterial({
+			color: 0xdcb68a,
+			roughness: 0.75,
+			metalness: 0.08
+		});
+
+		// 4 Uprights for secondary unit (Height 13.5, centered at y = 6.75)
+		const sidePostGeo = new THREE.BoxGeometry(0.7, 13.5, 0.7);
+		const sidePostPositions = [
+			[-2.2, 6.75, -2.2],
+			[-2.2, 6.75, 2.2],
+			[2.2, 6.75, -2.2],
+			[2.2, 6.75, 2.2]
+		];
+		sidePostPositions.forEach(pos => {
+			const post = new THREE.Mesh(sidePostGeo, woodMat);
+			post.position.set(...pos);
+			post.castShadow = true;
+			post.receiveShadow = true;
+			sideUnitGroup.add(post);
+		});
+
+		// 3 Tiers on secondary shelf: y = 1.6, 6.6, 11.4
+		const sideShelfGeo = new THREE.BoxGeometry(5.2, 0.5, 5.2);
+		[1.6, 6.6, 11.4].forEach(y => {
+			const shelf = new THREE.Mesh(sideShelfGeo, woodMat);
+			shelf.position.set(0, y, 0);
+			shelf.receiveShadow = true;
+			shelf.castShadow = true;
+			sideUnitGroup.add(shelf);
+		});
+
+		// 8-Port Gigabit Managed Switch Backbone (Mounted on the middle tier y = 6.6 of secondary shelf)
+		const switchGeo = new THREE.BoxGeometry(4.0, 0.8, 2.6);
+		const switchMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.25 });
+		const ethSwitch = new THREE.Mesh(switchGeo, switchMat);
+		ethSwitch.position.set(0, 7.15, 0.4);
+		ethSwitch.castShadow = true;
+
+		// Front RJ45 ports
+		for (let p = 0; p < 8; p++) {
+			const portJack = new THREE.Mesh(
+				new THREE.BoxGeometry(0.28, 0.2, 0.1),
+				new THREE.MeshBasicMaterial({ color: 0x09090b })
+			);
+			portJack.position.set(-1.4 + p * 0.4, -0.1, 1.31);
+			ethSwitch.add(portJack);
+
+			// Status LED above port
+			const portLed = new THREE.Mesh(
+				new THREE.BoxGeometry(0.1, 0.08, 0.05),
+				new THREE.MeshBasicMaterial({ color: p % 2 === 0 ? 0x22c55e : 0xeab308 })
+			);
+			portLed.position.set(-1.4 + p * 0.4, 0.18, 1.31);
+			ethSwitch.add(portLed);
+		}
+		registerNode(ethSwitch, 'switch', '8-Port Gigabit Managed Switch Backbone (Secondary Right Shelf)');
+		sideUnitGroup.add(ethSwitch);
+
+		scene.add(sideUnitGroup);
 	}
 
 	// Helper to add clean wireframe bounding outlines and register interactive targets
@@ -458,7 +533,7 @@
 
 	function buildShelf3Hardware() {
 		// --- Shelf 3 (Lower-Middle Shelf, y = 6.6) ---
-		// HOMEDELL 2 (Dell Inspiron 3668) placed horizontally on its own dedicated shelf
+		// HOMEDELL 2 (Dell Inspiron 3668) placed horizontally on its dedicated shelf with USB hub on top
 
 		// 1. HOMEDELL 2 (Dell Inspiron 3668)
 		const dellGeo = new THREE.BoxGeometry(7.2, 2.6, 5.4);
@@ -502,33 +577,6 @@
 		rec2.position.set(1.7, 9.65, 2.1);
 		hubGroup.add(rec2);
 		scene.add(hubGroup);
-
-		// 3. Managed Gigabit Switch Backbone on Shelf 3 (Right side)
-		const switchGeo = new THREE.BoxGeometry(4.0, 0.8, 2.6);
-		const switchMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.25 });
-		const ethSwitch = new THREE.Mesh(switchGeo, switchMat);
-		ethSwitch.position.set(7.0, 7.0, 0.3);
-		ethSwitch.castShadow = true;
-
-		// Front RJ45 port block
-		for (let p = 0; p < 8; p++) {
-			const portJack = new THREE.Mesh(
-				new THREE.BoxGeometry(0.28, 0.2, 0.1),
-				new THREE.MeshBasicMaterial({ color: 0x09090b })
-			);
-			portJack.position.set(-1.4 + p * 0.4, -0.1, 1.31);
-			ethSwitch.add(portJack);
-
-			// Status LED above port
-			const portLed = new THREE.Mesh(
-				new THREE.BoxGeometry(0.1, 0.08, 0.05),
-				new THREE.MeshBasicMaterial({ color: p % 2 === 0 ? 0x22c55e : 0xeab308 })
-			);
-			portLed.position.set(-1.4 + p * 0.4, 0.18, 1.31);
-			ethSwitch.add(portLed);
-		}
-		registerNode(ethSwitch, 'switch', '8-Port Gigabit Managed Switch Backbone (Shelf 3)');
-		scene.add(ethSwitch);
 	}
 
 	function buildShelf4Hardware() {
@@ -674,55 +722,55 @@
 		const blackUsbMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.6 });
 		const powerCordMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.7 });
 
-		// Switch front port origin: (7.0, 7.0, 0.8) on Shelf 3
+		// Switch front ports originate at (14.8, 7.15, 0.9) on the Rotated Secondary Right Shelf
 
-		// 1. Yellow Cat6 Ethernet: Switch (Shelf 3) to Intel NUC Rear RJ45 (Shelf 1)
-		// Routes outward around right side of shelf, cleanly up the right rear post, directly into NUC rear
+		// 1. Yellow Cat6 Ethernet: Secondary Switch to Intel NUC Rear RJ45 (Shelf 1)
+		// Bridges across from right side shelf, routes up outside right rear upright, directly into NUC rear
 		const nucEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(7.4, 7.0, 0.8),
-			new THREE.Vector3(9.2, 7.2, 0.0),
-			new THREE.Vector3(10.0, 11.5, -1.8),
-			new THREE.Vector3(10.0, 16.5, -1.8),
+			new THREE.Vector3(14.8, 7.15, 0.9),
+			new THREE.Vector3(12.5, 9.5, -0.5),
+			new THREE.Vector3(10.5, 13.5, -1.8),
+			new THREE.Vector3(10.2, 16.5, -1.8),
 			new THREE.Vector3(7.5, 17.2, -2.4),
 			new THREE.Vector3(5.5, 17.2, -2.4)
 		]);
-		const nucTube = new THREE.Mesh(new THREE.TubeGeometry(nucEthCurve, 42, 0.085, 8, false), yellowCableMat);
+		const nucTube = new THREE.Mesh(new THREE.TubeGeometry(nucEthCurve, 45, 0.085, 8, false), yellowCableMat);
 		scene.add(nucTube);
 
-		// 2. Yellow Cat6 Ethernet: Switch (Shelf 3) to Dell Inspiron 3668 Rear I/O (Shelf 3)
-		// Patch cable runs along shelf rear cleanly into Dell rear LAN jack
+		// 2. Yellow Cat6 Ethernet: Secondary Switch to Dell Inspiron 3668 Rear I/O (Shelf 3)
+		// Bridges across into Shelf 3, curves into Dell rear Gigabit port without clipping
 		const dellEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(6.8, 7.0, 0.8),
-			new THREE.Vector3(6.0, 6.9, -1.5),
-			new THREE.Vector3(4.2, 7.2, -2.2),
+			new THREE.Vector3(14.6, 7.15, 0.9),
+			new THREE.Vector3(12.0, 7.0, -1.0),
+			new THREE.Vector3(6.5, 7.2, -2.0),
 			new THREE.Vector3(3.2, 7.5, -2.2)
 		]);
-		const dellTube = new THREE.Mesh(new THREE.TubeGeometry(dellEthCurve, 20, 0.085, 8, false), yellowCableMat);
+		const dellTube = new THREE.Mesh(new THREE.TubeGeometry(dellEthCurve, 28, 0.085, 8, false), yellowCableMat);
 		scene.add(dellTube);
 
-		// 3. Yellow Cat6 Ethernet: Switch (Shelf 3) to FREEHPGAMER Rear/Left Port (Shelf 1)
-		// Routes along rear crossbar, up left rear post, terminates at HP rear left corner
+		// 3. Yellow Cat6 Ethernet: Secondary Switch to FREEHPGAMER Rear/Left Port (Shelf 1)
+		// Bridges across, runs along rear crossbar, up left rear post, terminates at HP rear left corner
 		const hpEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(6.5, 7.0, 0.8),
-			new THREE.Vector3(2.0, 6.9, -1.8),
-			new THREE.Vector3(-6.0, 7.2, -2.0),
+			new THREE.Vector3(14.4, 7.15, 0.9),
+			new THREE.Vector3(11.0, 7.0, -1.8),
+			new THREE.Vector3(0.0, 7.2, -2.0),
 			new THREE.Vector3(-10.0, 11.5, -1.8),
 			new THREE.Vector3(-10.0, 16.5, -1.8),
 			new THREE.Vector3(-8.2, 17.2, -1.4)
 		]);
-		const hpTube = new THREE.Mesh(new THREE.TubeGeometry(hpEthCurve, 48, 0.085, 8, false), yellowCableMat);
+		const hpTube = new THREE.Mesh(new THREE.TubeGeometry(hpEthCurve, 52, 0.085, 8, false), yellowCableMat);
 		scene.add(hpTube);
 
-		// 4. Yellow Cat6 Ethernet: Switch (Shelf 3) to Debian 2011 Mac Left Port (Shelf 4)
-		// Routes down right rear post, across bottom shelf surface into Mac port
+		// 4. Yellow Cat6 Ethernet: Secondary Switch to Debian 2011 Mac Left Port (Shelf 4)
+		// Bridges across from right shelf, down right rear post, into Mac side port
 		const macEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(7.2, 6.8, 0.8),
-			new THREE.Vector3(9.5, 5.0, -1.0),
-			new THREE.Vector3(9.5, 2.2, -1.5),
-			new THREE.Vector3(7.0, 1.9, -1.2),
+			new THREE.Vector3(14.6, 7.0, 0.9),
+			new THREE.Vector3(12.0, 5.0, -1.0),
+			new THREE.Vector3(10.0, 2.4, -1.5),
+			new THREE.Vector3(7.2, 1.9, -1.2),
 			new THREE.Vector3(5.2, 1.9, -1.0)
 		]);
-		const macTube = new THREE.Mesh(new THREE.TubeGeometry(macEthCurve, 32, 0.085, 8, false), yellowCableMat);
+		const macTube = new THREE.Mesh(new THREE.TubeGeometry(macEthCurve, 36, 0.085, 8, false), yellowCableMat);
 		scene.add(macTube);
 
 		// 5. Black USB 5V Power Cable: 2011 Mac left USB port to 5V Yoga Cooling Blower Fan (Shelf 4)
@@ -746,7 +794,7 @@
 
 		// 7. Rear AC Power Drops along rear uprights
 		const pwrCurve1 = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(-9.8, 18.0, -2.0),
+			new THREE.Vector3(-9.8, 16.0, -2.0),
 			new THREE.Vector3(-9.8, 11.0, -2.0),
 			new THREE.Vector3(-9.8, 6.0, -2.0),
 			new THREE.Vector3(-9.8, 1.0, -2.0),
@@ -897,7 +945,7 @@
 						child.userData.origEmissiveInt = child.material.emissiveIntensity || 0;
 					}
 					child.material.emissive.setHex(0xffffff);
-					child.material.emissiveIntensity = 0.4;
+					child.material.emissiveIntensity = 0.45;
 				} else if (child.material.color) {
 					if (child.userData.origColor === undefined) {
 						child.userData.origColor = child.material.color.getHex();
