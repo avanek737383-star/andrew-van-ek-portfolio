@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 91,
     "totalNodes": 290,
-    "totalLinks": 598,
+    "totalLinks": 597,
     "domains": 6,
     "techBridges": 10
   },
@@ -5858,12 +5858,6 @@
     {
       "source": "hardware-fleet-salvage-and-interactive-labs-title",
       "target": "tech-openrc-daemons",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "hardware-fleet-salvage-and-interactive-labs-title",
-      "target": "tech-gcp-cloud",
       "type": "project-tech",
       "distance": 85
     },
