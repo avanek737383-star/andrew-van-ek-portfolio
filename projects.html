@@ -88,6 +88,44 @@
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
 
+<section class="project-entry" aria-labelledby="wii-brawl-iso-audio-extraction-title">
+<h2 id="wii-brawl-iso-audio-extraction-title">Super Smash Bros. Brawl: Optical Disc Partition Decryption, Asset Carving &amp; Parallel BRSTM Audio Pipeline</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Nintendo Wii &middot; Optical Disc Forensics &middot; Dolphin &middot; BrawlCrate &middot; FFmpeg &middot; Python &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<p>Starting with an 8.17 GB dual-layer Nintendo Wii optical disc image (<code>Copy of Super Smash Bros. Brawl [RSBE01].iso</code>) in the local Downloads folder, the goal was to extract and convert the game's complete background music collection into pristine, standalone audio files without relying on compressed or degraded third-party re-recordings.</p>
+
+<h3>Forensic Obstacle: Why Standard Mount Tools &amp; FTK Imager Failed</h3>
+<p>Initial attempts to mount the disc image using traditional digital forensics software (AccessData FTK Imager) and operating system drive mounters resulted in an <strong>&ldquo;Unknown file structure&rdquo;</strong> error. Unlike conventional PC optical media that adhere to standardized ISO 9660 or UDF filesystems, Nintendo Wii disc images employ a proprietary, encrypted optical disc architecture:</p>
+<ul>
+<li><strong>Hardware-Level AES Encryption:</strong> Disc sectors are segmented into isolated partitions (Partition 0 for System Updates, Partition 1 for Game Data <code>RSBE01</code>, and optional channel installers), each encrypted with AES-128-CBC using Nintendo's proprietary Wii common key.</li>
+<li><strong>Proprietary FST Filesystem:</strong> Decrypted partition tables do not map to FAT or NTFS volumes, but utilize Nintendo's internal File String Table (FST) hierarchy referencing discrete asset blobs.</li>
+</ul>
+
+<h3>Filesystem Exploration &amp; Dolphin Partition Extraction</h3>
+<p>To navigate the encrypted layout without raw sector-level hex carving, we utilized <strong>Dolphin Emulator</strong>'s native filesystem interpreter. Inspecting <strong>Data Partition (0) - RSBE01</strong> exposed the core game asset tree (stage models, fighter scripts, video cutscenes, and system files). Nestled beneath the root hierarchy was the <strong><code>sound/</code></strong> directory measuring <strong>1.10 GiB</strong>, containing:</p>
+<ul>
+<li><code>sound/strm/</code>: The master background music repository housing 314 individual Nintendo <strong>.brstm</strong> (Binary Revolution Stream) multi-channel audio tracks.</li>
+<li><code>sound/smashbros_sound.brsar</code>: The master 101 MB sound archive containing sound effects, menu clicks, announcer voice clips, and victory fanfares.</li>
+<li><code>sound/bgmdata/</code>: Binary index tables (<code>snd_bgm.dat</code>, <code>snd_bgm_title.dat</code>) correlating stage sound IDs with internal memory pointers.</li>
+</ul>
+
+<h3>Tooling Staging: BrawlCrate Deployment</h3>
+<p>To provide immediate desktop auditioning and character voice parsing, we deployed <strong>BrawlCrate</strong> (the open-source SSBB modding suite). To maintain a clean host environment, 22 scattered binaries, runtime dependencies (<code>BrawlLib.dll</code>, <code>IronPython.dll</code>, <code>OpenTK.dll</code>), and documentation were organized into <code>Documents/BrawlCrate</code>, paired with a dedicated Desktop shortcut for seamless inspection of <code>.brsar</code> voice banks and stage parameters.</p>
+
+<h3>Automated Parallel Transcoding &amp; Canonical Track Reconciliation</h3>
+<p>Because native <code>.brstm</code> files cannot play out-of-the-box in consumer media players, we engineered a high-throughput Python conversion engine leveraging system-level <strong>FFmpeg</strong>, which natively supports <code>adpcm_thp</code> audio demuxing at 32,000 Hz stereo:</p>
+<ol>
+<li><strong>Database Reconciliation:</strong> Brawl internally references background audio through alphanumeric stage codes (e.g., <code>A##</code> for Mario, <code>B##</code> for Donkey Kong, <code>X##</code> for Smash/System, <code>Y##</code> for Subspace Emissary, <code>Z##</code> for Victory Themes). We parsed community soundtrack mapping records and verified all 314 active disc streams, correctly resolving every file to its official track title (such as mapping <code>X05.brstm</code> to <em>Smash Bros Brawl - Final Destination</em>, <code>W06.brstm</code> to <em>Fountain of Dreams</em>, and <code>E07.brstm</code> to <em>Yoshi's Island - Obstacle Course (Winter)</em>).</li>
+<li><strong>Multi-Threaded Batch Conversion:</strong> Deployed a Python <code>ThreadPoolExecutor</code> utilizing 16 parallel worker threads to process the entire disc stream collection into high-fidelity VBR MP3 (LAME <code>-q:a 0</code>).</li>
+<li><strong>Metadata Injection:</strong> Injected structured ID3 metadata tags (Track Title, Album: <em>Super Smash Bros. Brawl</em>, Album Artist: <em>Nintendo</em>, and Track Code) into each file during the transcode pass.</li>
+</ol>
+
+<p><strong>Result:</strong> All 314 tracks converted in seconds with a 100% success rate (0 failures), producing a pristine, fully indexed 4.3 MB direct-from-source recording of Final Destination and the complete Brawl score, completely free of the dynamic range distortion and compression artifacts found in third-party web rips.</p>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Technical investigation, architectural diagnosis, and automation developed in pair programming with <strong>Google DeepMind Antigravity AI</strong>. Antigravity AI diagnosed why FTK Imager reported unknown file structures, analyzed Dolphin filesystem hierarchy captures to pinpoint the 1.10 GiB sound directory, organized and deployed the BrawlCrate installation into Documents, engineered the multi-threaded Python audio conversion pipeline, reconciled the 314 BRSTM track codes, and validated zero-defect MP3 rendering.</p>
+<ul class="chips"><li>Nintendo Wii</li><li>Optical Disc Forensics</li><li>Dolphin Emulator</li><li>Digital Forensics</li><li>BrawlCrate</li><li>BRSTM</li><li>FFmpeg</li><li>Audio Engineering</li><li>Python Parallelism</li><li>Google DeepMind Antigravity AI</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="muse-meta-account-mismatch-title">
 <h2 id="muse-meta-account-mismatch-title">Muse on macOS: Resolving a Meta Account Mismatch in Chrome</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>macOS &middot; Muse &middot; Chrome &middot; Meta Account Troubleshooting &middot; OpenAI Codex &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
