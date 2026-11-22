@@ -103,9 +103,29 @@
        │
        └──(12.5x6.3mm Front Cutout)──► Unrestricted Insertion for Heavy Braided USB-C Cable Shrouds</code></pre>
 
+<figure style="margin: 20px 0; background: #0d1117; padding: 16px; border-radius: 12px; border: 1px solid #30363d; text-align: center;">
+<img src="images/esp32-case/esp32-case-cad-stackup-diagram.svg" alt="ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure Parametric CAD Stackup Diagram" style="max-width: 100%; height: auto; border-radius: 6px;">
+<figcaption style="margin-top: 10px; color: #8b949e; font-size: 0.9rem;"><strong>Figure 1:</strong> Parametric CAD cross-section illustrating the 9.4 mm pin drop cavity with 0.9 mm float clearance, 1.7 mm component headroom, and the 22&times;10 mm open-aperture antenna window.</figcaption>
+</figure>
+
 <h3>RF Physics &amp; Antenna Dielectric Detuning Mitigation</h3>
 <p>Most commercial 3D-printed microcontroller enclosures inadvertently degrade wireless performance by enclosing the entire PCB in solid plastic. Thermoplastics commonly used in FDM 3D printing (PLA with relative permittivity &epsilon;<sub>r</sub> &approx; 2.7&ndash;3.2, and PETG with &epsilon;<sub>r</sub> &approx; 2.9&ndash;3.4) exhibit significantly higher dielectric constants than dry ambient air (&epsilon;<sub>r</sub> &approx; 1.0). Enveloping the ESP-WROOM-32's onboard inverted-F meander trace antenna in solid thermoplastic introduces capacitive dielectric loading that detunes the antenna's electrical resonance downward away from the 2.40&ndash;2.48 GHz ISM band, degrading impedance matching, increasing Voltage Standing Wave Ratio (VSWR), and dropping received signal strength (RSSI) by <strong>6 to 12 dB</strong>.</p>
 <p>To eliminate dielectric loading entirely, the CAD architecture incorporates a <strong>22.0 mm &times; 10.0 mm open aperture cutout window</strong> directly over the entire antenna trace on the top lid. The onboard trace radiates directly into unhindered ambient air, preserving factory resonance, maximizing transmission range, and maintaining peak Wi-Fi and Bluetooth throughput.</p>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 24px 0;">
+  <figure style="margin: 0; background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 8px; overflow: hidden; padding: 10px; text-align: center;">
+    <img src="images/esp32-case/esp32-elegoo-dimension-blueprint.jpg" alt="ELEGOO ESP32 Official Physical Dimensions Blueprint" style="max-width: 100%; height: auto; border-radius: 4px; max-height: 280px; object-fit: contain;">
+    <figcaption style="margin-top: 8px; font-size: 0.85rem; color: #57606a;"><strong>Hardware Blueprint:</strong> 51.74 mm &times; 29.00 mm footprint, 25.64 mm header spacing, Type-C interface &amp; M2.5 mounting holes.</figcaption>
+  </figure>
+  <figure style="margin: 0; background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 8px; overflow: hidden; padding: 10px; text-align: center;">
+    <img src="images/esp32-case/esp32-elegoo-pin-height-telemetry.jpg" alt="ELEGOO ESP32 Pin Height Telemetry" style="max-width: 100%; height: auto; border-radius: 4px; max-height: 280px; object-fit: contain;">
+    <figcaption style="margin-top: 8px; font-size: 0.85rem; color: #57606a;"><strong>Pin Depth Telemetry:</strong> Pre-soldered header pins extending 6.0 mm below plastic block (8.5 mm total depth).</figcaption>
+  </figure>
+  <figure style="margin: 0; background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 8px; overflow: hidden; padding: 10px; text-align: center;">
+    <img src="images/esp32-case/esp32-elegoo-3pack-hardware.jpg" alt="ELEGOO ESP32 3-Pack Dev Board Hardware Overview" style="max-width: 100%; height: auto; border-radius: 4px; max-height: 280px; object-fit: contain;">
+    <figcaption style="margin-top: 8px; font-size: 0.85rem; color: #57606a;"><strong>Hardware Suite:</strong> 3-pack dev boards with downward pre-soldered pins, tactile EN/BOOT switches &amp; 2.4 GHz meander trace.</figcaption>
+  </figure>
+</div>
 
 <h3>Mechanical Engineering: Pin Suspension &amp; Zero-Collision Component Stackup</h3>
 <p>To ensure a rock-solid snap-fit that never bottoms out against delicate surface-mount silicon or pin headers, the enclosure geometry was calculated around physical caliper telemetry and high-resolution optical inspection:</p>
@@ -124,6 +144,30 @@
 <li><strong>All-in-One 3-Pack Build Plate (<code>ESP32_Elegoo_Case_3X_Plate.stl</code>):</strong> To satisfy all three dev boards in a single print job, an all-in-one build plate was generated arranging all 3 bases and all 3 lids side-by-side across a compact <strong>117.4 mm &times; 121.2 mm footprint</strong>. The combined plate prints in ~2.5 hours on standard lab FDM printers (Ultimaker / Bambu Lab / Prusa), well within GVSU's 12-hour per-job policy.</li>
 <li><strong>Physical Media Staging &amp; Cloud Archival:</strong> Deployed the 3-Pack plate directly to the root of the student USB drive (<code>BLACKUSB</code>) for immediate walk-up printing at the library desk, preserved standalone CAD definitions (<code>ESP32_Elegoo_Case.scad</code>) and component STLs in <code>ESP32_3D_Print</code>, sanitized Mac metadata via <code>dot_clean</code>, safely unmounted the hardware, and archived the entire production bundle into the Google Drive academic repository (<code>BLACKUSBBACKUP11-22/ESP32_3D_Print/</code>).</li>
 </ol>
+
+<div class="project-downloads-card" style="background: #f8f9fa; border: 1px solid #e1e4e8; border-left: 4px solid #0056b3; border-radius: 8px; padding: 20px; margin: 28px 0;">
+  <h3 style="margin-top: 0; color: #0056b3; font-size: 1.2rem;">Direct CAD &amp; 3D Print Downloads</h3>
+  <p style="margin-bottom: 16px; font-size: 0.95rem; color: #495057;">Download production-ready, support-free 3D printing models engineered for the ELEGOO ESP-32 Dev Board. Hosted directly in the repository for high-speed static delivery:</p>
+  
+  <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+    <a href="downloads/esp32-case/ESP32_Elegoo_Case_3X_Plate.stl" download="ESP32_Elegoo_Case_3X_Plate.stl" class="btn" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; box-shadow: 0 2px 4px rgba(0,86,179,0.2);">
+      <span>&#128424; Download 3-Pack Build Plate (STL &middot; 68 KB)</span>
+    </a>
+    <a href="downloads/esp32-case/ESP32_Elegoo_Case_Base.stl" download="ESP32_Elegoo_Case_Base.stl" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
+      <span>Download Single Base (STL &middot; 8 KB)</span>
+    </a>
+    <a href="downloads/esp32-case/ESP32_Elegoo_Case_Lid.stl" download="ESP32_Elegoo_Case_Lid.stl" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
+      <span>Download Snap Lid (STL &middot; 15 KB)</span>
+    </a>
+    <a href="downloads/esp32-case/ESP32_Elegoo_Case.scad" download="ESP32_Elegoo_Case.scad" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
+      <span>&#9881;&#65039; OpenSCAD Source (SCAD &middot; 6 KB)</span>
+    </a>
+    <a href="downloads/esp32-case/README.md" download="README.md" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
+      <span>&#128196; Slicing Guide (MD)</span>
+    </a>
+  </div>
+  <p style="margin-top: 12px; margin-bottom: 0; font-size: 0.85rem; color: #6c757d;"><em>Recommended slicer profile: 0.20 mm layer height, 3 perimeters, 20% infill, PLA/PETG, zero supports required.</em></p>
+</div>
 
 <p class="credit"><strong>AI collaboration credit:</strong> Parametric CAD modeling, optical dimension telemetry extraction, and automated binary STL generation developed in pair programming with <strong>Google DeepMind Antigravity AI</strong>. Antigravity AI analyzed physical packaging captures to extract exact pin pitches and component heights, resolved mathematical stackup clearances to eliminate lid collision risks, engineered the open-aperture RF antenna window, compiled watertight binary STL files and parametric OpenSCAD definitions, generated the unified 3-Pack print plate, and automated USB flash drive deployment and cloud backup workflows.</p>
 <ul class="chips"><li>ESP32</li><li>ESP-WROOM-32</li><li>ELEGOO</li><li>3D Printing</li><li>Parametric CAD</li><li>OpenSCAD</li><li>FDM Slicing</li><li>RF Antenna Design</li><li>Grand Valley State University</li><li>Atomic Object Technology Showcase</li><li>Google DeepMind Antigravity AI</li></ul>

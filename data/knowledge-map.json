@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 92,
     "totalNodes": 295,
-    "totalLinks": 604,
+    "totalLinks": 605,
     "domains": 6,
     "techBridges": 10
   },
@@ -5256,6 +5256,12 @@
     {
       "source": "esp32-travel-enclosure-3d-print-title",
       "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "esp32-travel-enclosure-3d-print-title",
+      "target": "tech-forensics-reversing",
       "type": "project-tech",
       "distance": 85
     },
