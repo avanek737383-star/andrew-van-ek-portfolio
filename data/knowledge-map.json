@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 90,
     "totalNodes": 285,
-    "totalLinks": 586,
+    "totalLinks": 587,
     "domains": 6,
     "techBridges": 10
   },
@@ -1247,70 +1247,70 @@
       ],
       "tasks": [
         {
-          "title": "Samsung Galaxy S4 Mini (SCH-I435) \u00b7 Bottom Shelf",
-          "desc": "Dual-core Krait 300 @ 1.7 GHz running vintage Android 4.x. Positioned directly on the bottom shelf alongside the 2011 Mac and plugged direct..."
+          "title": "4-Tier Freestanding Rack Architecture",
+          "desc": "Accurately models vertical spacing across all four tiers: Shelf 1 (Top) anchors the primary administrative FREEHPGAMER workstation on a wire..."
         },
         {
-          "title": "Mid-2011 Mac (A1278) \u00b7 Bottom Shelf Host",
-          "desc": "Aluminum unibody anchoring the bottom shelf. Degraded lithium battery removed for fire safety, upgraded with a SATA SSD and industrial Honey..."
+          "title": "Architectural Wall Ledge & Propped-Up Mobile Miners",
+          "desc": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3 with the lower wall jutting forward f..."
         },
         {
-          "title": "Samsung Galaxy Player (YP-GI1) \u00b7 Wall Powered",
-          "desc": "Rescued vintage Samsung handheld connected to wall AC power on the mobile dock, running a dedicated 24/7 single-core Duino-Coin web worker o..."
+          "title": "Non-Clipping 3D Cat6 & USB Cabling Infrastructure",
+          "desc": "Rendered with Three.js CatmullRomCurve3 splines and TubeGeometry, yellow Cat6 Ethernet patch cables originate from the managed switch on She..."
         },
         {
-          "title": "Apple iPod Touch \u00b7 Wall Powered",
-          "desc": "Legacy Apple handheld connected to wall AC power on the mobile charging strip, running an automated in-browser Duino-Coin mining worker over..."
+          "title": "OrbitControls Kinematics, Camera Angle Dropdown & Real-Time Hover Illumination",
+          "desc": "Features state-tracked cursor ergonomics (grabbing fist on orbit drag, open hand on empty space hover, finger pointer on hardware), a camera..."
         }
       ],
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-0",
-      "name": "Samsung Galaxy S4 Mini (SCH-I435) \u00b7 Bottom Shelf",
+      "name": "4-Tier Freestanding Rack Architecture",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Dual-core Krait 300 @ 1.7 GHz running vintage Android 4.x. Positioned directly on the bottom shelf alongside the 2011 Mac and plugged direct...",
+      "summary": "Accurately models vertical spacing across all four tiers: Shelf 1 (Top) anchors the primary administrative FREEHPGAMER workstation on a wire...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-1",
-      "name": "Mid-2011 Mac (A1278) \u00b7 Bottom Shelf Host",
+      "name": "Architectural Wall Ledge & Propped-Up Mobile Miners",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Aluminum unibody anchoring the bottom shelf. Degraded lithium battery removed for fire safety, upgraded with a SATA SSD and industrial Honey...",
+      "summary": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3 with the lower wall jutting forward f...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
-      "name": "Samsung Galaxy Player (YP-GI1) \u00b7 Wall Powered",
+      "name": "Non-Clipping 3D Cat6 & USB Cabling Infrastructure",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Rescued vintage Samsung handheld connected to wall AC power on the mobile dock, running a dedicated 24/7 single-core Duino-Coin web worker o...",
+      "summary": "Rendered with Three.js CatmullRomCurve3 splines and TubeGeometry, yellow Cat6 Ethernet patch cables originate from the managed switch on She...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
-      "name": "Apple iPod Touch \u00b7 Wall Powered",
+      "name": "OrbitControls Kinematics, Camera Angle Dropdown & Real-Time Hover Illumination",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Legacy Apple handheld connected to wall AC power on the mobile charging strip, running an automated in-browser Duino-Coin mining worker over...",
+      "summary": "Features state-tracked cursor ergonomics (grabbing fist on orbit drag, open hand on empty space hover, finger pointer on hardware), a camera...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
@@ -5686,6 +5686,12 @@
     {
       "source": "hardware-fleet-salvage-and-interactive-labs-title",
       "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-threejs-webgl",
       "type": "project-tech",
       "distance": 85
     },

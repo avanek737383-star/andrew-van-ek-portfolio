@@ -1,13 +1,12 @@
 /* Interactive 3D Digital-Twin & Photogrammetry-Ready Homelab Fleet Viewport
  * Built with Three.js (r128) & OrbitControls
  * Author: Andrew Van Ek & Antigravity AI
- * Models physical volumes, wireframe bounding outlines, 3D cabling, and sub-component inspection
  * 4-Shelf Physical Rack Configuration:
  * - Shelf 1 (Top): FREEHPGAMER from Fishbeck, ONEFIVE Storage, Modular NUC Tower & Bluefruit
  * - Shelf 2 (Upper-Middle): HP Laptop 15 Workhorse, 3.5" USB Floppy & Optical Drive
  * - Shelf 3 (Lower-Middle): Dell Inspiron 3668 (horizontal), Navy Blue USB-C Hub with Dual 2.4GHz Dongles, 8-Port Switch
  * - Shelf 4 (Bottom): Debian Mid-2011 Mac, Lenovo Yoga 2 11 Bare-Board Rig, 5V USB Fan, Samsung S4 Mini
- * - Built-in Wall Ledge: Samsung Galaxy Player YP-GI1, Apple iPod Touch Miner
+ * - Built-in Wall Ledge (Propped on Left): Samsung Galaxy Player YP-GI1, Apple iPod Touch Miner
  */
 
 (function () {
@@ -29,7 +28,7 @@
 		'shelf2': { pos: [-2.5, 13.5, 11], target: [-2.0, 11.5, 0] },
 		'shelf3': { pos: [0.0, 9.2, 11.5], target: [0.0, 7.5, 0] },
 		'shelf4': { pos: [0.0, 4.0, 10.5], target: [0.0, 2.2, 0] },
-		'wall': { pos: [-2.5, 12.5, 6.5], target: [-2.0, 9.5, -3.2] }
+		'wall': { pos: [-13.5, 13.0, 5.0], target: [-13.0, 10.2, -3.4] }
 	};
 
 	window.addEventListener('DOMContentLoaded', () => {
@@ -156,7 +155,7 @@
 
 		// Ethernet green activity link light on Shelf 3 Switch
 		const ethLight = new THREE.PointLight(0x22c55e, 0.6, 5);
-		ethLight.position.set(7.2, 7.2, 0.6);
+		ethLight.position.set(7.0, 7.2, 0.6);
 		scene.add(ethLight);
 	}
 
@@ -179,49 +178,48 @@
 		grid.position.y = 0.01;
 		scene.add(grid);
 
-		// Upper Wall (above ledge y >= 9.3 at z = -4.8)
-		const upperWallGeo = new THREE.PlaneGeometry(65, 24);
+		// Upper Wall (above ledge y >= 9.3 at z = -4.8) - proportioned neatly around rack without giant awkward overlap
+		const upperWallGeo = new THREE.PlaneGeometry(36, 14);
 		const wallMat = new THREE.MeshStandardMaterial({
-			color: 0xf1f5f9,
-			roughness: 0.95,
-			metalness: 0.05
+			color: 0x334155,
+			roughness: 0.85,
+			metalness: 0.1
 		});
 		const upperWall = new THREE.Mesh(upperWallGeo, wallMat);
-		upperWall.position.set(0, 21.3, -4.8);
+		upperWall.position.set(-2.0, 16.3, -4.8);
 		upperWall.receiveShadow = true;
 		scene.add(upperWall);
 
 		// Built-in Architectural Wall Ledge (at y = 9.3, extends forward to z = -2.8)
-		// Depth = 2.0 (from z = -4.8 to z = -2.8), centered at z = -3.8
-		const ledgeGeo = new THREE.BoxGeometry(34, 0.6, 2.0);
+		// Extended to the left (x = -17 to +11) to comfortably hold propped mobile miners
+		const ledgeGeo = new THREE.BoxGeometry(36, 0.6, 2.0);
 		const ledgeMat = new THREE.MeshStandardMaterial({
 			color: 0xe2e8f0,
 			roughness: 0.6,
 			metalness: 0.1
 		});
 		const ledge = new THREE.Mesh(ledgeGeo, ledgeMat);
-		ledge.position.set(0, 9.0, -3.8); // top surface is at y = 9.3
+		ledge.position.set(-2.0, 9.0, -3.8); // top surface is at y = 9.3
 		ledge.receiveShadow = true;
 		ledge.castShadow = true;
 		scene.add(ledge);
 
 		// Ledge decorative molding lip along front face at z = -2.8
-		const lipGeo = new THREE.BoxGeometry(34.2, 0.35, 0.3);
+		const lipGeo = new THREE.BoxGeometry(36.2, 0.35, 0.3);
 		const lipMat = new THREE.MeshStandardMaterial({ color: 0xcfd9e5, roughness: 0.5 });
 		const lip = new THREE.Mesh(lipGeo, lipMat);
-		lip.position.set(0, 9.15, -2.7);
+		lip.position.set(-2.0, 9.15, -2.7);
 		scene.add(lip);
 
-		// Lower Wall (BELOW ledge: y < 9.3 juts out / fills in flush underneath the ledge front!)
-		// Extends from y = 0 to y = 8.7, front face flush at z = -2.8 (centered at z = -3.8, depth 2.0)
-		const lowerWallGeo = new THREE.BoxGeometry(34, 8.7, 2.0);
+		// Lower Wall (BELOW ledge: y < 9.3 juts out / fills in flush underneath the ledge front at z = -2.8!)
+		const lowerWallGeo = new THREE.BoxGeometry(36, 8.7, 2.0);
 		const lowerWallMat = new THREE.MeshStandardMaterial({
-			color: 0xe8eef5,
+			color: 0x1e293b,
 			roughness: 0.9,
 			metalness: 0.05
 		});
 		const lowerWall = new THREE.Mesh(lowerWallGeo, lowerWallMat);
-		lowerWall.position.set(0, 4.35, -3.8);
+		lowerWall.position.set(-2.0, 4.35, -3.8);
 		lowerWall.receiveShadow = true;
 		scene.add(lowerWall);
 	}
@@ -236,8 +234,7 @@
 		const rackGroup = new THREE.Group();
 
 		// 4 Upright Posts (Height 20.5 units tall, accommodating 4 tiers)
-		// The jutted wall below the ledge has its front surface at z = -2.8.
-		// Rear posts sit at z = -2.2 (strictly IN FRONT of the ledge with 0.6 units clearance!).
+		// Rear posts sit at z = -2.2 (strictly IN FRONT of the ledge at z = -2.8 with 0.6 units clearance!).
 		// Front posts sit at z = +2.8.
 		const postGeo = new THREE.BoxGeometry(0.8, 20.5, 0.8);
 		const postPositions = [
@@ -298,7 +295,6 @@
 		mesh.userData.nodeId = nodeId;
 		mesh.userData.label = label;
 		mesh.userData.subpart = subpart;
-		mesh.userData.originalColor = mesh.material ? mesh.material.color.getHex() : null;
 		interactiveNodes.push(mesh);
 		addBoundingOutline(mesh, 0x38bdf8);
 	}
@@ -308,6 +304,8 @@
 
 		// 1. FREEHPGAMER from Fishbeck (Silver HP Workstation on wire mesh riser)
 		const hpGroup = new THREE.Group();
+		hpGroup.userData.nodeId = 'winws';
+
 		const riserGeo = new THREE.BoxGeometry(7.0, 0.6, 5.0);
 		const riserMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.3 });
 		const riser = new THREE.Mesh(riserGeo, riserMat);
@@ -417,6 +415,8 @@
 
 		// 1. HP Laptop 15 Workhorse (Black chassis, Linux Mint 21)
 		const hp15Group = new THREE.Group();
+		hp15Group.userData.nodeId = 'hp15';
+
 		const hp15BaseGeo = new THREE.BoxGeometry(6.4, 0.28, 4.4);
 		const hp15Mat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.6 });
 		const hp15Base = new THREE.Mesh(hp15BaseGeo, hp15Mat);
@@ -458,9 +458,9 @@
 
 	function buildShelf3Hardware() {
 		// --- Shelf 3 (Lower-Middle Shelf, y = 6.6) ---
-		// "the inspiron 3668 is on its own shelf below that HP but above the Intel 2011 Debian Mac"
+		// HOMEDELL 2 (Dell Inspiron 3668) placed horizontally on its own dedicated shelf
 
-		// 1. HOMEDELL 2 (Dell Inspiron 3668 Desktop, placed horizontally on its own dedicated shelf)
+		// 1. HOMEDELL 2 (Dell Inspiron 3668)
 		const dellGeo = new THREE.BoxGeometry(7.2, 2.6, 5.4);
 		const dellMat = new THREE.MeshStandardMaterial({ color: 0x09090b, roughness: 0.35, metalness: 0.4 });
 		const dell = new THREE.Mesh(dellGeo, dellMat);
@@ -480,10 +480,10 @@
 		const usb = new THREE.Mesh(usbGeo, usbMat);
 		usb.position.set(2.0, -0.6, 3.2);
 		dell.add(usb);
-		registerNode(dell, 'dell', 'HOMEDELL 2 (Dell Inspiron 3668 · Slax Live USB in RAM · Shelf 3)');
+		registerNode(dell, 'dell', 'HOMEDELL 2 (Dell Inspiron · "Hopes & Dreams")');
 		scene.add(dell);
 
-		// 2. Navy Blue USB-C Multiport Hub with Dual 2.4 GHz Receivers (ON TOP OF DELL INSPIRON 3668)
+		// 2. Navy Blue USB-C Multiport Hub with Dual 2.4 GHz Receivers (ON TOP OF DELL INSPIRON)
 		const hubGroup = new THREE.Group();
 		const hubGeo = new THREE.BoxGeometry(1.4, 0.35, 3.2);
 		const navyMat = new THREE.MeshStandardMaterial({ color: 0x1e3a8a, metalness: 0.6, roughness: 0.3 });
@@ -503,31 +503,41 @@
 		hubGroup.add(rec2);
 		scene.add(hubGroup);
 
-		// 3. 8-Port Gigabit Switch Backbone on Shelf 3 (Right side)
-		const switchGeo = new THREE.BoxGeometry(3.6, 0.7, 2.2);
-		const switchMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.7, roughness: 0.3 });
+		// 3. Managed Gigabit Switch Backbone on Shelf 3 (Right side)
+		const switchGeo = new THREE.BoxGeometry(4.0, 0.8, 2.6);
+		const switchMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.25 });
 		const ethSwitch = new THREE.Mesh(switchGeo, switchMat);
-		ethSwitch.position.set(7.2, 6.85, 0.3);
+		ethSwitch.position.set(7.0, 7.0, 0.3);
 		ethSwitch.castShadow = true;
-		scene.add(ethSwitch);
 
-		// Switch front port LEDs (green/amber)
+		// Front RJ45 port block
 		for (let p = 0; p < 8; p++) {
+			const portJack = new THREE.Mesh(
+				new THREE.BoxGeometry(0.28, 0.2, 0.1),
+				new THREE.MeshBasicMaterial({ color: 0x09090b })
+			);
+			portJack.position.set(-1.4 + p * 0.4, -0.1, 1.31);
+			ethSwitch.add(portJack);
+
+			// Status LED above port
 			const portLed = new THREE.Mesh(
-				new THREE.BoxGeometry(0.12, 0.08, 0.05),
+				new THREE.BoxGeometry(0.1, 0.08, 0.05),
 				new THREE.MeshBasicMaterial({ color: p % 2 === 0 ? 0x22c55e : 0xeab308 })
 			);
-			portLed.position.set(-1.4 + p * 0.4, 0.1, 1.11);
+			portLed.position.set(-1.4 + p * 0.4, 0.18, 1.31);
 			ethSwitch.add(portLed);
 		}
+		registerNode(ethSwitch, 'switch', '8-Port Gigabit Managed Switch Backbone (Shelf 3)');
+		scene.add(ethSwitch);
 	}
 
 	function buildShelf4Hardware() {
 		// --- Shelf 4 (Bottom Shelf, y = 1.6) ---
-		// Contains Debian 2011 Mac, Lenovo Yoga bare-board, 5V USB fan, Samsung S4 Mini
 
 		// 1. Debian 2011 Mac (A1278 Unibody) - Battery proactively removed (never swollen)
 		const macGroup = new THREE.Group();
+		macGroup.userData.nodeId = 'mbp2011';
+
 		const macBaseGeo = new THREE.BoxGeometry(6.4, 0.35, 4.4);
 		const macSilverMat = new THREE.MeshStandardMaterial({ color: 0xcfd4dc, metalness: 0.8, roughness: 0.25 });
 		const macBase = new THREE.Mesh(macBaseGeo, macSilverMat);
@@ -553,6 +563,8 @@
 
 		// 2. Lenovo Yoga 2 11 Bare-Board Rig (Puffed battery removed, open-air testbench)
 		const yogaGroup = new THREE.Group();
+		yogaGroup.userData.nodeId = 'yoga';
+
 		const pcbBaseGeo = new THREE.BoxGeometry(5.2, 0.18, 3.6);
 		const greenPcbMat = new THREE.MeshStandardMaterial({ color: 0x065f46, roughness: 0.4 });
 		const yogaPcb = new THREE.Mesh(pcbBaseGeo, greenPcbMat);
@@ -571,6 +583,8 @@
 
 		// 3. 5V USB Blower Fan (Active Yoga Cooling, powered from 2011 Mac rear USB)
 		const fanGroup = new THREE.Group();
+		fanGroup.userData.nodeId = 'usbfan';
+
 		const fanHousingGeo = new THREE.BoxGeometry(1.6, 1.4, 1.6);
 		const fanMat = new THREE.MeshStandardMaterial({ color: 0x09090b, roughness: 0.4 });
 		const fanHousing = new THREE.Mesh(fanHousingGeo, fanMat);
@@ -596,25 +610,62 @@
 	}
 
 	function buildWallLedgeHardware() {
-		// --- Wall Ledge Miners (resting safely on top of ledge at y = 9.3, z = -3.5) ---
+		// --- Wall Ledge Mobile Miners (Propped Up & Positioned TO THE LEFT of the rack) ---
+		// Rack left edge is at x = -10.6. The ledge extends left to x = -20.0 at y = 9.3
 
-		// 1. Samsung Galaxy Player (YP-GI1)
-		const playerGeo = new THREE.BoxGeometry(1.5, 0.22, 2.5);
+		// 1. Samsung Galaxy Player (YP-GI1) - Propped Up at ~70° angle
+		const gPlayerGroup = new THREE.Group();
+		gPlayerGroup.position.set(-14.6, 10.15, -3.4);
+		gPlayerGroup.rotation.x = -0.32; // propped up facing forward/upward
+
+		const playerGeo = new THREE.BoxGeometry(1.6, 2.8, 0.22);
 		const playerMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.3 });
 		const player = new THREE.Mesh(playerGeo, playerMat);
-		player.position.set(-4.0, 9.42, -3.5);
 		player.castShadow = true;
-		registerNode(player, 'ypgi1', 'Samsung Galaxy Player YP-GI1 (Duino Miner · Wall AC)');
-		scene.add(player);
+		gPlayerGroup.add(player);
 
-		// 2. Apple iPod Touch Miner
-		const ipodGeo = new THREE.BoxGeometry(1.4, 0.18, 2.4);
+		const playerScreen = new THREE.Mesh(
+			new THREE.PlaneGeometry(1.3, 2.2),
+			new THREE.MeshBasicMaterial({ color: 0x0284c7 })
+		);
+		playerScreen.position.set(0, 0, 0.12);
+		gPlayerGroup.add(playerScreen);
+
+		// Kickstand behind
+		const standMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.6 });
+		const stand1 = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.6, 0.15), standMat);
+		stand1.position.set(0, -0.4, -0.6);
+		stand1.rotation.x = 0.5;
+		gPlayerGroup.add(stand1);
+
+		registerNode(player, 'ypgi1', 'Samsung Galaxy Player YP-GI1 (Duino Miner · Propped Wall Ledge)');
+		scene.add(gPlayerGroup);
+
+		// 2. Apple iPod Touch Miner - Propped Up at ~70° angle
+		const ipodGroup = new THREE.Group();
+		ipodGroup.position.set(-12.4, 10.1, -3.4);
+		ipodGroup.rotation.x = -0.32; // propped up facing forward/upward
+
+		const ipodGeo = new THREE.BoxGeometry(1.5, 2.6, 0.18);
 		const ipodMat = new THREE.MeshStandardMaterial({ color: 0xec4899, metalness: 0.6, roughness: 0.2 });
 		const ipod = new THREE.Mesh(ipodGeo, ipodMat);
-		ipod.position.set(2.0, 9.4, -3.5);
 		ipod.castShadow = true;
-		registerNode(ipod, 'ipodtouch', 'Apple iPod Touch Miner (iOS Duino Miner · Wall AC)');
-		scene.add(ipod);
+		ipodGroup.add(ipod);
+
+		const ipodScreen = new THREE.Mesh(
+			new THREE.PlaneGeometry(1.2, 2.0),
+			new THREE.MeshBasicMaterial({ color: 0x1e293b })
+		);
+		ipodScreen.position.set(0, 0, 0.1);
+		ipodGroup.add(ipodScreen);
+
+		const stand2 = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.5, 0.15), standMat);
+		stand2.position.set(0, -0.4, -0.6);
+		stand2.rotation.x = 0.5;
+		ipodGroup.add(stand2);
+
+		registerNode(ipod, 'ipodtouch', 'Apple iPod Touch Miner (iOS Duino Miner · Propped Wall Ledge)');
+		scene.add(ipodGroup);
 	}
 
 	function buildCablesAndInterconnects() {
@@ -623,59 +674,77 @@
 		const blackUsbMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.6 });
 		const powerCordMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.7 });
 
-		// 1. Yellow Cat6 Ethernet: Switch (Shelf 3) to Intel NUC (Shelf 1)
+		// Switch front port origin: (7.0, 7.0, 0.8) on Shelf 3
+
+		// 1. Yellow Cat6 Ethernet: Switch (Shelf 3) to Intel NUC Rear RJ45 (Shelf 1)
+		// Routes outward around right side of shelf, cleanly up the right rear post, directly into NUC rear
 		const nucEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(7.2, 7.0, 0.3),
-			new THREE.Vector3(8.6, 10.5, -0.6),
-			new THREE.Vector3(8.4, 15.0, -1.2),
-			new THREE.Vector3(6.8, 17.2, -0.9),
-			new THREE.Vector3(5.7, 17.2, -0.7)
+			new THREE.Vector3(7.4, 7.0, 0.8),
+			new THREE.Vector3(9.2, 7.2, 0.0),
+			new THREE.Vector3(10.0, 11.5, -1.8),
+			new THREE.Vector3(10.0, 16.5, -1.8),
+			new THREE.Vector3(7.5, 17.2, -2.4),
+			new THREE.Vector3(5.5, 17.2, -2.4)
 		]);
-		const nucTube = new THREE.Mesh(new THREE.TubeGeometry(nucEthCurve, 40, 0.09, 8, false), yellowCableMat);
+		const nucTube = new THREE.Mesh(new THREE.TubeGeometry(nucEthCurve, 42, 0.085, 8, false), yellowCableMat);
 		scene.add(nucTube);
 
-		// 2. Yellow Cat6 Ethernet: Switch (Shelf 3) to Debian 2011 Mac (Shelf 4)
-		const macEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(7.2, 6.7, 0.3),
-			new THREE.Vector3(8.2, 4.2, 0.0),
-			new THREE.Vector3(7.8, 2.6, 0.0),
-			new THREE.Vector3(7.0, 2.0, 0.2),
-			new THREE.Vector3(6.4, 2.0, 0.3)
+		// 2. Yellow Cat6 Ethernet: Switch (Shelf 3) to Dell Inspiron 3668 Rear I/O (Shelf 3)
+		// Patch cable runs along shelf rear cleanly into Dell rear LAN jack
+		const dellEthCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(6.8, 7.0, 0.8),
+			new THREE.Vector3(6.0, 6.9, -1.5),
+			new THREE.Vector3(4.2, 7.2, -2.2),
+			new THREE.Vector3(3.2, 7.5, -2.2)
 		]);
-		const macTube = new THREE.Mesh(new THREE.TubeGeometry(macEthCurve, 32, 0.09, 8, false), yellowCableMat);
-		scene.add(macTube);
+		const dellTube = new THREE.Mesh(new THREE.TubeGeometry(dellEthCurve, 20, 0.085, 8, false), yellowCableMat);
+		scene.add(dellTube);
 
-		// 3. Yellow Cat6 Ethernet: Switch (Shelf 3) to FREEHPGAMER (Shelf 1)
+		// 3. Yellow Cat6 Ethernet: Switch (Shelf 3) to FREEHPGAMER Rear/Left Port (Shelf 1)
+		// Routes along rear crossbar, up left rear post, terminates at HP rear left corner
 		const hpEthCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(7.0, 7.0, 0.3),
-			new THREE.Vector3(3.5, 7.2, -0.6),
-			new THREE.Vector3(-1.0, 11.5, -0.8),
-			new THREE.Vector3(-1.8, 16.8, -0.4),
-			new THREE.Vector3(-2.2, 17.2, 0.0)
+			new THREE.Vector3(6.5, 7.0, 0.8),
+			new THREE.Vector3(2.0, 6.9, -1.8),
+			new THREE.Vector3(-6.0, 7.2, -2.0),
+			new THREE.Vector3(-10.0, 11.5, -1.8),
+			new THREE.Vector3(-10.0, 16.5, -1.8),
+			new THREE.Vector3(-8.2, 17.2, -1.4)
 		]);
-		const hpTube = new THREE.Mesh(new THREE.TubeGeometry(hpEthCurve, 45, 0.09, 8, false), yellowCableMat);
+		const hpTube = new THREE.Mesh(new THREE.TubeGeometry(hpEthCurve, 48, 0.085, 8, false), yellowCableMat);
 		scene.add(hpTube);
 
-		// 4. Black USB 5V Power Cable: 2011 Mac rear USB to 5V Yoga Cooling Blower Fan (Shelf 4)
+		// 4. Yellow Cat6 Ethernet: Switch (Shelf 3) to Debian 2011 Mac Left Port (Shelf 4)
+		// Routes down right rear post, across bottom shelf surface into Mac port
+		const macEthCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(7.2, 6.8, 0.8),
+			new THREE.Vector3(9.5, 5.0, -1.0),
+			new THREE.Vector3(9.5, 2.2, -1.5),
+			new THREE.Vector3(7.0, 1.9, -1.2),
+			new THREE.Vector3(5.2, 1.9, -1.0)
+		]);
+		const macTube = new THREE.Mesh(new THREE.TubeGeometry(macEthCurve, 32, 0.085, 8, false), yellowCableMat);
+		scene.add(macTube);
+
+		// 5. Black USB 5V Power Cable: 2011 Mac left USB port to 5V Yoga Cooling Blower Fan (Shelf 4)
 		const fanUsbCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(4.5, 2.0, -0.4),
-			new THREE.Vector3(1.5, 1.8, -0.6),
-			new THREE.Vector3(-0.5, 1.8, 0.0),
+			new THREE.Vector3(1.5, 1.8, -0.5),
+			new THREE.Vector3(-0.5, 1.8, 0.2),
 			new THREE.Vector3(-1.8, 2.0, 0.5)
 		]);
-		const fanUsbTube = new THREE.Mesh(new THREE.TubeGeometry(fanUsbCurve, 28, 0.07, 8, false), blackUsbMat);
+		const fanUsbTube = new THREE.Mesh(new THREE.TubeGeometry(fanUsbCurve, 26, 0.07, 8, false), blackUsbMat);
 		scene.add(fanUsbTube);
 
-		// 5. Black USB Cable: 2011 Mac to Samsung Galaxy S4 Mini (Shelf 4)
+		// 6. Black USB Cable: 2011 Mac to Samsung Galaxy S4 Mini (Shelf 4 front)
 		const s4UsbCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(4.8, 2.0, 0.0),
 			new THREE.Vector3(5.4, 1.8, 1.0),
 			new THREE.Vector3(5.2, 1.9, 1.8)
 		]);
-		const s4UsbTube = new THREE.Mesh(new THREE.TubeGeometry(s4UsbCurve, 20, 0.065, 8, false), blackUsbMat);
+		const s4UsbTube = new THREE.Mesh(new THREE.TubeGeometry(s4UsbCurve, 18, 0.065, 8, false), blackUsbMat);
 		scene.add(s4UsbTube);
 
-		// 6. Rear AC Power Drops along rear uprights
+		// 7. Rear AC Power Drops along rear uprights
 		const pwrCurve1 = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(-9.8, 18.0, -2.0),
 			new THREE.Vector3(-9.8, 11.0, -2.0),
@@ -706,12 +775,23 @@
 			}
 		});
 
+		// Camera preset dropdown menu listener
+		const angleSelect = document.getElementById('camera-angle-select');
+		if (angleSelect) {
+			angleSelect.addEventListener('change', () => {
+				const preset = angleSelect.value;
+				if (CAMERA_PRESETS[preset]) {
+					animateCamera(CAMERA_PRESETS[preset].pos, CAMERA_PRESETS[preset].target);
+				}
+			});
+		}
+
+		// Backward-compatible buttons if present
 		document.querySelectorAll('.camera-preset-btn').forEach(btn => {
 			btn.addEventListener('click', () => {
-				document.querySelectorAll('.camera-preset-btn').forEach(b => b.classList.remove('active'));
-				btn.classList.add('active');
 				const preset = btn.getAttribute('data-preset');
 				if (CAMERA_PRESETS[preset]) {
+					if (angleSelect) angleSelect.value = preset;
 					animateCamera(CAMERA_PRESETS[preset].pos, CAMERA_PRESETS[preset].target);
 				}
 			});
@@ -720,9 +800,7 @@
 		const resetBtn = document.getElementById('reset-3d-camera-btn');
 		if (resetBtn) {
 			resetBtn.addEventListener('click', () => {
-				document.querySelectorAll('.camera-preset-btn').forEach(b => b.classList.remove('active'));
-				const defBtn = document.querySelector('.camera-preset-btn[data-preset="perspective"]');
-				if (defBtn) defBtn.classList.add('active');
+				if (angleSelect) angleSelect.value = 'perspective';
 				animateCamera(CAMERA_PRESETS['perspective'].pos, CAMERA_PRESETS['perspective'].target);
 			});
 		}
@@ -795,22 +873,71 @@
 		}
 	}
 
-	function highlightNode(mesh) {
-		if (hoveredMesh === mesh) return;
+	// Dynamic whole-device hover lighting: illuminates the entire device lighter white on hover
+	function highlightNode(targetMesh) {
+		if (hoveredMesh === targetMesh) return;
 		unhighlightNode();
-		hoveredMesh = mesh;
-		if (hoveredMesh.userData.outlineLine) {
-			hoveredMesh.userData.outlineLine.material.color.setHex(0x38bdf8);
-			hoveredMesh.userData.outlineLine.material.opacity = 1.0;
+		hoveredMesh = targetMesh;
+
+		// Traverse the target and its hierarchy to brighten every part
+		let root = targetMesh;
+		while (root.parent && root.parent !== scene && (root.parent.userData.nodeId === targetMesh.userData.nodeId || !root.userData.nodeId)) {
+			if (root.parent.userData.nodeId) {
+				root = root.parent;
+			} else {
+				break;
+			}
 		}
+
+		root.traverse(child => {
+			if (child.isMesh && child.material) {
+				if (child.material.emissive) {
+					if (child.userData.origEmissive === undefined) {
+						child.userData.origEmissive = child.material.emissive.getHex();
+						child.userData.origEmissiveInt = child.material.emissiveIntensity || 0;
+					}
+					child.material.emissive.setHex(0xffffff);
+					child.material.emissiveIntensity = 0.4;
+				} else if (child.material.color) {
+					if (child.userData.origColor === undefined) {
+						child.userData.origColor = child.material.color.getHex();
+					}
+					child.material.color.setHex(0xffffff);
+				}
+			}
+			if (child.userData && child.userData.outlineLine) {
+				child.userData.outlineLine.material.color.setHex(0xffffff);
+				child.userData.outlineLine.material.opacity = 1.0;
+			}
+		});
 	}
 
 	function unhighlightNode() {
 		if (hoveredMesh) {
-			if (hoveredMesh.userData.outlineLine) {
-				hoveredMesh.userData.outlineLine.material.color.setHex(0x38bdf8);
-				hoveredMesh.userData.outlineLine.material.opacity = 0.65;
+			let root = hoveredMesh;
+			while (root.parent && root.parent !== scene && (root.parent.userData.nodeId === hoveredMesh.userData.nodeId || !root.userData.nodeId)) {
+				if (root.parent.userData.nodeId) {
+					root = root.parent;
+				} else {
+					break;
+				}
 			}
+
+			root.traverse(child => {
+				if (child.isMesh && child.material) {
+					if (child.userData.origEmissive !== undefined && child.material.emissive) {
+						child.material.emissive.setHex(child.userData.origEmissive);
+						child.material.emissiveIntensity = child.userData.origEmissiveInt || 0;
+					}
+					if (child.userData.origColor !== undefined && child.material.color) {
+						child.material.color.setHex(child.userData.origColor);
+					}
+				}
+				if (child.userData && child.userData.outlineLine) {
+					child.userData.outlineLine.material.color.setHex(0x38bdf8);
+					child.userData.outlineLine.material.opacity = 0.65;
+				}
+			});
 			hoveredMesh = null;
 		}
 	}

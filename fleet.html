@@ -124,23 +124,25 @@
 				</div>
 
 				<!-- 3D Camera Focus Toolbar -->
-				<div class="fleet-3d-toolbar" id="fleet-3d-toolbar">
-					<div class="camera-presets-group">
-						<span class="toolbar-label">Camera Angle:</span>
-						<button type="button" class="camera-preset-btn active" data-preset="perspective">&#127760; Master Perspective</button>
-						<button type="button" class="camera-preset-btn" data-preset="shelf1">&#128187; Shelf 1: HP &amp; NUC</button>
-						<button type="button" class="camera-preset-btn" data-preset="shelf2">&#128187; Shelf 2: HP Workhorse</button>
-						<button type="button" class="camera-preset-btn" data-preset="shelf3">&#9889; Shelf 3: Inspiron 3668</button>
-						<button type="button" class="camera-preset-btn" data-preset="shelf4">&#129514; Shelf 4: Yoga &amp; Mac</button>
-						<button type="button" class="camera-preset-btn" data-preset="wall">&#128241; Built-in Wall Ledge</button>
+								<div class="fleet-3d-toolbar" id="fleet-3d-toolbar">
+					<div class="camera-dropdown-group">
+						<label for="camera-angle-select" class="toolbar-label">Camera Angle:</label>
+						<select id="camera-angle-select" class="camera-preset-select" aria-label="Choose 3D camera angle preset">
+							<option value="perspective" selected>🌐 Master Perspective (All 4 Tiers)</option>
+							<option value="shelf1">💻 Shelf 1: Top Shelf (HP &amp; NUC)</option>
+							<option value="shelf2">💻 Shelf 2: Upper-Middle (HP Workhorse)</option>
+							<option value="shelf3">⚡ Shelf 3: Lower-Middle (Dell Inspiron &amp; Switch)</option>
+							<option value="shelf4">🧪 Shelf 4: Bottom Shelf (Debian Mac &amp; Yoga)</option>
+							<option value="wall">📱 Built-in Wall Ledge (Propped Mobile Miners)</option>
+						</select>
+						<button type="button" class="camera-reset-pill" id="reset-3d-camera-btn" title="Reset Camera View">&#x21bb; Reset</button>
 					</div>
 					<div class="toolbar-actions">
-						<span class="controls-hint">Drag: Orbit &middot; Scroll: Zoom &middot; Click: Inspect Part</span>
-						<button type="button" class="camera-reset-pill" id="reset-3d-camera-btn">&#x21bb; Reset Camera</button>
+						<span class="controls-hint">Drag: Orbit &middot; Scroll: Zoom &middot; Click: Inspect Hardware</span>
 					</div>
 				</div>
 
-				<div class="fleet-viewport-container" id="fleet-viewport-container">
+<div class="fleet-viewport-container" id="fleet-viewport-container">
 					<!-- Interactive 3D WebGL Digital Twin -->
 					<div class="fleet-3d-wrapper" id="fleet-3d-wrapper">
 						<canvas id="fleet-3d-canvas"></canvas>

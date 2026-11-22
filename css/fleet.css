@@ -1022,3 +1022,32 @@
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 	margin-bottom: 40px;
 }
+
+
+.camera-dropdown-group {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.camera-preset-select {
+	appearance: auto;
+	background: #ffffff;
+	color: #0f172a;
+	border: 1.5px solid #0284c7;
+	border-radius: 6px;
+	padding: 5px 12px;
+	font-size: 0.82rem;
+	font-weight: 600;
+	font-family: inherit;
+	cursor: pointer;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+	outline: none;
+	transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.camera-preset-select:focus {
+	border-color: #38bdf8;
+	box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
