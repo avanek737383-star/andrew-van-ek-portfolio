@@ -113,38 +113,38 @@
 				canvas.style.cursor = 'grab';
 			});
 
-			// Smart Cursor-Centric Zoom: Zooms directly toward the hovered device or point under mouse
+			// Smart CAD Cursor-Centric Zoom: Zooms straight toward the mouse cursor along its 3D ray.
+			// Moves BOTH camera.position and controls.target by the exact same vector,
+			// preserving theta and phi to guarantee ZERO gimbal spinning or rotation when looking from above.
+			const zoomRaycaster = new THREE.Raycaster();
 			canvas.addEventListener('wheel', (e) => {
 				if (isDragging || !controls) return;
+				e.preventDefault();
+
 				const rect = canvas.getBoundingClientRect();
 				const ndcX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
 				const ndcY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-				const zoomRaycaster = new THREE.Raycaster();
 				zoomRaycaster.setFromCamera({ x: ndcX, y: ndcY }, camera);
+				const rayDir = zoomRaycaster.ray.direction.clone().normalize();
 
-				const hits = zoomRaycaster.intersectObjects(scene.children, true);
-				let targetPoint = null;
-				if (hits.length > 0) {
-					targetPoint = hits[0].point;
-				} else {
-					const camDir = new THREE.Vector3();
-					camera.getWorldDirection(camDir);
-					const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(camDir, controls.target);
-					targetPoint = new THREE.Vector3();
-					zoomRaycaster.ray.intersectPlane(plane, targetPoint);
-				}
+				const dist = camera.position.distanceTo(controls.target);
+				const zoomAmount = (e.deltaY < 0) ? 0.085 : -0.085;
+				const step = Math.max(0.4, Math.min(dist * zoomAmount, 3.2));
 
-				if (targetPoint) {
-					if (e.deltaY < 0) {
-						// Zoom IN: shift target smoothly toward cursor hit point
-						controls.target.lerp(targetPoint, 0.14);
-					} else if (e.deltaY > 0) {
-						// Zoom OUT: gently relax target back toward central focal plane
-						controls.target.lerp(new THREE.Vector3(0.5, 9.0, 0), 0.04);
-					}
+				const moveVec = rayDir.clone().multiplyScalar(step);
+
+				// Distance boundary checks
+				if (e.deltaY < 0 && dist > controls.minDistance + 1) {
+					camera.position.add(moveVec);
+					controls.target.add(moveVec);
+					controls.update();
+				} else if (e.deltaY > 0 && dist < controls.maxDistance - 1) {
+					camera.position.add(moveVec);
+					controls.target.add(moveVec);
+					controls.update();
 				}
-			}, { passive: true });
+			}, { passive: false });
 		}
 
 		// 5. Lighting
@@ -306,15 +306,21 @@
 			rackGroup.add(shelf);
 		});
 
-		// Side crossbars connecting front and rear posts at all 4 tiers
-		const crossGeo = new THREE.BoxGeometry(0.6, 0.4, 5.0);
-		[-10.2, 10.2].forEach(x => {
-			[1.6, 6.6, 11.4, 16.2].forEach(y => {
-				const cross = new THREE.Mesh(crossGeo, woodMat);
-				cross.position.set(x, y - 0.4, 0.3);
-				rackGroup.add(cross);
-			});
-		});
+		// Side Panels: User requirement - sides (not back or front) are "Filled in" as in real life
+		const sidePanelGeo = new THREE.BoxGeometry(0.4, 16.2, 5.0);
+		// Left solid side panel
+		const leftPanel = new THREE.Mesh(sidePanelGeo, woodMat);
+		leftPanel.position.set(-10.4, 8.1, 0.3);
+		leftPanel.castShadow = true;
+		leftPanel.receiveShadow = true;
+		rackGroup.add(leftPanel);
+
+		// Right solid side panel (spanning from rear post to front post)
+		const rightPanel = new THREE.Mesh(sidePanelGeo, woodMat);
+		rightPanel.position.set(10.4, 8.1, 0.3);
+		rightPanel.castShadow = true;
+		rightPanel.receiveShadow = true;
+		rackGroup.add(rightPanel);
 
 		scene.add(rackGroup);
 	}
@@ -512,22 +518,61 @@
 		scene.add(hpGroup);
 
 		// 2. ONEFIVE Network Storage (Sabrent USB 3.0 SATA Enclosure)
-		const sabrentGeo = new THREE.BoxGeometry(2.4, 0.7, 4.4);
+		// User requirement: Rotated 90 degrees in front of NUC area so the non-gray LED dot lines up
+		// with the right side of the NUC (x = 7.1) facing head-on, and plugged into the NUC via USB.
+		const sabrentGroup = new THREE.Group();
+		sabrentGroup.userData.nodeId = 'onefive';
+
+		// Rotated 90°: Width = 4.4, Height = 0.7, Depth = 2.4. Placed in front of NUC at z = 1.6
+		const sabrentGeo = new THREE.BoxGeometry(4.4, 0.7, 2.4);
 		const sabrentMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.4, metalness: 0.5 });
 		const sabrent = new THREE.Mesh(sabrentGeo, sabrentMat);
-		sabrent.position.set(1.5, 16.83, 0.8);
+		sabrent.position.set(4.9, 16.83, 1.6);
 		sabrent.castShadow = true;
 		sabrent.receiveShadow = true;
+		sabrentGroup.add(sabrent);
 
-		const ledGeo = new THREE.BoxGeometry(0.3, 0.08, 0.3);
+		// Non-gray cyan LED dot lining up perfectly with the right edge of the NUC (x = 6.9, NUC edge at x = 7.1)
+		const ledGeo = new THREE.BoxGeometry(0.2, 0.08, 0.2);
 		const ledMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
 		const led = new THREE.Mesh(ledGeo, ledMat);
-		led.position.set(0, 0.38, 2.0);
-		sabrent.add(led);
-		registerNode(sabrent, 'onefive', 'ONEFIVE Network Storage (Sabrent USB 3.0 · Shelf 1)');
-		scene.add(sabrent);
+		led.position.set(6.9, 17.2, 2.65);
+		sabrentGroup.add(led);
+		registerNode(sabrent, 'onefive', 'ONEFIVE Network Storage (Sabrent USB 3.0 · In Front of NUC · Shelf 1)');
+		scene.add(sabrentGroup);
 
-		// 3. Modular Snap-Cube Frame + Intel NUC + Adafruit Bluefruit
+		// 3. Samsung 870 EVO 500GB SSD (Mounted directly on top of the ONEFIVE enclosure)
+		// User requirement: Stores macOS VM files & VirtualBox cloning projects, plugged into FREEHPGAMER via USB.
+		const evoGroup = new THREE.Group();
+		evoGroup.userData.nodeId = 'evo870';
+
+		// 2.5" SSD Body: Width = 2.8, Height = 0.22, Depth = 2.0
+		const evoGeo = new THREE.BoxGeometry(2.8, 0.22, 2.0);
+		const evoMat = new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.4, metalness: 0.6 });
+		const evo = new THREE.Mesh(evoGeo, evoMat);
+		evo.position.set(4.9, 17.3, 1.6);
+		evo.castShadow = true;
+		evoGroup.add(evo);
+
+		// Samsung Signature Orange/Red Square Badge
+		const badgeGeo = new THREE.BoxGeometry(0.4, 0.05, 0.4);
+		const badgeMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+		const badge = new THREE.Mesh(badgeGeo, badgeMat);
+		badge.position.set(5.8, 17.42, 2.1);
+		evoGroup.add(badge);
+
+		// Label plate
+		const labelGeo = new THREE.PlaneGeometry(1.8, 0.9);
+		const labelMat = new THREE.MeshBasicMaterial({ color: 0xf1f5f9 });
+		const label = new THREE.Mesh(labelGeo, labelMat);
+		label.position.set(4.7, 17.42, 1.6);
+		label.rotation.x = -Math.PI / 2;
+		evoGroup.add(label);
+
+		registerNode(evo, 'evo870', 'Samsung 870 EVO 500GB SSD (VirtualBox VM & Mac Cloning Store · Shelf 1)');
+		scene.add(evoGroup);
+
+		// 4. Modular Snap-Cube Frame + Intel NUC + Adafruit Bluefruit
 		const modularTower = new THREE.Group();
 		const cubeColors = [0x0284c7, 0x16a34a, 0xeab308, 0xd97706];
 		const cubeGeo = new THREE.BoxGeometry(0.85, 0.85, 0.85);
@@ -988,14 +1033,18 @@
 		const powerCordMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.7 });
 
 		// Managed Switch sits on Secondary Shelf Middle Tier at (13.4, 4.85, 4.9).
-		// Front RJ45 ports face -X at x = 12.2, spanning z = 3.5 to 6.3 at height y = 4.85.
+		// Front RJ45 ports face -X at x = 12.2, spanning z = 3.5 to 6.3.
+		// All cables enter the main rack through the open front corner (z = 3.2 to 3.5) around the front-right post
+		// and route strictly ABOVE shelf surfaces (zero shelf clipping, zero pole clipping).
 
 		// 1. Yellow Cat6: Switch Port 1 (12.2, 4.9, 3.5) -> FREEHPGAMER (Shelf 1 Top Shelf, x = -5.0)
 		const hpEthCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(12.2, 4.9, 3.5),
-			new THREE.Vector3(10.2, 8.5, 2.0),
-			new THREE.Vector3(10.2, 12.0, -1.8),
-			new THREE.Vector3(2.0, 16.6, -1.8),
+			new THREE.Vector3(10.8, 5.5, 3.4),
+			new THREE.Vector3(9.6, 6.2, 3.3),
+			new THREE.Vector3(9.5, 11.5, 2.5),
+			new THREE.Vector3(9.5, 16.6, 2.2),
+			new THREE.Vector3(2.0, 16.8, -1.8),
 			new THREE.Vector3(-4.0, 16.8, -1.8),
 			new THREE.Vector3(-6.2, 17.2, -1.2)
 		]);
@@ -1005,21 +1054,26 @@
 		// 2. Yellow Cat6: Switch Port 2 (12.2, 4.9, 3.9) -> Intel NUC Core (Shelf 1 Top Shelf, x = 5.2)
 		const nucEthCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(12.2, 4.9, 3.9),
-			new THREE.Vector3(10.2, 10.5, 1.0),
-			new THREE.Vector3(10.0, 15.0, -1.8),
-			new THREE.Vector3(8.0, 17.0, -2.4),
+			new THREE.Vector3(10.8, 5.5, 3.4),
+			new THREE.Vector3(9.6, 6.5, 3.3),
+			new THREE.Vector3(9.5, 12.0, 2.5),
+			new THREE.Vector3(9.5, 16.6, 1.0),
+			new THREE.Vector3(7.5, 17.0, -2.4),
 			new THREE.Vector3(5.5, 17.2, -2.4)
 		]);
 		const nucTube = new THREE.Mesh(new THREE.TubeGeometry(nucEthCurve, 45, 0.085, 8, false), yellowCableMat);
 		scene.add(nucTube);
 
 		// 3. Yellow Cat6: Switch Port 3 (12.2, 4.9, 4.3) -> HP Laptop 15 Ethernet-to-USB-C Adapter (Shelf 2)
+		// Enters Shelf 2 strictly above shelf floor (y = 11.85) in front of floppy drive, directly into USB-C adapter
 		const hp15EthCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(12.2, 4.9, 4.3),
-			new THREE.Vector3(10.2, 8.5, 1.5),
-			new THREE.Vector3(10.2, 11.6, -0.8),
-			new THREE.Vector3(2.0, 11.6, -1.0),
-			new THREE.Vector3(-2.0, 11.6, -0.4),
+			new THREE.Vector3(10.8, 5.5, 3.4),
+			new THREE.Vector3(9.6, 7.0, 3.3),
+			new THREE.Vector3(9.5, 11.85, 2.2),
+			new THREE.Vector3(4.0, 11.85, 2.0),
+			new THREE.Vector3(0.0, 11.85, 1.5),
+			new THREE.Vector3(-4.0, 11.85, 1.0),
 			new THREE.Vector3(-5.78, 11.75, 0.4)
 		]);
 		const hp15Tube = new THREE.Mesh(new THREE.TubeGeometry(hp15EthCurve, 48, 0.085, 8, false), yellowCableMat);
@@ -1028,9 +1082,10 @@
 		// 4. Yellow Cat6: Switch Port 4 (12.2, 4.9, 4.7) -> HomeDell 2 / Inspiron 3668 (Shelf 3, x = 0.0)
 		const dellEthCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(12.2, 4.9, 4.7),
-			new THREE.Vector3(10.2, 6.8, 1.8),
-			new THREE.Vector3(8.5, 6.9, -0.5),
-			new THREE.Vector3(5.0, 7.2, -2.0),
+			new THREE.Vector3(10.8, 5.2, 3.4),
+			new THREE.Vector3(9.5, 7.1, 3.2),
+			new THREE.Vector3(7.5, 7.2, 1.0),
+			new THREE.Vector3(5.0, 7.3, -1.5),
 			new THREE.Vector3(3.2, 7.5, -2.2)
 		]);
 		const dellTube = new THREE.Mesh(new THREE.TubeGeometry(dellEthCurve, 32, 0.085, 8, false), yellowCableMat);
@@ -1039,10 +1094,10 @@
 		// 5. Yellow Cat6: Switch Port 5 (12.2, 4.9, 5.1) -> Debian 2011 Mac (Shelf 4, x = 4.8)
 		const macEthCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(12.2, 4.9, 5.1),
-			new THREE.Vector3(10.5, 4.0, 2.0),
-			new THREE.Vector3(10.2, 2.6, -0.5),
-			new THREE.Vector3(7.5, 2.0, -1.0),
-			new THREE.Vector3(5.2, 1.9, -1.0)
+			new THREE.Vector3(10.6, 3.5, 3.4),
+			new THREE.Vector3(9.6, 2.3, 3.3),
+			new THREE.Vector3(7.5, 2.1, 1.0),
+			new THREE.Vector3(5.2, 1.95, -1.0)
 		]);
 		const macTube = new THREE.Mesh(new THREE.TubeGeometry(macEthCurve, 36, 0.085, 8, false), yellowCableMat);
 		scene.add(macTube);
@@ -1050,16 +1105,45 @@
 		// 6. Yellow Cat6: Switch Port 6 (12.2, 4.9, 5.5) -> Lenovo Yoga Ethernet-to-USB-A Adapter (Shelf 4 rear)
 		const yogaEthCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(12.2, 4.9, 5.5),
-			new THREE.Vector3(10.8, 3.5, 2.5),
-			new THREE.Vector3(10.2, 2.2, -1.0),
-			new THREE.Vector3(2.0, 1.8, -1.4),
-			new THREE.Vector3(-2.0, 2.0, -2.0),
+			new THREE.Vector3(10.6, 3.2, 3.5),
+			new THREE.Vector3(9.6, 2.1, 3.3),
+			new THREE.Vector3(2.0, 2.1, 1.0),
+			new THREE.Vector3(-2.0, 2.1, -1.0),
 			new THREE.Vector3(-4.5, 2.5, -2.48)
 		]);
 		const yogaTube = new THREE.Mesh(new THREE.TubeGeometry(yogaEthCurve, 50, 0.085, 8, false), yellowCableMat);
 		scene.add(yogaTube);
 
-		// 7. White Apple 30-Pin USB Charging Cable: Dulex AC Outlet Apple Brick -> iPod Touch Miner
+		// 7. Black USB Cable: Vintage Floppy Drive Reader -> HP Laptop 15 Workhorse left side (Shelf 2)
+		const floppyUsbCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(2.0, 11.8, 0.4),
+			new THREE.Vector3(0.0, 11.8, 0.6),
+			new THREE.Vector3(-3.0, 11.8, 0.6),
+			new THREE.Vector3(-5.2, 11.75, 0.8)
+		]);
+		const floppyUsbTube = new THREE.Mesh(new THREE.TubeGeometry(floppyUsbCurve, 24, 0.065, 8, false), blackUsbMat);
+		scene.add(floppyUsbTube);
+
+		// 8. Black USB 3.0 Cable: ONEFIVE Storage Enclosure -> Intel NUC USB port (Shelf 1)
+		const onefiveUsbCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(4.2, 16.9, 0.6),
+			new THREE.Vector3(4.4, 17.1, 0.0),
+			new THREE.Vector3(4.8, 17.2, -0.4)
+		]);
+		const onefiveUsbTube = new THREE.Mesh(new THREE.TubeGeometry(onefiveUsbCurve, 16, 0.07, 8, false), blackUsbMat);
+		scene.add(onefiveUsbTube);
+
+		// 9. Black USB 3.0 SATA Cable: Samsung 870 EVO SSD -> FREEHPGAMER Desktop rear I/O (Shelf 1)
+		const evoUsbCurve = new THREE.CatmullRomCurve3([
+			new THREE.Vector3(3.5, 17.3, 1.6),
+			new THREE.Vector3(1.5, 17.0, 0.0),
+			new THREE.Vector3(-1.0, 17.0, 0.0),
+			new THREE.Vector3(-3.0, 17.2, -0.6)
+		]);
+		const evoUsbTube = new THREE.Mesh(new THREE.TubeGeometry(evoUsbCurve, 26, 0.07, 8, false), blackUsbMat);
+		scene.add(evoUsbTube);
+
+		// 10. White Apple 30-Pin USB Charging Cable: Dulex AC Outlet Apple Brick -> iPod Touch Miner
 		const ipodChargeCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(-10.8, 10.52, -2.25),
 			new THREE.Vector3(-11.2, 10.0, -2.6),
@@ -1069,7 +1153,7 @@
 		const ipodChargeTube = new THREE.Mesh(new THREE.TubeGeometry(ipodChargeCurve, 20, 0.065, 8, false), whiteUsbMat);
 		scene.add(ipodChargeTube);
 
-		// 8. Black Micro-USB Charging Cable: Duplex AC Outlet Black Brick -> Samsung Galaxy Player
+		// 11. Black Micro-USB Charging Cable: Duplex AC Outlet Black Brick -> Samsung Galaxy Player
 		const playerChargeCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(-10.8, 9.88, -2.25),
 			new THREE.Vector3(-11.5, 9.5, -2.6),
@@ -1079,7 +1163,7 @@
 		const playerChargeTube = new THREE.Mesh(new THREE.TubeGeometry(playerChargeCurve, 24, 0.065, 8, false), blackUsbMat);
 		scene.add(playerChargeTube);
 
-		// 9. Black USB 5V Power Cable: 2011 Mac left USB port to Centrifugal Blower Fan (Shelf 4)
+		// 12. Black USB 5V Power Cable: 2011 Mac left USB port to Centrifugal Blower Fan (Shelf 4)
 		const fanUsbCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(4.5, 2.0, -0.4),
 			new THREE.Vector3(1.5, 1.8, -0.5),
@@ -1089,7 +1173,7 @@
 		const fanUsbTube = new THREE.Mesh(new THREE.TubeGeometry(fanUsbCurve, 26, 0.07, 8, false), blackUsbMat);
 		scene.add(fanUsbTube);
 
-		// 10. Black USB Cable: 2011 Mac to Samsung Galaxy S4 Mini (Shelf 4 left side)
+		// 13. Black USB Cable: 2011 Mac to Samsung Galaxy S4 Mini (Shelf 4 left side)
 		const s4UsbCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(4.8, 2.0, 0.0),
 			new THREE.Vector3(0.0, 1.8, -0.5),
@@ -1099,7 +1183,7 @@
 		const s4UsbTube = new THREE.Mesh(new THREE.TubeGeometry(s4UsbCurve, 28, 0.065, 8, false), blackUsbMat);
 		scene.add(s4UsbTube);
 
-		// 11. Rear AC Power Drops along rear uprights
+		// 14. Rear AC Power Drops along rear uprights
 		const pwrCurve1 = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(-9.8, 16.0, -2.0),
 			new THREE.Vector3(-9.8, 11.0, -2.0),
@@ -1335,7 +1419,7 @@
 
 		// Dynamic NeoPixel rotating colors on Bluefruit
 		if (neoPixelLight && neoPixelMeshes.length > 0) {
-			const t = time * 0.002;
+			const t = time * 0.00045;
 			neoPixelMeshes.forEach((led, idx) => {
 				const hue = (idx / 10 + t) % 1.0;
 				led.material.color.setHSL(hue, 0.9, 0.6);

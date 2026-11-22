@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 91,
     "totalNodes": 290,
-    "totalLinks": 597,
+    "totalLinks": 598,
     "domains": 6,
     "techBridges": 10
   },
@@ -1339,16 +1339,16 @@
           "desc": "Accurately models physical vertical spacing across all four tiers where the upright poles terminate flush with the topmost shelf (zero exten..."
         },
         {
-          "title": "Flush Upright Pole Geometry & Compact Secondary Shelf Unit",
+          "title": "Solid Filled-In Side Panels & Flush Upright Geometry",
           "desc": "Both the main 4-tier rack and secondary side unit vertical posts terminate flush with their respective topmost shelves (y = 16.2 on main rac..."
         },
         {
-          "title": "Secondary Shelf Hardware (Compact Switch & HP Wi-Fi Printer)",
-          "desc": "The middle tier (y = 4.2) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the..."
+          "title": "Shelf 1 Storage Architecture (Rotated ONEFIVE & Samsung 870 EVO SSD)",
+          "desc": "Positioned directly in front of the Intel NUC (z = 1.6) sits the ONEFIVE Sabrent USB 3.0 Enclosure, rotated 90 degrees so its cyan LED statu..."
         },
         {
-          "title": "Architectural Wall Ledge, Landscape Miners & Duplex AC Wall Charging Station",
-          "desc": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3. Resting on the ledge on desktop kick..."
+          "title": "Non-Clipping Ethernet Routing, Floppy USB Link & Slower Bluefruit Cycling",
+          "desc": "High-visibility yellow Cat6 cables originate from the 8-port switch on the secondary shelf (y = 4.85) and enter the main rack through the op..."
         }
       ],
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
@@ -1367,7 +1367,7 @@
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-1",
-      "name": "Flush Upright Pole Geometry & Compact Secondary Shelf Unit",
+      "name": "Solid Filled-In Side Panels & Flush Upright Geometry",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
@@ -1379,26 +1379,26 @@
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-2",
-      "name": "Secondary Shelf Hardware (Compact Switch & HP Wi-Fi Printer)",
+      "name": "Shelf 1 Storage Architecture (Rotated ONEFIVE & Samsung 870 EVO SSD)",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "The middle tier (y = 4.2) mounts the 8-Port Gigabit Managed Switch Backbone with front RJ45 ports and activity LEDs facing inward toward the...",
+      "summary": "Positioned directly in front of the Intel NUC (z = 1.6) sits the ONEFIVE Sabrent USB 3.0 Enclosure, rotated 90 degrees so its cyan LED statu...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
       "id": "task-hardware-fleet-salvage-and-interactive-labs-title-3",
-      "name": "Architectural Wall Ledge, Landscape Miners & Duplex AC Wall Charging Station",
+      "name": "Non-Clipping Ethernet Routing, Floppy USB Link & Slower Bluefruit Cycling",
       "type": "task",
       "parentProject": "Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator & AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry & Algorithmic Auditing",
       "parentId": "hardware-fleet-salvage-and-interactive-labs-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Behind and strictly to the left of the freestanding rack sits the natural built-in wall ledge at y=9.3. Resting on the ledge on desktop kick...",
+      "summary": "High-visibility yellow Cat6 cables originate from the 8-port switch on the secondary shelf (y = 4.85) and enter the main rack through the op...",
       "url": "projects.html#hardware-fleet-salvage-and-interactive-labs-title"
     },
     {
@@ -5846,6 +5846,12 @@
     {
       "source": "hardware-fleet-salvage-and-interactive-labs-title",
       "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "hardware-fleet-salvage-and-interactive-labs-title",
+      "target": "tech-apple-metal",
       "type": "project-tech",
       "distance": 85
     },
