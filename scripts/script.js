@@ -741,7 +741,37 @@
 			analogy: "Grading symphony orchestra tryouts from behind an opaque cloth curtain: judges can hear the musician's tempo, pitch, tone, and musicality with crystal clarity, but they cannot see their age, gender, clothing, or pedigree.",
 			techFact: "Mathematically projects embedding vectors into a subspace perpendicular to identified bias axes, erasing demographic associations without degrading the core semantic meaning of words."
 		},
-		"duino-mining": {
+				"websocket-keepalive": {
+			title: "WebSocket Keepalive Ping-Pong Heartbeat",
+			analogy: "A busy bank teller shouting 'Are you still in line?' every 20 seconds while you are heads-down filling out a detailed deposit slip. If you are too focused on writing and do not shout back 'Yes, still here!' in time, the teller assumes you walked out, shreds your ticket, and calls the next customer. Having a dedicated listener thread is like having an assistant standing right next to you who instantly shouts 'Still here!' the moment the teller asks, so you never lose your place.",
+			techFact: "RFC 6455 requires clients to reply to server Ping control frames (opcode 0x9) with matching Pong frames (opcode 0xA). If unanswered within the server timeout, the connection is forcefully severed with keepalive ping timeout."
+		},
+		"hashing-accuracy": {
+			title: "Cryptographic Hashing Accuracy & Stale Shares",
+			analogy: "A student solving a math test where every single equation is answered 100% correctly, but the classroom clock runs 5 minutes fast. Even though every answer is mathematically flawless, the proctor marks 40% of the exam papers as disqualified simply because the bell rang before the paper hit the turn-in basket.",
+			techFact: "Mining pools only credit shares returned before the job expiration or socket timeout. Delayed submissions result in stale or rejected shares even if the computed mathematical nonce is completely valid."
+		},
+		"single-core-starvation": {
+			title: "Single-Core CPU UI Starvation",
+			analogy: "A one-person neighborhood bakery where the lone baker has to knead dough in the back kitchen and ring up customers at the cash register. If they start kneading a massive batch of bread and refuse to look up for 30 minutes, customers standing at the counter assume the shop is abandoned and walk out.",
+			techFact: "On single-core processors without hyperthreading, a CPU-bound compute loop starves the operating system event loop, freezing user interface rendering, touch inputs, and background network sockets."
+		},
+		"event-loop-yielding": {
+			title: "Event-Loop Yielding (Chunked setTimeout)",
+			analogy: "That same lone baker rolling exactly 5 dinner rolls, pausing for 2 seconds to smile and greet whoever just walked through the front door, and then rolling the next 5 rolls—getting all the bread baked without ignoring a single customer.",
+			techFact: "Breaking intense cryptographic computation into discrete batches and yielding control via setTimeout allows the browser's single thread to service rendering, garbage collection, and keepalive network packets."
+		},
+		"reverse-proxy-gateway": {
+			title: "Reverse Proxy Bridge",
+			analogy: "A multilingual hotel concierge standing between a vintage traveler who only writes letters with fountain pens in 19th-century Latin, and a modern airport check-in desk that only scans encrypted digital boarding passes on smartphones. The concierge takes the handwritten letter, stamps it with the hotel's certified seal, sends an official wire dispatch to the airline, and hands the traveler their confirmed paper boarding pass.",
+			techFact: "A reverse proxy accepts connections from internal or legacy clients, handles TLS termination, authentication, or protocol translation, and forwards requests to modern upstream servers."
+		},
+		"kolka-difficulty": {
+			title: "Kolka Difficulty Balancing",
+			analogy: "A community Pinewood Derby race where inspectors weigh each wooden car before it hits the track. If an adult enters a car with a hidden rocket engine, the judges make them pull a miniature 50-pound iron sled so that the 8-year-old kids with regular wooden cars still have a completely fair and fun chance to compete.",
+			techFact: "Duino-Coin's Kolka reward system dynamically adjusts mining difficulty and reward multipliers based on device performance and submission speed to prevent high-powered machines from crowding out low-power microcontrollers."
+		},
+"duino-mining": {
 			title: "Duino-Coin (Micro-Scale Hardware Mining)",
 			analogy: "A group of friends earning tiny copper pennies by solving mini crossword puzzles on cheap pocket notepads, rather than needing an entire factory of industrial laser printers to print currency.",
 			techFact: "An accessible, low-power cryptocurrency designed to be mined on microcontrollers, vintage smartphones, and mobile devices using lightweight SHA-1 algorithms without heavy electrical draw."

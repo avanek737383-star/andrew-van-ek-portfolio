@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 	<link rel="stylesheet" href="css/styles.css?v=20261121-nav-fix-1">
 	<link rel="stylesheet" href="css/quotes.css?v=20261116-quotes-3">
-	<link rel="stylesheet" href="css/room-sensors.css?v=20261114-1">
+	<link rel="stylesheet" href="css/room-sensors.css?v=20261121-multisensor-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -234,16 +234,54 @@
 						</article>
 						<article class="room-sensor-card" aria-labelledby="room-light-title">
 							<h4 id="room-light-title"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Room light</h4>
-							<p class="room-sensor-value"><output id="room-light-value">&mdash;</output><span>%</span></p>
+							<div class="room-sensor-split-value">
+								<p class="room-sensor-value"><output id="room-light-value">&mdash;</output><span>%</span></p>
+								<div class="room-neopixel-indicator" id="room-neopixel-wrap" title="Circuit Playground onboard 10-NeoPixel RGB ring brightness">
+									<span class="neopixel-color-ring" aria-hidden="true"></span>
+									<span class="neopixel-badge-text" id="room-neopixel-badge">RGB LEDs: &mdash;</span>
+								</div>
+							</div>
 							<p class="room-sensor-description" id="room-light-description">Waiting for a reading</p>
 							<div class="room-reference room-reference-light" id="room-light-meter" role="img" aria-label="Relative light reference from dark to bright; waiting for a reading">
 								<span class="room-reference-marker" aria-hidden="true"></span>
 							</div>
 							<div class="room-reference-labels" aria-hidden="true"><span>Dark</span><span>Moderate</span><span>Bright</span></div>
 						</article>
+						<article class="room-sensor-card" aria-labelledby="room-sound-title">
+							<h4 id="room-sound-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>Room acoustics</h4>
+							<p class="room-sensor-value"><output id="room-sound-value">&mdash;</output><span>rel</span></p>
+							<p class="room-sensor-description" id="room-sound-description">Waiting for a reading</p>
+							<div class="room-reference room-reference-sound" id="room-sound-meter" role="img" aria-label="Relative sound level reference; waiting for a reading">
+								<span class="room-reference-marker" aria-hidden="true"></span>
+							</div>
+							<div class="room-reference-labels" aria-hidden="true"><span>Quiet</span><span>Moderate</span><span>Active</span></div>
+						</article>
+						<article class="room-sensor-card" aria-labelledby="room-accel-title">
+							<h4 id="room-accel-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>Desk stability</h4>
+							<p class="room-sensor-value"><output id="room-accel-value">&mdash;</output><span>G</span></p>
+							<p class="room-sensor-description" id="room-accel-description">Waiting for a reading</p>
+							<div class="room-reference room-reference-accel" id="room-accel-meter" role="img" aria-label="Accelerometer motion reference; waiting for a reading">
+								<span class="room-reference-marker" aria-hidden="true"></span>
+							</div>
+							<div class="room-reference-labels" aria-hidden="true"><span>Tilt</span><span>Stable (1.00g)</span><span>Motion</span></div>
+						</article>
+						<article class="room-sensor-card room-sensor-card-wide" aria-labelledby="room-ram-title">
+							<div class="room-ram-header">
+								<h4 id="room-ram-title"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>Microcontroller RAM heap</h4>
+								<span class="room-ram-badge" id="room-ram-badge">CircuitPython &middot; nRF52840</span>
+							</div>
+							<div class="room-ram-content">
+								<p class="room-sensor-value"><output id="room-ram-value">&mdash;</output><span>KB</span></p>
+								<p class="room-sensor-description" id="room-ram-description">Active heap utilized out of 160 KB total SRAM</p>
+								<div class="room-reference room-reference-ram" id="room-ram-meter" role="img" aria-label="RAM memory reference; waiting for a reading">
+									<span class="room-reference-marker" aria-hidden="true"></span>
+								</div>
+							</div>
+							<div class="room-reference-labels" aria-hidden="true"><span>0% (Empty)</span><span>50%</span><span>100% (Full Heap)</span></div>
+						</article>
 					</div>
 					<div class="room-sensors-meta"><span id="room-sensors-updated">Checking the board&hellip;</span><span id="room-mining-status">Miner status pending</span></div>
-					<p class="room-sensors-note">Onboard thermistor: approximate ambient temperature. Light is a relative sensor scale, not lux. <a href="maintenance.html#bluefruit-room-sensors-boot-telemetry">How it works</a></p>
+					<p class="room-sensors-note">Onboard sensors: thermistor, phototransistor, LIS3DH 3-axis accelerometer, and PDM mic driving real-time RGB NeoPixels alongside SHA-1 Duino mining. <a href="maintenance.html#bluefruit-room-sensors-boot-telemetry">How it works</a></p>
 				</section>
 				</div>
 				<section class="home-weather-section" id="home-weather-section" aria-labelledby="weather-widget-title">
@@ -492,7 +530,7 @@
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 		<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
-		<script src="scripts/room-sensors.js?v=20261114-1" defer></script>
+		<script src="scripts/room-sensors.js?v=20261121-multisensor-1" defer></script>
 		<script src="scripts/quotes.js?v=20261119-quote-stability-1"></script>
 </body>
 </html>

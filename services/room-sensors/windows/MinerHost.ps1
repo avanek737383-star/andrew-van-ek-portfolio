@@ -43,15 +43,23 @@ function Read-Board {
     while (($newline=$script:serialBuffer.IndexOf("`n")) -ge 0) {
         $line = $script:serialBuffer.Substring(0,$newline).Trim()
         $script:serialBuffer = $script:serialBuffer.Substring($newline+1)
-        if ($line -match '^SENSOR,(-?\d+(?:\.\d+)?),(\d+),(\d+(?:\.\d+)?)$') {
+        if ($line -match '^SENSOR,(-?\d+(?:\.\d+)?),(\d+),(\d+(?:\.\d+)?)(?:,(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+),(\d+))?$') {
             $c = [double]::Parse($Matches[1],[Globalization.CultureInfo]::InvariantCulture)
             $light = [int]$Matches[2]
             $uptime = [double]::Parse($Matches[3],[Globalization.CultureInfo]::InvariantCulture)
             if ($c -ge -40 -and $c -le 125 -and $light -ge 0 -and $light -le 330) {
-                $script:lastSample = [ordered]@{
+                $sample = [ordered]@{
                     schema_version=1; observed_at=[DateTime]::UtcNow.ToString('o');
                     source_connected=$true; temperature_c=$c; light_level=$light; board_uptime_s=$uptime
                 }
+                if ($Matches[4]) {
+                    $sample['sound_level'] = [double]::Parse($Matches[4],[Globalization.CultureInfo]::InvariantCulture)
+                    $sample['accel_g'] = [double]::Parse($Matches[5],[Globalization.CultureInfo]::InvariantCulture)
+                    $sample['neopixel_pct'] = [double]::Parse($Matches[6],[Globalization.CultureInfo]::InvariantCulture)
+                    $sample['ram_used_bytes'] = [long]::Parse($Matches[7],[Globalization.CultureInfo]::InvariantCulture)
+                    $sample['ram_total_bytes'] = [long]::Parse($Matches[8],[Globalization.CultureInfo]::InvariantCulture)
+                }
+                $script:lastSample = $sample
                 Write-JsonAtomic (Join-Path $stateDir 'room-sensors.json') $script:lastSample
             }
         } elseif ($line -match '^([01]+),([01]+),(DUCOID[0-9A-F]+)$') {

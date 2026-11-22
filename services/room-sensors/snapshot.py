@@ -3,7 +3,8 @@ import math
 from datetime import datetime, timezone
 
 ALLOWED = {'schema_version', 'observed_at', 'source_connected', 'temperature_c',
-           'light_level', 'board_uptime_s', 'mining'}
+           'light_level', 'board_uptime_s', 'mining',
+           'sound_level', 'accel_g', 'neopixel_pct', 'ram_used_bytes', 'ram_total_bytes'}
 MINING_STATES = {'connected', 'mining', 'retrying', 'board-unavailable'}
 
 
@@ -38,6 +39,18 @@ def validate(data, now=None):
              'temperature_c': number(data.get('temperature_c'), -40, 125),
              'light_level': number(data.get('light_level'), 0, 330),
              'board_uptime_s': number(data.get('board_uptime_s'), 0, 1e12)}
+
+    if 'sound_level' in data and data['sound_level'] is not None:
+        clean['sound_level'] = number(data['sound_level'], 0, 5000)
+    if 'accel_g' in data and data['accel_g'] is not None:
+        clean['accel_g'] = number(data['accel_g'], 0, 100)
+    if 'neopixel_pct' in data and data['neopixel_pct'] is not None:
+        clean['neopixel_pct'] = number(data['neopixel_pct'], 0, 100)
+    if 'ram_used_bytes' in data and data['ram_used_bytes'] is not None:
+        clean['ram_used_bytes'] = number(data['ram_used_bytes'], 0, 10000000)
+    if 'ram_total_bytes' in data and data['ram_total_bytes'] is not None:
+        clean['ram_total_bytes'] = number(data['ram_total_bytes'], 1, 10000000)
+
     mining = data.get('mining')
     if mining is not None:
         if not isinstance(mining, dict) or set(mining) != {'status','updated_at','hashrate_hs','accepted_shares'}:
@@ -62,10 +75,30 @@ def public_view(data, now=None):
     state = 'live' if data['source_connected'] and age <= 60 else 'stale'
     if not data['source_connected']:
         state = 'disconnected'
-    return {'schema_version': 1, 'status': state, 'age_seconds': round(age, 1),
+    view = {'schema_version': 1, 'status': state, 'age_seconds': round(age, 1),
             'observed_at': data['observed_at'], 'served_at': now.isoformat(),
             'device': 'Circuit Playground Bluefruit',
             'temperature_f': round(data['temperature_c']*1.8+32, 1),
             'light_percent': round(data['light_level']/330*100, 1),
             'light_level': data['light_level'], 'light_scale_max': 330,
             'mining': data.get('mining')}
+
+    view['sound_level'] = round(data['sound_level'], 1) if 'sound_level' in data and data['sound_level'] is not None else None
+    view['accel_g'] = round(data['accel_g'], 2) if 'accel_g' in data and data['accel_g'] is not None else None
+    view['neopixel_pct'] = round(data['neopixel_pct'], 1) if 'neopixel_pct' in data and data['neopixel_pct'] is not None else None
+
+    if ('ram_used_bytes' in data and 'ram_total_bytes' in data and
+            data['ram_used_bytes'] is not None and data['ram_total_bytes'] is not None):
+        view['ram_used_kb'] = round(data['ram_used_bytes'] / 1024, 1)
+        view['ram_total_kb'] = round(data['ram_total_bytes'] / 1024, 1)
+        view['ram_percent'] = round((data['ram_used_bytes'] / data['ram_total_bytes']) * 100, 1)
+    else:
+        view['ram_used_kb'] = None
+        view['ram_total_kb'] = None
+        view['ram_percent'] = None
+
+    is_mining = data.get('mining') and data['mining'].get('status') == 'mining'
+    view['cpu_percent'] = 100.0 if is_mining else 0.0
+    view['cpu_info'] = '100% · Duino SHA-1 Mining' if is_mining else '0% · Idle'
+
+    return view

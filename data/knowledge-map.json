@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 88,
-    "totalNodes": 271,
-    "totalLinks": 556,
+    "totalProjects": 90,
+    "totalNodes": 285,
+    "totalLinks": 586,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,182 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "pixel-buds-ios-ble-companion-title",
+      "name": "Google Pixel Buds on iOS: Web Bluetooth BLE Companion, Tailscale HTTPS Gateway & Audio Profile Reverse Engineering",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "in-progress",
+      "statusLabel": "In Progress",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#f59e0b",
+      "summary": "Google provides a first-party web companion application (mypixelbuds.google.com) allowing users on desktop operating systems (macOS, Windows, ChromeOS) to manage Google Pixel Buds\u2014toggling Active Noise Cancellation (ANC), Transparency mode, equalizer curves, and firmware updat...",
+      "tech": [
+        "iOS WebKit",
+        "Web Bluetooth API",
+        "Google Pixel Buds",
+        "CoreBluetooth BLE vs. Classic A2DP",
+        "Tailscale HTTPS :8451",
+        "Bluefy"
+      ],
+      "tasks": [
+        {
+          "title": "Protocol Segmentation",
+          "desc": "Consumer wireless earbuds operate dual Bluetooth stacks: Bluetooth Classic (A2DP / AVRCP / HFP profiles) for high-bandwidth audio streaming ..."
+        },
+        {
+          "title": "Autonomous Beacon Power-Down",
+          "desc": "Once an iPhone locks onto the earbuds via Classic Bluetooth and audio begins routing to the ears, the Pixel Buds intentionally suspend their..."
+        },
+        {
+          "title": "CoreBluetooth Filtering Strictness",
+          "desc": "In initial test iterations, applying restrictive filters (such as { namePrefix: 'Pixel Buds' } or 16-bit Battery Service UUIDs) caused iOS C..."
+        },
+        {
+          "title": "Alpine NUC Web Service & OpenRC Daemon",
+          "desc": "Engineered a lightweight, asynchronous Python service running on port 8103 at /home/avanek/pixel-buds-companion. Configured an OpenRC superv..."
+        }
+      ],
+      "url": "projects.html#pixel-buds-ios-ble-companion-title"
+    },
+    {
+      "id": "task-pixel-buds-ios-ble-companion-title-0",
+      "name": "Protocol Segmentation",
+      "type": "task",
+      "parentProject": "Google Pixel Buds on iOS: Web Bluetooth BLE Companion, Tailscale HTTPS Gateway & Audio Profile Reverse Engineering",
+      "parentId": "pixel-buds-ios-ble-companion-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Consumer wireless earbuds operate dual Bluetooth stacks: Bluetooth Classic (A2DP / AVRCP / HFP profiles) for high-bandwidth audio streaming ...",
+      "url": "projects.html#pixel-buds-ios-ble-companion-title"
+    },
+    {
+      "id": "task-pixel-buds-ios-ble-companion-title-1",
+      "name": "Autonomous Beacon Power-Down",
+      "type": "task",
+      "parentProject": "Google Pixel Buds on iOS: Web Bluetooth BLE Companion, Tailscale HTTPS Gateway & Audio Profile Reverse Engineering",
+      "parentId": "pixel-buds-ios-ble-companion-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Once an iPhone locks onto the earbuds via Classic Bluetooth and audio begins routing to the ears, the Pixel Buds intentionally suspend their...",
+      "url": "projects.html#pixel-buds-ios-ble-companion-title"
+    },
+    {
+      "id": "task-pixel-buds-ios-ble-companion-title-2",
+      "name": "CoreBluetooth Filtering Strictness",
+      "type": "task",
+      "parentProject": "Google Pixel Buds on iOS: Web Bluetooth BLE Companion, Tailscale HTTPS Gateway & Audio Profile Reverse Engineering",
+      "parentId": "pixel-buds-ios-ble-companion-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "In initial test iterations, applying restrictive filters (such as { namePrefix: 'Pixel Buds' } or 16-bit Battery Service UUIDs) caused iOS C...",
+      "url": "projects.html#pixel-buds-ios-ble-companion-title"
+    },
+    {
+      "id": "task-pixel-buds-ios-ble-companion-title-3",
+      "name": "Alpine NUC Web Service & OpenRC Daemon",
+      "type": "task",
+      "parentProject": "Google Pixel Buds on iOS: Web Bluetooth BLE Companion, Tailscale HTTPS Gateway & Audio Profile Reverse Engineering",
+      "parentId": "pixel-buds-ios-ble-companion-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Engineered a lightweight, asynchronous Python service running on port 8103 at /home/avanek/pixel-buds-companion. Configured an OpenRC superv...",
+      "url": "projects.html#pixel-buds-ios-ble-companion-title"
+    },
+    {
+      "id": "wii-brawl-iso-audio-extraction-title",
+      "name": "Super Smash Bros. Brawl: Optical Disc Partition Decryption, Asset Carving & Parallel BRSTM Audio Pipeline",
+      "type": "project",
+      "domain": "forensics-recovery",
+      "domainName": "Digital Forensics & Recovery",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 21, 2026",
+      "val": 24,
+      "color": "#34d399",
+      "summary": "Starting with an 8.17 GB dual-layer Nintendo Wii optical disc image (Copy of Super Smash Bros. Brawl [RSBE01].iso) in the local Downloads folder, the goal was to extract and convert the game's complete background music collection into pristine, standalone audio files without r...",
+      "tech": [
+        "Optical Disc Forensics",
+        "Dolphin",
+        "BrawlCrate",
+        "FFmpeg",
+        "Python",
+        "Antigravity AI"
+      ],
+      "tasks": [
+        {
+          "title": "Hardware-Level AES Encryption",
+          "desc": "Disc sectors are segmented into isolated partitions (Partition 0 for System Updates, Partition 1 for Game Data RSBE01, and optional channel ..."
+        },
+        {
+          "title": "Proprietary FST Filesystem",
+          "desc": "Decrypted partition tables do not map to FAT or NTFS volumes, but utilize Nintendo's internal File String Table (FST) hierarchy referencing ..."
+        },
+        {
+          "title": "Database Reconciliation",
+          "desc": "Brawl internally references background audio through alphanumeric stage codes (e.g., A## for Mario, B## for Donkey Kong, X## for Smash/Syste..."
+        },
+        {
+          "title": "Multi-Threaded Batch Conversion",
+          "desc": "Deployed a Python ThreadPoolExecutor utilizing 16 parallel worker threads to process the entire disc stream collection into high-fidelity VB..."
+        }
+      ],
+      "url": "projects.html#wii-brawl-iso-audio-extraction-title"
+    },
+    {
+      "id": "task-wii-brawl-iso-audio-extraction-title-0",
+      "name": "Hardware-Level AES Encryption",
+      "type": "task",
+      "parentProject": "Super Smash Bros. Brawl: Optical Disc Partition Decryption, Asset Carving & Parallel BRSTM Audio Pipeline",
+      "parentId": "wii-brawl-iso-audio-extraction-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Disc sectors are segmented into isolated partitions (Partition 0 for System Updates, Partition 1 for Game Data RSBE01, and optional channel ...",
+      "url": "projects.html#wii-brawl-iso-audio-extraction-title"
+    },
+    {
+      "id": "task-wii-brawl-iso-audio-extraction-title-1",
+      "name": "Proprietary FST Filesystem",
+      "type": "task",
+      "parentProject": "Super Smash Bros. Brawl: Optical Disc Partition Decryption, Asset Carving & Parallel BRSTM Audio Pipeline",
+      "parentId": "wii-brawl-iso-audio-extraction-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Decrypted partition tables do not map to FAT or NTFS volumes, but utilize Nintendo's internal File String Table (FST) hierarchy referencing ...",
+      "url": "projects.html#wii-brawl-iso-audio-extraction-title"
+    },
+    {
+      "id": "task-wii-brawl-iso-audio-extraction-title-2",
+      "name": "Database Reconciliation",
+      "type": "task",
+      "parentProject": "Super Smash Bros. Brawl: Optical Disc Partition Decryption, Asset Carving & Parallel BRSTM Audio Pipeline",
+      "parentId": "wii-brawl-iso-audio-extraction-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Brawl internally references background audio through alphanumeric stage codes (e.g., A## for Mario, B## for Donkey Kong, X## for Smash/Syste...",
+      "url": "projects.html#wii-brawl-iso-audio-extraction-title"
+    },
+    {
+      "id": "task-wii-brawl-iso-audio-extraction-title-3",
+      "name": "Multi-Threaded Batch Conversion",
+      "type": "task",
+      "parentProject": "Super Smash Bros. Brawl: Optical Disc Partition Decryption, Asset Carving & Parallel BRSTM Audio Pipeline",
+      "parentId": "wii-brawl-iso-audio-extraction-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Deployed a Python ThreadPoolExecutor utilizing 16 parallel worker threads to process the entire disc stream collection into high-fidelity VB...",
+      "url": "projects.html#wii-brawl-iso-audio-extraction-title"
     },
     {
       "id": "muse-meta-account-mismatch-title",
@@ -2380,23 +2556,87 @@
     },
     {
       "id": "bluefruit-room-telemetry-title",
-      "name": "Circuit Playground Bluefruit: Live Room Telemetry Alongside Duino-Coin Mining",
+      "name": "Circuit Playground Bluefruit: Multi-Sensor Room Telemetry, Circulating RGB NeoPixel Engine & Wireless BLE Workflow Alongside Duino Mining",
       "type": "project",
       "domain": "embedded-hardware",
       "domainName": "Embedded Hardware & Mobile",
       "status": "completed",
-      "statusLabel": "Live telemetry \u00b7 boot tasks installed",
-      "date": "",
-      "val": 16,
+      "statusLabel": "Completed Project",
+      "date": "November 22, 2026",
+      "val": 24,
       "color": "#fbbf24",
-      "summary": "A board already mining Duino-Coin now supplies real temperature and light measurements to my portfolio home page. Two compact cards show Fahrenheit temperature and relative brightness, descriptive conditions, reference scales, sample age, and mining status. They sit side by si...",
+      "summary": "What began as a low-power USB Duino-Coin miner has expanded into a full edge-computing telemetry platform. A single Adafruit Circuit Playground Bluefruit (Nordic nRF52840) now simultaneously mines cryptocurrency at ~2.4 kH/s while continuously polling a multi-sensor array\u2014ther...",
       "tech": [
-        "Live telemetry",
-        "boot tasks installed CircuitPython",
         "PowerShell",
-        "OpenRC"
+        "OpenRC",
+        "Web Bluetooth BLE"
       ],
-      "tasks": [],
+      "tasks": [
+        {
+          "title": "LIS3DH 3-Axis Accelerometer (Desk Stability)",
+          "desc": "Real-time sampling of $(x, y, z)$ acceleration forces, calculating total gravitational vector magnitude ($\\sqrt{x^2+y^2+z^2}/9.81$) to detec..."
+        },
+        {
+          "title": "PDM Digital Microphone (Room Acoustics)",
+          "desc": "High-speed 10\u201320ms audio buffer integration via cp.sound_level, reporting relative ambient decibel energy (quiet workspace vs active sound) ..."
+        },
+        {
+          "title": "CircuitPython RAM Heap Tracking",
+          "desc": "Interrogating the runtime heap via gc.mem_alloc() and gc.mem_free() to surface live RAM usage on an edge microcontroller with only 256 KB to..."
+        },
+        {
+          "title": "Dedicated Edge CPU Telemetry",
+          "desc": "Surface the board's 64 MHz ARM Cortex-M4F CPU state on the System Stats page, operating at continuous 100% compute load dedicated to cryptog..."
+        }
+      ],
+      "url": "projects.html#bluefruit-room-telemetry-title"
+    },
+    {
+      "id": "task-bluefruit-room-telemetry-title-0",
+      "name": "LIS3DH 3-Axis Accelerometer (Desk Stability)",
+      "type": "task",
+      "parentProject": "Circuit Playground Bluefruit: Multi-Sensor Room Telemetry, Circulating RGB NeoPixel Engine & Wireless BLE Workflow Alongside Duino Mining",
+      "parentId": "bluefruit-room-telemetry-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Real-time sampling of $(x, y, z)$ acceleration forces, calculating total gravitational vector magnitude ($\\sqrt{x^2+y^2+z^2}/9.81$) to detec...",
+      "url": "projects.html#bluefruit-room-telemetry-title"
+    },
+    {
+      "id": "task-bluefruit-room-telemetry-title-1",
+      "name": "PDM Digital Microphone (Room Acoustics)",
+      "type": "task",
+      "parentProject": "Circuit Playground Bluefruit: Multi-Sensor Room Telemetry, Circulating RGB NeoPixel Engine & Wireless BLE Workflow Alongside Duino Mining",
+      "parentId": "bluefruit-room-telemetry-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "High-speed 10\u201320ms audio buffer integration via cp.sound_level, reporting relative ambient decibel energy (quiet workspace vs active sound) ...",
+      "url": "projects.html#bluefruit-room-telemetry-title"
+    },
+    {
+      "id": "task-bluefruit-room-telemetry-title-2",
+      "name": "CircuitPython RAM Heap Tracking",
+      "type": "task",
+      "parentProject": "Circuit Playground Bluefruit: Multi-Sensor Room Telemetry, Circulating RGB NeoPixel Engine & Wireless BLE Workflow Alongside Duino Mining",
+      "parentId": "bluefruit-room-telemetry-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Interrogating the runtime heap via gc.mem_alloc() and gc.mem_free() to surface live RAM usage on an edge microcontroller with only 256 KB to...",
+      "url": "projects.html#bluefruit-room-telemetry-title"
+    },
+    {
+      "id": "task-bluefruit-room-telemetry-title-3",
+      "name": "Dedicated Edge CPU Telemetry",
+      "type": "task",
+      "parentProject": "Circuit Playground Bluefruit: Multi-Sensor Room Telemetry, Circulating RGB NeoPixel Engine & Wireless BLE Workflow Alongside Duino Mining",
+      "parentId": "bluefruit-room-telemetry-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Surface the board's 64 MHz ARM Cortex-M4F CPU state on the System Stats page, operating at continuous 100% compute load dedicated to cryptog...",
       "url": "projects.html#bluefruit-room-telemetry-title"
     },
     {
@@ -4803,6 +5043,126 @@
   "links": [
     {
       "source": "domain-ai-agents",
+      "target": "pixel-buds-ios-ble-companion-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "task-pixel-buds-ios-ble-companion-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "task-pixel-buds-ios-ble-companion-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "task-pixel-buds-ios-ble-companion-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "task-pixel-buds-ios-ble-companion-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "pixel-buds-ios-ble-companion-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-forensics-recovery",
+      "target": "wii-brawl-iso-audio-extraction-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "wii-brawl-iso-audio-extraction-title",
+      "target": "task-wii-brawl-iso-audio-extraction-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "wii-brawl-iso-audio-extraction-title",
+      "target": "task-wii-brawl-iso-audio-extraction-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "wii-brawl-iso-audio-extraction-title",
+      "target": "task-wii-brawl-iso-audio-extraction-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "wii-brawl-iso-audio-extraction-title",
+      "target": "task-wii-brawl-iso-audio-extraction-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "wii-brawl-iso-audio-extraction-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "wii-brawl-iso-audio-extraction-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "wii-brawl-iso-audio-extraction-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-ai-agents",
       "target": "muse-meta-account-mismatch-title",
       "type": "domain-project",
       "distance": 65
@@ -5194,6 +5554,12 @@
     {
       "source": "vintage-hardware-mining-fleet-and-file-vault-title",
       "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "vintage-hardware-mining-fleet-and-file-vault-title",
+      "target": "tech-python-fastapi",
       "type": "project-tech",
       "distance": 85
     },
@@ -6255,7 +6621,37 @@
     },
     {
       "source": "bluefruit-room-telemetry-title",
+      "target": "task-bluefruit-room-telemetry-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
+      "target": "task-bluefruit-room-telemetry-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
+      "target": "task-bluefruit-room-telemetry-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
+      "target": "task-bluefruit-room-telemetry-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
       "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
+      "target": "tech-tailscale",
       "type": "project-tech",
       "distance": 85
     },
@@ -6267,7 +6663,25 @@
     },
     {
       "source": "bluefruit-room-telemetry-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
       "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "bluefruit-room-telemetry-title",
+      "target": "tech-forensics-reversing",
       "type": "project-tech",
       "distance": 85
     },
@@ -7510,6 +7924,12 @@
     {
       "source": "scam-defense-title",
       "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "scam-defense-title",
+      "target": "tech-openrc-daemons",
       "type": "project-tech",
       "distance": 85
     },
