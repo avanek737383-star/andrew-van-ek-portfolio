@@ -16,8 +16,8 @@ const FLEET_DATA = {
 		power: '~12.5 W',
 		uptime: 'Middle Rack Tier (Always-On)',
 		status: 'ONLINE',
-		workloads: 'Central LAN AdGuard Home DNS sinkhole, dual BOINC distributed research compute (Rosetta@home disease modeling & Universe@home astrophysics), Tailscale WireGuard gateway.',
-		salvage: 'Compact ultra-low-idle compute node running musl/busybox minimal userspace to maximize CPU cycles dedicated directly to volunteer astrophysics and biomedical simulations.',
+		workloads: 'Central LAN AdGuard Home DNS sinkhole, Einstein@Home distributed astrophysics (Fermi LAT gamma-ray pulsar search), Tailscale WireGuard gateway.',
+		salvage: 'Compact ultra-low-idle compute node running musl/busybox minimal userspace to maximize CPU cycles dedicated directly to Einstein@Home volunteer astrophysics pulsar search simulations and network-wide DNS filtering.',
 		glpi: {
 			tag: 'HL-NODE-06-NUC-CORE',
 			cat: 'Core Compute / Infrastructure',
@@ -246,7 +246,7 @@ const FLEET_DATA = {
 };
 
 function initNodeFleetData() {
-	selectNode('nuc');
+	selectNode('winws');
 }
 
 function selectNode(nodeId) {
@@ -316,7 +316,7 @@ function initViewportInteractivity() {
 	});
 
 	document.getElementById('reset-viewport-btn').addEventListener('click', () => {
-		selectNode('nuc');
+		selectNode('winws');
 		document.querySelector('.view-btn[data-view="topology"]').click();
 	});
 }
@@ -365,6 +365,7 @@ function applyGlpiOverlay() {
 }
 
 function initNodeFilter() {
+	if (!document.querySelector('.node-filter-btn')) return;
 	const filterBtns = document.querySelectorAll('.node-filter-btn');
 	const cards = document.querySelectorAll('.fleet-card');
 
@@ -398,6 +399,7 @@ function initNodeFilter() {
 // Hardware Longevity & Salvage ROI Calculator (Option D - 9 Nodes)
 // -------------------------------------------------------------
 function initRoiCalculator() {
+	if (!document.getElementById('sl-nodes')) return;
 	const slNodes = document.getElementById('sl-nodes');
 	const slLifespan = document.getElementById('sl-lifespan');
 	const slCost = document.getElementById('sl-cost');

@@ -886,3 +886,48 @@
         font-size: 1.1rem;
     }
 }
+
+
+/* ==========================================================================
+   Gallery Interactive Cursor Pointer Guarantees
+   ========================================================================== */
+.gallery-card,
+.gallery-card *,
+.gallery-card-thumb-wrap,
+.gallery-card-thumb,
+.gallery-card-body,
+.gallery-card-title,
+.gallery-card-desc,
+.gallery-card-tags,
+.gallery-tag-chip,
+.gallery-card-action,
+.gallery-card-action *,
+.gallery-drawer-close-btn,
+.gallery-drawer-close-btn *,
+#gallery-close-btn,
+#gallery-close-btn *,
+.gallery-mobile-modal-close,
+.gallery-mobile-modal-close *,
+.gallery-nav-arrow,
+.gallery-nav-arrow *,
+.gallery-zoom-btn,
+.gallery-zoom-btn *,
+.gallery-zoom-reset,
+.gallery-cat-tab,
+.gallery-cat-tab *,
+.gallery-mobile-cat-option,
+.gallery-mobile-cat-option * {
+    cursor: pointer !important;
+}
+
+.gallery-card-title,
+.gallery-card-desc,
+.gallery-tag-chip,
+.gallery-drawer-close-btn,
+.gallery-mobile-modal-close,
+.gallery-nav-arrow,
+.gallery-zoom-btn,
+.gallery-cat-tab {
+    user-select: none;
+    -webkit-user-select: none;
+}

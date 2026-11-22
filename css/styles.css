@@ -7431,3 +7431,45 @@ body.search-modal-open {
         font-size: 0.82rem;
     }
 }
+
+
+/* ==========================================================================
+   Global Interactive Cursor Pointer Guarantees (Navigation, Search, Actions)
+   ========================================================================== */
+nav.tablet-desktop,
+nav.tablet-desktop *,
+nav.mobile-nav,
+nav.mobile-nav *,
+ul#site-navigation,
+ul#site-navigation *,
+.nav-item-dropdown,
+.nav-dropdown-toggle,
+.nav-dropdown-toggle *,
+.nav-dropdown-menu,
+.nav-dropdown-menu *,
+.nav-dropdown-menu li,
+.nav-dropdown-menu li a,
+.nav-dropdown-menu li a *,
+.nav-search-link,
+.nav-search-link *,
+#nav-search-trigger,
+#nav-search-trigger * {
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.search-modal-close,
+.search-modal-close *,
+.search-filter-chip,
+.search-filter-chip *,
+.search-modal-item,
+.search-modal-item *,
+.search-modal-item a,
+.search-modal-item a *,
+.search-modal-view-all,
+.search-modal-view-all * {
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
