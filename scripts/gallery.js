@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 167 Workbench Captures across 6 Curated Categories
+ * - 169 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,50 @@
     "use strict";
 
     var galleryItems = [
+        {
+            id: "dolphin-brawl-wii-disc-filesystem-hierarchy",
+            title: "Wii Optical Disc Filesystem: Dolphin Filesystem Hierarchy & 1.10 GiB Sound Partition in Super Smash Bros. Brawl",
+            category: "media",
+            categoryLabel: "Emulation & Optical Disc Architecture",
+            badgeClass: "badge-warning",
+            image: "images/gallery/approved/dolphin-brawl-wii-disc-filesystem-hierarchy.png",
+            thumb: "images/gallery/approved/dolphin-brawl-wii-disc-filesystem-hierarchy-thumb.jpg",
+            tags: ["Dolphin Emulator", "Nintendo Wii", "Super Smash Bros. Brawl", "Optical Disc", "Filesystem", "Asset Extraction", "BRSTM"],
+            summary: "Dolphin Emulator Properties window displaying the decoded internal optical disc file hierarchy of Super Smash Bros. Brawl [RSBE01], isolating the 1.10 GiB sound asset directory.",
+            sandboxObservation: "Andrew and Antigravity AI performed live filesystem exploration of an 8.17 GB dual-layer Wii optical disc image (Copy of Super Smash Bros. Brawl [RSBE01].iso). After commercial forensic tools (FTK Imager) failed to parse the proprietary encrypted structure, Dolphin's native filesystem interpreter successfully mounted the disc partitions. The capture details Data Partition (0) (RSBE01), displaying root system files (border.dat, dummy1.dat, dummy2.dat, opening.bnr, sora.str), stage assets (651.89 MiB), fighter scripts (662.18 MiB), pre-rendered movies (3.36 GiB), and the targeted master audio directory (1.10 GiB sound/).",
+            technicalBreakdown: "Nintendo Wii optical discs organize data in hardware-encrypted partitions (AES-128-CBC) indexed by a File String Table (FST). Standard PC drive mounters lack the Wii Common Key and FST parser, resulting in unrecognized volume errors. Dolphin directly decrypts the partition table in memory and parses the FST node tree, allowing granular right-click directory extraction without carving the full 8.17 GB raw bitstream.",
+            defensePlaybook: [
+                "Source Capture: Screenshot 2026-11-21 131252.png captured during live Super Smash Bros. Brawl audio extraction workbench session.",
+                "Target Directory: Data Partition (0) > sound/ (1.10 GiB) housing 314 .brstm stream tracks and smashbros_sound.brsar sound effects.",
+                "Filesystem Architecture: Nintendo FST (File String Table) mapping discrete asset records across encrypted partition blocks."
+            ],
+            playbookHeading: "Source Capture & Verification",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "Documents successful optical disc partition parsing, identifying the exact subfolder location required to extract original source audio.",
+            credit: "Original capture by Andrew Van Ek. Description and gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "dolphin-brawl-wii-partitions-sound-inspection",
+            title: "Wii Optical Disc Partitions: Dolphin Asset Hierarchy Scrolled Inspection & Channel Sub-Partitions",
+            category: "media",
+            categoryLabel: "Emulation & Optical Disc Architecture",
+            badgeClass: "badge-warning",
+            image: "images/gallery/approved/dolphin-brawl-wii-partitions-sound-inspection.png",
+            thumb: "images/gallery/approved/dolphin-brawl-wii-partitions-sound-inspection-thumb.jpg",
+            tags: ["Dolphin Emulator", "Nintendo Wii", "Super Smash Bros. Brawl", "Optical Disc", "Partitions", "FST Filesystem", "Reverse Engineering"],
+            summary: "Scrolled inspection of the Dolphin Emulator Filesystem browser for Super Smash Bros. Brawl, revealing the full breadth of secondary update, channel installer, and trial partitions.",
+            sandboxObservation: "Detailed inspection of the partition architecture across the dual-layer DVD-9 image in Dolphin Emulator. In addition to primary Data Partition (0) containing the 1.10 GiB sound folder, the image incorporates twelve secondary sub-partitions (HA8E01 through HBLEZZ). These auxiliary partitions store bundled Nintendo channel installers, Masterpieces Virtual Console trial ROMs, and console system updates required for offline Wii system compatibility.",
+            technicalBreakdown: "Dual-layer Wii optical discs (DVD-9, ~8.5 GB) bundle auxiliary partitions alongside the primary game partition. Each partition possesses dedicated ticket, TMD (Title Metadata), and encrypted data streams. Dolphin's partition viewer allows researchers and audio engineers to isolate the primary game payload from system update containers.",
+            defensePlaybook: [
+                "Source Capture: Screenshot 2026-11-21 131306.png captured during live Super Smash Bros. Brawl audio extraction workbench session.",
+                "Sub-Partitions Identified: HA8E01, HA9E01, HBAE01, HBBE01, HBCE01, HBDE01, HBEE01, HBFE01, HBGE01, HBIE01, HBKEZZ, HBLEZZ.",
+                "Extraction Target: Right-click extraction of the sound directory to extract all 314 raw BRSTM audio files."
+            ],
+            playbookHeading: "Source Capture & Verification",
+            outcomeHeading: "What This Capture Establishes",
+            containment: "Documents the multi-partition layout of commercial Wii optical media and confirms the 1.10 GiB sound asset node before batch extraction.",
+            credit: "Original capture by Andrew Van Ek. Description and gallery integration with Google DeepMind Antigravity AI."
+        },
         {
             id: "fat-cluster-carving-storage-reclamation",
             title: "Digital Forensics Workbench: FAT32/exFAT Cluster Carving & 44 GB Storage Reclamation",
