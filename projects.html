@@ -87,6 +87,42 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="pixel-buds-ios-ble-companion-title">
+<h2 id="pixel-buds-ios-ble-companion-title">Google Pixel Buds on iOS: Web Bluetooth BLE Companion, Tailscale HTTPS Gateway &amp; Audio Profile Reverse Engineering</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Apple iPhone &middot; iOS WebKit &middot; Web Bluetooth API &middot; Google Pixel Buds &middot; CoreBluetooth BLE vs. Classic A2DP &middot; Tailscale HTTPS :8451 &middot; Bluefy &middot; OpenRC &middot; Alpine Linux &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
+
+<p>Google provides a first-party web companion application (<code>mypixelbuds.google.com</code>) allowing users on desktop operating systems (macOS, Windows, ChromeOS) to manage Google Pixel Buds—toggling Active Noise Cancellation (ANC), Transparency mode, equalizer curves, and firmware updates over Web Bluetooth. However, on iOS, Apple strictly omits the Web Bluetooth API (<code>navigator.bluetooth</code>) from Mobile Safari and WebKit, and Google's web app explicitly inspects client <code>User-Agent</code> strings to block mobile devices. The goal of this project is to build and host an autonomous, persistent companion bridge on the local Alpine Linux NUC, accessible over a secure Tailscale HTTPS link (<code>https://nucwol2-0--hdd.taile72a68.ts.net:8451</code>), enabling full earbud telemetry and ANC control directly from an iPhone.</p>
+
+<h3>Bluetooth Stack Dissection: Classic Audio (A2DP) vs. Low Energy (BLE)</h3>
+<p>During live testing on iOS, connecting the Pixel Buds through standard <strong>iOS Settings &rarr; Bluetooth</strong> established an audio streaming link, but the web companion's Bluetooth discovery picker returned no available earbuds. Technical investigation revealed the underlying architectural cause:</p>
+<ul>
+<li><strong>Protocol Segmentation:</strong> Consumer wireless earbuds operate dual Bluetooth stacks: <strong>Bluetooth Classic</strong> (A2DP / AVRCP / HFP profiles) for high-bandwidth audio streaming and telephony, and <strong>Bluetooth Low Energy (BLE)</strong> (GATT services) for state configuration, telemetry, and peripheral control.</li>
+<li><strong>Autonomous Beacon Power-Down:</strong> Once an iPhone locks onto the earbuds via Classic Bluetooth and audio begins routing to the ears, the Pixel Buds intentionally suspend their public BLE discovery advertisements to prevent radio congestion and conserve battery. Because the buds cease broadcasting BLE advertisement packets, Web Bluetooth scanners (and iOS CoreBluetooth BLE frameworks) see a completely silent radio spectrum.</li>
+<li><strong>CoreBluetooth Filtering Strictness:</strong> In initial test iterations, applying restrictive filters (such as <code>{ namePrefix: 'Pixel Buds' }</code> or 16-bit Battery Service UUIDs) caused iOS CoreBluetooth to suppress the device from the browser picker dialog entirely, as Apple's framework often caches or omits raw advertising names in scan responses unless discovery is configured with <code>acceptAllDevices: true</code>.</li>
+</ul>
+
+<h3>The Infrastructure &amp; Tooling Path Taken</h3>
+<p>To overcome browser limitations and establish an end-to-end testing pipeline, the following architecture was deployed and validated:</p>
+<ol>
+<li><strong>Alpine NUC Web Service &amp; OpenRC Daemon:</strong> Engineered a lightweight, asynchronous Python service running on port <code>8103</code> at <code>/home/avanek/pixel-buds-companion</code>. Configured an OpenRC supervisor service (<code>/etc/init.d/pixel-buds-companion</code>) added to the <code>default</code> runlevel, ensuring persistent autostart across reboots and network transitions.</li>
+<li><strong>Tailscale HTTPS Persistent Link:</strong> Configured a persistent HTTPS edge proxy via <code>tailscale serve --bg --https=8451 http://127.0.0.1:8103</code>, delivering trusted SSL certificates across the tailnet to iOS devices without self-signed certificate warnings.</li>
+<li><strong>WebKit BLE Bridging via Bluefy:</strong> Verified that the specialized iOS browser <strong>Bluefy</strong> exposes a functional <code>navigator.bluetooth</code> object to web pages loaded over secure HTTPS, successfully bridging Web Bluetooth calls to Apple's native CoreBluetooth engine.</li>
+<li><strong>Unfiltered Discovery &amp; Fast Pair Service IDs:</strong> Upgraded the web companion's scanner to support open device discovery (<code>acceptAllDevices: true</code>) alongside Google Fast Pair Service (GFPS) 16-bit identifier <code>0xFE2C</code> (<code>0000fe2c-0000-1000-8000-00805f9b34fb</code>) and standard GATT Battery Service <code>0x180F</code>, preventing premature device filtering.</li>
+<li><strong>Firmware-Level Touch Control Validation:</strong> Documented the autonomous hardware-level fallback: pressing and holding either earbud capacitive sensor for 1 second cycles between ANC and Transparency mode directly in earbud firmware, executing independently of iOS software or network state.</li>
+</ol>
+
+<h3>Next Steps &amp; Active In-Progress Work</h3>
+<p>The project is currently actively <strong>In Progress</strong>. The persistent HTTPS gateway is live and serving, with current development focused on the following operational milestones:</p>
+<ul>
+<li><strong>Client-Side Peripheral Sanitization (Suppressing Raw MAC Addresses):</strong> When opening BLE scans with <code>acceptAllDevices: true</code>, the browser picker displays all ambient BLE beacons (smart TVs, beacons, smart home sensors) and raw unformatted hardware addresses. Next step is implementing a client-side filter in the web UI to suppress raw MAC addresses / unformatted peripheral hashes, presenting a curated, human-readable list of detected audio accessories.</li>
+<li><strong>Alternative Pairing Flow (BLE First vs. iOS Settings):</strong> Testing a connection workflow that pairs via BLE *before* standard iOS Settings audio bonding: placing earbuds in the open charging case (forcing active BLE advertising beacons via case button hold) to allow the browser companion to bind GATT control channels before the iPhone establishes its exclusive Classic Bluetooth audio link.</li>
+<li><strong>Maestro / GFPS Message Stream Protocol Injection:</strong> Analyzing the reverse-engineered Google Fast Pair Message Stream / Maestro RFCOMM protocol packets to directly inject Active Noise Control switch commands across the connected GATT characteristic.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Protocol investigation, Bluetooth stack architectural diagnosis, service engineering, and documentation conducted in pair programming with <strong>Google DeepMind Antigravity AI</strong>. Antigravity AI diagnosed the Classic Bluetooth A2DP vs. BLE beacon suppression mechanism, analyzed CoreBluetooth advertising packet behavior, engineered the Alpine Linux Python service and OpenRC init script, configured the Tailscale HTTPS persistent serve gateway on port 8451, developed the Web Bluetooth interface with Google Fast Pair (0xFE2C) support, and documented the end-to-end technical path.</p>
+<ul class="chips"><li>Google Pixel Buds</li><li>Apple iPhone</li><li>iOS WebKit</li><li>Web Bluetooth API</li><li>Bluefy</li><li>CoreBluetooth</li><li>Tailscale HTTPS</li><li>Alpine Linux</li><li>OpenRC</li><li>Bluetooth Low Energy</li><li>Reverse Engineering</li><li>Google DeepMind Antigravity AI</li></ul>
+</section>
+
 
 <section class="project-entry" aria-labelledby="wii-brawl-iso-audio-extraction-title">
 <h2 id="wii-brawl-iso-audio-extraction-title">Super Smash Bros. Brawl: Optical Disc Partition Decryption, Asset Carving &amp; Parallel BRSTM Audio Pipeline</h2>
