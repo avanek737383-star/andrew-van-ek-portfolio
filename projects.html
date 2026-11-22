@@ -87,6 +87,83 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="watchmouse-ble-bridge-title">
+<h2 id="watchmouse-ble-bridge-title">WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay &amp; Tri-Architecture Cellular Fallback</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Apple Watch SE 2 &middot; iPhone 16e &middot; ELEGOO ESP-WROOM-32 (CP2102) &middot; PlatformIO &middot; NimBLE-Arduino &middot; BLE HID Mouse &middot; iOS AssistiveTouch &middot; Network.framework UDP &middot; SwiftUI &middot; Xcode 27 &middot; Antigravity CLI &middot; OpenAI Codex CLI &middot; <time datetime="2026-11-22">November 22, 2026</time></span></p>
+
+<p>The goal of this project is to convert an <strong>Apple Watch SE 2</strong> touchscreen and Digital Crown into an ultra-low-latency wireless trackpad for an <strong>Apple iPhone 16e</strong> (paired via native AssistiveTouch cursor navigation), utilizing an <strong>ELEGOO ESP-WROOM-32</strong> development board as an autonomous Wi-Fi-to-Bluetooth HID hardware bridge. By intercepting high-frequency touch gesture deltas and crown ticks over a lightweight UDP transport and translating them into standard 8-bit BLE HID mouse reports, the setup delivers smooth, jitter-free cursor tracking across iOS without jailbreaking or third-party iOS accessibility drivers.</p>
+
+<pre><code>[Apple Watch SE 2] ──(Wi-Fi UDP: dx,dy,scroll,click on :4210)──► [ESP-WROOM-32 Bridge] ──(BLE HID Mouse)──► [iPhone 16e AssistiveTouch]
+                                                                        │
+                                                                (HTTP GET /status)
+                                                                        ▼
+                                                             [Mobile / Browser Telemetry]</code></pre>
+
+<h3>Firmware Architecture &amp; Dual-Radio Optimization (Antigravity CLI)</h3>
+<p>Running concurrent 2.4 GHz 802.11 b/g/n Wi-Fi and Bluetooth Low Energy on a single ESP32 microcontroller typically causes severe memory starvation and heap crashes under the default ESP-IDF Bluedroid stack. The firmware architecture developed by <strong>Antigravity CLI (Google DeepMind)</strong> resolves these hardware bottlenecks:</p>
+<ul>
+<li><strong>NimBLE-Arduino Stack Integration:</strong> Replaced the heavy default Bluedroid stack with <code>h2zero/NimBLE-Arduino</code> coupled with a custom GCC-14 patched <code>BleMouse</code> HID driver, shrinking static RAM consumption to just <strong>18.4% (60,148 bytes used out of 327,680 bytes)</strong> and leaving ample dynamic heap (~110 KB free) for socket buffers.</li>
+<li><strong>Flash Partition Optimization:</strong> Reconfigured the partition layout using <code>min_spiffs.csv</code>, expanding the main application partition to 1.96 MB and reducing total flash usage to <strong>62.3% (1,224,588 bytes)</strong> with generous headroom for OTA firmware updates.</li>
+<li><strong>Wire Protocol &amp; Jitter-Free Clamping:</strong> Implemented a compact ASCII CSV UDP stream (<code>dx,dy,scroll,click\n</code>) on port <code>4210</code>. Incoming packet deltas are hardware-clamped to signed 8-bit integers (<code>-127</code> to <code>127</code>) before emitting standard HID mouse reports, preventing pointer acceleration overflow.</li>
+<li><strong>Autonomous Telemetry &amp; Signal Probe:</strong> Serves an embedded HTTP WebServer on port <code>80</code> (<code>GET /status</code>) returning live JSON telemetry (<code>ip</code>, <code>rssi_dbm</code>, <code>channel</code>, <code>ble_connected</code>, <code>uptime_s</code>, and <code>free_heap</code>) alongside an onboard dark-mode mobile dashboard for signal-mapping and field health checks without a PC.</li>
+</ul>
+
+<h3>Tri-Architecture Network Strategy: Enterprise &amp; Captive Bypass</h3>
+<p>Standard IoT setups fail in university and commercial Wi-Fi environments (such as Grand Valley State University's <code>GV-Student</code> 802.1X enterprise network or <code>GV-Visitor</code> captive portal) due to strict <strong>AP Client Isolation</strong> dropping device-to-device local UDP packets. To ensure seamless mobility anywhere, the firmware incorporates a 3-tier fallback architecture:</p>
+<ol>
+<li><strong>Primary Station Mode (Home Wi-Fi):</strong> Connects to known home 2.4 GHz Wi-Fi networks and broadcasts mDNS <code>esp32-mouse.local</code> for local network administration.</li>
+<li><strong>iPhone Personal Hotspot Mode (Cellular Mobility):</strong> Connects directly to the user's iPhone Personal Hotspot (with <em>Maximize Compatibility</em> enabled). The iPhone provides 5G/LTE cellular internet to both the watch and the ESP32 while routing local UDP packets across the <code>172.20.10.x</code> subnet with zero client isolation.</li>
+<li><strong>Standalone SoftAP Fallback (Offline / Field Use):</strong> When no known networks are detected within 8 seconds, the ESP32 automatically spins up an autonomous, encrypted Wi-Fi hotspot (<code>WatchMouse-Bridge</code> on static IP <code>192.168.4.1</code>). The watch connects directly to the ESP32 antenna, operating 100% off-grid from a power bank or iPhone USB-C port with zero external dependencies.</li>
+</ol>
+
+<h3>Collaborative AI Attribution &amp; WatchOS Companion Engineering</h3>
+<p>This project represents a synchronized collaborative effort between two agentic AI systems working across different abstraction layers:</p>
+<ul>
+<li><strong>Antigravity CLI (Google DeepMind):</strong> Acted as system architect and hardware engineer—scaffolding the monorepo, authoring the PlatformIO firmware, resolving C++ GCC-14 compiler compatibility, compiling and flashing binary images to the ELEGOO board over <code>/dev/cu.usbserial-0001</code>, capturing live serial diagnostics, engineering the Python hardware test harness (<code>scripts/test_mouse_sender.py</code>), and re-scaffolding the Xcode project into an integrated iOS + WatchKit Companion App architecture.</li>
+<li><strong>OpenAI Codex CLI (Computer Use Agent):</strong> Acted as local environment and GUI systems engineer—interacting directly with macOS windows, Xcode settings, and Apple developer certificates to drive hands-on device configuration and watchOS deployment troubleshooting.</li>
+</ul>
+
+<h3>WatchMouseRemote Troubleshooting Recap (By OpenAI Codex CLI)</h3>
+<p>The following recap details the automated environment configuration and physical device troubleshooting executed by <strong>OpenAI Codex CLI</strong> on the Apple Watch and iPhone pairing stack:</p>
+
+<div class="troubleshooting-block" style="background: rgba(255,255,255,0.03); border-left: 3px solid #3b82f6; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0;">
+<p style="margin-top: 0;"><strong>Project Target:</strong> <code>/Users/avanek/watch-ble-mouse-bridge/app-watchos/WatchMouseRemote.xcodeproj</code></p>
+
+<p><strong>Completed Successfully:</strong></p>
+<ul style="margin-bottom: 12px;">
+<li>Signed into the Apple Account in Xcode.</li>
+<li>Assigned <em>Andrew Van Ek (Personal Team)</em> and verified automatic signing and an active Apple Development certificate.</li>
+<li>Downloaded watchOS platform support; cancelled unneeded iOS simulator runtimes to conserve bandwidth.</li>
+<li>Fixed two key build blockers:
+  <ul>
+    <li>Updated obsolete target product type from <code>com.apple.product-type.application.watchapp</code> to modern <code>com.apple.product-type.application</code>.</li>
+    <li>Corrected <code>JSONDecoder().decode(..., data: data)</code> syntax to <code>from: data</code> in <code>SettingsView.swift</code>.</li>
+  </ul>
+</li>
+<li>Confirmed <strong>Build Succeeded</strong> across all project targets.</li>
+</ul>
+
+<p><strong>Device Troubleshooting Attempted:</strong></p>
+<ul style="margin-bottom: 12px;">
+<li>Confirmed Xcode Device Hub detects the USB-connected iPhone 16e.</li>
+<li>Confirmed Developer Mode is enabled and active on the iPhone.</li>
+<li>Executed restart cycles on both Apple Watch and iPhone.</li>
+<li>Reconnected physical USB cabling and accepted mutual Trust prompts (including on the watch).</li>
+<li>Verified Wi-Fi and Bluetooth were enabled across all three devices (Mac, iPhone, Watch).</li>
+<li>Kept the watch unlocked and worn off the magnetic charger to prevent automated lock-out.</li>
+<li>Tested Device Hub’s <em>Pair Nearby Device</em> discovery flow.</li>
+<li>Restarted Xcode and the background Device Hub daemon.</li>
+<li>Removed and cleanly recreated the iPhone’s development pairing with the Mac, accepting fresh host Trust handshakes.</li>
+</ul>
+
+<p><strong>Remaining Investigation &amp; Findings:</strong></p>
+<p>Xcode Device Hub continues to list only the iPhone. The physical Apple Watch SE 2, running watchOS 26.6 (Build 23U67), omits the <em>Developer Mode</em> toggle under <code>Settings &rarr; Privacy &amp; Security</code>. Because watchOS requires a direct developer handshake to reveal the setting, the watch could not yet be selected as an independent wireless run destination.</p>
+
+<p><strong>Deferred Steps:</strong></p>
+<p style="margin-bottom: 0;">Discussed resetting the iPhone’s <em>Location &amp; Privacy</em> settings to flush stale trust records, and unpairing/re-pairing the watch, both deferred pending evaluation of the embedded iOS companion app deployment path.</p>
+</div>
+</section>
+
 <section class="project-entry" aria-labelledby="pixel-buds-ios-ble-companion-title">
 <h2 id="pixel-buds-ios-ble-companion-title">Google Pixel Buds on iOS: Web Bluetooth BLE Companion, Tailscale HTTPS Gateway &amp; Audio Profile Reverse Engineering</h2>
 <p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Apple iPhone &middot; iOS WebKit &middot; Web Bluetooth API &middot; Google Pixel Buds &middot; CoreBluetooth BLE vs. Classic A2DP &middot; Tailscale HTTPS :8451 &middot; Bluefy &middot; OpenRC &middot; Alpine Linux &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
