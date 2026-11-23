@@ -87,6 +87,138 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="instrumentify-vocal-cover-melody-replacement-title">
+<h2 id="instrumentify-vocal-cover-melody-replacement-title">Instrument-ify v2.0: Local AI Instrumental Cover &amp; Vocal Melody Replacement Studio — HTDemucs on Apple Silicon Metal (MPS), Basic Pitch Neural Transcription, FluidR3 Synthesizer &amp; Tailscale HTTPS</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Meta HTDemucs &middot; Apple Silicon Metal (MPS) &middot; Spotify Basic Pitch (Neural Audio-to-MIDI) &middot; FluidSynth &amp; FluidR3 General MIDI &middot; Spectral Anti-Harshness (2x Equivariant Shifts) &middot; Lossless Intermediate WAV &middot; Tailscale Encrypted Mesh &middot; Antigravity AI &middot; <time datetime="2026-11-22">November 22, 2026</time></span></p>
+<div class="project-architecture" aria-label="Instrument-ify v2.0 Architecture"><span>Audio Upload / YouTube URL</span><span aria-hidden="true">&rarr;</span><span>Lossless 44.1kHz WAV</span><span aria-hidden="true">&rarr;</span><span>HTDemucs (MPS, 2x Equivariant Shifts)</span><span aria-hidden="true">&rarr;</span><span>Isolated Vocals &amp; Backing Track</span><span aria-hidden="true">&rarr;</span><span>Basic Pitch (Neural Pitch Tracking)</span><span aria-hidden="true">&rarr;</span><span>mido GM Program Mapping</span><span aria-hidden="true">&rarr;</span><span>FluidSynth (FluidR3 GM SoundFont)</span><span aria-hidden="true">&rarr;</span><span>Mastered Cover Mix (320k MP3)</span><span aria-hidden="true">&rarr;</span><span>Tailscale HTTPS (Port 8585)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">🎸 Vocal Melody Replacement &amp; Neural Instrumental Cover Pipeline</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">HTDemucs (MPS &bull; 2x Shifts) &rarr; Basic Pitch (Audio-to-MIDI) &rarr; FluidSynth (FluidR3) &rarr; FFmpeg Mixdown &rarr; Tailscale Mesh</span>
+    </div>
+    <span style="background:rgba(99,102,241,0.18); color:#a5b4fc; border:1px solid rgba(99,102,241,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Neural Audio &bull; Metal MPS / Basic Pitch</span>
+  </div>
+
+  <svg viewBox="0 0 880 240" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="Instrument-ify v2.0 Architecture Diagram">
+    <defs>
+      <linearGradient id="demucsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="bpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#7e22ce" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="synthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.20"/>
+        <stop offset="100%" stop-color="#b45309" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="masterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.08"/>
+      </linearGradient>
+      <marker id="inst-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+      </marker>
+    </defs>
+
+    <!-- Stage 1: Anti-Harshness Demucs -->
+    <rect x="10" y="20" width="195" height="195" rx="10" fill="url(#demucsGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="107" y="44" fill="#7dd3fc" font-size="12" font-weight="700" text-anchor="middle">1. HTDemucs on MPS</text>
+    <rect x="25" y="58" width="165" height="24" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="0.8"/>
+    <text x="107" y="74" fill="#38bdf8" font-size="10.5" font-weight="600" text-anchor="middle">Anti-Harshness 2x Shifts</text>
+    <text x="107" y="102" fill="#bae6fd" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Lossless 44.1kHz WAV</text>
+    <text x="107" y="118" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Equivariant Shift Averaging</text>
+    <text x="107" y="134" fill="#c084fc" font-size="9" font-weight="600" text-anchor="middle">&cross; Kills "EHHHYUH" Noise</text>
+    <text x="107" y="150" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Eliminates Phase Tearing</text>
+    <rect x="22" y="165" width="171" height="38" rx="5" fill="#13273e" stroke="#38bdf8" stroke-width="0.7"/>
+    <text x="107" y="180" fill="#7dd3fc" font-size="9" font-weight="700" text-anchor="middle">Dual-Stem Extraction</text>
+    <text x="107" y="194" fill="#94a3b8" font-size="8.5" text-anchor="middle">Vocals.wav + Backing.wav</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="207" y1="117" x2="231" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#inst-arrow)"/>
+
+    <!-- Stage 2: Basic Pitch Neural Tracking -->
+    <rect x="235" y="20" width="200" height="195" rx="10" fill="url(#bpGrad)" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="335" y="44" fill="#d8b4fe" font-size="12" font-weight="700" text-anchor="middle">2. Basic Pitch AI</text>
+    <rect x="250" y="58" width="170" height="24" rx="4" fill="#24133b" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="335" y="74" fill="#c084fc" font-size="10.5" font-weight="600" text-anchor="middle">Vocal Pitch Tracking</text>
+    <text x="335" y="102" fill="#e9d5ff" font-size="9.5" font-weight="700" text-anchor="middle">AUDIO-TO-MIDI CONVERSION</text>
+    <text x="335" y="118" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Note Onsets &amp; Durations</text>
+    <text x="335" y="132" fill="#c084fc" font-size="9" font-weight="600" text-anchor="middle">&bull; Expressive Pitch Bends</text>
+    <text x="335" y="146" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Dynamic Velocity Contours</text>
+    <rect x="247" y="162" width="176" height="40" rx="5" fill="#1a112a" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="335" y="179" fill="#d8b4fe" font-size="9.5" font-weight="600" text-anchor="middle">mido Program Mapping</text>
+    <text x="335" y="194" fill="#94a3b8" font-size="8.5" text-anchor="middle">10 Selectable GM Instruments</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="437" y1="117" x2="461" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#inst-arrow)"/>
+
+    <!-- Stage 3: FluidR3 Synthesis -->
+    <rect x="465" y="20" width="200" height="195" rx="10" fill="url(#synthGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="565" y="44" fill="#fcd34d" font-size="12" font-weight="700" text-anchor="middle">3. FluidSynth Studio</text>
+    <rect x="480" y="58" width="170" height="24" rx="4" fill="#2d1c08" stroke="#f59e0b" stroke-width="0.8"/>
+    <text x="565" y="74" fill="#fbbf24" font-size="10.5" font-weight="600" text-anchor="middle">FluidR3_GM.sf2 (142MB)</text>
+    <text x="565" y="102" fill="#fde68a" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Acoustic Grand Piano</text>
+    <text x="565" y="118" fill="#fde68a" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Alto Sax &bull; Overdrive Guitar</text>
+    <text x="565" y="134" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Violin &bull; Flute &bull; Rhodes</text>
+    <text x="565" y="150" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Analog Synth Lead</text>
+    <rect x="477" y="162" width="176" height="40" rx="5" fill="#241506" stroke="#f59e0b" stroke-width="0.8"/>
+    <text x="565" y="179" fill="#fcd34d" font-size="9.5" font-weight="700" text-anchor="middle">Sample-Accurate Sync</text>
+    <text x="565" y="194" fill="#fde68a" font-size="9" text-anchor="middle">t=0 Timeline Synchronization</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <line x1="667" y1="117" x2="691" y2="117" stroke="#64748b" stroke-width="2" marker-end="url(#inst-arrow)"/>
+
+    <!-- Stage 4: Mastered Mix & Tailnet -->
+    <rect x="695" y="20" width="175" height="195" rx="10" fill="url(#masterGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="782" y="44" fill="#6ee7b7" font-size="12" font-weight="700" text-anchor="middle">4. Master &amp; Tailnet</text>
+    <rect x="705" y="58" width="155" height="24" rx="4" fill="#08281b" stroke="#10b981" stroke-width="0.8"/>
+    <text x="782" y="74" fill="#34d399" font-size="10.5" font-weight="600" text-anchor="middle">Port 8585 HTTPS</text>
+    <text x="782" y="102" fill="#a7f3d0" font-size="9.5" font-weight="600" text-anchor="middle">&bull; 320k Cover MP3</text>
+    <text x="782" y="118" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Backing Track MP3</text>
+    <text x="782" y="132" fill="#a7f3d0" font-size="9" font-weight="600" text-anchor="middle">&bull; Melody MIDI (.mid)</text>
+    <text x="782" y="146" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Isolated Vocals MP3</text>
+    <rect x="705" y="162" width="155" height="40" rx="5" fill="#072317" stroke="#10b981" stroke-width="0.8"/>
+    <text x="782" y="179" fill="#6ee7b7" font-size="9" font-weight="700" text-anchor="middle">Tailscale Encrypted</text>
+    <text x="782" y="193" fill="#a7f3d0" font-size="8" text-anchor="middle">Terminal ASCII QR Code</text>
+  </svg>
+</div>
+
+<p>Traditional AI vocal isolators (such as basic Demucs or Spleeter interfaces) function strictly as passive stem subtractors: by carving out the singer&rsquo;s vocals, they leave an empty, hollow sonic vacuum in the mix where the human lead melody once carried the song. To transform passive stem separation into an active creative instrument, I collaborated with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> to engineer <strong>Instrument-ify v2.0</strong>: a 100% offline, local AI studio workstation hosted natively on Apple Silicon Metal (MPS). Instrument-ify isolates the human vocal stem, transcribes the singer&rsquo;s exact notes, pitch bends, and expressive contours via neural pitch tracking into standard MIDI, resynthesizes the vocal melody through a studio SoundFont synthesizer using a lead instrument of your choice (Acoustic Grand Piano, Alto Saxophone, Overdriven Guitar, Violin, Rhodes, or Synth Lead), and masters a full-fledged instrumental cover directly over the original backing track.</p>
+
+<h3>Spectral Mask Forensics: Remediating the Harsh &ldquo;EHHHYUH&rdquo; Formant &amp; Phase Tearing Noise</h3>
+<p>During initial listening evaluations of raw Demucs instrumental stems, we isolated a prominent acoustic artifact: whenever the singer belted loud, sustained vowels with heavy chest voice (formants between 1 kHz and 3.5 kHz like &ldquo;eh&rdquo;, &ldquo;ah&rdquo;, and &ldquo;yuh&rdquo;), the isolated backing track exhibited harsh, swirling robotic flange, metallic chirping, and an unmistakable bubbling &ldquo;EHHHYUH&rdquo; ghost residue. In pair programming with Antigravity AI, we dissected the physical cause across the frequency domain:</p>
+<ul>
+<li><strong>Formant Frequency Overlap:</strong> The Human singing voice produces rich harmonic formants that directly intersect the fundamental and second-harmonic bins of overdriven electric guitars, synth pads, and snare drum reverb tails. Because transformer neural masks cannot act as zero-width binary filters, carving out the vocal stem gouges narrow phase notches into overlapping accompaniment frequencies, inducing severe comb-filtering flutter.</li>
+<li><strong>Equivariant Shift Averaging (<code>--shifts 2</code>):</strong> Standard single-pass separation evaluates a single static window of the STFT spectrogram. We upgraded the Demucs execution graph to incorporate test-time equivariant shift averaging (<code>--shifts 2</code>): Demucs splits the audio, applies randomized temporal micro-shifts, computes separate neural predictions on Metal MPS, and averages the resulting waveforms. This averaging process smooths out boundary clipping, cancels out randomized phase estimation errors, and completely eliminates the harsh formant ripping and swirling &ldquo;EHHHYUH&rdquo; residue.</li>
+<li><strong>Lossless Intermediate WAV Pipeline:</strong> Naive separation scripts immediately transcode Demucs output to compressed lossy MP3 during processing. Subjecting complex neural mask predictions to early lossy quantization magnifies pre-echo artifacts and metallic swish. We re-engineered the pipeline to preserve uncompressed 32-bit floating-point WAV buffers throughout all intermediate Demucs, Basic Pitch, and FluidSynth stages, delaying MP3 encoding until the final 320 kbps broadcast mastering stage.</li>
+</ul>
+
+<h3>The Vocal-to-Instrument Neural Replacement Architecture</h3>
+<p>To produce an authentic instrumental cover where a lead instrument plays the singer&rsquo;s melody with natural cadence and timing, we engineered a 4-tier neural and DSP arrangement pipeline:</p>
+<ul>
+<li><strong>1. Neural Pitch Tracking via Spotify Basic Pitch:</strong> Rather than relying on simple monophonic autocorrelation (which falters on vocal vibrato, melisma, and background reverb bleed), we integrated Spotify&rsquo;s lightweight <code>basic-pitch</code> neural network running locally on Python 3.11. Basic Pitch analyzes the pristine <code>vocals.wav</code> stem, evaluating polyphonic frame activations and note onset likelihoods to extract clean MIDI note timings, dynamic velocities, and micro-tonal pitch bend contours.</li>
+<li><strong>2. Dynamic General MIDI Program Mapping:</strong> Using <code>mido</code>, the system parses the transcribed MIDI container and dynamically injects MIDI Program Change events corresponding to the user&rsquo;s selected lead instrument across 10 studio presets: Acoustic Grand Piano (GM 0), Electric Rhodes Piano (GM 4), Acoustic Nylon Guitar (GM 24), Clean Electric Guitar (GM 27), Overdriven Lead Guitar (GM 29), Violin/Strings (GM 40), Trumpet (GM 56), Alto Saxophone (GM 65), Flute (GM 73), and Analog Synth Lead (GM 80).</li>
+<li><strong>3. Studio SoundFont Resynthesis (FluidSynth + FluidR3_GM):</strong> The conditioned MIDI file is rendered through the high-performance <code>fluidsynth</code> sound engine driven by the 142 MB <code>FluidR3_GM.sf2</code> SoundFont. Because FluidSynth renders MIDI events with strict temporal fidelity relative to the origin timestamp, the synthesized lead instrument locks onto the exact syllable onsets and cadences of the original singer with sample-accurate synchronization (0.0ms drift).</li>
+<li><strong>4. Dynamic Mastering Mixdown (FFmpeg):</strong> The synthesized lead instrument (<code>melody_lead.wav</code>) and the isolated backing track (<code>no_vocals.wav</code>) are blended through an FFmpeg filtergraph (<code>[0:a]volume=1.0[bg];[1:a]volume=1.25[lead];[bg][lead]amix=inputs=2:duration=first:dropout_transition=0</code>). The lead instrument is seated with a +1.9 dB presence boost above the accompaniment to preserve lead vocal prominence, encoded into pristine 320 kbps MP3, and tagged alongside the pure backing track, solo lead instrument, acapella vocals, and downloadable <code>melody.mid</code> MIDI file.</li>
+</ul>
+
+<h3>Interface Simplification &amp; Mobile Tailnet Access</h3>
+<p>In addition to audio DSP enhancements, we modernized the application workflow and deployment lifecycle:</p>
+<ul>
+<li><strong>Mode Streamlining (Cover Default):</strong> Purged confusing legacy 4-stem and 6-stem checkboxes in favor of a clean, focused dual-mode interface: <strong>✨ Instrumental Cover (Default)</strong> with an interactive 10-instrument grid, and <strong>🎤 Backing Track Only (Karaoke)</strong> for pure instrumental extraction.</li>
+<li><strong>Tailnet Encrypted HTTPS Serve &amp; Terminal QR Launcher:</strong> Engineered background Tailscale HTTPS proxying (<code>tailscale serve --bg --https=8585 http://127.0.0.1:8585</code>) within <code>launch.py</code>. The launcher dynamically interrogates the local Tailscale daemon for MagicDNS hostnames, rendering a high-contrast inverted ASCII QR code directly into the terminal so users can scan from their iPhone or iPad on the Tailnet and manage covers from the couch.</li>
+<li><strong>Zero-Popup Desktop Launcher Hardening:</strong> Suppressed intrusive automated Google Chrome browser popups on the Mac desktop across <code>Instrumentify.command</code>, <code>run.sh</code>, and <code>launch.py</code>. Simultaneously implemented pre-flight TCP socket inspection (<code>nc -z 127.0.0.1 8585</code>) and signal trapping (<code>SIGINT</code>/<code>SIGTERM</code>) to prevent duplicate process collisions and ensure clean proxy teardown upon exit.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the local instrumental cover and vocal melody replacement studio, identified the harsh "EHHHYUH" formant noise issues in naive Demucs output, specified the removal of 4-stem/6-stem modes to simplify UX, designated Instrumental Cover as the default creation mode, specified the elimination of automatic Chrome desktop popups while preserving remote Tailnet access, and conducted auditory evaluations. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> diagnosed STFT mask tearing and phase leakage, engineered the 2x equivariant shift averaging pipeline and lossless WAV buffer architecture, architected the end-to-end vocal melody replacement engine integrating Spotify Basic Pitch and FluidSynth with FluidR3 SoundFont, developed the GM program mapping engine with mido, engineered the FFmpeg dynamic mastering mixdown, overhauled the FastAPI backend and dark-mode Tailwind frontend, authored the Tailscale HTTPS serve integration with ASCII QR codes, hardened the desktop launchers against socket bind collisions and proxy-teardown race conditions, and authored this documentation.</p>
+<ul class="chips"><li>Meta HTDemucs</li><li>Apple Silicon Metal (MPS)</li><li>Spotify Basic Pitch</li><li>FluidSynth</li><li>FluidR3 SoundFont</li><li>Vocal Melody Replacement</li><li>Equivariant Shifts (Anti-Harshness)</li><li>mido MIDI Processing</li><li>FastAPI</li><li>Tailscale Mesh</li><li>FFmpeg Studio Mixing</li><li>Antigravity (Google DeepMind)</li></ul>
+</section>
+
+
 <section class="project-entry" aria-labelledby="esp32-travel-enclosure-3d-print-title">
 <h2 id="esp32-travel-enclosure-3d-print-title">ELEGOO ESP-32 Dev Board Zero-RF-Detuning Travel Enclosure: 3D CAD Engineering, Pin Suspension Architecture &amp; Rapid Maker Lab Slicing</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>ELEGOO ESP-WROOM-32 (CP2102) &middot; USB-C &middot; OpenSCAD &middot; Parametric CAD &middot; 3D Printing (FDM / PLA / PETG) &middot; RF Dielectric Detuning Prevention &middot; Grand Valley State University (GVSU) Atomic Object Tech Showcase &middot; Antigravity AI &middot; <time datetime="2026-11-22">November 22, 2026</time></span></p>
@@ -1918,6 +2050,8 @@
 <li><strong>Acoustic Benchmark &amp; Default NCS EDM Preset:</strong> Analyzed the acoustic properties of Andrew's Suno-generated video track (<em>Focus On, Glow Up, 2 NCS Visualizer</em>) using <code>yt-dlp</code> and <code>librosa</code>, extracting a verified 124 BPM tempo, punchy four-on-the-floor kick, and soaring supersaw/piano harmonic profile. We codified these acoustic parameters into the default auto-fill prompt and calibrated preset durations to 60s (1 Min), 180s (3 Min &bull; Default), and 300s (5 Min).</li>
 <li><strong>Audio Mode State Telemetry &amp; Fail-Safe Mastering Scratch Lifecycle:</strong> Resolved an end-of-generation crash surfacing as a generic Gradio GUI &ldquo;Error&rdquo; pop-up when launching via <code>AI Music Generator.command</code>. Shell traceback triage isolated an unhandled <code>NameError: name 'mastering_status' is not defined</code> in <code>generate_music()</code> at the final UI telemetry card. We performed a full Python AST lexical scope audit, formally defining <code>mastering_status</code> across all execution paths (active studio mastering with dynamically reported DSP modules, bypassed mode, and fail-safe fallback). Concurrently, we hardened the intermediate scratch file lifecycle: in the event of an FFmpeg mastering issue, the raw audio file is safely preserved in <code>outputs/</code> rather than unlinked, guaranteeing that valid audio is always returned to the Gradio web player and persisted to disk without data loss.</li>
 <li><strong>Tailnet HTTPS Serve Mesh, Dedicated Python Launcher &amp; Non-Intrusive Remote Creation:</strong> To enable frictionless, secure track generation from mobile phones and tablets (such as an iPhone or iPad on Tailscale) without sitting at the host Mac, we engineered an automated encrypted Tailscale HTTPS serving pipeline in collaboration with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>. We authored a dedicated Python launcher (<code>launch.py</code>) invoked by the macOS desktop shortcut (<code>AI Music Generator.command</code>): on startup, it dynamically interrogates the local Tailscale daemon for node IP and MagicDNS identity, provisions background TLS proxy forwarding (<code>tailscale serve --bg --https=7860 http://127.0.0.1:7860</code>), prints an informative status dashboard, renders an inverted high-contrast ASCII QR code of the HTTPS endpoint (<code>https://the-macsimal-computing-experience.taile72a68.ts.net:7860/</code>) directly into the terminal for instant mobile scanning, and completely eliminates the legacy subshell that popped Google Chrome open on the Mac. Upon exit or <code>Ctrl+C</code>, POSIX signal handlers and <code>atexit</code> hooks automatically decommission the Tailscale serve route (<code>tailscale serve --https=7860 off</code>), ensuring zero residual port bindings or exposed routes.</li>
+
+<li><strong>Launcher Port 7860 Collision Hardening &amp; Proxy Preservation:</strong> Diagnosed a desktop launcher failure (<code>[Errno 48] Address already in use</code> / <code>OSError: Cannot find empty port in range: 7860-7860</code>) when users double-clicked <code>AI Music Generator.command</code> while an existing instance was already resident. In the unhardened launcher, a duplicate process spent 10 seconds allocating PyTorch model weights into Metal (MPS) memory before failing on port binding; critically, its exit cleanup handler inadvertently triggered <code>stop_tailscale_serve(7860)</code>, terminating active remote mobile sessions. Together with <strong>Antigravity AI</strong>, we deployed pre-flight TCP socket inspection across both the bash wrapper (<code>nc -z 127.0.0.1 7860</code>) and Python entrypoint (<code>launch.py</code>) prior to model importation. When an active instance is detected, the launcher immediately prints live Local and Tailscale HTTPS connection endpoints without attempting to bind the port, suppressing duplicate weight allocations and shielding active Tailscale serve routes from unintended teardown.</li>
 </ul>
 
 <p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the 100% offline local AI music studio, specified Apple Silicon Metal (MPS) hardware acceleration, requested the duration expansion, conducted continuous listening audits, spotted the structural flatness of naive looping, identified the late-track metallic distortion and cold-start transient stutter (&ldquo;da da cha&rdquo;), requested the 5-minute option and 3-minute default, specified the automated Google Drive mobile auditing sync with raw file cleanup, guided the iterative prompt and architecture refinement, diagnosed the desktop launcher generic GUI crash through terminal traceback inspection, and guided the resolution of the missing mastering status telemetry. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> architected the Python and Gradio application runtime, implemented the autoregressive continuation chaining engine, diagnosed autoregressive latent drift and codebook degradation, architected and implemented the 5-Stage Studio Song Arranger with attention resets and equal-power crossfades, constructed the FFmpeg studio mastering engine (3.8kHz de-harsh notch, zero-feedback Haas spatializer, sub-bass punch, and True-Peak limiter), engineered the 0.3s startup micro-fade, automated Google Drive cloud sync, authored production-grade EDM genre presets based on librosa acoustic analysis, conducted kernel swap thrashing forensics, evaluated parallel compute scaling and fanless thermal limits, conducted Python AST lexical scope auditing, resolved the NameError mastering status exception, engineered fail-safe intermediate scratch lifecycle handling to prevent fallback file loss, architected the automated Tailscale HTTPS serve pipeline, developed the dedicated Python launcher (launch.py) with dynamic MagicDNS discovery and terminal ASCII QR code generation, eliminated intrusive desktop browser popups for remote mobile workflows, engineered graceful signal-based proxy teardown, and authored this case study.</p>
