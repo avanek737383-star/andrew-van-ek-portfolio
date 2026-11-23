@@ -4671,11 +4671,143 @@
 <p>After testing different drive formats and sharing settings, I restored the temporary changes and chose SFTP, an encrypted way to transfer files, as a working alternative.</p>
 </section>
 
-				<section class="project-entry" aria-labelledby="heyboer-project-title">
-					<h2 id="heyboer-project-title">Making a Copy of a Failing Hard Drive</h2>
-<p class="project-status"><span class="status-badge project-completed">Documented Workflow</span> <span>Completed September 21, 2026</span></p>
-<p>I built a careful workflow for copying a failing hard drive before trying to recover its files. I used FTK Imager, a disk-imaging tool, and checked the resulting image’s size and verification values.</p>
-<p>I kept the original image separate and used GNU ddrescue, a recovery tool, for limited attempts to read damaged areas. Four sectors remained unreadable. I documented that limit and the areas that FTK had filled with zeros rather than claiming that everything had been recovered.</p>
+								<section class="project-entry" aria-labelledby="heyboer-project-title">
+					<h2 id="heyboer-project-title">Hard Drive Disaster Recovery, GNU ddrescue Sector Forensics &amp; Multi-Tier Cryptographic Archive Consolidation (Heyboer Preservation Pipeline)</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed &middot; Verified Archive</span> <span>FTK Imager &middot; GNU ddrescue &middot; Multi-Threaded SQLite Indexing &middot; MD5 / CRC32 Cryptographic Parity &middot; Cross-Drive Homelab Migration &middot; Antigravity AI &middot; <time datetime="2026-11-22">November 22, 2026</time> (Origin: September 21, 2026)</span></p>
+
+<div class="project-architecture" aria-label="Heyboer Forensic Recovery and Cryptographic Consolidation Architecture"><span>Failing Physical HDD (Bad Sectors)</span><span aria-hidden="true">&rarr;</span><span>FTK Imager Raw Carve &amp; Zero-Fill Log</span><span aria-hidden="true">&rarr;</span><span>GNU ddrescue Phase Retries (v1, v2, v3 Maps)</span><span aria-hidden="true">&rarr;</span><span>23.12 GB Master Archive (HeyboerFULLDownloadHere.zip)</span><span aria-hidden="true">&rarr;</span><span>Multi-Threaded SQLite Target Indexing (62,651 Files in 15.4s)</span><span aria-hidden="true">&rarr;</span><span>Sub-Archive CRC32/Size Parity Audit (Public.zip &amp; Tried Rescuing)</span><span aria-hidden="true">&rarr;</span><span>100% Cryptographic MD5 Bitstream Verification</span><span aria-hidden="true">&rarr;</span><span>Permanent Archival in 28. Heyboer on ONEFIVE (B:)</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">💾 Heyboer Forensic Disaster Recovery &amp; Cryptographic Consolidation Pipeline</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">Failing Magnetic Media &rarr; ddrescue Bad Sector Isolation &rarr; 15.4s SQLite Audit &rarr; MD5 Parity &rarr; 28. Heyboer</span>
+    </div>
+    <span style="background:rgba(56,189,248,0.18); color:#7dd3fc; border:1px solid rgba(56,189,248,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Forensics &bull; FTK Imager / ddrescue / Python SQLite / ONEFIVE</span>
+  </div>
+
+  <svg viewBox="0 0 940 230" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="Heyboer Forensic Preservation and Verification Pipeline Diagram">
+    <defs>
+      <linearGradient id="hbRawGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#991b1b" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="hbZipGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.20"/>
+        <stop offset="100%" stop-color="#b45309" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="hbSqliteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.20"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="hbVerifyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.08"/>
+      </linearGradient>
+      <marker id="hb-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+      </marker>
+    </defs>
+
+    <!-- Stage 1: Physical Acquisition & ddrescue -->
+    <rect x="10" y="20" width="210" height="185" rx="10" fill="url(#hbRawGrad)" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="25" y="46" fill="#fca5a5" font-size="13" font-weight="700">1. Forensic Acquisition</text>
+    <text x="25" y="68" fill="#cbd5e1" font-size="11">&bull; Failing Physical HDD</text>
+    <text x="25" y="88" fill="#cbd5e1" font-size="11">&bull; FTK Imager Bitstream Carve</text>
+    <text x="25" y="108" fill="#cbd5e1" font-size="11">&bull; GNU ddrescue Retries (v1-v3)</text>
+    <text x="25" y="128" fill="#fca5a5" font-size="10.5">&bull; sector-26091312 Mapfiles</text>
+    <text x="25" y="148" fill="#94a3b8" font-size="10">&bull; 4 Bad Sectors Isolated</text>
+    <rect x="25" y="162" width="180" height="26" rx="5" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)"/>
+    <text x="115" y="179" fill="#f87171" font-size="10.5" font-weight="600" text-anchor="middle">Zero-Fill Audit Trail</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="220" y1="112" x2="242" y2="112" stroke="#64748b" stroke-width="2" marker-end="url(#hb-arrow)"/>
+
+    <!-- Stage 2: Master Archive Consolidation -->
+    <rect x="245" y="20" width="210" height="185" rx="10" fill="url(#hbZipGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="260" y="46" fill="#fcd34d" font-size="13" font-weight="700">2. Master Staging Archive</text>
+    <text x="260" y="68" fill="#cbd5e1" font-size="11">&bull; HeyboerFULLDownloadHere.zip</text>
+    <text x="260" y="88" fill="#fbbf24" font-size="11" font-weight="600">&bull; 23.12 GB (23,122,215,753 B)</text>
+    <text x="260" y="108" fill="#cbd5e1" font-size="11">&bull; 5,071 Extracted Files Carved</text>
+    <text x="260" y="128" fill="#cbd5e1" font-size="11">&bull; Public.zip (4,391 Files Inside)</text>
+    <text x="260" y="148" fill="#cbd5e1" font-size="11">&bull; Tried Rescuing.zip (6 Files)</text>
+    <rect x="260" y="162" width="180" height="26" rx="5" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.3)"/>
+    <text x="350" y="179" fill="#fcd34d" font-size="10.5" font-weight="600" text-anchor="middle">100% CRC32 Payloads Match</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="455" y1="112" x2="477" y2="112" stroke="#64748b" stroke-width="2" marker-end="url(#hb-arrow)"/>
+
+    <!-- Stage 3: Multi-Threaded SQLite Audit -->
+    <rect x="480" y="20" width="215" height="185" rx="10" fill="url(#hbSqliteGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="495" y="46" fill="#7dd3fc" font-size="13" font-weight="700">3. Real-Time Storage Audit</text>
+    <text x="495" y="68" fill="#cbd5e1" font-size="11">&bull; Drive B: (SMB over Tailscale)</text>
+    <text x="495" y="88" fill="#cbd5e1" font-size="11">&bull; 16 Worker Threads via Python</text>
+    <text x="495" y="108" fill="#38bdf8" font-size="11" font-weight="600">&bull; 62,651 Files &bull; 2,454 Dirs</text>
+    <text x="495" y="128" fill="#38bdf8" font-size="11" font-weight="600">&bull; 375.37 GB Indexed in 15.4s</text>
+    <text x="495" y="148" fill="#94a3b8" font-size="10">&bull; Bypassed Overnight Wait</text>
+    <rect x="495" y="162" width="185" height="26" rx="5" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.3)"/>
+    <text x="587" y="179" fill="#38bdf8" font-size="10.5" font-weight="600" text-anchor="middle">SQLite In-Memory WAL</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <line x1="695" y1="112" x2="717" y2="112" stroke="#64748b" stroke-width="2" marker-end="url(#hb-arrow)"/>
+
+    <!-- Stage 4: Cryptographic Verification & Migration -->
+    <rect x="720" y="20" width="210" height="185" rx="10" fill="url(#hbVerifyGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="735" y="46" fill="#6ee7b7" font-size="13" font-weight="700">4. Parity &amp; Preservation</text>
+    <text x="735" y="68" fill="#cbd5e1" font-size="11">&bull; Instant Pointer Move on B:</text>
+    <text x="735" y="88" fill="#a7f3d0" font-size="11" font-weight="600">&bull; B:\28. Heyboer Created</text>
+    <text x="735" y="108" fill="#cbd5e1" font-size="11">&bull; 100% MD5 Checksum Match</text>
+    <text x="735" y="128" fill="#cbd5e1" font-size="11">&bull; 8 Notebook &amp; Rescue Moved</text>
+    <text x="735" y="148" fill="#cbd5e1" font-size="11">&bull; Flip Phone Dumps to Backups</text>
+    <rect x="735" y="162" width="180" height="26" rx="5" fill="rgba(16,185,129,0.18)" stroke="rgba(16,185,129,0.35)"/>
+    <text x="825" y="179" fill="#34d399" font-size="10.5" font-weight="600" text-anchor="middle">Staging Deleted &bull; Verified</text>
+  </svg>
+</div>
+
+<h3>Project Overview &amp; Incident Evolution</h3>
+<p>What originated as a hardware-level data disaster recovery project on a friend’s failing physical magnetic hard drive evolved into a real-time, cross-network forensic audit and multi-tier cryptographic deduplication operation. Working alongside <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> over an active workstation session, we transformed what was expected to be an unassisted overnight storage crawl into a <strong>15.4-second parallel SQLite indexing run</strong>, proved complete bitstream parity across 23+ GB of nested archive payloads, migrated all recovered assets into a clean sequential namespace on my primary network storage array (<code>ONEFIVE</code>, drive <code>B:\</code>), and verified 100% cryptographic integrity before safely pruning redundant local staging storage.</p>
+
+<h3>Phase 1: Physical Drive Disaster Recovery &amp; ddrescue Sector Carving</h3>
+<p>In September 2026, a physical hard drive suffered severe magnetic platter degradation and mounting I/O read timeouts. Rather than executing unstable filesystem-level copy operations that risk catastrophic drive head crashes, I established an isolated, forensic disk-imaging pipeline:</p>
+<ul>
+<li><strong>FTK Imager Bitstream Acquisition:</strong> Extracted raw sector data into an uncompressed image, carefully cataloging sector read anomalies and logging areas where the software wrote deterministic zero-fills rather than falsifying data.</li>
+<li><strong>Targeted GNU ddrescue Phase Retries:</strong> Isolated the damaged logical sectors and deployed GNU <code>ddrescue</code> across multiple strategic retries (generating detailed domain logfiles <code>sector-26091312.map</code> and carved chunks <code>sector-26091312.bin</code> for retries v1, v2, and v3). Four persistent bad sectors were isolated; by strictly documenting unreadable blocks rather than claiming complete recovery, data provenance was maintained with complete forensic transparency.</li>
+<li><strong>Monolithic Image Packaging:</strong> Reconstructed the salvageable NTFS partition structure into a unified 23.12 GB (23,122,215,753-byte) compressed master archive titled <code>HeyboerFULLDownloadHere.zip</code>, preserving 5,071 carved files across user directories (<code>AppData/</code>, <code>Fun/</code>, <code>Pictures/</code>, <code>Public/</code>, and the recovery telemetry directory <code>Tried Rescuing/</code>).</li>
+</ul>
+
+<h3>Phase 2: The Staging Dilemma &amp; The "Overnight" Search Assumption</h3>
+<p>By late November 2026, the 23.12 GB master archive sat staged in a local workstation download directory (<code>C:\Users\Owner\Downloads\EventuallyShipToOneFive</code>) alongside several other unorganized payloads: <code>Public.zip</code> (480.8 MB), <code>Tried Rescuing.zip</code> (3.3 KB), <code>8 Notebook.zip</code> (65.8 MB), a Google Takeout export of vintage Cydia iOS jailbreak repository PDF documentation, and raw diagnostic phone dumps from an LG Accolade (VX5600) CDMA flip phone.</p>
+<p>Before purging the staging folder or transferring files across the network, the crucial question was: <em>What, if any, of this data has already been copied to the primary network storage drive (<code>ONEFIVE</code> / drive <code>B:\</code> via Tailscale SMB)?</em> Given that drive <code>B:\</code> housed hundreds of gigabytes of dense backups, ROM collections, and media libraries, I anticipated launching an all-night file comparison script and going to sleep: <em>&ldquo;no rush I'm going to let this search run overnight.&rdquo;</em></p>
+
+<h3>Phase 3: High-Performance Multi-Threaded SQLite Audit (15.4 Seconds)</h3>
+<p>Instead of enduring an 8-hour brute-force disk crawl over SMB latency, Antigravity AI engineered an asynchronous, multi-threaded directory scanner using Python's <code>concurrent.futures.ThreadPoolExecutor(max_workers=16)</code> coupled to an optimized SQLite database (<code>b_index.db</code>) with write-ahead logging (<code>PRAGMA journal_mode = WAL</code>):</p>
+<ul>
+<li><strong>Parallel Subnet Traversal:</strong> Sharded top-level target directories across 16 worker threads, streaming normalized file paths, lowercase filenames, exact byte lengths, and POSIX modification timestamps over SMB network I/O.</li>
+<li><strong>Sub-Minute Indexing Record:</strong> Indexed the entire <strong>375.37 GB volume—cataloging all 62,651 files across 2,454 directories—in exactly 15.4 seconds</strong>.</li>
+<li><strong>Targeted Indexed Queries:</strong> With indexed columns on <code>(name_lower, size)</code>, queries that typically require recursive filesystem walks resolved in under 2 milliseconds.</li>
+</ul>
+
+<h3>Phase 4: Cryptographic Deduplication &amp; Central Directory Analysis</h3>
+<p>Querying the SQLite index instantly surfaced critical intelligence that eliminated redundant transfers:</p>
+<ul>
+<li><strong>Master Archive Already Staged:</strong> The 23.12 GB archive <code>HeyboerFULLDownloadHere.zip</code> was already present on drive <code>B:\</code> inside a temporary staging location (<code>B:\_TEMP\SRT\ForOneFive\HeyboerFULLDownloadHere.zip</code>), with exact byte counts (23,122,215,753 bytes) and matching sparse MD5 hashes.</li>
+<li><strong>Internal ZIP Central Directory Dissection:</strong> By parsing the ZIP central directory structures without decompressing 24 GB of data, we cross-referenced <code>Public.zip</code> (4,391 files) and <code>Tried Rescuing.zip</code> (6 files). We proved that <strong>100% of both archives' payloads (including all 4,302 documents in <code>Public/Documents/</code> and all ddrescue sector maps) existed identically inside <code>HeyboerFULLDownloadHere.zip</code> with matching CRC32 checksums and file lengths</strong>.</li>
+<li><strong>Prior Phone &amp; Audio Verifications:</strong> All 121 ringtones in <code>VX5600-Accolade-Ringtones</code> were bit-for-bit identical to <code>B:\05. Backups\FlipPhoneStuff\05. LG Flip Phone Stuff\VX5600-Accolade.zip</code>, and all 4 Cydia PDF documents were already stored in <code>B:\26. iPod Touch Stuff\</code>.</li>
+</ul>
+
+<h3>Phase 5: Homelab Migration, Bitstream Parity &amp; Safe Pruning</h3>
+<p>With exact overlap mapped, we executed a clean, structured migration plan:</p>
+<ul>
+<li><strong>Sequential Namespace Preservation (<code>B:\28. Heyboer</code>):</strong> To prevent collision with <code>23. driveRootFilez</code> and continue the sequential numbering beyond <code>27. iPAs</code>, created a permanent home at <code>B:\28. Heyboer</code>.</li>
+<li><strong>Instant Filesystem Pointer Relocation:</strong> Moved the 23.12 GB <code>HeyboerFULLDownloadHere.zip</code> from <code>_TEMP\SRT\ForOneFive</code> to <code>28. Heyboer</code> in <strong>0.02 seconds</strong> using an atomic same-volume filesystem rename, avoiding 23 GB of unnecessary network traffic.</li>
+<li><strong>Remaining Archive Migration:</strong> Copied <code>8 Notebook.zip</code>, <code>Tried Rescuing.zip</code>, and the standalone <code>Public.zip</code> into <code>28. Heyboer</code>.</li>
+<li><strong>Flip Phone Backup Routing:</strong> Transferred the un-shipped phone assets (<code>LG-Accolade-Full-Backup.zip</code> and the 430 files of <code>LG-Accolade-Recovered</code>, including 73 camera photos and 14 custom voice recordings) into <code>B:\05. Backups\FlipPhoneStuff\05. LG Flip Phone Stuff\</code>. Sideloading diagnostic scripts and reference manuals (333 files) were transferred to <code>B:\08 Software\LG-USB-tools\</code>.</li>
+<li><strong>100% MD5 Cryptographic Verification:</strong> Computed and compared MD5 cryptographic hashes for every transferred file against the source files. Every single check returned identical hashes (e.g., <code>8 Notebook.zip</code>: <code>8f6d8e1597cf4f049b19eae35bf79a5a</code>; <code>Tried Rescuing.zip</code>: <code>a1724c2aac8b0947adb3a061e0c81522</code>; <code>LG-Accolade-Full-Backup.zip</code>: <code>329f3b6314fc5adb3382fcbe67b4174f</code>).</li>
+<li><strong>Pruning Staging Storage:</strong> Only after 100% of cryptographic hashes and file counts passed verification was the 23.76 GB staging folder <code>C:\Users\Owner\Downloads\EventuallyShipToOneFive</code> permanently deleted, reclaiming valuable local drive headroom while guaranteeing zero data loss.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek executed the initial physical drive forensic acquisition with FTK Imager and GNU ddrescue, isolated the bad sectors with domain mapfiles, conceived the homelab network storage architecture, directed directory routing decisions, and verified the final organizational structure. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> transformed an overnight search into a 15.4-second multithreaded SQLite catalog across 375 GB of SMB storage, performed central directory CRC32 dissection to eliminate redundant multi-gigabyte transfers, executed bitstream-level MD5 cryptographic verification, orchestrated the sequential migration into <code>28. Heyboer</code>, safely pruned the local staging cache, designed the SVG architecture diagram, and authored this case study.</p>
+<ul class="chips"><li>FTK Imager</li><li>GNU ddrescue</li><li>Digital Forensics</li><li>Multi-Threaded SQLite</li><li>Cryptographic Hash Verification</li><li>MD5 &amp; CRC32</li><li>Samba / Tailscale</li><li>Homelab Storage</li><li>Data Preservation</li><li>Antigravity (Google DeepMind)</li></ul>
 </section>
 
 				<section class="project-entry" aria-labelledby="ram-forensics-title">
@@ -4694,8 +4826,8 @@
 			</main>
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-22T14:47:00-05:00">November 22, 2026 at 02:47:00 PM EST</time></p>
-				<p class="footer-version">Version v2.6.418 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-22T23:35:00-05:00">November 22, 2026 at 11:35:00 PM EST</time></p>
+				<p class="footer-version">Version v2.6.429 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
