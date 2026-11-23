@@ -142,8 +142,8 @@ const FLEET_DATA = {
 		power: '~6.2 W',
 		uptime: 'Shelf 3 (Bottom Shelf) · Open Testbench',
 		status: 'ONLINE',
-		workloads: 'Continuous crypto mining and lightweight local utility daemon. Completely open-air testbench rig operating 24/7 on the bottom shelf tier cooled directly by the 5V USB blower fan.',
-		salvage: 'Rescued from landfill after chassis fracture and puffed lithium battery. Motherboard and daughterboard extracted and bench-mounted in modular plastic cradle with a dedicated 5V USB cooling blower fan.',
+		workloads: 'Continuous crypto mining and lightweight local utility daemon. Completely open-air testbench rig operating 24/7 on the bottom shelf tier, actively cooled from above by the overhead 5V USB blower fan exhausting downward and outward.',
+		salvage: 'Rescued from landfill after chassis fracture and puffed lithium battery. Motherboard and daughterboard extracted and bench-mounted in modular plastic cradle with an overhead 5V USB centrifugal cooling blower fan mounted directly above the board.',
 		glpi: {
 			tag: 'HL-NODE-02-YOGA-BB',
 			cat: 'Open-Bench Compute',
@@ -245,19 +245,19 @@ const FLEET_DATA = {
 	},
 	'usbfan': {
 		tag: 'HL-COOL-01-USBFAN',
-		title: '5V USB Blower Fan (Active Yoga Cooling)',
+		title: '5V USB Blower Fan (Overhead Yoga Cooling)',
 		os: 'DC 5V Physical Bus (Mac 2011 Powered)',
 		power: '~1.8 W',
 		uptime: 'Shelf 4 (Bottom Shelf) · 24/7 Continuous',
 		status: 'ONLINE',
-		workloads: 'Direct forced-air cooling over the bare-board Lenovo Yoga 2 11 motherboard and daughterboard heatsinks, preventing thermal throttling during 24/7 crypto mining.',
-		salvage: 'External 5V high-CFM blower fan positioned directly adjacent to the stripped Yoga motherboard heatsink, powered entirely through the Debian 2011 Mac\'s rear USB port.',
+		workloads: 'Direct forced-air cooling over the bare-board Lenovo Yoga 2 11 motherboard and daughterboard heatsinks via overhead mounting, directing airflow downward onto the PCB and outward across the copper heatsink to eliminate thermal throttling during 24/7 crypto mining.',
+		salvage: 'External 5V high-CFM centrifugal blower fan mounted overhead directly above the stripped Lenovo Yoga motherboard, exhausting downward and outward across the exposed heatsink, powered entirely through the Debian 2011 Mac\'s rear USB port.',
 		glpi: {
 			tag: 'HL-COOL-01-USBFAN',
 			cat: 'Active Thermal Auxiliary System',
 			state: 'In Production / Continuous Run',
 			depr: 'Salvage Cooling Equipment',
-			service: '2026-11-21 (Bearing & Airflow Audit)',
+			service: '2026-11-23 (Overhead Downward/Outward Airflow Realignment)',
 			net: 'Hardwired 5V USB Power Circuit'
 		}
 	},

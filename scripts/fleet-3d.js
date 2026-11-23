@@ -833,41 +833,52 @@
 		scene.add(yogaGroup);
 
 		// 3. Authentic 5V Centrifugal Blower Cooling Fan
-		// User requirement: Looks like a real centrifugal blower fan and its nozzle faces OUTWARDS (+Z) blowing toward the viewer!
+		// Mounted overhead directly above the Lenovo Yoga bare board, blowing down on and out across the heatsink and PCB!
 		const fanGroup = new THREE.Group();
 		fanGroup.userData.nodeId = 'usbfan';
 
-		// Circular vortex scroll housing
-		const fanScrollGeo = new THREE.CylinderGeometry(0.9, 0.9, 0.65, 24);
+		// Overhead Mounting Struts / Brackets suspended from Shelf 3 underside (y = 6.325 down to fan housing)
+		const fanBracketGeo = new THREE.BoxGeometry(0.12, 0.46, 0.12);
+		const fanBracketMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.6, roughness: 0.3 });
+		[-0.45, 0.45].forEach(offsetZ => {
+			const bracket = new THREE.Mesh(fanBracketGeo, fanBracketMat);
+			bracket.position.set(-4.5, 6.09, 0.2 + offsetZ);
+			fanGroup.add(bracket);
+		});
+
+		// Circular vortex scroll housing - mounted overhead directly above Lenovo Yoga
+		const fanScrollGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.62, 24);
 		const fanScrollMat = new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.45 });
 		const fanScroll = new THREE.Mesh(fanScrollGeo, fanScrollMat);
-		fanScroll.position.set(-2.2, 2.2, 0.2);
+		fanScroll.position.set(-4.5, 5.82, 0.2);
 		fanScroll.castShadow = true;
 		fanGroup.add(fanScroll);
 
-		// Central Air Intake Grill
-		const fanHubGeo = new THREE.CylinderGeometry(0.45, 0.45, 0.68, 16);
+		// Central Air Intake Grill on top of scroll housing
+		const fanHubGeo = new THREE.CylinderGeometry(0.42, 0.42, 0.65, 16);
 		const fanHubMat = new THREE.MeshBasicMaterial({ color: 0x1e293b });
 		const fanHub = new THREE.Mesh(fanHubGeo, fanHubMat);
-		fanHub.position.set(-2.2, 2.2, 0.2);
+		fanHub.position.set(-4.5, 5.82, 0.2);
 		fanGroup.add(fanHub);
 
-		// Forward-Facing Rectangular Exhaust Duct (blowing strictly toward +Z / screen viewer)
-		const nozzleGeo = new THREE.BoxGeometry(0.75, 0.5, 1.1);
+		// Angled Exhaust Duct - pointing DOWN (-Y) and OUT (+Z) directly onto the Yoga motherboard & copper heatsink!
+		const nozzleGeo = new THREE.BoxGeometry(0.68, 0.44, 0.95);
 		const nozzle = new THREE.Mesh(nozzleGeo, fanScrollMat);
-		nozzle.position.set(-1.85, 2.2, 0.95);
+		nozzle.position.set(-4.5, 5.52, 0.85);
+		nozzle.rotation.x = 0.55; // Pitch angled downward and forward towards viewer
 		nozzle.castShadow = true;
 		fanGroup.add(nozzle);
 
 		// Exhaust vent opening
 		const exhaustHole = new THREE.Mesh(
-			new THREE.PlaneGeometry(0.65, 0.42),
+			new THREE.PlaneGeometry(0.58, 0.36),
 			new THREE.MeshBasicMaterial({ color: 0x030712 })
 		);
-		exhaustHole.position.set(-1.85, 2.2, 1.51);
+		exhaustHole.position.set(-4.5, 5.26, 1.28);
+		exhaustHole.rotation.x = 0.55;
 		fanGroup.add(exhaustHole);
 
-		registerNode(fanScroll, 'usbfan', '5V Centrifugal Blower Fan (Active Yoga Cooling · Forward Airflow · Shelf 4)');
+		registerNode(fanScroll, 'usbfan', '5V Centrifugal Blower Fan (Overhead Yoga Cooling · Downward/Outward Airflow · Shelf 4)');
 		scene.add(fanGroup);
 
 		// 4. Samsung Galaxy S4 Mini (Positioned TO THE LEFT of the Lenovo Yoga with Back Off & Battery Visible)
@@ -1163,14 +1174,16 @@
 		const playerChargeTube = new THREE.Mesh(new THREE.TubeGeometry(playerChargeCurve, 24, 0.065, 8, false), blackUsbMat);
 		scene.add(playerChargeTube);
 
-		// 12. Black USB 5V Power Cable: 2011 Mac left USB port to Centrifugal Blower Fan (Shelf 4)
+		// 12. Black USB 5V Power Cable: 2011 Mac left USB port to Centrifugal Blower Fan (Overhead Yoga Mount, Shelf 4)
 		const fanUsbCurve = new THREE.CatmullRomCurve3([
 			new THREE.Vector3(4.5, 2.0, -0.4),
 			new THREE.Vector3(1.5, 1.8, -0.5),
-			new THREE.Vector3(-0.5, 1.8, 0.2),
-			new THREE.Vector3(-1.8, 2.0, 0.2)
+			new THREE.Vector3(-1.0, 1.8, -0.4),
+			new THREE.Vector3(-3.8, 3.8, -0.4),
+			new THREE.Vector3(-4.3, 5.8, -0.2),
+			new THREE.Vector3(-4.5, 5.82, 0.0)
 		]);
-		const fanUsbTube = new THREE.Mesh(new THREE.TubeGeometry(fanUsbCurve, 26, 0.07, 8, false), blackUsbMat);
+		const fanUsbTube = new THREE.Mesh(new THREE.TubeGeometry(fanUsbCurve, 32, 0.07, 8, false), blackUsbMat);
 		scene.add(fanUsbTube);
 
 		// 13. Black USB Cable: 2011 Mac to Samsung Galaxy S4 Mini (Shelf 4 left side)
