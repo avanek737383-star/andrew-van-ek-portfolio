@@ -93,11 +93,23 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">595 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-23T10:36:00-05:00">November 23, 2026 at 10:36:00 AM EST</time></p>
+<p class="maintenance-updated">596 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-23T10:45:00-05:00">November 23, 2026 at 10:45:00 AM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
 <ul class="maintenance-list">
+<li id="windows-rdp-tailscale-self-signed-certificate-trust-and-nla-hardening"><strong>Windows 11 Remote Desktop (RDP) self-signed TLS certificate trust, Network Level Authentication (NLA) &amp; Tailscale WireGuard transport encryption hardening (November 23, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, diagnosed and resolved an untrusted root certificate warning dialog on macOS (Microsoft Remote Desktop / Windows App) when establishing an RDP session to the Windows 11 workstation node (<code>FREEHPGAMER</code>) over Tailscale.
+<br><br>
+<em>Cryptographic Root Cause &amp; Certificate Architecture:</em> Windows Remote Desktop Services (RDS) dynamically issues a local self-signed X.509 certificate for Transport Layer Security (TLS) handshake negotiation and Network Level Authentication (NLA). Because the certificate authority is generated locally by the Windows NT kernel rather than a globally recognized public CA, and because the connection was initiated via Tailscale CGNAT IP (<code>100.64.20.50</code>), macOS Remote Desktop raised a security warning: <em>"The certificate couldn't be verified back to a root certificate. Your connection may not be secure."</em>
+<br><br>
+<em>WireGuard Transport Security Analysis:</em> Evaluated the threat model of bypassing the untrusted root warning. In an open Internet or untrusted public Wi-Fi topology, an unverified certificate presents a risk of Man-in-the-Middle (MitM) inspection. However, within the Tailscale mesh overlay network, all inter-node communication is already encapsulated in authenticated, end-to-end encrypted WireGuard tunnels utilizing Curve25519 key exchange, ChaCha20-Poly1305 AEAD, and SipHash cryptographic endpoint routing. Consequently, the self-signed RDP certificate solely serves as the payload encryption envelope within an already impenetrable tunnel.
+<br><br>
+<em>Permanent macOS Keychain Certificate Trust Enforcement:</em> Inspected the presented certificate via <strong>Show Certificate</strong>, validated the machine hostname subject, and checked <strong>Always trust &hellip; when connecting to 100.64.20.50</strong>. Authenticated against the local macOS Keychain via biometric Touch ID / administrative credentials, importing the certificate's SHA-256 fingerprint into the user trust domain. Subsequent RDP connections immediately negotiate seamless, silent, and cryptographically verified sessions without recurring prompt interruption.
+<br><br>
+<em>MagicDNS Optimization Strategy:</em> Documented the architectural advantage of targeting the Tailscale MagicDNS Fully Qualified Domain Name (FQDN) rather than ephemeral CGNAT IPs, ensuring persistent name-to-certificate binding across dynamic network renegotiations.
+<br><br>
+<em>Collaboration Credit:</em> Andrew Van Ek diagnosed the RDP connection roadblock and certificate warning on macOS; Antigravity AI (Google DeepMind agentic assistant) performed the cryptographic threat analysis, verified the self-signed Windows RDP certificate architecture over Tailscale WireGuard mesh, guided the permanent macOS Keychain certificate trust configuration, and authored the sanitized maintenance log and portfolio update.</li>
+
 <li id="site-navigation-search-and-gallery-cursor-pointer-affordance-audit"><strong>Site navigation dropdowns, search modal, and gallery media cursor pointer affordance audit &amp; interaction triage (November 22, 2026):</strong> In pair programming with <strong>Antigravity AI</strong>, resolved a site-wide interaction friction where hovering over navigation dropdown links, menu labels, search triggers, search modal items, search close buttons, gallery cards, and the lightbox modal close button (<code>&times;</code>) displayed a default OS arrow pointer or text-selection I-beam rather than an active finger clicker (<code>cursor: pointer</code>).
 <br><br>
 <em>Navigation &amp; Dropdown Architecture:</em> Enforced explicit <code>cursor: pointer !important;</code> and <code>user-select: none;</code> across desktop and mobile navigation hierarchies (<code>#site-navigation a</code>, <code>.nav-dropdown-toggle</code>, <code>.nav-dropdown-menu li a</code>, nested labels, SVGs, and keyboard shortcut badges) eliminating dead spots.
@@ -1715,8 +1727,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-23T10:36:00-05:00">November 23, 2026 at 10:36:00 AM EST</time></p>
-				<p class="footer-version">Version v2.6.430 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-23T10:45:00-05:00">November 23, 2026 at 10:45:00 AM EST</time></p>
+				<p class="footer-version">Version v2.6.431 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
