@@ -93,7 +93,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">596 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-23T10:45:00-05:00">November 23, 2026 at 10:45:00 AM EST</time></p>
+<p class="maintenance-updated">598 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-23T10:50:00-05:00">November 23, 2026 at 10:50:00 AM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -468,6 +468,19 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="desktop"><h2 id="desktop">Remote Desktops &amp; Everyday Usability</h2>
 <ul class="maintenance-list">
+<li id="debian-mac-anydesk-service-decommission-and-purge"><strong>Debian Mac AnyDesk Remote Access Background Daemon Decommissioning &amp; Package Purge (November 23, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, conducted an operational security and resource hygiene audit on the Debian Mac workstation (<code>andrews2011DebianMac</code>), completely decommissioning the running AnyDesk remote desktop daemon, purging installed binaries, removing third-party repository sources, and clearing filesystem residue.
+<br><br>
+<em>Audit &amp; Process Telemetry:</em> During routine administrative maintenance, identified unauthorized background resource consumption originating from AnyDesk. Inspection via <code>ps</code> and <code>systemctl</code> revealed two persistent processes active since November 19: a system-level privileged daemon (<code>/usr/bin/anydesk --service</code>, PID 3845144, consuming 8m27s CPU time) governed by <code>anydesk.service</code>, and an interactive desktop user-space tray helper (<code>/usr/bin/anydesk --tray</code>, PID 3845204).
+<br><br>
+<em>Decommissioning &amp; Clean Purge Sequence:</em>
+(1) <strong>Service Termination &amp; Disabling:</strong> Issued <code>systemctl stop anydesk.service</code> and <code>systemctl disable anydesk.service</code>, terminating the cgroup processes and preventing automatic invocation on system boot;
+(2) <strong>Process Sweep:</strong> Executed <code>pkill -f anydesk</code> to guarantee termination of lingering user-session tray instances;
+(3) <strong>Package Purge:</strong> Executed <code>apt purge -y anydesk</code>, removing package version 8.1.1 (freeing ~44.7 MB of disk space) along with its systemd unit definitions and application desktop menu triggers;
+(4) <strong>Repository &amp; Keyring Scrubbing:</strong> Excised the third-party APT list (<code>/etc/apt/sources.list.d/anydesk-stable.list</code>) and associated cryptographic signing key (<code>/etc/apt/keyrings/keys.anydesk.com.asc</code>) to prevent unexpected upstream updates during system upgrades;
+(5) <strong>Filesystem Residue Sanitation:</strong> Removed lingering machine configuration and user cache directories (<code>/etc/anydesk</code> and <code>~/.anydesk</code>), verifying zero residual processes and complete removal from <code>dpkg</code>.
+<br><br>
+<em>Collaboration Credit:</em> Andrew Van Ek flagged the unwanted background AnyDesk daemon and directed complete uninstallation. Antigravity AI (Google DeepMind agentic assistant) terminated the services, purged the Debian package, scrubbed third-party APT repositories and cryptographic keys, erased persistent config trees, and validated clean process and package status.</li>
+
 <li id="linux-mint-cinnamon-network-activity-applet-vertical-stack-and-persistence"><strong>Linux Mint Cinnamon Taskbar Real-Time Network Activity Monitor Optimization &amp; Vertical Stacking (November 23, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, audited, re-engineered, and optimized the custom panel applet <code>network-activity@local</code> on the primary Linux Mint desktop workstation (HP Laptop 15), eliminating aggressive auto-hiding behavior and vertically stacking throughput metrics to reclaim horizontal taskbar real estate.
 <br><br>
 <em>Defect &amp; Behavior Audit:</em> The existing network telemetry applet was configured with an idle suppression threshold (<code>rx + tx &lt; 1024</code> bytes/s) and a 3-second timeout window (<code>this.activeUntil = now + 3000000</code>) designed to hide the widget actor when physical Ethernet (<code>eno1</code>) or Wi-Fi (<code>wlo1</code>) traffic dropped. Because modern operating system background routines, Tailscale WireGuard mesh synchronization, NTP, and browser WebSocket connections continuously exchange traffic, the widget frequently flickered or consumed excessive horizontal width (92px) displaying side-by-side rates (<code>&darr; 0.00 &uarr; 0.00</code>) in Ookla Speedtest units (Mbps).
@@ -669,6 +682,17 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="startup"><h2 id="startup">USB Persistence, Startup &amp; Power Settings</h2>
 <ul class="maintenance-list">
+<li id="debian-mac-grub-os-prober-warning-resolution-and-purge"><strong>Debian Mac GRUB Bootloader Configuration &amp; <code>os-prober</code> Warning Remediation (November 23, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, diagnosed and resolved recurring <code>os-prober</code> warning banners encountered during <code>sudo apt upgrade</code> kernel updates on the 2011 MacBook Pro (<code>andrews2011DebianMac</code>), aligning GRUB configuration with the machine's dedicated single-boot Debian architecture.
+<br><br>
+<em>Warning Diagnostics &amp; Architecture Audit:</em> During kernel package upgrades (Linux 6.12.116, 6.12.117, and 6.12.118), GRUB configuration regeneration consistently emitted: <code>Warning: os-prober will not be executed to detect other bootable partitions. Systems on them will not be added to the GRUB boot configuration. Check GRUB_DISABLE_OS_PROBER documentation entry.</code> Partition auditing via <code>lsblk</code> confirmed the internal 240GB SSD (<code>/dev/sda</code>) hosts a dedicated, non-dual-boot Debian GNU/Linux 13 installation consisting strictly of <code>sda1</code> (EFI system partition, <code>/boot/efi</code>), <code>sda2</code> (ext4 root filesystem, <code>/</code>), and <code>sda3</code> (swap).
+<br><br>
+<em>Resolution &amp; Upstream Logic Disassembly:</em>
+(1) <strong>GRUB Drop-In Evaluation:</strong> Configured <code>GRUB_DISABLE_OS_PROBER=true</code> in <code>/etc/default/grub.d/disable-os-prober.cfg</code>. Disassembly of <code>/etc/grub.d/30_os-prober</code> revealed that upstream GRUB 2.06+ intentionally triggers an informational <code>grub_warn</code> whenever the <code>os-prober</code> binary exists on disk—issuing a warning whether disabled or enabled;
+(2) <strong>Package Deprecation &amp; Removal:</strong> Because the workstation is dedicated permanently to Debian with no secondary operating systems, purged the unneeded utility via <code>apt purge -y os-prober</code>, freeing filesystem overhead and satisfying the clean early-exit check (<code>if ! command -v os-prober; then exit 0; fi</code>);
+(3) <strong>Bootloader Verification:</strong> Regenerated the boot environment via <code>update-grub</code>, confirming clean, zero-warning enumeration of active kernels and initrd images alongside UEFI firmware boot options.
+<br><br>
+<em>Collaboration Credit:</em> Andrew Van Ek identified the warning during routine package upgrades and approved full removal on this dedicated Debian system. Antigravity AI (Google DeepMind agentic assistant) inspected the drive topology, analyzed GRUB's upstream shell helper logic, executed package purging, regenerated GRUB configurations, and verified silent, clean kernel update operations.</li>
+
 <li id="macos-onefive-tailscale-aware-mount-helper"><strong>macOS ONEFIVE network share startup sequencing and automatic remount helper (November 20, 2026):</strong> With assistance from <strong>OpenAI Codex</strong>, inspected a startup race in which the Mac attempted to mount the ONEFIVE SMB share before Tailscale had connected. Confirmed that ONEFIVE and Tailscale were separate Open at Login items, removed ONEFIVE's direct login entry, and retained Tailscale's startup entry.
 <br><br>
 <em>Connection readiness and quiet retries:</em> Installed the per-user <code>com.avanek.onefive-mount</code> LaunchAgent to run at login and every 30 seconds while the Mac is awake and the user is logged in. The native Objective-C helper requires Tailscale's <code>BackendState</code> to be <code>Running</code> and the storage server's TCP port 445 to respond before calling <code>NetFSMountURLSync</code> with authentication dialogs disabled. It uses saved macOS credentials without embedding passwords in the helper. Failed mount attempts have a two-minute cooldown; child commands have eight-second timeouts and each helper run has a 45-second limit. Corrected the background execution environment using <code>TAILSCALE_BE_CLI=1</code> after testing exposed a difference between interactive and LaunchAgent execution.
@@ -1727,8 +1751,8 @@
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-23T10:45:00-05:00">November 23, 2026 at 10:45:00 AM EST</time></p>
-				<p class="footer-version">Version v2.6.431 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p>Website last modified: <time datetime="2026-11-23T10:50:00-05:00">November 23, 2026 at 10:50:00 AM EST</time></p>
+				<p class="footer-version">Version v2.6.432 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
