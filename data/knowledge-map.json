@@ -510,7 +510,7 @@
       "domainName": "Audio, Video & Creative",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 22, 2026",
+      "date": "November 23, 2026",
       "val": 24,
       "color": "#2dd4bf",
       "summary": "Traditional AI vocal isolators (such as basic Demucs or Spleeter interfaces) function strictly as passive stem subtractors: by carving out the singer\u2019s vocals, they leave an empty, hollow sonic vacuum in the mix where the human lead melody once carried the song. To transform p...",
