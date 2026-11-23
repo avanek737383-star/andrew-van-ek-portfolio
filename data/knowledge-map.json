@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 92,
-    "totalNodes": 295,
-    "totalLinks": 605,
+    "totalProjects": 94,
+    "totalNodes": 309,
+    "totalLinks": 637,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,182 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "vgm-audio-forensics-and-orchestration-title",
+      "name": "Multi-Ecosystem Audio Engineering, Forensic Video Game Decompilation & Cloud-to-Disk Orchestration Pipeline \u2014 Super Smash Bros. Brawl / Project M Cryptographic Deduplication, EA Layer 3 & Nintendo Wii BRSTM Decoding, Automated 1080p YouTube Mastering & Cross-Drive Local Archive Sync",
+      "type": "project",
+      "domain": "forensics-recovery",
+      "domainName": "Digital Forensics & Recovery",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 22, 2026",
+      "val": 24,
+      "color": "#34d399",
+      "summary": "What started as a spontaneous audio hygiene and auditing challenge across cluttered local directories turned into an expansive, end-to-end multimedia engineering journey. Spanning raw game ROM decompilations, cryptographic file deduplication, reverse-engineering proprietary vi...",
+      "tech": [
+        "Nintendo Wii Multi-Channel BRSTM ADPCM",
+        "EA SCHl / EALayer3",
+        "vgmstream Reverse Engineering",
+        "1080p Video Synthesis",
+        "Automated YouTube Timestamp Tracklists",
+        "Multi-Drive Orchestration"
+      ],
+      "tasks": [
+        {
+          "title": "Cryptic Alphanumeric Filenames",
+          "desc": "Nintendo Wii sound streams were cataloged solely by internal stage codes (e.g. A01, W03, X05) rather than recognized song titles or artist c..."
+        },
+        {
+          "title": "Hidden Redundancy",
+          "desc": "Hundreds of files were duplicated across both Brawl and Project M directory structures, requiring automated cryptographic auditing rather th..."
+        },
+        {
+          "title": "Proprietary Codec Lockout",
+          "desc": "EA's proprietary Layer 3 audio containers (.aud) and Nintendo Wii ADPCM audio streams (.brstm) caused standard tools like FFmpeg to fail wit..."
+        },
+        {
+          "title": "Multi-Drive Staging & Format Conversions",
+          "desc": "The workflow required producing individual 1080p MP4 videos with artwork for YouTube upload, full-length continuous albums with chapter time..."
+        }
+      ],
+      "url": "projects.html#vgm-audio-forensics-and-orchestration-title"
+    },
+    {
+      "id": "task-vgm-audio-forensics-and-orchestration-title-0",
+      "name": "Cryptic Alphanumeric Filenames",
+      "type": "task",
+      "parentProject": "Multi-Ecosystem Audio Engineering, Forensic Video Game Decompilation & Cloud-to-Disk Orchestration Pipeline \u2014 Super Smash Bros. Brawl / Project M Cryptographic Deduplication, EA Layer 3 & Nintendo Wii BRSTM Decoding, Automated 1080p YouTube Mastering & Cross-Drive Local Archive Sync",
+      "parentId": "vgm-audio-forensics-and-orchestration-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Nintendo Wii sound streams were cataloged solely by internal stage codes (e.g. A01, W03, X05) rather than recognized song titles or artist c...",
+      "url": "projects.html#vgm-audio-forensics-and-orchestration-title"
+    },
+    {
+      "id": "task-vgm-audio-forensics-and-orchestration-title-1",
+      "name": "Hidden Redundancy",
+      "type": "task",
+      "parentProject": "Multi-Ecosystem Audio Engineering, Forensic Video Game Decompilation & Cloud-to-Disk Orchestration Pipeline \u2014 Super Smash Bros. Brawl / Project M Cryptographic Deduplication, EA Layer 3 & Nintendo Wii BRSTM Decoding, Automated 1080p YouTube Mastering & Cross-Drive Local Archive Sync",
+      "parentId": "vgm-audio-forensics-and-orchestration-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Hundreds of files were duplicated across both Brawl and Project M directory structures, requiring automated cryptographic auditing rather th...",
+      "url": "projects.html#vgm-audio-forensics-and-orchestration-title"
+    },
+    {
+      "id": "task-vgm-audio-forensics-and-orchestration-title-2",
+      "name": "Proprietary Codec Lockout",
+      "type": "task",
+      "parentProject": "Multi-Ecosystem Audio Engineering, Forensic Video Game Decompilation & Cloud-to-Disk Orchestration Pipeline \u2014 Super Smash Bros. Brawl / Project M Cryptographic Deduplication, EA Layer 3 & Nintendo Wii BRSTM Decoding, Automated 1080p YouTube Mastering & Cross-Drive Local Archive Sync",
+      "parentId": "vgm-audio-forensics-and-orchestration-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "EA's proprietary Layer 3 audio containers (.aud) and Nintendo Wii ADPCM audio streams (.brstm) caused standard tools like FFmpeg to fail wit...",
+      "url": "projects.html#vgm-audio-forensics-and-orchestration-title"
+    },
+    {
+      "id": "task-vgm-audio-forensics-and-orchestration-title-3",
+      "name": "Multi-Drive Staging & Format Conversions",
+      "type": "task",
+      "parentProject": "Multi-Ecosystem Audio Engineering, Forensic Video Game Decompilation & Cloud-to-Disk Orchestration Pipeline \u2014 Super Smash Bros. Brawl / Project M Cryptographic Deduplication, EA Layer 3 & Nintendo Wii BRSTM Decoding, Automated 1080p YouTube Mastering & Cross-Drive Local Archive Sync",
+      "parentId": "vgm-audio-forensics-and-orchestration-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "The workflow required producing individual 1080p MP4 videos with artwork for YouTube upload, full-length continuous albums with chapter time...",
+      "url": "projects.html#vgm-audio-forensics-and-orchestration-title"
+    },
+    {
+      "id": "instrumentify-vocal-cover-melody-replacement-title",
+      "name": "Instrument-ify v2.0: Local AI Instrumental Cover & Vocal Melody Replacement Studio \u2014 HTDemucs on Apple Silicon Metal (MPS), Basic Pitch Neural Transcription, FluidR3 Synthesizer & Tailscale HTTPS",
+      "type": "project",
+      "domain": "media-creative",
+      "domainName": "Audio, Video & Creative",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 22, 2026",
+      "val": 24,
+      "color": "#2dd4bf",
+      "summary": "Traditional AI vocal isolators (such as basic Demucs or Spleeter interfaces) function strictly as passive stem subtractors: by carving out the singer\u2019s vocals, they leave an empty, hollow sonic vacuum in the mix where the human lead melody once carried the song. To transform p...",
+      "tech": [
+        "Apple Silicon Metal (MPS)",
+        "Spotify Basic Pitch (Neural Audio-to-MIDI)",
+        "FluidSynth & FluidR3 General MIDI",
+        "Spectral Anti-Harshness (2x Equivariant Shifts)",
+        "Lossless Intermediate WAV",
+        "Tailscale Encrypted Mesh"
+      ],
+      "tasks": [
+        {
+          "title": "Formant Frequency Overlap",
+          "desc": "The Human singing voice produces rich harmonic formants that directly intersect the fundamental and second-harmonic bins of overdriven elect..."
+        },
+        {
+          "title": "Lossless Intermediate WAV Pipeline",
+          "desc": "Naive separation scripts immediately transcode Demucs output to compressed lossy MP3 during processing. Subjecting complex neural mask predi..."
+        },
+        {
+          "title": "1. Neural Pitch Tracking via Spotify Basic Pitch",
+          "desc": "Rather than relying on simple monophonic autocorrelation (which falters on vocal vibrato, melisma, and background reverb bleed), we integrat..."
+        },
+        {
+          "title": "2. Dynamic General MIDI Program Mapping",
+          "desc": "Using mido, the system parses the transcribed MIDI container and dynamically injects MIDI Program Change events corresponding to the user\u2019s ..."
+        }
+      ],
+      "url": "projects.html#instrumentify-vocal-cover-melody-replacement-title"
+    },
+    {
+      "id": "task-instrumentify-vocal-cover-melody-replacement-title-0",
+      "name": "Formant Frequency Overlap",
+      "type": "task",
+      "parentProject": "Instrument-ify v2.0: Local AI Instrumental Cover & Vocal Melody Replacement Studio \u2014 HTDemucs on Apple Silicon Metal (MPS), Basic Pitch Neural Transcription, FluidR3 Synthesizer & Tailscale HTTPS",
+      "parentId": "instrumentify-vocal-cover-melody-replacement-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "The Human singing voice produces rich harmonic formants that directly intersect the fundamental and second-harmonic bins of overdriven elect...",
+      "url": "projects.html#instrumentify-vocal-cover-melody-replacement-title"
+    },
+    {
+      "id": "task-instrumentify-vocal-cover-melody-replacement-title-1",
+      "name": "Lossless Intermediate WAV Pipeline",
+      "type": "task",
+      "parentProject": "Instrument-ify v2.0: Local AI Instrumental Cover & Vocal Melody Replacement Studio \u2014 HTDemucs on Apple Silicon Metal (MPS), Basic Pitch Neural Transcription, FluidR3 Synthesizer & Tailscale HTTPS",
+      "parentId": "instrumentify-vocal-cover-melody-replacement-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Naive separation scripts immediately transcode Demucs output to compressed lossy MP3 during processing. Subjecting complex neural mask predi...",
+      "url": "projects.html#instrumentify-vocal-cover-melody-replacement-title"
+    },
+    {
+      "id": "task-instrumentify-vocal-cover-melody-replacement-title-2",
+      "name": "1. Neural Pitch Tracking via Spotify Basic Pitch",
+      "type": "task",
+      "parentProject": "Instrument-ify v2.0: Local AI Instrumental Cover & Vocal Melody Replacement Studio \u2014 HTDemucs on Apple Silicon Metal (MPS), Basic Pitch Neural Transcription, FluidR3 Synthesizer & Tailscale HTTPS",
+      "parentId": "instrumentify-vocal-cover-melody-replacement-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Rather than relying on simple monophonic autocorrelation (which falters on vocal vibrato, melisma, and background reverb bleed), we integrat...",
+      "url": "projects.html#instrumentify-vocal-cover-melody-replacement-title"
+    },
+    {
+      "id": "task-instrumentify-vocal-cover-melody-replacement-title-3",
+      "name": "2. Dynamic General MIDI Program Mapping",
+      "type": "task",
+      "parentProject": "Instrument-ify v2.0: Local AI Instrumental Cover & Vocal Melody Replacement Studio \u2014 HTDemucs on Apple Silicon Metal (MPS), Basic Pitch Neural Transcription, FluidR3 Synthesizer & Tailscale HTTPS",
+      "parentId": "instrumentify-vocal-cover-melody-replacement-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Using mido, the system parses the transcribed MIDI container and dynamically injects MIDI Program Change events corresponding to the user\u2019s ...",
+      "url": "projects.html#instrumentify-vocal-cover-melody-replacement-title"
     },
     {
       "id": "esp32-travel-enclosure-3d-print-title",
@@ -5167,18 +5343,90 @@
     },
     {
       "id": "heyboer-project-title",
-      "name": "Making a Copy of a Failing Hard Drive",
+      "name": "Hard Drive Disaster Recovery, GNU ddrescue Sector Forensics & Multi-Tier Cryptographic Archive Consolidation (Heyboer Preservation Pipeline)",
       "type": "project",
       "domain": "forensics-recovery",
       "domainName": "Digital Forensics & Recovery",
       "status": "completed",
-      "statusLabel": "Documented Workflow",
-      "date": "",
-      "val": 16,
+      "statusLabel": "Completed \u00b7 Verified Archive",
+      "date": "November 22, 2026",
+      "val": 24,
       "color": "#34d399",
-      "summary": "I built a careful workflow for copying a failing hard drive before trying to recover its files. I used FTK Imager, a disk-imaging tool, and checked the resulting image\u2019s size and verification values.",
-      "tech": [],
-      "tasks": [],
+      "summary": "What originated as a hardware-level data disaster recovery project on a friend\u2019s failing physical magnetic hard drive evolved into a real-time, cross-network forensic audit and multi-tier cryptographic deduplication operation. Working alongside Antigravity AI (Google DeepMind ...",
+      "tech": [
+        "Verified Archive FTK Imager",
+        "GNU ddrescue",
+        "Multi-Threaded SQLite Indexing",
+        "MD5 / CRC32 Cryptographic Parity",
+        "Cross-Drive Homelab Migration",
+        "Antigravity AI"
+      ],
+      "tasks": [
+        {
+          "title": "FTK Imager Bitstream Acquisition",
+          "desc": "Extracted raw sector data into an uncompressed image, carefully cataloging sector read anomalies and logging areas where the software wrote ..."
+        },
+        {
+          "title": "Targeted GNU ddrescue Phase Retries",
+          "desc": "Isolated the damaged logical sectors and deployed GNU ddrescue across multiple strategic retries (generating detailed domain logfiles sector..."
+        },
+        {
+          "title": "Monolithic Image Packaging",
+          "desc": "Reconstructed the salvageable NTFS partition structure into a unified 23.12 GB (23,122,215,753-byte) compressed master archive titled Heyboe..."
+        },
+        {
+          "title": "Parallel Subnet Traversal",
+          "desc": "Sharded top-level target directories across 16 worker threads, streaming normalized file paths, lowercase filenames, exact byte lengths, and..."
+        }
+      ],
+      "url": "projects.html#heyboer-project-title"
+    },
+    {
+      "id": "task-heyboer-project-title-0",
+      "name": "FTK Imager Bitstream Acquisition",
+      "type": "task",
+      "parentProject": "Hard Drive Disaster Recovery, GNU ddrescue Sector Forensics & Multi-Tier Cryptographic Archive Consolidation (Heyboer Preservation Pipeline)",
+      "parentId": "heyboer-project-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Extracted raw sector data into an uncompressed image, carefully cataloging sector read anomalies and logging areas where the software wrote ...",
+      "url": "projects.html#heyboer-project-title"
+    },
+    {
+      "id": "task-heyboer-project-title-1",
+      "name": "Targeted GNU ddrescue Phase Retries",
+      "type": "task",
+      "parentProject": "Hard Drive Disaster Recovery, GNU ddrescue Sector Forensics & Multi-Tier Cryptographic Archive Consolidation (Heyboer Preservation Pipeline)",
+      "parentId": "heyboer-project-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Isolated the damaged logical sectors and deployed GNU ddrescue across multiple strategic retries (generating detailed domain logfiles sector...",
+      "url": "projects.html#heyboer-project-title"
+    },
+    {
+      "id": "task-heyboer-project-title-2",
+      "name": "Monolithic Image Packaging",
+      "type": "task",
+      "parentProject": "Hard Drive Disaster Recovery, GNU ddrescue Sector Forensics & Multi-Tier Cryptographic Archive Consolidation (Heyboer Preservation Pipeline)",
+      "parentId": "heyboer-project-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Reconstructed the salvageable NTFS partition structure into a unified 23.12 GB (23,122,215,753-byte) compressed master archive titled Heyboe...",
+      "url": "projects.html#heyboer-project-title"
+    },
+    {
+      "id": "task-heyboer-project-title-3",
+      "name": "Parallel Subnet Traversal",
+      "type": "task",
+      "parentProject": "Hard Drive Disaster Recovery, GNU ddrescue Sector Forensics & Multi-Tier Cryptographic Archive Consolidation (Heyboer Preservation Pipeline)",
+      "parentId": "heyboer-project-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Sharded top-level target directories across 16 worker threads, streaming normalized file paths, lowercase filenames, exact byte lengths, and...",
       "url": "projects.html#heyboer-project-title"
     },
     {
@@ -5217,6 +5465,150 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-forensics-recovery",
+      "target": "vgm-audio-forensics-and-orchestration-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "task-vgm-audio-forensics-and-orchestration-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "task-vgm-audio-forensics-and-orchestration-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "task-vgm-audio-forensics-and-orchestration-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "task-vgm-audio-forensics-and-orchestration-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "vgm-audio-forensics-and-orchestration-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-media-creative",
+      "target": "instrumentify-vocal-cover-melody-replacement-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "task-instrumentify-vocal-cover-melody-replacement-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "task-instrumentify-vocal-cover-melody-replacement-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "task-instrumentify-vocal-cover-melody-replacement-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "task-instrumentify-vocal-cover-melody-replacement-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "instrumentify-vocal-cover-melody-replacement-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "esp32-travel-enclosure-3d-print-title",
@@ -8810,6 +9202,54 @@
       "target": "heyboer-project-title",
       "type": "domain-project",
       "distance": 65
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "task-heyboer-project-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "task-heyboer-project-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "task-heyboer-project-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "task-heyboer-project-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "heyboer-project-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
     },
     {
       "source": "heyboer-project-title",
