@@ -440,16 +440,16 @@
           "desc": "Engineered slide_remote.py utilizing only Python standard libraries (http.server, socketserver, subprocess). The lightweight daemon listens ..."
         },
         {
-          "title": "Resolving watchOS URLSession Chunking & Indefinite Spinner Hangs",
-          "desc": "Early testing from Apple Watch revealed that the Shortcut action would freeze indefinitely on the stop/play execution spinner without advanc..."
+          "title": "Dynamic Wi-Fi IP & Universal Clipboard Sync",
+          "desc": "Integrated ipconfig getifaddr en0 into the daemon startup sequence, automatically extracting the current active Wi-Fi address and piping it ..."
         },
         {
-          "title": "Mitigating macOS Window Focus Stealing (iPhone Mirroring Collision)",
-          "desc": "While testing the wearable workflow via macOS Sequoia's iPhone Mirroring, keystrokes failed to reach the slideshow because the Mirroring cli..."
+          "title": "Tailscale Encrypted Mesh",
+          "desc": "Verified cross-subnet routing over private Tailscale addresses (100.67.172.15), guaranteeing zero-friction fallback even across isolated cel..."
         },
         {
-          "title": "Overcoming Campus Wi-Fi Isolation via Zero-Config Bonjour & Tailscale",
-          "desc": "Campus enterprise Wi-Fi blocks standard LAN broadcasts and prevents clients from communicating directly. We architected a dual-transport str..."
+          "title": "Bi-Directional Presenter Notes Streaming",
+          "desc": "Upgrading the daemon with a lightweight WebSocket bridge to push slide elapsed timers and speaker notes directly to an Apple Watch companion..."
         }
       ],
       "url": "projects.html#apple-watch-macos-presentation-remote-title"
@@ -468,38 +468,38 @@
     },
     {
       "id": "task-apple-watch-macos-presentation-remote-title-1",
-      "name": "Resolving watchOS URLSession Chunking & Indefinite Spinner Hangs",
+      "name": "Dynamic Wi-Fi IP & Universal Clipboard Sync",
       "type": "task",
       "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
       "parentId": "apple-watch-macos-presentation-remote-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Early testing from Apple Watch revealed that the Shortcut action would freeze indefinitely on the stop/play execution spinner without advanc...",
+      "summary": "Integrated ipconfig getifaddr en0 into the daemon startup sequence, automatically extracting the current active Wi-Fi address and piping it ...",
       "url": "projects.html#apple-watch-macos-presentation-remote-title"
     },
     {
       "id": "task-apple-watch-macos-presentation-remote-title-2",
-      "name": "Mitigating macOS Window Focus Stealing (iPhone Mirroring Collision)",
+      "name": "Tailscale Encrypted Mesh",
       "type": "task",
       "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
       "parentId": "apple-watch-macos-presentation-remote-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "While testing the wearable workflow via macOS Sequoia's iPhone Mirroring, keystrokes failed to reach the slideshow because the Mirroring cli...",
+      "summary": "Verified cross-subnet routing over private Tailscale addresses (100.67.172.15), guaranteeing zero-friction fallback even across isolated cel...",
       "url": "projects.html#apple-watch-macos-presentation-remote-title"
     },
     {
       "id": "task-apple-watch-macos-presentation-remote-title-3",
-      "name": "Overcoming Campus Wi-Fi Isolation via Zero-Config Bonjour & Tailscale",
+      "name": "Bi-Directional Presenter Notes Streaming",
       "type": "task",
       "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
       "parentId": "apple-watch-macos-presentation-remote-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Campus enterprise Wi-Fi blocks standard LAN broadcasts and prevents clients from communicating directly. We architected a dual-transport str...",
+      "summary": "Upgrading the daemon with a lightweight WebSocket bridge to push slide elapsed timers and speaker notes directly to an Apple Watch companion...",
       "url": "projects.html#apple-watch-macos-presentation-remote-title"
     },
     {

@@ -1498,6 +1498,41 @@
 			analogy: "An old-fashioned mechanical player piano that uses a paper roll with punched holes. The paper roll doesn't make any sound by itself—it just tells the piano's felt hammers exactly which physical metal strings to strike and how hard to hit them.",
 			techFact: "A SoundFont (.sf2) contains digital recordings of real acoustic instruments at various pitches and velocities. Software synths (like FluidSynth) read MIDI instructions and trigger the matching samples."
 		},
+		"tls-bad-request": {
+			title: "TLS 400 Handshake Rejection (Secret Spy Code at the Drive-Thru)",
+			analogy: "Walking up to an old-school fast-food drive-thru microphone and reciting a heavily scrambled military cipher. The worker inside only speaks plain English, hears deafening static noise, and shouts back: 'I have no idea what you just said, try again in plain speech!'",
+			techFact: "When an encrypted HTTPS client attempts to initiate an SSL/TLS cryptographic handshake against a plaintext HTTP server, the server fails to parse the binary byte stream and rejects the request with HTTP 400 Bad Request."
+		},
+		"watch-chunking": {
+			title: "watchOS HTTP Chunking & Content-Length (The Waiter Who Never Leaves)",
+			analogy: "A waiter bringing a glass of water to your table, but refusing to say 'Here you go' or walk away. Instead, he just stands frozen staring at you with the pitcher in his hand because nobody ever told him the glass was finished being filled.",
+			techFact: "Without an explicit Content-Length header or Connection: close signal, the watchOS URLSession networking stack keeps the socket connection open indefinitely waiting for more data bytes, causing the client execution spinner to freeze."
+		},
+		"window-focus": {
+			title: "Window Focus Stealing (Writing in the Wrong Notebook)",
+			analogy: "Sitting at your desk with two open notebooks side-by-side. You intend to take notes in your presentation folder on the right, but your pen is resting on your open phone screen on the left, so every letter you scribble is completely lost.",
+			techFact: "macOS System Events key codes are delivered strictly to the process owning active frontmost window focus. If an auxiliary app or iPhone Mirroring has focus, keystrokes are discarded rather than reaching the presentation software."
+		},
+		"wearable-complication": {
+			title: "Hardware Wearable Complication (The Secret Podium Buzzer)",
+			analogy: "A game show host who has a small, discreet button hidden under the edge of the wooden podium. Rather than walking over to the big scoreboard to manually flip a card, they casually rest their hand on the wood and click the button while looking straight at the audience.",
+			techFact: "A watchOS complication is a dedicated interactive widget embedded on a primary watch face, providing single-tap direct execution of background shortcuts without navigating the watch application launcher."
+		},
+		"bonjour-mdns": {
+			title: "Zero-Config Bonjour mDNS (Shouting a Name Across the Room)",
+			analogy: "Calling your best friend across a crowded cafeteria by shouting their nickname, rather than looking up their current street address and mailing them a formal letter every single time they move to a new table.",
+			techFact: "Multicast DNS (mDNS / Bonjour) resolves human-friendly local hostnames (like .local) directly to dynamic IP addresses across local network subnets without requiring a centralized DNS server."
+		},
+		"caffeinate-display-lock": {
+			title: "Caffeinate Display Sleep Lock (Propping the Eyelids Open)",
+			analogy: "Handing someone a massive mug of hot coffee while they study late for an exam, gently propping their eyelids wide open so they don't accidentally doze off right in the middle of an important sentence.",
+			techFact: "The macOS caffeinate utility creates IOKit power-management assertions that prevent display dimming, idle timeouts, or system sleep while presentation software is actively running."
+		},
+		"applescript-system-events": {
+			title: "AppleScript System Events (The Invisible Robot Keyboard)",
+			analogy: "An invisible invisible-ink robot sitting right in front of your laptop keyboard that instantly taps physical arrow keys for you the exact millisecond you send it a radio signal.",
+			techFact: "A macOS automation subsystem enabling background processes to synthesize hardware keyboard scan codes and control native graphical user interfaces without physical keyboard input."
+		},
 		"melodic-thresholding": {
 			title: "Melodic Onset Thresholding (The Discerning Ear)",
 			analogy: "A choir director listening to a rehearsal who completely ignores the singer's deep breath intakes, throat clearings, and shoe scuffs on the floor, and only writes down notes on the sheet music when a true, resonant vocal singing pitch begins.",
