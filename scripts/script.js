@@ -26,7 +26,8 @@
 			button.type = "button";
 			button.setAttribute("aria-expanded", "false");
 			button.setAttribute("aria-controls", menu.id);
-			button.innerHTML = '<span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>Menu</span>';
+			button.innerHTML = '<span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>';
+			button.setAttribute("aria-label", "Toggle navigation menu");
 			mobileHeader.appendChild(button);
 
 			var searchWrap = document.createElement("div");
@@ -56,7 +57,7 @@
 		var searchForm = mobileHeader.querySelector(".nav-mobile-search-form");
 		if (searchForm) {
 			searchForm.addEventListener("submit", function (e) {
-				var query = (searchInput ? searchInput.value : "").trim();
+				var query = (searchInput ? searchInput.value : "").trim().toLowerCase();
 				if (!query) {
 					e.preventDefault();
 					if (window.location.pathname.endsWith("search.html")) {
@@ -67,6 +68,15 @@
 					} else {
 						var trigger = document.getElementById("nav-search-trigger");
 						if (trigger) trigger.click();
+					}
+					return;
+				}
+				// Mobile Easter Egg Interception: launch directly without navigation!
+				if (window.PortfolioEasterEggs && typeof window.PortfolioEasterEggs.trigger === "function") {
+					if (window.PortfolioEasterEggs.trigger(query)) {
+						e.preventDefault();
+						if (searchInput) searchInput.blur();
+						return;
 					}
 				}
 			});
@@ -3177,25 +3187,65 @@
 
 			var t = performance.now() * 0.0022;
 
-			// 1. Ambient Radial Plasma Core Glow
+			// 1. Ambient Radial Plasma Core Glow (Synchronized with active seasonal theme!)
+			var isChristmas = document.body.classList.contains("christmas-theme");
+			var isThanksgiving = document.body.classList.contains("thanksgiving-theme");
+			var isValentines = document.body.classList.contains("valentines-theme");
+
 			var coreRadius = 140;
 			var grad = ctx.createRadialGradient(currentX, currentY, 0, currentX, currentY, coreRadius);
-			grad.addColorStop(0, "rgba(56, 189, 248, 0.35)"); // electric cyan
-			grad.addColorStop(0.35, "rgba(139, 92, 246, 0.22)"); // plasma violet
-			grad.addColorStop(0.7, "rgba(2, 132, 199, 0.10)"); // sapphire blue
-			grad.addColorStop(1, "rgba(2, 132, 199, 0)"); // transparent
+
+			if (isChristmas) {
+				grad.addColorStop(0, "rgba(239, 68, 68, 0.38)"); // festive ruby red
+				grad.addColorStop(0.35, "rgba(34, 197, 94, 0.24)"); // evergreen mint
+				grad.addColorStop(0.7, "rgba(234, 179, 8, 0.12)"); // holiday gold
+			} else if (isThanksgiving) {
+				grad.addColorStop(0, "rgba(245, 158, 11, 0.40)"); // harvest amber
+				grad.addColorStop(0.35, "rgba(217, 119, 6, 0.25)"); // autumn bronze
+				grad.addColorStop(0.7, "rgba(180, 83, 9, 0.12)"); // warm pumpkin
+			} else if (isValentines) {
+				grad.addColorStop(0, "rgba(244, 63, 94, 0.40)"); // rose ruby
+				grad.addColorStop(0.35, "rgba(236, 72, 153, 0.26)"); // blush pink
+				grad.addColorStop(0.7, "rgba(251, 113, 133, 0.12)"); // soft blossom
+			} else {
+				grad.addColorStop(0, "rgba(56, 189, 248, 0.35)"); // electric cyan
+				grad.addColorStop(0.35, "rgba(139, 92, 246, 0.22)"); // plasma violet
+				grad.addColorStop(0.7, "rgba(2, 132, 199, 0.10)"); // sapphire blue
+			}
+			grad.addColorStop(1, "rgba(0, 0, 0, 0)"); // transparent
 
 			ctx.fillStyle = grad;
 			ctx.beginPath();
 			ctx.arc(currentX, currentY, coreRadius, 0, Math.PI * 2);
 			ctx.fill();
 
-			// 2. Harmonic Undulating Plasma Wave Rings (Cyan, Violet, Emerald)
-			var rings = [
-				{ baseR: 26, speed: 2.2, color: "rgba(56, 189, 248, 0.55)", width: 1.6 },
-				{ baseR: 54, speed: 1.6, color: "rgba(168, 85, 247, 0.40)", width: 1.3 },
-				{ baseR: 88, speed: 1.2, color: "rgba(16, 185, 129, 0.25)", width: 1.0 }
-			];
+			// 2. Harmonic Undulating Plasma Wave Rings
+			var rings;
+			if (isChristmas) {
+				rings = [
+					{ baseR: 26, speed: 2.2, color: "rgba(239, 68, 68, 0.60)", width: 1.6 },
+					{ baseR: 54, speed: 1.6, color: "rgba(34, 197, 94, 0.45)", width: 1.3 },
+					{ baseR: 88, speed: 1.2, color: "rgba(250, 204, 21, 0.30)", width: 1.0 }
+				];
+			} else if (isThanksgiving) {
+				rings = [
+					{ baseR: 26, speed: 2.2, color: "rgba(245, 158, 11, 0.60)", width: 1.6 },
+					{ baseR: 54, speed: 1.6, color: "rgba(217, 119, 6, 0.45)", width: 1.3 },
+					{ baseR: 88, speed: 1.2, color: "rgba(220, 38, 38, 0.30)", width: 1.0 }
+				];
+			} else if (isValentines) {
+				rings = [
+					{ baseR: 26, speed: 2.2, color: "rgba(244, 63, 94, 0.60)", width: 1.6 },
+					{ baseR: 54, speed: 1.6, color: "rgba(236, 72, 153, 0.45)", width: 1.3 },
+					{ baseR: 88, speed: 1.2, color: "rgba(253, 164, 175, 0.30)", width: 1.0 }
+				];
+			} else {
+				rings = [
+					{ baseR: 26, speed: 2.2, color: "rgba(56, 189, 248, 0.55)", width: 1.6 },
+					{ baseR: 54, speed: 1.6, color: "rgba(168, 85, 247, 0.40)", width: 1.3 },
+					{ baseR: 88, speed: 1.2, color: "rgba(16, 185, 129, 0.25)", width: 1.0 }
+				];
+			}
 
 			for (var r = 0; r < rings.length; r++) {
 				var ring = rings[r];
@@ -3877,7 +3927,13 @@
 					triggerMac1984();
 				} else if (buffer.endsWith("christmas") || buffer.endsWith("xmas")) {
 					buffer = "";
-					triggerChristmasTheme();
+					setSeasonalTheme("christmas");
+				} else if (buffer.endsWith("thanksgiving") || buffer.endsWith("autumn")) {
+					buffer = "";
+					setSeasonalTheme("thanksgiving");
+				} else if (buffer.endsWith("valentines") || buffer.endsWith("valentine")) {
+					buffer = "";
+					setSeasonalTheme("valentines");
 				}
 			}
 		});
@@ -4589,16 +4645,29 @@
 				'        <line x1="12" y1="11" x2="12" y2="13.5" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>',
 				'        <path d="M 6.5 16 Q 12 20 17.5 16" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>',
 				'      </svg>',
-				'      <!-- Authentic Cursive "hello." SVG stroke animation -->',
+				'      <!-- Authentic Smooth Cursive "hello." Calligraphic Vector -->',
 				'      <svg class="mac-hello-svg" viewBox="0 0 320 140">',
-				'        <path class="mac-hello-stroke" d="M 32 105 C 32 65 42 22 55 22 C 65 22 58 75 52 110 M 52 75 C 64 52 88 52 92 78 C 94 96 90 110 90 110 M 90 98 C 93 82 112 80 118 92 C 122 104 108 112 100 110 C 96 110 112 110 125 104 M 125 104 C 132 85 146 22 156 22 C 164 22 156 75 150 110 M 150 104 C 158 85 172 22 182 22 C 190 22 182 75 176 110 M 176 98 C 182 82 202 80 210 92 C 218 104 212 112 202 112 C 192 112 186 100 196 90 C 206 80 226 94 234 98 M 245 108 A 4 4 0 1 1 245 107.9 Z"/>',
+				'        <path class="mac-hello-stroke" d="M 38 98 C 38 72 45 28 58 28 C 68 28 64 62 58 108 C 65 84 82 72 94 82 C 102 88 100 102 96 108 C 102 92 118 80 128 88 C 134 94 126 104 118 108 C 114 108 126 108 136 100 C 144 84 154 30 166 30 C 174 30 168 64 162 108 C 170 84 180 30 192 30 C 200 30 194 64 188 108 C 196 90 212 80 224 88 C 234 96 226 108 216 108 C 204 108 200 96 210 88 C 220 80 236 92 246 98 M 258 106 A 3.5 3.5 0 1 1 258 105.9 Z"/>',
 				'      </svg>',
 				'    </div>',
 				'  </div>',
 				'  <div class="mac-floppy-slot"></div>',
-				'  <!-- Classic 6-Color Rainbow Apple Logo -->',
-				'  <svg class="mac-apple-rainbow" viewBox="0 0 170 170">',
-				'    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.73-11.65-14.07-5.99-9.35-10.74-20.08-14.24-32.18-3.51-12.1-5.26-23.78-5.26-35.04 0-14.58 3.51-26.69 10.53-36.33 7.02-9.64 16.03-14.58 27.02-14.82 4.47 0 9.73 1.25 15.77 3.76 6.05 2.51 9.87 3.82 11.47 3.93 1.48-.11 5.37-1.42 11.68-3.93 6.31-2.51 11.42-3.71 15.34-3.6 10.79.48 19.49 4.84 26.11 13.07-9.59 5.8-14.28 14.15-14.07 25.04.22 9.04 3.69 16.59 10.41 22.65 6.72 6.05 14.81 9.42 24.28 10.09-2.23 6.64-4.84 13.25-7.85 19.85z" fill="#61bb46"/>',
+				'  <!-- Authentic 6-Stripe Rainbow Apple Logo with Separate Green Leaf -->',
+				'  <svg class="mac-apple-rainbow" viewBox="0 0 34 44" width="22" height="28" style="position:absolute;bottom:16px;left:24px;">',
+				'    <path d="M 18.5 1 C 22.5 2 24.5 6 24 10 C 19.5 10 17 6 18.5 1 Z" fill="#61bb46"/>',
+				'    <defs>',
+				'      <clipPath id="macAppleBodyClip">',
+				'        <path d="M 17 12.5 C 13.5 12.5 11.8 14.5 9.5 14.5 C 6.8 14.5 3.5 12.2 0 17.5 C -3.8 23.5 -1.2 33.5 3.5 40 C 5.5 42.8 7.8 44 10.8 44 C 13.5 44 14.8 42.5 17.5 42.5 C 20.2 42.5 21.2 44 24.2 44 C 27.2 44 29.5 41.5 31.5 38.5 C 33.2 36 34.2 33 34.5 31.5 C 29.5 29.5 28.5 23 32.2 19.5 C 29.5 15.5 25.2 14.5 23.5 14.5 C 20.5 14.5 19.2 16 17 12.5 Z"/>',
+				'      </clipPath>',
+				'    </defs>',
+				'    <g clip-path="url(#macAppleBodyClip)">',
+				'      <rect x="-10" y="12" width="55" height="5.5" fill="#61bb46"/>',
+				'      <rect x="-10" y="17.5" width="55" height="5.5" fill="#fdb827"/>',
+				'      <rect x="-10" y="23" width="55" height="5.5" fill="#f5821f"/>',
+				'      <rect x="-10" y="28.5" width="55" height="5.5" fill="#e03a3e"/>',
+				'      <rect x="-10" y="34" width="55" height="5.5" fill="#963d97"/>',
+				'      <rect x="-10" y="39.5" width="55" height="6.5" fill="#0098db"/>',
+				'    </g>',
 				'  </svg>',
 				'</div>',
 				'<div class="mac-tagline">&ldquo;The computer for the rest of us.&rdquo;</div>',
@@ -4608,7 +4677,6 @@
 			overlay.appendChild(card);
 			document.body.appendChild(overlay);
 
-			// Force reflow and show
 			setTimeout(function () {
 				overlay.classList.add("show");
 			}, 30);
@@ -4642,16 +4710,26 @@
 			requestAnimationFrame(animateMac);
 		}
 
-		// 8. Christmas Theme & Falling Snow [CHRISTMAS]
-		var snowAnimId = null;
-		var snowCanvas = null;
+		// 8. Universal Multi-Seasonal Theme Engine (Christmas, Thanksgiving, Valentine's & Mobile Shake)
+		var seasonalParticleAnimId = null;
+		var seasonalCanvas = null;
 
-		function showChristmasToast(msg) {
-			var oldToast = document.querySelector(".christmas-toast-banner");
+		var ALL_SEASONAL_THEMES = ["christmas-theme", "thanksgiving-theme", "valentines-theme", "halloween-theme", "stpatricks-theme", "patriotic-theme"];
+
+		function clearAllSeasonalThemes() {
+			ALL_SEASONAL_THEMES.forEach(function (t) {
+				document.body.classList.remove(t);
+				document.documentElement.classList.remove(t);
+			});
+			stopSeasonalParticles();
+		}
+
+		function showSeasonalToast(msg) {
+			var oldToast = document.querySelector(".seasonal-toast-banner");
 			if (oldToast && oldToast.parentNode) oldToast.parentNode.removeChild(oldToast);
 
 			var toast = document.createElement("div");
-			toast.className = "christmas-toast-banner";
+			toast.className = "seasonal-toast-banner";
 			toast.innerHTML = msg;
 			document.body.appendChild(toast);
 
@@ -4664,113 +4742,257 @@
 				setTimeout(function () {
 					if (toast.parentNode) toast.parentNode.removeChild(toast);
 				}, 500);
-			}, 4500);
+			}, 4800);
 		}
 
-		function startSnowfall() {
-			if (snowCanvas) return;
+		function startSeasonalParticles(type) {
+			if (seasonalCanvas) stopSeasonalParticles();
 
-			snowCanvas = document.createElement("canvas");
-			snowCanvas.id = "christmas-snow-canvas";
-			document.body.appendChild(snowCanvas);
+			seasonalCanvas = document.createElement("canvas");
+			seasonalCanvas.id = "seasonal-particle-canvas";
+			document.body.appendChild(seasonalCanvas);
 
-			var ctx = snowCanvas.getContext("2d");
-			var width = (snowCanvas.width = window.innerWidth);
-			var height = (snowCanvas.height = window.innerHeight);
+			var ctx = seasonalCanvas.getContext("2d");
+			var width = (seasonalCanvas.width = window.innerWidth);
+			var height = (seasonalCanvas.height = window.innerHeight);
 
 			window.addEventListener("resize", function () {
-				if (!snowCanvas) return;
-				width = snowCanvas.width = window.innerWidth;
-				height = snowCanvas.height = window.innerHeight;
+				if (!seasonalCanvas) return;
+				width = seasonalCanvas.width = window.innerWidth;
+				height = seasonalCanvas.height = window.innerHeight;
 			});
 
-			var flakes = [];
-			var numFlakes = 60;
-			for (var i = 0; i < numFlakes; i++) {
-				flakes.push({
-					x: Math.random() * width,
-					y: Math.random() * height,
-					radius: 1.4 + Math.random() * 2.8,
-					speedY: 0.6 + Math.random() * 1.6,
-					speedX: (Math.random() - 0.5) * 0.6,
-					wobble: Math.random() * Math.PI * 2,
-					wobbleSpeed: 0.015 + Math.random() * 0.02,
-					opacity: 0.55 + Math.random() * 0.4,
-					color: (Math.random() > 0.4) ? "224, 242, 254" : "186, 230, 253" // lightly light blue snow
-				});
+			var particles = [];
+			var numParticles = 60;
+
+			for (var i = 0; i < numParticles; i++) {
+				if (type === "thanksgiving") {
+					// Golden Autumn Falling Leaves
+					particles.push({
+						x: Math.random() * width,
+						y: Math.random() * height,
+						size: 8 + Math.random() * 8,
+						speedY: 0.8 + Math.random() * 1.5,
+						speedX: 0.5 + Math.random() * 1.0,
+						wobble: Math.random() * Math.PI * 2,
+						wobbleSpeed: 0.02 + Math.random() * 0.03,
+						rot: Math.random() * 360,
+						rotSpeed: (Math.random() - 0.5) * 3,
+						color: (Math.random() > 0.5) ? "#d97706" : (Math.random() > 0.5 ? "#b45309" : "#dc2626")
+					});
+				} else if (type === "valentines") {
+					// Floating Hearts & Sparkles
+					particles.push({
+						x: Math.random() * width,
+						y: Math.random() * height,
+						size: 6 + Math.random() * 7,
+						speedY: -(0.5 + Math.random() * 1.2), // float upward!
+						speedX: (Math.random() - 0.5) * 0.8,
+						wobble: Math.random() * Math.PI * 2,
+						wobbleSpeed: 0.02 + Math.random() * 0.02,
+						opacity: 0.5 + Math.random() * 0.45,
+						color: (Math.random() > 0.5) ? "#f43f5e" : "#fb7185"
+					});
+				} else {
+					// Christmas: Lightly Light-Blue Snowfall
+					particles.push({
+						x: Math.random() * width,
+						y: Math.random() * height,
+						radius: 1.4 + Math.random() * 2.8,
+						speedY: 0.6 + Math.random() * 1.6,
+						speedX: (Math.random() - 0.5) * 0.6,
+						wobble: Math.random() * Math.PI * 2,
+						wobbleSpeed: 0.015 + Math.random() * 0.02,
+						opacity: 0.55 + Math.random() * 0.4,
+						color: (Math.random() > 0.4) ? "224, 242, 254" : "186, 230, 253"
+					});
+				}
 			}
 
-			function renderSnow() {
-				if (!snowCanvas) return;
+			function renderParticles() {
+				if (!seasonalCanvas) return;
 				ctx.clearRect(0, 0, width, height);
 
-				flakes.forEach(function (f) {
-					f.y += f.speedY;
-					f.wobble += f.wobbleSpeed;
-					f.x += f.speedX + Math.sin(f.wobble) * 0.7;
+				particles.forEach(function (p) {
+					p.wobble += p.wobbleSpeed;
 
-					if (f.y > height + 10) {
-						f.y = -10;
-						f.x = Math.random() * width;
+					if (type === "thanksgiving") {
+						p.y += p.speedY;
+						p.x += Math.sin(p.wobble) * 1.2 + p.speedX;
+						p.rot += p.rotSpeed;
+
+						if (p.y > height + 20) { p.y = -20; p.x = Math.random() * width; }
+						if (p.x > width + 20) p.x = -20;
+						if (p.x < -20) p.x = width + 20;
+
+						ctx.save();
+						ctx.translate(p.x, p.y);
+						ctx.rotate((p.rot * Math.PI) / 180);
+						ctx.fillStyle = p.color;
+						ctx.beginPath();
+						ctx.ellipse(0, 0, p.size, p.size * 0.45, Math.PI / 4, 0, Math.PI * 2);
+						ctx.fill();
+						ctx.restore();
+					} else if (type === "valentines") {
+						p.y += p.speedY;
+						p.x += Math.sin(p.wobble) * 0.8 + p.speedX;
+
+						if (p.y < -20) { p.y = height + 20; p.x = Math.random() * width; }
+						if (p.x > width + 20) p.x = -20;
+						if (p.x < -20) p.x = width + 20;
+
+						ctx.fillStyle = p.color;
+						ctx.globalAlpha = p.opacity;
+						ctx.beginPath();
+						var h = p.size;
+						ctx.moveTo(p.x, p.y);
+						ctx.bezierCurveTo(p.x - h / 2, p.y - h / 2, p.x - h, p.y + h / 3, p.x, p.y + h);
+						ctx.bezierCurveTo(p.x + h, p.y + h / 3, p.x + h / 2, p.y - h / 2, p.x, p.y);
+						ctx.fill();
+						ctx.globalAlpha = 1.0;
+					} else {
+						p.y += p.speedY;
+						p.x += p.speedX + Math.sin(p.wobble) * 0.7;
+
+						if (p.y > height + 10) { p.y = -10; p.x = Math.random() * width; }
+						if (p.x > width + 10) p.x = -10;
+						if (p.x < -10) p.x = width + 10;
+
+						ctx.fillStyle = "rgba(" + p.color + ", " + p.opacity.toFixed(2) + ")";
+						ctx.beginPath();
+						ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+						ctx.fill();
 					}
-					if (f.x > width + 10) f.x = -10;
-					if (f.x < -10) f.x = width + 10;
-
-					ctx.fillStyle = "rgba(" + f.color + ", " + f.opacity.toFixed(2) + ")";
-					ctx.beginPath();
-					ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-					ctx.fill();
 				});
 
-				snowAnimId = requestAnimationFrame(renderSnow);
+				seasonalParticleAnimId = requestAnimationFrame(renderParticles);
 			}
 
-			snowAnimId = requestAnimationFrame(renderSnow);
+			seasonalParticleAnimId = requestAnimationFrame(renderParticles);
 		}
 
-		function stopSnowfall() {
-			if (snowAnimId) {
-				cancelAnimationFrame(snowAnimId);
-				snowAnimId = null;
+		function stopSeasonalParticles() {
+			if (seasonalParticleAnimId) {
+				cancelAnimationFrame(seasonalParticleAnimId);
+				seasonalParticleAnimId = null;
 			}
-			if (snowCanvas && snowCanvas.parentNode) {
-				snowCanvas.parentNode.removeChild(snowCanvas);
-				snowCanvas = null;
+			if (seasonalCanvas && seasonalCanvas.parentNode) {
+				seasonalCanvas.parentNode.removeChild(seasonalCanvas);
+				seasonalCanvas = null;
 			}
 		}
 
-		function triggerChristmasTheme(forceState) {
-			var isCurrentActive = document.body.classList.contains("christmas-theme");
+		function setSeasonalTheme(themeName, forceState) {
+			var themeClass = themeName + "-theme";
+			var isCurrentActive = document.body.classList.contains(themeClass);
 
-			if (forceState === true || (!isCurrentActive && forceState !== false)) {
-				// Turn ON
-				document.body.classList.add("christmas-theme");
-				document.documentElement.classList.add("christmas-theme");
-				try {
-					sessionStorage.setItem("portfolio_christmas_theme", "1");
-				} catch (e) {}
-				startSnowfall();
-				showChristmasToast("🎄 <strong>Christmas Mode Activated!</strong> Blues converted to evergreen, accents to berry red, and gentle snow is falling. <em>(Type &lsquo;christmas&rsquo; again to turn off)</em>");
-			} else {
+			if (forceState === false || (isCurrentActive && forceState !== true)) {
 				// Turn OFF
-				document.body.classList.remove("christmas-theme");
-				document.documentElement.classList.remove("christmas-theme");
+				clearAllSeasonalThemes();
 				try {
-					sessionStorage.removeItem("portfolio_christmas_theme");
+					sessionStorage.setItem("portfolio_seasonal_theme", "none");
 				} catch (e) {}
-				stopSnowfall();
-				showChristmasToast("❄️ <strong>Christmas Mode Deactivated.</strong> Standard portfolio theme restored.");
+				showSeasonalToast("✨ Seasonal theme turned off. Standard portfolio palette restored.");
+				return false;
+			}
+
+			// Turn ON
+			clearAllSeasonalThemes();
+			document.body.classList.add(themeClass);
+			document.documentElement.classList.add(themeClass);
+			try {
+				sessionStorage.setItem("portfolio_seasonal_theme", themeName);
+			} catch (e) {}
+
+			if (themeName === "thanksgiving") {
+				startSeasonalParticles("thanksgiving");
+				showSeasonalToast("🦃 <strong>Thanksgiving Harvest Active!</strong> Amber foliage & autumn leaves. <em>(Shake phone or tap Secrets to turn off)</em>");
+			} else if (themeName === "valentines") {
+				startSeasonalParticles("valentines");
+				showSeasonalToast("💖 <strong>Valentine's Day Active!</strong> Rose & ruby theme with floating hearts. <em>(Shake phone or tap Secrets to turn off)</em>");
+			} else {
+				startSeasonalParticles("christmas");
+				showSeasonalToast("🎄 <strong>Christmas Mode Active!</strong> Evergreen navbar, berry red accents & light-blue snow. <em>(Shake phone or tap Secrets to turn off)</em>");
+			}
+			return true;
+		}
+
+		// Calendar Auto-Scheduler (Detects time of year automatically!)
+		function autoScheduleSeasonalTheme() {
+			try {
+				var savedTheme = sessionStorage.getItem("portfolio_seasonal_theme");
+				if (savedTheme === "none") return; // Explicitly dismissed by visitor
+				if (savedTheme && ALL_SEASONAL_THEMES.indexOf(savedTheme + "-theme") !== -1) {
+					setSeasonalTheme(savedTheme, true);
+					return;
+				}
+			} catch (e) {}
+
+			var now = new Date();
+			var month = now.getMonth(); // 0 = Jan, 10 = Nov, 11 = Dec
+			var day = now.getDate();
+
+			// Thanksgiving / Autumn Harvest: Nov 18 - Nov 30 (ACTIVE RIGHT NOW!)
+			if (month === 10 && day >= 18 && day <= 30) {
+				setSeasonalTheme("thanksgiving", true);
+			}
+			// Christmas & Winter Holidays: Dec 1 - Jan 6
+			else if ((month === 11) || (month === 0 && day <= 6)) {
+				setSeasonalTheme("christmas", true);
+			}
+			// Valentine's Day: Feb 7 - Feb 15
+			else if (month === 1 && day >= 7 && day <= 15) {
+				setSeasonalTheme("valentines", true);
 			}
 		}
 
-		// Restore Christmas theme from sessionStorage across navigation
-		try {
-			if (sessionStorage.getItem("portfolio_christmas_theme") === "1") {
-				document.body.classList.add("christmas-theme");
-				document.documentElement.classList.add("christmas-theme");
-				startSnowfall();
-			}
-		} catch (e) {}
+		autoScheduleSeasonalTheme();
+
+		// Mobile Device Shake Detection (Shake phone to toggle/turn off active theme!)
+		function initDeviceShakeToToggle() {
+			var lastX, lastY, lastZ;
+			var lastTime = 0;
+			var shakeThreshold = 22; // m/s^2 delta
+
+			window.addEventListener("devicemotion", function (e) {
+				var current = e.accelerationIncludingGravity;
+				if (!current) return;
+				var now = performance.now();
+				if ((now - lastTime) > 100) {
+					var diffTime = now - lastTime;
+					lastTime = now;
+
+					if (lastX !== undefined) {
+						var deltaX = Math.abs(current.x - lastX);
+						var deltaY = Math.abs(current.y - lastY);
+						var deltaZ = Math.abs(current.z - lastZ);
+						var speed = (deltaX + deltaY + deltaZ) / diffTime * 1000;
+
+						if (speed > shakeThreshold) {
+							// Check if any seasonal theme is active
+							var hasActiveTheme = false;
+							ALL_SEASONAL_THEMES.forEach(function (t) {
+								if (document.body.classList.contains(t)) hasActiveTheme = true;
+							});
+
+							if (hasActiveTheme) {
+								clearAllSeasonalThemes();
+								try {
+									sessionStorage.setItem("portfolio_seasonal_theme", "none");
+								} catch (err) {}
+								showSeasonalToast("📱 <strong>Shook Phone!</strong> Seasonal theme deactivated.");
+							}
+						}
+					}
+
+					lastX = current.x;
+					lastY = current.y;
+					lastZ = current.z;
+				}
+			}, { passive: true });
+		}
+
+		initDeviceShakeToToggle();
 
 		// Unified Global Easter Egg Dispatcher API
 		window.PortfolioEasterEggs = {
@@ -4783,14 +5005,18 @@
 				if (key === "iphone") { triggerIphoneEntrance(); return true; }
 				if (key === "500t" || key === "500 tasks") { triggerAntigravity500TMilestone(); return true; }
 				if (key === "mac" || key === "macintosh" || key === "1984") { triggerMac1984(); return true; }
-				if (key === "christmas" || key === "xmas") { triggerChristmasTheme(); return true; }
+				if (key === "christmas" || key === "xmas") { setSeasonalTheme("christmas"); return true; }
+				if (key === "thanksgiving" || key === "autumn" || key === "harvest") { setSeasonalTheme("thanksgiving"); return true; }
+				if (key === "valentines" || key === "valentine" || key === "hearts") { setSeasonalTheme("valentines"); return true; }
 				return false;
 			},
 			list: [
-				{ id: "christmas", name: "Christmas Mode 🎄", code: "christmas", desc: "Evergreen & festive red palette inversion with light-blue snowfall (Toggles on/off)" },
-				{ id: "mac", name: "Macintosh 1984 🖥️", code: "mac", desc: "1984 Macintosh 128K unveiling, CRT phosphor 'hello.', Happy Mac & startup chime" },
+				{ id: "thanksgiving", name: "Thanksgiving Harvest 🦃", code: "thanksgiving", desc: "Autumn amber palette with falling golden leaves (Active for late Nov!)" },
+				{ id: "christmas", name: "Christmas Mode 🎄", code: "christmas", desc: "Evergreen navbar, berry red accents & lightly light-blue snowfall" },
+				{ id: "valentines", name: "Valentine's Day 💖", code: "valentines", desc: "Rose & ruby palette inversion with floating hearts & sparkles" },
+				{ id: "mac", name: "Macintosh 1984 🖥️", code: "mac", desc: "Authentic 1984 Mac 128K, CRT 'hello.', 6-color Apple logo & startup chime" },
 				{ id: "andrew", name: "Andrew Logo Blast 🚀", code: "andrew", desc: "Radial particle fireworks explosion of website logo" },
-				{ id: "500t", name: "500 Tasks Milestone 🏆", code: "500t", desc: "Antigravity CLI zero-G confetti celebration & celebratory synth arpeggio" },
+				{ id: "500t", name: "500 Tasks Milestone 🏆", code: "500t", desc: "Antigravity CLI zero-G confetti celebration & synth arpeggio" },
 				{ id: "iphone", name: "iPhone 2007 📱", code: "iphone", desc: "Steve Jobs keynote tribute & classic original iPhone silhouette" },
 				{ id: "apple", name: "Apple Rain 🍎", code: "apple", desc: "Cascading apples, green apples & 1984 monospace rain" },
 				{ id: "windows", name: "Windows 10 🪟", code: "windows", desc: "Expanding illuminated Windows 10 logo zoom & fade" },
@@ -4808,7 +5034,7 @@
 			btn.id = "footer-easter-egg-btn";
 			btn.className = "footer-easter-egg-btn";
 			btn.setAttribute("aria-label", "Explore interactive secrets & easter eggs");
-			btn.innerHTML = '🎁 Secrets &amp; Easter Eggs <span class="egg-count-badge">8</span>';
+			btn.innerHTML = '🎁 Secrets &amp; Easter Eggs <span class="egg-count-badge">10</span>';
 
 			footer.appendChild(btn);
 
@@ -4823,8 +5049,8 @@
 			var headerHtml = [
 				'<div class="easter-drawer-header">',
 				'  <div>',
-				'    <h3>🎁 Secrets &amp; Easter Eggs</h3>',
-				'    <p style="margin:4px 0 0; font-size:0.85rem; color:#94a3b8;">Type any keyword anywhere on desktop, search for it in the search bar, or tap a pill below to launch on mobile:</p>',
+				'    <h3>🎁 Secrets &amp; Seasonal Themes</h3>',
+				'    <p style="margin:4px 0 0; font-size:0.85rem; color:#94a3b8;">Type any keyword anywhere on desktop, search for it, or tap a pill below to launch on mobile (shake phone to turn off!):</p>',
 				'  </div>',
 				'  <button type="button" class="easter-drawer-close" aria-label="Close dialog">&times;</button>',
 				'</div>'

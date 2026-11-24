@@ -7476,30 +7476,43 @@ ul#site-navigation *,
 
 
 /* ==========================================================================
-   Christmas Theme & Dynamic Seasonal Inversion (Blues -> Green, Greys -> Red)
+   Multi-Seasonal Theme Engine (Christmas, Thanksgiving, Valentine's, etc.)
    ========================================================================== */
-html.christmas-theme,
-body.christmas-theme {
-    /* Base theme shifts */
+
+/* 1. CHRISTMAS THEME */
+body.christmas-theme nav.tablet-desktop,
+html.christmas-theme nav.tablet-desktop {
+    background-color: #064e3b !important; /* Deep Pine / Evergreen */
+    border-bottom: 2px solid #ef4444 !important;
 }
 
-/* 1. All Blues change to Evergreen / Pine / Emerald */
+body.christmas-theme nav.tablet-desktop > ul#site-navigation > li > a,
+body.christmas-theme nav.tablet-desktop .nav-dropdown-toggle {
+    color: #ffffff !important; /* Pure White text on dark pine background */
+}
+
+body.christmas-theme nav.tablet-desktop > ul#site-navigation > li > a:hover,
+body.christmas-theme nav.tablet-desktop .nav-dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
 body.christmas-theme a,
-body.christmas-theme .header-content h1,
 body.christmas-theme .site-nav a.active,
-body.christmas-theme .nav-search-link,
-body.christmas-theme .footer-version a,
-body.christmas-theme .project-status span,
+body.christmas-theme .telemetry-eyebrow,
+body.christmas-theme .weather-loc-pin,
 body.christmas-theme .home-radar-title,
 body.christmas-theme .cockpit-title,
 body.christmas-theme .stat-card-label,
-body.christmas-theme .spec-chip-highlight {
+body.christmas-theme .spec-chip-highlight,
+body.christmas-theme .search-filter-pill.active,
+body.christmas-theme .search-filter-chip.active {
     color: #15803d !important;
 }
 
 body.christmas-theme .headerimg {
     border-color: #15803d !important;
-    box-shadow: 0 0 16px rgba(22, 163, 74, 0.45);
+    box-shadow: 0 0 18px rgba(22, 163, 74, 0.5);
 }
 
 body.christmas-theme h1,
@@ -7517,14 +7530,12 @@ body.christmas-theme button.primary,
 body.christmas-theme .cockpit-tab.active,
 body.christmas-theme .nav-tab.active,
 body.christmas-theme .egg-count-badge,
-body.christmas-theme .status-badge.project-completed {
+body.christmas-theme .status-badge.project-completed,
+body.christmas-theme .search-filter-pill.active,
+body.christmas-theme .search-filter-chip.active {
     background: #15803d !important;
     color: #ffffff !important;
     border-color: #166534 !important;
-}
-
-body.christmas-theme .status-badge.project-completed {
-    background: #166534 !important;
 }
 
 body.christmas-theme .chips li,
@@ -7536,7 +7547,6 @@ body.christmas-theme .bias-badge {
     border-color: #bbf7d0 !important;
 }
 
-/* 2. Greys change to Festive Red (card borders, dividers, subtle accents) */
 body.christmas-theme .home-hero,
 body.christmas-theme .project-entry,
 body.christmas-theme .sudoku-hero,
@@ -7550,16 +7560,14 @@ body.christmas-theme .weather-card-panel {
 }
 
 body.christmas-theme hr,
-body.christmas-theme .bias-header,
-body.christmas-theme .header-content figcaption {
+body.christmas-theme .bias-header {
     border-color: rgba(239, 68, 68, 0.25) !important;
 }
 
 body.christmas-theme .project-status,
 body.christmas-theme .footer-version,
 body.christmas-theme footer p,
-body.christmas-theme .stat-card-meta,
-body.christmas-theme .radar-legend-label {
+body.christmas-theme .stat-card-meta {
     color: #991b1b !important;
 }
 
@@ -7567,8 +7575,156 @@ body.christmas-theme footer {
     border-top: 1px solid rgba(239, 68, 68, 0.3) !important;
 }
 
-/* Snowfall Canvas */
-#christmas-snow-canvas {
+body.christmas-theme .portfolio-phone-toggle {
+    background: #15803d !important;
+    border-color: #4ade80 !important;
+    color: #ffffff !important;
+}
+
+
+/* 2. THANKSGIVING / AUTUMN HARVEST THEME */
+body.thanksgiving-theme nav.tablet-desktop,
+html.thanksgiving-theme nav.tablet-desktop {
+    background-color: #3d1a04 !important; /* Deep Roasted Chestnut */
+    border-bottom: 2px solid #d97706 !important;
+}
+
+body.thanksgiving-theme nav.tablet-desktop > ul#site-navigation > li > a,
+body.thanksgiving-theme nav.tablet-desktop .nav-dropdown-toggle {
+    color: #ffffff !important;
+}
+
+body.thanksgiving-theme nav.tablet-desktop > ul#site-navigation > li > a:hover,
+body.thanksgiving-theme nav.tablet-desktop .nav-dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+body.thanksgiving-theme a,
+body.thanksgiving-theme .site-nav a.active,
+body.thanksgiving-theme .telemetry-eyebrow,
+body.thanksgiving-theme .weather-loc-pin,
+body.thanksgiving-theme .home-radar-title,
+body.thanksgiving-theme .cockpit-title,
+body.thanksgiving-theme .stat-card-label,
+body.thanksgiving-theme .spec-chip-highlight,
+body.thanksgiving-theme .search-filter-pill.active,
+body.thanksgiving-theme .search-filter-chip.active {
+    color: #b45309 !important;
+}
+
+body.thanksgiving-theme .headerimg {
+    border-color: #d97706 !important;
+    box-shadow: 0 0 18px rgba(217, 119, 6, 0.5);
+}
+
+body.thanksgiving-theme h1,
+body.thanksgiving-theme h2,
+body.thanksgiving-theme h3,
+body.thanksgiving-theme h4 {
+    color: #78350f !important;
+}
+
+body.thanksgiving-theme .btn-primary,
+body.thanksgiving-theme button.primary,
+body.thanksgiving-theme .status-badge.project-completed,
+body.thanksgiving-theme .egg-count-badge,
+body.thanksgiving-theme .search-filter-pill.active {
+    background: #b45309 !important;
+    color: #ffffff !important;
+    border-color: #78350f !important;
+}
+
+body.thanksgiving-theme .chips li {
+    background: #fef3c7 !important;
+    color: #92400e !important;
+    border-color: #fde68a !important;
+}
+
+body.thanksgiving-theme .home-hero,
+body.thanksgiving-theme .project-entry,
+body.thanksgiving-theme .weather-card-panel {
+    border-color: rgba(217, 119, 6, 0.35) !important;
+    box-shadow: 0 4px 16px rgba(180, 83, 9, 0.08) !important;
+}
+
+body.thanksgiving-theme footer {
+    border-top: 1px solid rgba(217, 119, 6, 0.3) !important;
+}
+
+body.thanksgiving-theme .portfolio-phone-toggle {
+    background: #b45309 !important;
+    border-color: #fbbf24 !important;
+    color: #ffffff !important;
+}
+
+
+/* 3. VALENTINE'S DAY THEME */
+body.valentines-theme nav.tablet-desktop,
+html.valentines-theme nav.tablet-desktop {
+    background-color: #4c0519 !important; /* Deep Velvet Ruby */
+    border-bottom: 2px solid #f43f5e !important;
+}
+
+body.valentines-theme nav.tablet-desktop > ul#site-navigation > li > a,
+body.valentines-theme nav.tablet-desktop .nav-dropdown-toggle {
+    color: #ffffff !important;
+}
+
+body.valentines-theme a,
+body.valentines-theme .site-nav a.active,
+body.valentines-theme .telemetry-eyebrow,
+body.valentines-theme .search-filter-pill.active {
+    color: #e11d48 !important;
+}
+
+body.valentines-theme .headerimg {
+    border-color: #f43f5e !important;
+    box-shadow: 0 0 18px rgba(244, 63, 94, 0.5);
+}
+
+body.valentines-theme h1,
+body.valentines-theme h2,
+body.valentines-theme h3,
+body.valentines-theme h4 {
+    color: #881337 !important;
+}
+
+body.valentines-theme .btn-primary,
+body.valentines-theme button.primary,
+body.valentines-theme .status-badge.project-completed,
+body.valentines-theme .egg-count-badge {
+    background: #e11d48 !important;
+    color: #ffffff !important;
+    border-color: #9f1239 !important;
+}
+
+body.valentines-theme .chips li {
+    background: #fdf2f8 !important;
+    color: #9d174d !important;
+    border-color: #fbcfe8 !important;
+}
+
+body.valentines-theme .home-hero,
+body.valentines-theme .project-entry,
+body.valentines-theme .weather-card-panel {
+    border-color: rgba(244, 63, 94, 0.35) !important;
+    box-shadow: 0 4px 16px rgba(225, 29, 72, 0.08) !important;
+}
+
+body.valentines-theme footer {
+    border-top: 1px solid rgba(244, 63, 94, 0.3) !important;
+}
+
+body.valentines-theme .portfolio-phone-toggle {
+    background: #e11d48 !important;
+    border-color: #fda4af !important;
+    color: #ffffff !important;
+}
+
+
+/* 4. Seasonal Particles Canvas & Universal Toasts */
+#seasonal-particle-canvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -7579,15 +7735,14 @@ body.christmas-theme footer {
     overflow: hidden;
 }
 
-/* Christmas Activation Toast Banner */
-.christmas-toast-banner {
+.seasonal-toast-banner {
     position: fixed;
     top: 24px;
     left: 50%;
     transform: translateX(-50%) translateY(-40px);
-    background: linear-gradient(135deg, #064e3b 0%, #15803d 100%);
-    border: 2px solid #ef4444;
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(239, 68, 68, 0.35);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 2px solid #38bdf8;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.35);
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 999px;
@@ -7602,20 +7757,52 @@ body.christmas-theme footer {
     align-items: center;
     gap: 10px;
     max-width: 92vw;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-.christmas-toast-banner.show {
+.seasonal-toast-banner.show {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
 }
 
-/* ==========================================================================
-   1984 Macintosh 128K Easter Egg Styles
-   ========================================================================== */
+/* 5. Mobile Two-Corner Dock Symmetry & High Contrast Phone Button */
+@media (max-width: 600px) {
+    .portfolio-phone {
+        left: 14px !important;
+        bottom: max(16px, env(safe-area-inset-bottom)) !important;
+        right: auto !important;
+        z-index: 10001 !important;
+    }
+    .portfolio-chat {
+        right: 14px !important;
+        bottom: max(16px, env(safe-area-inset-bottom)) !important;
+        z-index: 10001 !important;
+    }
+    .portfolio-phone-toggle {
+        width: 48px !important;
+        height: 48px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.4rem !important;
+        background: #0284c7 !important; /* Vivid Electric Blue */
+        border: 2px solid #7dd3fc !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+    }
+    .nav-toggle {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        justify-content: center !important;
+    }
+}
+
+/* 6. Authentic 1984 Macintosh 128K Overlay */
 .mac-1984-overlay {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.88) 0%, rgba(2, 6, 23, 0.96) 90%);
+    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.90) 0%, rgba(2, 6, 23, 0.97) 90%);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     z-index: 9999999;
@@ -7636,7 +7823,7 @@ body.christmas-theme footer {
     text-align: center;
     will-change: transform, opacity;
     color: #f8fafc;
-    font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI, Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
 }
 .mac-1984-bezel {
     background: linear-gradient(180deg, #ede7db 0%, #d8d0c0 100%);
@@ -7675,20 +7862,20 @@ body.christmas-theme footer {
     z-index: 3;
 }
 .mac-hello-svg {
-    width: 280px;
+    width: 290px;
     height: 130px;
     z-index: 2;
 }
 .mac-hello-stroke {
     stroke: #e6fced;
-    stroke-width: 6;
+    stroke-width: 5.5;
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    filter: drop-shadow(0 0 6px rgba(110, 231, 183, 0.9));
+    filter: drop-shadow(0 0 7px rgba(110, 231, 183, 0.9));
     stroke-dasharray: 1400;
     stroke-dashoffset: 1400;
-    animation: drawMacHello 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.25s;
+    animation: drawMacHello 1.7s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s;
 }
 @keyframes drawMacHello {
     to { stroke-dashoffset: 0; }
@@ -7729,9 +7916,7 @@ body.christmas-theme footer {
     margin-top: 4px;
 }
 
-/* ==========================================================================
-   Footer Secrets & Easter Eggs Discovery Drawer
-   ========================================================================== */
+/* 7. Footer Secrets & Easter Eggs Discovery Drawer */
 .footer-easter-egg-btn {
     display: inline-flex;
     align-items: center;
@@ -7753,11 +7938,6 @@ body.christmas-theme footer {
     color: #ffffff;
     border-color: #002d5a;
     transform: translateY(-1px);
-}
-body.christmas-theme .footer-easter-egg-btn {
-    background: #15803d !important;
-    color: #ffffff !important;
-    border-color: #166534 !important;
 }
 .egg-count-badge {
     background: #0056b3;
@@ -7803,7 +7983,7 @@ body.christmas-theme .footer-easter-egg-btn {
     color: #f8fafc;
     transform: translateY(20px) scale(0.97);
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 .easter-drawer-backdrop.active .easter-drawer-modal {
     transform: translateY(0) scale(1);

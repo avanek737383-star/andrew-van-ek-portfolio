@@ -3,6 +3,18 @@
  * Fast, dependency-free full-text search across 370+ maintenance entries, projects, and systems.
  */
 (function () {
+
+    // Immediate fallback dispatcher so site-search.js can fire even before script.js completes load
+    if (!window.PortfolioEasterEggs) {
+        window.PortfolioEasterEggs = {
+            _queue: [],
+            trigger: function(name) {
+                this._queue.push(name);
+                return true;
+            }
+        };
+    }
+
     'use strict';
 
     var SEARCH_INDEX_URL = 'data/search-index.json';
@@ -319,7 +331,7 @@
 
     
     // Easter Egg Search Interceptor for Mobile & Desktop
-    var EASTER_EGG_WORDS = ['christmas', 'xmas', 'mac', 'macintosh', 'andrew', '500t', 'iphone', 'apple', 'windows', 'android'];
+    var EASTER_EGG_WORDS = ['christmas', 'xmas', 'thanksgiving', 'autumn', 'harvest', 'valentines', 'valentine', 'hearts', 'mac', 'macintosh', 'andrew', '500t', 'iphone', 'apple', 'windows', 'android'];
     function checkEasterEggQuery(rawQuery, isModal) {
         if (!rawQuery) return false;
         var q = rawQuery.toLowerCase().trim();
@@ -426,6 +438,10 @@
 
         if (qParam && input) {
             input.value = qParam;
+            if (checkEasterEggQuery(qParam, false)) {
+                resultsContainer.innerHTML = '<div class="search-easter-egg-card">🎉 <strong>Interactive Easter Egg / Seasonal Theme Activated: &ldquo;' + escapeHTML(qParam) + '&rdquo;!</strong> Enjoy the surprise.</div>';
+                return;
+            }
         }
         if (catParam) {
             currentFilter = catParam;
