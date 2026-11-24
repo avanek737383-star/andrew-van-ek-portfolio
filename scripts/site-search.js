@@ -317,9 +317,33 @@
         modalActiveIdx = -1;
     }
 
+    
+    // Easter Egg Search Interceptor for Mobile & Desktop
+    var EASTER_EGG_WORDS = ['christmas', 'xmas', 'mac', 'macintosh', 'andrew', '500t', 'iphone', 'apple', 'windows', 'android'];
+    function checkEasterEggQuery(rawQuery, isModal) {
+        if (!rawQuery) return false;
+        var q = rawQuery.toLowerCase().trim();
+        if (EASTER_EGG_WORDS.indexOf(q) !== -1) {
+            if (window.PortfolioEasterEggs && typeof window.PortfolioEasterEggs.trigger === 'function') {
+                if (isModal) {
+                    closeSpotlightModal();
+                    if (modalInput) modalInput.blur();
+                } else if (input) {
+                    input.blur();
+                }
+                setTimeout(function () {
+                    window.PortfolioEasterEggs.trigger(q);
+                }, 100);
+                return true;
+            }
+        }
+        return false;
+    }
+
     function renderModalResults() {
         if (!modalInput || !modalResults) return;
         var query = modalInput.value.trim();
+        if (checkEasterEggQuery(query, true)) return;
         var viewAll = modalEl.querySelector('#modal-full-search-link');
 
         if (!query) {
@@ -412,6 +436,10 @@
 
         function runPageSearch() {
             var query = input.value.trim();
+            if (checkEasterEggQuery(query, false)) {
+                resultsContainer.innerHTML = '<div class="search-easter-egg-card">🎉 <strong>Interactive Easter Egg Activated: &ldquo;' + escapeHTML(query) + '&rdquo;!</strong> Enjoy the surprise.</div>';
+                return;
+            }
             if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
 
             // Sync URL

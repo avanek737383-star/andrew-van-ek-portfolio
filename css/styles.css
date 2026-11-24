@@ -7473,3 +7473,438 @@ ul#site-navigation *,
     user-select: none;
     -webkit-user-select: none;
 }
+
+
+/* ==========================================================================
+   Christmas Theme & Dynamic Seasonal Inversion (Blues -> Green, Greys -> Red)
+   ========================================================================== */
+html.christmas-theme,
+body.christmas-theme {
+    /* Base theme shifts */
+}
+
+/* 1. All Blues change to Evergreen / Pine / Emerald */
+body.christmas-theme a,
+body.christmas-theme .header-content h1,
+body.christmas-theme .site-nav a.active,
+body.christmas-theme .nav-search-link,
+body.christmas-theme .footer-version a,
+body.christmas-theme .project-status span,
+body.christmas-theme .home-radar-title,
+body.christmas-theme .cockpit-title,
+body.christmas-theme .stat-card-label,
+body.christmas-theme .spec-chip-highlight {
+    color: #15803d !important;
+}
+
+body.christmas-theme .headerimg {
+    border-color: #15803d !important;
+    box-shadow: 0 0 16px rgba(22, 163, 74, 0.45);
+}
+
+body.christmas-theme h1,
+body.christmas-theme h2,
+body.christmas-theme h3,
+body.christmas-theme h4,
+body.christmas-theme .home-hero-title,
+body.christmas-theme .sudoku-hero h1,
+body.christmas-theme .predictor-hero h1 {
+    color: #064e3b !important;
+}
+
+body.christmas-theme .btn-primary,
+body.christmas-theme button.primary,
+body.christmas-theme .cockpit-tab.active,
+body.christmas-theme .nav-tab.active,
+body.christmas-theme .egg-count-badge,
+body.christmas-theme .status-badge.project-completed {
+    background: #15803d !important;
+    color: #ffffff !important;
+    border-color: #166534 !important;
+}
+
+body.christmas-theme .status-badge.project-completed {
+    background: #166534 !important;
+}
+
+body.christmas-theme .chips li,
+body.christmas-theme .sudoku-pill,
+body.christmas-theme .council-main .chip,
+body.christmas-theme .bias-badge {
+    background: #f0fdf4 !important;
+    color: #166534 !important;
+    border-color: #bbf7d0 !important;
+}
+
+/* 2. Greys change to Festive Red (card borders, dividers, subtle accents) */
+body.christmas-theme .home-hero,
+body.christmas-theme .project-entry,
+body.christmas-theme .sudoku-hero,
+body.christmas-theme .bias-card,
+body.christmas-theme .stat-card,
+body.christmas-theme .cockpit-card,
+body.christmas-theme .radar-container-card,
+body.christmas-theme .weather-card-panel {
+    border-color: rgba(239, 68, 68, 0.35) !important;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.08) !important;
+}
+
+body.christmas-theme hr,
+body.christmas-theme .bias-header,
+body.christmas-theme .header-content figcaption {
+    border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+body.christmas-theme .project-status,
+body.christmas-theme .footer-version,
+body.christmas-theme footer p,
+body.christmas-theme .stat-card-meta,
+body.christmas-theme .radar-legend-label {
+    color: #991b1b !important;
+}
+
+body.christmas-theme footer {
+    border-top: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Snowfall Canvas */
+#christmas-snow-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999997;
+    overflow: hidden;
+}
+
+/* Christmas Activation Toast Banner */
+.christmas-toast-banner {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40px);
+    background: linear-gradient(135deg, #064e3b 0%, #15803d 100%);
+    border: 2px solid #ef4444;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(239, 68, 68, 0.35);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    z-index: 10000000;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 92vw;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+}
+.christmas-toast-banner.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* ==========================================================================
+   1984 Macintosh 128K Easter Egg Styles
+   ========================================================================== */
+.mac-1984-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.88) 0%, rgba(2, 6, 23, 0.96) 90%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s ease-out;
+    overflow: hidden;
+}
+.mac-1984-overlay.show {
+    opacity: 1;
+}
+.mac-1984-card {
+    max-width: 440px;
+    width: calc(100vw - 36px);
+    text-align: center;
+    will-change: transform, opacity;
+    color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI, Roboto, sans-serif;
+}
+.mac-1984-bezel {
+    background: linear-gradient(180deg, #ede7db 0%, #d8d0c0 100%);
+    border: 3px solid #b8af9e;
+    border-radius: 24px 24px 18px 18px;
+    padding: 22px 24px 18px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), inset 0 2px 4px rgba(255, 255, 255, 0.85);
+    position: relative;
+}
+.mac-crt-frame {
+    background: #25282a;
+    border: 4px solid #1a1c1e;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: inset 0 4px 14px rgba(0, 0, 0, 0.85);
+    position: relative;
+    overflow: hidden;
+}
+.mac-crt-screen {
+    background: radial-gradient(circle at 50% 45%, #2a3830 0%, #16201a 100%);
+    border-radius: 10px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.95), 0 0 15px rgba(74, 222, 128, 0.2);
+}
+.mac-crt-scanlines {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 3;
+}
+.mac-hello-svg {
+    width: 280px;
+    height: 130px;
+    z-index: 2;
+}
+.mac-hello-stroke {
+    stroke: #e6fced;
+    stroke-width: 6;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 6px rgba(110, 231, 183, 0.9));
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
+    animation: drawMacHello 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.25s;
+}
+@keyframes drawMacHello {
+    to { stroke-dashoffset: 0; }
+}
+.mac-floppy-slot {
+    width: 80px;
+    height: 7px;
+    background: #1c1a17;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-top: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.mac-happy-icon {
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    z-index: 4;
+    opacity: 0;
+    animation: popHappyMac 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.7s;
+}
+@keyframes popHappyMac {
+    to { opacity: 1; transform: scale(1.1); }
+}
+.mac-tagline {
+    margin-top: 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    letter-spacing: -0.01em;
+}
+.mac-subline {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   Footer Secrets & Easter Eggs Discovery Drawer
+   ========================================================================== */
+.footer-easter-egg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.15);
+    color: #002d5a;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    font-family: inherit;
+}
+.footer-easter-egg-btn:hover {
+    background: #002d5a;
+    color: #ffffff;
+    border-color: #002d5a;
+    transform: translateY(-1px);
+}
+body.christmas-theme .footer-easter-egg-btn {
+    background: #15803d !important;
+    color: #ffffff !important;
+    border-color: #166534 !important;
+}
+.egg-count-badge {
+    background: #0056b3;
+    color: #fff;
+    font-size: 0.68rem;
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-weight: 800;
+}
+.footer-easter-egg-btn:hover .egg-count-badge {
+    background: #38bdf8;
+    color: #0f172a;
+}
+.easter-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+.easter-drawer-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.easter-drawer-modal {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    max-width: 580px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+    color: #f8fafc;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+}
+.easter-drawer-backdrop.active .easter-drawer-modal {
+    transform: translateY(0) scale(1);
+}
+.easter-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+}
+.easter-drawer-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.easter-drawer-close {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 6px;
+}
+.easter-drawer-close:hover {
+    color: #fff;
+}
+.easter-pill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+}
+.easter-pill-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+.easter-pill-card:hover {
+    border-color: #38bdf8;
+    background: #273549;
+    transform: translateY(-2px);
+}
+.easter-pill-card-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.easter-pill-card-code {
+    font-family: monospace;
+    font-size: 0.75rem;
+    background: #0f172a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #38bdf8;
+}
+.easter-pill-card-desc {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.35;
+}
+.easter-pill-launch-btn {
+    margin-top: 4px;
+    background: #0284c7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    align-self: flex-start;
+    cursor: pointer;
+}
+.easter-pill-card:hover .easter-pill-launch-btn {
+    background: #38bdf8;
+    color: #0f172a;
+}
+.search-easter-egg-card {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border: 2px solid #38bdf8;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 12px 0 20px;
+    color: #f8fafc;
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.25);
+    text-align: left;
+}

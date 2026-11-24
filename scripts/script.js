@@ -1573,7 +1573,7 @@
 			analogy: "A choir director listening to a rehearsal who completely ignores the singer's deep breath intakes, throat clearings, and shoe scuffs on the floor, and only writes down notes on the sheet music when a true, resonant vocal singing pitch begins.",
 			techFact: "Mathematical confidence filters in audio-to-MIDI converters (such as Spotify Basic Pitch) that require energy and pitch probabilities to cross strict thresholds before registering a note onset."
 		},
-		"		"anti-stutter-debouncing": {
+				"anti-stutter-debouncing": {
 			title: "Anti-Stutter Note Debouncing (The Singer's Held Breath)",
 			analogy: "A singer singing a long, beautiful vowel naturally wavers their voice slightly like a candle flame; instead of a nervous pianist tapping the key six times in a row like Morse code, debouncing tells the pianist to keep their finger pressed firmly down for the whole note.",
 			techFact: "Merging contiguous note events sharing identical MIDI pitch numbers within 160ms delta thresholds prevents vibrato micro-modulations from re-triggering rapid mechanical acoustic piano hammer strikes."
@@ -1588,7 +1588,7 @@
 			analogy: "A live band where the sound technician promises never to push down the drums and bass faders every time the lead singer steps up to the microphone, so the backing groove keeps its full power from start to finish.",
 			techFact: "Configuring FFmpeg amix with normalize=0 and a peak limiter (alimiter=limit=0.96) prevents automatic input stream scaling from halving the backing track volume whenever a lead melody track is present."
 		},
-torchsde-brownian-recursion": {
+		"torchsde-brownian-recursion": {
 			title: "torchsde Brownian Interval Recursion (The Infinite Search in the Wrong Drawer)",
 			analogy: "Looking through a cabinet of drawers labeled strictly 1 to 50 for a document filed under drawer #0. Instead of stopping and saying 'that drawer doesn't exist,' an overzealous assistant keeps slicing drawer #1 into thinner and thinner half-inch slices over a thousand times until they collapse from total exhaustion.",
 			techFact: "When a stochastic SDE noise sampler is queried outside its allocated boundary [sigma_min, sigma_max], the Brownian interval tree recursively splits its left-child intervals in an infinite descent, rapidly exceeding Python's sys.getrecursionlimit() and throwing a fatal RecursionError."
@@ -3872,6 +3872,12 @@ torchsde-brownian-recursion": {
 				} else if (buffer.endsWith("500t")) {
 					buffer = "";
 					triggerAntigravity500TMilestone();
+				} else if (buffer.endsWith("mac")) {
+					buffer = "";
+					triggerMac1984();
+				} else if (buffer.endsWith("christmas") || buffer.endsWith("xmas")) {
+					buffer = "";
+					triggerChristmasTheme();
 				}
 			}
 		});
@@ -4534,6 +4540,349 @@ torchsde-brownian-recursion": {
 
 			requestAnimationFrame(animateZeroG);
 		}
+
+		// 7. 1984 Macintosh 128K Unveiling & Animated "hello." [MAC]
+		function triggerMac1984() {
+			// Web Audio 1984 Macintosh startup chord synthesis (F# major triad)
+			try {
+				var AudioCtx = window.AudioContext || window.webkitAudioContext;
+				if (AudioCtx) {
+					var actx = new AudioCtx();
+					var chordFreqs = [185.00, 233.08, 277.18, 369.99]; // F#3, A#3, C#4, F#4
+					chordFreqs.forEach(function (freq) {
+						var osc = actx.createOscillator();
+						var gain = actx.createGain();
+						var filter = actx.createBiquadFilter();
+						osc.type = "sawtooth";
+						filter.type = "lowpass";
+						filter.frequency.setValueAtTime(850, actx.currentTime);
+						filter.frequency.exponentialRampToValueAtTime(250, actx.currentTime + 1.8);
+						osc.frequency.setValueAtTime(freq, actx.currentTime);
+						gain.gain.setValueAtTime(0, actx.currentTime);
+						gain.gain.linearRampToValueAtTime(0.09, actx.currentTime + 0.04);
+						gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 2.1);
+						osc.connect(filter);
+						filter.connect(gain);
+						gain.connect(actx.destination);
+						osc.start(actx.currentTime);
+						osc.stop(actx.currentTime + 2.2);
+					});
+				}
+			} catch (e) {}
+
+			var overlay = document.createElement("div");
+			overlay.className = "mac-1984-overlay";
+
+			var card = document.createElement("div");
+			card.className = "mac-1984-card";
+
+			card.innerHTML = [
+				'<div class="mac-1984-bezel">',
+				'  <div class="mac-crt-frame">',
+				'    <div class="mac-crt-screen">',
+				'      <div class="mac-crt-scanlines"></div>',
+				'      <!-- Susan Kare Pixel Art Happy Mac -->',
+				'      <svg class="mac-happy-icon" viewBox="0 0 24 24" width="28" height="28">',
+				'        <rect x="2" y="2" width="20" height="20" rx="3" fill="#e2dacb" stroke="#000" stroke-width="1.5"/>',
+				'        <rect x="6" y="7" width="2.5" height="3" fill="#000"/>',
+				'        <rect x="15.5" y="7" width="2.5" height="3" fill="#000"/>',
+				'        <line x1="12" y1="11" x2="12" y2="13.5" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>',
+				'        <path d="M 6.5 16 Q 12 20 17.5 16" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>',
+				'      </svg>',
+				'      <!-- Authentic Cursive "hello." SVG stroke animation -->',
+				'      <svg class="mac-hello-svg" viewBox="0 0 320 140">',
+				'        <path class="mac-hello-stroke" d="M 32 105 C 32 65 42 22 55 22 C 65 22 58 75 52 110 M 52 75 C 64 52 88 52 92 78 C 94 96 90 110 90 110 M 90 98 C 93 82 112 80 118 92 C 122 104 108 112 100 110 C 96 110 112 110 125 104 M 125 104 C 132 85 146 22 156 22 C 164 22 156 75 150 110 M 150 104 C 158 85 172 22 182 22 C 190 22 182 75 176 110 M 176 98 C 182 82 202 80 210 92 C 218 104 212 112 202 112 C 192 112 186 100 196 90 C 206 80 226 94 234 98 M 245 108 A 4 4 0 1 1 245 107.9 Z"/>',
+				'      </svg>',
+				'    </div>',
+				'  </div>',
+				'  <div class="mac-floppy-slot"></div>',
+				'  <!-- Classic 6-Color Rainbow Apple Logo -->',
+				'  <svg class="mac-apple-rainbow" viewBox="0 0 170 170">',
+				'    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.73-11.65-14.07-5.99-9.35-10.74-20.08-14.24-32.18-3.51-12.1-5.26-23.78-5.26-35.04 0-14.58 3.51-26.69 10.53-36.33 7.02-9.64 16.03-14.58 27.02-14.82 4.47 0 9.73 1.25 15.77 3.76 6.05 2.51 9.87 3.82 11.47 3.93 1.48-.11 5.37-1.42 11.68-3.93 6.31-2.51 11.42-3.71 15.34-3.6 10.79.48 19.49 4.84 26.11 13.07-9.59 5.8-14.28 14.15-14.07 25.04.22 9.04 3.69 16.59 10.41 22.65 6.72 6.05 14.81 9.42 24.28 10.09-2.23 6.64-4.84 13.25-7.85 19.85z" fill="#61bb46"/>',
+				'  </svg>',
+				'</div>',
+				'<div class="mac-tagline">&ldquo;The computer for the rest of us.&rdquo;</div>',
+				'<div class="mac-subline">January 24, 1984 &bull; Flint Center, Cupertino</div>'
+			].join("");
+
+			overlay.appendChild(card);
+			document.body.appendChild(overlay);
+
+			// Force reflow and show
+			setTimeout(function () {
+				overlay.classList.add("show");
+			}, 30);
+
+			var startTime = performance.now();
+
+			function animateMac(now) {
+				var t = (now - startTime) / 1000;
+				if (t < 0.7) {
+					var p = t / 0.7;
+					var ease = 1 - Math.pow(1 - p, 3);
+					card.style.transform = "scale(" + (0.8 + ease * 0.2) + ") translateY(" + ((1 - ease) * 40) + "px)";
+					card.style.opacity = ease;
+				} else if (t < 4.0) {
+					var floatY = Math.sin((t - 0.7) * 2.2) * 3;
+					card.style.transform = "translateY(" + floatY + "px) scale(1)";
+					card.style.opacity = "1";
+				} else if (t < 4.8) {
+					var exitP = (t - 4.0) / 0.8;
+					var exitEase = Math.pow(exitP, 2);
+					card.style.transform = "scale(" + (1 - exitEase * 0.15) + ") translateY(" + (exitEase * -35) + "px)";
+					card.style.opacity = Math.max(0, 1 - exitP);
+					overlay.style.opacity = Math.max(0, 1 - exitP);
+				} else {
+					if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+					return;
+				}
+				requestAnimationFrame(animateMac);
+			}
+
+			requestAnimationFrame(animateMac);
+		}
+
+		// 8. Christmas Theme & Falling Snow [CHRISTMAS]
+		var snowAnimId = null;
+		var snowCanvas = null;
+
+		function showChristmasToast(msg) {
+			var oldToast = document.querySelector(".christmas-toast-banner");
+			if (oldToast && oldToast.parentNode) oldToast.parentNode.removeChild(oldToast);
+
+			var toast = document.createElement("div");
+			toast.className = "christmas-toast-banner";
+			toast.innerHTML = msg;
+			document.body.appendChild(toast);
+
+			setTimeout(function () {
+				toast.classList.add("show");
+			}, 30);
+
+			setTimeout(function () {
+				toast.classList.remove("show");
+				setTimeout(function () {
+					if (toast.parentNode) toast.parentNode.removeChild(toast);
+				}, 500);
+			}, 4500);
+		}
+
+		function startSnowfall() {
+			if (snowCanvas) return;
+
+			snowCanvas = document.createElement("canvas");
+			snowCanvas.id = "christmas-snow-canvas";
+			document.body.appendChild(snowCanvas);
+
+			var ctx = snowCanvas.getContext("2d");
+			var width = (snowCanvas.width = window.innerWidth);
+			var height = (snowCanvas.height = window.innerHeight);
+
+			window.addEventListener("resize", function () {
+				if (!snowCanvas) return;
+				width = snowCanvas.width = window.innerWidth;
+				height = snowCanvas.height = window.innerHeight;
+			});
+
+			var flakes = [];
+			var numFlakes = 60;
+			for (var i = 0; i < numFlakes; i++) {
+				flakes.push({
+					x: Math.random() * width,
+					y: Math.random() * height,
+					radius: 1.4 + Math.random() * 2.8,
+					speedY: 0.6 + Math.random() * 1.6,
+					speedX: (Math.random() - 0.5) * 0.6,
+					wobble: Math.random() * Math.PI * 2,
+					wobbleSpeed: 0.015 + Math.random() * 0.02,
+					opacity: 0.55 + Math.random() * 0.4,
+					color: (Math.random() > 0.4) ? "224, 242, 254" : "186, 230, 253" // lightly light blue snow
+				});
+			}
+
+			function renderSnow() {
+				if (!snowCanvas) return;
+				ctx.clearRect(0, 0, width, height);
+
+				flakes.forEach(function (f) {
+					f.y += f.speedY;
+					f.wobble += f.wobbleSpeed;
+					f.x += f.speedX + Math.sin(f.wobble) * 0.7;
+
+					if (f.y > height + 10) {
+						f.y = -10;
+						f.x = Math.random() * width;
+					}
+					if (f.x > width + 10) f.x = -10;
+					if (f.x < -10) f.x = width + 10;
+
+					ctx.fillStyle = "rgba(" + f.color + ", " + f.opacity.toFixed(2) + ")";
+					ctx.beginPath();
+					ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+					ctx.fill();
+				});
+
+				snowAnimId = requestAnimationFrame(renderSnow);
+			}
+
+			snowAnimId = requestAnimationFrame(renderSnow);
+		}
+
+		function stopSnowfall() {
+			if (snowAnimId) {
+				cancelAnimationFrame(snowAnimId);
+				snowAnimId = null;
+			}
+			if (snowCanvas && snowCanvas.parentNode) {
+				snowCanvas.parentNode.removeChild(snowCanvas);
+				snowCanvas = null;
+			}
+		}
+
+		function triggerChristmasTheme(forceState) {
+			var isCurrentActive = document.body.classList.contains("christmas-theme");
+
+			if (forceState === true || (!isCurrentActive && forceState !== false)) {
+				// Turn ON
+				document.body.classList.add("christmas-theme");
+				document.documentElement.classList.add("christmas-theme");
+				try {
+					sessionStorage.setItem("portfolio_christmas_theme", "1");
+				} catch (e) {}
+				startSnowfall();
+				showChristmasToast("🎄 <strong>Christmas Mode Activated!</strong> Blues converted to evergreen, accents to berry red, and gentle snow is falling. <em>(Type &lsquo;christmas&rsquo; again to turn off)</em>");
+			} else {
+				// Turn OFF
+				document.body.classList.remove("christmas-theme");
+				document.documentElement.classList.remove("christmas-theme");
+				try {
+					sessionStorage.removeItem("portfolio_christmas_theme");
+				} catch (e) {}
+				stopSnowfall();
+				showChristmasToast("❄️ <strong>Christmas Mode Deactivated.</strong> Standard portfolio theme restored.");
+			}
+		}
+
+		// Restore Christmas theme from sessionStorage across navigation
+		try {
+			if (sessionStorage.getItem("portfolio_christmas_theme") === "1") {
+				document.body.classList.add("christmas-theme");
+				document.documentElement.classList.add("christmas-theme");
+				startSnowfall();
+			}
+		} catch (e) {}
+
+		// Unified Global Easter Egg Dispatcher API
+		window.PortfolioEasterEggs = {
+			trigger: function (name) {
+				var key = (name || "").toLowerCase().trim();
+				if (key === "andrew") { triggerFaviconExplosion(); return true; }
+				if (key === "apple") { triggerAppleRain(); return true; }
+				if (key === "windows") { triggerWindowsZoom(); return true; }
+				if (key === "android") { triggerAndroidSurprise(); return true; }
+				if (key === "iphone") { triggerIphoneEntrance(); return true; }
+				if (key === "500t" || key === "500 tasks") { triggerAntigravity500TMilestone(); return true; }
+				if (key === "mac" || key === "macintosh" || key === "1984") { triggerMac1984(); return true; }
+				if (key === "christmas" || key === "xmas") { triggerChristmasTheme(); return true; }
+				return false;
+			},
+			list: [
+				{ id: "christmas", name: "Christmas Mode 🎄", code: "christmas", desc: "Evergreen & festive red palette inversion with light-blue snowfall (Toggles on/off)" },
+				{ id: "mac", name: "Macintosh 1984 🖥️", code: "mac", desc: "1984 Macintosh 128K unveiling, CRT phosphor 'hello.', Happy Mac & startup chime" },
+				{ id: "andrew", name: "Andrew Logo Blast 🚀", code: "andrew", desc: "Radial particle fireworks explosion of website logo" },
+				{ id: "500t", name: "500 Tasks Milestone 🏆", code: "500t", desc: "Antigravity CLI zero-G confetti celebration & celebratory synth arpeggio" },
+				{ id: "iphone", name: "iPhone 2007 📱", code: "iphone", desc: "Steve Jobs keynote tribute & classic original iPhone silhouette" },
+				{ id: "apple", name: "Apple Rain 🍎", code: "apple", desc: "Cascading apples, green apples & 1984 monospace rain" },
+				{ id: "windows", name: "Windows 10 🪟", code: "windows", desc: "Expanding illuminated Windows 10 logo zoom & fade" },
+				{ id: "android", name: "Android Bugdroid 🤖", code: "android", desc: "Bugdroid backflip with sweet dessert shower" }
+			]
+		};
+
+		// 9. Footer Secrets & Easter Eggs Discovery Drawer
+		function initFooterEasterEggDiscovery() {
+			var footer = document.querySelector("footer");
+			if (!footer || document.getElementById("footer-easter-egg-btn")) return;
+
+			var btn = document.createElement("button");
+			btn.type = "button";
+			btn.id = "footer-easter-egg-btn";
+			btn.className = "footer-easter-egg-btn";
+			btn.setAttribute("aria-label", "Explore interactive secrets & easter eggs");
+			btn.innerHTML = '🎁 Secrets &amp; Easter Eggs <span class="egg-count-badge">8</span>';
+
+			footer.appendChild(btn);
+
+			// Modal Backdrop & Drawer
+			var backdrop = document.createElement("div");
+			backdrop.className = "easter-drawer-backdrop";
+			backdrop.id = "easter-drawer-backdrop";
+
+			var modal = document.createElement("div");
+			modal.className = "easter-drawer-modal";
+
+			var headerHtml = [
+				'<div class="easter-drawer-header">',
+				'  <div>',
+				'    <h3>🎁 Secrets &amp; Easter Eggs</h3>',
+				'    <p style="margin:4px 0 0; font-size:0.85rem; color:#94a3b8;">Type any keyword anywhere on desktop, search for it in the search bar, or tap a pill below to launch on mobile:</p>',
+				'  </div>',
+				'  <button type="button" class="easter-drawer-close" aria-label="Close dialog">&times;</button>',
+				'</div>'
+			].join("");
+
+			var pillsHtml = window.PortfolioEasterEggs.list.map(function (item) {
+				return [
+					'<div class="easter-pill-card" data-code="' + item.code + '">',
+					'  <div class="easter-pill-card-title">',
+					'    <span>' + item.name + '</span>',
+					'    <span class="easter-pill-card-code">' + item.code + '</span>',
+					'  </div>',
+					'  <div class="easter-pill-card-desc">' + item.desc + '</div>',
+					'  <button type="button" class="easter-pill-launch-btn">Launch &rarr;</button>',
+					'</div>'
+				].join("");
+			}).join("");
+
+			modal.innerHTML = headerHtml + '<div class="easter-pill-grid">' + pillsHtml + '</div>';
+			backdrop.appendChild(modal);
+			document.body.appendChild(backdrop);
+
+			function openDrawer() {
+				backdrop.classList.add("active");
+			}
+
+			function closeDrawer() {
+				backdrop.classList.remove("active");
+			}
+
+			btn.addEventListener("click", openDrawer);
+
+			var closeBtn = modal.querySelector(".easter-drawer-close");
+			if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+
+			backdrop.addEventListener("click", function (e) {
+				if (e.target === backdrop) closeDrawer();
+			});
+
+			window.addEventListener("keydown", function (e) {
+				if (e.key === "Escape" && backdrop.classList.contains("active")) {
+					closeDrawer();
+				}
+			});
+
+			modal.querySelectorAll(".easter-pill-card").forEach(function (card) {
+				card.addEventListener("click", function () {
+					var code = card.getAttribute("data-code");
+					closeDrawer();
+					setTimeout(function () {
+						window.PortfolioEasterEggs.trigger(code);
+					}, 180);
+				});
+			});
+		}
+
+		initFooterEasterEggDiscovery();
+
 	}
 
 	function initialize() {
