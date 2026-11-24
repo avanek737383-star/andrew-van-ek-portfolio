@@ -7731,7 +7731,7 @@ body.valentines-theme .portfolio-phone-toggle {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 999997;
+    z-index: 1000; /* Falls on top of background & cards (1), behind sticky navbar (10000) and modals */
     overflow: hidden;
 }
 
@@ -7933,6 +7933,19 @@ body.valentines-theme .portfolio-phone-toggle {
     margin-top: 10px;
     font-family: inherit;
 }
+
+@media (min-width: 769px) {
+    .footer-easter-egg-btn,
+    #footer-easter-egg-btn {
+        display: none !important;
+    }
+}
+@media (max-width: 768px) {
+    .footer-easter-egg-btn,
+    #footer-easter-egg-btn {
+        display: inline-flex !important;
+    }
+}
 .footer-easter-egg-btn:hover {
     background: #002d5a;
     color: #ffffff;
@@ -8087,4 +8100,488 @@ body.valentines-theme .portfolio-phone-toggle {
     color: #f8fafc;
     box-shadow: 0 4px 20px rgba(56, 189, 248, 0.25);
     text-align: left;
+}
+
+
+/* ==========================================================================
+   Comprehensive Seasonal Theming Overhaul (Dropdowns, Search, Chat & Telemetry)
+   ========================================================================== */
+
+/* --- 1. Thanksgiving Harvest Theming Overrides --- */
+body.thanksgiving-theme .nav-dropdown-menu {
+    background: #2d1302 !important;
+    border: 1px solid rgba(217, 119, 6, 0.45) !important;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+body.thanksgiving-theme .nav-dropdown-menu li a {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+body.thanksgiving-theme .nav-dropdown-menu li a:hover,
+body.thanksgiving-theme .nav-dropdown-menu li a:focus-visible {
+    background: #b45309 !important;
+    color: #ffffff !important;
+}
+body.thanksgiving-theme .nav-dropdown-menu li a[aria-current="page"] {
+    background: rgba(217, 119, 6, 0.35) !important;
+    color: #fbbf24 !important;
+    border-left: 3px solid #f59e0b !important;
+}
+
+/* Thanksgiving Search Box & Modal */
+body.thanksgiving-theme .search-input-inner:focus-within,
+body.thanksgiving-theme .search-modal-input-wrap {
+    border-color: #d97706 !important;
+    box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.2) !important;
+}
+body.thanksgiving-theme .search-modal-icon,
+body.thanksgiving-theme .search-input-svg,
+body.thanksgiving-theme .nav-mobile-search-btn {
+    color: #d97706 !important;
+}
+
+/* Thanksgiving Search Results, Pills & Suggestions */
+body.thanksgiving-theme .search-page-pill.active {
+    background: #b45309 !important;
+    border-color: #b45309 !important;
+    color: #ffffff !important;
+}
+body.thanksgiving-theme .search-page-pill:hover {
+    border-color: #d97706 !important;
+    color: #b45309 !important;
+}
+body.thanksgiving-theme .search-suggestion-btn {
+    color: #92400e !important;
+    border-color: #fde68a !important;
+    background: #fef3c7 !important;
+}
+body.thanksgiving-theme .search-suggestion-btn:hover {
+    background: #fde68a !important;
+    border-color: #d97706 !important;
+    color: #78350f !important;
+}
+body.thanksgiving-theme .search-card-jump-btn {
+    color: #b45309 !important;
+}
+body.thanksgiving-theme .search-card-jump-btn:hover {
+    background: #fef3c7 !important;
+    color: #78350f !important;
+}
+body.thanksgiving-theme .search-card:hover {
+    border-color: #d97706 !important;
+    box-shadow: 0 6px 16px rgba(217, 119, 6, 0.15) !important;
+}
+body.thanksgiving-theme .search-card-title a:hover {
+    color: #d97706 !important;
+}
+
+/* Thanksgiving Ask Nemo AI Chat */
+body.thanksgiving-theme .portfolio-chat-toggle {
+    background: #b45309 !important;
+    border: 1px solid #d97706 !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 18px rgba(180, 83, 9, 0.35) !important;
+}
+body.thanksgiving-theme .portfolio-chat-toggle:hover {
+    background: #92400e !important;
+}
+body.thanksgiving-theme .portfolio-chat-header {
+    background: #2d1302 !important;
+    border-bottom: 2px solid #d97706 !important;
+}
+body.thanksgiving-theme .portfolio-chat-header span {
+    color: #fde68a !important;
+}
+body.thanksgiving-theme .chat-toggle-hint {
+    background: #2d1302 !important;
+    border-color: #d97706 !important;
+    color: #fef3c7 !important;
+}
+body.thanksgiving-theme .chat-toggle-hint::after {
+    border-color: #d97706 transparent transparent transparent !important;
+}
+
+/* Thanksgiving Heatmap, Donut Chart & Telemetry Cards */
+body.thanksgiving-theme .geo-map-panel {
+    background: #200d02 !important;
+    border-color: rgba(217, 119, 6, 0.4) !important;
+}
+body.thanksgiving-theme .geo-map-title,
+body.thanksgiving-theme .geo-chart-title {
+    color: #d97706 !important;
+}
+body.thanksgiving-theme .geo-pulse-dot {
+    background: #f59e0b !important;
+    box-shadow: 0 0 8px #f59e0b !important;
+}
+body.thanksgiving-theme .geo-land-na,
+body.thanksgiving-theme #donut-slice-na {
+    fill: #d97706 !important;
+    stroke: #fbbf24 !important;
+}
+body.thanksgiving-theme .geo-land-na {
+    filter: drop-shadow(0 0 10px rgba(217, 119, 6, 0.7)) !important;
+}
+body.thanksgiving-theme .geo-dot-na {
+    background: #d97706 !important;
+}
+body.thanksgiving-theme .geo-legend-gradient {
+    background: linear-gradient(90deg, #451a03 0%, #78350f 30%, #b45309 60%, #d97706 85%, #f59e0b 100%) !important;
+}
+body.thanksgiving-theme .geo-donut-center strong {
+    color: #78350f !important;
+}
+body.thanksgiving-theme .geo-breakdown-stat {
+    color: #78350f !important;
+}
+body.thanksgiving-theme .geo-breakdown-item:hover,
+body.thanksgiving-theme .geo-breakdown-item.active {
+    background: #fef3c7 !important;
+}
+body.thanksgiving-theme .geo-chart-panel {
+    border-color: rgba(217, 119, 6, 0.3) !important;
+}
+body.thanksgiving-theme .telemetry-card:hover {
+    border-color: #d97706 !important;
+    box-shadow: 0 8px 22px rgba(180, 83, 9, 0.12) !important;
+}
+body.thanksgiving-theme .telemetry-icon-box {
+    background: #fef3c7 !important;
+    color: #b45309 !important;
+}
+body.thanksgiving-theme .telemetry-chip {
+    background: #fef3c7 !important;
+    border-color: #fde68a !important;
+    color: #92400e !important;
+}
+body.thanksgiving-theme .geo-map-reset-btn {
+    background: rgba(217, 119, 6, 0.15) !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
+    color: #f59e0b !important;
+}
+body.thanksgiving-theme .geo-map-reset-btn:hover {
+    background: rgba(217, 119, 6, 0.35) !important;
+    border-color: #f59e0b !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4) !important;
+}
+
+
+/* --- 2. Christmas & Winter Theming Overrides --- */
+body.christmas-theme .nav-dropdown-menu {
+    background: #043327 !important;
+    border: 1px solid rgba(34, 197, 94, 0.45) !important;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+body.christmas-theme .nav-dropdown-menu li a {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+body.christmas-theme .nav-dropdown-menu li a:hover,
+body.christmas-theme .nav-dropdown-menu li a:focus-visible {
+    background: #15803d !important;
+    color: #ffffff !important;
+}
+body.christmas-theme .nav-dropdown-menu li a[aria-current="page"] {
+    background: rgba(34, 197, 94, 0.35) !important;
+    color: #86efac !important;
+    border-left: 3px solid #22c55e !important;
+}
+
+/* Christmas Search Box & Modal */
+body.christmas-theme .search-input-inner:focus-within,
+body.christmas-theme .search-modal-input-wrap {
+    border-color: #16a34a !important;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2) !important;
+}
+body.christmas-theme .search-modal-icon,
+body.christmas-theme .search-input-svg,
+body.christmas-theme .nav-mobile-search-btn {
+    color: #16a34a !important;
+}
+
+/* Christmas Search Results, Pills & Suggestions */
+body.christmas-theme .search-page-pill.active {
+    background: #15803d !important;
+    border-color: #15803d !important;
+    color: #ffffff !important;
+}
+body.christmas-theme .search-page-pill:hover {
+    border-color: #16a34a !important;
+    color: #15803d !important;
+}
+body.christmas-theme .search-suggestion-btn {
+    color: #166534 !important;
+    border-color: #bbf7d0 !important;
+    background: #f0fdf4 !important;
+}
+body.christmas-theme .search-suggestion-btn:hover {
+    background: #dcfce7 !important;
+    border-color: #16a34a !important;
+    color: #14532d !important;
+}
+body.christmas-theme .search-card-jump-btn {
+    color: #15803d !important;
+}
+body.christmas-theme .search-card-jump-btn:hover {
+    background: #f0fdf4 !important;
+    color: #14532d !important;
+}
+body.christmas-theme .search-card:hover {
+    border-color: #16a34a !important;
+    box-shadow: 0 6px 16px rgba(22, 163, 74, 0.15) !important;
+}
+body.christmas-theme .search-card-title a:hover {
+    color: #16a34a !important;
+}
+
+/* Christmas Ask Nemo AI Chat */
+body.christmas-theme .portfolio-chat-toggle {
+    background: #15803d !important;
+    border: 1px solid #22c55e !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 18px rgba(21, 128, 61, 0.35) !important;
+}
+body.christmas-theme .portfolio-chat-toggle:hover {
+    background: #166534 !important;
+}
+body.christmas-theme .portfolio-chat-header {
+    background: #043327 !important;
+    border-bottom: 2px solid #22c55e !important;
+}
+body.christmas-theme .portfolio-chat-header span {
+    color: #bbf7d0 !important;
+}
+body.christmas-theme .chat-toggle-hint {
+    background: #043327 !important;
+    border-color: #22c55e !important;
+    color: #f0fdf4 !important;
+}
+body.christmas-theme .chat-toggle-hint::after {
+    border-color: #22c55e transparent transparent transparent !important;
+}
+
+/* Christmas Heatmap, Donut Chart & Telemetry Cards */
+body.christmas-theme .geo-map-panel {
+    background: #02241b !important;
+    border-color: rgba(34, 197, 94, 0.4) !important;
+}
+body.christmas-theme .geo-map-title,
+body.christmas-theme .geo-chart-title {
+    color: #22c55e !important;
+}
+body.christmas-theme .geo-pulse-dot {
+    background: #4ade80 !important;
+    box-shadow: 0 0 8px #4ade80 !important;
+}
+body.christmas-theme .geo-land-na,
+body.christmas-theme #donut-slice-na {
+    fill: #15803d !important;
+    stroke: #4ade80 !important;
+}
+body.christmas-theme .geo-land-na {
+    filter: drop-shadow(0 0 10px rgba(22, 163, 74, 0.7)) !important;
+}
+body.christmas-theme .geo-dot-na {
+    background: #15803d !important;
+}
+body.christmas-theme .geo-legend-gradient {
+    background: linear-gradient(90deg, #064e3b 0%, #047857 30%, #059669 60%, #10b981 85%, #34d399 100%) !important;
+}
+body.christmas-theme .geo-donut-center strong {
+    color: #14532d !important;
+}
+body.christmas-theme .geo-breakdown-stat {
+    color: #14532d !important;
+}
+body.christmas-theme .geo-breakdown-item:hover,
+body.christmas-theme .geo-breakdown-item.active {
+    background: #f0fdf4 !important;
+}
+body.christmas-theme .geo-chart-panel {
+    border-color: rgba(34, 197, 94, 0.3) !important;
+}
+body.christmas-theme .telemetry-card:hover {
+    border-color: #16a34a !important;
+    box-shadow: 0 8px 22px rgba(22, 163, 74, 0.12) !important;
+}
+body.christmas-theme .telemetry-icon-box {
+    background: #f0fdf4 !important;
+    color: #15803d !important;
+}
+body.christmas-theme .telemetry-chip {
+    background: #f0fdf4 !important;
+    border-color: #bbf7d0 !important;
+    color: #166534 !important;
+}
+body.christmas-theme .geo-map-reset-btn {
+    background: rgba(34, 197, 94, 0.15) !important;
+    border-color: rgba(74, 222, 128, 0.5) !important;
+    color: #4ade80 !important;
+}
+body.christmas-theme .geo-map-reset-btn:hover {
+    background: rgba(34, 197, 94, 0.35) !important;
+    border-color: #4ade80 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.4) !important;
+}
+
+
+/* --- 3. Valentine's Day Theming Overrides --- */
+body.valentines-theme .nav-dropdown-menu {
+    background: #3b0413 !important;
+    border: 1px solid rgba(244, 63, 94, 0.45) !important;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+body.valentines-theme .nav-dropdown-menu li a {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+body.valentines-theme .nav-dropdown-menu li a:hover,
+body.valentines-theme .nav-dropdown-menu li a:focus-visible {
+    background: #e11d48 !important;
+    color: #ffffff !important;
+}
+body.valentines-theme .nav-dropdown-menu li a[aria-current="page"] {
+    background: rgba(244, 63, 94, 0.35) !important;
+    color: #fda4af !important;
+    border-left: 3px solid #f43f5e !important;
+}
+
+/* Valentine Search Box & Modal */
+body.valentines-theme .search-input-inner:focus-within,
+body.valentines-theme .search-modal-input-wrap {
+    border-color: #e11d48 !important;
+    box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.2) !important;
+}
+body.valentines-theme .search-modal-icon,
+body.valentines-theme .search-input-svg,
+body.valentines-theme .nav-mobile-search-btn {
+    color: #e11d48 !important;
+}
+
+/* Valentine Search Results, Pills & Suggestions */
+body.valentines-theme .search-page-pill.active {
+    background: #e11d48 !important;
+    border-color: #e11d48 !important;
+    color: #ffffff !important;
+}
+body.valentines-theme .search-page-pill:hover {
+    border-color: #f43f5e !important;
+    color: #e11d48 !important;
+}
+body.valentines-theme .search-suggestion-btn {
+    color: #9f1239 !important;
+    border-color: #fecdd3 !important;
+    background: #fff1f2 !important;
+}
+body.valentines-theme .search-suggestion-btn:hover {
+    background: #ffe4e6 !important;
+    border-color: #e11d48 !important;
+    color: #881337 !important;
+}
+body.valentines-theme .search-card-jump-btn {
+    color: #e11d48 !important;
+}
+body.valentines-theme .search-card-jump-btn:hover {
+    background: #fff1f2 !important;
+    color: #881337 !important;
+}
+body.valentines-theme .search-card:hover {
+    border-color: #e11d48 !important;
+    box-shadow: 0 6px 16px rgba(225, 29, 72, 0.15) !important;
+}
+body.valentines-theme .search-card-title a:hover {
+    color: #e11d48 !important;
+}
+
+/* Valentine Ask Nemo AI Chat */
+body.valentines-theme .portfolio-chat-toggle {
+    background: #e11d48 !important;
+    border: 1px solid #fb7185 !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 18px rgba(225, 29, 72, 0.35) !important;
+}
+body.valentines-theme .portfolio-chat-toggle:hover {
+    background: #be123c !important;
+}
+body.valentines-theme .portfolio-chat-header {
+    background: #3b0413 !important;
+    border-bottom: 2px solid #fb7185 !important;
+}
+body.valentines-theme .portfolio-chat-header span {
+    color: #fecdd3 !important;
+}
+body.valentines-theme .chat-toggle-hint {
+    background: #3b0413 !important;
+    border-color: #fb7185 !important;
+    color: #fff1f2 !important;
+}
+body.valentines-theme .chat-toggle-hint::after {
+    border-color: #fb7185 transparent transparent transparent !important;
+}
+
+/* Valentine Heatmap, Donut Chart & Telemetry Cards */
+body.valentines-theme .geo-map-panel {
+    background: #2a030c !important;
+    border-color: rgba(244, 63, 94, 0.4) !important;
+}
+body.valentines-theme .geo-map-title,
+body.valentines-theme .geo-chart-title {
+    color: #f43f5e !important;
+}
+body.valentines-theme .geo-pulse-dot {
+    background: #fb7185 !important;
+    box-shadow: 0 0 8px #fb7185 !important;
+}
+body.valentines-theme .geo-land-na,
+body.valentines-theme #donut-slice-na {
+    fill: #e11d48 !important;
+    stroke: #fb7185 !important;
+}
+body.valentines-theme .geo-land-na {
+    filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.7)) !important;
+}
+body.valentines-theme .geo-dot-na {
+    background: #e11d48 !important;
+}
+body.valentines-theme .geo-legend-gradient {
+    background: linear-gradient(90deg, #4c0519 0%, #881337 30%, #be123c 60%, #e11d48 85%, #fb7185 100%) !important;
+}
+body.valentines-theme .geo-donut-center strong {
+    color: #881337 !important;
+}
+body.valentines-theme .geo-breakdown-stat {
+    color: #881337 !important;
+}
+body.valentines-theme .geo-breakdown-item:hover,
+body.valentines-theme .geo-breakdown-item.active {
+    background: #fff1f2 !important;
+}
+body.valentines-theme .geo-chart-panel {
+    border-color: rgba(244, 63, 94, 0.3) !important;
+}
+body.valentines-theme .telemetry-card:hover {
+    border-color: #e11d48 !important;
+    box-shadow: 0 8px 22px rgba(225, 29, 72, 0.12) !important;
+}
+body.valentines-theme .telemetry-icon-box {
+    background: #fff1f2 !important;
+    color: #e11d48 !important;
+}
+body.valentines-theme .telemetry-chip {
+    background: #fff1f2 !important;
+    border-color: #fecdd3 !important;
+    color: #9f1239 !important;
+}
+body.valentines-theme .geo-map-reset-btn {
+    background: rgba(225, 29, 72, 0.15) !important;
+    border-color: rgba(251, 113, 133, 0.5) !important;
+    color: #fb7185 !important;
+}
+body.valentines-theme .geo-map-reset-btn:hover {
+    background: rgba(225, 29, 72, 0.35) !important;
+    border-color: #fb7185 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(251, 113, 133, 0.4) !important;
 }
