@@ -1392,6 +1392,116 @@
 			title: "EXIF Metadata (The Camera's Black Box)",
 			analogy: "Think of it like a receipt printed on the back of every photograph listing the exact camera model, lens shutter speed, f-stop aperture, timestamp, and GPS coordinates where the photographer was standing.",
 			techFact: "Exchangeable Image File Format: a specification embedded in JPEG and TIFF headers that logs camera serial numbers, focal length, exposure time, ISO speed, and date/time."
+		},
+		"apple-silicon-mps": {
+			title: "Apple Silicon Metal (MPS Acceleration)",
+			analogy: "Instead of hiring a single world-class mathematician to do thousands of simple additions one by one with a pencil, handing the calculation sheets to a stadium full of 2,000 high school students who all solve their one assigned math problem at the exact same second.",
+			techFact: "Apple's low-level graphics and neural compute framework. Executes high-volume matrix multiplication in parallel across the Mac's integrated GPU cores rather than sequential CPU execution."
+		},
+		"autoregressive-chaining": {
+			title: "Autoregressive Continuation Chaining",
+			analogy: "A group storytelling game around a campfire where each person is only allowed to speak three sentences at a time, but they must listen carefully to the last three words whispered by the person before them so the story stays on the exact same plot.",
+			techFact: "Generating audio piece-by-piece where each new second of sound uses the immediate preceding seconds as acoustic context, ensuring continuous key, tempo, and rhythm across boundaries."
+		},
+		"autoregressive-drift": {
+			title: "Autoregressive Drift (Compounding Token Degradation)",
+			analogy: "The children's game of 'Telephone' or photocopying a photocopy of a photocopy 20 times in a row. By the twentieth copy, tiny invisible specks of dust from the glass turn into huge dark smudges and the text becomes completely unreadable.",
+			techFact: "When a neural network repeatedly predicts future tokens based on its own past imperfect guesses, tiny mathematical rounding errors compound exponentially, eventually dissolving the music into chaotic metallic static."
+		},
+		"unified-memory-architecture": {
+			title: "Unified Memory Architecture (The Shared Kitchen Island)",
+			analogy: "A head chef (CPU) and a pastry decorator (GPU) working at the exact same giant wooden kitchen table. When the chef finishes rolling the dough, they don't pack it into a cooler, load it onto a delivery van, and ship it across town to the decorator's kitchen—the decorator simply reaches across the table and starts piping the icing immediately.",
+			techFact: "Apple Silicon packages the CPU, GPU, and Neural Engine with a single high-bandwidth memory pool, eliminating the latency and power cost of copying gigabytes of AI model weights across PCIe buses."
+		},
+		"diffusion-transformer": {
+			title: "Diffusion Transformer (The Marble Sculptor)",
+			analogy: "A master stone sculptor starting with an ugly, rough slab of jagged white marble. Instead of building a statue out of clay piece by piece, they start with total chaos, squint at the stone, and gently chisel away tiny chips of unwanted dust layer by layer until a smooth, gorgeous musical melody emerges.",
+			techFact: "A generative AI architecture that synthesizes audio or images by starting with pure Gaussian random static and iteratively refining it into coherent sound guided by text prompts and transformer attention."
+		},
+		"torchsde": {
+			title: "Stochastic Differential Equations (torchsde)",
+			analogy: "Steering a kayak down a rushing mountain river full of swirling eddies and crosswinds: you have a general map pointing downstream toward the lake, but at every single paddle stroke you must calculate random water splashes and wind gusts to keep the boat glide smooth and upright.",
+			techFact: "A mathematical solver library in PyTorch that integrates differential equations influenced by random noise, enabling high-quality multi-step diffusion sampling for audio synthesis."
+		},
+		"neural-audio-codec": {
+			title: "Neural Audio Codec (The Shorthand Stenographer)",
+			analogy: "A court stenographer who doesn't write down every single letter of the English alphabet, but uses a special custom shorthand keyboard where a single key combination represents an entire 10-word legal phrase, letting them capture an hour-long trial in a tiny pocket notebook.",
+			techFact: "A deep-learning audio compressor (such as Meta's EnCodec) that condenses raw waveforms into compact integer tokens (codebooks) and decompresses them back into audible sound with minimal file size."
+		},
+		"context-window": {
+			title: "Context Window (The Short-Term Working Memory)",
+			analogy: "An air traffic controller's desktop whiteboard that only has room to write down the call signs of the last 10 airplanes. The moment an 11th plane calls on the radio, the controller must erase the very first flight from the board to make room for the new one.",
+			techFact: "The maximum sequence length an attention mechanism can examine simultaneously. In MusicGen, 2,048 tokens at 50 tokens/second enforces an absolute hard acoustic ceiling of ~40.96 seconds of memory."
+		},
+		"equal-power-crossfade": {
+			title: "Equal-Power Crossfading (The Seamless Relay Handoff)",
+			analogy: "Two Olympic sprinters passing a baton: the incoming runner doesn't drop to a dead stop while the next runner starts from a standstill (which would cause a dip in race momentum). Instead, both runners sprint at top speed side-by-side for 20 meters so the baton never loses a single mile-per-hour of forward energy.",
+			techFact: "Blending two audio waveforms using circular sine and cosine curves (cos²(t) + sin²(t) = 1.0) so the perceived acoustic sound pressure level remains mathematically constant with no dip in volume at the seam."
+		},
+		"de-harshing-filter": {
+			title: "De-Harshing Notch Filter (The Glare Shield)",
+			analogy: "Wearing specialized shooting glasses at an outdoor archery range that tint out only the harsh glare of neon green fluorescent lights while keeping the entire rest of the landscape in bright, natural, vivid color.",
+			techFact: "Targeted bell parametric EQ filters that carve out specific narrow resonant frequencies (such as 3.8 kHz, 7.5 kHz, and 11 kHz) where digital compression artifacts cause ear-piercing metallic whistling."
+		},
+		"haas-spatializer": {
+			title: "Haas Spatializer (The Living Room Acoustic Illusion)",
+			analogy: "Snapping your fingers in a large cathedral: your left ear hears the snap direct from your thumb, while your right ear hears the exact same snap 15 milliseconds later bouncing off the stone wall on your right, instantly tricking your brain into knowing you are in a massive, spacious room.",
+			techFact: "A psychoacoustic trick that delays one stereo channel by 10 to 20 milliseconds relative to the other, creating a wide, immersive three-dimensional stereo image from a mono audio track without phase cancellation."
+		},
+		"gated-model": {
+			title: "Gated Model Authentication (The VIP Membership Badge)",
+			analogy: "Entering a private woodworking workshop where the master carpenter lets anyone use their high-end industrial power tools for free, but you must first sign a safety waiver at the front desk and scan your digital badge at the turnstile.",
+			techFact: "A Hugging Face repository where weights are restricted until a registered user signs the creator's community license terms and presents an authorized API access token (HF_TOKEN) on download."
+		},
+		"transient-cold-start": {
+			title: "Transient Cold-Start Clicks & Micro-Fades",
+			analogy: "Dropping a vinyl record needle straight down onto a spinning turntable with the speakers turned to maximum volume: you get a loud, startling 'THUMP' pop. A micro-fade is like gently raising the volume fader with your fingertips over a third of a second right as the needle meets the groove.",
+			techFact: "A 0.3-second linear volume ramp applied to the beginning of generated audio to prevent the loudspeaker cone from violently jumping from zero to high amplitude, eliminating initial pop clicks."
+		},
+		"true-peak-limiter": {
+			title: "True-Peak Limiter & Loudness Normalization",
+			analogy: "The low ceiling bar hanging over a parking garage entrance: any car under 7 feet passes right through untouched, but if a lifted truck comes barreling through, the bar gently pushes down on the truck's roof so it can never smash into the concrete beams above.",
+			techFact: "A mastering processor that caps audio peaks below 0 dBFS (-1.0 dB True-Peak) to prevent digital inter-sample clipping on smartphone speakers and DACs, while locking overall loudness to streaming standards (-14 LUFS)."
+		},
+		"shell-environment-isolation": {
+			title: "Shell Environment Isolation (.env Ingestion)",
+			analogy: "Entering a sterile medical cleanroom: you cannot bring the dust, lint, or sandwich wrappers from your pockets into the operating theater—the air shower blows everything away so you start completely clean. Loading a .env file is like having a designated locked medicine cabinet inside the cleanroom that holds exactly the sterile tools you need.",
+			techFact: "macOS launches .command desktop shortcuts in a fresh, isolated subshell that ignores variables exported in other open terminal windows. Sourcing a local .env file explicitly restores required environment variables."
+		},
+		"safetensors": {
+			title: "Safetensors Format (The Transparent Storage Bin)",
+			analogy: "Storing screws, bolts, and washers in clear, transparent plastic organizer bins with labeled compartments, instead of baking all your hardware into a giant solid block of wax that you have to melt with a blowtorch every time you want to see what's inside.",
+			techFact: "A secure, modern tensor storage format designed by Hugging Face. Stores raw model weights in a simple contiguous memory layout that prevents malicious code execution and loads in seconds via memory-mapping."
+		},
+		"cas-chunking": {
+			title: "Content-Addressable Storage (CAS Chunking)",
+			analogy: "Ordering an encyclopedia where each individual volume has a unique fingerprint stamped on the spine: 10 mail trucks deliver different chapters at the exact same time to your porch, and you only slide the books onto your shelf once the delivery of every chapter is verified.",
+			techFact: "Splitting large model checkpoint files into independent content-hashed binary blocks downloaded concurrently via parallel HTTP range requests and assembled on disk."
+		},
+		"mmap-zero-copy": {
+			title: "Zero-Copy Memory Mapping (Reading Direct from the Shelf)",
+			analogy: "Opening a giant dictionary while it is still resting on the library shelf and reading the page with your own eyes, rather than photocopying the entire 2,000-page book onto loose paper and carrying the giant stack over to your desk before you can read a single definition.",
+			techFact: "An OS virtual memory mechanism that maps a file on disk directly into the application's virtual address space, allowing instant read access without copying gigabytes into RAM."
+		},
+		"midi-delta-time": {
+			title: "MIDI Delta-Time (The Stopwatch Between Notes)",
+			analogy: "A musical conductor telling a drummer: 'Don't look at the clock on the wall—just count 3 heartbeats after the singer stops, and then hit the cymbal.' If you accidentally erase the 3 heartbeats of silence from the instructions, the drummer hits the cymbal while the singer is still mid-word.",
+			techFact: "Standard MIDI files record elapsed ticks between successive events rather than absolute wall-clock times. Discarding skipped events without preserving their delta times causes subsequent notes to collapse forward prematurely."
+		},
+		"stem-separation": {
+			title: "Audio Stem Separation (Unbaking a Cake)",
+			analogy: "Taking a fully baked chocolate cake and somehow magically pulling out the raw cocoa powder, pure white sugar, cracked eggs, and melted butter back into four separate glass bowls on the counter.",
+			techFact: "Using deep neural networks to isolate mixed stereo music tracks into individual discrete audio stems: isolated vocals, drums, bassline, and other accompaniment."
+		},
+		"soundfonts": {
+			title: "SoundFonts & FluidSynth (The Digital Player Piano)",
+			analogy: "An old-fashioned mechanical player piano that uses a paper roll with punched holes. The paper roll doesn't make any sound by itself—it just tells the piano's felt hammers exactly which physical metal strings to strike and how hard to hit them.",
+			techFact: "A SoundFont (.sf2) contains digital recordings of real acoustic instruments at various pitches and velocities. Software synths (like FluidSynth) read MIDI instructions and trigger the matching samples."
+		},
+		"melodic-thresholding": {
+			title: "Melodic Onset Thresholding (The Discerning Ear)",
+			analogy: "A choir director listening to a rehearsal who completely ignores the singer's deep breath intakes, throat clearings, and shoe scuffs on the floor, and only writes down notes on the sheet music when a true, resonant vocal singing pitch begins.",
+			techFact: "Mathematical confidence filters in audio-to-MIDI converters (such as Spotify Basic Pitch) that require energy and pitch probabilities to cross strict thresholds before registering a note onset."
 		}
 
 	};
