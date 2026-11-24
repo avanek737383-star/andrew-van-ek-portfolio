@@ -4730,24 +4730,8 @@
 		}
 
 		function showSeasonalToast(msg) {
-			var oldToast = document.querySelector(".seasonal-toast-banner");
-			if (oldToast && oldToast.parentNode) oldToast.parentNode.removeChild(oldToast);
-
-			var toast = document.createElement("div");
-			toast.className = "seasonal-toast-banner";
-			toast.innerHTML = msg;
-			document.body.appendChild(toast);
-
-			setTimeout(function () {
-				toast.classList.add("show");
-			}, 30);
-
-			setTimeout(function () {
-				toast.classList.remove("show");
-				setTimeout(function () {
-					if (toast.parentNode) toast.parentNode.removeChild(toast);
-				}, 500);
-			}, 4800);
+			// Suppressed per user preference on both desktop and mobile
+			return;
 		}
 
 		function startSeasonalParticles(type) {

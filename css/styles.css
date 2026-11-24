@@ -7505,8 +7505,7 @@ body.christmas-theme .home-radar-title,
 body.christmas-theme .cockpit-title,
 body.christmas-theme .stat-card-label,
 body.christmas-theme .spec-chip-highlight,
-body.christmas-theme .search-filter-pill.active,
-body.christmas-theme .search-filter-chip.active {
+body.christmas-theme .search-filter-pill.active {
     color: #15803d !important;
 }
 
@@ -7608,8 +7607,7 @@ body.thanksgiving-theme .home-radar-title,
 body.thanksgiving-theme .cockpit-title,
 body.thanksgiving-theme .stat-card-label,
 body.thanksgiving-theme .spec-chip-highlight,
-body.thanksgiving-theme .search-filter-pill.active,
-body.thanksgiving-theme .search-filter-chip.active {
+body.thanksgiving-theme .search-filter-pill.active {
     color: #b45309 !important;
 }
 
@@ -7731,38 +7729,32 @@ body.valentines-theme .portfolio-phone-toggle {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 1000; /* Falls on top of background & cards (1), behind sticky navbar (10000) and modals */
+    z-index: 1; /* Sits directly on body background, behind all content cards & containers (z-index: 2) */
     overflow: hidden;
 }
 
-.seasonal-toast-banner {
-    position: fixed;
-    top: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-40px);
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border: 2px solid #38bdf8;
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.35);
-    color: #ffffff;
-    padding: 12px 24px;
-    border-radius: 999px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    z-index: 10000000;
-    pointer-events: none;
-    opacity: 0;
-    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    max-width: 92vw;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+/* Content cards and containers stay on top of the particle canvas */
+main,
+.home-hero,
+.container > header,
+h1,
+.project-entry,
+.arch-diagram-card,
+.stat-card,
+.weather-card-panel,
+.home-weather-section,
+.geo-map-panel,
+.geo-chart-panel,
+.cockpit-card,
+.telemetry-card,
+.bias-card,
+.project-downloads-card,
+footer {
+    position: relative;
+    z-index: 2;
 }
-.seasonal-toast-banner.show {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-}
+
+.seasonal-toast-banner { display: none !important; }
 
 /* 5. Mobile Two-Corner Dock Symmetry & High Contrast Phone Button */
 @media (max-width: 600px) {
@@ -8584,4 +8576,568 @@ body.valentines-theme .geo-map-reset-btn:hover {
     border-color: #fb7185 !important;
     color: #ffffff !important;
     box-shadow: 0 0 10px rgba(251, 113, 133, 0.4) !important;
+}
+
+
+/* ==========================================================================
+   Weather (Open-Meteo), Search Chips, Tech Term Hints/Modals & Button Theming
+   ========================================================================== */
+
+/* --- 1. Thanksgiving Season --- */
+/* Open-Meteo Weather Widget */
+body.thanksgiving-theme .home-weather-section {
+    border-color: rgba(217, 119, 6, 0.35) !important;
+    background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%) !important;
+}
+body.thanksgiving-theme .weather-location-pill {
+    color: #78350f !important;
+    border-color: #fde68a !important;
+    background: #ffffff !important;
+}
+body.thanksgiving-theme .weather-loc-tag {
+    color: #92400e !important;
+    background: #fde68a !important;
+}
+body.thanksgiving-theme .weather-action-btn {
+    background: #b45309 !important;
+    border-color: #d97706 !important;
+    color: #ffffff !important;
+}
+body.thanksgiving-theme .weather-action-btn:hover {
+    background: #92400e !important;
+}
+body.thanksgiving-theme .weather-unit-btn:hover {
+    border-color: #d97706 !important;
+    color: #78350f !important;
+}
+body.thanksgiving-theme .weather-unit-opt.active {
+    color: #d97706 !important;
+}
+body.thanksgiving-theme .weather-card-panel {
+    background: #200d02 !important;
+    border-color: rgba(217, 119, 6, 0.4) !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+body.thanksgiving-theme .weather-tab {
+    color: #d5a37e !important;
+    border-color: rgba(217, 119, 6, 0.25) !important;
+}
+body.thanksgiving-theme .weather-tab:hover {
+    color: #ffffff !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
+    background: rgba(217, 119, 6, 0.15) !important;
+}
+body.thanksgiving-theme .weather-tab.active {
+    color: #fbbf24 !important;
+    border-color: #f59e0b !important;
+    background: rgba(217, 119, 6, 0.25) !important;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.3) !important;
+}
+body.thanksgiving-theme .weather-slide-subhead {
+    color: #fbbf24 !important;
+}
+body.thanksgiving-theme .weather-hero-condition {
+    color: #f59e0b !important;
+}
+body.thanksgiving-theme .weather-hourly-precip,
+body.thanksgiving-theme .weather-daily-precip {
+    color: #fbbf24 !important;
+}
+body.thanksgiving-theme .weather-daily-bar-fill {
+    background: linear-gradient(90deg, #78350f 0%, #b45309 40%, #d97706 70%, #fbbf24 100%) !important;
+}
+body.thanksgiving-theme .weather-hourly-pill:hover {
+    background: rgba(217, 119, 6, 0.18) !important;
+    border-color: rgba(245, 158, 11, 0.45) !important;
+}
+body.thanksgiving-theme .weather-hourly-track::-webkit-scrollbar-thumb {
+    background: #d97706 !important;
+}
+
+/* Search Modal Filter Chips */
+body.thanksgiving-theme .search-filter-chip {
+    background: #ffffff !important;
+    border: 1px solid #fde68a !important;
+    color: #78350f !important;
+}
+body.thanksgiving-theme .search-filter-chip:hover {
+    background: #fef3c7 !important;
+    border-color: #d97706 !important;
+    color: #78350f !important;
+}
+body.thanksgiving-theme .search-filter-chip.active {
+    background: #b45309 !important;
+    border-color: #b45309 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* Tech Term Hints, Tooltips & Mobile Modals */
+body.thanksgiving-theme .tech-term {
+    color: #b45309 !important;
+    background: rgba(217, 119, 6, 0.08) !important;
+    border-bottom: 2px dotted #d97706 !important;
+}
+body.thanksgiving-theme .tech-term:hover,
+body.thanksgiving-theme .tech-term:focus-visible {
+    background: rgba(217, 119, 6, 0.22) !important;
+    color: #78350f !important;
+}
+body.thanksgiving-theme .tech-tooltip {
+    background: #200d02 !important;
+    border-color: rgba(217, 119, 6, 0.45) !important;
+    box-shadow: 0 18px 42px rgba(32, 13, 2, 0.6) !important;
+}
+body.thanksgiving-theme .tech-tooltip-pill {
+    background: rgba(217, 119, 6, 0.25) !important;
+    color: #fbbf24 !important;
+}
+body.thanksgiving-theme .tech-tooltip-label {
+    color: #fbbf24 !important;
+}
+body.thanksgiving-theme .tech-tooltip-title {
+    color: #ffffff !important;
+}
+body.thanksgiving-theme .tech-modal-backdrop {
+    background: rgba(32, 13, 2, 0.75) !important;
+}
+body.thanksgiving-theme .tech-modal-dialog {
+    border-color: rgba(217, 119, 6, 0.35) !important;
+}
+body.thanksgiving-theme .tech-modal-icon {
+    background: #fef3c7 !important;
+    color: #b45309 !important;
+}
+body.thanksgiving-theme .tech-modal-title {
+    color: #78350f !important;
+}
+body.thanksgiving-theme .tech-modal-fact-box {
+    background: #fffbeb !important;
+    border-color: #fde68a !important;
+}
+body.thanksgiving-theme .tech-modal-fact {
+    color: #78350f !important;
+}
+
+/* Primary Buttons, Secondary Buttons & CAD Downloads Card */
+body.thanksgiving-theme .btn,
+body.thanksgiving-theme a.btn {
+    background-color: #b45309 !important;
+    border-color: #b45309 !important;
+    color: #ffffff !important;
+}
+body.thanksgiving-theme .btn *,
+body.thanksgiving-theme a.btn * {
+    color: #ffffff !important;
+}
+body.thanksgiving-theme .btn:hover,
+body.thanksgiving-theme a.btn:hover {
+    background-color: #92400e !important;
+    color: #ffffff !important;
+}
+body.thanksgiving-theme .btn-secondary,
+body.thanksgiving-theme a.btn-secondary {
+    background-color: #ffffff !important;
+    border: 1px solid #d97706 !important;
+    color: #b45309 !important;
+}
+body.thanksgiving-theme .btn-secondary *,
+body.thanksgiving-theme a.btn-secondary * {
+    color: #b45309 !important;
+}
+body.thanksgiving-theme .btn-secondary:hover,
+body.thanksgiving-theme a.btn-secondary:hover {
+    background-color: #fef3c7 !important;
+    border-color: #b45309 !important;
+    color: #78350f !important;
+}
+body.thanksgiving-theme .btn-secondary:hover *,
+body.thanksgiving-theme a.btn-secondary:hover * {
+    color: #78350f !important;
+}
+body.thanksgiving-theme .project-downloads-card {
+    border-left-color: #d97706 !important;
+}
+body.thanksgiving-theme .project-downloads-card h3 {
+    color: #78350f !important;
+}
+
+
+/* --- 2. Christmas Season --- */
+/* Open-Meteo Weather Widget */
+body.christmas-theme .home-weather-section {
+    border-color: rgba(34, 197, 94, 0.35) !important;
+    background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%) !important;
+}
+body.christmas-theme .weather-location-pill {
+    color: #14532d !important;
+    border-color: #bbf7d0 !important;
+    background: #ffffff !important;
+}
+body.christmas-theme .weather-loc-tag {
+    color: #166534 !important;
+    background: #bbf7d0 !important;
+}
+body.christmas-theme .weather-action-btn {
+    background: #15803d !important;
+    border-color: #16a34a !important;
+    color: #ffffff !important;
+}
+body.christmas-theme .weather-action-btn:hover {
+    background: #166534 !important;
+}
+body.christmas-theme .weather-unit-btn:hover {
+    border-color: #16a34a !important;
+    color: #14532d !important;
+}
+body.christmas-theme .weather-unit-opt.active {
+    color: #16a34a !important;
+}
+body.christmas-theme .weather-card-panel {
+    background: #02241b !important;
+    border-color: rgba(34, 197, 94, 0.4) !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+body.christmas-theme .weather-tab {
+    color: #a7f3d0 !important;
+    border-color: rgba(34, 197, 94, 0.25) !important;
+}
+body.christmas-theme .weather-tab:hover {
+    color: #ffffff !important;
+    border-color: rgba(74, 222, 128, 0.5) !important;
+    background: rgba(34, 197, 94, 0.15) !important;
+}
+body.christmas-theme .weather-tab.active {
+    color: #86efac !important;
+    border-color: #4ade80 !important;
+    background: rgba(34, 197, 94, 0.25) !important;
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.3) !important;
+}
+body.christmas-theme .weather-slide-subhead {
+    color: #86efac !important;
+}
+body.christmas-theme .weather-hero-condition {
+    color: #4ade80 !important;
+}
+body.christmas-theme .weather-hourly-precip,
+body.christmas-theme .weather-daily-precip {
+    color: #86efac !important;
+}
+body.christmas-theme .weather-daily-bar-fill {
+    background: linear-gradient(90deg, #064e3b 0%, #15803d 40%, #22c55e 70%, #86efac 100%) !important;
+}
+body.christmas-theme .weather-hourly-pill:hover {
+    background: rgba(34, 197, 94, 0.18) !important;
+    border-color: rgba(74, 222, 128, 0.45) !important;
+}
+body.christmas-theme .weather-hourly-track::-webkit-scrollbar-thumb {
+    background: #16a34a !important;
+}
+
+/* Search Modal Filter Chips */
+body.christmas-theme .search-filter-chip {
+    background: #ffffff !important;
+    border: 1px solid #bbf7d0 !important;
+    color: #14532d !important;
+}
+body.christmas-theme .search-filter-chip:hover {
+    background: #f0fdf4 !important;
+    border-color: #16a34a !important;
+    color: #14532d !important;
+}
+body.christmas-theme .search-filter-chip.active {
+    background: #15803d !important;
+    border-color: #15803d !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* Tech Term Hints, Tooltips & Mobile Modals */
+body.christmas-theme .tech-term {
+    color: #15803d !important;
+    background: rgba(34, 197, 94, 0.08) !important;
+    border-bottom: 2px dotted #16a34a !important;
+}
+body.christmas-theme .tech-term:hover,
+body.christmas-theme .tech-term:focus-visible {
+    background: rgba(34, 197, 94, 0.22) !important;
+    color: #14532d !important;
+}
+body.christmas-theme .tech-tooltip {
+    background: #02241b !important;
+    border-color: rgba(34, 197, 94, 0.45) !important;
+    box-shadow: 0 18px 42px rgba(2, 36, 27, 0.6) !important;
+}
+body.christmas-theme .tech-tooltip-pill {
+    background: rgba(34, 197, 94, 0.25) !important;
+    color: #86efac !important;
+}
+body.christmas-theme .tech-tooltip-label {
+    color: #86efac !important;
+}
+body.christmas-theme .tech-tooltip-title {
+    color: #ffffff !important;
+}
+body.christmas-theme .tech-modal-backdrop {
+    background: rgba(2, 36, 27, 0.75) !important;
+}
+body.christmas-theme .tech-modal-dialog {
+    border-color: rgba(34, 197, 94, 0.35) !important;
+}
+body.christmas-theme .tech-modal-icon {
+    background: #f0fdf4 !important;
+    color: #15803d !important;
+}
+body.christmas-theme .tech-modal-title {
+    color: #14532d !important;
+}
+body.christmas-theme .tech-modal-analogy-box {
+    background: #f0fdf4 !important;
+    border-color: #bbf7d0 !important;
+}
+body.christmas-theme .tech-modal-label {
+    color: #166534 !important;
+}
+body.christmas-theme .tech-modal-text {
+    color: #14532d !important;
+}
+body.christmas-theme .tech-modal-fact-box {
+    background: #f0fdf4 !important;
+    border-color: #bbf7d0 !important;
+}
+body.christmas-theme .tech-modal-fact {
+    color: #14532d !important;
+}
+
+/* Primary Buttons, Secondary Buttons & CAD Downloads Card */
+body.christmas-theme .btn,
+body.christmas-theme a.btn {
+    background-color: #15803d !important;
+    border-color: #15803d !important;
+    color: #ffffff !important;
+}
+body.christmas-theme .btn *,
+body.christmas-theme a.btn * {
+    color: #ffffff !important;
+}
+body.christmas-theme .btn:hover,
+body.christmas-theme a.btn:hover {
+    background-color: #166534 !important;
+    color: #ffffff !important;
+}
+body.christmas-theme .btn-secondary,
+body.christmas-theme a.btn-secondary {
+    background-color: #ffffff !important;
+    border: 1px solid #16a34a !important;
+    color: #15803d !important;
+}
+body.christmas-theme .btn-secondary *,
+body.christmas-theme a.btn-secondary * {
+    color: #15803d !important;
+}
+body.christmas-theme .btn-secondary:hover,
+body.christmas-theme a.btn-secondary:hover {
+    background-color: #f0fdf4 !important;
+    border-color: #15803d !important;
+    color: #14532d !important;
+}
+body.christmas-theme .btn-secondary:hover *,
+body.christmas-theme a.btn-secondary:hover * {
+    color: #14532d !important;
+}
+body.christmas-theme .project-downloads-card {
+    border-left-color: #16a34a !important;
+}
+body.christmas-theme .project-downloads-card h3 {
+    color: #14532d !important;
+}
+
+
+/* --- 3. Valentine Season --- */
+/* Open-Meteo Weather Widget */
+body.valentines-theme .home-weather-section {
+    border-color: rgba(244, 63, 94, 0.35) !important;
+    background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 100%) !important;
+}
+body.valentines-theme .weather-location-pill {
+    color: #881337 !important;
+    border-color: #fecdd3 !important;
+    background: #ffffff !important;
+}
+body.valentines-theme .weather-loc-tag {
+    color: #9f1239 !important;
+    background: #fecdd3 !important;
+}
+body.valentines-theme .weather-action-btn {
+    background: #e11d48 !important;
+    border-color: #f43f5e !important;
+    color: #ffffff !important;
+}
+body.valentines-theme .weather-action-btn:hover {
+    background: #be123c !important;
+}
+body.valentines-theme .weather-unit-btn:hover {
+    border-color: #f43f5e !important;
+    color: #881337 !important;
+}
+body.valentines-theme .weather-unit-opt.active {
+    color: #f43f5e !important;
+}
+body.valentines-theme .weather-card-panel {
+    background: #2a030c !important;
+    border-color: rgba(244, 63, 94, 0.4) !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+body.valentines-theme .weather-tab {
+    color: #fbcfe8 !important;
+    border-color: rgba(244, 63, 94, 0.25) !important;
+}
+body.valentines-theme .weather-tab:hover {
+    color: #ffffff !important;
+    border-color: rgba(251, 113, 133, 0.5) !important;
+    background: rgba(244, 63, 94, 0.15) !important;
+}
+body.valentines-theme .weather-tab.active {
+    color: #fda4af !important;
+    border-color: #fb7185 !important;
+    background: rgba(244, 63, 94, 0.25) !important;
+    box-shadow: 0 0 12px rgba(251, 113, 133, 0.3) !important;
+}
+body.valentines-theme .weather-slide-subhead {
+    color: #fda4af !important;
+}
+body.valentines-theme .weather-hero-condition {
+    color: #fb7185 !important;
+}
+body.valentines-theme .weather-hourly-precip,
+body.valentines-theme .weather-daily-precip {
+    color: #fda4af !important;
+}
+body.valentines-theme .weather-daily-bar-fill {
+    background: linear-gradient(90deg, #4c0519 0%, #9f1239 40%, #e11d48 70%, #fda4af 100%) !important;
+}
+body.valentines-theme .weather-hourly-pill:hover {
+    background: rgba(244, 63, 94, 0.18) !important;
+    border-color: rgba(251, 113, 133, 0.45) !important;
+}
+body.valentines-theme .weather-hourly-track::-webkit-scrollbar-thumb {
+    background: #e11d48 !important;
+}
+
+/* Search Modal Filter Chips */
+body.valentines-theme .search-filter-chip {
+    background: #ffffff !important;
+    border: 1px solid #fecdd3 !important;
+    color: #881337 !important;
+}
+body.valentines-theme .search-filter-chip:hover {
+    background: #fff1f2 !important;
+    border-color: #e11d48 !important;
+    color: #881337 !important;
+}
+body.valentines-theme .search-filter-chip.active {
+    background: #e11d48 !important;
+    border-color: #e11d48 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* Tech Term Hints, Tooltips & Mobile Modals */
+body.valentines-theme .tech-term {
+    color: #e11d48 !important;
+    background: rgba(244, 63, 94, 0.08) !important;
+    border-bottom: 2px dotted #fb7185 !important;
+}
+body.valentines-theme .tech-term:hover,
+body.valentines-theme .tech-term:focus-visible {
+    background: rgba(244, 63, 94, 0.22) !important;
+    color: #881337 !important;
+}
+body.valentines-theme .tech-tooltip {
+    background: #2a030c !important;
+    border-color: rgba(244, 63, 94, 0.45) !important;
+    box-shadow: 0 18px 42px rgba(42, 3, 12, 0.6) !important;
+}
+body.valentines-theme .tech-tooltip-pill {
+    background: rgba(244, 63, 94, 0.25) !important;
+    color: #fda4af !important;
+}
+body.valentines-theme .tech-tooltip-label {
+    color: #fda4af !important;
+}
+body.valentines-theme .tech-tooltip-title {
+    color: #ffffff !important;
+}
+body.valentines-theme .tech-modal-backdrop {
+    background: rgba(42, 3, 12, 0.75) !important;
+}
+body.valentines-theme .tech-modal-dialog {
+    border-color: rgba(244, 63, 94, 0.35) !important;
+}
+body.valentines-theme .tech-modal-icon {
+    background: #fff1f2 !important;
+    color: #e11d48 !important;
+}
+body.valentines-theme .tech-modal-title {
+    color: #881337 !important;
+}
+body.valentines-theme .tech-modal-analogy-box {
+    background: #fff1f2 !important;
+    border-color: #fecdd3 !important;
+}
+body.valentines-theme .tech-modal-label {
+    color: #9f1239 !important;
+}
+body.valentines-theme .tech-modal-text {
+    color: #881337 !important;
+}
+body.valentines-theme .tech-modal-fact-box {
+    background: #fff1f2 !important;
+    border-color: #fecdd3 !important;
+}
+body.valentines-theme .tech-modal-fact {
+    color: #881337 !important;
+}
+
+/* Primary Buttons, Secondary Buttons & CAD Downloads Card */
+body.valentines-theme .btn,
+body.valentines-theme a.btn {
+    background-color: #e11d48 !important;
+    border-color: #e11d48 !important;
+    color: #ffffff !important;
+}
+body.valentines-theme .btn *,
+body.valentines-theme a.btn * {
+    color: #ffffff !important;
+}
+body.valentines-theme .btn:hover,
+body.valentines-theme a.btn:hover {
+    background-color: #be123c !important;
+    color: #ffffff !important;
+}
+body.valentines-theme .btn-secondary,
+body.valentines-theme a.btn-secondary {
+    background-color: #ffffff !important;
+    border: 1px solid #fb7185 !important;
+    color: #e11d48 !important;
+}
+body.valentines-theme .btn-secondary *,
+body.valentines-theme a.btn-secondary * {
+    color: #e11d48 !important;
+}
+body.valentines-theme .btn-secondary:hover,
+body.valentines-theme a.btn-secondary:hover {
+    background-color: #fff1f2 !important;
+    border-color: #e11d48 !important;
+    color: #881337 !important;
+}
+body.valentines-theme .btn-secondary:hover *,
+body.valentines-theme a.btn-secondary:hover * {
+    color: #881337 !important;
+}
+body.valentines-theme .project-downloads-card {
+    border-left-color: #fb7185 !important;
+}
+body.valentines-theme .project-downloads-card h3 {
+    color: #881337 !important;
 }
