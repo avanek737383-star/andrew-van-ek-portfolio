@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 97,
-    "totalNodes": 324,
-    "totalLinks": 665,
+    "totalProjects": 98,
+    "totalNodes": 329,
+    "totalLinks": 673,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "cross-platform-easter-egg-engine-title",
+      "name": "Cross-Platform Easter Egg Engine & Multi-Seasonal Architecture \u2014 Mobile Touchscreen Democratization, Accelerometer Shake Dismissal, 1984 Macintosh 128K Web Audio Emulation, Reactive Plasma Wave Navbar & Calendar Auto-Scheduling",
+      "type": "project",
+      "domain": "enterprise-workflow",
+      "domainName": "Enterprise IT & Automation",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 24, 2026",
+      "val": 24,
+      "color": "#f43f5e",
+      "summary": "I partnered with Antigravity AI (Google DeepMind agentic assistant) to engineer a comprehensive overhaul of my technology portfolio's interactive discovery architecture. While the website previously featured several desktop keyboard easter eggs (such as typing andrew for a rad...",
+      "tech": [
+        "Web Audio API",
+        "HTML5 Canvas Particle Engines",
+        "DeviceMotionEvent Accelerometer",
+        "SessionStorage Engine",
+        "Calendar Auto-Scheduler",
+        "SVG Calligraphic Animation"
+      ],
+      "tasks": [
+        {
+          "title": "Spotlight & Search Interception",
+          "desc": "Integrated directly with the site's universal client-side search engine (site-search.js). When any user on mobile or desktop types any secre..."
+        },
+        {
+          "title": "Footer Secrets & Easter Eggs Discovery Drawer",
+          "desc": "Injected a discreet, pill-styled discovery button (\ud83c\udf81 Secrets & Easter Eggs) into the global footer across all pages via script.js. Tapping t..."
+        },
+        {
+          "title": "iOS Safari 16px Anti-Zoom Architecture",
+          "desc": "In Mobile Safari, tapping an input with font size below 16px triggers an automatic aggressive camera zoom into the field that disorients vis..."
+        },
+        {
+          "title": "Two-Corner Floating Action Dock Symmetry",
+          "desc": "Symmetrically aligned the lower-left Phone Voice Hotline dock and lower-right AI Chatbot dock at max(16px, env(safe-area-inset-bottom)), whi..."
+        }
+      ],
+      "url": "projects.html#cross-platform-easter-egg-engine-title"
+    },
+    {
+      "id": "task-cross-platform-easter-egg-engine-title-0",
+      "name": "Spotlight & Search Interception",
+      "type": "task",
+      "parentProject": "Cross-Platform Easter Egg Engine & Multi-Seasonal Architecture \u2014 Mobile Touchscreen Democratization, Accelerometer Shake Dismissal, 1984 Macintosh 128K Web Audio Emulation, Reactive Plasma Wave Navbar & Calendar Auto-Scheduling",
+      "parentId": "cross-platform-easter-egg-engine-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Integrated directly with the site's universal client-side search engine (site-search.js). When any user on mobile or desktop types any secre...",
+      "url": "projects.html#cross-platform-easter-egg-engine-title"
+    },
+    {
+      "id": "task-cross-platform-easter-egg-engine-title-1",
+      "name": "Footer Secrets & Easter Eggs Discovery Drawer",
+      "type": "task",
+      "parentProject": "Cross-Platform Easter Egg Engine & Multi-Seasonal Architecture \u2014 Mobile Touchscreen Democratization, Accelerometer Shake Dismissal, 1984 Macintosh 128K Web Audio Emulation, Reactive Plasma Wave Navbar & Calendar Auto-Scheduling",
+      "parentId": "cross-platform-easter-egg-engine-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Injected a discreet, pill-styled discovery button (\ud83c\udf81 Secrets & Easter Eggs) into the global footer across all pages via script.js. Tapping t...",
+      "url": "projects.html#cross-platform-easter-egg-engine-title"
+    },
+    {
+      "id": "task-cross-platform-easter-egg-engine-title-2",
+      "name": "iOS Safari 16px Anti-Zoom Architecture",
+      "type": "task",
+      "parentProject": "Cross-Platform Easter Egg Engine & Multi-Seasonal Architecture \u2014 Mobile Touchscreen Democratization, Accelerometer Shake Dismissal, 1984 Macintosh 128K Web Audio Emulation, Reactive Plasma Wave Navbar & Calendar Auto-Scheduling",
+      "parentId": "cross-platform-easter-egg-engine-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "In Mobile Safari, tapping an input with font size below 16px triggers an automatic aggressive camera zoom into the field that disorients vis...",
+      "url": "projects.html#cross-platform-easter-egg-engine-title"
+    },
+    {
+      "id": "task-cross-platform-easter-egg-engine-title-3",
+      "name": "Two-Corner Floating Action Dock Symmetry",
+      "type": "task",
+      "parentProject": "Cross-Platform Easter Egg Engine & Multi-Seasonal Architecture \u2014 Mobile Touchscreen Democratization, Accelerometer Shake Dismissal, 1984 Macintosh 128K Web Audio Emulation, Reactive Plasma Wave Navbar & Calendar Auto-Scheduling",
+      "parentId": "cross-platform-easter-egg-engine-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Symmetrically aligned the lower-left Phone Voice Hotline dock and lower-right AI Chatbot dock at max(16px, env(safe-area-inset-bottom)), whi...",
+      "url": "projects.html#cross-platform-easter-egg-engine-title"
     },
     {
       "id": "macos-vision-blood-pressure-tracker-title",
@@ -5729,6 +5817,54 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-enterprise-workflow",
+      "target": "cross-platform-easter-egg-engine-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "task-cross-platform-easter-egg-engine-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "task-cross-platform-easter-egg-engine-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "task-cross-platform-easter-egg-engine-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "task-cross-platform-easter-egg-engine-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "macos-vision-blood-pressure-tracker-title",

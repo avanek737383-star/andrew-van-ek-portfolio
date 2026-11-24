@@ -1617,6 +1617,11 @@
 			title: "JavaScript Challenge Solver Inheritance (The Missing Blueprint Link)",
 			analogy: "A mechanic stripping down an automobile blueprint to make it simpler, but accidentally erasing the line connecting the steering column to the front wheel assembly. When the driver attempts to steer, the vehicle refuses to respond because the foundational inheritance link was discarded before the car was even built.",
 			techFact: "When yt-dlp's external JavaScript challenge preprocessor stripped non-assignment expression statements from YouTube base.js player code, it dropped class inheritance helpers (g.z(Sub, Base)); subclasses never received prototype methods like addOnDisposeCallback, causing Deno to throw Uncaught TypeError during signature deciphering."
+		},
+		"vocal-harmonic-overtone-suppression": {
+			title: "Vocal Harmonic Overtone Suppression (Single Singer, Single Melody)",
+			analogy: "A court stenographer listening to an opera singer and accidentally typing out both the singer's fundamental vocal note and the acoustic room reverberations bouncing off the ceiling at the same time, producing a scrambled, stuttering transcript that alternates between two notes every millisecond.",
+			techFact: "When human singers belt resonant notes, high-energy integer harmonics (3f0 at +19 semitones, 3rd harmonic relative to octave at +7 semitones) frequently trigger concurrent neural activations in Basic Pitch; identifying and filtering the harmonic overtone series preserves strictly monophonic continuity and prevents rapid legato chopping into 10ms micro-fragments."
 		}
 
 	};
