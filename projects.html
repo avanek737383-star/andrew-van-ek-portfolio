@@ -87,6 +87,125 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="macos-vision-blood-pressure-tracker-title">
+<h2 id="macos-vision-blood-pressure-tracker-title">Autonomous Local Blood Pressure &amp; Pulse Tracker for macOS — Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>macOS Sequoia &middot; Swift &amp; Vision Framework &middot; Apple Neural Engine &middot; Zero-Dependency Python HTTP &middot; EXIF Metadata &middot; HEIC/sips Transcoding &middot; AHA Clinical Guidelines &middot; Local-First Health &middot; Antigravity AI &middot; <time datetime="2026-11-24">November 24, 2026</time></span></p>
+<div class="project-architecture" aria-label="macOS Blood Pressure Tracker Architecture"><span>Desktop Shortcut (.command + Custom Retina Heart Icon)</span><span aria-hidden="true">&rarr;</span><span>Local Zero-Dependency Python Daemon (127.0.0.1:8421)</span><span aria-hidden="true">&rarr;</span><span>Drag &amp; Drop / Clipboard &#8984;V Ingestion</span><span aria-hidden="true">&rarr;</span><span>macOS Native Vision OCR (ocr_helper)</span><span aria-hidden="true">&rarr;</span><span>EXIF DateTimeOriginal Parser</span><span aria-hidden="true">&rarr;</span><span>macOS sips HEIC-to-JPEG Pipeline</span><span aria-hidden="true">&rarr;</span><span>AHA Clinical Classification Engine</span><span aria-hidden="true">&rarr;</span><span>Safe Persistence in ~/Documents/BloodPressureTracker/</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">❤️ Local-First Blood Pressure &amp; Pulse Telemetry Pipeline</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">Zero-Cloud Ingestion &rarr; Apple Neural Engine OCR &rarr; EXIF Harvesting &rarr; Safe Documents Vault</span>
+    </div>
+    <span style="background:rgba(239,68,68,0.18); color:#fca5a5; border:1px solid rgba(239,68,68,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Production Ready &bull; Zero External Dependencies</span>
+  </div>
+
+  <svg viewBox="0 0 920 220" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="macOS Blood Pressure Tracker Architecture Diagram">
+    <defs>
+      <linearGradient id="bpDesktopGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#b91c1c" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="bpOcrGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="bpServerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#b45309" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="bpVaultGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.06"/>
+      </linearGradient>
+      <marker id="arrow-bp" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+      </marker>
+    </defs>
+
+    <!-- Node 1: Desktop Shortcut & Ingestion -->
+    <rect x="15" y="25" width="200" height="170" rx="10" fill="url(#bpDesktopGrad)" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="115" y="50" fill="#fca5a5" font-size="12" font-weight="700" text-anchor="middle">1. Desktop &amp; Ingestion</text>
+    <rect x="30" y="66" width="170" height="24" rx="4" fill="#2d1215" stroke="#ef4444" stroke-width="0.8"/>
+    <text x="115" y="82" fill="#ef4444" font-size="10.5" font-weight="600" text-anchor="middle">&bull; Double-Click .command</text>
+    <text x="115" y="112" fill="#fecaca" font-size="10" font-weight="600" text-anchor="middle">&bull; Custom Retina Heart Icon</text>
+    <text x="115" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Auto-Opens Google Chrome</text>
+    <text x="115" y="148" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Drag/Drop &amp; Clipboard &#8984;V</text>
+    <text x="115" y="168" fill="#fca5a5" font-size="9" text-anchor="middle">Port 8421 &bull; 100% Localhost</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="215" y1="110" x2="245" y2="110" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-bp)"/>
+
+    <!-- Node 2: Native Vision OCR & EXIF -->
+    <rect x="250" y="25" width="200" height="170" rx="10" fill="url(#bpOcrGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="350" y="50" fill="#7dd3fc" font-size="12" font-weight="700" text-anchor="middle">2. Native Vision OCR</text>
+    <rect x="265" y="66" width="170" height="24" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="0.8"/>
+    <text x="350" y="82" fill="#38bdf8" font-size="10.5" font-weight="600" text-anchor="middle">ocr_helper (Native Swift)</text>
+    <text x="350" y="112" fill="#bae6fd" font-size="10" font-weight="600" text-anchor="middle">&bull; Apple Neural Engine AOT</text>
+    <text x="350" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; VNRecognizeTextRequest</text>
+    <text x="350" y="148" fill="#38bdf8" font-size="9.5" font-weight="600" text-anchor="middle">&bull; EXIF DateTimeOriginal Tag</text>
+    <text x="350" y="168" fill="#7dd3fc" font-size="9" text-anchor="middle">Sub-50ms LCD Number Parsing</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="450" y1="110" x2="480" y2="110" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-bp)"/>
+
+    <!-- Node 3: Daemon & SIPS Pipeline -->
+    <rect x="485" y="25" width="200" height="170" rx="10" fill="url(#bpServerGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="585" y="50" fill="#fcd34d" font-size="12" font-weight="700" text-anchor="middle">3. Server Daemon &amp; sips</text>
+    <rect x="500" y="66" width="170" height="24" rx="4" fill="#2d1d07" stroke="#f59e0b" stroke-width="0.8"/>
+    <text x="585" y="82" fill="#f59e0b" font-size="10.5" font-weight="600" text-anchor="middle">Zero-Dependency Python 3</text>
+    <text x="585" y="112" fill="#fef3c7" font-size="10" font-weight="600" text-anchor="middle">&bull; Automated sips HEIC&rarr;JPEG</text>
+    <text x="585" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Resolves Chrome Pipe Reset</text>
+    <text x="585" y="148" fill="#f59e0b" font-size="9.5" font-weight="600" text-anchor="middle">&bull; AHA Clinical Staging Engine</text>
+    <text x="585" y="168" fill="#fcd34d" font-size="9" text-anchor="middle">Dynamic Glow &amp; Status Banner</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <line x1="685" y1="110" x2="715" y2="110" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-bp)"/>
+
+    <!-- Node 4: Safe Vault & Doctor Export -->
+    <rect x="720" y="25" width="185" height="170" rx="10" fill="url(#bpVaultGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="812" y="50" fill="#6ee7b7" font-size="12" font-weight="700" text-anchor="middle">4. Safe Storage Vault</text>
+    <rect x="732" y="66" width="160" height="24" rx="4" fill="#06261a" stroke="#10b981" stroke-width="0.8"/>
+    <text x="812" y="82" fill="#10b981" font-size="10.5" font-weight="600" text-anchor="middle">~/Documents Isolation</text>
+    <text x="812" y="112" fill="#d1fae5" font-size="10" font-weight="600" text-anchor="middle">&bull; Atomic JSON Persistence</text>
+    <text x="812" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Deletion-Proof Separation</text>
+    <text x="812" y="148" fill="#34d399" font-size="9.5" font-weight="600" text-anchor="middle">&bull; 1-Click CSV &amp; Doctor Print</text>
+    <text x="812" y="168" fill="#6ee7b7" font-size="9" text-anchor="middle">7/30-Day Moving Averages</text>
+  </svg>
+</div>
+
+<p>When a physician requests ongoing, regular blood pressure and pulse tracking, the biggest hurdle to clinical compliance is logging friction. Conventional consumer health apps require expensive recurring cloud subscriptions, mandate user registration, upload personal biometric telemetry to remote advertising networks, or force patients into tedious manual number-typing on touchscreen keypads. Inevitably, manual logging gets abandoned after a few days, leaving healthcare providers with fragmented, incomplete cardiovascular histories.</p>
+
+<p>To eliminate manual data entry while maintaining total biometric privacy, Andrew and <strong>Antigravity AI</strong> architected an autonomous, zero-cloud desktop application on macOS Sequoia. By marrying Apple's native machine-learning Vision framework with an ultra-lightweight local web service, the tracker enables the user to simply drag-and-drop or paste an iPhone photo of any digital sphygmomanometer display (such as Omron or Beurer). The system automatically harvests systolic, diastolic, and pulse readings alongside the exact photographic capture timestamp, verifies the data through an interactive confirmation interface, and writes persistent medical logs directly into an accidental-deletion-proof Documents vault.</p>
+
+<h3>Engineering Implementation &amp; Forensic Troubleshooting</h3>
+<ul>
+<li><strong>Zero-Cloud <span class="tech-term" data-term="vision-neural-ocr">Apple Vision Neural OCR</span>:</strong> Developed <code>ocr_helper.swift</code>, a compiled native CLI tool leveraging Apple's <code>Vision</code> framework (<code>VNRecognizeTextRequest</code>) and the on-device Apple Neural Engine. By tuning the recognition configuration to <code>VNRecognizeTextRequestRevision2</code> with disabled language correction, the parser eliminates linguistic hallucination on segmented LCD numbers, accurately isolating <strong>SYS</strong>, <strong>DIA</strong>, and <strong>PULSE</strong> values in sub-50ms execution cycles without internet connectivity or bulky Python OCR packages (like Tesseract).</li>
+<li><strong>Automatic <span class="tech-term" data-term="exif-temporal-harvesting">EXIF Timestamp Harvesting</span>:</strong> Rather than logging the moment a photo happens to be uploaded to the computer, the helper queries <code>CGImageSourceCopyPropertiesAtIndex</code> and extracts the true photographic acquisition timestamp from the <code>kCGImagePropertyExifDateTimeOriginal</code> metadata tag. If a patient takes a morning reading at 8:15 AM but transfers the photo later in the evening, the system automatically reconstructs the precise physiological measurement time.</li>
+<li><strong>Forensic Diagnosis: Resolving Chrome's HEIC Broken Pipe Collision via <span class="tech-term" data-term="heic-sips-transcoding">SIPS Image Transcoding</span>:</strong> During live operational testing with authentic iPhone captures, the web UI displayed broken image icons for the reading preview and history thumbnails, triggering a severe <code>BrokenPipeError: [Errno 32]</code> (<span class="tech-term" data-term="http-broken-pipe">HTTP Broken Pipe Connection Reset</span>) in the server socket thread. Forensic review of the socket stream revealed that while iOS photographs are encoded as High-Efficiency Image Container (<code>.heic</code>) files, Google Chrome lacks native browser-level HEIC rendering engines. When Chrome rejected the binary payload and severed the TCP socket prematurely, the Python socket crashed. We resolved this by integrating macOS's native <code>sips</code> utility into the ingestion pipeline, automatically transcoding incoming HEIC/HEIF files into optimized JPEG assets on-the-fly and adding robust socket exception trapping.</li>
+<li><strong><span class="tech-term" data-term="aha-clinical-staging">AHA Clinical Hypertension Classification</span> &amp; Dynamic Feedback:</strong> Integrated real-time physiological classification based on formal American Heart Association clinical guidelines (Normal, Elevated, Stage 1 Hypertension, Stage 2 Hypertension, and Hypertensive Crisis). The web dashboard dynamically evaluates the ratio of systolic to diastolic measurements, applying color-coded status badges, real-time input glows upon auto-detection, and running 7-day and 30-day moving cardiovascular averages.</li>
+<li><strong>Accidental-Deletion-Proof <span class="tech-term" data-term="decoupled-desktop-launcher">Decoupled Architecture</span>:</strong> To prevent desktop cleanup scripts or accidental clicks from destroying critical medical history, the application is physically bifurcated:
+  <ul>
+    <li><strong>Desktop Access Point:</strong> A clean <code>Blood Pressure Tracker.command</code> launcher on <code>~/Desktop</code> featuring a custom Retina heart vector icon synthesized in Swift. Double-clicking executes port availability checks, spawns the local server daemon, and launches Google Chrome directly to <code>http://127.0.0.1:8421</code>.</li>
+    <li><strong>Protected Documents Vault with <span class="tech-term" data-term="atomic-json-persistence">Atomic File Storage Persistence</span>:</strong> All operational code, converted photo archives, and medical logs reside in <code>~/Documents/BloodPressureTracker/data/records.json</code>. Writes are executed through atomic temporary file swaps (<code>os.replace</code>) to ensure complete data integrity even if the terminal window is abruptly killed or terminated via <code>Ctrl + C</code>.</li>
+  </ul>
+</li>
+<li><strong>Physician-Ready Export Engine:</strong> Features one-click <strong>CSV Export</strong> for spreadsheet ingestion into electronic health record (EHR) systems, as well as a dedicated, CSS print-media optimized <strong>Doctor Summary Report</strong> that strips navigation elements and dropzones to produce a formatted medical printout or PDF.</li>
+</ul>
+
+<h3>Future Expansion &amp; Roadmap</h3>
+<ul>
+<li><strong>Direct BLE Sphygmomanometer Telemetry:</strong> Engineering a background CoreBluetooth bridge to subscribe directly to standardized Bluetooth GATT Blood Pressure Profile (UUID <code>0x1810</code>) broadcasts from wireless Omron cuffs without requiring smartphone camera staging.</li>
+<li><strong>Cardiovascular Anomaly Alerts:</strong> Integrating macOS user notification center alerts if consecutive readings trigger Stage 2 or Hypertensive Crisis thresholds across a rolling 48-hour window.</li>
+<li><strong>Apple HealthKit Two-Way Export:</strong> Adding an automated Shortcuts webhook to push confirmed entries into native Apple Health blood pressure registries.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew identified the clinical monitoring requirements, physician tracking constraints, drag-and-drop workflow priorities, and safe Documents storage architecture; <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> engineered the native Swift Apple Vision OCR helper, resolved the Chrome HEIC broken pipe rendering collision via automated <code>sips</code> transcoding, developed the zero-dependency Python server daemon, crafted the custom Retina heart desktop shortcut, and implemented the AHA clinical stage evaluation pipeline.</p>
+<ul class="chips"><li>Apple Vision OCR</li><li>Swift</li><li>Apple Neural Engine</li><li>EXIF Metadata</li><li>macOS Sequoia</li><li>Local-First Health</li><li>Blood Pressure Tracker</li><li>Python 3</li><li>sips Transcoding</li><li>AHA Clinical Guidelines</li><li>Google DeepMind Antigravity AI</li></ul>
+</section>
+
+
 <section class="project-entry" aria-labelledby="apple-watch-macos-presentation-remote-title">
 <h2 id="apple-watch-macos-presentation-remote-title">Autonomous Apple Watch &amp; iPhone Presentation Remote for macOS — Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking &amp; Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery &amp; Native Watch Complication Hardware Integration</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>watchOS 11 &middot; iOS Shortcuts &middot; AppleScript System Events &middot; Zero-Dependency Python HTTP &middot; Bonjour mDNS &middot; macOS caffeinate &middot; Tailscale Encrypted Mesh &middot; ONLYOFFICE Presentation Mode &middot; Apple Watch GMT Complication &middot; Antigravity AI &middot; <time datetime="2026-11-24">November 24, 2026</time></span></p>

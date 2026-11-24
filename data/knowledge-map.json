@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 96,
-    "totalNodes": 319,
-    "totalLinks": 654,
+    "totalProjects": 97,
+    "totalNodes": 324,
+    "totalLinks": 665,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "macos-vision-blood-pressure-tracker-title",
+      "name": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 24, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "When a physician requests ongoing, regular blood pressure and pulse tracking, the biggest hurdle to clinical compliance is logging friction. Conventional consumer health apps require expensive recurring cloud subscriptions, mandate user registration, upload personal biometric ...",
+      "tech": [
+        "Swift & Vision Framework",
+        "Apple Neural Engine",
+        "Zero-Dependency Python HTTP",
+        "EXIF Metadata",
+        "HEIC/sips Transcoding",
+        "AHA Clinical Guidelines"
+      ],
+      "tasks": [
+        {
+          "title": "Desktop Access Point",
+          "desc": "A clean Blood Pressure Tracker.command launcher on ~/Desktop featuring a custom Retina heart vector icon synthesized in Swift. Double-clicki..."
+        },
+        {
+          "title": "Physician-Ready Export Engine",
+          "desc": "Features one-click CSV Export for spreadsheet ingestion into electronic health record (EHR) systems, as well as a dedicated, CSS print-media..."
+        },
+        {
+          "title": "Direct BLE Sphygmomanometer Telemetry",
+          "desc": "Engineering a background CoreBluetooth bridge to subscribe directly to standardized Bluetooth GATT Blood Pressure Profile (UUID 0x1810) broa..."
+        },
+        {
+          "title": "Cardiovascular Anomaly Alerts",
+          "desc": "Integrating macOS user notification center alerts if consecutive readings trigger Stage 2 or Hypertensive Crisis thresholds across a rolling..."
+        }
+      ],
+      "url": "projects.html#macos-vision-blood-pressure-tracker-title"
+    },
+    {
+      "id": "task-macos-vision-blood-pressure-tracker-title-0",
+      "name": "Desktop Access Point",
+      "type": "task",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentId": "macos-vision-blood-pressure-tracker-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "A clean Blood Pressure Tracker.command launcher on ~/Desktop featuring a custom Retina heart vector icon synthesized in Swift. Double-clicki...",
+      "url": "projects.html#macos-vision-blood-pressure-tracker-title"
+    },
+    {
+      "id": "task-macos-vision-blood-pressure-tracker-title-1",
+      "name": "Physician-Ready Export Engine",
+      "type": "task",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentId": "macos-vision-blood-pressure-tracker-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Features one-click CSV Export for spreadsheet ingestion into electronic health record (EHR) systems, as well as a dedicated, CSS print-media...",
+      "url": "projects.html#macos-vision-blood-pressure-tracker-title"
+    },
+    {
+      "id": "task-macos-vision-blood-pressure-tracker-title-2",
+      "name": "Direct BLE Sphygmomanometer Telemetry",
+      "type": "task",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentId": "macos-vision-blood-pressure-tracker-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Engineering a background CoreBluetooth bridge to subscribe directly to standardized Bluetooth GATT Blood Pressure Profile (UUID 0x1810) broa...",
+      "url": "projects.html#macos-vision-blood-pressure-tracker-title"
+    },
+    {
+      "id": "task-macos-vision-blood-pressure-tracker-title-3",
+      "name": "Cardiovascular Anomaly Alerts",
+      "type": "task",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentId": "macos-vision-blood-pressure-tracker-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Integrating macOS user notification center alerts if consecutive readings trigger Stage 2 or Hypertensive Crisis thresholds across a rolling...",
+      "url": "projects.html#macos-vision-blood-pressure-tracker-title"
     },
     {
       "id": "apple-watch-macos-presentation-remote-title",
@@ -5641,6 +5729,72 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "macos-vision-blood-pressure-tracker-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "task-macos-vision-blood-pressure-tracker-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "task-macos-vision-blood-pressure-tracker-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "task-macos-vision-blood-pressure-tracker-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "task-macos-vision-blood-pressure-tracker-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "macos-vision-blood-pressure-tracker-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "apple-watch-macos-presentation-remote-title",

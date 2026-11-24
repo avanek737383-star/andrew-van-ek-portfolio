@@ -1498,6 +1498,41 @@
 			analogy: "An old-fashioned mechanical player piano that uses a paper roll with punched holes. The paper roll doesn't make any sound by itself—it just tells the piano's felt hammers exactly which physical metal strings to strike and how hard to hit them.",
 			techFact: "A SoundFont (.sf2) contains digital recordings of real acoustic instruments at various pitches and velocities. Software synths (like FluidSynth) read MIDI instructions and trigger the matching samples."
 		},
+		"vision-neural-ocr": {
+			title: "Apple Vision Neural OCR (The Arena Scorekeeper)",
+			analogy: "A sharp-eyed referee sitting in the bleachers of a high school gymnasium who looks up at the glowing digital scoreboard, reads the bright red 7-segment numbers in a fraction of a second, and writes them straight down onto the official scoresheet without ever asking the scoreboard operator.",
+			techFact: "Apple's native Vision framework (VNRecognizeTextRequest) runs machine-learning character recognition directly on Apple Silicon's Neural Engine, extracting text from images entirely offline without cloud APIs or external OCR dependencies."
+		},
+		"exif-temporal-harvesting": {
+			title: "EXIF Timestamp Harvesting (The Shutter Date Stamp)",
+			analogy: "A vintage 1990s disposable film camera that burns a bright orange date-and-time stamp into the bottom corner of the physical photographic negative the exact instant you click the shutter button.",
+			techFact: "Digital cameras and smartphones embed structured metadata into image files following the Exchangeable Image File (EXIF) standard; the DateTimeOriginal tag records the precise sensor capture timestamp independent of subsequent file transfers or saves."
+		},
+		"heic-sips-transcoding": {
+			title: "SIPS Image Transcoding (The Border Passport Translator)",
+			analogy: "A multilingual customs officer at an international airport border crossing who takes an exotic foreign ID booklet that the local baggage scanner can't read, and instantly photocopies it into a standard laminated travel card so you can walk through security without delay.",
+			techFact: "macOS's built-in Scriptable Image Processing System (sips) converts Apple's proprietary High-Efficiency Image Container (HEIC) format into ubiquitous Web-compatible JPEG bytes in milliseconds, bypassing browser decoding limitations."
+		},
+		"aha-clinical-staging": {
+			title: "AHA Clinical Hypertension Classification (The Tire Pressure Color Gauge)",
+			analogy: "A tire pressure gauge on a service station air pump with colored dial zones: green for safe highway driving, yellow for slightly over-inflated, and bright flashing red warning you that the tire is at dangerous risk of a blowout.",
+			techFact: "The American Heart Association (AHA) defines clinical blood pressure stages (Normal, Elevated, Stage 1, Stage 2, and Hypertensive Crisis) based on systolic and diastolic thresholds, enabling automated risk categorization."
+		},
+		"atomic-json-persistence": {
+			title: "Atomic File Storage Persistence (The Duplicate Ledger Swap)",
+			analogy: "An accountant writing an updated financial balance sheet onto a fresh notepad on their desk, verifying every sum and signature, and only then swapping the old ledger page into the locked fireproof safe in one swift motion, so a power outage or spilled coffee cup can never leave the books half-written.",
+			techFact: "Writing new data to a temporary file and atomically renaming it over the destination (via POSIX rename / os.replace) ensures the database file is never corrupted or left in a partial state if the server process terminates abruptly."
+		},
+		"decoupled-desktop-launcher": {
+			title: "Decoupled Architecture (The Car Keys vs. The Garage)",
+			analogy: "Carrying your lightweight metal car key around in your pocket on a keychain. If you accidentally misplace your keys or drop them in the grass, your actual 3,000-pound automobile is still parked completely safe and locked inside your brick garage.",
+			techFact: "Separating the user-facing launcher shortcut (~/Desktop) from the persistent data and server codebase (~/Documents/BloodPressureTracker) protects medical history databases from accidental desktop cleanup or deletion."
+		},
+		"http-broken-pipe": {
+			title: "HTTP Broken Pipe Connection Reset (Hanging Up the Phone Mid-Sentence)",
+			analogy: "Starting to read an important doctor's prescription out loud over a landline telephone, only to hear an abrupt click and a dead dial tone because the person on the other end slammed down the receiver before you could say another word.",
+			techFact: "A POSIX BrokenPipeError (Errno 32) occurs when a web server attempts to write response data over a TCP socket that has already been closed or terminated by the client browser (e.g. when rejecting an unrenderable image format)."
+		},
 		"tls-bad-request": {
 			title: "TLS 400 Handshake Rejection (Secret Spy Code at the Drive-Thru)",
 			analogy: "Walking up to an old-school fast-food drive-thru microphone and reciting a heavily scrambled military cipher. The worker inside only speaks plain English, hears deafening static noise, and shouts back: 'I have no idea what you just said, try again in plain speech!'",
