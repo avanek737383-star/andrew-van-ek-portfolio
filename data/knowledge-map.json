@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 94,
-    "totalNodes": 309,
-    "totalLinks": 635,
+    "totalProjects": 95,
+    "totalNodes": 314,
+    "totalLinks": 643,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "esp32-nat-router-wifi-extender-title",
+      "name": "Autonomous ESP32 Wi-Fi Range Extender & NAT Router Deployment \u2014 Embedded Dual-Radio AP/STA Bridging, NVS Network Staging, and Southwest Sector Coverage Optimization",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 23, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Following our initial deployment of the portable house signal mapping utility on our primary ESP32, we tackled a secondary physical networking objective: expanding reliable wireless coverage into a chronic dead zone located in the southwestern perimeter of my residence. Rather...",
+      "tech": [
+        "ESP-IDF v5.5",
+        "lwIP Software NAT",
+        "WPA2-PSK",
+        "CP2102 Serial Telemetry",
+        "Tailscale",
+        "Antigravity AI"
+      ],
+      "tasks": [
+        {
+          "title": "Hardware Provisioning & High-Speed Flashing",
+          "desc": "Connected the target ESP32 board over a high-throughput CP2102 USB-to-UART bridge on COM8. We initialized esptool v5.6.0, performed a comple..."
+        },
+        {
+          "title": "Headless AT/CLI Configuration & Credential Synchronization",
+          "desc": "Rather than relying on captive portal mobile redirects, we configured the board directly over an interactive 115,200 baud serial UART consol..."
+        },
+        {
+          "title": "Network Validation & Sub-35ms Upstream Routing",
+          "desc": "Upon soft reboot, the ESP32 established an immediate link with BSSID e2:c3:2a:26:4a:24 on Channel 2 at -63 dBm RSSI, obtaining DHCP address ..."
+        },
+        {
+          "title": "Headless 5V Wall Deployment",
+          "desc": "Configured persistent NVS flash storage so all routing tables, DHCP pools (192.168.4.1/24), and credentials survive unexpected power loss. T..."
+        }
+      ],
+      "url": "projects.html#esp32-nat-router-wifi-extender-title"
+    },
+    {
+      "id": "task-esp32-nat-router-wifi-extender-title-0",
+      "name": "Hardware Provisioning & High-Speed Flashing",
+      "type": "task",
+      "parentProject": "Autonomous ESP32 Wi-Fi Range Extender & NAT Router Deployment \u2014 Embedded Dual-Radio AP/STA Bridging, NVS Network Staging, and Southwest Sector Coverage Optimization",
+      "parentId": "esp32-nat-router-wifi-extender-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Connected the target ESP32 board over a high-throughput CP2102 USB-to-UART bridge on COM8. We initialized esptool v5.6.0, performed a comple...",
+      "url": "projects.html#esp32-nat-router-wifi-extender-title"
+    },
+    {
+      "id": "task-esp32-nat-router-wifi-extender-title-1",
+      "name": "Headless AT/CLI Configuration & Credential Synchronization",
+      "type": "task",
+      "parentProject": "Autonomous ESP32 Wi-Fi Range Extender & NAT Router Deployment \u2014 Embedded Dual-Radio AP/STA Bridging, NVS Network Staging, and Southwest Sector Coverage Optimization",
+      "parentId": "esp32-nat-router-wifi-extender-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Rather than relying on captive portal mobile redirects, we configured the board directly over an interactive 115,200 baud serial UART consol...",
+      "url": "projects.html#esp32-nat-router-wifi-extender-title"
+    },
+    {
+      "id": "task-esp32-nat-router-wifi-extender-title-2",
+      "name": "Network Validation & Sub-35ms Upstream Routing",
+      "type": "task",
+      "parentProject": "Autonomous ESP32 Wi-Fi Range Extender & NAT Router Deployment \u2014 Embedded Dual-Radio AP/STA Bridging, NVS Network Staging, and Southwest Sector Coverage Optimization",
+      "parentId": "esp32-nat-router-wifi-extender-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Upon soft reboot, the ESP32 established an immediate link with BSSID e2:c3:2a:26:4a:24 on Channel 2 at -63 dBm RSSI, obtaining DHCP address ...",
+      "url": "projects.html#esp32-nat-router-wifi-extender-title"
+    },
+    {
+      "id": "task-esp32-nat-router-wifi-extender-title-3",
+      "name": "Headless 5V Wall Deployment",
+      "type": "task",
+      "parentProject": "Autonomous ESP32 Wi-Fi Range Extender & NAT Router Deployment \u2014 Embedded Dual-Radio AP/STA Bridging, NVS Network Staging, and Southwest Sector Coverage Optimization",
+      "parentId": "esp32-nat-router-wifi-extender-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Configured persistent NVS flash storage so all routing tables, DHCP pools (192.168.4.1/24), and credentials survive unexpected power loss. T...",
+      "url": "projects.html#esp32-nat-router-wifi-extender-title"
     },
     {
       "id": "vgm-audio-forensics-and-orchestration-title",
@@ -5465,6 +5553,54 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "esp32-nat-router-wifi-extender-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "esp32-nat-router-wifi-extender-title",
+      "target": "task-esp32-nat-router-wifi-extender-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-nat-router-wifi-extender-title",
+      "target": "task-esp32-nat-router-wifi-extender-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-nat-router-wifi-extender-title",
+      "target": "task-esp32-nat-router-wifi-extender-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-nat-router-wifi-extender-title",
+      "target": "task-esp32-nat-router-wifi-extender-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "esp32-nat-router-wifi-extender-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "esp32-nat-router-wifi-extender-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "esp32-nat-router-wifi-extender-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-forensics-recovery",
       "target": "vgm-audio-forensics-and-orchestration-title",

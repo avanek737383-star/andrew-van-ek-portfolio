@@ -87,6 +87,110 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="esp32-nat-router-wifi-extender-title">
+<h2 id="esp32-nat-router-wifi-extender-title">Autonomous ESP32 Wi-Fi Range Extender &amp; NAT Router Deployment — Embedded Dual-Radio AP/STA Bridging, NVS Network Staging, and Southwest Sector Coverage Optimization</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>ESP32-D0WD-V3 &middot; ESP-IDF v5.5 &middot; lwIP Software NAT &middot; WPA2-PSK &middot; CP2102 Serial Telemetry &middot; Tailscale &middot; Antigravity AI &middot; <time datetime="2026-11-23">November 23, 2026</time></span></p>
+<div class="project-architecture" aria-label="ESP32 NAT Router Architecture"><span>Primary Wi-Fi (3 Wheeled Harley, Ch 2)</span><span aria-hidden="true">&rarr;</span><span>ESP32 STA Interface (192.168.0.116)</span><span aria-hidden="true">&rarr;</span><span>Hardware NVS NAT Packet Forwarding</span><span aria-hidden="true">&rarr;</span><span>Custom SoftAP (3 Wheeled Harley_ESP32_Extender_W)</span><span aria-hidden="true">&rarr;</span><span>Southwest Household Perimeter Coverage</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">📡 ESP32 Standalone NAT Repeater &amp; Wi-Fi Extender Architecture</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">Uplink STA Client &rarr; lwIP NAT Forwarding Engine &rarr; SoftAP Repeater Beacon (31 ms Ping)</span>
+    </div>
+    <span style="background:rgba(56,189,248,0.18); color:#7dd3fc; border:1px solid rgba(56,189,248,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Hardware Native &bull; ESP32-D0WD-V3 / CP2102</span>
+  </div>
+
+  <svg viewBox="0 0 920 220" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="ESP32 NAT Router Architecture Diagram">
+    <defs>
+      <linearGradient id="uplinkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.05"/>
+      </linearGradient>
+      <linearGradient id="natGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="extGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#b45309" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="clientGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#7e22ce" stop-opacity="0.06"/>
+      </linearGradient>
+      <marker id="pipe-arrow-nat" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+      </marker>
+    </defs>
+
+    <!-- Node 1: Primary Wi-Fi Router -->
+    <rect x="15" y="25" width="195" height="170" rx="10" fill="url(#uplinkGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="112" y="50" fill="#7dd3fc" font-size="12" font-weight="700" text-anchor="middle">1. Uplink Wi-Fi Source</text>
+    <rect x="30" y="66" width="165" height="24" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="0.8"/>
+    <text x="112" y="82" fill="#38bdf8" font-size="11" font-weight="600" text-anchor="middle">SSID: 3 Wheeled Harley</text>
+    <text x="112" y="112" fill="#bae6fd" font-size="10" font-weight="600" text-anchor="middle">&bull; 2.4 GHz Band (Channel 2)</text>
+    <text x="112" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; WPA2-PSK Authentication</text>
+    <text x="112" y="148" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Subnet: 192.168.0.0/24</text>
+    <text x="112" y="166" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Gateway: 192.168.0.1</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 215 110 L 245 110" stroke="#64748b" stroke-width="2" marker-end="url(#pipe-arrow-nat)"/>
+
+    <!-- Node 2: ESP32 Hardware Core -->
+    <rect x="250" y="25" width="205" height="170" rx="10" fill="url(#natGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="352" y="50" fill="#6ee7b7" font-size="12" font-weight="700" text-anchor="middle">2. ESP-WROOM-32 Core</text>
+    <rect x="265" y="66" width="175" height="24" rx="4" fill="#063220" stroke="#10b981" stroke-width="0.8"/>
+    <text x="352" y="82" fill="#34d399" font-size="11" font-weight="600" text-anchor="middle">Dual Xtensa LX6 @ 240 MHz</text>
+    <text x="352" y="112" fill="#a7f3d0" font-size="10" font-weight="600" text-anchor="middle">&bull; MAC: 20:50:0d:d1:35:84</text>
+    <text x="352" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Assigned IP: 192.168.0.116</text>
+    <text x="352" y="148" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; STA Signal: -63 dBm</text>
+    <text x="352" y="166" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&check; Flash: 4 MB DIO 40MHz</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 460 110 L 490 110" stroke="#64748b" stroke-width="2" marker-end="url(#pipe-arrow-nat)"/>
+
+    <!-- Node 3: NAT & Routing Engine -->
+    <rect x="495" y="25" width="200" height="170" rx="10" fill="url(#extGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="595" y="50" fill="#fde68a" font-size="12" font-weight="700" text-anchor="middle">3. lwIP Software NAT Engine</text>
+    <rect x="510" y="66" width="170" height="24" rx="4" fill="#382103" stroke="#f59e0b" stroke-width="0.8"/>
+    <text x="595" y="82" fill="#fbbf24" font-size="11" font-weight="600" text-anchor="middle">IP Packet Translation</text>
+    <text x="595" y="112" fill="#fef08a" font-size="10" font-weight="600" text-anchor="middle">&bull; SoftAP IP: 192.168.4.1</text>
+    <text x="595" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Custom DHCP Server Pool</text>
+    <text x="595" y="148" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&check; Verified Ping: 8.8.8.8 (34ms)</text>
+    <text x="595" y="166" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; HTTP Web Admin &amp; mDNS</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <path d="M 700 110 L 730 110" stroke="#64748b" stroke-width="2" marker-end="url(#pipe-arrow-nat)"/>
+
+    <!-- Node 4: Extended Broadcast -->
+    <rect x="735" y="25" width="175" height="170" rx="10" fill="url(#clientGrad)" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="822" y="50" fill="#e9d5ff" font-size="12" font-weight="700" text-anchor="middle">4. Southwest Repeater AP</text>
+    <rect x="745" y="66" width="155" height="24" rx="4" fill="#290e44" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="822" y="82" fill="#c084fc" font-size="10.5" font-weight="600" text-anchor="middle">Extended SSID</text>
+    <text x="822" y="108" fill="#f3e8ff" font-size="9" font-weight="700" text-anchor="middle">3 Wheeled Harley_</text>
+    <text x="822" y="122" fill="#f3e8ff" font-size="9" font-weight="700" text-anchor="middle">ESP32_Extender_W</text>
+    <text x="822" y="146" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Synchronized Password</text>
+    <text x="822" y="166" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&check; Headless 5V Deployment</text>
+  </svg>
+</div>
+
+<p>Following our initial deployment of the portable house signal mapping utility on our primary ESP32, we tackled a secondary physical networking objective: expanding reliable wireless coverage into a chronic dead zone located in the southwestern perimeter of my residence. Rather than investing in proprietary commercial mesh satellite nodes or running structural Ethernet cables across finished walls, we engineered an autonomous, ultra-compact pocket Wi-Fi repeater utilizing a spare <strong>ELEGOO ESP-WROOM-32 development board</strong>.</p>
+
+<p>While the ESP32 silicon features only a single physical 2.4 GHz RF radio transceiver, its underlying hardware architecture supports concurrent Station (STA) and Soft Access Point (AP) virtualization. By leveraging <code>esp32_nat_router</code> (compiled on ESP-IDF v5.5 with embedded lwIP software Network Address Translation), the microcontroller acts as an independent layer-3 router: associating as an authenticated client with the primary household access point (<code>3 Wheeled Harley</code>) while simultaneously broadcasting an independent extended wireless network.</p>
+
+<h3>Engineering Implementation &amp; Serial Firmware Provisioning</h3>
+<ul>
+<li><strong>Hardware Provisioning &amp; High-Speed Flashing:</strong> Connected the target ESP32 board over a high-throughput CP2102 USB-to-UART bridge on <code>COM8</code>. We initialized <code>esptool v5.6.0</code>, performed a complete chip erase to eliminate stale NVS partition tables, and staged a 4-part multi-binary flash at <code>460,800 baud</code>: bootloader (<code>0x1000</code>), partition table (<code>0x8000</code>), OTA data initialization vector (<code>0xF000</code>), and the monolithic 1.37 MB NAT router image (<code>0x20000</code>). Data integrity was verified cryptographically via SHA-256 hash validation before triggering an automated RTS-line hardware reset.</li>
+<li><strong>Headless AT/CLI Configuration &amp; Credential Synchronization:</strong> Rather than relying on captive portal mobile redirects, we configured the board directly over an interactive 115,200 baud serial UART console. We programmed the STA interface to bind to the primary household network (<code>3 Wheeled Harley</code>) and branded the secondary broadcast SoftAP as <code>3 Wheeled Harley_ESP32_Extender_W</code>. Security credentials were synchronized with the source WPA2-PSK passphrase, ensuring client devices roaming into the southwest quadrant authenticate without user intervention.</li>
+<li><strong>Network Validation &amp; Sub-35ms Upstream Routing:</strong> Upon soft reboot, the ESP32 established an immediate link with BSSID <code>e2:c3:2a:26:4a:24</code> on Channel 2 at <strong>-63 dBm RSSI</strong>, obtaining DHCP address <code>192.168.0.116</code> from the primary router. We verified end-to-end NAT routing by executing ICMP echo requests directly from the ESP-IDF command environment, recording consistent <strong>31 to 36 ms round-trip latency to Google Public DNS (8.8.8.8)</strong>.</li>
+<li><strong>Headless 5V Wall Deployment:</strong> Configured persistent NVS flash storage so all routing tables, DHCP pools (<code>192.168.4.1/24</code>), and credentials survive unexpected power loss. The board is fully autonomous and operates continuously from any generic 5V/1A USB wall block in the southwest quadrant, requiring zero computer connection or manual maintenance.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew established network topology requirements, physical placement constraints in the southwest quadrant, and secured access parameters. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> detected hardware signatures on COM8, compiled and flashed the 4-binary ESP-IDF firmware stack, orchestrated headless UART serial CLI provisioning, verified end-to-end NAT ICMP packet routing, ensured credential security hygiene by purging transient files, and authored this engineering log.</p>
+<ul class="chips"><li>ESP32</li><li>ESP-WROOM-32</li><li>ELEGOO</li><li>Wi-Fi Repeater</li><li>Network Address Translation (NAT)</li><li>lwIP</li><li>ESP-IDF</li><li>Embedded Networking</li><li>CP2102</li><li>Google DeepMind Antigravity AI</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="vgm-audio-forensics-and-orchestration-title">
 <h2 id="vgm-audio-forensics-and-orchestration-title">Multi-Ecosystem Audio Engineering, Forensic Video Game Decompilation &amp; Cloud-to-Disk Orchestration Pipeline — Super Smash Bros. Brawl / Project M Cryptographic Deduplication, EA Layer 3 &amp; Nintendo Wii BRSTM Decoding, Automated 1080p YouTube Mastering &amp; Cross-Drive Local Archive Sync</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>SHA-256 Bitwise Deduplication &middot; Nintendo Wii Multi-Channel BRSTM ADPCM &middot; EA SCHl / EALayer3 &middot; vgmstream Reverse Engineering &middot; 1080p Video Synthesis &middot; Automated YouTube Timestamp Tracklists &middot; Multi-Drive Orchestration &middot; 320 kbps ID3v2 MP3 Extraction &middot; Antigravity AI &middot; <time datetime="2026-11-22">November 22, 2026</time></span></p>
