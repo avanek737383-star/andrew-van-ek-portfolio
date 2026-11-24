@@ -1573,7 +1573,22 @@
 			analogy: "A choir director listening to a rehearsal who completely ignores the singer's deep breath intakes, throat clearings, and shoe scuffs on the floor, and only writes down notes on the sheet music when a true, resonant vocal singing pitch begins.",
 			techFact: "Mathematical confidence filters in audio-to-MIDI converters (such as Spotify Basic Pitch) that require energy and pitch probabilities to cross strict thresholds before registering a note onset."
 		},
-		"torchsde-brownian-recursion": {
+		"		"anti-stutter-debouncing": {
+			title: "Anti-Stutter Note Debouncing (The Singer's Held Breath)",
+			analogy: "A singer singing a long, beautiful vowel naturally wavers their voice slightly like a candle flame; instead of a nervous pianist tapping the key six times in a row like Morse code, debouncing tells the pianist to keep their finger pressed firmly down for the whole note.",
+			techFact: "Merging contiguous note events sharing identical MIDI pitch numbers within 160ms delta thresholds prevents vibrato micro-modulations from re-triggering rapid mechanical acoustic piano hammer strikes."
+		},
+		"pre-transcription-noise-gate": {
+			title: "Pre-Transcription Noise Gate (The Soundproof Security Guard)",
+			analogy: "A bouncer standing at the recording booth door who keeps it sealed tight against faint street noise or guitar echoes from next door, only opening the microphone when someone steps up and actually begins singing.",
+			techFact: "Applying an FFmpeg agate at -38dB before feeding isolated vocals into Spotify Basic Pitch ensures residual -60dB intro bleed is forced to true digital silence, eliminating phantom transcribed notes."
+		},
+		"zero-ducking-amix": {
+			title: "Zero-Ducking Audio Mixing (Unlinked Volume Faders)",
+			analogy: "A live band where the sound technician promises never to push down the drums and bass faders every time the lead singer steps up to the microphone, so the backing groove keeps its full power from start to finish.",
+			techFact: "Configuring FFmpeg amix with normalize=0 and a peak limiter (alimiter=limit=0.96) prevents automatic input stream scaling from halving the backing track volume whenever a lead melody track is present."
+		},
+torchsde-brownian-recursion": {
 			title: "torchsde Brownian Interval Recursion (The Infinite Search in the Wrong Drawer)",
 			analogy: "Looking through a cabinet of drawers labeled strictly 1 to 50 for a document filed under drawer #0. Instead of stopping and saying 'that drawer doesn't exist,' an overzealous assistant keeps slicing drawer #1 into thinner and thinner half-inch slices over a thousand times until they collapse from total exhaustion.",
 			techFact: "When a stochastic SDE noise sampler is queried outside its allocated boundary [sigma_min, sigma_max], the Brownian interval tree recursively splits its left-child intervals in an infinite descent, rapidly exceeding Python's sys.getrecursionlimit() and throwing a fatal RecursionError."

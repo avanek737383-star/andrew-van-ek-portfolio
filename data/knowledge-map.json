@@ -774,17 +774,17 @@
       "domainName": "Audio, Video & Creative",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 23, 2026",
+      "date": "November 24, 2026",
       "val": 24,
       "color": "#2dd4bf",
       "summary": "Traditional AI vocal isolators (such as basic Demucs or Spleeter interfaces) function strictly as passive stem subtractors: by carving out the singer\u2019s vocals, they leave an empty, hollow sonic vacuum in the mix where the human lead melody once carried the song. To transform p...",
       "tech": [
         "Apple Silicon Metal (MPS)",
         "Spotify Basic Pitch (Neural Audio-to-MIDI)",
-        "FluidSynth & FluidR3 General MIDI",
-        "Spectral Anti-Harshness (2x Equivariant Shifts)",
-        "Lossless Intermediate WAV",
-        "Tailscale Encrypted Mesh"
+        "Anti-Stutter Debouncing",
+        "Audio Noise Gating",
+        "Zero-Ducking Mix",
+        "FluidSynth (FluidR3 GM)"
       ],
       "tasks": [
         {
