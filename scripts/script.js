@@ -1602,6 +1602,11 @@ torchsde-brownian-recursion": {
 			title: "Native Stereo Audio Preservation (Two Separate Studio Ears)",
 			analogy: "A music producer setting up two high-end binaural microphones on opposite sides of a drum kit to capture the wide left-and-right panning, but an assistant accidentally plugs them both into a single mono guitar cable before sending it to the speakers, squashing the entire panoramic stage into a narrow pinhole.",
 			techFact: "Stable Audio Open synthesizes full 44.1 kHz stereo audio across two discrete latent channels (shape 2, N); preserving channel transposition (N, 2) rather than taking an arithmetic mean (mean(dim=0)) prevents the stereo image from collapsing into a flattened mono mixdown prior to studio mastering."
+		},
+		"js-challenge-inheritance": {
+			title: "JavaScript Challenge Solver Inheritance (The Missing Blueprint Link)",
+			analogy: "A mechanic stripping down an automobile blueprint to make it simpler, but accidentally erasing the line connecting the steering column to the front wheel assembly. When the driver attempts to steer, the vehicle refuses to respond because the foundational inheritance link was discarded before the car was even built.",
+			techFact: "When yt-dlp's external JavaScript challenge preprocessor stripped non-assignment expression statements from YouTube base.js player code, it dropped class inheritance helpers (g.z(Sub, Base)); subclasses never received prototype methods like addOnDisposeCallback, causing Deno to throw Uncaught TypeError during signature deciphering."
 		}
 
 	};
