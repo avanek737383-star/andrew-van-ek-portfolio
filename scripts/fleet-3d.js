@@ -113,37 +113,93 @@
 				canvas.style.cursor = 'grab';
 			});
 
+			controls.enableZoom = false; // Decoupled from native OrbitControls dollying to eliminate competing double-zoom conflicts
+
 			// Smart CAD Cursor-Centric Zoom: Zooms straight toward the mouse cursor along its 3D ray.
-			// Moves BOTH camera.position and controls.target by the exact same vector,
-			// preserving theta and phi to guarantee ZERO gimbal spinning or rotation when looking from above.
+			// Re-scales camera position and controls.target relative to the focal plane intersection point,
+			// preserving theta and phi to guarantee ZERO gimbal spinning or rotation when looking from above,
+			// while normalizing wheel delta across mice and high-precision trackpads.
 			const zoomRaycaster = new THREE.Raycaster();
+			const camDir = new THREE.Vector3();
+			const focalPlane = new THREE.Plane();
+			const focalPoint = new THREE.Vector3();
+
 			canvas.addEventListener('wheel', (e) => {
 				if (isDragging || !controls) return;
 				e.preventDefault();
+
+				// Normalize delta across input devices (pixels, lines, pages)
+				let rawDelta = e.deltaY;
+				if (e.deltaMode === 1) { // Lines (e.g. Firefox mouse wheel)
+					rawDelta *= 16;
+				} else if (e.deltaMode === 2) { // Pages
+					rawDelta *= 80;
+				}
+
+				// Clamp delta per event to prevent sudden velocity leaps on rapid flicks
+				const clampedDelta = Math.max(-80, Math.min(80, rawDelta));
+				if (Math.abs(clampedDelta) < 0.001) return;
+
+				// Exponential zoom scaling factor: gentle on trackpads (~0.26% per tick), controlled on mouse wheels (~5% per click)
+				// zoomFactor < 1 means zoom in (move closer), > 1 means zoom out (move further)
+				let zoomFactor = Math.exp(clampedDelta * 0.00065);
+
+				const currentDist = camera.position.distanceTo(controls.target);
+				const targetDist = currentDist * zoomFactor;
+
+				// Enforce minDistance and maxDistance boundaries smoothly
+				if (targetDist < controls.minDistance) {
+					zoomFactor = controls.minDistance / currentDist;
+				} else if (targetDist > controls.maxDistance) {
+					zoomFactor = controls.maxDistance / currentDist;
+				}
+
+				if (Math.abs(zoomFactor - 1.0) < 0.0001) return;
 
 				const rect = canvas.getBoundingClientRect();
 				const ndcX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
 				const ndcY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
 				zoomRaycaster.setFromCamera({ x: ndcX, y: ndcY }, camera);
-				const rayDir = zoomRaycaster.ray.direction.clone().normalize();
 
-				const dist = camera.position.distanceTo(controls.target);
-				const zoomAmount = (e.deltaY < 0) ? 0.085 : -0.085;
-				const step = Math.max(0.4, Math.min(dist * zoomAmount, 3.2));
+				// Find intersection of cursor ray with focal plane through controls.target
+				camera.getWorldDirection(camDir);
+				focalPlane.setFromNormalAndCoplanarPoint(camDir, controls.target);
 
-				const moveVec = rayDir.clone().multiplyScalar(step);
-
-				// Distance boundary checks
-				if (e.deltaY < 0 && dist > controls.minDistance + 1) {
-					camera.position.add(moveVec);
-					controls.target.add(moveVec);
-					controls.update();
-				} else if (e.deltaY > 0 && dist < controls.maxDistance - 1) {
-					camera.position.add(moveVec);
-					controls.target.add(moveVec);
-					controls.update();
+				let p = focalPoint;
+				const hit = zoomRaycaster.ray.intersectPlane(focalPlane, p);
+				if (!hit) {
+					p = controls.target;
 				}
+
+				// True CAD Cursor-Centric Scaling:
+				// Scales camera position and controls target relative to cursor focal point p.
+				// Preserves vector orientation (controls.target - camera.position) exactly,
+				// ensuring ZERO angular rotation or gimbal spinning while keeping the hovered point anchored.
+				camera.position.set(
+					p.x + (camera.position.x - p.x) * zoomFactor,
+					p.y + (camera.position.y - p.y) * zoomFactor,
+					p.z + (camera.position.z - p.z) * zoomFactor
+				);
+
+				controls.target.set(
+					p.x + (controls.target.x - p.x) * zoomFactor,
+					p.y + (controls.target.y - p.y) * zoomFactor,
+					p.z + (controls.target.z - p.z) * zoomFactor
+				);
+
+				// If zooming far out toward maxDistance, gently recenter target toward rack center
+				if (zoomFactor > 1.0 && targetDist > 30) {
+					const recenterWeight = Math.min(0.08, (targetDist - 30) / 25 * 0.08);
+					controls.target.lerp(new THREE.Vector3(0.5, 9.0, 0), recenterWeight);
+				}
+
+				// Keep target bounded within reasonable proximity to physical workbench
+				controls.target.x = Math.max(-20, Math.min(20, controls.target.x));
+				controls.target.y = Math.max(1, Math.min(22, controls.target.y));
+				controls.target.z = Math.max(-15, Math.min(15, controls.target.z));
+
+				controls.update();
 			}, { passive: false });
 		}
 
