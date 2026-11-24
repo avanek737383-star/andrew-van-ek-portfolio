@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 95,
-    "totalNodes": 314,
-    "totalLinks": 643,
+    "totalProjects": 96,
+    "totalNodes": 319,
+    "totalLinks": 654,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "apple-watch-macos-presentation-remote-title",
+      "name": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 24, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Preparing for college class presentations often introduces severe logistical and hardware constraints: commercial wireless clickers are bulky or easily misplaced, holding an iPhone while presenting looks unprofessional or distracted, and campus Wi-Fi networks enforce aggressiv...",
+      "tech": [
+        "iOS Shortcuts",
+        "AppleScript System Events",
+        "Zero-Dependency Python HTTP",
+        "Bonjour mDNS",
+        "macOS caffeinate",
+        "Tailscale Encrypted Mesh"
+      ],
+      "tasks": [
+        {
+          "title": "Zero-Dependency macOS HTTP Server Daemon",
+          "desc": "Engineered slide_remote.py utilizing only Python standard libraries (http.server, socketserver, subprocess). The lightweight daemon listens ..."
+        },
+        {
+          "title": "Resolving watchOS URLSession Chunking & Indefinite Spinner Hangs",
+          "desc": "Early testing from Apple Watch revealed that the Shortcut action would freeze indefinitely on the stop/play execution spinner without advanc..."
+        },
+        {
+          "title": "Mitigating macOS Window Focus Stealing (iPhone Mirroring Collision)",
+          "desc": "While testing the wearable workflow via macOS Sequoia's iPhone Mirroring, keystrokes failed to reach the slideshow because the Mirroring cli..."
+        },
+        {
+          "title": "Overcoming Campus Wi-Fi Isolation via Zero-Config Bonjour & Tailscale",
+          "desc": "Campus enterprise Wi-Fi blocks standard LAN broadcasts and prevents clients from communicating directly. We architected a dual-transport str..."
+        }
+      ],
+      "url": "projects.html#apple-watch-macos-presentation-remote-title"
+    },
+    {
+      "id": "task-apple-watch-macos-presentation-remote-title-0",
+      "name": "Zero-Dependency macOS HTTP Server Daemon",
+      "type": "task",
+      "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
+      "parentId": "apple-watch-macos-presentation-remote-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Engineered slide_remote.py utilizing only Python standard libraries (http.server, socketserver, subprocess). The lightweight daemon listens ...",
+      "url": "projects.html#apple-watch-macos-presentation-remote-title"
+    },
+    {
+      "id": "task-apple-watch-macos-presentation-remote-title-1",
+      "name": "Resolving watchOS URLSession Chunking & Indefinite Spinner Hangs",
+      "type": "task",
+      "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
+      "parentId": "apple-watch-macos-presentation-remote-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Early testing from Apple Watch revealed that the Shortcut action would freeze indefinitely on the stop/play execution spinner without advanc...",
+      "url": "projects.html#apple-watch-macos-presentation-remote-title"
+    },
+    {
+      "id": "task-apple-watch-macos-presentation-remote-title-2",
+      "name": "Mitigating macOS Window Focus Stealing (iPhone Mirroring Collision)",
+      "type": "task",
+      "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
+      "parentId": "apple-watch-macos-presentation-remote-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "While testing the wearable workflow via macOS Sequoia's iPhone Mirroring, keystrokes failed to reach the slideshow because the Mirroring cli...",
+      "url": "projects.html#apple-watch-macos-presentation-remote-title"
+    },
+    {
+      "id": "task-apple-watch-macos-presentation-remote-title-3",
+      "name": "Overcoming Campus Wi-Fi Isolation via Zero-Config Bonjour & Tailscale",
+      "type": "task",
+      "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
+      "parentId": "apple-watch-macos-presentation-remote-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Campus enterprise Wi-Fi blocks standard LAN broadcasts and prevents clients from communicating directly. We architected a dual-transport str...",
+      "url": "projects.html#apple-watch-macos-presentation-remote-title"
     },
     {
       "id": "esp32-nat-router-wifi-extender-title",
@@ -5553,6 +5641,72 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "apple-watch-macos-presentation-remote-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "task-apple-watch-macos-presentation-remote-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "task-apple-watch-macos-presentation-remote-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "task-apple-watch-macos-presentation-remote-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "task-apple-watch-macos-presentation-remote-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "apple-watch-macos-presentation-remote-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "esp32-nat-router-wifi-extender-title",

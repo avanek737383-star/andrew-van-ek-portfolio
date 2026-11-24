@@ -87,6 +87,125 @@
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
+<section class="project-entry" aria-labelledby="apple-watch-macos-presentation-remote-title">
+<h2 id="apple-watch-macos-presentation-remote-title">Autonomous Apple Watch &amp; iPhone Presentation Remote for macOS — Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking &amp; Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery &amp; Native Watch Complication Hardware Integration</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>watchOS 11 &middot; iOS Shortcuts &middot; AppleScript System Events &middot; Zero-Dependency Python HTTP &middot; Bonjour mDNS &middot; macOS caffeinate &middot; Tailscale Encrypted Mesh &middot; ONLYOFFICE Presentation Mode &middot; Apple Watch GMT Complication &middot; Antigravity AI &middot; <time datetime="2026-11-24">November 24, 2026</time></span></p>
+<div class="project-architecture" aria-label="Apple Watch macOS Presentation Remote Architecture"><span>Apple Watch GMT Face Complication</span><span aria-hidden="true">&rarr;</span><span>iOS Shortcuts Action (Get Contents of URL)</span><span aria-hidden="true">&rarr;</span><span>Zero-Config Bonjour mDNS (The-Macsimal-Computing-Experience-2.local:8765)</span><span aria-hidden="true">&rarr;</span><span>macOS HTTP Background Daemon</span><span aria-hidden="true">&rarr;</span><span>Active App Focus Resolver (ONLYOFFICE / Keynote)</span><span aria-hidden="true">&rarr;</span><span>System Events Keystroke Injection (Key Code 124)</span><span aria-hidden="true">&rarr;</span><span>caffeinate -d Display Sleep Lock</span></div>
+
+<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+    <div>
+      <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">⌚️ Apple Watch &amp; macOS Low-Latency Presentation Remote Pipeline</h4>
+      <span style="font-size:0.8rem; color:#94a3b8;">Wrist Hardware Complication &rarr; mDNS Bonjour Route &rarr; Auto-Focus Injection &rarr; Display Caffeination</span>
+    </div>
+    <span style="background:rgba(56,189,248,0.18); color:#7dd3fc; border:1px solid rgba(56,189,248,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Production Ready &bull; Zero External Dependencies</span>
+  </div>
+
+  <svg viewBox="0 0 920 220" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="Apple Watch macOS Presentation Remote Architecture Diagram">
+    <defs>
+      <linearGradient id="watchGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="netGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="daemonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#b45309" stop-opacity="0.06"/>
+      </linearGradient>
+      <linearGradient id="slideGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#7e22ce" stop-opacity="0.06"/>
+      </linearGradient>
+      <marker id="arrow-slide" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+      </marker>
+    </defs>
+
+    <!-- Node 1: Apple Watch -->
+    <rect x="15" y="25" width="200" height="170" rx="10" fill="url(#watchGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="115" y="50" fill="#7dd3fc" font-size="12" font-weight="700" text-anchor="middle">1. Wearable Trigger</text>
+    <rect x="30" y="66" width="170" height="24" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="0.8"/>
+    <text x="115" y="82" fill="#38bdf8" font-size="10.5" font-weight="600" text-anchor="middle">Apple Watch GMT Face</text>
+    <text x="115" y="112" fill="#bae6fd" font-size="10" font-weight="600" text-anchor="middle">&bull; Bottom-Right Complication</text>
+    <text x="115" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; One-Tap Shortcuts Action</text>
+    <text x="115" y="148" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Sub-50ms Haptic Touch</text>
+    <text x="115" y="166" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Zero Screen Fumbling</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 220 110 L 245 110" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-slide)"/>
+
+    <!-- Node 2: Network Transport -->
+    <rect x="250" y="25" width="205" height="170" rx="10" fill="url(#netGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="352" y="50" fill="#6ee7b7" font-size="12" font-weight="700" text-anchor="middle">2. Transport Layer</text>
+    <rect x="265" y="66" width="175" height="24" rx="4" fill="#0b2e23" stroke="#10b981" stroke-width="0.8"/>
+    <text x="352" y="82" fill="#34d399" font-size="10" font-weight="600" text-anchor="middle">Zero-Config Bonjour mDNS</text>
+    <text x="352" y="110" fill="#d1fae5" font-size="9.5" font-weight="600" text-anchor="middle">*.local:8765/next</text>
+    <text x="352" y="128" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Campus AP Isolation Bypass</text>
+    <text x="352" y="146" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Dynamic IP: ipconfig getifaddr</text>
+    <text x="352" y="164" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Fallback: Tailscale Encrypted Mesh</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 460 110 L 485 110" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-slide)"/>
+
+    <!-- Node 3: macOS Daemon -->
+    <rect x="490" y="25" width="205" height="170" rx="10" fill="url(#daemonGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="592" y="50" fill="#fcd34d" font-size="12" font-weight="700" text-anchor="middle">3. macOS Core Daemon</text>
+    <rect x="505" y="66" width="175" height="24" rx="4" fill="#382105" stroke="#f59e0b" stroke-width="0.8"/>
+    <text x="592" y="82" fill="#fbbf24" font-size="10.5" font-weight="600" text-anchor="middle">slide_remote.py (HTTP/1.1)</text>
+    <text x="592" y="110" fill="#fef3c7" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Content-Length: 4 &amp; Close</text>
+    <text x="592" y="128" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Proactive App Auto-Focus</text>
+    <text x="592" y="146" fill="#94a3b8" font-size="9" text-anchor="middle">&bull; Caffeinate -d Display Lock</text>
+    <text x="592" y="164" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&bull; Trapped Ctrl+C Clean Exit</text>
+
+    <!-- Arrow 3 -> 4 -->
+    <path d="M 700 110 L 725 110" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-slide)"/>
+
+    <!-- Node 4: Presentation Engine -->
+    <rect x="730" y="25" width="175" height="170" rx="10" fill="url(#slideGrad)" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="817" y="50" fill="#d8b4fe" font-size="12" font-weight="700" text-anchor="middle">4. Presentation Target</text>
+    <rect x="745" y="66" width="145" height="24" rx="4" fill="#290e44" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="817" y="82" fill="#c084fc" font-size="10.5" font-weight="600" text-anchor="middle">ONLYOFFICE / Keynote</text>
+    <text x="817" y="112" fill="#f3e8ff" font-size="10" font-weight="700" text-anchor="middle">Presentation Mode</text>
+    <text x="817" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Key Code 124 (Right Arrow)</text>
+    <text x="817" y="148" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Instant Slide Transition</text>
+    <text x="817" y="166" fill="#4ade80" font-size="9.5" font-weight="600" text-anchor="middle">&check; 100% Hands-Free</text>
+  </svg>
+</div>
+
+<p>Preparing for college class presentations often introduces severe logistical and hardware constraints: commercial wireless clickers are bulky or easily misplaced, holding an iPhone while presenting looks unprofessional or distracted, and campus Wi-Fi networks enforce aggressive client isolation that prevents peer-to-peer network discovery between devices. Furthermore, while Apple Keynote offers an ecosystem-native remote, real-world academic decks are frequently constructed in <strong>ONLYOFFICE (.pptx)</strong> or browser-based tools with zero out-of-the-box wearable remote support.</p>
+
+<p>To establish a completely stealth, reliable, and hands-free presentation clicker, Andrew and <strong>Antigravity AI</strong> designed and deployed an autonomous client-server architecture linking an <strong>Apple Watch</strong> directly to an active macOS workstation over zero-configuration networking protocols, controlled silently via a single tap on a native watch face complication.</p>
+
+<h3>Engineering Implementation &amp; Forensic Troubleshooting</h3>
+<ul>
+<li><strong>Zero-Dependency macOS HTTP Server Daemon:</strong> Engineered <code>slide_remote.py</code> utilizing only Python standard libraries (<code>http.server</code>, <code>socketserver</code>, <code>subprocess</code>). The lightweight daemon listens on port <code>8765</code>, maps incoming RESTful endpoints (<code>/next</code>, <code>/prev</code>, <code>/blank</code>) directly to asynchronous macOS <code>System Events</code> keyboard injections, and features a one-click macOS <code>.command</code> launcher with a custom Retina vector app icon compiled in Swift.</li>
+<li><strong>Resolving watchOS URLSession Chunking &amp; Indefinite Spinner Hangs:</strong> Early testing from Apple Watch revealed that the Shortcut action would freeze indefinitely on the stop/play execution spinner without advancing the slide. Diagnostics confirmed that watchOS <code>URLSession</code> handles HTTP/1.1 differently than mobile Safari: when a server response omits explicit delimitation, watchOS keeps the connection open awaiting additional stream chunks until timing out. We modified the daemon handler to explicitly calculate and deliver <code>Content-Length: len(data)</code> and send <code>Connection: close</code>, dropping watch-to-macOS latency down to a crisp, sub-50ms execution cycle.</li>
+<li><strong>Mitigating macOS Window Focus Stealing (iPhone Mirroring Collision):</strong> While testing the wearable workflow via macOS Sequoia's iPhone Mirroring, keystrokes failed to reach the slideshow because the Mirroring client maintained keyboard focus. To make the clicker bulletproof against accidental window switching, we updated the AppleScript injection engine to proactively query active process trees (<code>ONLYOFFICE</code>, <code>Keynote</code>, <code>Microsoft PowerPoint</code>) and explicitly activate the presentation window before dispatching <code>key code 124</code> (Right Arrow).</li>
+<li><strong>Overcoming Campus Wi-Fi Isolation via Zero-Config Bonjour &amp; Tailscale:</strong> Campus enterprise Wi-Fi blocks standard LAN broadcasts and prevents clients from communicating directly. We architected a dual-transport strategy:
+  <ul>
+    <li><strong>Zero-Config Bonjour mDNS:</strong> By binding the iOS Shortcut to <code>http://The-Macsimal-Computing-Experience-2.local:8765/next</code>, devices discover each other dynamically across ad-hoc or local networks without ever requiring manual IP re-configuration.</li>
+    <li><strong>Dynamic Wi-Fi IP &amp; Universal Clipboard Sync:</strong> Integrated <code>ipconfig getifaddr en0</code> into the daemon startup sequence, automatically extracting the current active Wi-Fi address and piping it into <code>pbcopy</code> so the exact URL is instantly ready in the user's iPhone pasteboard via iCloud Universal Clipboard.</li>
+    <li><strong>Tailscale Encrypted Mesh:</strong> Verified cross-subnet routing over private Tailscale addresses (<code>100.67.172.15</code>), guaranteeing zero-friction fallback even across isolated cellular data streams.</li>
+  </ul>
+</li>
+<li><strong>Display Wake Preservation with Caffeinate Integration:</strong> Presentations are frequently ruined by macOS display sleep or energy saver timers mid-speech. The daemon automatically spawns a child <code>caffeinate -d</code> process upon launch, keeping the display fully illuminated and automatically terminating it via POSIX signal traps (<code>INT</code>, <code>TERM</code>, <code>EXIT</code>) when the presentation session ends.</li>
+<li><strong>Hardware Wearable Binding (Apple Watch GMT Complication):</strong> Configured the <strong>Apple Watch GMT Face</strong> by assigning the bottom-right corner complication slot to <code>Shortcuts &rarr; Run Shortcut &rarr; "Next Slide"</code>. Rather than fumbling through the watch application launcher during a live lecture, the presenter casually taps the lower-right watch quadrant to advance the deck seamlessly and invisibly.</li>
+</ul>
+
+<h3>Future Expansion &amp; Roadmap</h3>
+<ul>
+<li><strong>Bi-Directional Presenter Notes Streaming:</strong> Upgrading the daemon with a lightweight WebSocket bridge to push slide elapsed timers and speaker notes directly to an Apple Watch companion view or low-power web client.</li>
+<li><strong>Dual-Complication GMT Remote:</strong> Mapping the bottom-left GMT complication slot to <code>/prev</code> for complete bidirectional deck control directly from the watch face.</li>
+<li><strong>Haptic Confirmation:</strong> Injecting a subtle wrist tap (via watchOS Notification / Shortcut feedback) upon successful HTTP 200 response from the Mac.</li>
+</ul>
+
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew established operational requirements for stealth classroom presentations, identified ONLYOFFICE formatting priorities, diagnosed window focus collisions, and configured the Apple Watch GMT complication; <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> engineered the zero-dependency Python daemon, resolved watchOS HTTP chunking/Content-Length protocol hangs, developed the Swift custom icon launcher, automated <code>caffeinate</code> sleep locking, and orchestrated the multi-app window focus automation.</p>
+<ul class="chips"><li>Apple Watch</li><li>watchOS 11</li><li>iOS Shortcuts</li><li>macOS</li><li>AppleScript</li><li>System Events</li><li>Bonjour mDNS</li><li>Tailscale</li><li>ONLYOFFICE</li><li>caffeinate</li><li>Wearable Computing</li><li>Google DeepMind Antigravity AI</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="esp32-nat-router-wifi-extender-title">
 <h2 id="esp32-nat-router-wifi-extender-title">Autonomous ESP32 Wi-Fi Range Extender &amp; NAT Router Deployment — Embedded Dual-Radio AP/STA Bridging, NVS Network Staging, and Southwest Sector Coverage Optimization</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>ESP32-D0WD-V3 &middot; ESP-IDF v5.5 &middot; lwIP Software NAT &middot; WPA2-PSK &middot; CP2102 Serial Telemetry &middot; Tailscale &middot; Antigravity AI &middot; <time datetime="2026-11-23">November 23, 2026</time></span></p>
