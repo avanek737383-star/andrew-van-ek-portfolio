@@ -598,7 +598,7 @@
       "domainName": "AI & Agentic Systems",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 23, 2026",
+      "date": "November 24, 2026",
       "val": 24,
       "color": "#c084fc",
       "summary": "Following our initial deployment of the portable house signal mapping utility on our primary ESP32, we tackled a secondary physical networking objective: expanding reliable wireless coverage into a chronic dead zone located in the southwestern perimeter of my residence. Rather...",

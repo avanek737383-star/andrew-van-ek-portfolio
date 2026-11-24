@@ -1572,6 +1572,21 @@
 			title: "Melodic Onset Thresholding (The Discerning Ear)",
 			analogy: "A choir director listening to a rehearsal who completely ignores the singer's deep breath intakes, throat clearings, and shoe scuffs on the floor, and only writes down notes on the sheet music when a true, resonant vocal singing pitch begins.",
 			techFact: "Mathematical confidence filters in audio-to-MIDI converters (such as Spotify Basic Pitch) that require energy and pitch probabilities to cross strict thresholds before registering a note onset."
+		},
+		"torchsde-brownian-recursion": {
+			title: "torchsde Brownian Interval Recursion (The Infinite Search in the Wrong Drawer)",
+			analogy: "Looking through a cabinet of drawers labeled strictly 1 to 50 for a document filed under drawer #0. Instead of stopping and saying 'that drawer doesn't exist,' an overzealous assistant keeps slicing drawer #1 into thinner and thinner half-inch slices over a thousand times until they collapse from total exhaustion.",
+			techFact: "When a stochastic SDE noise sampler is queried outside its allocated boundary [sigma_min, sigma_max], the Brownian interval tree recursively splits its left-child intervals in an infinite descent, rapidly exceeding Python's sys.getrecursionlimit() and throwing a fatal RecursionError."
+		},
+		"boundary-clamping": {
+			title: "Dynamic Interval Boundary Clamping (Expanding the Filing Cabinet)",
+			analogy: "Adding a dedicated '0' compartment and a slightly oversized top shelf to the filing cabinet before the workday begins, ensuring that any paperwork stamped with edge-case numbers drops cleanly into a labeled slot without sending staff on a wild goose chase.",
+			techFact: "Monkey-patching BrownianTreeNoiseSampler.__init__ to enforce [min(sigma_min, 0.0), max(sigma_max, 505.0)] encloses both the zero final timestep and hardware floating-point epsilon drifts on Apple Silicon Metal without altering the core noise distribution."
+		},
+		"native-stereo-preservation": {
+			title: "Native Stereo Audio Preservation (Two Separate Studio Ears)",
+			analogy: "A music producer setting up two high-end binaural microphones on opposite sides of a drum kit to capture the wide left-and-right panning, but an assistant accidentally plugs them both into a single mono guitar cable before sending it to the speakers, squashing the entire panoramic stage into a narrow pinhole.",
+			techFact: "Stable Audio Open synthesizes full 44.1 kHz stereo audio across two discrete latent channels (shape 2, N); preserving channel transposition (N, 2) rather than taking an arithmetic mean (mean(dim=0)) prevents the stereo image from collapsing into a flattened mono mixdown prior to studio mastering."
 		}
 
 	};
