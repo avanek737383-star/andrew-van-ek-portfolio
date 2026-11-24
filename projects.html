@@ -506,80 +506,42 @@
 </section>
 
 <section class="project-entry" aria-labelledby="watchmouse-ble-bridge-title">
-<h2 id="watchmouse-ble-bridge-title">WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay &amp; Tri-Architecture Cellular Fallback</h2>
-<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Apple Watch SE 2 &middot; iPhone 16e &middot; ELEGOO ESP-WROOM-32 (CP2102) &middot; PlatformIO &middot; NimBLE-Arduino &middot; BLE HID Mouse &middot; iOS AssistiveTouch &middot; Network.framework UDP &middot; SwiftUI &middot; Xcode 27 &middot; Antigravity CLI &middot; OpenAI Codex CLI &middot; <time datetime="2026-11-22">November 22, 2026</time></span></p>
+<h2 id="watchmouse-ble-bridge-title">WatchMouse Bridge: A Phone-Powered Apple Watch Trackpad for iPhone</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed &middot; Portable Working Prototype</span> <span>Apple Watch SE &middot; iPhone 16e &middot; ESP-WROOM-32 &middot; SwiftUI &middot; URLSession HTTP &middot; PlatformIO &middot; NimBLE-Arduino &middot; BLE HID &middot; AssistiveTouch &middot; Updated <time datetime="2026-11-23">November 23, 2026</time></span></p>
 
-<p>The goal of this project is to convert an <strong>Apple Watch SE 2</strong> touchscreen and Digital Crown into an ultra-low-latency wireless trackpad for an <strong>Apple iPhone 16e</strong> (paired via native AssistiveTouch cursor navigation), utilizing an <strong>ELEGOO ESP-WROOM-32</strong> development board as an autonomous Wi-Fi-to-Bluetooth HID hardware bridge. By intercepting high-frequency touch gesture deltas and crown ticks over a lightweight UDP transport and translating them into standard 8-bit BLE HID mouse reports, the setup delivers smooth, jitter-free cursor tracking across iOS without jailbreaking or third-party iOS accessibility drivers.</p>
+<p>I built WatchMouse to turn my Apple Watch into a remote trackpad for my iPhone: move a finger to position the pointer, tap to click, and rotate the Digital Crown to scroll. My goal was a compact setup I could take around campus without carrying a computer or depending on shared campus Wi-Fi. After working through deployment, networking, and input-delivery problems, I tested the complete system with the ESP32 powered directly from the iPhone through a short USB-C cable.</p>
 
-<pre><code>[Apple Watch SE 2] ──(Wi-Fi UDP: dx,dy,scroll,click on :4210)──► [ESP-WROOM-32 Bridge] ──(BLE HID Mouse)──► [iPhone 16e AssistiveTouch]
-                                                                        │
-                                                                (HTTP GET /status)
-                                                                        ▼
-                                                             [Mobile / Browser Telemetry]</code></pre>
+<div class="project-architecture" aria-label="WatchMouse input and power paths"><span>Apple Watch SwiftUI Trackpad</span><span aria-hidden="true">&rarr;</span><span>URLSession HTTP Input</span><span aria-hidden="true">&rarr;</span><span>ESP32 Wi-Fi Bridge</span><span aria-hidden="true">&rarr;</span><span>Bluetooth LE HID Mouse</span><span aria-hidden="true">&rarr;</span><span>iPhone AssistiveTouch</span></div>
+<p><strong>Power path:</strong> iPhone USB-C &rarr; short cable &rarr; ESP32. The board creates its own Wi-Fi network, so the tested portable control setup does not need the Mac, a home router, or campus network access. Its access point provides the local control link; it is not an internet service.</p>
 
-<h3>Firmware Architecture &amp; Dual-Radio Optimization (Antigravity CLI)</h3>
-<p>Running concurrent 2.4 GHz 802.11 b/g/n Wi-Fi and Bluetooth Low Energy on a single ESP32 microcontroller typically causes severe memory starvation and heap crashes under the default ESP-IDF Bluedroid stack. The firmware architecture developed by <strong>Antigravity CLI (Google DeepMind)</strong> resolves these hardware bottlenecks:</p>
+<h3>From an Initial Bridge to a Real Watch App</h3>
+<p>The earlier prototype, developed with Antigravity CLI, established the PlatformIO firmware, NimBLE mouse integration, compact input protocol, status dashboard, network fallback structure, and integrated iPhone/Watch project. The initial design assumed the Watch could stream raw UDP input. Getting the project running on physical hardware revealed both Apple deployment hurdles and a networking restriction that required changing that design.</p>
+<p>With OpenAI Codex assisting through source edits, command-line tools, and computer use, I worked through Personal Team signing, device trust, Developer Mode, and Xcode installation onto the physical iPhone and Watch. Reaching the first visible app was a milestone of its own. Later fixes included a finite Crown range to avoid a startup failure, native Settings navigation that actually opened, and controls that remained usable during a slow status request.</p>
+
+<h3>The Networking Breakthrough: Apple TN3135 and HTTP</h3>
+<p>Apple's <a href="https://developer.apple.com/documentation/technotes/tn3135-low-level-networking-on-watchos">TN3135: Low-level networking on watchOS</a> explains the critical limitation: an ordinary Watch app cannot freely open raw TCP or UDP connections. Those APIs are restricted to specific supported use cases. HTTP and HTTPS through <code>URLSession</code> are supported, and a simulator can hide restrictions that appear on a real Watch.</p>
+<p>We replaced the Watch's UDP sender with asynchronous HTTP requests and added <code>POST /input</code> to the ESP32 firmware. Requests carry bounded batches of <code>dx,dy,scroll,click</code> records. The bridge validates each batch before applying it, and session identifiers with sequence numbers reject duplicates. The existing UDP receiver remains available for legacy diagnostics; it is no longer the Watch app's transport.</p>
+
+<h3>Why Wi-Fi Being On Was Not the Whole Story</h3>
+<p>Apple also documents that <a href="https://developer.apple.com/documentation/watchos-apps/keeping-your-watchos-app-s-content-up-to-date">watchOS chooses the route for URLSession requests</a>: it can proxy through the paired iPhone over Bluetooth, use a known Wi-Fi network directly, or use cellular when available. Seeing Wi-Fi enabled on the Watch did not prove that a particular request was taking its direct Wi-Fi path.</p>
+<p>We tested network combinations and temporarily disabled Watch Bluetooth to help isolate the route. That was a diagnostic step, not a permanent requirement: the working setup was later tested with Watch Bluetooth on. The iPhone's Bluetooth stays connected to the ESP32 for mouse reports. The app has no supported per-request switch to force its HTTP traffic to bypass the paired iPhone.</p>
+<p>The firmware supports configured station networks and a standalone access-point fallback. The portable configuration we actually verified uses the board's <code>WatchMouse-Bridge</code> network. This avoids depending on a shared network's local-device connectivity; it does not require bypassing campus authentication or client-isolation policies. Home-network and Personal Hotspot options remain distinct from that verified configuration.</p>
+
+<h3>Recovery, Click Timing, and Honest Hardware Testing</h3>
 <ul>
-<li><strong>NimBLE-Arduino Stack Integration:</strong> Replaced the heavy default Bluedroid stack with <code>h2zero/NimBLE-Arduino</code> coupled with a custom GCC-14 patched <code>BleMouse</code> HID driver, shrinking static RAM consumption to just <strong>18.4% (60,148 bytes used out of 327,680 bytes)</strong> and leaving ample dynamic heap (~110 KB free) for socket buffers.</li>
-<li><strong>Flash Partition Optimization:</strong> Reconfigured the partition layout using <code>min_spiffs.csv</code>, expanding the main application partition to 1.96 MB and reducing total flash usage to <strong>62.3% (1,224,588 bytes)</strong> with generous headroom for OTA firmware updates.</li>
-<li><strong>Wire Protocol &amp; Jitter-Free Clamping:</strong> Implemented a compact ASCII CSV UDP stream (<code>dx,dy,scroll,click\n</code>) on port <code>4210</code>. Incoming packet deltas are hardware-clamped to signed 8-bit integers (<code>-127</code> to <code>127</code>) before emitting standard HID mouse reports, preventing pointer acceleration overflow.</li>
-<li><strong>Autonomous Telemetry &amp; Signal Probe:</strong> Serves an embedded HTTP WebServer on port <code>80</code> (<code>GET /status</code>) returning live JSON telemetry (<code>ip</code>, <code>rssi_dbm</code>, <code>channel</code>, <code>ble_connected</code>, <code>uptime_s</code>, and <code>free_heap</code>) alongside an onboard dark-mode mobile dashboard for signal-mapping and field health checks without a PC.</li>
+<li><strong>Automatic reconnection:</strong> The Watch retries network failures asynchronously while active, with retry delays capped at eight seconds, and starts a fresh connection check when reopened. This removed much of the repeated manual tapping previously needed to reconnect. It is foreground recovery, not an unrestricted background service.</li>
+<li><strong>Responsive status checks:</strong> Separate status requests, cancellation, time limits, and stale-response protection keep a slow probe from locking up Settings or overwriting a newer input error.</li>
+<li><strong>Clicks that reach the phone:</strong> A Watch vibration proved the tap action ran locally, but did not prove the iPhone received a usable click. Holding the BLE mouse-button press for 40 milliseconds before release, followed by a 20-millisecond released interval, fixed the observed tap-to-click failure. A status counter helps distinguish received click packets from local feedback.</li>
+<li><strong>Crown scrolling:</strong> Opposite rotation directions generate opposite signed wheel input, with adjustable gain and a reverse-direction setting. Scrolling still needs refinement. An experiment that retained queued scroll input longer passed local tests but felt worse on hardware, so we restored the earlier queue behavior and gain rather than treating the test result as proof of a better experience.</li>
+<li><strong>Physical-device workflow:</strong> Wi-Fi changes interrupted Xcode's developer connection, and opening the serial port could reset the board. We disabled debugger attachment for independent Watch trials and avoided reopening the serial monitor during live connection tests.</li>
 </ul>
 
-<h3>Tri-Architecture Network Strategy: Enterprise &amp; Captive Bypass</h3>
-<p>Standard IoT setups fail in university and commercial Wi-Fi environments (such as Grand Valley State University's <code>GV-Student</code> 802.1X enterprise network or <code>GV-Visitor</code> captive portal) due to strict <strong>AP Client Isolation</strong> dropping device-to-device local UDP packets. To ensure seamless mobility anywhere, the firmware incorporates a 3-tier fallback architecture:</p>
-<ol>
-<li><strong>Primary Station Mode (Home Wi-Fi):</strong> Connects to known home 2.4 GHz Wi-Fi networks and broadcasts mDNS <code>esp32-mouse.local</code> for local network administration.</li>
-<li><strong>iPhone Personal Hotspot Mode (Cellular Mobility):</strong> Connects directly to the user's iPhone Personal Hotspot (with <em>Maximize Compatibility</em> enabled). The iPhone provides 5G/LTE cellular internet to both the watch and the ESP32 while routing local UDP packets across the <code>172.20.10.x</code> subnet with zero client isolation.</li>
-<li><strong>Standalone SoftAP Fallback (Offline / Field Use):</strong> When no known networks are detected within 8 seconds, the ESP32 automatically spins up an autonomous, encrypted Wi-Fi hotspot (<code>WatchMouse-Bridge</code> on static IP <code>192.168.4.1</code>). The watch connects directly to the ESP32 antenna, operating 100% off-grid from a power bank or iPhone USB-C port with zero external dependencies.</li>
-</ol>
+<h3>The Portable Result</h3>
+<p>I verified pointer movement, tap-to-click, Crown scrolling, automatic reconnection, and operation with the ESP32 unplugged from the Mac and powered by the iPhone. During testing, mouse movement also reawakened the phone without changing Auto-Lock; that is an observed result on this setup, not a universal screen-wake guarantee. The installed apps and flashed firmware run without Xcode open.</p>
+<p>This is a working prototype, not a claim of zero latency or perfectly smooth scrolling. Local checks cover Crown sign and range handling, HTTP ordering, failure recovery, input validation, probe cancellation, and main-loop responsiveness; hands-on testing remains the final check. Signed iPhone and Watch app bundles, source, and firmware images were backed up locally. Development-signed apps may still need rebuilding and re-signing when their provisioning expires.</p>
 
-<h3>Collaborative AI Attribution &amp; WatchOS Companion Engineering</h3>
-<p>This project represents a synchronized collaborative effort between two agentic AI systems working across different abstraction layers:</p>
-<ul>
-<li><strong>Antigravity CLI (Google DeepMind):</strong> Acted as system architect and hardware engineer—scaffolding the monorepo, authoring the PlatformIO firmware, resolving C++ GCC-14 compiler compatibility, compiling and flashing binary images to the ELEGOO board over <code>/dev/cu.usbserial-0001</code>, capturing live serial diagnostics, engineering the Python hardware test harness (<code>scripts/test_mouse_sender.py</code>), and re-scaffolding the Xcode project into an integrated iOS + WatchKit Companion App architecture.</li>
-<li><strong>OpenAI Codex CLI (Computer Use Agent):</strong> Acted as local environment and GUI systems engineer—interacting directly with macOS windows, Xcode settings, and Apple developer certificates to drive hands-on device configuration and watchOS deployment troubleshooting.</li>
-</ul>
-
-<h3>WatchMouseRemote Troubleshooting Recap (By OpenAI Codex CLI)</h3>
-<p>The following recap details the automated environment configuration and physical device troubleshooting executed by <strong>OpenAI Codex CLI</strong> on the Apple Watch and iPhone pairing stack:</p>
-
-<div class="troubleshooting-block" style="background: rgba(255,255,255,0.03); border-left: 3px solid #3b82f6; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0;">
-<p style="margin-top: 0;"><strong>Project Target:</strong> <code>/Users/avanek/watch-ble-mouse-bridge/app-watchos/WatchMouseRemote.xcodeproj</code></p>
-
-<p><strong>Completed Successfully:</strong></p>
-<ul style="margin-bottom: 12px;">
-<li>Signed into the Apple Account in Xcode.</li>
-<li>Assigned <em>Andrew Van Ek (Personal Team)</em> and verified automatic signing and an active Apple Development certificate.</li>
-<li>Downloaded watchOS platform support; cancelled unneeded iOS simulator runtimes to conserve bandwidth.</li>
-<li>Fixed two key build blockers:
-  <ul>
-    <li>Updated obsolete target product type from <code>com.apple.product-type.application.watchapp</code> to modern <code>com.apple.product-type.application</code>.</li>
-    <li>Corrected <code>JSONDecoder().decode(..., data: data)</code> syntax to <code>from: data</code> in <code>SettingsView.swift</code>.</li>
-  </ul>
-</li>
-<li>Confirmed <strong>Build Succeeded</strong> across all project targets.</li>
-</ul>
-
-<p><strong>Device Troubleshooting Attempted:</strong></p>
-<ul style="margin-bottom: 12px;">
-<li>Confirmed Xcode Device Hub detects the USB-connected iPhone 16e.</li>
-<li>Confirmed Developer Mode is enabled and active on the iPhone.</li>
-<li>Executed restart cycles on both Apple Watch and iPhone.</li>
-<li>Reconnected physical USB cabling and accepted mutual Trust prompts (including on the watch).</li>
-<li>Verified Wi-Fi and Bluetooth were enabled across all three devices (Mac, iPhone, Watch).</li>
-<li>Kept the watch unlocked and worn off the magnetic charger to prevent automated lock-out.</li>
-<li>Tested Device Hub’s <em>Pair Nearby Device</em> discovery flow.</li>
-<li>Restarted Xcode and the background Device Hub daemon.</li>
-<li>Removed and cleanly recreated the iPhone’s development pairing with the Mac, accepting fresh host Trust handshakes.</li>
-</ul>
-
-<p><strong>Remaining Investigation &amp; Findings:</strong></p>
-<p>Xcode Device Hub continues to list only the iPhone. The physical Apple Watch SE 2, running watchOS 26.6 (Build 23U67), omits the <em>Developer Mode</em> toggle under <code>Settings &rarr; Privacy &amp; Security</code>. Because watchOS requires a direct developer handshake to reveal the setting, the watch could not yet be selected as an independent wireless run destination.</p>
-
-<p><strong>Deferred Steps:</strong></p>
-<p style="margin-bottom: 0;">Discussed resetting the iPhone’s <em>Location &amp; Privacy</em> settings to flush stale trust records, and unpairing/re-pairing the watch, both deferred pending evaluation of the embedded iOS companion app deployment path.</p>
-</div>
+<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the portable wrist-control goal, supplied and connected the hardware, completed physical trust and Developer Mode steps, tested the real Watch and iPhone, reported failures, directed interface and sensitivity changes, and verified the phone-powered result. <strong>Antigravity CLI (Google DeepMind)</strong> assisted with the earlier project scaffolding, ESP32 firmware foundation, NimBLE integration, diagnostics, and companion-app structure. <strong>OpenAI Codex (ChatGPT)</strong> assisted with SwiftUI and Xcode troubleshooting, identified and researched the watchOS networking restrictions, implemented the HTTP input path and automatic recovery, revised status handling, changed BLE click timing, added local regression checks and rollback backups, supported physical deployment, and authored this updated project account with Andrew's feedback.</p>
+<ul class="chips"><li>Swift &amp; SwiftUI</li><li>watchOS &amp; iOS</li><li>ESP32</li><li>PlatformIO / Arduino C++</li><li>URLSession HTTP</li><li>Wi-Fi SoftAP</li><li>NimBLE / BLE HID</li><li>AssistiveTouch</li><li>Physical Hardware Testing</li><li>Antigravity CLI</li><li>OpenAI Codex</li></ul>
 </section>
 
 <section class="project-entry" aria-labelledby="pixel-buds-ios-ble-companion-title">
