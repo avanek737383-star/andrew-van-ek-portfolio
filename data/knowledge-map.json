@@ -3,7 +3,7 @@
   "stats": {
     "totalProjects": 94,
     "totalNodes": 309,
-    "totalLinks": 637,
+    "totalLinks": 635,
     "domains": 6,
     "techBridges": 10
   },
@@ -680,90 +680,90 @@
     },
     {
       "id": "watchmouse-ble-bridge-title",
-      "name": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "name": "WatchMouse Bridge: A Phone-Powered Apple Watch Trackpad for iPhone",
       "type": "project",
       "domain": "embedded-hardware",
       "domainName": "Embedded Hardware & Mobile",
-      "status": "in-progress",
-      "statusLabel": "In Progress",
-      "date": "November 22, 2026",
+      "status": "completed",
+      "statusLabel": "Completed \u00b7 Portable Working Prototype",
+      "date": "November 23, 2026",
       "val": 24,
-      "color": "#f59e0b",
-      "summary": "The goal of this project is to convert an Apple Watch SE 2 touchscreen and Digital Crown into an ultra-low-latency wireless trackpad for an Apple iPhone 16e (paired via native AssistiveTouch cursor navigation), utilizing an ELEGOO ESP-WROOM-32 development board as an autonomou...",
+      "color": "#fbbf24",
+      "summary": "I built WatchMouse to turn my Apple Watch into a remote trackpad for my iPhone: move a finger to position the pointer, tap to click, and rotate the Digital Crown to scroll. My goal was a compact setup I could take around campus without carrying a computer or depending on share...",
       "tech": [
+        "Portable Working Prototype Apple Watch SE",
         "iPhone 16e",
-        "ELEGOO ESP-WROOM-32 (CP2102)",
-        "PlatformIO",
-        "NimBLE-Arduino",
-        "BLE HID Mouse",
-        "iOS AssistiveTouch"
+        "ESP-WROOM-32",
+        "SwiftUI",
+        "URLSession HTTP",
+        "PlatformIO"
       ],
       "tasks": [
         {
-          "title": "NimBLE-Arduino Stack Integration",
-          "desc": "Replaced the heavy default Bluedroid stack with h2zero/NimBLE-Arduino coupled with a custom GCC-14 patched BleMouse HID driver, shrinking st..."
+          "title": "Automatic reconnection",
+          "desc": "The Watch retries network failures asynchronously while active, with retry delays capped at eight seconds, and starts a fresh connection che..."
         },
         {
-          "title": "Flash Partition Optimization",
-          "desc": "Reconfigured the partition layout using min_spiffs.csv, expanding the main application partition to 1.96 MB and reducing total flash usage t..."
+          "title": "Responsive status checks",
+          "desc": "Separate status requests, cancellation, time limits, and stale-response protection keep a slow probe from locking up Settings or overwriting..."
         },
         {
-          "title": "Wire Protocol & Jitter-Free Clamping",
-          "desc": "Implemented a compact ASCII CSV UDP stream (dx,dy,scroll,click\\n) on port 4210. Incoming packet deltas are hardware-clamped to signed 8-bit ..."
+          "title": "Clicks that reach the phone",
+          "desc": "A Watch vibration proved the tap action ran locally, but did not prove the iPhone received a usable click. Holding the BLE mouse-button pres..."
         },
         {
-          "title": "Autonomous Telemetry & Signal Probe",
-          "desc": "Serves an embedded HTTP WebServer on port 80 (GET /status) returning live JSON telemetry (ip, rssi_dbm, channel, ble_connected, uptime_s, an..."
+          "title": "Crown scrolling",
+          "desc": "Opposite rotation directions generate opposite signed wheel input, with adjustable gain and a reverse-direction setting. Increasing Crown Sc..."
         }
       ],
       "url": "projects.html#watchmouse-ble-bridge-title"
     },
     {
       "id": "task-watchmouse-ble-bridge-title-0",
-      "name": "NimBLE-Arduino Stack Integration",
+      "name": "Automatic reconnection",
       "type": "task",
-      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentProject": "WatchMouse Bridge: A Phone-Powered Apple Watch Trackpad for iPhone",
       "parentId": "watchmouse-ble-bridge-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
-      "summary": "Replaced the heavy default Bluedroid stack with h2zero/NimBLE-Arduino coupled with a custom GCC-14 patched BleMouse HID driver, shrinking st...",
+      "color": "#10b981",
+      "summary": "The Watch retries network failures asynchronously while active, with retry delays capped at eight seconds, and starts a fresh connection che...",
       "url": "projects.html#watchmouse-ble-bridge-title"
     },
     {
       "id": "task-watchmouse-ble-bridge-title-1",
-      "name": "Flash Partition Optimization",
+      "name": "Responsive status checks",
       "type": "task",
-      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentProject": "WatchMouse Bridge: A Phone-Powered Apple Watch Trackpad for iPhone",
       "parentId": "watchmouse-ble-bridge-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
-      "summary": "Reconfigured the partition layout using min_spiffs.csv, expanding the main application partition to 1.96 MB and reducing total flash usage t...",
+      "color": "#10b981",
+      "summary": "Separate status requests, cancellation, time limits, and stale-response protection keep a slow probe from locking up Settings or overwriting...",
       "url": "projects.html#watchmouse-ble-bridge-title"
     },
     {
       "id": "task-watchmouse-ble-bridge-title-2",
-      "name": "Wire Protocol & Jitter-Free Clamping",
+      "name": "Clicks that reach the phone",
       "type": "task",
-      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentProject": "WatchMouse Bridge: A Phone-Powered Apple Watch Trackpad for iPhone",
       "parentId": "watchmouse-ble-bridge-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
-      "summary": "Implemented a compact ASCII CSV UDP stream (dx,dy,scroll,click\\n) on port 4210. Incoming packet deltas are hardware-clamped to signed 8-bit ...",
+      "color": "#10b981",
+      "summary": "A Watch vibration proved the tap action ran locally, but did not prove the iPhone received a usable click. Holding the BLE mouse-button pres...",
       "url": "projects.html#watchmouse-ble-bridge-title"
     },
     {
       "id": "task-watchmouse-ble-bridge-title-3",
-      "name": "Autonomous Telemetry & Signal Probe",
+      "name": "Crown scrolling",
       "type": "task",
-      "parentProject": "WatchMouse Bridge: Apple Watch to iPhone BLE HID Trackpad, ESP-WROOM-32 Wi-Fi Relay & Tri-Architecture Cellular Fallback",
+      "parentProject": "WatchMouse Bridge: A Phone-Powered Apple Watch Trackpad for iPhone",
       "parentId": "watchmouse-ble-bridge-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
-      "summary": "Serves an embedded HTTP WebServer on port 80 (GET /status) returning live JSON telemetry (ip, rssi_dbm, channel, ble_connected, uptime_s, an...",
+      "color": "#10b981",
+      "summary": "Opposite rotation directions generate opposite signed wheel input, with adjustable gain and a reverse-direction setting. Increasing Crown Sc...",
       "url": "projects.html#watchmouse-ble-bridge-title"
     },
     {
@@ -5690,18 +5690,6 @@
     {
       "source": "watchmouse-ble-bridge-title",
       "target": "tech-python-fastapi",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "watchmouse-ble-bridge-title",
-      "target": "tech-apple-metal",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "watchmouse-ble-bridge-title",
-      "target": "tech-openrc-daemons",
       "type": "project-tech",
       "distance": 85
     },
