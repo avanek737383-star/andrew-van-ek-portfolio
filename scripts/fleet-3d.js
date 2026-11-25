@@ -33,7 +33,7 @@
 		'shelf3': { pos: [0.0, 9.2, 11.5], target: [0.0, 7.5, 0] },
 		'shelf4': { pos: [0.0, 4.0, 10.5], target: [0.0, 2.2, 0] },
 		'switch': { pos: [14.0, 11.0, 9.0], target: [14.8, 7.5, 0.5] },
-		'wall': { pos: [-13.5, 13.0, 5.0], target: [-13.0, 10.2, -3.4] }
+		'wall': { pos: [-14.4, 12.6, 3.8], target: [-14.4, 10.1, -4.4] }
 	};
 
 	window.addEventListener('DOMContentLoaded', () => {
@@ -993,14 +993,14 @@
 	}
 
 	function buildWallLedgeHardware() {
-		// --- Wall Ledge Mobile Miners (Propped Up & Positioned TO THE LEFT of the rack) ---
-		// User requirement: Rotated 90 degrees into landscape orientation!
-		// Behind the leftmost shelf edge sits a Duplex AC Wall Outlet with dual USB charger bricks powering them.
+		// --- Wall Ledge Mobile Miners (Separated & Leaning Directly Against Upper Back Wall) ---
+		// Devices rest on the ledge top surface (y = 9.3) and lean back against the upper wall (z = -4.8)
+		// with zero stand blocks and clear horizontal separation to the left of the main rack.
 
-		// 1. Samsung Galaxy Player (YP-GI1) - Landscape Orientation (~70° propped angle)
+		// 1. Samsung Galaxy Player (YP-GI1) - Landscape Orientation leaning against upper wall
 		const gPlayerGroup = new THREE.Group();
-		gPlayerGroup.position.set(-14.6, 9.8, -3.4);
-		gPlayerGroup.rotation.x = -0.32; // propped up facing forward/upward
+		gPlayerGroup.position.set(-16.2, 10.10, -4.45);
+		gPlayerGroup.rotation.x = -0.30; // bottom on ledge (y=9.3), top resting against upper wall (z=-4.8)
 
 		// Landscape dimensions: Width = 2.8, Height = 1.6
 		const playerGeo = new THREE.BoxGeometry(2.8, 1.6, 0.22);
@@ -1016,20 +1016,13 @@
 		playerScreen.position.set(0, 0, 0.12);
 		gPlayerGroup.add(playerScreen);
 
-		// Kickstand behind
-		const standMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.6 });
-		const stand1 = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.8, 0.15), standMat);
-		stand1.position.set(0, -0.3, -0.5);
-		stand1.rotation.x = 0.5;
-		gPlayerGroup.add(stand1);
-
 		registerNode(player, 'ypgi1', 'Samsung Galaxy Player YP-GI1 (Duino Miner · Landscape · Wall Ledge)');
 		scene.add(gPlayerGroup);
 
-		// 2. Apple iPod Touch Miner - Landscape Orientation (~70° propped angle)
+		// 2. Apple iPod Touch Miner - Landscape Orientation leaning against upper wall (separated from YP-GI1)
 		const ipodGroup = new THREE.Group();
-		ipodGroup.position.set(-12.4, 9.8, -3.4);
-		ipodGroup.rotation.x = -0.32; // propped up facing forward/upward
+		ipodGroup.position.set(-12.6, 10.04, -4.48);
+		ipodGroup.rotation.x = -0.30; // bottom on ledge (y=9.3), top resting against upper wall (z=-4.8)
 
 		// Landscape dimensions: Width = 2.6, Height = 1.5
 		const ipodGeo = new THREE.BoxGeometry(2.6, 1.5, 0.18);
@@ -1045,18 +1038,13 @@
 		ipodScreen.position.set(0, 0, 0.1);
 		ipodGroup.add(ipodScreen);
 
-		const stand2 = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.7, 0.15), standMat);
-		stand2.position.set(0, -0.3, -0.5);
-		stand2.rotation.x = 0.5;
-		ipodGroup.add(stand2);
-
 		registerNode(ipod, 'ipodtouch', 'Apple iPod Touch Miner (iOS Duino Miner · Landscape · Wall Ledge)');
 		scene.add(ipodGroup);
 
 		// 3. Duplex AC Wall Outlet with Dual USB Charger Bricks
-		// Located on the wall (z = -2.8) behind the farthest left shelf edge (x = -10.8, y = 10.2)
+		// Mounted on the lower wall (z = -2.8) behind the rear-left post (x = -10.2) at Shelf 3 height (y = 6.35)
 		const outletGroup = new THREE.Group();
-		outletGroup.position.set(-10.8, 10.2, -2.78);
+		outletGroup.position.set(-10.2, 6.35, -2.77);
 
 		// White Duplex Faceplate
 		const faceplateGeo = new THREE.BoxGeometry(0.85, 1.3, 0.06);
@@ -1075,18 +1063,18 @@
 		lowerSocket.position.set(0, -0.32, 0.02);
 		outletGroup.add(lowerSocket);
 
-		// Upper Charger Brick (White Apple 5W USB Adapter powering iPod Touch)
-		const appleChargerGeo = new THREE.BoxGeometry(0.45, 0.42, 0.55);
+		// Upper Charger Brick (White Apple 5W USB Adapter powering iPod Touch, slim profile clearing rear-left post)
+		const appleChargerGeo = new THREE.BoxGeometry(0.45, 0.40, 0.16);
 		const appleChargerMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2 });
 		const appleCharger = new THREE.Mesh(appleChargerGeo, appleChargerMat);
-		appleCharger.position.set(0, 0.32, 0.32);
+		appleCharger.position.set(0, 0.32, 0.10);
 		outletGroup.add(appleCharger);
 
-		// Lower Charger Brick (Black USB Adapter powering Galaxy Player)
-		const blackChargerGeo = new THREE.BoxGeometry(0.45, 0.42, 0.55);
+		// Lower Charger Brick (Black USB Adapter powering Galaxy Player, slim profile clearing rear-left post)
+		const blackChargerGeo = new THREE.BoxGeometry(0.45, 0.40, 0.16);
 		const blackChargerMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.4 });
 		const blackCharger = new THREE.Mesh(blackChargerGeo, blackChargerMat);
-		blackCharger.position.set(0, -0.32, 0.32);
+		blackCharger.position.set(0, -0.32, 0.10);
 		outletGroup.add(blackCharger);
 
 		scene.add(outletGroup);
@@ -1210,22 +1198,25 @@
 		const evoUsbTube = new THREE.Mesh(new THREE.TubeGeometry(evoUsbCurve, 26, 0.07, 8, false), blackUsbMat);
 		scene.add(evoUsbTube);
 
-		// 10. White Apple 30-Pin USB Charging Cable: Dulex AC Outlet Apple Brick -> iPod Touch Miner
+		// 10. White Apple 30-Pin USB Charging Cable: Duplex AC Outlet Apple Brick (behind rear-left post) -> iPod Touch Miner
 		const ipodChargeCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(-10.8, 10.52, -2.25),
-			new THREE.Vector3(-11.2, 10.0, -2.6),
-			new THREE.Vector3(-11.4, 9.7, -3.2),
-			new THREE.Vector3(-11.1, 9.8, -3.4)
+			new THREE.Vector3(-10.25, 6.67, -2.62),
+			new THREE.Vector3(-10.85, 7.6, -2.50),
+			new THREE.Vector3(-11.0, 9.45, -2.50),
+			new THREE.Vector3(-11.1, 9.65, -3.50),
+			new THREE.Vector3(-11.3, 10.04, -4.45)
 		]);
-		const ipodChargeTube = new THREE.Mesh(new THREE.TubeGeometry(ipodChargeCurve, 20, 0.065, 8, false), whiteUsbMat);
+		const ipodChargeTube = new THREE.Mesh(new THREE.TubeGeometry(ipodChargeCurve, 28, 0.065, 8, false), whiteUsbMat);
 		scene.add(ipodChargeTube);
 
-		// 11. Black Micro-USB Charging Cable: Duplex AC Outlet Black Brick -> Samsung Galaxy Player
+		// 11. Black Micro-USB Charging Cable: Duplex AC Outlet Black Brick (behind rear-left post) -> Samsung Galaxy Player
 		const playerChargeCurve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(-10.8, 9.88, -2.25),
-			new THREE.Vector3(-11.5, 9.5, -2.6),
-			new THREE.Vector3(-13.0, 9.4, -3.2),
-			new THREE.Vector3(-13.2, 9.8, -3.4)
+			new THREE.Vector3(-10.25, 6.03, -2.62),
+			new THREE.Vector3(-10.95, 7.3, -2.48),
+			new THREE.Vector3(-11.2, 9.45, -2.48),
+			new THREE.Vector3(-12.5, 9.48, -3.15),
+			new THREE.Vector3(-14.3, 9.55, -3.85),
+			new THREE.Vector3(-14.8, 10.10, -4.42)
 		]);
 		const playerChargeTube = new THREE.Mesh(new THREE.TubeGeometry(playerChargeCurve, 24, 0.065, 8, false), blackUsbMat);
 		scene.add(playerChargeTube);
