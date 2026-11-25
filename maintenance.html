@@ -93,7 +93,7 @@
 <p class="maintenance-eyebrow">Hands-on maintenance log</p>
 <p>These are the smaller fixes, configuration changes, and experiments that keep my computers useful. I bring ideas, set goals, make decisions, run commands, troubleshoot, and check the results. AI assists with planning, commands, scripts, and parts of the execution; these entries document the work I carry out with that assistance. The list gives a closer look at the everyday work behind my <a href="projects.html">larger projects</a>.</p>
 <p class="maintenance-ai-credit">Fleet diagnostics, infrastructure hardening, and automated tooling are developed in pair programming with <strong>Antigravity AI</strong>.</p>
-<p class="maintenance-updated">610 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-25T07:50:00-05:00">November 25, 2026 at 07:50:00 AM EST</time></p>
+<p class="maintenance-updated">610 documented tasks across seven areas &middot; Last updated <time datetime="2026-11-25T16:56:00-05:00">November 25, 2026 at 04:56:00 PM EST</time></p>
 <p class="maintenance-repeat-note"><strong>Follow-up / verification</strong> marks a later maintenance pass on an existing setup. It remains a separate task when it represents additional work or a new verification.</p>
 <div class="maintenance-index" aria-label="Jump to a maintenance category"><a href="#remote-access">Remote Access &amp; Windows Permissions</a><a href="#desktop">Remote Desktops &amp; Everyday Usability</a><a href="#startup">USB Persistence, Startup &amp; Power Settings</a><a href="#software">Software &amp; Container Maintenance</a><a href="#inventory">Inventory, Authentication &amp; Backups</a><a href="#local-ai">Local AI &amp; Long-Running Experiments</a><a href="#automation">Inbox Rules &amp; Small Automations</a></div></div>
 <section class="maintenance-category" aria-labelledby="remote-access"><h2 id="remote-access">Remote Access &amp; Windows Permissions</h2>
@@ -826,6 +826,15 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="software"><h2 id="software">Software &amp; Container Maintenance</h2>
 <ul class="maintenance-list">
+<li id="macos-vm-macports-tree-sync-upgrade-and-inactive-cleanup"><strong>macOS VM MacPorts ports tree synchronization, package upgrades &amp; 12-port inactive cleanup (November 25, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, performed a post-boot MacPorts maintenance pass on the macOS Virtual Machine (<code>iMac.local</code>, <code>x86_64</code>, macOS <code>26.7.3</code> Build <code>25G342</code>):
+<br><br>
+<em>Ports Tree Sync &amp; Index Rebuild:</em> Audited the local MacPorts installation (<code>/opt/local/bin/port</code>, 130 installed ports) and ran <code>sudo port -v selfupdate</code>. Confirmed MacPorts base <code>2.12.7</code> is already the latest version, synchronized <code>ports.tar.gz</code> and signed <code>PortIndex</code> metadata from <code>rsync://rsync.macports.org/macports/release/tarballs/ports.tar.gz</code>, and surfaced two newly outdated packages via <code>port outdated</code>: <code>expat</code> (<code>2.10.0_0 &lt; 2.11.0_0</code>) and <code>zstd</code> (<code>1.5.7_0 &lt; 1.6.0_0</code>).
+<br><br>
+<em>Non-Interactive Upgrades &amp; Binary Integrity Verification:</em> Executed <code>sudo port -N upgrade outdated</code> to fetch, install, and activate <code>expat @2.11.0_0</code> (<code>darwin_25.x86_64</code>) and <code>zstd @1.6.0_0</code>. Completed MacPorts&rsquo; full binary linking scan (<code>rev-upgrade</code>) with zero broken files and zero broken ports, and verified <code>port outdated</code> returned <code>No installed ports are outdated.</code>
+<br><br>
+<em>Inactive Port Reclamation (12 Ports Uninstalled):</em> Audited <code>port installed inactive</code> and ran <code>sudo port -N uninstall inactive</code> to uninstall and clean 12 superseded inactive versions: <code>cargo @0.100.0_0</code>, <code>expat @2.9.0_0</code>, <code>expat @2.10.0_0</code>, <code>eza @0.23.5_0+doc+git</code>, <code>lcms2 @2.19.1_0</code>, <code>pandoc @3.13_0</code>, <code>libffi @3.4.8_0</code>, <code>zstd @1.5.7_0</code>, <code>lz4 @1.10.0_0</code>, <code>readline @8.3.003_0</code>, <code>rust @1.99.1_0</code>, and <code>zlib @1.3.2_0</code>. Verified <code>port installed inactive</code> now reports <code>None of the specified ports are installed.</code>
+<br><br>
+<em>Credit:</em> Andrew Van Ek requested the post-boot macOS VM MacPorts ports tree rebuild and upgrades, authorized cleaning up the inactive versions, and requested this maintenance entry; Antigravity AI (Google DeepMind agentic assistant) executed the <code>selfupdate</code> ports tree synchronization, ran the <code>expat</code> and <code>zstd</code> upgrades and linking verification, uninstalled all 12 inactive port versions, and authored and pushed this maintenance log.</li>
 <li id="linux-mint-update-manager-stall-triage-and-package-upgrade"><strong>Linux Mint Update Manager stall triage, Homebrew parity audit &amp; 70-package APT system upgrade (November 24, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, resolved a multi-day graphical package manager stall and synchronized system and developer packages on the Linux Mint workstation (<code>avanek-Lenovo-Yoga-2-11</code>, Linux Mint 22.3 Zena / Ubuntu 24.04 Noble LTS):
 <br><br>
 <em>Homebrew Parity Audit:</em> Inspected the local Linuxbrew environment (<code>/home/linuxbrew/.linuxbrew/bin/brew</code>). Executed <code>brew update</code>, <code>brew outdated</code>, and version queries, confirming that all 28 installed formulae (including <code>git</code>, <code>curl</code>, <code>openssl@4</code>, <code>brotli</code>, <code>sqlite</code>, and <code>zstd</code>) were already at their latest versions with zero outdated packages and zero casks.
@@ -1917,7 +1926,7 @@ Credit: Andrew Van Ek provided the personal Hugging Face access token, accepted 
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-25T10:41:00-05:00">November 25, 2026 at 10:41:00 AM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-25T16:56:00-05:00">November 25, 2026 at 04:56:00 PM EST</time></p>
 				<p class="footer-version">Version v2.6.433 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
