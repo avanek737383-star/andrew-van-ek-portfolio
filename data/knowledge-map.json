@@ -711,8 +711,8 @@
           "desc": "Verified cross-subnet routing over private Tailscale addresses (100.67.172.15), guaranteeing zero-friction fallback even across isolated cel..."
         },
         {
-          "title": "Bi-Directional Presenter Notes Streaming",
-          "desc": "Upgrading the daemon with a lightweight WebSocket bridge to push slide elapsed timers and speaker notes directly to an Apple Watch companion..."
+          "title": "Automated Chrome Launch & Intentional HTTP Preservation (November 25, 2026)",
+          "desc": "Updated slide_remote.py and Start Slide Remote.command to automatically open the local Web UI (http://localhost:8765) in a new Google Chrome..."
         }
       ],
       "url": "projects.html#apple-watch-macos-presentation-remote-title"
@@ -755,14 +755,14 @@
     },
     {
       "id": "task-apple-watch-macos-presentation-remote-title-3",
-      "name": "Bi-Directional Presenter Notes Streaming",
+      "name": "Automated Chrome Launch & Intentional HTTP Preservation (November 25, 2026)",
       "type": "task",
       "parentProject": "Autonomous Apple Watch & iPhone Presentation Remote for macOS \u2014 Zero-Dependency HTTP/AppleScript Bridge, watchOS HTTP Chunking & Content-Length Resolution, Multi-App Auto-Focus (ONLYOFFICE/Keynote/PowerPoint), Zero-Config mDNS Bonjour Discovery & Native Watch Complication Hardware Integration",
       "parentId": "apple-watch-macos-presentation-remote-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Upgrading the daemon with a lightweight WebSocket bridge to push slide elapsed timers and speaker notes directly to an Apple Watch companion...",
+      "summary": "Updated slide_remote.py and Start Slide Remote.command to automatically open the local Web UI (http://localhost:8765) in a new Google Chrome...",
       "url": "projects.html#apple-watch-macos-presentation-remote-title"
     },
     {
