@@ -3476,6 +3476,526 @@
             ],
             containment: "Homelab primary electrical service line.",
             credit: "Original capture by Andrew Van Ek. Technical documentation co-authored with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-ascent",
+            title: "Windows XP Wallpaper: Ascent (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Ascent.jpg",
+            thumb: "images/gallery/xp-wallpapers/Ascent.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Ascent.jpg",
+            downloadFilename: "Ascent.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (62 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Mountain peak silhouette above purple-orange twilight clouds. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 62 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Ascent.jpg (800x600, 63,244 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Ascent.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Ascent.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 63,244 bytes (62 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-autumn",
+            title: "Windows XP Wallpaper: Autumn (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Autumn.jpg",
+            thumb: "images/gallery/xp-wallpapers/Autumn.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Autumn.jpg",
+            downloadFilename: "Autumn.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (65 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Tree-lined country lane carpeted in golden autumn leaves. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 65 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Autumn.jpg (800x600, 66,287 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Autumn.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Autumn.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 66,287 bytes (65 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-azul",
+            title: "Windows XP Wallpaper: Azul (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Azul.jpg",
+            thumb: "images/gallery/xp-wallpapers/Azul.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Azul.jpg",
+            downloadFilename: "Azul.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (60 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Tropical beach and turquoise ocean horizon under sunlit clouds. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 60 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Azul.jpg (800x600, 61,365 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Azul.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Azul.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 61,365 bytes (60 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-bliss",
+            title: "Windows XP Wallpaper: Bliss (800x600 BMP)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Bliss.bmp",
+            thumb: "images/gallery/xp-wallpapers/Bliss-thumb.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Bliss.bmp",
+            downloadFilename: "Bliss.bmp",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 BMP (1.37 MB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "BMP", "Retro OS"],
+            summary: "Iconic green rolling hillside under a blue sky with cumulus clouds. Preserved verbatim from a physical Windows XP installation (800x600 BMP, 1.37 MB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Bliss.bmp (800x600, 1,440,054 bytes, BMP).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (BMP, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Bliss.bmp file.",
+            defensePlaybook: [
+                "Original Filename: Bliss.bmp",
+                "Dimensions & Format: 800 x 600 px (BMP)",
+                "Exact File Size: 1,440,054 bytes (1.37 MB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-crystal",
+            title: "Windows XP Wallpaper: Crystal (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Crystal.jpg",
+            thumb: "images/gallery/xp-wallpapers/Crystal.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Crystal.jpg",
+            downloadFilename: "Crystal.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (62 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Abstract translucent blue-green geometric crystalline waves. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 62 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Crystal.jpg (800x600, 63,655 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Crystal.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Crystal.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 63,655 bytes (62 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-follow",
+            title: "Windows XP Wallpaper: Follow (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Follow.jpg",
+            thumb: "images/gallery/xp-wallpapers/Follow.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Follow.jpg",
+            downloadFilename: "Follow.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (49 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Minimalist sunlit path curving across dark green rolling hills. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 49 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Follow.jpg (800x600, 50,511 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Follow.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Follow.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 50,511 bytes (49 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-friend",
+            title: "Windows XP Wallpaper: Friend (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Friend.jpg",
+            thumb: "images/gallery/xp-wallpapers/Friend.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Friend.jpg",
+            downloadFilename: "Friend.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (61 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Golden retriever resting comfortably on a sandy shoreline. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 61 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Friend.jpg (800x600, 62,050 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Friend.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Friend.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 62,050 bytes (61 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-home",
+            title: "Windows XP Wallpaper: Home (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Home.jpg",
+            thumb: "images/gallery/xp-wallpapers/Home.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Home.jpg",
+            downloadFilename: "Home.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (42 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Warm blue-and-yellow gradient study with soft light horizon. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 42 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Home.jpg (800x600, 42,728 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Home.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Home.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 42,728 bytes (42 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-moon-flower",
+            title: "Windows XP Wallpaper: Moon flower (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Moon%20flower.jpg",
+            thumb: "images/gallery/xp-wallpapers/Moon%20flower.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Moon%20flower.jpg",
+            downloadFilename: "Moon flower.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (76 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Macro close-up of a luminous white blossom against deep shadow. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 76 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Moon flower.jpg (800x600, 77,445 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Moon flower.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Moon flower.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 77,445 bytes (76 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-peace",
+            title: "Windows XP Wallpaper: Peace (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Peace.jpg",
+            thumb: "images/gallery/xp-wallpapers/Peace.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Peace.jpg",
+            downloadFilename: "Peace.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (33 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Calm emerald hillscape beneath soft pastel sky bands. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 33 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Peace.jpg (800x600, 33,780 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Peace.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Peace.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 33,780 bytes (33 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-power",
+            title: "Windows XP Wallpaper: Power (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Power.jpg",
+            thumb: "images/gallery/xp-wallpapers/Power.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Power.jpg",
+            downloadFilename: "Power.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (85 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "High-contrast red-orange and cobalt radial burst abstraction. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 85 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Power.jpg (800x600, 86,685 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Power.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Power.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 86,685 bytes (85 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-purple-flower",
+            title: "Windows XP Wallpaper: Purple flower (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Purple%20flower.jpg",
+            thumb: "images/gallery/xp-wallpapers/Purple%20flower.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Purple%20flower.jpg",
+            downloadFilename: "Purple flower.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (57 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Close-up violet bloom with fine petal texture. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 57 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Purple flower.jpg (800x600, 57,925 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Purple flower.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Purple flower.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 57,925 bytes (57 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-radiance",
+            title: "Windows XP Wallpaper: Radiance (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Radiance.jpg",
+            thumb: "images/gallery/xp-wallpapers/Radiance.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Radiance.jpg",
+            downloadFilename: "Radiance.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (43 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Deep-space inspired concentric cyan and amber light arcs. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 43 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Radiance.jpg (800x600, 44,190 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Radiance.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Radiance.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 44,190 bytes (43 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-red-moon-desert",
+            title: "Windows XP Wallpaper: Red moon desert (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Red%20moon%20desert.jpg",
+            thumb: "images/gallery/xp-wallpapers/Red%20moon%20desert.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Red%20moon%20desert.jpg",
+            downloadFilename: "Red moon desert.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (80 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Arid desert dunes beneath a large glowing moon on the horizon. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 80 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Red moon desert.jpg (800x600, 81,433 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Red moon desert.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Red moon desert.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 81,433 bytes (80 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-ripple",
+            title: "Windows XP Wallpaper: Ripple (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Ripple.jpg",
+            thumb: "images/gallery/xp-wallpapers/Ripple.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Ripple.jpg",
+            downloadFilename: "Ripple.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (57 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Concentric water ripples reflecting crisp indigo sky tones. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 57 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Ripple.jpg (800x600, 58,589 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Ripple.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Ripple.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 58,589 bytes (57 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-stonehenge",
+            title: "Windows XP Wallpaper: Stonehenge (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Stonehenge.jpg",
+            thumb: "images/gallery/xp-wallpapers/Stonehenge.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Stonehenge.jpg",
+            downloadFilename: "Stonehenge.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (58 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Ancient stone monoliths silhouetted at dusk. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 58 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Stonehenge.jpg (800x600, 59,600 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Stonehenge.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Stonehenge.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 59,600 bytes (58 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-tulips",
+            title: "Windows XP Wallpaper: Tulips (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Tulips.jpg",
+            thumb: "images/gallery/xp-wallpapers/Tulips.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Tulips.jpg",
+            downloadFilename: "Tulips.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (71 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Vibrant yellow and crimson tulip field in spring light. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 71 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Tulips.jpg (800x600, 73,159 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Tulips.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Tulips.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 73,159 bytes (71 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-vortec-space",
+            title: "Windows XP Wallpaper: Vortec space (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Vortec%20space.jpg",
+            thumb: "images/gallery/xp-wallpapers/Vortec%20space.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Vortec%20space.jpg",
+            downloadFilename: "Vortec space.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (62 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Dark cosmic vortex of swirling teal and slate light trails. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 62 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Vortec space.jpg (800x600, 63,871 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Vortec space.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Vortec space.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 63,871 bytes (62 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-wind",
+            title: "Windows XP Wallpaper: Wind (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Wind.jpg",
+            thumb: "images/gallery/xp-wallpapers/Wind.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Wind.jpg",
+            downloadFilename: "Wind.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (36 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Wind-swept prairie grasses rolling under open sky. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 36 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Wind.jpg (800x600, 37,246 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Wind.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Wind.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 37,246 bytes (36 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
+        },
+        {
+            id: "xp-wallpaper-windows-xp",
+            title: "Windows XP Wallpaper: Windows XP (800x600 JPG)",
+            category: "xp-wallpapers",
+            categoryLabel: "Windows XP Wallpapers",
+            badgeClass: "badge-info",
+            image: "images/gallery/xp-wallpapers/Windows%20XP.jpg",
+            thumb: "images/gallery/xp-wallpapers/Windows%20XP.jpg",
+            downloadUrl: "images/gallery/xp-wallpapers/Windows%20XP.jpg",
+            downloadFilename: "Windows XP.jpg",
+            actionText: "Preview &amp; Download &rarr;",
+            sizeLabel: "800x600 JPG (55 KB)",
+            tags: ["Windows XP", "Wallpaper Backup", "800x600", "JPG", "Retro OS"],
+            summary: "Classic Windows XP blue-gradient flag emblem desktop backdrop. Preserved verbatim from a physical Windows XP installation (800x600 JPG, 55 KB).",
+            sandboxObservation: "Extracted directly from the Windows XP wallpaper directory on physical retro hardware. Original filename: Windows XP.jpg (800x600, 56,772 bytes, JPG).",
+            technicalBreakdown: "Unmodified stock Windows XP desktop asset preserved bit-for-bit (JPG, 800x600 pixels). Served directly as a static file so visitors can preview it in the lightbox or save the exact original Windows XP.jpg file.",
+            defensePlaybook: [
+                "Original Filename: Windows XP.jpg",
+                "Dimensions & Format: 800 x 600 px (JPG)",
+                "Exact File Size: 56,772 bytes (55 KB)"
+            ],
+            playbookHeading: "Asset Metadata",
+            outcomeHeading: "Preservation Notes",
+            containment: "Archived intact from physical Windows XP hardware for retro restoration and desktop customization.",
+            credit: "Backed up from physical Windows XP hardware by Andrew Van Ek. Gallery integration with Google DeepMind Antigravity AI."
         }
     ];
 
@@ -3522,7 +4042,8 @@
         counter: document.getElementById("gallery-counter"),
         drawerTitle: document.getElementById("gallery-drawer-title"),
         drawerCategory: document.getElementById("gallery-drawer-category"),
-        drawerContent: document.getElementById("gallery-drawer-content")
+        drawerContent: document.getElementById("gallery-drawer-content"),
+        xpBundleBar: document.getElementById("gallery-xp-bundle-bar")
     };
 
     function renderGrid() {
@@ -3558,11 +4079,21 @@
                 '  <p class="gallery-card-desc">' + item.summary + '</p>',
                 '  <div class="gallery-card-tags">' + tagsHtml + '</div>',
                 '  <div class="gallery-card-action">',
-                '    <span>Open Sandbox Analysis &rarr;</span>',
-                '    <small>1080p High-Res</small>',
+                '    <span>' + (item.actionText || "Open Sandbox Analysis &rarr;") + '</span>',
+                '    <a class="gallery-card-download-btn" href="' + (item.downloadUrl || item.image) + '" download="' + (item.downloadFilename || decodeURIComponent((item.downloadUrl || item.image).split("/").pop())) + '" title="Download ' + (item.downloadFilename || decodeURIComponent((item.downloadUrl || item.image).split("/").pop())) + '" aria-label="Download ' + (item.downloadFilename || decodeURIComponent((item.downloadUrl || item.image).split("/").pop())) + '">&#8681; Download</a>',
                 '  </div>',
                 '</div>'
             ].join("");
+
+            var dlBtn = card.querySelector(".gallery-card-download-btn");
+            if (dlBtn) {
+                dlBtn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                });
+                dlBtn.addEventListener("keydown", function (e) {
+                    e.stopPropagation();
+                });
+            }
 
             var originalIndex = galleryItems.indexOf(item);
             card.addEventListener("click", function () {
@@ -3609,6 +4140,10 @@
                     opt.classList.remove("active");
                 }
             });
+        }
+
+        if (dom.xpBundleBar) {
+            dom.xpBundleBar.style.display = state.activeCategory === "xp-wallpapers" ? "flex" : "none";
         }
 
         renderGrid();
@@ -3716,8 +4251,15 @@
             return "<li>" + d + "</li>";
         }).join("");
 
+        var drawerDlUrl = item.downloadUrl || item.image;
+        var drawerDlName = item.downloadFilename || decodeURIComponent(drawerDlUrl.split("/").pop());
+        var drawerDlSuffix = item.sizeLabel ? (" (" + item.sizeLabel + ")") : "";
+
         if (dom.drawerContent) {
             dom.drawerContent.innerHTML = [
+                '<div class="gallery-drawer-download-wrap">',
+                '  <a class="gallery-drawer-download-btn" href="' + drawerDlUrl + '" download="' + drawerDlName + '">&#8681; Download Original (' + drawerDlName + drawerDlSuffix + ')</a>',
+                '</div>',
                 '<div class="gallery-drawer-section section-sandbox">',
                 '  <h3><span class="section-icon">&#128300;</span> What Happened on the Workbench</h3>',
                 '  <p>' + item.sandboxObservation + '</p>',

@@ -5,7 +5,7 @@
 		<title>Visual Gallery &amp; Security Workbench | Andrew Van Ek</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/styles.css?v=20261121-nav-fix-1">
-		<link rel="stylesheet" href="css/gallery.css?v=20261102-gallery-2">
+		<link rel="stylesheet" href="css/gallery.css?v=20261125-xp-wallpapers-1">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -110,18 +110,19 @@
 
 				<!-- Desktop / Tablet Filter Bar -->
 				<section class="gallery-filter-wrap gallery-desktop-filters" aria-label="Filter gallery items by category">
-					<button type="button" class="gallery-filter-btn active" data-category="all">All Experiments &amp; Samples (178)</button>
+					<button type="button" class="gallery-filter-btn active" data-category="all">All Experiments &amp; Samples (198)</button>
 					<button type="button" class="gallery-filter-btn" data-category="security">Malware &amp; Security Forensics (32)</button>
 					<button type="button" class="gallery-filter-btn" data-category="vms">Virtual Machines &amp; Retro OS (20)</button>
 					<button type="button" class="gallery-filter-btn" data-category="homelab">Homelab, Cloud &amp; Linux Fleet (55)</button>
 					<button type="button" class="gallery-filter-btn" data-category="media">Creative Lab &amp; Everyday Automation (24)</button>
 					<button type="button" class="gallery-filter-btn" data-category="hardware">Hardware Repair &amp; Maintenance (38)</button>
+					<button type="button" class="gallery-filter-btn" data-category="xp-wallpapers">Windows XP Wallpapers (20)</button>
 				</section>
 
 				<!-- Mobile Screen Category Selector Bar -->
 				<div class="gallery-mobile-filter-bar">
 					<button type="button" class="gallery-mobile-trigger-btn" id="gallery-mobile-filter-btn" aria-haspopup="dialog" aria-expanded="false">
-						<span>&#9881; Filter: <strong>All Experiments (167)</strong></span>
+						<span>&#9881; Filter: <strong>All Experiments &amp; Samples</strong></span>
 						<span class="filter-arrow">&#9662;</span>
 					</button>
 				</div>
@@ -136,7 +137,7 @@
 						<div class="gallery-mobile-cat-list">
 							<button type="button" class="gallery-mobile-cat-option active" data-category="all">
 								<span>All Experiments &amp; Samples</span>
-								<span class="cat-count">178</span>
+								<span class="cat-count">198</span>
 							</button>
 							<button type="button" class="gallery-mobile-cat-option" data-category="security">
 								<span>Malware &amp; Security Forensics</span>
@@ -155,8 +156,18 @@
 								<span class="cat-count">24</span>
 							</button>
 <button type="button" class="gallery-mobile-cat-option" data-category="hardware"><span>Hardware Repair &amp; Maintenance</span><span class="cat-count">38</span></button>
+<button type="button" class="gallery-mobile-cat-option" data-category="xp-wallpapers"><span>Windows XP Wallpapers</span><span class="cat-count">20</span></button>
 						</div>
 					</div>
+				</div>
+
+				<!-- Windows XP Wallpapers Bundle Banner -->
+				<div class="gallery-xp-bundle-bar" id="gallery-xp-bundle-bar" style="display: none;">
+					<div class="gallery-xp-bundle-info">
+						<strong>Windows XP Wallpaper Archive (20 Original Files)</strong>
+						<span>Backed up from a physical Windows XP installation (19 JPGs + Bliss.bmp, 800&times;600).</span>
+					</div>
+					<a class="gallery-xp-bundle-btn" href="downloads/xp-wallpapers/windows-xp-wallpapers.zip" download="windows-xp-wallpapers.zip">&#8681; Download All (.zip &middot; 1.77 MB)</a>
 				</div>
 
 				<!-- Cards Grid -->
@@ -217,6 +228,6 @@
 
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 		<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
-		<script src="scripts/gallery.js?v=20261121-forensics-expansion-167"></script>
+		<script src="scripts/gallery.js?v=20261125-xp-wallpapers-1"></script>
 	</body>
 </html>
