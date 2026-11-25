@@ -215,15 +215,17 @@
 
 @media (max-width: 980px) {
 	.fleet-viewport-container {
-	display: grid;
-	grid-template-columns: 1fr 380px;
-	gap: 1.25rem;
-	background: #0e141f;
-	border: 1px solid #1e293b;
-	border-radius: 12px;
-	padding: 1.25rem;
-	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		padding: 0.9rem;
+	}
 }
+
+.fleet-3d-wrapper,
+.canvas-viewport,
+.node-inspector-pane {
+	min-width: 0;
+	box-sizing: border-box;
 }
 
 .canvas-viewport {
@@ -1002,8 +1004,11 @@
 }
 
 @media (max-width: 768px) {
+	.fleet-main {
+		padding: 1.25rem 1rem !important;
+	}
 	.fleet-3d-wrapper {
-		height: 340px;
+		height: 320px;
 	}
 	.controls-hint {
 		display: none;
@@ -1012,6 +1017,31 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 8px;
+	}
+	.camera-preset-select {
+		max-width: 100%;
+	}
+}
+
+@media (max-width: 560px) {
+	.fleet-3d-wrapper {
+		height: 280px;
+	}
+	.node-inspector-pane {
+		padding: 1rem;
+	}
+	.inspector-meta-row {
+		grid-template-columns: 1fr;
+		gap: 0.55rem;
+	}
+	.glpi-grid {
+		grid-template-columns: 1fr;
+	}
+	.fleet-cards-grid {
+		grid-template-columns: 1fr;
+	}
+	.results-grid {
+		grid-template-columns: 1fr;
 	}
 }
 
@@ -1050,4 +1080,324 @@
 .camera-preset-select:focus {
 	border-color: #38bdf8;
 	box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
+/* ==========================================================================
+   Seasonal Theme Synchronization for Hardware Fleet & Salvage Hub
+   (Thanksgiving Harvest, Christmas & Winter, Valentine's Day)
+   ========================================================================== */
+
+/* --- 1. Thanksgiving Harvest Theme --- */
+body.thanksgiving-theme .fleet-viewport-container {
+	background: #240f03 !important;
+	border-color: rgba(217, 119, 6, 0.5) !important;
+	box-shadow: 0 8px 26px rgba(61, 26, 4, 0.45) !important;
+}
+body.thanksgiving-theme .node-inspector-pane {
+	background: linear-gradient(180deg, #431b05 0%, #2a1002 100%) !important;
+	border-color: rgba(245, 158, 11, 0.55) !important;
+	color: #fffbeb !important;
+}
+body.thanksgiving-theme .node-inspector-pane .inspector-header {
+	border-bottom-color: rgba(245, 158, 11, 0.32) !important;
+}
+body.thanksgiving-theme .node-inspector-pane .inspector-badge {
+	color: #fbbf24 !important;
+}
+body.thanksgiving-theme .node-inspector-pane .inspector-header h3 {
+	color: #ffffff !important;
+}
+body.thanksgiving-theme .node-inspector-pane .inspector-meta-row,
+body.thanksgiving-theme .node-inspector-pane .glpi-details {
+	background: #1c0b02 !important;
+	border-color: rgba(217, 119, 6, 0.4) !important;
+}
+body.thanksgiving-theme .node-inspector-pane .meta-label,
+body.thanksgiving-theme .node-inspector-pane .glpi-cell {
+	color: #fcd34d !important;
+}
+body.thanksgiving-theme .node-inspector-pane .meta-val,
+body.thanksgiving-theme .node-inspector-pane .glpi-cell strong {
+	color: #ffffff !important;
+}
+body.thanksgiving-theme .node-inspector-pane .inspector-section h4 {
+	color: #fbbf24 !important;
+}
+body.thanksgiving-theme .node-inspector-pane .inspector-section p {
+	color: #fffbeb !important;
+}
+body.thanksgiving-theme .node-inspector-pane .btn-inspect-project {
+	background: #b45309 !important;
+	border-color: #f59e0b !important;
+	color: #ffffff !important;
+}
+body.thanksgiving-theme .node-inspector-pane .btn-inspect-project:hover {
+	background: #d97706 !important;
+	border-color: #fbbf24 !important;
+	color: #ffffff !important;
+}
+body.thanksgiving-theme .fleet-3d-toolbar,
+body.thanksgiving-theme .calculator-layout {
+	background: #240f03 !important;
+	border-color: rgba(217, 119, 6, 0.45) !important;
+}
+body.thanksgiving-theme .view-toggle-pill.active,
+body.thanksgiving-theme .view-btn.active,
+body.thanksgiving-theme .node-filter-btn.active,
+body.thanksgiving-theme .preset-btn.active {
+	background: #b45309 !important;
+	color: #ffffff !important;
+	border-color: #f59e0b !important;
+	box-shadow: 0 0 12px rgba(245, 158, 11, 0.3) !important;
+}
+body.thanksgiving-theme .camera-preset-select {
+	border-color: #d97706 !important;
+}
+body.thanksgiving-theme .fleet-card {
+	background: #2b1204 !important;
+	border-color: rgba(217, 119, 6, 0.42) !important;
+}
+body.thanksgiving-theme .fleet-card:hover {
+	border-color: #f59e0b !important;
+}
+body.thanksgiving-theme .fleet-card h3 {
+	color: #ffffff !important;
+}
+body.thanksgiving-theme .fleet-card .card-tag,
+body.thanksgiving-theme .fleet-card .card-salvage-box {
+	background: #1c0b02 !important;
+	border-color: rgba(217, 119, 6, 0.35) !important;
+}
+body.thanksgiving-theme .fleet-card .card-salvage-box {
+	border-left-color: #f59e0b !important;
+	color: #fde68a !important;
+}
+body.thanksgiving-theme .fleet-card .card-salvage-box strong,
+body.thanksgiving-theme .slider-val,
+body.thanksgiving-theme .kpi-banner-number {
+	color: #fbbf24 !important;
+}
+body.thanksgiving-theme .kpi-banner {
+	background: linear-gradient(135deg, #3d1a04, #1c0b02) !important;
+	border-color: #d97706 !important;
+}
+body.thanksgiving-theme .result-tile {
+	background: #1c0b02 !important;
+	border-color: rgba(217, 119, 6, 0.35) !important;
+}
+body.thanksgiving-theme .playbook-card {
+	border-color: rgba(217, 119, 6, 0.35) !important;
+}
+body.thanksgiving-theme .playbook-num {
+	color: #b45309 !important;
+}
+
+/* --- 2. Christmas & Winter Theme --- */
+body.christmas-theme .fleet-viewport-container {
+	background: #031f17 !important;
+	border-color: rgba(34, 197, 94, 0.45) !important;
+	box-shadow: 0 8px 26px rgba(6, 78, 59, 0.45) !important;
+}
+body.christmas-theme .node-inspector-pane {
+	background: linear-gradient(180deg, #064e3b 0%, #032d22 100%) !important;
+	border-color: rgba(74, 222, 128, 0.45) !important;
+	color: #f0fdf4 !important;
+}
+body.christmas-theme .node-inspector-pane .inspector-header {
+	border-bottom-color: rgba(74, 222, 128, 0.3) !important;
+}
+body.christmas-theme .node-inspector-pane .inspector-badge {
+	color: #86efac !important;
+}
+body.christmas-theme .node-inspector-pane .inspector-header h3 {
+	color: #ffffff !important;
+}
+body.christmas-theme .node-inspector-pane .inspector-meta-row,
+body.christmas-theme .node-inspector-pane .glpi-details {
+	background: #02241b !important;
+	border-color: rgba(34, 197, 94, 0.35) !important;
+}
+body.christmas-theme .node-inspector-pane .meta-label,
+body.christmas-theme .node-inspector-pane .glpi-cell {
+	color: #a7f3d0 !important;
+}
+body.christmas-theme .node-inspector-pane .meta-val,
+body.christmas-theme .node-inspector-pane .glpi-cell strong {
+	color: #ffffff !important;
+}
+body.christmas-theme .node-inspector-pane .inspector-section h4 {
+	color: #86efac !important;
+}
+body.christmas-theme .node-inspector-pane .inspector-section p {
+	color: #f0fdf4 !important;
+}
+body.christmas-theme .node-inspector-pane .btn-inspect-project {
+	background: #15803d !important;
+	border-color: #4ade80 !important;
+	color: #ffffff !important;
+}
+body.christmas-theme .node-inspector-pane .btn-inspect-project:hover {
+	background: #16a34a !important;
+	border-color: #86efac !important;
+	color: #ffffff !important;
+}
+body.christmas-theme .fleet-3d-toolbar,
+body.christmas-theme .calculator-layout {
+	background: #031f17 !important;
+	border-color: rgba(34, 197, 94, 0.4) !important;
+}
+body.christmas-theme .view-toggle-pill.active,
+body.christmas-theme .view-btn.active,
+body.christmas-theme .node-filter-btn.active,
+body.christmas-theme .preset-btn.active {
+	background: #15803d !important;
+	color: #ffffff !important;
+	border-color: #4ade80 !important;
+	box-shadow: 0 0 12px rgba(74, 222, 128, 0.3) !important;
+}
+body.christmas-theme .camera-preset-select {
+	border-color: #16a34a !important;
+}
+body.christmas-theme .fleet-card {
+	background: #042f24 !important;
+	border-color: rgba(34, 197, 94, 0.38) !important;
+}
+body.christmas-theme .fleet-card:hover {
+	border-color: #4ade80 !important;
+}
+body.christmas-theme .fleet-card h3 {
+	color: #ffffff !important;
+}
+body.christmas-theme .fleet-card .card-tag,
+body.christmas-theme .fleet-card .card-salvage-box {
+	background: #02241b !important;
+	border-color: rgba(34, 197, 94, 0.32) !important;
+}
+body.christmas-theme .fleet-card .card-salvage-box {
+	border-left-color: #4ade80 !important;
+	color: #bbf7d0 !important;
+}
+body.christmas-theme .fleet-card .card-salvage-box strong,
+body.christmas-theme .slider-val,
+body.christmas-theme .kpi-banner-number {
+	color: #4ade80 !important;
+}
+body.christmas-theme .kpi-banner {
+	background: linear-gradient(135deg, #064e3b, #02241b) !important;
+	border-color: #22c55e !important;
+}
+body.christmas-theme .result-tile {
+	background: #02241b !important;
+	border-color: rgba(34, 197, 94, 0.32) !important;
+}
+body.christmas-theme .playbook-card {
+	border-color: rgba(239, 68, 68, 0.35) !important;
+}
+body.christmas-theme .playbook-num {
+	color: #15803d !important;
+}
+
+/* --- 3. Valentine's Day Theme --- */
+body.valentines-theme .fleet-viewport-container {
+	background: #24030b !important;
+	border-color: rgba(244, 63, 94, 0.45) !important;
+	box-shadow: 0 8px 26px rgba(76, 5, 25, 0.45) !important;
+}
+body.valentines-theme .node-inspector-pane {
+	background: linear-gradient(180deg, #4c0519 0%, #2d030f 100%) !important;
+	border-color: rgba(251, 113, 133, 0.5) !important;
+	color: #fff1f2 !important;
+}
+body.valentines-theme .node-inspector-pane .inspector-header {
+	border-bottom-color: rgba(251, 113, 133, 0.3) !important;
+}
+body.valentines-theme .node-inspector-pane .inspector-badge {
+	color: #fda4af !important;
+}
+body.valentines-theme .node-inspector-pane .inspector-header h3 {
+	color: #ffffff !important;
+}
+body.valentines-theme .node-inspector-pane .inspector-meta-row,
+body.valentines-theme .node-inspector-pane .glpi-details {
+	background: #20020a !important;
+	border-color: rgba(244, 63, 94, 0.38) !important;
+}
+body.valentines-theme .node-inspector-pane .meta-label,
+body.valentines-theme .node-inspector-pane .glpi-cell {
+	color: #fecdd3 !important;
+}
+body.valentines-theme .node-inspector-pane .meta-val,
+body.valentines-theme .node-inspector-pane .glpi-cell strong {
+	color: #ffffff !important;
+}
+body.valentines-theme .node-inspector-pane .inspector-section h4 {
+	color: #fda4af !important;
+}
+body.valentines-theme .node-inspector-pane .inspector-section p {
+	color: #fff1f2 !important;
+}
+body.valentines-theme .node-inspector-pane .btn-inspect-project {
+	background: #e11d48 !important;
+	border-color: #fb7185 !important;
+	color: #ffffff !important;
+}
+body.valentines-theme .node-inspector-pane .btn-inspect-project:hover {
+	background: #be123c !important;
+	border-color: #fda4af !important;
+	color: #ffffff !important;
+}
+body.valentines-theme .fleet-3d-toolbar,
+body.valentines-theme .calculator-layout {
+	background: #24030b !important;
+	border-color: rgba(244, 63, 94, 0.42) !important;
+}
+body.valentines-theme .view-toggle-pill.active,
+body.valentines-theme .view-btn.active,
+body.valentines-theme .node-filter-btn.active,
+body.valentines-theme .preset-btn.active {
+	background: #e11d48 !important;
+	color: #ffffff !important;
+	border-color: #fb7185 !important;
+	box-shadow: 0 0 12px rgba(251, 113, 133, 0.35) !important;
+}
+body.valentines-theme .camera-preset-select {
+	border-color: #e11d48 !important;
+}
+body.valentines-theme .fleet-card {
+	background: #330412 !important;
+	border-color: rgba(244, 63, 94, 0.4) !important;
+}
+body.valentines-theme .fleet-card:hover {
+	border-color: #fb7185 !important;
+}
+body.valentines-theme .fleet-card h3 {
+	color: #ffffff !important;
+}
+body.valentines-theme .fleet-card .card-tag,
+body.valentines-theme .fleet-card .card-salvage-box {
+	background: #20020a !important;
+	border-color: rgba(244, 63, 94, 0.35) !important;
+}
+body.valentines-theme .fleet-card .card-salvage-box {
+	border-left-color: #fb7185 !important;
+	color: #fecdd3 !important;
+}
+body.valentines-theme .fleet-card .card-salvage-box strong,
+body.valentines-theme .slider-val,
+body.valentines-theme .kpi-banner-number {
+	color: #fda4af !important;
+}
+body.valentines-theme .kpi-banner {
+	background: linear-gradient(135deg, #4c0519, #20020a) !important;
+	border-color: #e11d48 !important;
+}
+body.valentines-theme .result-tile {
+	background: #20020a !important;
+	border-color: rgba(244, 63, 94, 0.35) !important;
+}
+body.valentines-theme .playbook-card {
+	border-color: rgba(244, 63, 94, 0.35) !important;
+}
+body.valentines-theme .playbook-num {
+	color: #e11d48 !important;
 }

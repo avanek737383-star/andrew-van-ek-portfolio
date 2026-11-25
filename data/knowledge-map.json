@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 98,
-    "totalNodes": 329,
-    "totalLinks": 673,
+    "totalProjects": 99,
+    "totalNodes": 334,
+    "totalLinks": 685,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,93 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "modular-tech-organizer-suite-title",
+      "name": "Modular 5-Piece Tech Desk & Teardown Organizer Suite \u2014 Parametric CSG Modeling, Finger-Scoop Hardware Fillets, 2.5\u2033 Archival Storage Docks, Optical Media Cradles & Zero-Support Rapid Prototyping for GVSU Atomic Object Technology Showcase",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 24, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Hardware maintenance, laptop refurbishing, and homelab maintenance frequently generate microscopic component chaos: microscopic M2 and M2.5 laptop screws roll across workbench ledges, loose DDR3/DDR4 SODIMMs risk electrostatic discharge or bent contact fingers, delicate phase-...",
+      "tech": [
+        "Trimesh CSG",
+        "3D Rapid Prototyping",
+        "GVSU Atomic Object Technology Showcase",
+        "Modular CAD",
+        "Antigravity AI (Google DeepMind)"
+      ],
+      "tasks": [
+        {
+          "title": "1. The Hardware Scoop Bin (Tangent Filleted Ramps)",
+          "desc": "Traditional screw sorting boxes feature harsh 90\u00b0 right-angle floors where tiny laptop screws become trapped, forcing awkward tweezer pinchi..."
+        },
+        {
+          "title": "2. The Driver & Multitool Caddy (Stepped Stabilization)",
+          "desc": "Sized specifically around an all-metal knurled Parker pen-style precision screwdriver multitool (15.5 mm diameter bore) alongside standard p..."
+        },
+        {
+          "title": "3. The RAM & PTM7950 Thermal Station",
+          "desc": "Houses four transverse vertical slots (72\u00d74.8 mm) for DDR3/DDR4/DDR5 laptop SODIMM sticks and an open-ended 124 mm pass-through slot allowin..."
+        },
+        {
+          "title": "4. The 2.5\u2033 Archival HDD & Retro Tech Dock",
+          "desc": "Accommodates standard 2.5\u2033 SATA/IDE laptop drives in a 74\u00d712 mm vertical slot. Crucially, 19 mm cylindrical finger relief scallops were subt..."
+        }
+      ],
+      "url": "projects.html#modular-tech-organizer-suite-title"
+    },
+    {
+      "id": "task-modular-tech-organizer-suite-title-0",
+      "name": "1. The Hardware Scoop Bin (Tangent Filleted Ramps)",
+      "type": "task",
+      "parentProject": "Modular 5-Piece Tech Desk & Teardown Organizer Suite \u2014 Parametric CSG Modeling, Finger-Scoop Hardware Fillets, 2.5\u2033 Archival Storage Docks, Optical Media Cradles & Zero-Support Rapid Prototyping for GVSU Atomic Object Technology Showcase",
+      "parentId": "modular-tech-organizer-suite-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Traditional screw sorting boxes feature harsh 90\u00b0 right-angle floors where tiny laptop screws become trapped, forcing awkward tweezer pinchi...",
+      "url": "projects.html#modular-tech-organizer-suite-title"
+    },
+    {
+      "id": "task-modular-tech-organizer-suite-title-1",
+      "name": "2. The Driver & Multitool Caddy (Stepped Stabilization)",
+      "type": "task",
+      "parentProject": "Modular 5-Piece Tech Desk & Teardown Organizer Suite \u2014 Parametric CSG Modeling, Finger-Scoop Hardware Fillets, 2.5\u2033 Archival Storage Docks, Optical Media Cradles & Zero-Support Rapid Prototyping for GVSU Atomic Object Technology Showcase",
+      "parentId": "modular-tech-organizer-suite-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Sized specifically around an all-metal knurled Parker pen-style precision screwdriver multitool (15.5 mm diameter bore) alongside standard p...",
+      "url": "projects.html#modular-tech-organizer-suite-title"
+    },
+    {
+      "id": "task-modular-tech-organizer-suite-title-2",
+      "name": "3. The RAM & PTM7950 Thermal Station",
+      "type": "task",
+      "parentProject": "Modular 5-Piece Tech Desk & Teardown Organizer Suite \u2014 Parametric CSG Modeling, Finger-Scoop Hardware Fillets, 2.5\u2033 Archival Storage Docks, Optical Media Cradles & Zero-Support Rapid Prototyping for GVSU Atomic Object Technology Showcase",
+      "parentId": "modular-tech-organizer-suite-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Houses four transverse vertical slots (72\u00d74.8 mm) for DDR3/DDR4/DDR5 laptop SODIMM sticks and an open-ended 124 mm pass-through slot allowin...",
+      "url": "projects.html#modular-tech-organizer-suite-title"
+    },
+    {
+      "id": "task-modular-tech-organizer-suite-title-3",
+      "name": "4. The 2.5\u2033 Archival HDD & Retro Tech Dock",
+      "type": "task",
+      "parentProject": "Modular 5-Piece Tech Desk & Teardown Organizer Suite \u2014 Parametric CSG Modeling, Finger-Scoop Hardware Fillets, 2.5\u2033 Archival Storage Docks, Optical Media Cradles & Zero-Support Rapid Prototyping for GVSU Atomic Object Technology Showcase",
+      "parentId": "modular-tech-organizer-suite-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Accommodates standard 2.5\u2033 SATA/IDE laptop drives in a 74\u00d712 mm vertical slot. Crucially, 19 mm cylindrical finger relief scallops were subt...",
+      "url": "projects.html#modular-tech-organizer-suite-title"
     },
     {
       "id": "cross-platform-easter-egg-engine-title",
@@ -5818,6 +5905,66 @@
   ],
   "links": [
     {
+      "source": "domain-ai-agents",
+      "target": "modular-tech-organizer-suite-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "task-modular-tech-organizer-suite-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "task-modular-tech-organizer-suite-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "task-modular-tech-organizer-suite-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "task-modular-tech-organizer-suite-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "modular-tech-organizer-suite-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
       "source": "domain-enterprise-workflow",
       "target": "cross-platform-easter-egg-engine-title",
       "type": "domain-project",
@@ -5849,7 +5996,19 @@
     },
     {
       "source": "cross-platform-easter-egg-engine-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
       "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "cross-platform-easter-egg-engine-title",
+      "target": "tech-docker-containers",
       "type": "project-tech",
       "distance": 85
     },
