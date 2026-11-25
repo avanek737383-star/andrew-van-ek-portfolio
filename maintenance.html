@@ -1376,6 +1376,15 @@
 </ul></section>
 <section class="maintenance-category" aria-labelledby="local-ai"><h2 id="local-ai">Local AI &amp; Long-Running Experiments</h2>
 <ul class="maintenance-list">
+<li id="scam-defense-dashboard-reddit-color-stepper-and-snappy-carousel"><strong>Scam Defense Dashboard Reddit target color indicator, 161-target <code>VM till.docx</code> refresh, stepper fix &amp; snappy carousel swipe settlement (November 25, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, updated the local Scam Defense Dashboard (<code>~/Documents/Scam-Defense-Dashboard</code>) to improve Reddit target distinction, refresh active targets, and eliminate mobile carousel friction:
+<br><br>
+<em>Reddit Target Color Coding &amp; Source Persistence:</em> Added a <code>--reddit: #ff6b35</code> color token, <code>.reddit-badge</code> header pill, and active-target bar styling (<code>#bar-case-phone.is-reddit</code>) to distinguish Reddit-sourced phone numbers from standard lime-green numbers, backed by a <strong>Number source</strong> dropdown (<code>#case-source-input</code>) and <code>source</code> / <code>fromReddit</code> persistence on <code>POST /api/cases</code> and <code>PATCH /api/cases/:id</code>.
+<br><br>
+<em>Active Target Registry Replacement:</em> Saved a timestamped backup of <code>data/state.json</code> and replaced the 168 active targets with 161 deduplicated Reddit targets parsed from <code>~/Desktop/VM till.docx</code> (preserving verified dates, cleaning stray formatting characters, validating every entry against <code>contextError</code> and <code>normalizePhoneNumber</code>, and keeping the 3 inactive recycle-bin items untouched).
+<br><br>
+<em>Unclipped Stepper &amp; Snappy Touch Carousel:</em> Removed the <code>Calls:</code> label inside <code>.call-stepper</code> and rebalanced flex proportions so the <code>+</code> button stays completely unclipped on narrow mobile viewports. Replaced passive scroll timeout settlement with shared <code>bindSnappyCarousel</code> touch-drag/velocity snapping and edge-to-edge card alignment (<code>padding: 8px 0 14px</code>, <code>gap: 12px</code>) across both <code>#wagon-track</code> and <code>#trash-track</code> so swipes settle briskly without coasting between cards. Verified with <code>node --check</code>, 161/161 case validation, and 62/62 passing tests in <code>npm test</code>.
+<br><br>
+<em>Credit:</em> Andrew Van Ek supplied the updated <code>VM till.docx</code> target list, UX diagnostics (clipped <code>+</code> stepper and carousel coasting), and the Reddit color-coding design direction; Antigravity AI implemented the UI, API persistence, DOCX import, unit test coverage, and remote portfolio documentation.</li>
 <li id="hp-zbook-fury-g8-ambient-thermal-drift-and-scheduled-monitoring"><strong>HP ZBook Fury G8 space-heater ambient thermal forensics &amp; 18-iteration 5-minute daemon monitoring (November 24, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, investigated a ~6 &deg;C GPU temperature rise (63 &deg;C morning baseline &rarr; 69&ndash;70 &deg;C) after a portable space heater was turned on in the room, verifying PTM7950 thermal interface stability and tracking real-time recovery across 19 telemetry checkpoints:
 <br><br>
 <em>Cross-Transcript Multi-Sensor Forensics:</em> Queried live NVIDIA NVML telemetry (<code>nvidia-smi</code>) and Windows ACPI thermal zones (<code>Win32_PerfFormattedData_Counters_ThermalZoneInformation</code>) under unchanged dual compute load (<code>FahCore_28.exe</code> at 39.0&ndash;39.93 W / 40 W cap + <code>xmrig</code> at 100% CPU / 2304 MHz) and aligned every sensor against the settled 13-hour PTM7950 baseline from earlier that morning (9:43 AM EST). Confirmed a uniform +6 to +8 &deg;C shift across passive chassis sensors as well as silicon dies&mdash;battery (<code>_tz.batz</code> 24.9 &rarr; 32.9 &deg;C, +8.0 &deg;C), skin (<code>_tz.sk1z</code>/<code>_tz.sk2z</code> +7.0&ndash;8.0 &deg;C), CPU (<code>_tz.cpuz</code> 70.9 &rarr; 76.9 &deg;C, +6.0 &deg;C), and GPU (63.4 &rarr; 69.0&ndash;70.0 &deg;C)&mdash;proving ambient intake warming rather than PTM7950 pump-out or degradation.
@@ -1908,7 +1917,7 @@ Credit: Andrew Van Ek provided the personal Hugging Face access token, accepted 
 
 			<footer>
 				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-25T07:50:00-05:00">November 25, 2026 at 07:50:00 AM EST</time></p>
+				<p>Website last modified: <time datetime="2026-11-25T10:41:00-05:00">November 25, 2026 at 10:41:00 AM EST</time></p>
 				<p class="footer-version">Version v2.6.433 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>

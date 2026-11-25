@@ -5001,7 +5001,7 @@
       "domainName": "AI & Agentic Systems",
       "status": "in-progress",
       "statusLabel": "In Progress",
-      "date": "November 15, 2026",
+      "date": "November 25, 2026",
       "val": 16,
       "color": "#f59e0b",
       "summary": "I am building a private phone dashboard to explore how an AI character responds to simulated scam calls. I worked with Antigravity CLI to recover an earlier prototype, consolidate the project files, restore desktop launch controls, and connect Twilio telephone audio to a local...",
