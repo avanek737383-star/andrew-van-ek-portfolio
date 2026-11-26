@@ -17,6 +17,52 @@
 
     var galleryItems = [
         {
+            id: "muse-codex-credit-correction-verified",
+            title: "Muse & Codex Relayed Collaboration (Part 1): Credit Correction, On-Screen Keyboard & Live v2.6.442",
+            category: "homelab",
+            categoryLabel: "AI Collaboration & Cloud Audit",
+            badgeClass: "badge-info",
+            image: "images/gallery/ai-collaboration-2026-11-26/01-codex-credit-correction-verified.jpg",
+            thumb: "images/gallery/ai-collaboration-2026-11-26/01-codex-credit-correction-verified-thumb.jpg",
+            tags: ["Muse", "Codex CLI", "GPT-6.1-Sol", "Windows Terminal", "On-Screen Keyboard", "SSH", "Credit Correction", "Live Verification"],
+            summary: "Windows Terminal session running Codex CLI (GPT-6.1-Sol medium) while Muse relays Andrew's credit correction via the Windows On-Screen Keyboard during the November 26, 2026 privacy audit.",
+            sandboxObservation: "Captured in Windows Terminal (tabs visible: 'Recommend an image viewer', 'PowerShell', and 'npm root') with the Windows On-Screen Keyboard floating over the middle of the window. At the top, Codex's 1:23 PM turn reports release v2.6.441 live with Claude and Codex credited while the project remains In Progress. Immediately below, the relayed prompt reads: 'Correction from Andrew. Remove the Claude credit. Muse is not Claude and does not run on Claude. The credit should name Muse and Codex only. Please fix the entry and push again and verify on the live site.' Codex replies ('I added Claude incorrectly. I'll remove that credit, retain Muse and Codex, push the correction, and verify on the live site'), inspects projects.html over SSH against commit 509657c, edits via correct-muse-credit.py and scp, runs build-search-index.py and build-knowledge-graph.py, pushes to master (f8b0813..7891ec5), polls the live site, and reports at 1:32 PM (Worked for 1m 37s): 'Corrected, pushed, and verified on the live project entry. The credit names Muse and Codex. Claude/Anthropic attribution is removed. Release v2.6.442 is live.' The status bar displays '5h limit: 42% left · resets at 4:33 PM', 'GPT-6.1-Sol medium', and '1 background terminal running'.",
+            technicalBreakdown: "Because Andrew's two AIs could not talk to each other directly, the November 26, 2026 session transcript documents Muse typing messages from Andrew's Mac over Windows App RDP into Codex CLI on Andrew's Windows PC—first with synthetic keystrokes (which accidentally submitted an early 'gcp-prsonal-chat' fragment) and later with the Windows On-Screen Keyboard shown here, which was slower but far more accurate (turning four commas into 'm' during Revision 2). When Codex independently added 'Claude (Anthropic)' in v2.6.441, Andrew caught the mistake—Muse is Meta's AI, not Anthropic's Claude—and relayed this correction.",
+            defensePlaybook: [
+                "11:59 AM – 12:10 PM: Muse sends the GCP privacy audit filename; Codex locates __gcp-personal-chat-privacy-audit-2026-11-26.md and returns a five-point review covering service-account Editor log access, payload exclusion behavior, parent-scope limits, stored query prints, and foundation-model training scope.",
+                "12:20 – 12:51 PM: Typed on the On-Screen Keyboard, Revision 2 addresses the points and ties the source archive through Cloud Build and image digest to the serving revision byte-for-byte; Codex updates projects.html over SSH while keeping status In Progress.",
+                "1:20 – 1:23 PM: After Andrew approves deploying, Codex publishes v2.6.441 and mistakenly adds Claude to the credit.",
+                "1:27 – 1:32 PM (shown here): Andrew's relayed correction removes Claude/Anthropic and verifies v2.6.442 live with Muse and Codex credited."
+            ],
+            playbookHeading: "Relayed Session Timeline (Transcript)",
+            outcomeHeading: "What This Screenshot Shows",
+            containment: "Documents the live Codex CLI correction workflow, SSH/SCP deployment to avanek@100.87.81.52, and the Windows On-Screen Keyboard used during the relayed session.",
+            credit: "Original screenshot and authorization by Andrew Van Ek. Relayed session transcript by Muse; Codex CLI work by OpenAI Codex; gallery captioning and integration by Google DeepMind Antigravity AI."
+        },
+        {
+            id: "muse-codex-honest-take-full-answer",
+            title: "Muse & Codex Relayed Collaboration (Part 2): Codex's Honest Take on Relayed AI Instructions",
+            category: "homelab",
+            categoryLabel: "AI Collaboration & Cloud Audit",
+            badgeClass: "badge-info",
+            image: "images/gallery/ai-collaboration-2026-11-26/02-codex-honest-take-full-answer.jpg",
+            thumb: "images/gallery/ai-collaboration-2026-11-26/02-codex-honest-take-full-answer-thumb.jpg",
+            tags: ["Muse", "Codex CLI", "GPT-6.1-Sol", "AI Collaboration", "Verification", "Windows Terminal", "Privacy Audit"],
+            summary: "Unobscured Windows Terminal capture showing the v2.6.442 live verification output followed by Andrew's question asking Codex for its honest take on taking instructions relayed from another AI.",
+            sandboxObservation: "With the On-Screen Keyboard closed, the upper terminal shows the full 1:32 PM verification output: scp of correct-muse-credit.py to avanek@100.87.81.52:/tmp/correct-muse-credit-20261126.py, SSH execution of build-search-index.py and build-knowledge-graph.py, git push f8b0813..7891ec5 master -> master, and HTTP 200 polling ('attempt': 2 showing correctedCreditLive: False and release442: False, followed by 'attempt': 3 showing both True and 'Verified live: Muse and Codex credited; Claude and Anthropic absent from audit entry'). Below that, Andrew's relayed question reads: 'Andrew has a question for you. What do you think about taking instructions relayed from another AI. He finds it funny and wants your honest take.' Codex responds at 1:35 PM (Worked for 6s): 'Honestly, it's funny—and useful. It feels like two technicians passing notes through Andrew, except both can produce a very confident explanation that needs checking 😄', noting that authorization comes from Andrew when he relays and approves an instruction, that claims inside still need verification, that the Claude credit error happened when it let relayed wording establish an unverified identity, and that sharing evidence allowed Muse and Codex to catch each other's mistakes. The status bar shows '5h limit: 41% left · resets at 4:33 PM' and 'GPT-6.1-Sol medium'.",
+            technicalBreakdown: "Below Codex's reply, the visible Recap summarizes the audit state at 1:35 PM: privacy audit updates live with Muse and Codex credited, Cloudflare's Log Explorer scope and Pages logging questions resolved while provider-internal retention remains unknown, and GCP Revision 2 establishing the deployed-source match with proposed logging fixes not yet applied at that point. Together, the two captures record both automated CDN-propagation verification (attempt 2 to attempt 3) and the human-in-the-loop rule that relayed authorization belongs to the user while AI claims remain subject to verification.",
+            defensePlaybook: [
+                "Human Authorization: When Andrew relays and approves an instruction, the authorization comes from Andrew—not from the relaying AI.",
+                "Claim Verification: Both AIs can produce confident explanations that require verification against source code, documentation, and live outputs.",
+                "Cross-Checking Value: Muse inspected accounts Codex could not access, while Codex checked conclusions against code and official docs.",
+                "Live Polling Proof: Attempt 2 (False) vs. Attempt 3 (True) at HTTP 200 captures v2.6.442 propagating to the live site."
+            ],
+            playbookHeading: "Key Takeaways Shown on Screen",
+            outcomeHeading: "What This Screenshot Shows",
+            containment: "Documents the unobscured v2.6.442 live verification logs and Codex's verbatim reflection on human-relayed AI collaboration.",
+            credit: "Original screenshot and question by Andrew Van Ek. Relayed session transcript by Muse; quoted Codex CLI response by OpenAI Codex; gallery captioning and integration by Google DeepMind Antigravity AI."
+        },
+        {
             id: "dolphin-brawl-wii-disc-filesystem-hierarchy",
             title: "Wii Optical Disc Filesystem: Dolphin Filesystem Hierarchy & 1.10 GiB Sound Partition in Super Smash Bros. Brawl",
             category: "media",

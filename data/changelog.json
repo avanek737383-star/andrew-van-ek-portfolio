@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T18:32:19+00:00",
-  "sourceHead": "f8b0813496f487fb53e75a0a5e735bcf411f7eb7",
-  "count": 684,
+  "generatedAt": "2026-11-26T20:30:51+00:00",
+  "sourceHead": "8f2db3fbc10752c099e2b607c5523d235a55f09b",
+  "count": 686,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "8f2db3fbc10752c099e2b607c5523d235a55f09b",
+      "date": "2026-11-26T15:29:28-05:00",
+      "subject": "[projects] Mark portfolio and GCP privacy audit Completed, crediting Muse and Codex",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "7891ec5bd7523ab347fa3772c208133544b02240",
+      "date": "2026-11-26T13:32:19-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "f8b0813496f487fb53e75a0a5e735bcf411f7eb7",
       "date": "2026-11-26T13:32:13-05:00",
