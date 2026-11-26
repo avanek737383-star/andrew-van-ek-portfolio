@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:07:02+00:00",
-  "sourceHead": "6e0b6547d36c78a924121b6d2dad0a1cf5af703e",
-  "count": 665,
+  "generatedAt": "2026-11-26T16:08:22+00:00",
+  "sourceHead": "b44607f22e360419de023e9be8b3a7015a76f77b",
+  "count": 667,
   "releaseLabel": "v2.6.436",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "b44607f22e360419de023e9be8b3a7015a76f77b",
+      "date": "2026-11-26T11:08:19-05:00",
+      "subject": "[test] Validate rendered history against the fetched snapshot",
+      "category": "Feature"
+    },
+    {
+      "sha": "8f49d47ad279d21d73763954954c595215353d10",
+      "date": "2026-11-26T11:07:02-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "6e0b6547d36c78a924121b6d2dad0a1cf5af703e",
       "date": "2026-11-26T11:06:57-05:00",
