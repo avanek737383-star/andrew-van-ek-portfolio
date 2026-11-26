@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T17:52:11+00:00",
-  "sourceHead": "9bef89697ac82d4611268c10fdb37b26607579ec",
-  "count": 680,
-  "releaseLabel": "v2.6.440",
+  "generatedAt": "2026-11-26T18:23:29+00:00",
+  "sourceHead": "e6daf7eb0fd34a41337063831d98f8df34cfd673",
+  "count": 682,
+  "releaseLabel": "v2.6.441",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "e6daf7eb0fd34a41337063831d98f8df34cfd673",
+      "date": "2026-11-26T13:23:23-05:00",
+      "subject": "[projects] Publish approved Claude and Codex audit collaboration credit",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "1258ba4b6363db5ad010c8b714d3e529d0223f22",
+      "date": "2026-11-26T12:52:11-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "9bef89697ac82d4611268c10fdb37b26607579ec",
       "date": "2026-11-26T12:52:05-05:00",
