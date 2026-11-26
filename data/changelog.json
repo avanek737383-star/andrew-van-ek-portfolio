@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:13:53+00:00",
-  "sourceHead": "c623d0d809af80324d4dbc64c2a5cc74866606aa",
-  "count": 669,
+  "generatedAt": "2026-11-26T16:14:36+00:00",
+  "sourceHead": "4890dde02e02c85dfabdcaf879b11192eb959899",
+  "count": 671,
   "releaseLabel": "v2.6.437",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "4890dde02e02c85dfabdcaf879b11192eb959899",
+      "date": "2026-11-26T11:14:31-05:00",
+      "subject": "[ui] Keep audit project heading visible beneath sticky navigation",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "498f7f0dbf4d65b9f2f4548df12bd74bd3b57b4d",
+      "date": "2026-11-26T11:13:53-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "c623d0d809af80324d4dbc64c2a5cc74866606aa",
       "date": "2026-11-26T11:13:47-05:00",
