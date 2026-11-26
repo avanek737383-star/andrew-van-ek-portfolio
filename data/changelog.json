@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T18:23:29+00:00",
-  "sourceHead": "e6daf7eb0fd34a41337063831d98f8df34cfd673",
-  "count": 682,
-  "releaseLabel": "v2.6.441",
+  "generatedAt": "2026-11-26T18:32:19+00:00",
+  "sourceHead": "f8b0813496f487fb53e75a0a5e735bcf411f7eb7",
+  "count": 684,
+  "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "f8b0813496f487fb53e75a0a5e735bcf411f7eb7",
+      "date": "2026-11-26T13:32:13-05:00",
+      "subject": "[fix] Correct audit collaboration credit to Muse and Codex",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "509657c66ce76a9b6d623967db7c003b9bc43f56",
+      "date": "2026-11-26T13:23:29-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "e6daf7eb0fd34a41337063831d98f8df34cfd673",
       "date": "2026-11-26T13:23:23-05:00",
