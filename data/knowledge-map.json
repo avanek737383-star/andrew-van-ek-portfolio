@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-19T10:36:00-05:00",
+  "generatedAt": "2026-11-26T16:02:12+00:00",
   "stats": {
     "totalProjects": 102,
-    "totalNodes": 349,
-    "totalLinks": 708,
+    "totalNodes": 333,
+    "totalLinks": 686,
     "domains": 6,
     "techBridges": 10
   },
@@ -784,7 +784,7 @@
     },
     {
       "id": "macos-vision-blood-pressure-tracker-title",
-      "name": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "name": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Documents-Folder Persistence",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
@@ -826,7 +826,7 @@
       "id": "task-macos-vision-blood-pressure-tracker-title-0",
       "name": "Desktop Access Point",
       "type": "task",
-      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Documents-Folder Persistence",
       "parentId": "macos-vision-blood-pressure-tracker-title",
       "status": "completed",
       "val": 5,
@@ -838,7 +838,7 @@
       "id": "task-macos-vision-blood-pressure-tracker-title-1",
       "name": "Physician-Ready Export Engine",
       "type": "task",
-      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Documents-Folder Persistence",
       "parentId": "macos-vision-blood-pressure-tracker-title",
       "status": "completed",
       "val": 5,
@@ -850,7 +850,7 @@
       "id": "task-macos-vision-blood-pressure-tracker-title-2",
       "name": "Photo and browser validation",
       "type": "task",
-      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Documents-Folder Persistence",
       "parentId": "macos-vision-blood-pressure-tracker-title",
       "status": "completed",
       "val": 5,
@@ -862,7 +862,7 @@
       "id": "task-macos-vision-blood-pressure-tracker-title-3",
       "name": "Browser and home-screen icons",
       "type": "task",
-      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
+      "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Documents-Folder Persistence",
       "parentId": "macos-vision-blood-pressure-tracker-title",
       "status": "completed",
       "val": 5,
@@ -2387,90 +2387,21 @@
     },
     {
       "id": "interactive-3d-planetary-backbone-title",
-      "name": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
+      "name": "Interactive Internet Geography: A Schematic Globe",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
-      "statusLabel": "Completed Project",
-      "date": "November 20, 2026",
-      "val": 24,
+      "statusLabel": "Interactive Reference",
+      "date": "",
+      "val": 16,
       "color": "#c084fc",
-      "summary": "Following the successful deployment of the 3D Homelab Project Constellation, I engineered an interactive 3D WebGL planetary radar (3D Planetary Backbone) under the Systems & Stats navigation menu. While the internet is frequently conceptualized as a weightless cloud, over 95% ...",
+      "summary": "The globe lets visitors rotate the Earth, search imported cable/landing-point references, and inspect illustrative interconnection locations. It explains geography and connectivity, rather than measuring live global Internet traffic.",
       "tech": [
-        "WebGL",
         "globe.gl",
-        "TeleGeography GeoJSON",
-        "Client-Side Static Architecture",
-        "Kinetic Fly-To",
-        "Street View"
+        "Imported geographic snapshots"
       ],
-      "tasks": [
-        {
-          "title": "MultiLineString Geospatial Parsing",
-          "desc": "Ingested TeleGeography's global subsea cable geometries (cable-geo.json), developing an automated parser in scripts/globe.js to normalize co..."
-        },
-        {
-          "title": "Kinetic Photon Pulse Shaders",
-          "desc": "Implemented animated dash shaders across international optical corridors (Transatlantic, Transpacific, and Arctic routes) simulating physica..."
-        },
-        {
-          "title": "Dynamic Palette Categorization",
-          "desc": "Key hyperscaler and high-capacity transatlantic arteries (such as Google Dunant, Grace Hopper, Firmina, Equiano, and MAREA) are accentuated ..."
-        },
-        {
-          "title": "Coordinate Fly-To Choreography",
-          "desc": "Clicking any coastal terminal or subsea cable triggers a smooth quaternion camera interpolation down to low-orbit altitude (altitude: 0.45),..."
-        }
-      ],
-      "url": "projects.html#interactive-3d-planetary-backbone-title"
-    },
-    {
-      "id": "task-interactive-3d-planetary-backbone-title-0",
-      "name": "MultiLineString Geospatial Parsing",
-      "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
-      "parentId": "interactive-3d-planetary-backbone-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Ingested TeleGeography's global subsea cable geometries (cable-geo.json), developing an automated parser in scripts/globe.js to normalize co...",
-      "url": "projects.html#interactive-3d-planetary-backbone-title"
-    },
-    {
-      "id": "task-interactive-3d-planetary-backbone-title-1",
-      "name": "Kinetic Photon Pulse Shaders",
-      "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
-      "parentId": "interactive-3d-planetary-backbone-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Implemented animated dash shaders across international optical corridors (Transatlantic, Transpacific, and Arctic routes) simulating physica...",
-      "url": "projects.html#interactive-3d-planetary-backbone-title"
-    },
-    {
-      "id": "task-interactive-3d-planetary-backbone-title-2",
-      "name": "Dynamic Palette Categorization",
-      "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
-      "parentId": "interactive-3d-planetary-backbone-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Key hyperscaler and high-capacity transatlantic arteries (such as Google Dunant, Grace Hopper, Firmina, Equiano, and MAREA) are accentuated ...",
-      "url": "projects.html#interactive-3d-planetary-backbone-title"
-    },
-    {
-      "id": "task-interactive-3d-planetary-backbone-title-3",
-      "name": "Coordinate Fly-To Choreography",
-      "type": "task",
-      "parentProject": "Interactive 3D Planetary Radar & Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry & Tier 1 Peering Fabric",
-      "parentId": "interactive-3d-planetary-backbone-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Clicking any coastal terminal or subsea cable triggers a smooth quaternion camera interpolation down to low-orbit altitude (altitude: 0.45),...",
+      "tasks": [],
       "url": "projects.html#interactive-3d-planetary-backbone-title"
     },
     {
@@ -5288,166 +5219,37 @@
     },
     {
       "id": "neural-coin-predictor-title",
-      "name": "Custom AI: From-Scratch Neural Sequence & Binary Predictor",
+      "name": "Neural Sequence Lab: Data, Baselines, and a Reproducible Model Comparison",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
-      "statusLabel": "Completed & Live",
-      "date": "October 24, 2026",
-      "val": 24,
+      "statusLabel": "Interactive Experiment",
+      "date": "",
+      "val": 16,
       "color": "#c084fc",
-      "summary": "While fine-tuning massive generative models like ACE-Step with LoRA adapts pre-existing representations, building a deep neural network from scratch exercises the fundamental physics of machine learning: feature engineering, loss gradient propagation, activation non-linearitie...",
+      "summary": "Can a neural network learn a deliberately constructed binary pattern, and does it improve on a simple rule? The sequence lab lets visitors compare fixed models while seeing exactly how the outcomes are generated. The page makes no claim to predict independent fair coins or mea...",
       "tech": [
-        "In-Browser Client-Side Engine"
+        "JavaScript inference",
+        "Published synthetic data"
       ],
-      "tasks": [
-        {
-          "title": "Feature Representation (14 Dimensions)",
-          "desc": "Evaluates a sliding window of the last 10 binary outcomes alongside four higher-order statistical dynamics: normalized streak magnitude, rol..."
-        },
-        {
-          "title": "Model Architecture",
-          "desc": "Multi-Layer Perceptron (MLP) consisting of a 14-dimensional input layer, Dense(32) with ReLU activation, Dense(16) with ReLU activation, and..."
-        },
-        {
-          "title": "CPU Optimization & 120-Epoch Loss",
-          "desc": "Trained across 120 extended epochs strictly on CPU using PyTorch 2.13 with Binary Cross-Entropy (BCE) loss and the Adam optimizer with Cosin..."
-        },
-        {
-          "title": "Zero-Dependency Client-Side Engine & Human vs. AI Challenge",
-          "desc": "Exported the 1,025 fixed benchmark weights into a zero-dependency vanilla JavaScript tensor engine (ai-predictor.html). Visitors can test th..."
-        }
-      ],
-      "url": "projects.html#neural-coin-predictor-title"
-    },
-    {
-      "id": "task-neural-coin-predictor-title-0",
-      "name": "Feature Representation (14 Dimensions)",
-      "type": "task",
-      "parentProject": "Custom AI: From-Scratch Neural Sequence & Binary Predictor",
-      "parentId": "neural-coin-predictor-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Evaluates a sliding window of the last 10 binary outcomes alongside four higher-order statistical dynamics: normalized streak magnitude, rol...",
-      "url": "projects.html#neural-coin-predictor-title"
-    },
-    {
-      "id": "task-neural-coin-predictor-title-1",
-      "name": "Model Architecture",
-      "type": "task",
-      "parentProject": "Custom AI: From-Scratch Neural Sequence & Binary Predictor",
-      "parentId": "neural-coin-predictor-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Multi-Layer Perceptron (MLP) consisting of a 14-dimensional input layer, Dense(32) with ReLU activation, Dense(16) with ReLU activation, and...",
-      "url": "projects.html#neural-coin-predictor-title"
-    },
-    {
-      "id": "task-neural-coin-predictor-title-2",
-      "name": "CPU Optimization & 120-Epoch Loss",
-      "type": "task",
-      "parentProject": "Custom AI: From-Scratch Neural Sequence & Binary Predictor",
-      "parentId": "neural-coin-predictor-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Trained across 120 extended epochs strictly on CPU using PyTorch 2.13 with Binary Cross-Entropy (BCE) loss and the Adam optimizer with Cosin...",
-      "url": "projects.html#neural-coin-predictor-title"
-    },
-    {
-      "id": "task-neural-coin-predictor-title-3",
-      "name": "Zero-Dependency Client-Side Engine & Human vs. AI Challenge",
-      "type": "task",
-      "parentProject": "Custom AI: From-Scratch Neural Sequence & Binary Predictor",
-      "parentId": "neural-coin-predictor-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Exported the 1,025 fixed benchmark weights into a zero-dependency vanilla JavaScript tensor engine (ai-predictor.html). Visitors can test th...",
+      "tasks": [],
       "url": "projects.html#neural-coin-predictor-title"
     },
     {
       "id": "polyglot-code-runner-title",
-      "name": "Interactive Polyglot Code Runner & Plain-English Error Coach: Zero-Download In-Browser Execution & Isolated Host Sandbox",
+      "name": "Polyglot Code Runner & Plain-English Error Coach",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
-      "statusLabel": "Live Production",
+      "statusLabel": "Interactive Demonstration",
       "date": "",
-      "val": 24,
+      "val": 16,
       "color": "#c084fc",
-      "summary": "A zero-download, in-browser code execution playground and intelligent error diagnostic coach designed to solve a ubiquitous barrier in software engineering education: the overhead of installing compilers, runtime environments, package managers, and toolchains just to experimen...",
+      "summary": "The code playground combines browser execution modes with authenticated remote modes for selected compiled languages. Browser runtimes download assets before execution; visitors do not install a desktop compiler.",
       "tech": [],
-      "tasks": [
-        {
-          "title": "Python 3.12",
-          "desc": "Bootstrapped through Pyodide (WASM CPython 3.12 compilation) with virtualized standard library execution and real-time stdout/stderr stream ..."
-        },
-        {
-          "title": "JavaScript",
-          "desc": "Evaluated inside an isolated Web Worker sandbox with strict execution time guards and custom console.log intercepts."
-        },
-        {
-          "title": "SQL & Relational Persistence",
-          "desc": "Full SQLite relational database engine compiled to WASM via sql.js. Queries persist client-side within browser sessionStorage across page na..."
-        },
-        {
-          "title": "x86 / 8086 Assembly CPU Simulator",
-          "desc": "Custom-built 32-bit register simulator featuring a live animated register bank (EAX, EBX, ECX, EDX, ESI, EDI, ESP, EIP, and status flags ZF,..."
-        }
-      ],
-      "url": "projects.html#polyglot-code-runner-title"
-    },
-    {
-      "id": "task-polyglot-code-runner-title-0",
-      "name": "Python 3.12",
-      "type": "task",
-      "parentProject": "Interactive Polyglot Code Runner & Plain-English Error Coach: Zero-Download In-Browser Execution & Isolated Host Sandbox",
-      "parentId": "polyglot-code-runner-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Bootstrapped through Pyodide (WASM CPython 3.12 compilation) with virtualized standard library execution and real-time stdout/stderr stream ...",
-      "url": "projects.html#polyglot-code-runner-title"
-    },
-    {
-      "id": "task-polyglot-code-runner-title-1",
-      "name": "JavaScript",
-      "type": "task",
-      "parentProject": "Interactive Polyglot Code Runner & Plain-English Error Coach: Zero-Download In-Browser Execution & Isolated Host Sandbox",
-      "parentId": "polyglot-code-runner-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Evaluated inside an isolated Web Worker sandbox with strict execution time guards and custom console.log intercepts.",
-      "url": "projects.html#polyglot-code-runner-title"
-    },
-    {
-      "id": "task-polyglot-code-runner-title-2",
-      "name": "SQL & Relational Persistence",
-      "type": "task",
-      "parentProject": "Interactive Polyglot Code Runner & Plain-English Error Coach: Zero-Download In-Browser Execution & Isolated Host Sandbox",
-      "parentId": "polyglot-code-runner-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Full SQLite relational database engine compiled to WASM via sql.js. Queries persist client-side within browser sessionStorage across page na...",
-      "url": "projects.html#polyglot-code-runner-title"
-    },
-    {
-      "id": "task-polyglot-code-runner-title-3",
-      "name": "x86 / 8086 Assembly CPU Simulator",
-      "type": "task",
-      "parentProject": "Interactive Polyglot Code Runner & Plain-English Error Coach: Zero-Download In-Browser Execution & Isolated Host Sandbox",
-      "parentId": "polyglot-code-runner-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "Custom-built 32-bit register simulator featuring a live animated register bank (EAX, EBX, ECX, EDX, ESI, EDI, ESP, EIP, and status flags ZF,...",
+      "tasks": [],
       "url": "projects.html#polyglot-code-runner-title"
     },
     {
@@ -5834,104 +5636,38 @@
     },
     {
       "id": "nemo-sudoku-title",
-      "name": "Sudoku Vision & Cognitive Reasoning Engine",
+      "name": "Sudoku Logic Solver & Manual Photo Reference",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
-      "statusLabel": "Live & Interactive",
-      "date": "October 23, 2026",
-      "val": 24,
+      "statusLabel": "Interactive Demonstration",
+      "date": "",
+      "val": 16,
       "color": "#c084fc",
-      "summary": "Inspired by interactive browser-based portfolio demos, I wanted to showcase an active, visible problem-solving task operating client-side in the browser. With assistance from Antigravity CLI, I designed and engineered an event-driven computer vision and cognitive reasoning pip...",
+      "summary": "The Sudoku solver illustrates constraint checking and search using built-in examples or manually entered givens. Visitors can adjust playback speed, inspect candidate pencil marks, or advance one operation at a time.",
       "tech": [
-        "Heuristic Deduction",
-        "Zero-Idle Architecture"
+        "Editable givens",
+        "Narrated steps"
       ],
-      "tasks": [
-        {
-          "title": "Optical Scan & Grid Ingestion",
-          "desc": "A client-side drag-and-drop upload zone that accepts photos and screenshots of Sudoku puzzles (from morning newspapers, paperback puzzle boo..."
-        },
-        {
-          "title": "Interactive 9\u00d79 Digital Verification Grid",
-          "desc": "A responsive, keyboard-navigable 9\u00d79 board with 3\u00d73 box demarcations, arrow-key navigation, candidate pencil marking, and manual digit overr..."
-        },
-        {
-          "title": "Pedagogical Cognitive Engine",
-          "desc": "A human-like deduction engine that evaluates candidate numbers (1\u20139) per cell, prioritizes deterministic logical rules (Sole Candidates and ..."
-        },
-        {
-          "title": "Live Cognitive Thought Stream",
-          "desc": "A dark terminal-style telemetry panel streaming Nemo\u2019s natural-language deductions in real time, with color-coded classification tags (SOLE ..."
-        }
-      ],
-      "url": "projects.html#nemo-sudoku-title"
-    },
-    {
-      "id": "task-nemo-sudoku-title-0",
-      "name": "Optical Scan & Grid Ingestion",
-      "type": "task",
-      "parentProject": "Sudoku Vision & Cognitive Reasoning Engine",
-      "parentId": "nemo-sudoku-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "A client-side drag-and-drop upload zone that accepts photos and screenshots of Sudoku puzzles (from morning newspapers, paperback puzzle boo...",
-      "url": "projects.html#nemo-sudoku-title"
-    },
-    {
-      "id": "task-nemo-sudoku-title-1",
-      "name": "Interactive 9\u00d79 Digital Verification Grid",
-      "type": "task",
-      "parentProject": "Sudoku Vision & Cognitive Reasoning Engine",
-      "parentId": "nemo-sudoku-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "A responsive, keyboard-navigable 9\u00d79 board with 3\u00d73 box demarcations, arrow-key navigation, candidate pencil marking, and manual digit overr...",
-      "url": "projects.html#nemo-sudoku-title"
-    },
-    {
-      "id": "task-nemo-sudoku-title-2",
-      "name": "Pedagogical Cognitive Engine",
-      "type": "task",
-      "parentProject": "Sudoku Vision & Cognitive Reasoning Engine",
-      "parentId": "nemo-sudoku-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "A human-like deduction engine that evaluates candidate numbers (1\u20139) per cell, prioritizes deterministic logical rules (Sole Candidates and ...",
-      "url": "projects.html#nemo-sudoku-title"
-    },
-    {
-      "id": "task-nemo-sudoku-title-3",
-      "name": "Live Cognitive Thought Stream",
-      "type": "task",
-      "parentProject": "Sudoku Vision & Cognitive Reasoning Engine",
-      "parentId": "nemo-sudoku-title",
-      "status": "completed",
-      "val": 5,
-      "color": "#10b981",
-      "summary": "A dark terminal-style telemetry panel streaming Nemo\u2019s natural-language deductions in real time, with color-coded classification tags (SOLE ...",
+      "tasks": [],
       "url": "projects.html#nemo-sudoku-title"
     },
     {
       "id": "mind-reader-ai-title",
-      "name": "Mind Reader AI: In-Browser Human Randomness & Choice Predictor",
+      "name": "Human Choice Prediction: A Proposed Extension",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
-      "statusLabel": "In Active Development",
-      "date": "October 24, 2026",
+      "statusLabel": "Proposal \u00b7 Not Validated on Human Choices",
+      "date": "",
       "val": 16,
       "color": "#c084fc",
-      "summary": "Humans are notoriously incapable of producing true mathematical randomness. When asked to simulate a random sequence of coin flips (Heads vs. Tails) or rapid keystrokes, cognitive biases\u2014such as alternation bias (over-switching between choices), clustering aversion (avoiding l...",
+      "summary": "This earlier proposal explored whether a small sequence model could identify patterns in deliberately chosen binary sequences. No human-choice dataset, ONNX deployment, or claimed 68\u201378% human-prediction benchmark is established by the current demonstration.",
       "tech": [
-        "ONNX Web",
-        "Shannon Entropy Telemetry",
-        "Launching Tomorrow"
+        "Proposal",
+        "Not Validated on Human Choices"
       ],
       "tasks": [],
       "url": "projects.html#mind-reader-ai-title"
@@ -7553,42 +7289,6 @@
       "target": "interactive-3d-planetary-backbone-title",
       "type": "domain-project",
       "distance": 65
-    },
-    {
-      "source": "interactive-3d-planetary-backbone-title",
-      "target": "task-interactive-3d-planetary-backbone-title-0",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "interactive-3d-planetary-backbone-title",
-      "target": "task-interactive-3d-planetary-backbone-title-1",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "interactive-3d-planetary-backbone-title",
-      "target": "task-interactive-3d-planetary-backbone-title-2",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "interactive-3d-planetary-backbone-title",
-      "target": "task-interactive-3d-planetary-backbone-title-3",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "interactive-3d-planetary-backbone-title",
-      "target": "tech-alpine",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "interactive-3d-planetary-backbone-title",
-      "target": "tech-tailscale",
-      "type": "project-tech",
-      "distance": 85
     },
     {
       "source": "interactive-3d-planetary-backbone-title",
@@ -9788,43 +9488,7 @@
     },
     {
       "source": "neural-coin-predictor-title",
-      "target": "task-neural-coin-predictor-title-0",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "neural-coin-predictor-title",
-      "target": "task-neural-coin-predictor-title-1",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "neural-coin-predictor-title",
-      "target": "task-neural-coin-predictor-title-2",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "neural-coin-predictor-title",
-      "target": "task-neural-coin-predictor-title-3",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "neural-coin-predictor-title",
-      "target": "tech-python-fastapi",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "neural-coin-predictor-title",
-      "target": "tech-docker-containers",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "neural-coin-predictor-title",
-      "target": "tech-forensics-reversing",
+      "target": "tech-antigravity",
       "type": "project-tech",
       "distance": 85
     },
@@ -9836,43 +9500,19 @@
     },
     {
       "source": "polyglot-code-runner-title",
-      "target": "task-polyglot-code-runner-title-0",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "polyglot-code-runner-title",
-      "target": "task-polyglot-code-runner-title-1",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "polyglot-code-runner-title",
-      "target": "task-polyglot-code-runner-title-2",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "polyglot-code-runner-title",
-      "target": "task-polyglot-code-runner-title-3",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "polyglot-code-runner-title",
-      "target": "tech-alpine",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "polyglot-code-runner-title",
-      "target": "tech-tailscale",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "polyglot-code-runner-title",
       "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "polyglot-code-runner-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "polyglot-code-runner-title",
+      "target": "tech-antigravity",
       "type": "project-tech",
       "distance": 85
     },
@@ -10202,30 +9842,6 @@
     },
     {
       "source": "nemo-sudoku-title",
-      "target": "task-nemo-sudoku-title-0",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "nemo-sudoku-title",
-      "target": "task-nemo-sudoku-title-1",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "nemo-sudoku-title",
-      "target": "task-nemo-sudoku-title-2",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "nemo-sudoku-title",
-      "target": "task-nemo-sudoku-title-3",
-      "type": "project-task",
-      "distance": 26
-    },
-    {
-      "source": "nemo-sudoku-title",
       "target": "tech-antigravity",
       "type": "project-tech",
       "distance": 85
@@ -10235,18 +9851,6 @@
       "target": "mind-reader-ai-title",
       "type": "domain-project",
       "distance": 65
-    },
-    {
-      "source": "mind-reader-ai-title",
-      "target": "tech-python-fastapi",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "mind-reader-ai-title",
-      "target": "tech-antigravity",
-      "type": "project-tech",
-      "distance": 85
     },
     {
       "source": "domain-ai-agents",

@@ -18,7 +18,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/footer.css?v2.6.435">
+<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
+<link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body class="map-page-body">
 	<div class="container">
@@ -36,7 +37,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
-						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
 						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
@@ -91,11 +92,11 @@
 		<header style="margin: 25px 0 10px 0; color: #f8fafc;">
 			<h1 style="font-size: 1.85rem; font-weight: 700; margin-bottom: 6px; color: #f8fafc;">3D Planetary Radar &amp; Global Internet Backbone</h1>
 			<p style="color: #94a3b8; font-size: 0.95rem; max-width: 860px; line-height: 1.5;">
-				An interactive <span class="tech-term" data-term="webgl">WebGL</span> 3D planetary radar mapping the physical underpinnings of the global internet: 400+ international <span class="tech-term" data-term="subsea-fiber">subsea fiber optic cables</span>, 1,900+ coastal <span class="tech-term" data-term="cable-landing-station">landing stations</span>, and <span class="tech-term" data-term="ixp">Tier 1 Internet Exchange Points (IXPs)</span> with ground-level street exploration.
+				An interactive <span class="tech-term" data-term="webgl">WebGL</span> 3D planetary radar mapping the physical underpinnings of the global internet: 400+ international <span class="tech-term" data-term="subsea-fiber">subsea fiber optic cables</span>, 1,900+ coastal <span class="tech-term" data-term="cable-landing-station">landing stations</span>, and <span class="tech-term" data-term="ixp">interconnection reference locations</span> with ground-level street exploration.
 			</p>
 		</header>
 
-		<main>
+		<main><section class="explain-card"><h2>A schematic of Internet connectivity—not a live traffic radar.</h2><p>Rotate the globe and select a cable or reference location to explore the geography. Animated dots, elevated arcs, colors, and sizes are illustrative. They are not measured packets, current throughput, exact physical circuits, or a claim that a particular share of world traffic passes through one node.</p><p>An Internet exchange is a place where networks interconnect; it is not automatically a Tier-1 transit network. The imported cable geometry is a reference snapshot, not a live cable-status feed.</p></section>
 			<div class="map-viewport-wrapper">
 				<div id="globe-container" tabindex="0" role="region" aria-label="3D Interactive Earth Canvas"></div>
 
@@ -117,7 +118,7 @@
 					<button class="filter-pill active" data-filter="all"><span class="pill-dot" style="background:#38bdf8;"></span> All Layers</button>
 					<button class="filter-pill" data-filter="cables" style="--pill-color:#00f0ff;"><span class="pill-dot"></span> Subsea Fiber</button>
 					<button class="filter-pill" data-filter="landings" style="--pill-color:#fbbf24;"><span class="pill-dot"></span> Landing Stations</button>
-					<button class="filter-pill" data-filter="ixps" style="--pill-color:#ec4899;"><span class="pill-dot"></span> Tier 1 IXPs</button>
+					<button class="filter-pill" data-filter="ixps" style="--pill-color:#ec4899;"><span class="pill-dot"></span> Reference locations</button>
 				</div>
 
 				<!-- Actions Toolbar (Bottom Left) -->
@@ -132,7 +133,7 @@
 				<div class="hud-overlay hud-legend">
 					<span class="legend-item"><span class="legend-dot" style="background:#00f0ff;"></span> <span class="tech-term" data-term="subsea-fiber">Subsea Optical Fiber</span></span>
 					<span class="legend-item"><span class="legend-dot" style="background:#fbbf24;"></span> <span class="tech-term" data-term="cable-landing-station">Coastal Landing Station</span></span>
-					<span class="legend-item"><span class="legend-dot" style="background:#ec4899;"></span> <span class="tech-term" data-term="ixp">Tier 1 IXP</span></span>
+					<span class="legend-item"><span class="legend-dot" style="background:#ec4899;"></span> <span class="tech-term" data-term="ixp">Interconnection reference</span></span>
 					<span class="legend-item"><span class="legend-dot" style="background:#38bdf8;"></span> <span class="tech-term" data-term="optical-transit-arc">Optical Transit Arc</span></span>
 				</div>
 
@@ -147,7 +148,7 @@
 					</div>
 
 					<div class="drawer-body">
-						<h2 id="drawer-title" class="drawer-title">Planetary Telemetry</h2>
+						<h2 id="drawer-title" class="drawer-title">Planetary Reference Map</h2>
 						<div class="drawer-domain">
 							<span id="drawer-domain-dot" class="drawer-domain-dot"></span>
 							<span id="drawer-domain">Global Internet Backbone</span>
@@ -156,7 +157,7 @@
 						<div id="drawer-summary" class="drawer-summary">Click any subsea optical fiber, coastal landing station, or peering exchange on the globe to inspect real-time specs, vector geometry, and ground-level street views.</div>
 
 						<div id="drawer-tasks-section">
-							<h3 class="drawer-section-title">Telemetry &amp; Inspection</h3>
+							<h3 class="drawer-section-title">Reference Data &amp; Inspection</h3>
 							<ul id="drawer-tasks-list" class="drawer-tasks-list"></ul>
 						</div>
 
@@ -175,7 +176,7 @@
 			<!-- Systems Architecture & Deep Dive Section -->
 			<section class="maintenance-category" aria-labelledby="backbone-architecture-title" style="margin-top: 35px;">
 				<h2 id="backbone-architecture-title" style="color: #f8fafc; font-size: 1.45rem; font-weight: 700; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 8px;">
-					3D Planetary Radar Architecture &amp; Physical Internet Telemetry
+					3D Planetary Radar Architecture &amp; Illustrative Internet Geography
 				</h2>
 				<p style="color: #cbd5e1; line-height: 1.6; margin: 12px 0 16px 0;">
 					While the internet is often abstracted as an ephemeral "cloud", in physical reality over 95% of international data transit relies on dense glass fibers traversing extreme ocean trenches. This planetary radar maps the physical layer of the global web:
@@ -197,7 +198,7 @@
 					</div>
 
 					<div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
-						<h3 style="color: #ec4899; font-size: 1.05rem; margin-top: 0;">Tier 1 Global Peering &amp; Backhaul</h3>
+						<h3 style="color: #ec4899; font-size: 1.05rem; margin-top: 0;">Interconnection geography</h3>
 						<p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5;">
 							Maps core international Internet Exchange Points (including Equinix Ashburn, DE-CIX Frankfurt, AMS-IX Amsterdam, and LINX London), tracing high-capacity optical transit arcs between subsea landings and continental backbones.
 						</p>
@@ -208,8 +209,8 @@
 
 		<footer style="color: #94a3b8; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: 30px;">
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html" style="color: #38bdf8;">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com" style="color: #38bdf8;">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-			<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+			<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
@@ -223,7 +224,7 @@
 		}
 	</script>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
+	<script src="scripts/script.js?v=20261126-accuracy-436"></script>
 	<script src="scripts/globe.js?v=20261120-globe-4"></script>
 </body>
 </html>

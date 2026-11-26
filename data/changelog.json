@@ -1,0 +1,3970 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-26T15:53:28+00:00",
+  "sourceHead": "efa13de6cc0c652d95decc73a78f879c27206826",
+  "count": 660,
+  "releaseLabel": "v2.6.435",
+  "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
+  "commits": [
+    {
+      "sha": "efa13de6cc0c652d95decc73a78f879c27206826",
+      "date": "2026-11-25T22:37:06-05:00",
+      "subject": "Teach AI bias with transparent examples and add homepage visit memory",
+      "category": "Local AI"
+    },
+    {
+      "sha": "4024e5cd734206052121fdfb91854836c68f0a43",
+      "date": "2026-11-25T22:09:35-05:00",
+      "subject": "Group games and interactive views under Sims and 3D navigation",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "39e43e3f75b4a558e4e365d59a87e8fed05ea926",
+      "date": "2026-11-25T22:06:49-05:00",
+      "subject": "Add Please Hold repair shop game and portfolio project",
+      "category": "Feature"
+    },
+    {
+      "sha": "2db5b7088db3fa3144b0a979100584896fe67078",
+      "date": "2026-11-25T21:50:49-05:00",
+      "subject": "Add Autonomous Portfolio Publisher Plugin for Google Antigravity to projects page",
+      "category": "Feature"
+    },
+    {
+      "sha": "7b2dd942ed6d5669ff4473bf9a564b59f18416e8",
+      "date": "2026-11-25T21:45:38-05:00",
+      "subject": "Document Stable Audio multi-segment stitching and int16 playback fix",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "1fa37e5c4e3504406cc96d208d0c968473b90e0b",
+      "date": "2026-11-25T21:43:23-05:00",
+      "subject": "Document ImageGlass MSIX viewer registration repair with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "25619818cd714b2e9178a529b6ad666d3d5469f5",
+      "date": "2026-11-25T21:31:54-05:00",
+      "subject": "Document Codex OCR verification and mobile case intake fixes",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "ecb3ed37feb6e52a467ed699a6c106f38754d242",
+      "date": "2026-11-25T17:57:43-05:00",
+      "subject": "Document mkcert localhost HTTPS, Chrome auto-launch, BP upload TLS fix, Instrumentify warning cleanup & lazy MusicGen loading",
+      "category": "Local AI"
+    },
+    {
+      "sha": "8c2f82bb9b79e66a601ee30a7383f7ac2859b24e",
+      "date": "2026-11-25T17:50:52-05:00",
+      "subject": "Add Windows XP wallpaper archive and download buttons to gallery",
+      "category": "Feature"
+    },
+    {
+      "sha": "8daab333f51152073f4e3c4b8cd56ef583151787",
+      "date": "2026-11-25T17:49:42-05:00",
+      "subject": "Document Windows MultiPoint WMS Volume Sideband 8 USB force-eject on Q:",
+      "category": "Feature"
+    },
+    {
+      "sha": "ac1de6ef8dbb9fff7021c6157fc0eafcf64b1616",
+      "date": "2026-11-25T17:36:52-05:00",
+      "subject": "Document Linux Mint Firefox 161, Linux Kernel 7.0.0-44 HWE & Homebrew dual-stack upgrade",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "3c44a6758bc77e5d9bf163adae6c8689971ac8a0",
+      "date": "2026-11-25T17:35:55-05:00",
+      "subject": "Document ZBook Monero shortcut RunAsAdmin removal and Desktop\\Mining\\backup cleanup",
+      "category": "Feature"
+    },
+    {
+      "sha": "a918a900a8c1839a4dbb9cf2a90fc74555dc96e5",
+      "date": "2026-11-25T17:33:14-05:00",
+      "subject": "Document Alpine NUC 23-package apk upgrade, Flatpak Chrome & GNOME Platform updates, and Nginx 1.30.8 reload",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "a98d7b99bbfb45d7b16840a5d580c8f527952fe6",
+      "date": "2026-11-25T16:57:35-05:00",
+      "subject": "Document macOS VM MacPorts tree sync, expat/zstd upgrades & 12-port inactive cleanup",
+      "category": "Feature"
+    },
+    {
+      "sha": "c90f07f807341722b1754442ff3dcac4ea76c3e7",
+      "date": "2026-11-25T16:45:19-05:00",
+      "subject": "Log MuseScore MIDI tempo calibration, .mpos timeline sync fix & 12-track re-render",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "8f6c8742fc7aa8b35daff86364f94716634f7d06",
+      "date": "2026-11-25T10:40:52-05:00",
+      "subject": "Document Scam Defense Reddit color coding, VM till.docx target refresh, stepper fix & snappy carousel (62/62 tests)",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "e408788e1bc4bac738a3674a35355c7999444b05",
+      "date": "2026-11-25T07:50:20-05:00",
+      "subject": "Separate wall-ledge miners against upper wall, relocate outlet behind Shelf 3 rear-left post, and update maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "1d73be07a26294e1d02daa35faffa0efeb8eda32",
+      "date": "2026-11-25T07:38:08-05:00",
+      "subject": "Fix Fleet Hub seasonal theme panel contrast and stack inspector below viewport on mobile",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "8ad503a151df9c736ccdf0a1e6c8ef5899ea2f44",
+      "date": "2026-11-24T22:23:45-05:00",
+      "subject": "Document HP ZBook Fury G8 space-heater ambient thermal forensics and 18-iteration daemon monitoring",
+      "category": "Feature"
+    },
+    {
+      "sha": "c48fd4f0e9725415befbb4bbc9b95c48ac3d15f0",
+      "date": "2026-11-24T17:49:39-05:00",
+      "subject": "Calibrate 3D fleet digital twin zoom sensitivity: decouple OrbitControls dollying, normalize wheel deltas, and add CAD raycast focal plane damping",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "9c62428fdd4f2eb498a704963a1011d76af727e0",
+      "date": "2026-11-24T17:42:04-05:00",
+      "subject": "feat(projects): add Modular 5-Piece Tech Desk & Teardown Organizer Suite entry with 3D print downloads",
+      "category": "Feature"
+    },
+    {
+      "sha": "1cfe6e5c3dd86d697ed964b00ff5b0708577ba62",
+      "date": "2026-11-24T17:22:48-05:00",
+      "subject": "Polish Seasonal Layering & Full Widget Theming (Canvas Behind Content Cards, Toast Banner Suppression, Open-Meteo Weather Skinning, Search Modal Chips, Tech Term Hints/Popovers & CAD Download Buttons)",
+      "category": "Feature"
+    },
+    {
+      "sha": "e8d129f896c808bb9e02989f8d546d5e11f2dab1",
+      "date": "2026-11-24T16:58:40-05:00",
+      "subject": "Seasonal UI Theming Audit (Dropdown Color Alignment, Z-Index Particle Layering Behind Navbar & Search, Desktop Drawer Suppression, Ask Nemo, Search Pills & Heatmap Telemetry Theming)",
+      "category": "Local AI"
+    },
+    {
+      "sha": "ee5d7f232adc0af8f8b992c88d2c782ea9f668b0",
+      "date": "2026-11-24T16:55:15-05:00",
+      "subject": "Document Instrument-ify acoustic energy validation, monophonic harmonic overtone suppression & guitar cabinet amp modeling",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7d3d616ff5cec5b063a0f62a8528f9864efcf5ea",
+      "date": "2026-11-24T16:41:18-05:00",
+      "subject": "Polish Multi-Seasonal Engine (Calendar Auto-Scheduler, Accelerometer Shake Dismissal, 1984 Mac Vector Refinements & Reactive Navbar Plasma) with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c0a186b4dd1df5241d7b0b6c528a0ba11595e399",
+      "date": "2026-11-24T16:06:01-05:00",
+      "subject": "Deploy Cross-Platform Easter Egg Engine & Seasonal Theming (Macintosh 1984, Christmas Palette Inversion, Falling Snow & Mobile Touchscreen Democratization) with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e305dbe4b554a09814f136d53aa1fcff64ef709c",
+      "date": "2026-11-24T15:44:34-05:00",
+      "subject": "Document Instrument-ify yt-dlp 2026.11.23 upgrade & Deno player b485e332 addOnDisposeCallback challenge resolution",
+      "category": "Feature"
+    },
+    {
+      "sha": "78c41cd26e8e6dd5d73e1aec1cf3481310430cfe",
+      "date": "2026-11-24T15:38:24-05:00",
+      "subject": "Document 2D stereo array broadcasting fix in audio post-processing",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "d5da2c189868a6574d5b6028a4d45d0040df7bb3",
+      "date": "2026-11-24T15:34:06-05:00",
+      "subject": "Document Instrument-ify anti-stutter debouncing, audio gating, zero-ducking mixdown & MusicGen mastering refinements",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7d3481293a6e5804e681459742a49e4a00ddd997",
+      "date": "2026-11-24T15:26:49-05:00",
+      "subject": "Document Stable Audio torchsde recursion resolution, dynamic boundary clamping & true stereo soundfield",
+      "category": "Feature"
+    },
+    {
+      "sha": "4ec22d3b994e83381ab41356123ab6a02b7ad2d9",
+      "date": "2026-11-24T11:30:40-05:00",
+      "subject": "Document Linux Mint Update Manager stall triage, Homebrew parity audit & 70-package APT upgrade",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "624fd3c0fb6c0d28e907221a4823c6e4a5a352e0",
+      "date": "2026-11-24T11:01:31-05:00",
+      "subject": "Document Linux Mint APT phased updates package hold triage & staged rollout architecture",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "85b9f729d9674f1121852be6ecdf9e418d5ec7b9",
+      "date": "2026-11-24T10:38:05-05:00",
+      "subject": "Document macOS Folding@home v8 stall triage, LockDown Browser disproof & launchd kickstart recovery",
+      "category": "Feature"
+    },
+    {
+      "sha": "f96c1856908b1a0324772724533ae58b644ad8c8",
+      "date": "2026-11-24T10:32:03-05:00",
+      "subject": "Document HP ZBook Fury G8 Honeywell PTM7950 phase-change repaste, 13-hour dual-stress burn-in and thermal telemetry",
+      "category": "Feature"
+    },
+    {
+      "sha": "c5cdda08b2e80b74163c787adc559d0e47af1769",
+      "date": "2026-11-24T10:23:16-05:00",
+      "subject": "Document autonomous local blood pressure & pulse tracker with Apple Vision OCR, EXIF harvesting & sips HEIC transcoding",
+      "category": "Feature"
+    },
+    {
+      "sha": "00bbc5a230b4c4478c04612997ac840fadfab421",
+      "date": "2026-11-24T09:53:46-05:00",
+      "subject": "Add 7 non-tech real-world analogies & interactive hover tooltips for Apple Watch presentation remote",
+      "category": "Feature"
+    },
+    {
+      "sha": "3aef8e9d0e1d92dd67d785dd09dba3d44d07d6f1",
+      "date": "2026-11-24T09:50:06-05:00",
+      "subject": "Document Alpine Linux edge upgrades, automated logrotate hardening, container pruning & 7 GiB storage reclamation",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "00f992728763195352bf27d5235fd9ba9102c6ba",
+      "date": "2026-11-24T09:44:59-05:00",
+      "subject": "Document Apple Watch & iPhone autonomous macOS presentation remote with watchOS HTTP chunking resolution & GMT complication",
+      "category": "Feature"
+    },
+    {
+      "sha": "226f38af86057bfacc13af9a86e51516241a7dc1",
+      "date": "2026-11-23T22:50:36-05:00",
+      "subject": "Add 22 real-world non-tech analogies & 26 interactive term tooltips for local AI music",
+      "category": "Local AI"
+    },
+    {
+      "sha": "98f5531143ed997ab9ff9e043f796ac9c696cebf",
+      "date": "2026-11-23T22:39:26-05:00",
+      "subject": "Document autonomous ESP32 Wi-Fi repeater & NAT router deployment for southwest sector",
+      "category": "Feature"
+    },
+    {
+      "sha": "9c40673654b7350c0654965572a5ffdb719b70d2",
+      "date": "2026-11-23T22:37:32-05:00",
+      "subject": "Document ONEFIVE & ONETB dual storage parity sync, Samba mount hardening & encoding repair",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "d0b2bdbdb17e5edd7fc1c2f423f9956ac067bb4c",
+      "date": "2026-11-23T22:26:10-05:00",
+      "subject": "Document Stable Audio Open 1.0 gated HF token auth, .env desktop launcher & torchsde MPS resolution",
+      "category": "Feature"
+    },
+    {
+      "sha": "7e803e60e91be2ddc1cc0c08701bf280e35bafee",
+      "date": "2026-11-23T22:07:07-05:00",
+      "subject": "Document Codex renewal handoff and Saturday maintenance plan",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "63d28bab6b2e98f00cf9970f3ddd9159470f8072",
+      "date": "2026-11-23T22:02:14-05:00",
+      "subject": "Document WatchMouse weekly Personal Team signing renewal",
+      "category": "Feature"
+    },
+    {
+      "sha": "24b4f2d20b7bd611d2dcb0a686350da2d7548c85",
+      "date": "2026-11-23T21:54:16-05:00",
+      "subject": "Record improved WatchMouse scrolling at 48x Crown gain",
+      "category": "Feature"
+    },
+    {
+      "sha": "b39c8d435236e7e3f4705200b0770b77881578fb",
+      "date": "2026-11-23T21:53:42-05:00",
+      "subject": "Complete WatchMouse project account with networking findings and AI credits",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e0d4a268887f0b271d11a287def5730da0ff8068",
+      "date": "2026-11-23T17:25:58-05:00",
+      "subject": "Realign Shelf 4 cooling kinematics: mount 5V centrifugal blower fan overhead above Lenovo Yoga bare board with downward/outward airflow in Three.js 3D & 2D SVG schematics, and update projects & maintenance entries with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7ef3ac0dd6ad83d4563b11c5b58fa40743c0f3e5",
+      "date": "2026-11-23T15:36:49-05:00",
+      "subject": "Document MIDI delta-time preservation & basic pitch calibration in Instrument-ify, and Stable Audio Open 1.0 / MusicGen Stereo-Small expansion in Local AI Music Studio with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d181ab361e045abff6b062dd10b50f77f71709df",
+      "date": "2026-11-23T12:20:19-05:00",
+      "subject": "Document Instrument-ify v2.0 & Local AI Music Studio acoustic overhauls (clean_vocal_midi piano warble fix, 2048-token context guarding, multi-band de-harshing, macOS trash & squircle icons) with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "64178792bd8326ce16eb2e41808bfa94d9be28dd",
+      "date": "2026-11-23T10:51:55-05:00",
+      "subject": "Remediate Debian Mac bootloader telemetry (purge os-prober & eliminate update-grub warning banners) and completely decommission AnyDesk background daemon & repository with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "861bd93ab611da8f6343a999a20f41524f41d078",
+      "date": "2026-11-23T10:47:59-05:00",
+      "subject": "Harden Windows 11 Remote Desktop (RDP) self-signed TLS certificate trust over Tailscale WireGuard mesh with macOS Keychain persistence & Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "eefcafe29aa05bf158bca4610ac1c5b7248334f9",
+      "date": "2026-11-23T10:39:42-05:00",
+      "subject": "Deploy Linux Mint Cinnamon panel telemetry optimization: persistently visible & vertically stacked network throughput (network-activity@local) and unified dual-sensor CPU/GPU temperature applet (cpu-temperature-dual@local) with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c028258ec6f7d56f6d7166dc4fc36ef7b5e871ec",
+      "date": "2026-11-22T23:33:49-05:00",
+      "subject": "Document completed project: Hard Drive Disaster Recovery, GNU ddrescue Sector Forensics & Multi-Tier Cryptographic Archive Consolidation (Heyboer Preservation Pipeline) with SVG architecture diagram & Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "33e6f47ca249b7b24662969d0e08091cc5878fa8",
+      "date": "2026-11-22T23:18:47-05:00",
+      "subject": "Document completed project: Multi-Ecosystem Audio Engineering, Forensic Video Game Decompilation & Cloud-to-Disk Orchestration Pipeline with SVG diagram & Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "31eeea386c6eac7e0d75483b5b856c7c66a22cb8",
+      "date": "2026-11-22T22:51:24-05:00",
+      "subject": "Document Mac workstation & external storage ONEFIVE in-house music metadata alignment, ID3v2/Vorbis/MP4 tag audit & lossless remuxing with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "112e046eb638b6a2ff5fc405d8ca428f1f9c2b0c",
+      "date": "2026-11-22T21:17:11-05:00",
+      "subject": "Document Instrument-ify v2.0 local AI instrumental cover & vocal melody replacement studio + Local AI Music Studio port 7860 collision hardening with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "bfee2d549607601a1c6f0ec7004b98ddc36e2d19",
+      "date": "2026-11-22T21:15:00-05:00",
+      "subject": "Document Task #594: Interactive Twilio AI Phone Gateway Amazon Polly Neural voice integration & exact-statement call termination engine with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "ccf0a45bf49016688644fa828d51bdcdadb56dcf",
+      "date": "2026-11-22T18:03:06-05:00",
+      "subject": "Add parametric CAD stackup diagrams, hardware blueprint gallery & direct repository STL downloads to ESP-32 travel enclosure project",
+      "category": "Feature"
+    },
+    {
+      "sha": "97f357f9aa7a66e5eed3af064b0fff184f073194",
+      "date": "2026-11-22T17:58:18-05:00",
+      "subject": "Document completed project: ELEGOO ESP-32 zero-RF-detuning travel enclosure 3D CAD engineering & GVSU rapid print deployment with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "878b2fa8153c3e77c1c29df97898cab1faa0922e",
+      "date": "2026-11-22T17:31:40-05:00",
+      "subject": "Harmonize projects.html fleet inventory listing with physical 4-tier rack, compact secondary shelf, and architectural wall ledge architecture",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "59f8f9087c91465796a67e88b42aebe48ba88091",
+      "date": "2026-11-22T17:25:54-05:00",
+      "subject": "Document Task #593: Super Smash Bros. Brawl multi-phase soundtrack assembly, natural numerical sorting pipeline & lossless audio consolidation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "894bff4ce890d1fc934b0357b31675ffdf62807d",
+      "date": "2026-11-22T17:24:47-05:00",
+      "subject": "Model solid rack side panels, non-clipping Ethernet routing, floppy and ONEFIVE/SSD USB links, slower Bluefruit cycle, Samsung 870 EVO SSD on ONEFIVE, and non-spinning CAD ray zoom",
+      "category": "Local AI"
+    },
+    {
+      "sha": "5acd2cd6508e9809237cdc3892ae17acc8af571c",
+      "date": "2026-11-22T17:13:24-05:00",
+      "subject": "Implement cursor-centric zoom, compact secondary shelf, vertical Yoga motherboard, forward centrifugal blower fan, S4 Mini battery view, landscape miners with AC duplex outlet, and Ethernet adapter dongles",
+      "category": "Feature"
+    },
+    {
+      "sha": "718c3a446413b05e2dbb3b57e7c461e76ff4e00d",
+      "date": "2026-11-22T17:07:41-05:00",
+      "subject": "Add WatchMouse Bridge project entry: Apple Watch-to-iPhone BLE HID Mouse with ESP32 Wi-Fi relay, tri-architecture cellular fallback, and Codex CLI troubleshooting recap",
+      "category": "Feature"
+    },
+    {
+      "sha": "a84de2af4a90aaaf2da7d73f205651f22aa17488",
+      "date": "2026-11-22T17:03:25-05:00",
+      "subject": "Align secondary shelf rear-left post with main front-right post, terminate secondary posts flush with top shelf, add HP salvage network printer on bottom tier, and wire full Cat6 physical mesh across all compute nodes",
+      "category": "Feature"
+    },
+    {
+      "sha": "9e33f337f5842f1950d877c4deab45fc2a65769a",
+      "date": "2026-11-22T16:45:34-05:00",
+      "subject": "Terminate main rack upright poles flush with top shelf, place managed switch on rotated secondary shelf unit to the right, bridge cabling across gap, and add switch camera preset",
+      "category": "Feature"
+    },
+    {
+      "sha": "47e76d52acd1eb4a8decf5f4ebdbc4d0da136fcf",
+      "date": "2026-11-22T16:14:33-05:00",
+      "subject": "Refine 3D Homelab Digital Twin: non-clipping Cat6/USB cabling, propped-up mobile miners to left of shelf, whole-device hover lighting, camera angle dropdown, and consolidate 3D fleet docs into projects.html",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "595141b233fbc79d847973cb1f2d9f54d2e2c9df",
+      "date": "2026-11-22T16:05:55-05:00",
+      "subject": "Re-architect 3D rack to 4 vertical shelves (dedicated Shelf 3 for Dell Inspiron 3668), harmonize fleet hub with site light theme & navy blue headings",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "1d48b5ff0d50ebdce76b3bbb42ed7e3d87887ec6",
+      "date": "2026-11-22T15:37:58-05:00",
+      "subject": "Overhaul 3D Homelab digital twin (ledge clearance, 3D cabling, grab cursor, 420px height), streamline fleet layout, enforce global pointer cursor on nav/search/gallery, and update NUC Einstein@Home telemetry",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "c71595d2e0bcfc95ce8c3f416d76f8433de21daa",
+      "date": "2026-11-22T14:59:21-05:00",
+      "subject": "Deploy 3D Homelab Digital Twin, add 9 video-verified gallery captures, triage mobile UI syntax & optimize sensor dashboard",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "b1769d7623a0e77751bf5e3db4385198d413640f",
+      "date": "2026-11-22T10:08:51-05:00",
+      "subject": "Document Task #592: AdGuard Home DNS resolver recovery, Alpine Linux DHCP secondary IP persistence & Homebrew tap connectivity restore with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "6800f8f5693fe9b0dbb031cc2f744bc904951d32",
+      "date": "2026-11-22T00:52:32-05:00",
+      "subject": "Document Tailnet HTTPS serve for Local File Converter & AI Music Studio, resolve Scam Defense syntax lock, and expand multisensor telemetry",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f953d2ffc346608ad21c9f4515529eb57180e81d",
+      "date": "2026-11-22T00:26:50-05:00",
+      "subject": "Document Task #591: macOS MacPorts package upgrades and application maintenance with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "379ab00c1183ab3e0dee74fe8df11e732ff8c811",
+      "date": "2026-11-21T23:36:28-05:00",
+      "subject": "Audit projects page: deploy 20 tech term analogies and Task #589 with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "65609c1a1431f8576ef4e2f911d45a34baf566e6",
+      "date": "2026-11-21T23:25:01-05:00",
+      "subject": "Add Google Pixel Buds on iOS Web Bluetooth companion project (In Progress) and Task #588 with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "bfd2c517344c3335546e5546409667047cc4519e",
+      "date": "2026-11-21T21:24:37-05:00",
+      "subject": "Document Task #587: Visual Gallery expansion of Dolphin Brawl optical disc captures with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "dc5d559b1d1046709289da05336d962d5fd7e060",
+      "date": "2026-11-21T21:23:01-05:00",
+      "subject": "Add Super Smash Bros. Brawl Dolphin filesystem captures to Visual Gallery with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e57605be0764d3e556088248d7f3c003bff51314",
+      "date": "2026-11-21T21:21:25-05:00",
+      "subject": "Add Super Smash Bros. Brawl optical disc decryption & parallel audio pipeline project with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "25d41a01bd397f91ac1b5373de625e314b6a3a18",
+      "date": "2026-11-21T18:29:21-05:00",
+      "subject": "Document mobile nav drawer flex-wrap fix in maintenance and changelog (Task #586) with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c04311c1c49e13bdbc9fb6cb4539f0a4340450cb",
+      "date": "2026-11-21T18:10:41-05:00",
+      "subject": "Fix mobile hamburger accordion multi-column wrapping and centering defect (Task #586)",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "9fb3507432344f9bdb4215be5046390c575b1397",
+      "date": "2026-11-21T16:09:09-05:00",
+      "subject": "Document Task #585: Debian Mac ADB setup, AD cleanup, AnyDesk audit, and RAM saturation analysis in pair programming with Antigravity AI",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "5ec62f1dd27ab468647d6d20abcf2871a8e6ac9c",
+      "date": "2026-11-21T15:48:02-05:00",
+      "subject": "Add confirmed Duo MFA reset context while preserving survey quote",
+      "category": "Feature"
+    },
+    {
+      "sha": "e168c1e82ea3fccbbc8936782e6c20c1075e6967",
+      "date": "2026-11-21T15:47:31-05:00",
+      "subject": "Add sanitized service desk survey commendation and Codex maintenance credit",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "9127a3b6d42af4136f496060e67be6279cf0fad8",
+      "date": "2026-11-21T15:42:30-05:00",
+      "subject": "Clarify matching Muse account name and description",
+      "category": "Feature"
+    },
+    {
+      "sha": "45d7d05225f074fb9bbacadfc487052f05e94f44",
+      "date": "2026-11-21T15:39:56-05:00",
+      "subject": "Document sanitized Muse Meta account mismatch resolution with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "4cc1b8c921dbcf52cd48b3f4b4e03c9e60c4f79f",
+      "date": "2026-11-21T15:08:15-05:00",
+      "subject": "Update Local AI Music Studio project: audio mode telemetry, NameError bug triage & fail-safe mastering scratch lifecycle with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "09c2eca158c5ac23f1d4e073617020a8455e6200",
+      "date": "2026-11-21T15:03:35-05:00",
+      "subject": "Update Sheet Music Video Pipeline project: 5-voice drum set integration, spos notehead sync & human-in-the-loop feedback loop with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "bc0793cecc2ba7a869d16f188bcd4ff082396016",
+      "date": "2026-11-21T14:59:41-05:00",
+      "subject": "Add 5 Tailscale standalone web applications: FishDepth, CellRadar, SkyTrack, ClearCast, and SatTrack 3D with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "56d2c74fa7d7aaad1225a5f8ca587e48adedb4f6",
+      "date": "2026-11-21T14:51:35-05:00",
+      "subject": "Apply exact SHELF_OUTLINE physical layout, add plain-English command explanations to Incident Sim, and fix SVG text obstruction",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "4f883907e5c279de45fbbccfda8109c3533874a7",
+      "date": "2026-11-21T14:24:11-05:00",
+      "subject": "Overhaul AI Bias lab with plain-English analogies, fix Incident Sim terminal history & inline prompt, update Fleet to 9-node bottom-shelf layout",
+      "category": "Local AI"
+    },
+    {
+      "sha": "bf2b435b2215c72bbed277da9e3cba6dac89f9e7",
+      "date": "2026-11-21T13:05:58-05:00",
+      "subject": "Add Vintage Homelab Fleet & Subnet File Vault project writeup, S4 Mini 500mA power tuning, and SVG architecture diagrams with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "71795d2e495743d222b25406276ef350db39718a",
+      "date": "2026-11-21T12:59:35-05:00",
+      "subject": "Add maintenance log for Windows Markdown .md file association and VS Code default handler triage with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "803e5bd1afaf1c80eab86a0a6ff6188b2ff0a3ab",
+      "date": "2026-11-21T12:53:50-05:00",
+      "subject": "Add maintenance log for ONEFIVE FAT cluster carving and storage reclamation",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "dd1d03d8895fa3b6a97bd956041fbf31463a474a",
+      "date": "2026-11-21T12:52:02-05:00",
+      "subject": "Document Local AI Music Studio evolution: 5-Stage Song Arranger, anti-drift resets, DSP mastering feedback fix, Google Drive auto-sync, SVG architecture diagram, and site-wide timestamp sync",
+      "category": "Local AI"
+    },
+    {
+      "sha": "70354d6429bbb2dd1581c67133c45e57a2e0a920",
+      "date": "2026-11-21T12:20:54-05:00",
+      "subject": "Add real forensic workbench terminal capture to Visual Gallery and link from projects",
+      "category": "Feature"
+    },
+    {
+      "sha": "d99ed3168a08bc754a7e10667b14cb70b364d731",
+      "date": "2026-11-21T12:09:10-05:00",
+      "subject": "Add interactive forensic carving architecture SVG diagram",
+      "category": "Feature"
+    },
+    {
+      "sha": "17cc6baad086a4d515846aa14f849bcbd6069c65",
+      "date": "2026-11-21T12:06:31-05:00",
+      "subject": "Add Digital Forensics FAT Cluster Carving and 44GB Storage Reclamation case study",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "e5ba853102b1d391f68e6ea81a400c68843b56c8",
+      "date": "2026-11-21T10:22:06-05:00",
+      "subject": "Feature Hardware Fleet Hub, Incident Simulator & AI Bias Lab as flagship project in projects.html",
+      "category": "Local AI"
+    },
+    {
+      "sha": "bf69aa1945da0bc32526b82ab95be3d27cd83a6d",
+      "date": "2026-11-20T17:38:02-05:00",
+      "subject": "Launch Hardware Fleet & Salvage Hub, Incident Command Simulator, and AI Bias & Fairness Audit Lab with Antigravity AI",
+      "category": "Local AI"
+    },
+    {
+      "sha": "681a2f3730323c05618fc4f97a9e0af4feb4df12",
+      "date": "2026-11-20T17:23:55-05:00",
+      "subject": "Remove duplicate Local AI Music Studio entry from maintenance.html; retain in projects.html",
+      "category": "Local AI"
+    },
+    {
+      "sha": "b2dc1d786418d53542dffabba27c702a304f7219",
+      "date": "2026-11-20T17:18:36-05:00",
+      "subject": "Overhaul Local AI Music Studio: 3.8kHz de-harsh notch, stereo Haas spatializer, 24s step-chaining with dynamic RMS matching & equal-power crossfader",
+      "category": "Local AI"
+    },
+    {
+      "sha": "b12c82f497aaa0cb50c3426bb9f67921c448c57e",
+      "date": "2026-11-20T17:09:00-05:00",
+      "subject": "Document 11-track dual visualizer batch pipeline execution, score sheet timeline sync bugfix, and storage reclamation",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "fd7fdb9a3ac60d42fd8ffaae8d7c9f0cc7c6bf33",
+      "date": "2026-11-20T17:06:51-05:00",
+      "subject": "Integrate plain-English telecom analogy tooltips across 3D globe and add lower-center caustic hotspot to oceanscape easter egg",
+      "category": "Feature"
+    },
+    {
+      "sha": "fdd5cea6423111e56ec71f03e116df725a036bfe",
+      "date": "2026-11-20T16:51:39-05:00",
+      "subject": "Remove artificial cursor glow dot; keep pure optical beams and update cache buster",
+      "category": "Feature"
+    },
+    {
+      "sha": "f6c9e2d63516495ec01471b0cc83c651da35846c",
+      "date": "2026-11-20T16:50:43-05:00",
+      "subject": "Add missing surface hotspots, submerged in-water light points, and update projects case study",
+      "category": "Feature"
+    },
+    {
+      "sha": "8f54e00daa8813b4402fdb446e94124e3cc3580a",
+      "date": "2026-11-20T16:45:23-05:00",
+      "subject": "Make oceanscape lightbeams a pure discoverable easter egg: remove badges, anchor to image light hotspots, and prevent iOS navigation on tap",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "35a12b43c510289f4739fe36d157f50ccf433234",
+      "date": "2026-11-20T16:36:21-05:00",
+      "subject": "Center globe, stack layer filters, add karaoke mobile fullscreen tip, and deploy 19-hr oceanscape gyroscope lightbeam easter egg",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "c673aac0802eb0ff5c35b6111c25477c82e84b88",
+      "date": "2026-11-20T16:18:50-05:00",
+      "subject": "Fix globe.js syntax error, remove homelab focus from globe page, and update case study",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "eaccf2011729f6b7f8fb26cd9727c27941f819f2",
+      "date": "2026-11-20T16:10:24-05:00",
+      "subject": "Deploy 3D Planetary Backbone Radar, submarine cable GeoJSON & ground view telemetry",
+      "category": "Feature"
+    },
+    {
+      "sha": "e1e21310a0af1d7de41a8da10ad203c823e7e10e",
+      "date": "2026-11-20T15:57:00-05:00",
+      "subject": "Expand Quotes & Axioms catalog (116 quotes), add 13 Approved gallery captures (166 total), update navigation dropdowns & document in maintenance log with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c2b950c740467ccc062dff9eef8531af0edf0858",
+      "date": "2026-11-20T15:47:01-05:00",
+      "subject": "Add 20 curated Approved gallery captures (homelab fleet, network security, mobile hardware & virtualization), update category counts, rebuild search index & document in maintenance log with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "49a1cf6751ec725261fb90324e955b7026a65994",
+      "date": "2026-11-20T10:45:14-05:00",
+      "subject": "Document HP Laptop 15 Realistic Vision 5.1 interface simplification, fixed 1080p LCM inference, continuous ad infinitum loop & persistent Rclone Google Drive cloud sync with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c582ae3daf03357777b3d3bb43060562db4453d1",
+      "date": "2026-11-20T10:31:30-05:00",
+      "subject": "Document Tailscale-aware ONEFIVE mount helper with Codex credit",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "59378f503f937f8ca2052edd81e11d669a5c606a",
+      "date": "2026-11-19T20:56:04-05:00",
+      "subject": "Add content-aware autocropping (trim empty borders, letterboxing & whitespace) with Antigravity AI credit to Local Media Converter",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a1f7bd8ab5956f742e6bbf91fff3b83843239aa2",
+      "date": "2026-11-19T20:03:20-05:00",
+      "subject": "Document macSVG gray path repair and SVG learning with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "80599db95e58217552e3fd9f608dcc64ca610473",
+      "date": "2026-11-19T19:31:12-05:00",
+      "subject": "Add 50% rounded corners & canvas pre-detection (unselectable if already rounded) with Antigravity AI credit to Local Media Converter",
+      "category": "Local AI"
+    },
+    {
+      "sha": "10573abac3e1976edca145ab1ed718df4cfd56ea",
+      "date": "2026-11-19T19:27:14-05:00",
+      "subject": "Add VTracer SVG vectorization, Rembg AI background cutouts, same-format exports & macOS Finder Trash safety pipeline with Antigravity AI credit to Local Media Converter project",
+      "category": "Local AI"
+    },
+    {
+      "sha": "872157e3237b57a721b330100f4eb3afb6755407",
+      "date": "2026-11-19T19:20:35-05:00",
+      "subject": "Configure macOS LaunchServices default SVG document handler to macSVG via duti with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "9974b52086ba70ef9fb9430dba485cdf2d22adab",
+      "date": "2026-11-19T19:08:30-05:00",
+      "subject": "Expand Quotes & Proverbs catalog (82 maxims), introduce \"That's Weird...\" troubleshooting collection & college computing proverbs with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "5fa27951a66c5c9cd3edc4af76bc47a79625ee81",
+      "date": "2026-11-19T18:46:02-05:00",
+      "subject": "Document Windows 11 UserChoice Firefox default browser hardening & Edge clipboard plain-text URL formatting bypass with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "dece9430bf0ec092fed56e5800889ce3cdef71ca",
+      "date": "2026-11-19T18:02:54-05:00",
+      "subject": "Add custom insignia launcher & default source file deletion feature with Antigravity AI credit to Local Media Converter project",
+      "category": "Local AI"
+    },
+    {
+      "sha": "73f5b05faf20466c1abc238caa2245c0fc55c6b4",
+      "date": "2026-11-19T17:41:54-05:00",
+      "subject": "Remediate homepage hero quote randomizer vertical layout shift (CLS), freeze dice button coordinates & add compact typography scaling with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "0e0692cc659527c729bb34b890742d629a330958",
+      "date": "2026-11-19T16:47:18-05:00",
+      "subject": "Document parallel generation feasibility vs. fanless thermal throttling in Local AI Music Studio case study",
+      "category": "Local AI"
+    },
+    {
+      "sha": "06326fec3aba4d74fabfeb2d9b3cd419e8d1327c",
+      "date": "2026-11-19T16:40:48-05:00",
+      "subject": "Define swap thrashing and update Antigravity AI forensic credit in Local AI Music Studio case study",
+      "category": "Local AI"
+    },
+    {
+      "sha": "603234474762bb43c1f2c08df6f605b013e0e08e",
+      "date": "2026-11-19T16:39:27-05:00",
+      "subject": "Document 16GB Unified Memory ceiling and workout cook batching strategy in Local AI Music Studio case study",
+      "category": "Local AI"
+    },
+    {
+      "sha": "03b29b0cbf75c9bfe2dfed77633ebe0e5ca1306b",
+      "date": "2026-11-19T16:21:24-05:00",
+      "subject": "Add NVIDIA RTX A2000 4GB VRAM ceiling and 2020 Intel MacBook thermal comparisons to Local AI Music Studio case study",
+      "category": "Local AI"
+    },
+    {
+      "sha": "918f2e12001e2ccba4db700b3d9ac839764cdc7f",
+      "date": "2026-11-19T16:12:34-05:00",
+      "subject": "Document Local AI Music Studio case study, safetensors git-xet CAS telemetry forensics & Apple Unified Memory vs. NVIDIA VRAM analysis with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d963bfbb7a47858bcdc87b1f6cea09873f219157",
+      "date": "2026-11-19T15:39:36-05:00",
+      "subject": "Log Wi-Fi mystery-device investigation with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "4b83862ae2a4afc5ce739f84a701e339dda1eda7",
+      "date": "2026-11-19T15:24:02-05:00",
+      "subject": "Document Windows workstation Google Drive virtual driver (Dokan) boot race condition & installer version deadlock triage with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "135fedefbf191522df32d70e981c15242521926e",
+      "date": "2026-11-19T11:21:36-05:00",
+      "subject": "Enhance 3D Knowledge Map interaction ergonomics: smooth cubic hover transitions, UI boundary unsticking & documentation update",
+      "category": "Feature"
+    },
+    {
+      "sha": "f922e73978d5a5f1bcb81f7bf0411f8c769ac051",
+      "date": "2026-11-19T11:10:09-05:00",
+      "subject": "Update live Scam Defense telemetry: 292 calls, 221m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "98f3b5e74a2c7b1855181df128aa28b826631df8",
+      "date": "2026-11-19T10:54:17-05:00",
+      "subject": "Fix 3D Knowledge Map initial jitter and drag reset: use native OrbitControls autoRotate with permanent stop-on-interaction",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "45007b28af8e952254e657ff58f56e46d9727a7e",
+      "date": "2026-11-19T10:42:00-05:00",
+      "subject": "Deploy Interactive 3D Knowledge Map & Project Constellation (Three.js WebGL force graph, telemetry HUD, task orbiters & navigation integration) with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "0f0eda6725a0262b8540fc28719bb91e3ce50c42",
+      "date": "2026-11-19T09:39:59-05:00",
+      "subject": "Document Google Cloud VM (Debian 12) Realistic Vision V6 continuous 1080p wallpaper generation (ad infinitum), UI streamlining & zero-prompt Rclone Google Drive integration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "3a5299697019e722e107266998ad600912d1955e",
+      "date": "2026-11-19T09:22:55-05:00",
+      "subject": "Document Samsung Galaxy S4 Mini (SCH-I435) Odin3 flashing, Knox rollback triage & frontier AI guardrails case study with Codex & Antigravity credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "ab249b1ac769f1fe5051e0aba48fed54c2801f5c",
+      "date": "2026-11-19T09:07:44-05:00",
+      "subject": "Document Windows workstation Android SDK Platform-Tools (ADB) WinGet deployment, persistent user PATH integration & device bridge verification with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "74799d465ec84c1756c30a08322421b61e5820f7",
+      "date": "2026-11-19T00:00:26-05:00",
+      "subject": "Document Samsung Galaxy S4 Mini (SCH-I435) persistent Duino-Coin LAN web miner deployment, dual-core Krait tuning, vanilla ES5 WebKit optimization & dual mobile telemetry integration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "81afd1a5fb1f9c3036f148abe4c5805dea9f1d69",
+      "date": "2026-11-18T21:12:06-05:00",
+      "subject": "Document Moltbook autonomous agent narrative queue expansion (50 new stories), 95-day runway extension & state audit with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "33d9f4086f9f4486935d728020b7775ee0b6de02",
+      "date": "2026-11-18T21:10:51-05:00",
+      "subject": "Update live Scam Defense telemetry: 292 calls, 189m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "40c9a136f68b974ceddb605adc776a86270c5484",
+      "date": "2026-11-18T21:01:44-05:00",
+      "subject": "Document Local Media & Offline File Converter with Apple Silicon VideoToolbox, Tailscale mesh, lid-safe process suspension & website AI knowledgebase sync with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2e799c4a0d74039c46618167e12bb20a3168ad76",
+      "date": "2026-11-18T18:27:40-05:00",
+      "subject": "Document MNN portable monitor hardware integration, native RDP Use All Monitors dual-screen breakthrough with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "22e241728f751face13c336424d8108b8d7d202b",
+      "date": "2026-11-18T18:08:56-05:00",
+      "subject": "Document Spacedesk iPad Catalyst keyboard limitations, Input Leap dock thrashing purge & HTML5 Web Viewer transition with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c3d0c2e17b50afbbf22760652825c6af83513d18",
+      "date": "2026-11-18T17:52:52-05:00",
+      "subject": "Document macOS App Nap bundle disengagement, keyboard input forwarding triage & updated Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a4a9920a62055422da033647c93562e6302de4f8",
+      "date": "2026-11-18T17:41:44-05:00",
+      "subject": "Document cross-platform Spacedesk virtual display mesh, multi-screen window virtualization & Tailscale multi-monitor ergonomics with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "811c7dee82067a367dd71e9a6ebcba7d73544f93",
+      "date": "2026-11-18T12:41:13-05:00",
+      "subject": "Document Rclone persistent Google Drive cloud mount for avanek2005@gmail.com & automated 1080p wallpaper storage integration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "1fddea0051e36dd7f95d3512e4f08d8e63371660",
+      "date": "2026-11-18T12:35:41-05:00",
+      "subject": "Document Realistic Vision 5.1 interface simplification, fixed 1080p resolution, continuous infinite generation loop & automated disk persistence pipeline with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7b191784fe1933e170d995756a44939db3624044",
+      "date": "2026-11-18T12:11:46-05:00",
+      "subject": "Document SDXL-Turbo continuous generation ad infinitum, percentage progress bar & responsive interrupt engine with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "08a47473661a985f7be3ce1d811f16a38c48061c",
+      "date": "2026-11-18T12:04:16-05:00",
+      "subject": "Document Alpine Linux edge system packages (apk), Flatpak Freedesktop 25.08 runtimes upgrade & zero-reboot audit with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "bf04b5539db7e0cc051bfe0e72998d2794c62d6a",
+      "date": "2026-11-18T11:57:59-05:00",
+      "subject": "Document SDXL-Turbo Google Drive cross-account shortcut auto-save pipeline (AI-Wallpapers) and 3-tier storage fallback with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "24bad55f759ab7c3b113ac2236d862358b1079c2",
+      "date": "2026-11-18T11:49:43-05:00",
+      "subject": "Document persistent Google Drive (avanek2005) systemd FUSE automount and Thunar Places sidebar integration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "fff3999c5839f19d1901f3dde551886ed143fffa",
+      "date": "2026-11-18T11:47:55-05:00",
+      "subject": "Document OpenAI Codex CLI optional dependency resolution failure, truncated native binary recovery & global npm restoration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "10fac12ac9da08d6b020bc15bfb3cdb073c6107f",
+      "date": "2026-11-18T11:31:43-05:00",
+      "subject": "Document Trayscale socket recovery, ONEFIVE CIFS automount, SDXL-Turbo Plank dock network pipeline, and rclone Google Drive setup with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "fddbe070e6cefc8df6c644b3f71e04cb5ccab2d9",
+      "date": "2026-11-18T10:43:31-05:00",
+      "subject": "Document Alpine Linux edge system packages (apk) and Homebrew formulae upgrade maintenance with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "4a790dde0c70e2de1c45106e5f8729379965b111",
+      "date": "2026-11-17T20:14:08-05:00",
+      "subject": "Document AdGuard Facebook blocking and unresolved Muse connectivity with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "6d9dfef077f193a6cfa1bdb7574e43b67ab6fcf3",
+      "date": "2026-11-17T19:43:26-05:00",
+      "subject": "Document macOS VirtualBox live snapshot runtime saved state (.sav) architecture & guest memory storage triage with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "23db355786012db489a8e03fe1c85c1f23f16b09",
+      "date": "2026-11-17T18:04:11-05:00",
+      "subject": "Document Firefox ESR profile stale lock recovery & orphan process triage on Debian Mac with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "4ae8723b3cb46affb03d92531e99d01e7561e4b0",
+      "date": "2026-11-17T11:44:59-05:00",
+      "subject": "Document macOS LaunchServices UTI & duti file type association reconfiguration for Visual Studio Code with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2e89f3b2251793d0603875c26dd2ec1389c89c24",
+      "date": "2026-11-17T11:21:19-05:00",
+      "subject": "Update live Scam Defense telemetry: 254 calls, 153m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "e3d44ce3109961cfadc74342a53c60ae02e5f5f7",
+      "date": "2026-11-17T11:11:47-05:00",
+      "subject": "Document macOS Apple Silicon PyCharm deployment, background installation lifecycle cleanup & Python robust numeric input verification with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d2095b2f3d3f9727c516a048dc6e82b93a2c6e36",
+      "date": "2026-11-17T10:59:15-05:00",
+      "subject": "Document Autonomous AI Sheet Music Video Pipeline (Demucs MPS, Basic Pitch CoreML, MuseScore Freeflow & Dynamic Melody Spotlight Engine) with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "699d82b3b78a8d9a3164951d490625ae8e1675f4",
+      "date": "2026-11-17T10:34:51-05:00",
+      "subject": "Center About page GVSU IT Service Desk commendation badges and metadata pills with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "df22d5afa762fbfd5650f60673940166840b23f3",
+      "date": "2026-11-17T10:26:00-05:00",
+      "subject": "Expand Homelab Proverbs (57 maxims), centralize quote attribution disclaimer and deduplicate individual citations with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e1d1541eff85e15b2a9c6f44e656358e0ca2252d",
+      "date": "2026-11-17T09:06:39-05:00",
+      "subject": "Document YouTube visualizer scheduling and cleanup with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "100563444e931ffe5b8a71f16ff431720522f2bd",
+      "date": "2026-11-17T08:48:34-05:00",
+      "subject": "Reduce homepage hero quote dice button height, anchor selector to far right before clock with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "ef79c1c905a8426856f70abb19df8b355dd9b871",
+      "date": "2026-11-16T22:03:04-05:00",
+      "subject": "Launch 500T tasks milestone zero-gravity Antigravity confetti easter egg, Windows Terminal yellow link accessibility remediation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e9c5c702710aad92ee8dc26d2fc23bc8a9e38a32",
+      "date": "2026-11-16T21:53:46-05:00",
+      "subject": "Document Twilio phone gateway XTTS-v2 voice clone deadlock triage, async GPU pre-warming and seamless hold music with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "5da1c4ef855cfcfe51a5b22a8a2a5d85cb6fea00",
+      "date": "2026-11-16T18:56:58-05:00",
+      "subject": "Document VirtualBox 85 GB forensic VM cloud migration, browser drop triage and sequential DriveFS upload pipeline with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "8d00637a3501ce914d15642943f2c90aa86b7ff1",
+      "date": "2026-11-16T18:51:15-05:00",
+      "subject": "Expand homelab proverbs catalog to 52 quotes, synthesize MacBook mining maxim, secularize terminology, and document maintenance with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "19e254f13bd3b2e8f4a882904e703e97ca7b55e0",
+      "date": "2026-11-16T18:29:06-05:00",
+      "subject": "Document gentle Slax and Homebrew updates with OpenAI Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "38ad02af3cc52b5fb9fe380417f8daa9cc5f1994",
+      "date": "2026-11-16T18:21:23-05:00",
+      "subject": "Document Dell Inspiron 3668 CPU repaste thermal audit and acoustic validation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "130edb7c7dafeee3b511019df1e0c565cb1ab093",
+      "date": "2026-11-16T18:14:04-05:00",
+      "subject": "Document Slax root dircolors shell error remediation and persistence hardening with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c5ba8937278fd4e2e43c16812e9e6d0e040c38d0",
+      "date": "2026-11-16T18:10:11-05:00",
+      "subject": "Document Dell MoneroOcean worker names with OpenAI Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "d52578783d596b1e6ca9868bba5c5efbdd5a7646",
+      "date": "2026-11-16T14:14:29-05:00",
+      "subject": "Fix quote rotation syntax error, add copy toast feedback and align homepage dice button with author byline with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2a901d6dd3f1f01208dbbc9557ded338c31c6733",
+      "date": "2026-11-16T14:01:01-05:00",
+      "subject": "Add Apple Silicon Mac mining and college exam proverbs, align header quote dice button with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f2da3680225fc16808a8058ef51ee1aa2cfa79f1",
+      "date": "2026-11-16T13:56:19-05:00",
+      "subject": "Add seven Copilot hardware bangers and sanitize technical analogies to pure real-world comparisons with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "8fbe367ad1de12e7635338470b321acb9d6169bb",
+      "date": "2026-11-16T13:51:05-05:00",
+      "subject": "Add thermal engineering proverbs (heatsink lift, thermal pads, PTM7950, ribbon cables) with Microsoft 365 Copilot courtesy and Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a1ad1ad173e07d3f5c34cbe806f18d0684ec9e05",
+      "date": "2026-11-16T13:49:34-05:00",
+      "subject": "Quotes page high-contrast light theme redesign, tech analogy tooltips, weather carousel gestures and centered tabs with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f7f5d82dfb4c15a9bd079e0eb54e2468af4aee2e",
+      "date": "2026-11-16T12:44:46-05:00",
+      "subject": "Launch Homelab Quotes & Proverbs page, interactive wisdom widget and project epigraph architecture with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "26b6dd5711a2674f6dd5db635487c67d8af9dac7",
+      "date": "2026-11-16T12:37:53-05:00",
+      "subject": "Document MacBook Air M1 AdGuard Cloud DNS, Apple DoH profile and Tailscale mesh coexistence with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e8e9255341619b7dfbd1584e21858adfad0713e1",
+      "date": "2026-11-16T12:16:24-05:00",
+      "subject": "Document MacBook Air M1 MoneroOcean stratum worker telemetry, dynamic hardware resolution and tier disambiguation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "73e9722c362d74843badf7888294507b5df3dfbf",
+      "date": "2026-11-16T11:50:41-05:00",
+      "subject": "Document virtual X11 / Xvfb / x11vnc Caps Lock desynchronization, live Xlib unlatch and persistent state remediation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "36158a470fa325a8fac4eb826bb085c1053d9b02",
+      "date": "2026-11-16T11:44:23-05:00",
+      "subject": "Document HP ZBook Fury Workstation MoneroOcean stratum worker telemetry, shortcut runtime configuration and tier disambiguation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f34b28022a526e8804776c7de3e41e261458e0b8",
+      "date": "2026-11-16T11:38:54-05:00",
+      "subject": "Document HP Laptop 15 MoneroOcean stratum worker telemetry, privileged runtime configuration and tier disambiguation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "5eefea997f2c593ace07441f4aac392f3a8bf539",
+      "date": "2026-11-16T11:34:51-05:00",
+      "subject": "Document LM Studio restart-to-update loop diagnostic and manual package deployment with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "b5518b34c884966872921a9f25b6f8c60afa4f2d",
+      "date": "2026-11-16T11:29:51-05:00",
+      "subject": "Document Lenovo Yoga 2 11 MoneroOcean stratum worker telemetry, DMI hardware resolution and tier disambiguation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "128bbe8e293da90501e2781e0dfe1cdabd70af3e",
+      "date": "2026-11-16T11:24:14-05:00",
+      "subject": "Document Wine stable installation with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "0d80a6d981790d5cbfb93d11a8f3b040d76c2f27",
+      "date": "2026-11-16T11:20:28-05:00",
+      "subject": "Document Debian Mac MoneroOcean stratum worker telemetry, dynamic hostname resolution and tier disambiguation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "0140e14072bcfbbba02e8a9dbb80f7c114ec5702",
+      "date": "2026-11-16T11:02:56-05:00",
+      "subject": "Document BOINC Manager WebKitGTK memory exhaustion triage, CPID vs authenticator disambiguation and Universe@Home CLI attachment with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "098c92ef149a590563c9ffa5796bce749c1f63cb",
+      "date": "2026-11-16T10:53:24-05:00",
+      "subject": "Document Alpine Linux edge system package upgrades, Flatpak VS Code runtime update and Homebrew audit with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "10163d6ac38c2cf6e13df1e6a85542f112cd9437",
+      "date": "2026-11-16T10:06:24-05:00",
+      "subject": "Document Slax Debian live USB persistence triage, initramfs preinit posix permission patch and passwordless SSH recovery with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c485d04c1af3d815a14ffedb2fd5ce17f66d6348",
+      "date": "2026-11-16T10:03:12-05:00",
+      "subject": "Document Apple Silicon MusicGen 3-minute song continuation chaining and warning suppression with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "035b23e950b9b7c4e2d507d2271c829e5f9360c0",
+      "date": "2026-11-16T00:22:51-05:00",
+      "subject": "Document Lenovo Yoga 2 11 persistent Tailscale X11 VNC endpoints 150% display zoom and vector DPI scaling with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "cb922c738999edf164912a052be7ca4eb9dbdc62",
+      "date": "2026-11-15T23:58:45-05:00",
+      "subject": "Document Linux Mint browser Chrome migration and Monero miner DNS resilience with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "737144e709d053da73331cb8aaa14ec26f53660e",
+      "date": "2026-11-15T23:34:08-05:00",
+      "subject": "Document macOS Homebrew orphaned cask upgrade triage and force purge with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c0c53209930ded6700e506add413d9c1ffa7624b",
+      "date": "2026-11-15T23:26:38-05:00",
+      "subject": "Document Windows 11 SMB Remote UAC and LocalAccountTokenFilterPolicy log with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "129e277818e8f1941122da6131747f6f077fecfa",
+      "date": "2026-11-15T22:58:31-05:00",
+      "subject": "Document case study YouTube release, title/description, and workspace archival cleanup with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "543834d322286981e3d9ddb594d0bcc64bdea701",
+      "date": "2026-11-15T22:36:41-05:00",
+      "subject": "Add ONEFIVE Samba recovery and USB watchdog log to maintenance page",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "96f80483049b950759b2a6d761bea6df0eb4e10c",
+      "date": "2026-11-15T22:34:30-05:00",
+      "subject": "Document automated iCloud Photos Docker sync in Slideshow Party project",
+      "category": "Feature"
+    },
+    {
+      "sha": "76a2581aa4af8cf331b08f15d29ee3f71810d1c7",
+      "date": "2026-11-15T22:12:13-05:00",
+      "subject": "Update Intranet Slideshow with Tailscale lockout, mDNS, EXIF, and OpenCV face detection",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "420bbf3ace8f1147cfb15fe051d5c98e52520244",
+      "date": "2026-11-15T21:33:33-05:00",
+      "subject": "Refine Intranet Slideshow project with mkcert TLS and screenshot filtering",
+      "category": "Feature"
+    },
+    {
+      "sha": "ad468a99814a8bb53609ff2eab5a9ccab8e5a8b1",
+      "date": "2026-11-15T21:27:19-05:00",
+      "subject": "Document completed Intranet Slideshow & Moderation Platform on Intel NUC with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a388ec84c9fd1e0a7946fd869b4bbd23256fd710",
+      "date": "2026-11-15T21:19:50-05:00",
+      "subject": "Add in-progress SCH-I435 rooting preparation project with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "c2a09e182da4eab2e72e3d2383ee2f92eb1a114c",
+      "date": "2026-11-15T21:14:51-05:00",
+      "subject": "Document Triple Vision lyric visualizer evolution with OpenAI Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "835110bdf18f718102c767c3b448395a726cd0fd",
+      "date": "2026-11-15T21:07:53-05:00",
+      "subject": "Document iterative audio alignment, visualizer physics, and production mastering in maintenance log with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7c4213b1bdd61a533860d32aa124126304ea2ed2",
+      "date": "2026-11-15T20:45:24-05:00",
+      "subject": "Document Scam Defense telephony background concurrency, Duo mode, and 1080p case study production in maintenance log with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "cc0f1b895416124093f82f2b80dee585e38f6043",
+      "date": "2026-11-15T20:20:01-05:00",
+      "subject": "Document forensic breakdown of the 59 automated telephony test suites in Scam Defense project entry",
+      "category": "Feature"
+    },
+    {
+      "sha": "89ec852fc2dae4d63dc985a9b6ee0908c8686956",
+      "date": "2026-11-15T20:00:06-05:00",
+      "subject": "Document Scam Defense Dashboard Revision 0.2.1: server-side background call queuing, concurrent duo-telephony voicemail fill, live-streamed transcripts, and automatic mailbox-full deletion with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "b6d59ba75a93cb88052571d567058b389e1f297c",
+      "date": "2026-11-15T17:32:55-05:00",
+      "subject": "Document Lenovo Yoga 2 11 LightDM session startup error triage, X server DPMS extension collision, and ~/.xprofile stderr suppression with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "1c7da5b1556c078f214b4dfd2c933f949499a453",
+      "date": "2026-11-15T15:23:14-05:00",
+      "subject": "Document AI Phone Gateway false-busy lockout triage, XTTS-v2 hold loop circuit breaker, and sole-owner whitelist enforcement with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e49f47ed806a97dc605534121a23c984dc835560",
+      "date": "2026-11-15T09:51:23-05:00",
+      "subject": "Update live Scam Defense telemetry: 216 calls, 144m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "92c6aaf243927869556b42d9f861828c2ee1236f",
+      "date": "2026-11-14T22:51:14-05:00",
+      "subject": "Document AdGuard Home Monero mining pool DNS blocklist triage, custom Adblock allowlist bypass, and XMRig recovery with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "4bb0b97d4cc10c4dc64c34b8239a5ac4c0a3e860",
+      "date": "2026-11-14T22:05:58-05:00",
+      "subject": "Document post-10 PM live verification and Cloudflare Magic DNS client override troubleshooting",
+      "category": "Feature"
+    },
+    {
+      "sha": "d4d2b4902b407612487e548f3a50af1c339bba27",
+      "date": "2026-11-14T21:55:20-05:00",
+      "subject": "Document scheduled app traffic filtering architecture, AdGuard Home Dockerization, and TP-Link DNS enforcement with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "29897886ddc02d25a2f482556c23b0864961a32a",
+      "date": "2026-11-14T16:38:21-05:00",
+      "subject": "Document chatbot Google Drive pipeline rebuild, Cloud Scheduler OAuth fix, and Muse collaboration in Projects, Maintenance, and Chat",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "535d160582ad77d6fc4f4d51fde82554eb66daed",
+      "date": "2026-11-14T16:34:13-05:00",
+      "subject": "Add Robo-Karaoke Studio interactive player to About page and document audio alignment pipeline in Projects with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f676bca8a9e94c010a8b5199235be1efadd7c200",
+      "date": "2026-11-14T16:27:34-05:00",
+      "subject": "Document local Apple Silicon MusicGen studio refactor, Gradio 6 launch modernization, and CFG prompt adherence calibration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "1c4a9a33b4a9e2cfe2fe1d76fa218d1447a4978d",
+      "date": "2026-11-14T16:22:56-05:00",
+      "subject": "Record verified Windows boot-task installation and live reporting",
+      "category": "Feature"
+    },
+    {
+      "sha": "321090133c88e2438500ea432d457affe12f826f",
+      "date": "2026-11-14T16:16:14-05:00",
+      "subject": "Add live Bluefruit room telemetry and Samsung preservation project with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "e163be29d81b752c17b204e6773a3a354c15d843",
+      "date": "2026-11-14T14:11:20-05:00",
+      "subject": "Document Alpine Linux edge kernel 7.3.4 mkinitfs audit, early-boot storage verification, and multi-manager system upgrade with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "eb2301a0592de7b1055197168c866972a5074544",
+      "date": "2026-11-14T13:55:57-05:00",
+      "subject": "Document BOINC Manager Flatpak process recovery, terminal session decoupling, and background daemonization with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "e1261d67ee66e462464994defe40c0976a647720",
+      "date": "2026-11-14T13:54:39-05:00",
+      "subject": "Document Intel NUC BOINC multi-project resource allocation, Asteroids@home memory profiling, and CPU throttle hardening with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "ae3a65dd819e31d30a5928796fa4035e9c500626",
+      "date": "2026-11-14T13:30:58-05:00",
+      "subject": "Document Intel NUC5PPYH chassis teardown inspection, motherboard header disambiguation, and active thermal validation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "c991c1f44e951a92c9cccab678e51dc4c4f3da3f",
+      "date": "2026-11-14T13:25:52-05:00",
+      "subject": "Document Intel NUC persistent literature study reader, SQLite corpus indexing, and mobile touch gesture triage with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "3d8ef70bacf33afbc82398457d306b3f7af5a4b3",
+      "date": "2026-11-13T21:25:01-05:00",
+      "subject": "Publish Intel NUC Alpine initramfs storage recovery, OneDrive-to-GDrive migration, LG Accolade BREW reversing, Slax Debian persistence upgrade, and 14 maintenance logs with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "41de114a0c905df544318a1b5a6b6d679f9f5883",
+      "date": "2026-11-12T09:00:17-05:00",
+      "subject": "Document XFCE terminal mining tab consolidation and Realistic Vision launcher recovery with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "17737ad42f216993f2c1d82e64b493c4d0f4349a",
+      "date": "2026-11-11T23:33:07-05:00",
+      "subject": "Document NCS visualizer batch rendering and Moltbook knowledge base expansion with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f92ecf692f90e33d09c91ad82ca8035479c1813a",
+      "date": "2026-11-11T23:26:53-05:00",
+      "subject": "Document three VAAM Friday releases with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "1a8f8dacb117779ef9d9b5f6d0f8458de8de2f1b",
+      "date": "2026-11-11T23:04:43-05:00",
+      "subject": "Document No No rap YouTube release scheduling with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "1315bf6e69e00017edf80df282b3eae0a8d8f151",
+      "date": "2026-11-11T22:48:18-05:00",
+      "subject": "Document Random Byte banner troubleshooting and cache verification",
+      "category": "Feature"
+    },
+    {
+      "sha": "b6176f1a0d4ca3028b498dc2b2f2eee49da665f6",
+      "date": "2026-11-11T22:28:38-05:00",
+      "subject": "Document VAAM weekly releases and channel refresh with Codex credit",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "1deb855076358b0c5643522c511a504828e514d5",
+      "date": "2026-11-11T22:14:36-05:00",
+      "subject": "Document NCS audio visualizer batch rendering pipeline with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2738e7b7e2d7df1d30bff8edf2b10f2c35adba38",
+      "date": "2026-11-11T22:10:27-05:00",
+      "subject": "Document CIS 450 Chrome slides launcher with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "d482615f763f003deb2586c9140474db93d73028",
+      "date": "2026-11-11T14:52:54-05:00",
+      "subject": "Update live Scam Defense telemetry: 207 calls, 136m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "9705a7a540f70471efaa6434a0066896bfc8a139",
+      "date": "2026-11-11T14:05:53-05:00",
+      "subject": "Add 4 Approved gallery captures (identity defense, homelab fleet, traffic monitoring & ARM virtualization), update category counts and document in maintenance log with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f4e6f7b3c0eb40f1ca7140486abfcc7bf3908ead",
+      "date": "2026-11-11T13:58:19-05:00",
+      "subject": "Document Scam Defense desktop controls overhaul, turn-taking recalibration, cadence jitter, and Paul Davis video montage releases",
+      "category": "Feature"
+    },
+    {
+      "sha": "d74026725463b3a474d7a32b70feef80ff5f02c6",
+      "date": "2026-11-11T13:24:50-05:00",
+      "subject": "Update live Scam Defense telemetry: 197 calls, 136m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "9ba33d43a32dd50ed3eadc79490f01c71a27ede8",
+      "date": "2026-11-11T12:58:05-05:00",
+      "subject": "Update live Scam Defense telemetry: 197 calls, 125m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "8644ee2225c3807656db1c1d1d1c167724f4e444",
+      "date": "2026-11-11T12:12:12-05:00",
+      "subject": "Document Debian Mac display sleep watchdog rebuild, X11 DPMS desync triage & Intel PWM backlight register control with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7a77c12d8d11cffa7e5ec8d47cf6351423759959",
+      "date": "2026-11-11T12:03:04-05:00",
+      "subject": "Document Windows 11 Monero mining audit, SRBMiner heuristic threat triage & XMRig isolation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d0697e0e0c2c3ddb537beac3401a8efa6f1000b3",
+      "date": "2026-11-11T11:49:31-05:00",
+      "subject": "Document Scam Defense Desktop split carousel, barge-in calibration, and profanity masking",
+      "category": "Feature"
+    },
+    {
+      "sha": "99f631add436971c44d484d3cca8723b5f6eb78e",
+      "date": "2026-11-11T10:57:07-05:00",
+      "subject": "Update live Scam Defense telemetry: 181 calls, 73m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "9ddb8d882a72226afec2d6bcbff93c0835970c42",
+      "date": "2026-11-11T10:48:11-05:00",
+      "subject": "Document Outlook signature setup with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "82b0ec61542d53312e42ed8365aec513e7e31200",
+      "date": "2026-11-11T08:25:31-05:00",
+      "subject": "Remove GVSU login automation captures from gallery, update category counts and search index",
+      "category": "Feature"
+    },
+    {
+      "sha": "884b170bd6e83ee1a99fd7e878046cc7fb0a2ed0",
+      "date": "2026-11-10T10:49:30-05:00",
+      "subject": "Document fah-cpu-8 Folding@home work unit expiration diagnostic & hypervisor NTP audit with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "9e9f299b278f9ac748d8f9559e44c662993cf771",
+      "date": "2026-11-10T10:41:48-05:00",
+      "subject": "Document GLPI fleet inventory expansion, multi-node Tailscale onboarding & agent orchestration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "77be3da4b0a743c4cd9a5c938d317f098eb1b365",
+      "date": "2026-11-10T10:15:58-05:00",
+      "subject": "Update fah-cpu-8 SSH provisioning entry to document avanek user profile triage",
+      "category": "Feature"
+    },
+    {
+      "sha": "585d7488616fab7127ae5f697bcde64aad5ca447",
+      "date": "2026-11-10T10:14:13-05:00",
+      "subject": "Document fah-cpu-8 Folding@home worker Ed25519 SSH key authorization & remote access provisioning with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "31b5a012962d209a161604d1f9b50616fee3bf4f",
+      "date": "2026-11-09T18:52:33-05:00",
+      "subject": "Document Windows 11 internal storage exhaustion triage, OneDrive dehydration & WSL2/hiberfil purge with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "1c8643748764c3aba8427d93e745ff3844783cb1",
+      "date": "2026-11-09T17:57:57-05:00",
+      "subject": "Document Apple Silicon M1 Folding@home network firewall bypass, DNS cache synchronization & GROMACS 4-core tuning with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "866a3759722c5847b00a95cd5d3afb35ba312910",
+      "date": "2026-11-09T15:41:14-05:00",
+      "subject": "Add 21 Approved3 gallery captures (hardware repair, digital forensics & virtualization), document MacPorts updates & expansion in maintenance log with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7cd468133c645681fa05ca4c551e4c9392416c76",
+      "date": "2026-11-09T15:02:23-05:00",
+      "subject": "Document Wallpaper Generator right-click context menu, clipboard operations & Ctrl+A integration with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a16d52badd9abfe5f0aa9eb94d4b25bd9bf1178c",
+      "date": "2026-11-09T14:45:33-05:00",
+      "subject": "Document Linux Mint Lenovo Yoga 2 11 Ed25519 passwordless SSH setup to Intel NUC gateway with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a205f1bf0dc589c52d2d509e1d0f5006f76ba4c4",
+      "date": "2026-11-09T14:40:05-05:00",
+      "subject": "Document Mint mining setup, temperature checks, and desktop monitoring",
+      "category": "Feature"
+    },
+    {
+      "sha": "03335de56a69a27013eafcbb982f3925b6440605",
+      "date": "2026-11-09T14:32:50-05:00",
+      "subject": "Document HP laptop 15-db0xxx crypto-mining thermal repaste telemetry, EC fan threshold verification & hwmon override audit with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "1d8d03cdf6cabcef897f0939c71b0e91899b5b18",
+      "date": "2026-11-09T12:16:11-05:00",
+      "subject": "Document Alpine Linux NUC edge package upgrades, Flatpak audit & multi-manager app stack sync with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "9ea21eeb18acb5d55c4ebfa9fa2d20dfafbd8cf8",
+      "date": "2026-11-09T11:35:21-05:00",
+      "subject": "Document Windows XP i386 bootable USB provisioning, BOOTMGR/NTLDR dual-loader patch & Shell COM safe ejection with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "b1f14c40f71594ed5f398d4a71059defa5fef792",
+      "date": "2026-11-08T18:54:40-05:00",
+      "subject": "Document Nintendo Wii CTGP-R multi-stage update installation",
+      "category": "Feature"
+    },
+    {
+      "sha": "fc8387fb34336fa57d8527a0a16a57b230e95d97",
+      "date": "2026-11-08T18:44:24-05:00",
+      "subject": "Document Tailscale HP printer relay EWS triage with Antigravity AI and Archer AX3000 IP-MAC binding",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a71e9165f3d52f45987c18dbeddf88dd23f2826a",
+      "date": "2026-11-08T17:18:29-05:00",
+      "subject": "Document Linux Mint 22.3 XFCE live bootable USB provisioning and IOCTL eject with Antigravity AI",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "0c6752f5f85eeced5a614d4b5d54f6afcde44205",
+      "date": "2026-11-08T17:13:09-05:00",
+      "subject": "Document macOS Tahoe SMBIOS identity injection with Antigravity AI and infrastructure overhaul with Muse",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7fefe7582b64a2fc3de85ca5019f73ba857c1b6b",
+      "date": "2026-11-08T16:55:23-05:00",
+      "subject": "Document Debian Mac keyboard backlight suppression and sub-minimum display dimming",
+      "category": "Feature"
+    },
+    {
+      "sha": "0ff715ef02fff13fb1d2a82a1a036b863dd5f484",
+      "date": "2026-11-08T16:52:06-05:00",
+      "subject": "Document Debian Mac headless thermal failsafe, ghost USB loop fix, and 1-min display sleep",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "47f5bcf4054059abde908ea6fbbd2be6af988868",
+      "date": "2026-11-08T16:08:56-05:00",
+      "subject": "Document Debian Mac full stack upgrades, service audit, and fan thermal triage with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "5c949b70e70715f4606605ad3f00e3f1db26e592",
+      "date": "2026-11-08T13:08:43-05:00",
+      "subject": "Document Mp3tag Wine setup and five-track visualizer releases",
+      "category": "Feature"
+    },
+    {
+      "sha": "b1b9743312a9f1f5d36944277765de7b1c54c01a",
+      "date": "2026-11-08T11:21:31-05:00",
+      "subject": "Document stream audio extraction and Whisper GPU speech segmentation with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "ed3ce635cb1a3ff68d7bdc0d2363e3c410e6ae75",
+      "date": "2026-11-08T11:00:08-05:00",
+      "subject": "Document Free Download Manager startup fix with Codex credit",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "967db535e0b8fb0de13bd7b7078a458ebdb40605",
+      "date": "2026-11-07T23:12:53-05:00",
+      "subject": "Document 10-bit HEVC MKV-to-MP4 stream remux with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "26fc052918552ff137d8f26a95835f6c89057371",
+      "date": "2026-11-07T22:40:23-05:00",
+      "subject": "Document transcript-guided audio editing with Codex credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "425a60bcdd063fb9d6280ce5d28791463730d7d1",
+      "date": "2026-11-07T22:12:06-05:00",
+      "subject": "Document Scam Defense YouTube video releases and embed links with Antigravity AI credit",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d30b4ee6d13d9cd3d172898c22c8bbeb78e963ba",
+      "date": "2026-11-07T21:26:35-05:00",
+      "subject": "Document Scam Defense mobile ergonomics, audio jitter de-crackling, Google Voice hangup chime, and automated mailbox filling queue with Antigravity AI",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "6647d69f84602669f4f2e0ad2e6f753744a1b9f1",
+      "date": "2026-11-07T20:40:07-05:00",
+      "subject": "Document Scam Defense mobile touch keypad, iOS audio resilience, and callback overhaul with Antigravity AI",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "a34ef459a4e2a0e12bf09f65cac676a5196f93c0",
+      "date": "2026-11-07T20:36:53-05:00",
+      "subject": "Update live Scam Defense telemetry: 154 calls, 73m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "4c1bb10a031763e6720edfe312933a935eb5580d",
+      "date": "2026-11-07T10:36:36-05:00",
+      "subject": "Update live Scam Defense telemetry: 129 calls, 73m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "317d4dfa8f953b01ebca1f7e8f743fcf858f609d",
+      "date": "2026-11-07T10:14:42-05:00",
+      "subject": "Document iPhone 11 Slo-Mo forensic reconstruction and 60fps Photos pipeline with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "d13c0652433bacf61b69051be681bd8bbe4c6078",
+      "date": "2026-11-06T21:00:10-05:00",
+      "subject": "Document Scam Defense persistent telemetry, dashboard metrics, and persona hardening with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "d457ddca3c8b7918bca5bd491319cb20cd8722b9",
+      "date": "2026-11-06T20:57:30-05:00",
+      "subject": "Add live Scam Defense AI telemetry metrics to Stats for Nerds",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a4c8c4cb023c12463ac2184d90046fe1cb271661",
+      "date": "2026-11-06T20:35:17-05:00",
+      "subject": "Document Scam Defense automated bulk case ingestion and E.164 prefill with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "07d35e5c8011f63896021ff77580de78be908836",
+      "date": "2026-11-06T17:17:22-05:00",
+      "subject": "Document Scam Defense hold queue suppression, natural voice upgrade, and operator UI with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "79fd04afab173942ee700cba4f1dd5b3d01432a4",
+      "date": "2026-11-06T16:41:21-05:00",
+      "subject": "Add 16 Approved3 gallery captures with evidence-based captions",
+      "category": "Feature"
+    },
+    {
+      "sha": "b450d5074840ee5e2f86fd9fdf4173d3282f06d4",
+      "date": "2026-11-06T16:16:14-05:00",
+      "subject": "Document Scam Defense cyber-defense favicon suite with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "ed42fb911984c825f4fde4b653494e49abf4816f",
+      "date": "2026-11-06T16:09:26-05:00",
+      "subject": "Document multi-line caller ID rotation pool in Scam Defense Dashboard",
+      "category": "Feature"
+    },
+    {
+      "sha": "8e715445c26c6763c9823dce16d1653ce92a37b0",
+      "date": "2026-11-06T16:05:27-05:00",
+      "subject": "Document zero-latency audibility fastpath, extended thinking filler, and live call hold survival",
+      "category": "Feature"
+    },
+    {
+      "sha": "68ecad93f56646b99f0ebd91ee8e042946c16157",
+      "date": "2026-11-06T15:58:58-05:00",
+      "subject": "Document Scam Defense live call diagnostics, latency tuning, and 12-voice expansion with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "60b6cb802a9e4eecaae9273b25ad54ed3f98d423",
+      "date": "2026-11-06T09:53:45-05:00",
+      "subject": "Add device update, BlueAI, and Codex XP setup gallery captures",
+      "category": "Feature"
+    },
+    {
+      "sha": "78d90b62172a6c78cb92c759f668b5c1172b1ab6",
+      "date": "2026-11-05T18:40:11-05:00",
+      "subject": "Recalibrate satellite and vintage PC gallery captures, audit gallery tech analogies, and add real-world explainer tooltips",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "03334de1c17c13c68f0421f1090fb035fe5cc988",
+      "date": "2026-11-05T18:28:46-05:00",
+      "subject": "Calibrate visual gallery entries for hardware servicing, multi-screen ergonomics, CAD/SQL, and mobile Linux",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "cd0b96ef360930c5e2fa4d0033cfc9b0a8420243",
+      "date": "2026-11-05T18:00:57-05:00",
+      "subject": "Document completed Windows XP malware lab setup",
+      "category": "Feature"
+    },
+    {
+      "sha": "70af8c5962c2beb8ff06bd7a36da2405a8d98a3c",
+      "date": "2026-11-05T17:25:34-05:00",
+      "subject": "Add 5 approved malware & security forensics captures (Approved3), update gallery counts to 98, and document in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "33322f90f4d9327633c58bec6a7c17abb7979850",
+      "date": "2026-11-05T16:31:48-05:00",
+      "subject": "Add 42 approved gallery captures (Approved2), update gallery counts to 93, and document in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "7d2703b6cc1427f1d0093713d5813eee6da5c8ac",
+      "date": "2026-11-05T16:25:32-05:00",
+      "subject": "Add Samsung Galaxy Player audio pipeline project, 11 approved gallery captures, and maintenance log updates",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "c881c1b3b52e6602c02ca90b2c24e9c97105b25a",
+      "date": "2026-11-05T15:27:31-05:00",
+      "subject": "Document Duino-Coin Tailscale WebSocket tunnel, school Wi-Fi bypass, and UI grid overhaul in maintenance log",
+      "category": "Local AI"
+    },
+    {
+      "sha": "00a67ba9a84de2aee75a70f773f211a85181e7eb",
+      "date": "2026-11-05T09:03:06-05:00",
+      "subject": "Add HP cooling and MacBook battery repair projects and photo gallery",
+      "category": "Feature"
+    },
+    {
+      "sha": "882ed57c77cdf760dd146fad52bd31ee1b0ddf41",
+      "date": "2026-11-05T00:27:19-05:00",
+      "subject": "Document Codex B-drive IT image review and verified collection counts",
+      "category": "Feature"
+    },
+    {
+      "sha": "a469344f326d6a2bd75aac6a6d9dff36c3185681",
+      "date": "2026-11-04T23:15:50-05:00",
+      "subject": "Document autonomous 60-second display sleep guardian and 24/7 mining zero-suspend lockdown in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "530920088dd0e7b822a8b05e753e6a2cd7f3c4e4",
+      "date": "2026-11-04T22:55:20-05:00",
+      "subject": "Document compositor vblank starvation fix, hardware backlight decoupling, and verified MSR mod in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f279c4741f7996ca2e29cdde8887b5e2f58ed27f",
+      "date": "2026-11-04T22:46:20-05:00",
+      "subject": "Document xrandr --fb locked canvas decoupling and physical eDP disable in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6719ae1f59fb5f7d70c58c9f62d742f6047be84d",
+      "date": "2026-11-04T22:42:37-05:00",
+      "subject": "Document Circuit Playground power LED investigation with Codex",
+      "category": "Feature"
+    },
+    {
+      "sha": "96cef4caffadf70e1ab8581e7df2fb63cba2d30e",
+      "date": "2026-11-04T22:33:07-05:00",
+      "subject": "Document x11vnc -forcedpms physical monitor sleep retention on maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "318354529ebdd8cb881202b64439459e1a072373",
+      "date": "2026-11-04T22:30:11-05:00",
+      "subject": "Document UEFI Secure Boot MSR lockdown on XMRig & physical luminance zeroing on maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "1b985d85df2e5d1305a7c8ecfdd1ae8b0e5c0dee",
+      "date": "2026-11-04T22:24:33-05:00",
+      "subject": "Expand HP laptop headless maintenance record with forensic multi-stage display suppression & x11vnc resolution",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "29cbaa87864e565819927d167bb0378e4e4c548b",
+      "date": "2026-11-04T22:10:11-05:00",
+      "subject": "Document HP laptop headless remote desktop triage, x11vnc modal keyboard-grab isolation & kernel eDP backlight blanking on maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6d52d6cc7c77026f417a7026857290f7f7d4d802",
+      "date": "2026-11-04T10:40:21-05:00",
+      "subject": "Document GNOME Software offline-update suppression & Debian Testing reboot triage on maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "339a3e77fae34904e5b0cd317a1a876f266ab735",
+      "date": "2026-11-03T20:48:14-05:00",
+      "subject": "Deploy Coqui XTTS-v2 voice cloning entry, dynamic VRAM lifecycle engine, and interactive system topology diagrams to maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "975ea2a7910348a385de1a694c30b7ee72275850",
+      "date": "2026-11-03T19:22:17-05:00",
+      "subject": "Deploy persistent Duino-Coin Tailscale miner with iOS screen-awake engine, remove telephony wait countdown, and migrate AI to Llama 3.2 3B Instruct Abliterated",
+      "category": "Local AI"
+    },
+    {
+      "sha": "41469d22da8a151feb3679d8429e31fc5d54e034",
+      "date": "2026-11-03T09:24:56-05:00",
+      "subject": "Resolve chat runtime reference error, restore EST clock sweep & weather telemetry, and hide Sudoku teaser",
+      "category": "Feature"
+    },
+    {
+      "sha": "986c42f3a28368068d4c101408a2fbaad4021fa2",
+      "date": "2026-11-03T08:53:24-05:00",
+      "subject": "Deploy two-corner floating action docks: Lower-left Phone Hotline and lower-right Robot AI with mobile onboarding hint",
+      "category": "Local AI"
+    },
+    {
+      "sha": "8de3ae47d1ce03ece2b715a588d388cf73dc0574",
+      "date": "2026-11-02T22:52:47-05:00",
+      "subject": "Deploy interactive Git Changelog & Releases page with versioning telemetry, global footer links, and nav integration",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "b8b4c5965a16c5a01a950847182802b4bb7ecd36",
+      "date": "2026-11-02T22:47:22-05:00",
+      "subject": "Deploy Voice AI Hotline dock, quad keyboard easter eggs, coin cursor fix, and AI node resurrection",
+      "category": "Local AI"
+    },
+    {
+      "sha": "be36e04249222eae4ce74b4bd4f4303fd29a8b32",
+      "date": "2026-11-02T19:04:58-05:00",
+      "subject": "Update website-wide last modified timestamp across all HTML pages",
+      "category": "Feature"
+    },
+    {
+      "sha": "04fae9205a777694f252e59353627236266501a3",
+      "date": "2026-11-02T19:01:48-05:00",
+      "subject": "Enhance Neural Predictor with graph hover tooltips, desktop HUD reasoning layout, coin cursor, and dual easter eggs",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f3819b657b7da1a44874d2cc0f659f8f4bde8124",
+      "date": "2026-11-02T18:30:15-05:00",
+      "subject": "Document Tint2 hover previews, desktop background recovery watchdog, and 15-minute update telemetry in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "23c841e8757e1f28b150d4c2acb5f1062729bf2f",
+      "date": "2026-11-02T18:21:41-05:00",
+      "subject": "Expand gallery to 30 items with Antigravity CLI live session and adjust maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6dc534199f4e362b08f0c0274e41ee0e61e43f67",
+      "date": "2026-11-02T18:14:41-05:00",
+      "subject": "Expand gallery to 29 items with Alpine NUC TigerVNC desktop session",
+      "category": "Feature"
+    },
+    {
+      "sha": "7219a3aaea2022cd2d400e141005152190d5e8f4",
+      "date": "2026-11-02T18:05:11-05:00",
+      "subject": "Expand gallery to 28 items with GLM-4 Tailscale chat and Windows XP RDP session",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "5a1b75ca2f784d2ad9366ec9df9f3c72551d8e8e",
+      "date": "2026-11-02T17:58:51-05:00",
+      "subject": "Add persistent Tailscale reference reader and Screen Wake Lock project",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "f1db540b59d913b104875546e147e5a223c0ffb0",
+      "date": "2026-11-02T15:37:41-05:00",
+      "subject": "Fix gallery zoom drag ghosting, cursor tracking desync, and grab ergonomics",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "4647d1174463f489467c62809fb5b58d3a332af8",
+      "date": "2026-11-02T15:32:06-05:00",
+      "subject": "Document gallery search indexing, deep-linking, and GPU hit-test resolution in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "3b91f4284836da55ac24265932c803fc93ea5f33",
+      "date": "2026-11-02T15:30:11-05:00",
+      "subject": "Fix desktop card hover/click hit testing, enable deep linking hash, and add gallery search indexing",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "171c7c220b87577f86b0c00c36b2d2e9c58ed689",
+      "date": "2026-11-02T15:23:24-05:00",
+      "subject": "Expand gallery to 26 items with 4 categories and mobile category selection sheet",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "3ba37b4b33d9c9134a077893ac8c9d4cdab0f8aa",
+      "date": "2026-11-02T15:06:02-05:00",
+      "subject": "Add in-progress macOS Blackboard Single Sign-On automation project",
+      "category": "Feature"
+    },
+    {
+      "sha": "c5380c64d6c3f2bbe350d2409b88e7ba6e9d9c49",
+      "date": "2026-11-02T15:00:48-05:00",
+      "subject": "Add Visual Gallery & Malware Sandbox Lab with touch pinch zoom and desktop slider",
+      "category": "Feature"
+    },
+    {
+      "sha": "301a251d149fd6ff333a6531e23bcc75b1623193",
+      "date": "2026-11-02T12:44:37-05:00",
+      "subject": "Document Trayscale tray guardian, Flathub DNS IPv6 triage & XFCE terminal palette tuning, credit Antigravity AI, update website timestamps to Nov 2 2026",
+      "category": "Feature"
+    },
+    {
+      "sha": "1804a6198bfbbc71b91720071bdebe12c9a86bec",
+      "date": "2026-11-02T12:40:27-05:00",
+      "subject": "Document JPEGsnoop winget deployment & Start Menu shortcut automation, credit Antigravity AI, update website timestamps to Nov 2 2026",
+      "category": "Feature"
+    },
+    {
+      "sha": "762be25a59c96dec00191b8c134384c4843e2e51",
+      "date": "2026-11-02T11:44:48-05:00",
+      "subject": "Document ONLYOFFICE vs M365 collaborative co-authoring & GVSU tenant policy audit, credit Antigravity AI, update website timestamps to Nov 2 2026",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "ba43f9ff14034aaf93f6dc0cc17b04d3bffdbd36",
+      "date": "2026-11-02T11:34:15-05:00",
+      "subject": "Document BlueAI 1.2.78 upgrade & macOS background updater permission triage, credit Antigravity AI, update website timestamps to Nov 2 2026",
+      "category": "Feature"
+    },
+    {
+      "sha": "4b92bc325392de28182c04494fe37783899ff6b6",
+      "date": "2026-11-02T11:25:14-05:00",
+      "subject": "Document Minecraft NetherNet migration, TP-Link AX3000 NAT forwarding, NTP clock sync & whitelist hardening, credit Antigravity AI, update website timestamps to Nov 2 2026",
+      "category": "Feature"
+    },
+    {
+      "sha": "700e451d940f3667169a2612fc001863aaef2d43",
+      "date": "2026-11-01T15:54:57-05:00",
+      "subject": "Document Teams shared-control project planning experiment",
+      "category": "Feature"
+    },
+    {
+      "sha": "50028abaceef043e79e9c7e51ba67f51a6b18d9e",
+      "date": "2026-11-01T14:56:16-05:00",
+      "subject": "Document PaperMC 26.3 build 236 upgrade & automated pre-launch updater deployment, credit Antigravity AI, update website timestamps to Nov 1 2026",
+      "category": "Feature"
+    },
+    {
+      "sha": "94e726fcd74f519bca1bfe78099d9a8d70f022b8",
+      "date": "2026-11-01T14:39:28-05:00",
+      "subject": "Document Windows XP RDP audio redirection & Legacy Update homepage configuration",
+      "category": "Feature"
+    },
+    {
+      "sha": "71d9c313ad95011462be83a1a49102a173e7233b",
+      "date": "2026-10-31T15:43:47-04:00",
+      "subject": "Document macOS LM Studio updater loop triage, SQLite lock clearance & staged bundle recovery",
+      "category": "Feature"
+    },
+    {
+      "sha": "50c1ea08dbd43ee657d2cc8ccfacb2407f33d1f6",
+      "date": "2026-10-31T11:48:29-04:00",
+      "subject": "Document GLM-4 Tailscale Homelab LLM inference deployment and custom streaming UI",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "4aeaf266159bebae02d627347be9365313bb88b2",
+      "date": "2026-10-30T14:46:27-04:00",
+      "subject": "Document macOS VM CLI permissions and animation tuning",
+      "category": "Feature"
+    },
+    {
+      "sha": "11c62c79411760588d891e9b80727acd47c0156c",
+      "date": "2026-10-29T19:54:47-04:00",
+      "subject": "Document context-aware call personas and verified monitor audio",
+      "category": "Feature"
+    },
+    {
+      "sha": "92bd54b105bc9f593cdd0803716b719d4066cd1e",
+      "date": "2026-10-29T18:19:39-04:00",
+      "subject": "Document second Scam Defense call timing and mobile workflow fixes",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "93f6ecee2d58c473eef3ad96d6624b08cf098615",
+      "date": "2026-10-29T16:37:45-04:00",
+      "subject": "Document Alpine Codex host access and passwordless VNC fixes",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "8726f3c2c03ace48b018458da7fd540ff1d8aef3",
+      "date": "2026-10-29T15:55:58-04:00",
+      "subject": "Document Scam Defense Dashboard fixes and pending live audio retest",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "8156937cd47017232ae06f35ba6060982708d0ec",
+      "date": "2026-10-29T11:42:33-04:00",
+      "subject": "Improve runner controls and remove duplicate diagnostic tooltips",
+      "category": "Feature"
+    },
+    {
+      "sha": "cbd302f07472aceece5771a95342f372c66cec9b",
+      "date": "2026-10-29T11:26:25-04:00",
+      "subject": "Remove duplicate weather section from stats.html and add detailed timestamp with seconds and EST across all pages",
+      "category": "Feature"
+    },
+    {
+      "sha": "6c97ebf3e70738850f45b0df7f9224b9634a8474",
+      "date": "2026-10-29T11:23:15-04:00",
+      "subject": "Fix line numbers horizontal expansion and add live syntax checking across all languages with hover diagnostics",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "393ea333fc79d1c989b59c3816fdf6707e44bb6a",
+      "date": "2026-10-29T11:06:34-04:00",
+      "subject": "Deploy Interactive Polyglot Code Runner & Error Coach, streamline Council TOTP MFA, and update maintenance chronicles",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "2fbe55fba287a9cfb9f3f0dcee9f1a8624053780",
+      "date": "2026-10-29T09:55:52-04:00",
+      "subject": "Document Debian Mac passwordless x11vnc, Trayscale systemd tray persistence & Wallpaper Generator cancellation with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "9966929a6069d9941c50318b746893b3c2298f34",
+      "date": "2026-10-29T09:37:49-04:00",
+      "subject": "Document HP laptop 15-db0xxx thermal management audit, BIOS fan policy evaluation & OS PWM hardware control investigation with Antigravity AI",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "c7f2cf96602546bdd039a7cd0e9e0ea9bb0aff68",
+      "date": "2026-10-29T09:29:56-04:00",
+      "subject": "Document HP laptop mining DBus session-guard inhibitor recalibration & display caffeination decoupling with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "8bd2476505d3e4fd7c7f982e72c83748fab22246",
+      "date": "2026-10-28T23:30:08-04:00",
+      "subject": "Document Windows Defender exclusion automation, WinRing0 driver recovery & Memory Integrity mining audit with Antigravity AI",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "0f8c5fd43a3a1809a229a21e5bf2411aa5fda03f",
+      "date": "2026-10-28T23:17:12-04:00",
+      "subject": "Document portfolio AI VRAM busy-threshold calibration, telephony multi-turn dialogue memory, and request queuing with Antigravity AI",
+      "category": "Local AI"
+    },
+    {
+      "sha": "0299848ed5aed1baf13614533790056c3792520b",
+      "date": "2026-10-28T23:10:09-04:00",
+      "subject": "Document Scam Defense Dashboard circus wagon UI, victim persona guardrails, dynamic greetings & Web Audio stabilization with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "11379d9466bdf24ad457e9ebf2d73d070cde327b",
+      "date": "2026-10-28T20:37:46-04:00",
+      "subject": "Document Scam Defense Dashboard full-mailbox IVR & echo barge-in protection with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "dacce5118ecdc24c1061b781d061eef6b483347b",
+      "date": "2026-10-28T20:12:32-04:00",
+      "subject": "Document portfolio AI hotline recovery, Bionic model daemon path resolution, and telephony whitelist expansion with Antigravity AI",
+      "category": "Local AI"
+    },
+    {
+      "sha": "a5fb2c158ad8ed3f360a7360ae7bb191f8f8fe4c",
+      "date": "2026-10-28T20:07:32-04:00",
+      "subject": "Document Scam Defense Dashboard Twilio ingress restoration, E.164 normalization, and Web Audio jitter buffering with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "910736e4f2d8afc9bbcf95716018acf2e157edc4",
+      "date": "2026-10-28T18:59:57-04:00",
+      "subject": "Document Scam Defense Dashboard launcher Tailscale Funnel decommissioning and private tailnet lockdown",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "74d3aaa9f1fa61810b8f86181dbaf18d5227f121",
+      "date": "2026-10-28T18:36:28-04:00",
+      "subject": "Document Autonomous Drive C Forensics and precision reclamation with Antigravity AI",
+      "category": "Feature"
+    },
+    {
+      "sha": "aa9542783bd2c03d6027b08f3880a5db61facd25",
+      "date": "2026-10-28T18:31:23-04:00",
+      "subject": "Document Linux Mint x11vnc TigerVNC TLS handshake timeout triage and passwordless Tailscale access with Antigravity CLI",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "f134e5667169f917dc41974271ba3cb989d0ffc8",
+      "date": "2026-10-28T18:27:29-04:00",
+      "subject": "Document Windows XP MAX_PATH limitation bypass and resilient Takeout force-deletion automation with Antigravity CLI",
+      "category": "Feature"
+    },
+    {
+      "sha": "e4f62991d798bca138a4c13459c89053985379e7",
+      "date": "2026-10-28T15:01:00-04:00",
+      "subject": "Document Local Photo Realistic Vision V6 CPU launcher and streamlined Web UI overhaul",
+      "category": "Feature"
+    },
+    {
+      "sha": "21792fe719d7e30d09356e0c267a5497f10db8a9",
+      "date": "2026-10-28T14:40:17-04:00",
+      "subject": "Document macOS cursor theme deployment and 5-minute DPMS display power-off policy",
+      "category": "Feature"
+    },
+    {
+      "sha": "c0e1e6df97165c65b86e303a49fe23922ad90eed",
+      "date": "2026-10-28T14:20:56-04:00",
+      "subject": "Document XFCE top panel tray reconciliation, Trayscale restoration, and tabbed terminal Monero mining shortcuts",
+      "category": "Feature"
+    },
+    {
+      "sha": "06edd7080ac6f10b915cf1b77d5cb61173746f88",
+      "date": "2026-10-28T13:02:06-04:00",
+      "subject": "Add cross-volume archive deduplication and smart dual-drive mirror project with Antigravity AI pair programming",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f3c7449858a38893cada161e16bfd0d392a5f229",
+      "date": "2026-10-28T12:50:21-04:00",
+      "subject": "Document Windows gaming PC passwordless Tailscale SSH to Alpine NUC",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "b9bfb9e7c7b9bf00ae70d826d7aeb4bad92dbe82",
+      "date": "2026-10-28T11:16:19-04:00",
+      "subject": "Document Slax USB UEFI/BIOS bootloader repair, Windows XP sync hardening, and update site modified dates",
+      "category": "Feature"
+    },
+    {
+      "sha": "4879815dbd05aa7c1668c43ac53c5723da5b8204",
+      "date": "2026-10-28T11:09:01-04:00",
+      "subject": "Document custom geometric AV tech monogram favicon and multi-res icon overhaul",
+      "category": "Feature"
+    },
+    {
+      "sha": "9e1c6d4c62705b4288592e0560b761e3c12da16f",
+      "date": "2026-10-28T10:48:58-04:00",
+      "subject": "Replace M365 Copilot favicon with custom geometric AV tech monogram and multi-res web suite",
+      "category": "Feature"
+    },
+    {
+      "sha": "d3296e328983eb8ef4d6d138b82510f1c55f87e6",
+      "date": "2026-10-27T21:52:52-04:00",
+      "subject": "Document multi-round scammer engagement, Web Audio recovery, and YouTube video pipeline",
+      "category": "Feature"
+    },
+    {
+      "sha": "dee2ae199b11348792d266efe1dcc9fec2db16fd",
+      "date": "2026-10-27T21:38:58-04:00",
+      "subject": "Document first live scammer engagement (11-turn adversarial baiting call)",
+      "category": "Feature"
+    },
+    {
+      "sha": "35fa37e3e5ea5831ea8b795606911fdbe10829a9",
+      "date": "2026-10-27T21:34:16-04:00",
+      "subject": "Explicitly attribute pair-programming engineering collaboration to Antigravity CLI",
+      "category": "Feature"
+    },
+    {
+      "sha": "5572be1fcb150bf9b6f2e46c072ca3be94727302",
+      "date": "2026-10-27T21:33:30-04:00",
+      "subject": "Document enlarged call touch buttons, 4.2s prompt silence tuning, and Terminal tab launching",
+      "category": "Feature"
+    },
+    {
+      "sha": "f4a6196b3955a06df85dadc9e505c1647b2fc17d",
+      "date": "2026-10-27T21:27:24-04:00",
+      "subject": "Document passwordless access, persistent auto-listening, 22px case numbers, and callback duration fix",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "207475191bf8c1d3ea09de34c74a0a36247fb295",
+      "date": "2026-10-27T21:15:39-04:00",
+      "subject": "Document operator monitor audio bridging for Arthur synthesized voicemail callbacks",
+      "category": "Feature"
+    },
+    {
+      "sha": "3fe436e462cf484b5cf635b7a980dde7b5b7f4d1",
+      "date": "2026-10-27T21:11:08-04:00",
+      "subject": "Document voicemail beep tone detection, dead-air onset fix, and Screen Wake Lock API",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "d75ef7409f73bf27c1a31c2f26b18e67b03eae88",
+      "date": "2026-10-27T20:54:56-04:00",
+      "subject": "Document Scam Defense live telephony verification, dual-channel logging, and inbound routing",
+      "category": "Feature"
+    },
+    {
+      "sha": "149f71de3148c3d6c9333cc553f0f0eeb7d4a505",
+      "date": "2026-10-27T19:42:12-04:00",
+      "subject": "Document YouTube visualizer uploads and release schedule",
+      "category": "Feature"
+    },
+    {
+      "sha": "294a235a8f6cdffe58c7cb98c9793de430476a5f",
+      "date": "2026-10-27T17:50:16-04:00",
+      "subject": "Document batch NCS audio visualizer video rendering pipeline",
+      "category": "Feature"
+    },
+    {
+      "sha": "fee1f11828556bcd9331dcf9b1f8b13e5a8505c6",
+      "date": "2026-10-27T17:44:59-04:00",
+      "subject": "Document Alpine NUC Samba exFAT optimization and PaperMC 26.3 build 227 / Geyser stack upgrade",
+      "category": "Feature"
+    },
+    {
+      "sha": "579636ff351169fc9baf965411ad6ecc0de1de68",
+      "date": "2026-10-27T04:08:09-04:00",
+      "subject": "Log Task #290: Complete ACE-Step 200-epoch bicentennial milestone, update convergence telemetry SVG and project summary",
+      "category": "Feature"
+    },
+    {
+      "sha": "8c216ad1520ba34a4017b29f91cec5ced00e0717",
+      "date": "2026-10-26T23:35:58-04:00",
+      "subject": "Document Circuit Playground USB Duino-Coin persistent LED blackout and uninterrupted mining optimization",
+      "category": "Local AI"
+    },
+    {
+      "sha": "57a6c9e93e1ead4a16bd7626267d0fbb559c4ee8",
+      "date": "2026-10-26T22:45:43-04:00",
+      "subject": "Document Debian Mac XMRig MSR capability elevation and desktop mining workspace consolidation",
+      "category": "Feature"
+    },
+    {
+      "sha": "923b510125b1ecfba464d9e476819b54916c58cb",
+      "date": "2026-10-26T19:00:20-04:00",
+      "subject": "Document Debian Mac Wallpaper Generator single-tab batch architecture and timestamp persistence",
+      "category": "Feature"
+    },
+    {
+      "sha": "00fefeb5446a74e908db503488158eb0d2988cb9",
+      "date": "2026-10-26T18:55:55-04:00",
+      "subject": "Document Debian Mac Apple SMC keyboard backlight zero persistence and system update reconciliation",
+      "category": "Feature"
+    },
+    {
+      "sha": "7d9837fb415a3a1f52880119b0a83ab47c2741a2",
+      "date": "2026-10-26T18:39:11-04:00",
+      "subject": "Document Ubuntu Azure VM GNOME Software center evaluation and update architecture triage",
+      "category": "Feature"
+    },
+    {
+      "sha": "f417c31d00ba0049f3a8e7c67c716f5464f38b54",
+      "date": "2026-10-26T18:32:25-04:00",
+      "subject": "Document Debian GCE VM Tailscale SSH integration and Flatpak application deployment",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "8801240756203130517e5e1d9bf54d368d303d11",
+      "date": "2026-10-26T15:27:48-04:00",
+      "subject": "Log Task #289: Complete ACE-Step 180-epoch milestone, update convergence telemetry SVG and project summary",
+      "category": "Feature"
+    },
+    {
+      "sha": "d4b6cb805e4d43a021350d45f49b8cf7cb678cf7",
+      "date": "2026-10-26T15:14:33-04:00",
+      "subject": "Document Ubuntu Azure VM XFCE panel streamlining, Homebrew environment integration, and service maintenance",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "09ab86aff26ab0e24472bb1ceacd57117d2e4c83",
+      "date": "2026-10-26T13:04:23-04:00",
+      "subject": "Document fah-linux Tailscale SSH verification and Stable Diffusion output architecture cleanup",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "359264b7e9996169533bb20e3f8025f7f8e14d84",
+      "date": "2026-10-26T10:55:14-04:00",
+      "subject": "Refactor responsive search: migrate search bar to mobile navbar and clean desktop layout",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "ed7a1496ad5db77fc4b14e6d4cb55d8dac2decb2",
+      "date": "2026-10-26T10:29:35-04:00",
+      "subject": "Deploy autonomous two-layer search index automation and NUC hourly reconciler",
+      "category": "Feature"
+    },
+    {
+      "sha": "8cd08709fee3e845bcc50fefa8784e4368e7901b",
+      "date": "2026-10-26T10:08:13-04:00",
+      "subject": "Deploy universal client-side site search, Spotlight modal, and dedicated search page",
+      "category": "Feature"
+    },
+    {
+      "sha": "e9f9b57ecd53207a8f4945b21396746ec275e537",
+      "date": "2026-10-26T09:55:36-04:00",
+      "subject": "Document Slax V: dynfilefs XFS journal recovery, dirty bit clearing, and safe ejection",
+      "category": "Feature"
+    },
+    {
+      "sha": "9ce36cb217cd206402a3a4547154ab1825bae765",
+      "date": "2026-10-26T09:49:03-04:00",
+      "subject": "Document HP laptop power management, DPMS blanking, software brightness scaling, and astronomical Night Light automation",
+      "category": "Feature"
+    },
+    {
+      "sha": "0f1bff527e0724df89324cc43287f06d18ecf152",
+      "date": "2026-10-25T22:20:49-04:00",
+      "subject": "Task #288: Resolve Neural Coin Predictor accuracy chart empty-state rendering defect with dual-mode 120-epoch benchmark and live head-to-head telemetry",
+      "category": "Local AI"
+    },
+    {
+      "sha": "50d604d83cd54fed9b3929cf6cbb9631dc04f339",
+      "date": "2026-10-25T17:59:43-04:00",
+      "subject": "Align clock numerals outside tick track, import assistant draft mode maintenance log, and document dial overhaul",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "30ff76154c499d14bdace06381a53e137a87f806",
+      "date": "2026-10-25T16:44:03-04:00",
+      "subject": "Add interactive analogies and interview speaking points for WebGL triage",
+      "category": "Feature"
+    },
+    {
+      "sha": "dcf5de97a7b57f9a52cd790ec9d125adc0cf067b",
+      "date": "2026-10-25T16:29:34-04:00",
+      "subject": "Document Unity WebGL runtime analysis and offline delivery triage",
+      "category": "Feature"
+    },
+    {
+      "sha": "02e3b7186b84291017c7bb7f3ac2ff9e01d699f1",
+      "date": "2026-10-25T16:10:14-04:00",
+      "subject": "Task #293: Refactor GVSU Service Desk commendations to balanced 2-column grid with mobile stacking",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "e52a86c48e464e6ed1602a7496fb573ba793e58e",
+      "date": "2026-10-25T16:06:47-04:00",
+      "subject": "Task #292: Add precision SVG hour numerals (1-12) to homelab station clocks with dimmer support",
+      "category": "Feature"
+    },
+    {
+      "sha": "e827aecef0264f6ef419ca777f4079ef7de66638",
+      "date": "2026-10-25T16:03:36-04:00",
+      "subject": "Deploy dynamic Folding@home dual live awards and fix homepage systems console text contrast",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6fc102a1a746b9d465765f6399c8774ef4e81009",
+      "date": "2026-10-25T15:54:29-04:00",
+      "subject": "Task #290-291: Document Linux Mint persistent Tailscale CIFS automount and embed official Folding@home certificate",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "0123722f0cf2c61ae49ff4ac5c19bab331de4ee0",
+      "date": "2026-10-25T15:51:13-04:00",
+      "subject": "Document POSReady 2009 ATM enterprise history and Windows XP 2019 patch extension in retro computing project",
+      "category": "Feature"
+    },
+    {
+      "sha": "10f65c062093cfe18e4dba9e69cc4742c9742b2e",
+      "date": "2026-10-25T15:41:34-04:00",
+      "subject": "Task #288-289: Document Debian Mac GNOME Keyring autologin decryption fix and persistent Tailscale SMB automount",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "1a8347a62537bc794dd2dc1dba204f76c9d5ec87",
+      "date": "2026-10-25T15:24:24-04:00",
+      "subject": "Task #287: Document Windows XP update cache purge, MSI COM repair, and multi-day 283GB Wi-Fi endurance sync",
+      "category": "Feature"
+    },
+    {
+      "sha": "54df1f99f9a5378014ed22bf251ade5570dacb4c",
+      "date": "2026-10-25T14:40:08-04:00",
+      "subject": "Task #286: Document resilient SMB Wi-Fi sync engine and ACE-Step Epoch 101-140 GPU supervisor pipeline",
+      "category": "Feature"
+    },
+    {
+      "sha": "c2a6362168275d9cf11ad99251a5c53dfef885dd",
+      "date": "2026-10-24T19:03:23-04:00",
+      "subject": "Task #285: Complete ACE-Step 1.5 LoRA 100-epoch centennial milestone; deploy 2,300-step SVG convergence chart and milestone table",
+      "category": "Feature"
+    },
+    {
+      "sha": "6b0f6c3b2ef8ec08deea199c09ed74e39885190c",
+      "date": "2026-10-24T17:16:26-04:00",
+      "subject": "Task #284: Upgrade client engine RPM gauge to MPH velocity readout and embed neural diagnostics suite in projects page",
+      "category": "Feature"
+    },
+    {
+      "sha": "a47efccd65d225b5b3a144a21d0a19e367e5a23a",
+      "date": "2026-10-24T16:55:39-04:00",
+      "subject": "Polish mobile responsiveness: single-column diagnostics stacking, scrollable noise table, and adaptive scoreboard for small viewports",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "4e2440971e084799aae4b0339b5af0cbb5c0fd35",
+      "date": "2026-10-24T16:54:03-04:00",
+      "subject": "Replace airport metal detector analogy with wholesome automated factory quality-control analogy across ML telemetry",
+      "category": "Feature"
+    },
+    {
+      "sha": "029ecec5311e529ec117181aeafd6be3d6bbea9d",
+      "date": "2026-10-24T16:51:50-04:00",
+      "subject": "Deploy Human vs. AI Neural Coin Challenge mini-game with live cognitive thought stream and match scoreboard (Task #283)",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7929debf2fa40887e6638c0a4e0ea27550bbde54",
+      "date": "2026-10-24T16:47:54-04:00",
+      "subject": "Deploy real-world analogies and parenthetical explanations for ML metrics and diagnostics (Task #282)",
+      "category": "Feature"
+    },
+    {
+      "sha": "5e7f19b62628b7a82268ef60211bee970813cd88",
+      "date": "2026-10-24T16:44:03-04:00",
+      "subject": "Lock Neural Coin Predictor to fixed authoritative 120-epoch benchmark data and isolate interactive game (Task #281)",
+      "category": "Local AI"
+    },
+    {
+      "sha": "18831e1009c36cce89a6af0cba7938a391ef86a7",
+      "date": "2026-10-24T16:41:22-04:00",
+      "subject": "Deploy 120-Epoch Neural Sequence Predictor: Architecture Flow Diagram, Confusion Matrix & Noise Diagnostics, and ACE-Step Step 2000 milestone (Task #280)",
+      "category": "Feature"
+    },
+    {
+      "sha": "56d0877b161a7710bc2a97cae8501976939eac99",
+      "date": "2026-10-24T16:36:26-04:00",
+      "subject": "Deploy Custom AI Neural Coin Predictor: PyTorch 2.13 CPU trained model, in-browser engine, and projects write-up (Task #279)",
+      "category": "Local AI"
+    },
+    {
+      "sha": "01fc02ee6a74402a604ce696d36119e34d4ebb96",
+      "date": "2026-10-24T16:20:11-04:00",
+      "subject": "Deploy navbar fluid plasma wave aura, fix dark surface text contrast, and add encrypted mesh analogy",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "12c8386291b3aaf2c796500b794cc0a949bcabab",
+      "date": "2026-10-24T16:14:44-04:00",
+      "subject": "Upgrade radar map to Natural Earth 110m vector coastlines, convert ping to MPH signal velocity, and fix mobile weather tab cutoff",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "46d60a168e528cdd8b801081a0922d30bde204f6",
+      "date": "2026-10-24T16:11:34-04:00",
+      "subject": "Add dedicated clock.html with Screen Wake Lock API and hide clock on mobile viewports",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "8dad8020d00f1853e1286d0f8a71cf558beb976f",
+      "date": "2026-10-24T14:29:24-04:00",
+      "subject": "Add animated SVG viewBox zoom and reset controls to Global Internet Radar",
+      "category": "Feature"
+    },
+    {
+      "sha": "c87d6ead01b588854f1c36841887b658f877e41b",
+      "date": "2026-10-24T14:11:55-04:00",
+      "subject": "Deploy moving analog EST station clock on homepage and Global Internet Radar on stats console",
+      "category": "Feature"
+    },
+    {
+      "sha": "af39d59ed1d0232b11be8e3fc479a099a88f7d55",
+      "date": "2026-10-24T13:27:55-04:00",
+      "subject": "Synchronize real-time geographic traffic distribution telemetry via Cloudflare edge trace",
+      "category": "Feature"
+    },
+    {
+      "sha": "2cce9760c012ef454d5c9314217cc3c608de807d",
+      "date": "2026-10-24T13:19:42-04:00",
+      "subject": "Add Sudoku terminal active thought spotlight, kinetic nav mesh, and M365 Copilot confetti easter egg",
+      "category": "Feature"
+    },
+    {
+      "sha": "a4811e97548c9092cb8b5a4291e88a3c81f938e4",
+      "date": "2026-10-24T13:01:14-04:00",
+      "subject": "Add mobile tap-to-pause and touch ergonomics to Sudoku thought bubble",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "68a3e5c36335aaf413a73435295d965588798254",
+      "date": "2026-10-24T12:58:56-04:00",
+      "subject": "Add observant board dialogue and 8.5s deep study pacing to Sudoku solver",
+      "category": "Feature"
+    },
+    {
+      "sha": "17023a9b0fa0f7fc960188c87e30ece344d520d5",
+      "date": "2026-10-24T12:56:23-04:00",
+      "subject": "Refine Sudoku solver branding: clarify client-side heuristic engine and retire Nemo moniker",
+      "category": "Local AI"
+    },
+    {
+      "sha": "53f7ee3db5bc784410f1823042d8ae990b53e204",
+      "date": "2026-10-24T12:48:28-04:00",
+      "subject": "Implement widescreen canvas scaling and side-by-side companion teasers on homepage",
+      "category": "Feature"
+    },
+    {
+      "sha": "902210b62679a0e1ec27ee44a45cd24035471f33",
+      "date": "2026-10-24T12:41:14-04:00",
+      "subject": "Orchestrate responsive homepage layout: hero weather split on desktop, mobile flow with hidden sudoku",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "51857b6ca967ec3a00afeec4887533ef94a628dc",
+      "date": "2026-10-24T12:36:02-04:00",
+      "subject": "Move Anonymous Global Analytics above Interactive AI Showcase on homepage",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2a7e8742f6facb2ba35452f7b368b738c2e8f110",
+      "date": "2026-10-24T12:21:21-04:00",
+      "subject": "Add AI wallpaper collection gallery link to About page and log task #266",
+      "category": "Local AI"
+    },
+    {
+      "sha": "b23c2448464d3862c91314408b6d91b048728115",
+      "date": "2026-10-24T12:17:12-04:00",
+      "subject": "Add verified GVSU IT Service Desk client commendations and feedback showcase to About page",
+      "category": "Feature"
+    },
+    {
+      "sha": "a7dfc5adfcd58ee5fcb10a7af22d0060c2981445",
+      "date": "2026-10-24T12:01:22-04:00",
+      "subject": "Correct macOS tracker versioning to 27.x (reflecting jump from 15 to 26 and 27)",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6fa5459feb26b9fc2cd8b204b3268ecd87726d7a",
+      "date": "2026-10-24T11:50:14-04:00",
+      "subject": "Audit and update OS tracker on stats.html to current production releases (macOS 17, Android 16/17, iOS 20, Win 11 26H2)",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "af9257e0ed39759f0eca494b9c160246d8130b60",
+      "date": "2026-10-24T11:44:31-04:00",
+      "subject": "Add live Voice AI Hotline (+1-912-915-3851) to Projects and Contact pages with caller rate limits",
+      "category": "Local AI"
+    },
+    {
+      "sha": "902b8ab016ad934ec0c308ac902e53d7425abf0e",
+      "date": "2026-10-24T11:38:16-04:00",
+      "subject": "Draft Mind Reader AI in-progress project entry with specifications table and log kickoff in maintenance",
+      "category": "Local AI"
+    },
+    {
+      "sha": "3eb5418ab6d7cfec32a1a45c9b078dd598227bc3",
+      "date": "2026-10-24T11:36:28-04:00",
+      "subject": "Add live ACE-Step training convergence chart (Epochs 1-65) to projects and document GPU busy guard and SSH process runbook in maintenance",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "d55a8cb2403d2a9cff510b4cffcfe145d31ec884",
+      "date": "2026-10-24T11:32:31-04:00",
+      "subject": "Add GPU busy guard to disable website chat during local training and clarify in-browser Sudoku execution",
+      "category": "Feature"
+    },
+    {
+      "sha": "29ad17380d2ebe4132822307a0cc00e8d9895d3b",
+      "date": "2026-10-24T11:18:05-04:00",
+      "subject": "Refine Sudoku pacing to 4.5s reading baseline, add hover-pause, and adopt Sole Candidate terminology",
+      "category": "Feature"
+    },
+    {
+      "sha": "f0d15be15dffb690d40f4e6082448668e34664ae",
+      "date": "2026-10-23T18:37:43-04:00",
+      "subject": "Document BOINC Manager deployment and second October 23 update cycle",
+      "category": "Feature"
+    },
+    {
+      "sha": "0696c3f72ce817b593a0a6b06b3a8849072e0352",
+      "date": "2026-10-23T18:25:39-04:00",
+      "subject": "Add Antigravity CLI collaboration credits to Projects and Sudoku pages",
+      "category": "Feature"
+    },
+    {
+      "sha": "f58d1f9720970f66b8c071e123c6c8ce4e31380e",
+      "date": "2026-10-23T18:24:45-04:00",
+      "subject": "Document Nemo Sudoku UX, natural self-dialogue, and mobile responsiveness overhaul in maintenance log",
+      "category": "Local AI"
+    },
+    {
+      "sha": "165507d10a0a9dfa177b6a679fea2d7709ead4ca",
+      "date": "2026-10-23T18:22:16-04:00",
+      "subject": "Optimize mobile Sudoku experience: focused Mind Bubble HUD, collapsible history drawer, and compact controls",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "77f521f97456c1e8fc922f3ff55c8a5554654001",
+      "date": "2026-10-23T18:18:24-04:00",
+      "subject": "Enhance Nemo Sudoku: side-by-side layout, natural human self-dialogue, persistent auto-scrolling, and 2.5s Story pacing",
+      "category": "Local AI"
+    },
+    {
+      "sha": "ecc49fe737db30bb70d933b13a4b18b308a9391f",
+      "date": "2026-10-23T17:35:32-04:00",
+      "subject": "Add Nemo Sudoku Vision & Reasoning showcase teaser cards to Homepage and Live AI Lab",
+      "category": "Local AI"
+    },
+    {
+      "sha": "b79c7209930b8284c147ed6d9c886613b7866d13",
+      "date": "2026-10-23T17:16:01-04:00",
+      "subject": "Deploy Nemo Sudoku Vision and Cognitive Reasoning Engine with zero-idle architecture",
+      "category": "Local AI"
+    },
+    {
+      "sha": "31db46c06a5c1b45ee0be5623d9958d055234745",
+      "date": "2026-10-23T17:01:50-04:00",
+      "subject": "Document macOS pcapng packet capture text conversion and forensic dissection in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "b3a774032b08d7156b7ec7f11176e6249413329a",
+      "date": "2026-10-23T10:46:40-04:00",
+      "subject": "Document October 23, 2026 Alpine NUC and ONLYOFFICE Flatpak maintenance pass",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "b1bd24bf5a35bf5e6ed90bf064aea2d25a947962",
+      "date": "2026-10-22T18:05:42-04:00",
+      "subject": "Document automated enterprise job application workflow in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "0a287efe1f032453a1a33b0d8a25ec328c80b2f2",
+      "date": "2026-10-22T18:02:37-04:00",
+      "subject": "Document NCS audio visualizer background stabilization in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "7b7665de9b163c2fc5ae479f2eac6be6dacc3b7a",
+      "date": "2026-10-22T15:54:38-04:00",
+      "subject": "Document Linux Mint x11vnc reboot persistence and LightDM autologin in maintenance log",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "5281bb568766964449606629588250c16e4d16f0",
+      "date": "2026-10-22T15:03:16-04:00",
+      "subject": "Document CIS 458 Kali Linux VirtualBox VM registration and shared folder cleanup in maintenance log",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "3de1212473303b849bce1174c278173ccb07d0bb",
+      "date": "2026-10-22T14:55:10-04:00",
+      "subject": "Document Slax USB desktop polish, launcher deduplication, and Homebrew maintenance in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "b6d6583c7f4b3cf80464412e536186aad5d60743",
+      "date": "2026-10-22T14:42:27-04:00",
+      "subject": "Update Windows telemetry card with official Windows 11 logo and log maintenance entry",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "abf11ebbf47dc763cf049f88286e6215ab1cf9ad",
+      "date": "2026-10-22T14:40:59-04:00",
+      "subject": "Update Linux Kernel Tux and FreeBSD vector icons on stats.html and record entry in maintenance log",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "4a8e23201336277eb442db6bf5e8aca54682acc7",
+      "date": "2026-10-22T14:34:11-04:00",
+      "subject": "Document Sabrent external drive NTFS boot sector restoration and ghost device cleanup in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "dd78a95c4510375e119cdba937eb15960d00e2c7",
+      "date": "2026-10-22T14:31:12-04:00",
+      "subject": "Document Microsoft SQL Server 2022 Express and SSMS 20.2 deployment in maintenance log",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "303346e3c0665d86bb61b1b55141cdca4924aca9",
+      "date": "2026-10-22T14:23:23-04:00",
+      "subject": "Unify One Assistant Two Brains case study directly into projects.html, remove external writeup link, and configure redirect on project-assistant.html",
+      "category": "Feature"
+    },
+    {
+      "sha": "6705ae3f65d44cdd96e7d0659de1c35e09ddc594",
+      "date": "2026-10-22T14:20:06-04:00",
+      "subject": "Synchronize October 22, 2026 last-modified dates across all site footers and document responsive navigation fixes in maintenance log",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "326b3ca04816cfe463a965263904c03b04857a15",
+      "date": "2026-10-22T14:17:13-04:00",
+      "subject": "Format and align responsive navigation dropdowns, restore sticky header persistence on mobile viewports, and update asset query versions",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "a9adbe0093d6c14eeb428b155163e0182fc582ee",
+      "date": "2026-10-22T13:56:57-04:00",
+      "subject": "Document Kali Linux full system and Homebrew package upgrades in maintenance log",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "cc1ba9106ac8e54a473269bcf7163e9d4ff599cf",
+      "date": "2026-10-22T13:16:30-04:00",
+      "subject": "Add 4 Personal Assistant maintenance log entries from Muse (revisions 00006-00008 and billing guardrail)",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6dd01584d041921b19b825f86bfc7d447fd91d57",
+      "date": "2026-10-22T12:56:35-04:00",
+      "subject": "Consolidate One Assistant Two Brains case study into Projects, streamline Projects to direct link in header, and add redirect on project-assistant.html",
+      "category": "Feature"
+    },
+    {
+      "sha": "7a29564c42a6d582be8866da347a5cef859a881d",
+      "date": "2026-10-22T12:49:47-04:00",
+      "subject": "Deploy dedicated Stats for Nerds console (stats.html) and grouped responsive dropdown navigation across all 14 pages",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "a7096804ff6bcdc8a9ee79c62566faeab52926e5",
+      "date": "2026-10-22T12:39:05-04:00",
+      "subject": "Promote visitor traffic map to top of homepage, move corpus odometer to class bot page, rename nav to Class & Service Desk Bot, fix macOS logo leaf, and add ping cooldown",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "5c4d05c50af51e25583e8fe312ff48095e6c5834",
+      "date": "2026-10-22T12:29:51-04:00",
+      "subject": "Fix cockpit JS recursion, recalculate exact circular SVG gauge geometry, and rename navbar link to Assistant Chat",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "a2ce343fdd5a3c4c7350f9109071673822e590e3",
+      "date": "2026-10-22T11:10:39-04:00",
+      "subject": "Document automatic APK package database change trigger in tint2 panel status",
+      "category": "Feature"
+    },
+    {
+      "sha": "d343ddab7650eed5c9412fc8df6a9545db8f690c",
+      "date": "2026-10-22T10:23:01-04:00",
+      "subject": "Fix Cloud Run assistant chatspace viewport clipping and add fullscreen app launcher",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "08ae9891c716952f843195d1db0a91d231a7b2fa",
+      "date": "2026-10-22T10:19:45-04:00",
+      "subject": "Refine cockpit gauges side-by-side, fix right-side tick text clipping, enforce 3-col OS grid, and fix desktop nav Contact cutoff",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f09d536387680453805d0caaa935c832c77b422e",
+      "date": "2026-10-22T10:09:52-04:00",
+      "subject": "Deploy 3-dial automotive cockpit cluster: Tachometer, Analog Odometer, and Tailscale Speedometer",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "892766c2cd42d2fa6cdcdbb71ce8867988a9f02d",
+      "date": "2026-10-22T10:05:59-04:00",
+      "subject": "Add privacy policy, public OS & kernel tracker, fix mobile sticky nav, and improve Ask Nemo mobile chat",
+      "category": "Local AI"
+    },
+    {
+      "sha": "5eb494b221de5b54e6643a7f28c880c826d4a56a",
+      "date": "2026-10-22T10:01:11-04:00",
+      "subject": "Deploy dual-brain AI assistant, integrate project write-up, and add page load speed tachometer with persistent high score",
+      "category": "Local AI"
+    },
+    {
+      "sha": "20b08c5fc6a64dc7cd520b031a183aa7f459b49e",
+      "date": "2026-10-21T20:37:33-04:00",
+      "subject": "Document Windows XP SSH legacy cipher and DHCP IP alignment across macOS and NUC",
+      "category": "Feature"
+    },
+    {
+      "sha": "4d1b4a98da1f68ed257c41946be9e1705a1b6968",
+      "date": "2026-10-21T19:46:29-04:00",
+      "subject": "Document taskbar update checker cache refresh and Firefox stale lock recovery",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "5a733795fd76a3605358391996ce58c57c2aa8b6",
+      "date": "2026-10-21T19:17:42-04:00",
+      "subject": "Document fwupd Polkit and ESP recovery on Alpine NUC",
+      "category": "Feature"
+    },
+    {
+      "sha": "c09d6a19a52ee7bbe222566ea673ba2d3d3bf3b8",
+      "date": "2026-10-21T12:24:41-04:00",
+      "subject": "Document BLU3 A1 YouTube channel branding with Codex",
+      "category": "Feature"
+    },
+    {
+      "sha": "ac44a7ce23e5e9ecb62f1a94a99529cda57859bc",
+      "date": "2026-10-20T19:26:17-04:00",
+      "subject": "Document XMRig RandomX CPU benchmarking and hardware tuning",
+      "category": "Feature"
+    },
+    {
+      "sha": "1074a82d8d65ec4c21e27c7482e77683e355c1dc",
+      "date": "2026-10-20T16:19:19-04:00",
+      "subject": "Document swap resize and SDXL model verification",
+      "category": "Local AI"
+    },
+    {
+      "sha": "da440f50a643edc9f8561bb57c2c355e7972651c",
+      "date": "2026-10-20T15:59:47-04:00",
+      "subject": "Document macOS MacPorts upgrade, Tailscale startup fix, and SSH verification",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "b6f117436a5888cd36112f3ea4ae7ee77669fc3e",
+      "date": "2026-10-20T15:12:10-04:00",
+      "subject": "Clarify chatbot testing phase completion and ongoing follow-up",
+      "category": "Feature"
+    },
+    {
+      "sha": "7b0b59201ae4f5fd42a5bfdbb8c45e645cba1980",
+      "date": "2026-10-20T15:11:48-04:00",
+      "subject": "Document GVSU service desk chatbot testing and AI collaboration",
+      "category": "Local AI"
+    },
+    {
+      "sha": "416d9990d98bd6097cd62a4f2ff30568bceb9be2",
+      "date": "2026-10-20T09:50:21-04:00",
+      "subject": "Deploy responsive atmospheric weather widget with Cupertino default and mobile swipe carousel",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "1224808c770aa9b8eb2e2357a77663ca62ecb1ff",
+      "date": "2026-10-20T09:39:16-04:00",
+      "subject": "Add interactive bidirectional heatmap hover and regional click-to-zoom",
+      "category": "Feature"
+    },
+    {
+      "sha": "e30695c60a2310cd3ea367049cdfd4aa2f017ec0",
+      "date": "2026-10-20T09:02:55-04:00",
+      "subject": "Document panel and wallpaper generator maintenance",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "0c75557625f60302bee0f2688ac6680afb120f98",
+      "date": "2026-10-19T22:15:28-04:00",
+      "subject": "Document cautious Slax image setup and desktop maintenance with Codex",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "d6331f695cb1d97e447ed09c3086fcce562e50cc",
+      "date": "2026-10-19T21:45:38-04:00",
+      "subject": "Document Trayscale focus loop fix and Folding@home purge in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "80f94a739f654b5e275246f03c3d15dcb462f1f3",
+      "date": "2026-10-19T18:25:21-04:00",
+      "subject": "Document DHCP MAC reservation and router firmware audit in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "b29f43e8b021c070129304f6eee765f11680e929",
+      "date": "2026-10-19T18:15:19-04:00",
+      "subject": "Document dual-stack IPv6 rollout with SLAAC and prefix delegation in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "1aa86dc7f0e6f44c4f7eb576caa602c1d66689fa",
+      "date": "2026-10-19T18:02:49-04:00",
+      "subject": "Document router WAN hardening, wireless security audit, and UPnP verification in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "a4b29eb431ca08de78e608fee7c86958ad013436",
+      "date": "2026-10-19T16:31:21-04:00",
+      "subject": "Document secure out-of-network printing and router reverse proxy via Tailscale",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "b5a6c2e42fce2b9df2f85e050d94f96923f44bd6",
+      "date": "2026-10-19T15:58:45-04:00",
+      "subject": "Document CIS 450 Lucidchart macOS Chrome launcher in root folder",
+      "category": "Feature"
+    },
+    {
+      "sha": "728e815bede7a269a7f6d1e84ac1584f7a1b874d",
+      "date": "2026-10-19T15:49:11-04:00",
+      "subject": "Document Debian Mac batch image generation OOM recovery and x11vnc LAN timeout diagnosis",
+      "category": "Feature"
+    },
+    {
+      "sha": "adb2313b19ffb3ef60b20d4f6e9df1678b84f173",
+      "date": "2026-10-19T15:00:11-04:00",
+      "subject": "Document XFCE top panel/Caps Lock recovery and Trayscale tray session bus persistence",
+      "category": "Feature"
+    },
+    {
+      "sha": "b1154f79eeaeef8121039304fb5d69aeb2ab540f",
+      "date": "2026-10-19T14:21:27-04:00",
+      "subject": "Document CIS 450 WBS Google Doc macOS Chrome launcher",
+      "category": "Feature"
+    },
+    {
+      "sha": "f3720ed87f6516f2ce2e885447275227dd10b9dc",
+      "date": "2026-10-19T14:04:05-04:00",
+      "subject": "Calibrate world heatmap to Robinson projection with true geographic proportions and configure boot persistence",
+      "category": "Feature"
+    },
+    {
+      "sha": "46af61adcd7fc69972b31373939276d4c74266d8",
+      "date": "2026-10-19T13:54:19-04:00",
+      "subject": "Deploy Natural Earth smooth vector world map, radial-cut donut sectors with hover percentage inspection, and two-tier telemetry card headers",
+      "category": "Feature"
+    },
+    {
+      "sha": "a4c79d858236da7469f06d7cd612bef2bb6186e9",
+      "date": "2026-10-19T13:45:29-04:00",
+      "subject": "Update Moltbook link targets, eliminate root horizontal scrolling, sync chatbot ACE-Step knowledge base, and document maintenance logs",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "392e8591ed6ecb2b581a778346e9933f6aad6ba1",
+      "date": "2026-10-19T13:38:51-04:00",
+      "subject": "Add dual DUCO wallets with device telemetry, fix telemetry chip clipping, add visitor geo distribution dashboard, and ensure chatbot cross-page session continuity",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "00d72891cf810b4747f570a2e1442401864933d2",
+      "date": "2026-10-19T09:00:10-04:00",
+      "subject": "Document master sync orchestration pipeline and completed delta verification",
+      "category": "Feature"
+    },
+    {
+      "sha": "f5ffafca82d39db556f5ebed614a0af1f2f6bd39",
+      "date": "2026-10-19T08:44:12-04:00",
+      "subject": "Document ACE-Step 60-epoch completion and Slax V: dirty bit offline repair",
+      "category": "Feature"
+    },
+    {
+      "sha": "1b25fa6394f92d69f322eab6688612700292e6c9",
+      "date": "2026-10-18T23:35:54-04:00",
+      "subject": "Document October 18 Alpine NUC system package and UEFI firmware maintenance pass",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "afb002303b6e5f7eb60509424801f8c2cf5f5477",
+      "date": "2026-10-18T23:24:29-04:00",
+      "subject": "Document dual-drive cross-workstation audit and delta sync pipeline in maintenance log",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "aa06d1ddd7ad3e67b5a37095024dc38c440da59c",
+      "date": "2026-10-18T23:01:55-04:00",
+      "subject": "Document resilient video library sync pipeline on XP workstation",
+      "category": "Feature"
+    },
+    {
+      "sha": "2a2dc226bb2f8b861e7a4113e04eef1098ac8d70",
+      "date": "2026-10-18T22:59:38-04:00",
+      "subject": "Update ACE-Step to authorized epoch 60 overnight target and document automated epoch 45-60 supervisor",
+      "category": "Feature"
+    },
+    {
+      "sha": "5fd477c767e9bb104c9754cf89706af684b0349b",
+      "date": "2026-10-18T22:47:37-04:00",
+      "subject": "Document successful Windows Installer 4.5 upgrade and resolution of 28 updates",
+      "category": "Feature"
+    },
+    {
+      "sha": "c7bc61f3cadceb3719e348dd9d859d10c53d1a26",
+      "date": "2026-10-18T22:41:20-04:00",
+      "subject": "Document Windows XP USB selective suspend power fix and delta resume",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f33041dcbcc49098c61959822ea3ab780787ef7e",
+      "date": "2026-10-18T19:18:49-04:00",
+      "subject": "Document manual block copying persistence and 100GB unattended extras sync",
+      "category": "Feature"
+    },
+    {
+      "sha": "6cf9b36c223cf7d13fca5cd7025d4d84c21dd29e",
+      "date": "2026-10-18T19:12:29-04:00",
+      "subject": "Document successful guest authentication and XCOPY sync start",
+      "category": "Feature"
+    },
+    {
+      "sha": "6f8abd1219feae403259ca593ef8591dd2cadc80",
+      "date": "2026-10-18T19:06:56-04:00",
+      "subject": "Document resilient 41GB XCOPY file migration and dual-layer SMB isolation",
+      "category": "Feature"
+    },
+    {
+      "sha": "8d8baa0fccf71ffb915adf207ed9403414a01b16",
+      "date": "2026-10-18T18:55:57-04:00",
+      "subject": "Document root cause for 28 failing .NET updates (MSI 1601 / msiserver)",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "426cdd6185d644eb85ddb14ea2ebf90021edb710",
+      "date": "2026-10-18T18:51:33-04:00",
+      "subject": "Update Homelab / Retro computing project with file migration and update troubleshooting",
+      "category": "Feature"
+    },
+    {
+      "sha": "efdc0fafff6e2615cced197ea60f1f2cece49c8b",
+      "date": "2026-10-18T18:44:02-04:00",
+      "subject": "Add Homelab / Retro computing in-progress project",
+      "category": "Feature"
+    },
+    {
+      "sha": "90871732aefe9b83622c94c1e9bbc6a11c3454e1",
+      "date": "2026-10-18T16:01:34-04:00",
+      "subject": "Document Debian Mac maintenance updates",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "de0b50a2b0beb53b6473b064fcb8699c8634e4a3",
+      "date": "2026-10-18T15:57:42-04:00",
+      "subject": "Add fun facts on phone contact consolidation to About page",
+      "category": "Feature"
+    },
+    {
+      "sha": "961f617a373360904c7550eaba662ab5048437c2",
+      "date": "2026-10-18T15:55:25-04:00",
+      "subject": "Document Linux Mint fourth maintenance pass and software updates",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "2ec77724c6e231c663030c55bcab40e5f33a3489",
+      "date": "2026-10-18T14:57:05-04:00",
+      "subject": "Document Slax updates and explain photo, browser, and network improvements",
+      "category": "Feature"
+    },
+    {
+      "sha": "ab176b154956c8dfb88c20154dcaf6e0c1e6626e",
+      "date": "2026-10-18T14:33:57-04:00",
+      "subject": "Document Slax photo generation defaults and USB taskbar readings",
+      "category": "Feature"
+    },
+    {
+      "sha": "54599a14550cf09000bbd993dfc7c9de5030d80a",
+      "date": "2026-10-18T13:19:37-04:00",
+      "subject": "Update ACE-Step epoch 16-45 training progress and document headless OneDrive class folder compression",
+      "category": "Feature"
+    },
+    {
+      "sha": "7be531ca1b588f9029e14c10862e463741889ff0",
+      "date": "2026-10-18T00:46:41-04:00",
+      "subject": "Document Slax Folding@home, watchers auto-suspend, x11vnc input and clipboard sync fixes",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "35dbf3a2663bc0c7bd57314e2120157a773027af",
+      "date": "2026-10-18T00:24:12-04:00",
+      "subject": "Document Slax Antigravity CLI permission defaults",
+      "category": "Feature"
+    },
+    {
+      "sha": "565831188ad81ef9fc91273073e5385b18850d68",
+      "date": "2026-10-17T23:05:27-04:00",
+      "subject": "Update ACE-Step target to epoch 45 to maximize overnight training window",
+      "category": "Feature"
+    },
+    {
+      "sha": "6d6740b946562cd153252d9c43fbeab3f63bebd4",
+      "date": "2026-10-17T23:00:41-04:00",
+      "subject": "Document ACE-Step epoch 15 progress and epoch 40 automated handover supervisor",
+      "category": "Feature"
+    },
+    {
+      "sha": "069b27a60dd0c69cbc9a13b1f25df731a942b26c",
+      "date": "2026-10-17T21:58:38-04:00",
+      "subject": "Document offline FAT32 filesystem repair on Slax persistence USB drive",
+      "category": "Feature"
+    },
+    {
+      "sha": "954d76cd9015b3679e05615b4de8ea5606abc3f2",
+      "date": "2026-10-17T21:50:46-04:00",
+      "subject": "Document continuous supervisor watchdog in minecraft-relay service",
+      "category": "Feature"
+    },
+    {
+      "sha": "306b795c9d723e7ae7c31dd120915a432b68913c",
+      "date": "2026-10-17T16:48:42-04:00",
+      "subject": "Redesign homepage telemetry dashboard, add tech analogy tooltips, and enforce Minecraft persistence",
+      "category": "Feature"
+    },
+    {
+      "sha": "c47a595cfe09814852b114c444aba9a244c778df",
+      "date": "2026-10-17T15:35:19-04:00",
+      "subject": "Deploy homepage live telemetry strip and log maintenance entries",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "5178db5fe5fdf14867bdc88a29944c260c577f18",
+      "date": "2026-10-17T15:09:09-04:00",
+      "subject": "Add BOINC standalone project, fix VNC Conky desklet & persist chat history",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "42820e55b8b356fee1d1d2b85d86b5cff7e81ac9",
+      "date": "2026-10-17T15:04:13-04:00",
+      "subject": "Log Dropbear SSH failover port 2222, static BusyBox su fallback, and Windows taskbar clock cleanup",
+      "category": "Feature"
+    },
+    {
+      "sha": "1699bdcef2104d2ba6c25f2a56065327ff36774b",
+      "date": "2026-10-17T14:49:43-04:00",
+      "subject": "Document Einstein@Home attachment and musl sprintf compatibility shim",
+      "category": "Feature"
+    },
+    {
+      "sha": "ec939c43dbce656d34354eea58483b1cdb7c574c",
+      "date": "2026-10-17T14:09:45-04:00",
+      "subject": "Log Slax Ed25519 SSH automation, persistent journal setup, and FAT freeze diagnosis",
+      "category": "Feature"
+    },
+    {
+      "sha": "189b6c3287ed1b2e1d52f315a45f873878e4adb6",
+      "date": "2026-10-17T12:26:50-04:00",
+      "subject": "Log BOINC remote GUI RPC, coreutils stat fix, and boinc-status monitoring tool",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "e163311a06e6fa1d75f40fc3785f778d25215000",
+      "date": "2026-10-17T11:43:22-04:00",
+      "subject": "Update Minecraft cross-platform server badge to Completed Project",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "e8fdfd119fda0fc7f1b5efa5d9df6ad0433245ee",
+      "date": "2026-10-17T11:09:09-04:00",
+      "subject": "Document Playit socat relay, Bedrock offline auth fix, and SSH maintenance",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "987e6669db8b420d777f815c2bb7b83f277ead9e",
+      "date": "2026-10-17T09:38:17-04:00",
+      "subject": "Document cross-platform Minecraft server, Playit.gg relay, Alpine maintenance, and lightweight BOINC setup",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "ccd897af468f0ecf778b62a6bd98ee8a794ee22a",
+      "date": "2026-10-16T17:01:28-04:00",
+      "subject": "Log Nemo chatbot guardrail/UI updates and audio-reactive visualizers in maintenance log",
+      "category": "Local AI"
+    },
+    {
+      "sha": "8ab454273bf8e6c287be73c20467338c9c693975",
+      "date": "2026-10-16T16:59:45-04:00",
+      "subject": "Introduce Nemo AI branding, fix chat input scrollbar, and add bouncing dots animation",
+      "category": "Local AI"
+    },
+    {
+      "sha": "244fdd170d68cc3ea439dc700afcf174a49f7a77",
+      "date": "2026-10-16T16:38:47-04:00",
+      "subject": "Document piano visualizer, add clear concept analogies, and credit AI tooling",
+      "category": "Local AI"
+    },
+    {
+      "sha": "90db46b90ff41e67b98b0a1f37b89ae476a43806",
+      "date": "2026-10-16T16:28:47-04:00",
+      "subject": "Document Alpine NUC system updates and fan speed configuration",
+      "category": "Feature"
+    },
+    {
+      "sha": "23191d81a6a3291358ea9e4ff820b1ab63550847",
+      "date": "2026-10-16T16:20:08-04:00",
+      "subject": "Document Lo-Fi beat visualizer pipeline and 1080p VideoToolbox render",
+      "category": "Feature"
+    },
+    {
+      "sha": "06f04cf720f74ebf280ec3bb8e0bde9f7dca0c5b",
+      "date": "2026-10-16T15:53:38-04:00",
+      "subject": "Document home network upgrade with Archer AX3000 and wired switch extension",
+      "category": "Feature"
+    },
+    {
+      "sha": "b43cedbcc5c16f7955a84d1f43ea7e66962cd69d",
+      "date": "2026-10-16T13:34:05-04:00",
+      "subject": "Document Kali updates, SSH setup, and PostgreSQL repair",
+      "category": "Feature"
+    },
+    {
+      "sha": "f1abda638d889cfdc6d4c50dd96106e76f6ec911",
+      "date": "2026-10-16T11:52:11-04:00",
+      "subject": "Document Ubuntu VM updates, remote access, and power settings",
+      "category": "Feature"
+    },
+    {
+      "sha": "665f9359d2ece9e81897729712fea5227b35ecf7",
+      "date": "2026-10-16T11:21:47-04:00",
+      "subject": "Document Slax AUFS mount failure and XFS persistent storage recovery",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "83ed7a01245a86476dd397e7440e33d9b03f0acb",
+      "date": "2026-10-15T20:38:18-04:00",
+      "subject": "Document AI-powered NCS circular audio visualizer pipeline and video render",
+      "category": "Feature"
+    },
+    {
+      "sha": "d98904b950b8ac01ab92f59f7019a07b6509a3c2",
+      "date": "2026-10-15T20:09:10-04:00",
+      "subject": "Document Azure VM firmware update and folding boot verification",
+      "category": "Feature"
+    },
+    {
+      "sha": "dbf79af3b90c6c3f78c4b4cbb9a2c962657181f2",
+      "date": "2026-10-15T19:16:49-04:00",
+      "subject": "Document completed Google Cloud Folding@home setup",
+      "category": "Feature"
+    },
+    {
+      "sha": "ef28443a1a580351a387497450953c95ad3a9d52",
+      "date": "2026-10-15T18:47:51-04:00",
+      "subject": "Document Ubuntu folding VM desktop and local image generator",
+      "category": "Feature"
+    },
+    {
+      "sha": "dc76e46b6c67959040e8df42db5a9604662136bc",
+      "date": "2026-10-15T18:44:15-04:00",
+      "subject": "Add Lucidchart launcher to CIS 450 maintenance entry",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "91c83344cd8d239722443a13a5a0d987cda1555e",
+      "date": "2026-10-15T18:43:26-04:00",
+      "subject": "Document CIS 450 folder organization and Chrome launchers",
+      "category": "Feature"
+    },
+    {
+      "sha": "593272215366317c6074f862b3d1b3097d72042e",
+      "date": "2026-10-15T18:22:03-04:00",
+      "subject": "Expand Windows XP USB troubleshooting notes",
+      "category": "Feature"
+    },
+    {
+      "sha": "804556d0a91af4e2aa5bb6f9d10bfd524ea9b167",
+      "date": "2026-10-15T18:20:37-04:00",
+      "subject": "Document Azure Folding@home VM",
+      "category": "Feature"
+    },
+    {
+      "sha": "f978408fcb199341dd37ea4ba4e38269d82030e8",
+      "date": "2026-10-15T17:23:34-04:00",
+      "subject": "Document Nemotron idle timer tuning and timeout buffer extension",
+      "category": "Local AI"
+    },
+    {
+      "sha": "6638ce3b7d1770a4e4ae5bff00787fe7256d0bb6",
+      "date": "2026-10-15T17:09:22-04:00",
+      "subject": "Document macOS VM maintenance, Office updates, and SMBIOS generation",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "e857c8ab2390b2eb08ceffbf38355fc46e528aae",
+      "date": "2026-10-15T16:18:30-04:00",
+      "subject": "Document Debian maintenance and Azure VM work",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "01e77bc111a9796c8882d8b787aa7b9cab6ccd51",
+      "date": "2026-10-15T15:52:59-04:00",
+      "subject": "Use Nemotron labels and document dynamic portfolio answers",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2684f5963b455641a88e241dfacbd14d313b28a6",
+      "date": "2026-10-15T15:45:42-04:00",
+      "subject": "Document PIN-free phone AI and three mining presets",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d5a6d62bbc954d90fa6b5ab678fd68e2750f9bd1",
+      "date": "2026-10-15T12:43:50-04:00",
+      "subject": "Document Mint Folding setup and second maintenance pass",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "755baeb9f08afe03f70b3fa22dcc2ecc56a367cc",
+      "date": "2026-10-15T12:39:55-04:00",
+      "subject": "Document Tiger VMware installer preparation",
+      "category": "Feature"
+    },
+    {
+      "sha": "30acfc26b196e2a906e9345999392e7592ee06c5",
+      "date": "2026-10-15T12:17:12-04:00",
+      "subject": "Document passwordless SSH setup to Kali Linux over Tailscale",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "8a8f5346667918ed92c045feb29826bce2fd628d",
+      "date": "2026-10-15T12:04:10-04:00",
+      "subject": "Document ONLYOFFICE update troubleshooting on Windows",
+      "category": "Feature"
+    },
+    {
+      "sha": "7b1c7ba2ddb03d5869d75a1705667cdebea05460",
+      "date": "2026-10-15T12:02:18-04:00",
+      "subject": "Document Slax boot chroot recovery and BusyBox integration",
+      "category": "Feature"
+    },
+    {
+      "sha": "ca04e79e25e7425f0f1c9ac6c993f13348b49b9e",
+      "date": "2026-10-15T11:02:30-04:00",
+      "subject": "Document Windows WinGet application upgrades in progress",
+      "category": "Feature"
+    },
+    {
+      "sha": "96949a4b6d473936364cd63f03ceedd1abe3883d",
+      "date": "2026-10-15T11:02:12-04:00",
+      "subject": "Document persistent Antigravity CLI approvals on Windows",
+      "category": "Feature"
+    },
+    {
+      "sha": "60c6596d34bfbbd3791073a15b04e70013e783c1",
+      "date": "2026-10-15T10:08:05-04:00",
+      "subject": "Document completed private router access with Tailscale",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "29ec6664921e0701857d6ba6ac251797b1b165ab",
+      "date": "2026-10-15T10:05:35-04:00",
+      "subject": "Document network share OpenVPN configuration audit and cleanup",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "a01232202a03e780946beb604d0d421d8c72b173",
+      "date": "2026-10-15T00:18:20-04:00",
+      "subject": "Document completed iPod restoration and remote desktop repairs",
+      "category": "Feature"
+    },
+    {
+      "sha": "b53c78853da35be9a44a7d48b6f260853dc8dcc9",
+      "date": "2026-10-14T22:24:14-04:00",
+      "subject": "Update Andrew-Van-Ek-Resume.pdf to match v16 with GPA (3.642)",
+      "category": "Feature"
+    },
+    {
+      "sha": "3bb4052946a61fa8d1d61ae06b2835e4e1418ac8",
+      "date": "2026-10-14T22:21:57-04:00",
+      "subject": "Add targeted cover letter case study for Fishbeck IT Support & Network Administrator",
+      "category": "Feature"
+    },
+    {
+      "sha": "6733fc089cfbd0cf58b4e073de3c5c8a0fa743f5",
+      "date": "2026-10-14T20:16:14-04:00",
+      "subject": "Document Folding@home completion shutdown watcher",
+      "category": "Feature"
+    },
+    {
+      "sha": "566a11abbab3820f50a201f7b0e897f31d4c56a3",
+      "date": "2026-10-14T19:57:42-04:00",
+      "subject": "Document Mint updates and render completion automation",
+      "category": "Feature"
+    },
+    {
+      "sha": "b5aaedf89e68f9f20c1bf4bcfaa86839ea662b2e",
+      "date": "2026-10-14T19:52:36-04:00",
+      "subject": "Mark follow-up maintenance work",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6e04a5add8adc348ced5317b9afb061f3eab436f",
+      "date": "2026-10-14T19:51:26-04:00",
+      "subject": "Document Debian Mac website SSH access",
+      "category": "Feature"
+    },
+    {
+      "sha": "46c8e18ee01a6084e79f307cda182c29097ceda2",
+      "date": "2026-10-14T19:43:02-04:00",
+      "subject": "Update maintenance task count to 111 across seven areas",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "100e7528bd91accd0c1cfa405dbac9f6a24b6968",
+      "date": "2026-10-14T19:42:01-04:00",
+      "subject": "Document TigerVNC taskbar launcher, persistent CPU graph, and VNC clipboard sync",
+      "category": "Feature"
+    },
+    {
+      "sha": "b8a970a2df841f5d55b66cbf5110f89928186840",
+      "date": "2026-10-14T19:35:16-04:00",
+      "subject": "Document Windows 11 snap layouts and edge snapping on Alpine VNC",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "86477c628b4a8d317c8b6467eaaee20f336cf16f",
+      "date": "2026-10-14T19:17:14-04:00",
+      "subject": "Document speedtest-cli system maintenance and multi-instance autoclicker upgrade",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "19f3020a45397d90b5a2724d972981f6ee69c1ca",
+      "date": "2026-10-14T19:10:59-04:00",
+      "subject": "Document Kali setup, shared VNC desktop, and SSH key access",
+      "category": "Feature"
+    },
+    {
+      "sha": "f8d6594955589322d2f455165885df2e8a57e561",
+      "date": "2026-10-14T14:51:14-04:00",
+      "subject": "Document small AI music style comparison experiment",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f469cab154eabad3f06df606fb8227977896b709",
+      "date": "2026-10-14T10:46:25-04:00",
+      "subject": "Document draggable target autoclicker automation and desktop launcher",
+      "category": "Feature"
+    },
+    {
+      "sha": "705e9270a76e75b740d362e316b7c9dcb3b431a7",
+      "date": "2026-10-13T20:48:17-04:00",
+      "subject": "Document passwordless SSH to NUC and Moltbook daemon audit",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "87ea5cab14e08fbc876e3d6f69a47340da3654f3",
+      "date": "2026-10-13T20:36:43-04:00",
+      "subject": "Document persistent Antigravity CLI permissions",
+      "category": "Feature"
+    },
+    {
+      "sha": "1cf8faf369ac453002feb0af4e34cbb4766600cb",
+      "date": "2026-10-13T20:15:27-04:00",
+      "subject": "Document Slax SSH and VNC access failure",
+      "category": "Feature"
+    },
+    {
+      "sha": "f3bb1e529d3f77d45f4fa85fe686f1f6d5556441",
+      "date": "2026-10-13T20:05:11-04:00",
+      "subject": "Update GPA resume and add live computing balances",
+      "category": "Feature"
+    },
+    {
+      "sha": "5101c0b29fc92ec3f705ec61d652b55378a81740",
+      "date": "2026-10-13T19:43:00-04:00",
+      "subject": "Document Monero mining balance and payout review",
+      "category": "Feature"
+    },
+    {
+      "sha": "532449ddca9d9f15f764f8b0aa16ca001819e7e7",
+      "date": "2026-10-11T18:29:20-04:00",
+      "subject": "Document Terminal start and Control-C shutdown workflow",
+      "category": "Feature"
+    },
+    {
+      "sha": "40f1c8f2beb18791990b9067e787b64965e8170c",
+      "date": "2026-10-11T18:19:26-04:00",
+      "subject": "Document Watch call test, dialogue refinements and persistent handoff",
+      "category": "Feature"
+    },
+    {
+      "sha": "eacf9863bc2793661e248f6dfb267aca155493cb",
+      "date": "2026-10-11T18:14:40-04:00",
+      "subject": "Record voicemail guard verification and mobile phone test plan",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "33b42f7f7eff0b4d6c537480e5d494bdada8602b",
+      "date": "2026-10-11T18:08:07-04:00",
+      "subject": "Document voicemail behavior and greeting preparation in phone testing",
+      "category": "Feature"
+    },
+    {
+      "sha": "408bda4036709a1a2f0bd71a8a06064dc820e0dc",
+      "date": "2026-10-11T18:03:41-04:00",
+      "subject": "Document live phone tests and scam dashboard troubleshooting",
+      "category": "Feature"
+    },
+    {
+      "sha": "1d22d4587563f30cb009ab1045f93873e31ada33",
+      "date": "2026-10-11T17:54:32-04:00",
+      "subject": "Add in-progress local AI scam-defense dashboard project",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2a6bd31be195edb504b0fa796ef198498d5ae0e1",
+      "date": "2026-10-11T17:42:33-04:00",
+      "subject": "Update chatbot safeguards and phone, ACE-Step, and email project progress",
+      "category": "Feature"
+    },
+    {
+      "sha": "ada63e04ecf5d29b1f6dc45c9969f26899f1153b",
+      "date": "2026-10-11T17:08:12-04:00",
+      "subject": "Document portfolio chatbot guardrail review and separate phone AI project",
+      "category": "Local AI"
+    },
+    {
+      "sha": "eac71da884ca3c3d05c81f476f64402129a68599",
+      "date": "2026-10-11T09:35:46-04:00",
+      "subject": "Update site-wide last modified dates to October 11",
+      "category": "Feature"
+    },
+    {
+      "sha": "526ad64cb1dc19baf518ebad66534a3210c9cf40",
+      "date": "2026-10-11T09:34:04-04:00",
+      "subject": "Document Windows XP USB transfer troubleshooting and drive preparation",
+      "category": "Feature"
+    },
+    {
+      "sha": "95bc7fdd58a86c0640a1cb9ef57a90fcaaf6ed05",
+      "date": "2026-10-10T23:08:15-04:00",
+      "subject": "Document Slax USB capacity and persistent storage expansion",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "f5c5a32611d06828cd174a55bd904329ae6121b4",
+      "date": "2026-10-10T22:56:18-04:00",
+      "subject": "Document Slax Trayscale repair and persistent desktop maintenance",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "16e10500bcba26f18aa9cdb5c78a65d4e5a0d0a1",
+      "date": "2026-10-10T16:40:50-04:00",
+      "subject": "Mark macOS VM setup in progress while preserving completed milestones",
+      "category": "Feature"
+    },
+    {
+      "sha": "b4ed9678a65b77935c6fc84a164c79f6bc028c66",
+      "date": "2026-10-10T16:39:46-04:00",
+      "subject": "Record verified Windows VM inventory enrollment and automatic startup",
+      "category": "Feature"
+    },
+    {
+      "sha": "d8ddf7ff6f0a8b0851f6e5da763485ba3c1c2a55",
+      "date": "2026-10-10T16:23:52-04:00",
+      "subject": "Document Windows VM SSH preparation and Terminal profile fix",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "e3eff8834e4e2c4ee14070be8adde5327a0b0e45",
+      "date": "2026-10-10T15:44:44-04:00",
+      "subject": "Add Alpine auto-clicker troubleshooting with Antigravity CLI credit",
+      "category": "Feature"
+    },
+    {
+      "sha": "97d4576f8817c9c7a9dcde3028707f82a171d2f5",
+      "date": "2026-10-10T15:39:08-04:00",
+      "subject": "Document Debian Mac maintenance and clarify AI collaboration",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d0330692d18820b6d0328316cc0a451b5a807c3a",
+      "date": "2026-10-10T15:19:21-04:00",
+      "subject": "Add Mac VM maintenance notes and verified seventh inventory host",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "889a884db28578a84e60afd439a31eaf2abf8f7e",
+      "date": "2026-10-10T15:00:29-04:00",
+      "subject": "Add grouped maintenance log and simplify bio details",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "11fd5e156c65922df30e70ef4a8177ec7159461b",
+      "date": "2026-10-10T14:50:53-04:00",
+      "subject": "Add completed local portrait video experiment to bio",
+      "category": "Feature"
+    },
+    {
+      "sha": "cabf45355fe1973846712c467042f7efad8ab4fb",
+      "date": "2026-10-10T14:44:38-04:00",
+      "subject": "Document six-host GLPI rollout and Windows permission troubleshooting",
+      "category": "Feature"
+    },
+    {
+      "sha": "6ca7f7e9e7f352989c960118ed48737a59180bc8",
+      "date": "2026-10-10T12:58:25-04:00",
+      "subject": "Add GLPI fleet inventory project and rollout progress",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "29671e3687e3bca2179f637f1c999925e1fd7338",
+      "date": "2026-10-10T09:45:09-04:00",
+      "subject": "Document Linux tinkering and 30-minute Gmail spam automation",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "f279f643085417a30e47f547f6ebf5eb07ffc414",
+      "date": "2026-10-10T09:29:45-04:00",
+      "subject": "Add 19-hour oceanscape experiment to About page",
+      "category": "Feature"
+    },
+    {
+      "sha": "3a63258c62a3d2985a8a507d3607de31931d4509",
+      "date": "2026-10-09T13:03:41-04:00",
+      "subject": "Record completion of seven ACE-Step comparison covers",
+      "category": "Feature"
+    },
+    {
+      "sha": "20f22f296177b3afd515bac501f7ed3e2dd2cf27",
+      "date": "2026-10-09T11:33:58-04:00",
+      "subject": "Document desktop scaling and persistent NUC status panel",
+      "category": "Feature"
+    },
+    {
+      "sha": "778def6c9eb1c242c4b0421211d001ede4a4a2ee",
+      "date": "2026-10-09T11:30:32-04:00",
+      "subject": "Document ACE-Step training and in-progress cover comparisons",
+      "category": "Feature"
+    },
+    {
+      "sha": "0321ab7aac6565a8ca67ee402259da09c04f7da9",
+      "date": "2026-10-09T11:19:17-04:00",
+      "subject": "Document NUC desktop repairs and Docker maintenance",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f22828ec5da45f8b440751933eee7db4e4536ff4",
+      "date": "2026-10-09T11:09:45-04:00",
+      "subject": "Add XP remote administration, remote wake, and personal interests",
+      "category": "Feature"
+    },
+    {
+      "sha": "26e4184da91daa9bd7328064c70728ed8de04954",
+      "date": "2026-10-07T13:41:14-04:00",
+      "subject": "Add Microsoft fundamentals certifications in progress",
+      "category": "Feature"
+    },
+    {
+      "sha": "0120dd71ffd8522566af6727e4753616a195209e",
+      "date": "2026-10-07T13:38:36-04:00",
+      "subject": "Describe personal computer fleet and persistent NUC storage",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "cc9e6497fca46ded4e6040fc828eae7757003c7e",
+      "date": "2026-10-07T11:50:44-04:00",
+      "subject": "Rewrite projects in plain language and add internship experience",
+      "category": "Feature"
+    },
+    {
+      "sha": "f4a3e795bc210fd86957c6675822d09e45ac7b63",
+      "date": "2026-10-06T21:41:11-04:00",
+      "subject": "Document chatroom iteration with grounded conversation examples",
+      "category": "Feature"
+    },
+    {
+      "sha": "da8b3bbc8673cf201d4d242136be1f4d70d6d94f",
+      "date": "2026-10-06T21:23:49-04:00",
+      "subject": "Preserve the progression of agent and chatroom projects",
+      "category": "Feature"
+    },
+    {
+      "sha": "29366e65417bbea8640bba6f830955542db0a1bb",
+      "date": "2026-10-06T21:23:30-04:00",
+      "subject": "Clarify agent feed project and document adaptive chatroom behavior",
+      "category": "Feature"
+    },
+    {
+      "sha": "a5010af8fd9377be2383fabfadabd44610f58cf3",
+      "date": "2026-10-06T21:23:03-04:00",
+      "subject": "Simplify agent feed page and link directly to profile",
+      "category": "Feature"
+    },
+    {
+      "sha": "0522dc6614a9e09dd82a9d6f10769d91407ce940",
+      "date": "2026-10-06T21:21:25-04:00",
+      "subject": "Only show stop control to the active discussion initiator",
+      "category": "Feature"
+    },
+    {
+      "sha": "84142d9940e79e818dd281084aff2d12dfc22605",
+      "date": "2026-10-06T21:20:49-04:00",
+      "subject": "Lock follow-ups until discussion replies finish displaying",
+      "category": "Feature"
+    },
+    {
+      "sha": "8487cc270bd8cf4c10265bf994adca8ca3ad8cdf",
+      "date": "2026-10-06T21:20:08-04:00",
+      "subject": "Raise adaptive caps and show reply presentation status accurately",
+      "category": "Feature"
+    },
+    {
+      "sha": "0b30a5d9fb411e30259b94e647c998693b7f7e6e",
+      "date": "2026-10-06T21:19:31-04:00",
+      "subject": "Make AI chatroom discussions adaptive with bounded rounds",
+      "category": "Local AI"
+    },
+    {
+      "sha": "f162d4dc3913fbc9bb8127821887724e04546847",
+      "date": "2026-10-06T17:59:34-04:00",
+      "subject": "Keep the last saved Moltbook post across page refreshes",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f51752d6633f63daca8edd335984f274f9fcb8cd",
+      "date": "2026-10-06T17:59:14-04:00",
+      "subject": "Add GrandmaApproved project and live Moltbook feed page",
+      "category": "Feature"
+    },
+    {
+      "sha": "99a0b164e3f1c98e9a17fd4e2485ce9ab75d3f03",
+      "date": "2026-10-06T17:21:00-04:00",
+      "subject": "Pace chatroom replies for easier reading",
+      "category": "Feature"
+    },
+    {
+      "sha": "9d1569c10df2ff7cae60a9df673d9dcf9b9ecfd5",
+      "date": "2026-10-06T17:13:55-04:00",
+      "subject": "Restore balanced debate default to three rounds",
+      "category": "Feature"
+    },
+    {
+      "sha": "ff1252f93e5a803b6c65ab8402935353ceda7bb5",
+      "date": "2026-10-06T17:12:44-04:00",
+      "subject": "Document portable Windows compute packaging project",
+      "category": "Feature"
+    },
+    {
+      "sha": "71b397ca99fb877b53caabb9f3e85671ff50e6ef",
+      "date": "2026-10-06T17:05:33-04:00",
+      "subject": "Match AI chatroom to portfolio and improve chat widget usability",
+      "category": "Local AI"
+    },
+    {
+      "sha": "8025e904a878e87088c7b529b1cc1e2bf4715636",
+      "date": "2026-10-06T16:51:24-04:00",
+      "subject": "Publish authenticated Local Council chatroom with TOTP MFA",
+      "category": "Feature"
+    },
+    {
+      "sha": "5d39f60bc80878de0b94d263bbc02a0d493e7ac3",
+      "date": "2026-10-06T16:38:29-04:00",
+      "subject": "Add completed Local Council AI debate project",
+      "category": "Local AI"
+    },
+    {
+      "sha": "d4139a1b5b93e24e4a5ea553d56d05e4dcc1ca2a",
+      "date": "2026-10-06T14:44:04-04:00",
+      "subject": "Add published persistent Slax builds",
+      "category": "Feature"
+    },
+    {
+      "sha": "5989acef5d9af39284f25a557580c436455ac257",
+      "date": "2026-10-05T14:59:17-04:00",
+      "subject": "Update website last modified dates",
+      "category": "Feature"
+    },
+    {
+      "sha": "ca2fd33a9226ce4fae4a02d0aea64592f10be0ff",
+      "date": "2026-10-05T14:45:32-04:00",
+      "subject": "Mark macOS VM project complete",
+      "category": "Feature"
+    },
+    {
+      "sha": "c2b7a36c8974ab2414572b11796907bd277d7dcb",
+      "date": "2026-10-05T14:19:53-04:00",
+      "subject": "Add macOS Tahoe ISO builder project",
+      "category": "Feature"
+    },
+    {
+      "sha": "dc931a123ac01496185627f5334cc6df5230c9ee",
+      "date": "2026-10-05T14:13:52-04:00",
+      "subject": "Add PowerPC emulation migration project",
+      "category": "Feature"
+    },
+    {
+      "sha": "eff8bdb5f0b10eef386bfa3e693533061bb3cc5f",
+      "date": "2026-10-05T14:05:27-04:00",
+      "subject": "Document Slax BusyBox bootstrap project",
+      "category": "Feature"
+    },
+    {
+      "sha": "98f1d297f66e3749c19fc2b95f7cc98e3a587489",
+      "date": "2026-09-28T15:29:23-04:00",
+      "subject": "Add DUCO miner telemetry and forensic workflow project",
+      "category": "Feature"
+    },
+    {
+      "sha": "c9adedb2f11966f80fa6bc9afbed0c98155909d7",
+      "date": "2026-09-25T22:09:53-04:00",
+      "subject": "Add live NUC infrastructure telemetry",
+      "category": "Feature"
+    },
+    {
+      "sha": "1dc21de093322b7cd9d6239eb5ade20a1f61b8c4",
+      "date": "2026-09-25T18:56:32-04:00",
+      "subject": "Add Windows XP Samba isolation project",
+      "category": "Feature"
+    },
+    {
+      "sha": "9ca422d58bfc34ce2145495b39403c8eb4a44dde",
+      "date": "2026-09-21T14:51:12-04:00",
+      "subject": "Add FTK Imager FAT32 edge case project",
+      "category": "Feature"
+    },
+    {
+      "sha": "1ff5a6c64c5ca2385d1c8ebd593a0126f3a63188",
+      "date": "2026-09-21T09:25:48-04:00",
+      "subject": "Add forensic disk recovery project",
+      "category": "Feature"
+    },
+    {
+      "sha": "4d0284c10631a0d67b4baa6031f1bbb39b1e8f03",
+      "date": "2026-09-20T15:44:52-04:00",
+      "subject": "Remove custom clipboard confirmation",
+      "category": "Feature"
+    },
+    {
+      "sha": "1fe3053637d13a1a085033742aa3b83dc8ce97c0",
+      "date": "2026-09-20T15:44:10-04:00",
+      "subject": "Fix responsive menu and contact actions",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f9a32049e80d5a7c30d259d05e543f0d3ae71d04",
+      "date": "2026-09-20T15:38:48-04:00",
+      "subject": "Redesign contact page and add responsive navigation",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "b1d70e46a1e70fb7befb79c7a2edd5886c02a324",
+      "date": "2026-09-20T15:32:20-04:00",
+      "subject": "Add SMB over Tailscale investigation project",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "590d006482c3fde79f5a1859d9817cc96caa3646",
+      "date": "2026-09-20T15:20:48-04:00",
+      "subject": "Add live AI observability dashboard",
+      "category": "Local AI"
+    },
+    {
+      "sha": "2a1d2a3bcc41fe6e9b48adc352af3fbc4c4c42cb",
+      "date": "2026-09-20T15:08:06-04:00",
+      "subject": "Mark chatbot project complete and add timestamps",
+      "category": "Feature"
+    },
+    {
+      "sha": "7a1a0b46286f9e967a1d1adf66de54fe2df3de11",
+      "date": "2026-09-20T14:43:32-04:00",
+      "subject": "Add local AI portfolio chatbot",
+      "category": "Local AI"
+    },
+    {
+      "sha": "5115d8ba9e67c4e07a6194541cce653f99925a46",
+      "date": "2026-09-20T10:32:28-04:00",
+      "subject": "Add Copilot favicon",
+      "category": "Feature"
+    },
+    {
+      "sha": "edc152c407aecc533c4b0beffcaaf71ff9b6dfa6",
+      "date": "2026-09-20T10:28:38-04:00",
+      "subject": "Format homepage quote attribution",
+      "category": "Feature"
+    },
+    {
+      "sha": "f7e1e12753a9859b161bb4c9146f8cb2bdfd00f2",
+      "date": "2026-09-20T10:27:06-04:00",
+      "subject": "Refine homepage hero identity",
+      "category": "Feature"
+    },
+    {
+      "sha": "e7673540682ab6e1b7d51ce30e50325f354c3740",
+      "date": "2026-09-20T10:24:09-04:00",
+      "subject": "Add certifications in progress",
+      "category": "Feature"
+    },
+    {
+      "sha": "a48abeb511d6be50639406b90c6f6544271c3bbc",
+      "date": "2026-09-20T10:23:23-04:00",
+      "subject": "Streamline navigation and experience page",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "e5d7aa06752184c5ab1bb52ade8b5380dabc2994",
+      "date": "2026-09-20T10:21:43-04:00",
+      "subject": "Rename experience navigation to skills",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "9b7ed17e2fa536d605ae8d0d4be29d35b0c4c813",
+      "date": "2026-09-20T10:19:06-04:00",
+      "subject": "Improve resume controls on mobile",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "262fd8aa89e6539c0e073ba5d4c9c2fc264d7d64",
+      "date": "2026-09-20T10:17:29-04:00",
+      "subject": "Split experience, resume, and projects pages",
+      "category": "Feature"
+    },
+    {
+      "sha": "7c0d65110537602edbf6e643fececac8ea9d6591",
+      "date": "2026-09-20T10:09:17-04:00",
+      "subject": "Remove unused background image asset",
+      "category": "Feature"
+    },
+    {
+      "sha": "07606854aad0c1556f2ff5580846a5b2848505af",
+      "date": "2026-09-20T10:06:31-04:00",
+      "subject": "Remove leftover image from resume page",
+      "category": "Feature"
+    },
+    {
+      "sha": "7b0ddf2874a5aac260888b910a331c2f8428e733",
+      "date": "2026-09-20T10:03:26-04:00",
+      "subject": "Fix header portrait overlap",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "2b9751f6388908494bc74e8fea73674b0d8406f8",
+      "date": "2026-09-20T09:59:24-04:00",
+      "subject": "Update portrait and embed resume PDF",
+      "category": "Feature"
+    },
+    {
+      "sha": "e82df2de3f207eb6d8ff2f67acbcdde041f9b5ac",
+      "date": "2026-07-07T18:02:51-04:00",
+      "subject": "Update andrewvanek.jpg from host",
+      "category": "Feature"
+    },
+    {
+      "sha": "c6355b5b3b0cd4a294ac06ba6acdd03ba4a5986e",
+      "date": "2026-06-12T23:12:21Z",
+      "subject": "Revert site-wide background image and restore professional background color",
+      "category": "Feature"
+    },
+    {
+      "sha": "efa56fe53351990c95036d150059e79072be0d3c",
+      "date": "2026-06-12T23:11:18Z",
+      "subject": "Move background image to main content and remove footer credit in job.html",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "70b114f285257d92663ff37339c3c96b7dcfb7fa",
+      "date": "2026-06-12T23:10:42Z",
+      "subject": "Implement background image and profile picture recovered from base64",
+      "category": "Feature"
+    },
+    {
+      "sha": "8c247a8ce18d5ec400ce4f6da3f6666eb44572c1",
+      "date": "2026-06-11T03:00:40Z",
+      "subject": "Update Resume with Student Staff experience and detailed education history",
+      "category": "Feature"
+    },
+    {
+      "sha": "0948a7bbe871a4971afd18133020be90ef02a295",
+      "date": "2026-06-11T02:50:04Z",
+      "subject": "Consolidate education into resume, update bio and slogan, and cleanup navigation",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "686fffdd9c29f1e100f4ed6bc5ce8e3f892bff53",
+      "date": "2026-06-07T22:39:17Z",
+      "subject": "Initial commit with SEO and Open Graph tags",
+      "category": "Feature"
+    }
+  ]
+}

@@ -26,8 +26,13 @@
 
   function render() {
     if (!latest || latest.status === 'unavailable') {
-      root.dataset.state = 'offline';
-      root.dataset.hasReading = 'false';
+      if (root) { root.dataset.state = 'offline'; root.dataset.hasReading = 'false'; }
+      for (const id of ['stat-edge-ram-pct','stat-edge-accel']) {
+        const el=document.getElementById(id); if(el)el.textContent='—';
+      }
+      for (const id of ['stat-edge-ram-detail','stat-edge-accel-detail']) {
+        const el=document.getElementById(id); if(el)el.textContent='Reading unavailable';
+      }
       text('room-temperature-value', '—'); text('room-light-value', '—');
       text('room-sound-value', '—'); text('room-accel-value', '—'); text('room-ram-value', '—');
       text('room-temperature-description', 'Reading unavailable');
@@ -45,8 +50,7 @@
     const elapsed = (performance.now() - receivedAt) / 1000;
     const age = Math.max(0, latest.age_seconds + elapsed);
     const state = !reachable ? 'offline' : latest.status === 'disconnected' ? 'disconnected' : age > 60 ? 'stale' : latest.status;
-    root.dataset.state = state;
-    root.dataset.hasReading = 'true';
+    if (root) { root.dataset.state = state; root.dataset.hasReading = 'true'; }
     text('room-sensors-status', state === 'live' ? 'Live' : state === 'disconnected' ? 'Board disconnected' : state === 'stale' ? 'Last reading' : 'Connection interrupted');
 
     // 1. Temperature
@@ -121,16 +125,16 @@
     const ramPctEl = document.getElementById('stat-edge-ram-pct');
     const ramDetailEl = document.getElementById('stat-edge-ram-detail');
     const ramBarEl = document.getElementById('stat-edge-ram-bar');
-    if (ramPctEl && latest && latest.ram_percent !== undefined) {
+    if (ramPctEl && latest && Number.isFinite(latest.ram_percent)) {
       ramPctEl.textContent = `${Math.round(latest.ram_percent)}%`;
-      if (ramDetailEl) ramDetailEl.textContent = `${(latest.ram_used_kb || 25.7).toFixed(1)} KB utilized of ${Math.round(latest.ram_total_kb || 160)} KB total SRAM`;
+      if (ramDetailEl) ramDetailEl.textContent = Number.isFinite(latest.ram_used_kb) && Number.isFinite(latest.ram_total_kb) ? `${latest.ram_used_kb.toFixed(1)} KB utilized of ${Math.round(latest.ram_total_kb)} KB reported heap` : 'Memory detail unavailable';
       if (ramBarEl) ramBarEl.style.width = `${clamp(latest.ram_percent)}%`;
     }
 
     const accelEl = document.getElementById('stat-edge-accel');
     const accelDetailEl = document.getElementById('stat-edge-accel-detail');
     const accelBarEl = document.getElementById('stat-edge-accel-bar');
-    if (accelEl && latest && latest.accel_g !== undefined) {
+    if (accelEl && latest && Number.isFinite(latest.accel_g)) {
       const g = latest.accel_g;
       accelEl.textContent = g.toFixed(2);
       if (accelDetailEl) accelDetailEl.textContent = accelLabel(g);

@@ -13,7 +13,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/footer.css?v2.6.435">
+<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
+<link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body>
 	<div class="container">
@@ -31,7 +32,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
-						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
 						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
@@ -94,7 +95,7 @@
 			<p class="subtitle">Where discarded silicon gets a second tour of duty. Explore interactive 3D-ready shelf topologies based on Andrew's actual workbench layout: from the bottom shelf 2011 Mac powering the S4 Mini and USB fan, to the open-bench Yoga rig and wall-powered mobile miners.</p>
 		</header>
 
-		<main class="fleet-main">
+		<main class="fleet-main"><section class="explain-card"><h2>What am I looking at?</h2><p>This is an owner-maintained inventory and interactive schematic of my setup. The 3D positions illustrate the physical arrangement; device descriptions and status labels come from the inventory, not continuous discovery of every device. Use the controls to inspect equipment, and treat the playbook as configuration notes rather than hardware guarantees.</p></section>
 			<!-- Section 1: Fleet Overview & Metrics -->
 			<section class="fleet-hero-stats">
 				<div class="stat-card">
@@ -179,7 +180,7 @@
 							     TOP ACCESSORY BAR (Wall Powered Devices & NUC Raised)
 							     ========================================== -->
 							<rect x="30" y="15" width="1000" height="70" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="rgba(71, 85, 105, 0.4)" stroke-width="1" />
-							
+
 							<!-- Wall AC line indicator -->
 							<circle cx="48" cy="48" r="5" fill="#f59e0b" />
 							<text x="60" y="52" fill="#f59e0b" font-size="9" font-family="'Fira Code', monospace" font-weight="700">WALL POWERED MINERS &rarr;</text>
@@ -409,32 +410,32 @@
 			<section class="fleet-section">
 				<div class="section-heading-wrap">
 					<h2>2. The Homelab Salvage Playbook &amp; ITAM Architecture</h2>
-					<p>Key technical practices and IT Asset Management protocols used to keep aging silicon running reliably 24/7 without budget or thermal degradation.</p>
+					<p>Practices used in this particular fleet. Hardware condition and results vary; these notes are not lifetime, temperature, or unattended-safety guarantees.</p>
 				</div>
 
 				<div class="playbook-grid">
 					<div class="playbook-card">
 						<div class="playbook-num">01</div>
 						<h3>Phase-Change Thermal Engineering</h3>
-						<p>Liquid and standard silicone pastes pump out under the thermal expansion cycles of 24/7 100% compute loads. Upgrading legacy laptops (such as the 2011 Mac) with <strong>Honeywell PTM7950 phase-change pads</strong> prevents dry-out and drops sustained core temperatures by 8-12&deg;C indefinitely.</p>
+						<p>Thermal-interface changes can affect sustained temperatures, but results depend on the device, mounting, airflow, workload, and ambient conditions. The maintenance notes describe PTM7950 experiments; they do not establish a universal 8–12 °C improvement or an indefinite lifetime.</p>
 					</div>
 
 					<div class="playbook-card">
 						<div class="playbook-num">02</div>
 						<h3>Stateless &amp; Immutable Memory Runtimes</h3>
-						<p>Mechanical drives and cheap consumer SSDs fail early under relentless logging. Deploying <strong>custom Slax Linux live USBs with RAM overlays</strong> (like the Dell Inspiron tower) ensures that the operating system runs purely in memory, making nodes immune to drive failures and corrupt writes.</p>
+						<p>A Slax RAM overlay can reduce writes to storage and keep runtime changes in memory. Boot media, saved persistence, and power can still fail. Unsaved RAM-backed changes can be lost; this setup is not immunity to corruption or a substitute for backups.</p>
 					</div>
 
 					<div class="playbook-card">
 						<div class="playbook-num">03</div>
-						<h3>Fire-Safe Battery Elimination &amp; USB Tethering</h3>
-						<p>Lithium-ion pouch batteries in retired mobile devices and laptops will swell when held at 100% state-of-charge on constant AC power. Removing internal batteries and plugging devices directly into host USB lines (like the S4 Mini plugged into the 2011 Mac on the bottom shelf) guarantees safe, unmonitored homelab operations.</p>
+						<h3>Battery Condition &amp; Power Configuration</h3>
+						<p>Battery aging and swelling depend on condition, design, temperature, and charging behavior. A battery-free configuration changes power requirements and removes only one possible failure source; it does not guarantee safe unattended operation. Follow the device manufacturer’s service guidance and check the equipment’s condition.</p>
 					</div>
 
 					<div class="playbook-card">
 						<div class="playbook-num">04</div>
 						<h3>GLPI IT Asset Management (ITAM)</h3>
-						<p>Tracking 9 heterogeneous devices across multiple shelves requires disciplined asset lifecycle tracking. Integrating hardware specs, service dates, thermal profiles, and IP/MAC allocations into a centralized <strong>GLPI asset management schema</strong> ensures zero undocumented single-points-of-failure.</p>
+						<p>Tracking 9 heterogeneous devices across multiple shelves requires disciplined asset lifecycle tracking. Integrating hardware specs, service dates, thermal profiles, and IP/MAC allocations into a centralized <strong>GLPI asset management schema</strong> helps document dependencies and possible single points of failure.</p>
 					</div>
 				</div>
 			</section>
@@ -442,13 +443,13 @@
 
 		<footer>
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-			<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+			<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
+	<script src="scripts/script.js?v=20261126-accuracy-436"></script>
 	<script src="scripts/vendor/three.min.js"></script>
 	<script src="scripts/vendor/OrbitControls.js"></script>
 	<script src="scripts/fleet-3d.js?v=20261125-ledge-outlet-1"></script>

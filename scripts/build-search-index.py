@@ -1,9 +1,10 @@
+from pathlib import Path
 import os
 import re
 import json
 from html.parser import HTMLParser
 
-BASE_DIR = "/home/avanek/agy-work/portfolio"
+BASE_DIR = str(Path(__file__).resolve().parents[1])
 DATA_DIR = os.path.join(BASE_DIR, "data")
 OUTPUT_PATH = os.path.join(DATA_DIR, "search-index.json")
 

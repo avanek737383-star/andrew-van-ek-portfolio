@@ -1,9 +1,9 @@
 /**
  * Nemo Sudoku Vision & Cognitive Reasoning Engine
  * Part of Andrew Van Ek's Portfolio (andrewtvanekportfolio.online)
- * 
+ *
  * Features:
- * 1. Human-like internal cognitive monologue generator
+ * 1. Human-like template-based solver narration
  * 2. Side-by-side synchronized board & auto-scrolling thought stream
  * 3. Prominent Nemo Mind HUD speech bubble directly above the grid
  * 4. Realistic thinking pace (Story 2.5s to Turbo)
@@ -397,6 +397,7 @@
         });
 
         btnStep.addEventListener("click", () => {
+            if (!initialGrid.some(row => row.some(value => value !== 0))) { addLog("system", "Enter given digits or choose a sample first. The reference image is not transcribed automatically."); return; }
             if (!isSolving) {
                 prepareSolveSteps();
                 isSolving = true;
@@ -517,6 +518,7 @@
     }
 
     function handleFileUpload(file) {
+        if (file.size > 10 * 1024 * 1024) { addLog("system", "Use a reference image smaller than 10 MB."); return; }
         if (!file.type.startsWith("image/")) {
             alert("Please upload an image file (PNG, JPG, WEBP).");
             return;
@@ -527,15 +529,11 @@
             const img = new Image();
             img.onload = () => {
                 drawCustomImageToCanvas(img);
-                addLog("system", `Uploaded image "${file.name}" received. Slicing 9×9 grid regions...`);
-                const template = PRESETS.mobile.grid;
                 resetState();
                 for (let r = 0; r < 9; r++) {
-                    for (let c = 0; c < 9; c++) {
-                        initialGrid[r][c] = template[r][c];
-                        currentGrid[r][c] = template[r][c];
-                    }
+                    for (let c = 0; c < 9; c++) { initialGrid[r][c] = 0; currentGrid[r][c] = 0; }
                 }
+                document.querySelectorAll('.sudoku-sample-btn').forEach(button => button.classList.remove('active'));
                 refreshGridDisplay();
                 updateAllCandidates();
                 renderAllCandidates();
@@ -548,9 +546,10 @@
                     scanPanel.style.display = "none";
                 }
 
-                addLog("system", "OCR grid extraction complete. Review recognized numbers on the left; tap any cell to adjust if needed, then click 'Start Solving'!");
-                updateMindBubble("Scanned", `"I've ingested your image and aligned the 9×9 grid! You can click any cell to make tweaks or hit 'Start Solving' to begin deductions."`);
+                addLog("system", "Photo loaded as a reference only. This page does not read digits from images. Enter the given numbers into the grid before solving.");
+                updateMindBubble("Manual entry", "Your photo is available in the reference tab. Enter its given digits into the empty grid; no digit recognition was performed.");
             };
+            img.onerror = () => addLog("system", "This browser could not decode the reference image. Try PNG, JPG, or WebP; no puzzle digits were changed.");
             img.src = e.target.result;
         };
         reader.readAsDataURL(file);
@@ -904,6 +903,10 @@
     }
 
     function startSolve() {
+        if (!initialGrid.some(row => row.some(value => value !== 0))) {
+            addLog("system", "Enter the given digits or select a sample before solving. A reference photo is not automatically transcribed.");
+            return;
+        }
         if (solveSteps.length === 0) {
             prepareSolveSteps();
         }

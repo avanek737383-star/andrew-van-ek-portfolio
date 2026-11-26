@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Polyglot Code Runner &amp; Error Coach | Andrew Van Ek Portfolio</title>
-	<meta name="description" content="Zero-install in-browser code runner across Python, JavaScript, SQL, Assembly, C, C++, Java, and C# featuring pedagogical plain-English error coaching and isolated sandbox execution.">
+	<meta name="description" content="Zero-install in-browser code runner across Python, JavaScript, SQL, Assembly, C, C++, Java, and C# featuring pedagogical plain-English error coaching and browser and authenticated remote execution.">
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -17,7 +17,8 @@
 	<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js" defer></script>
 	<!-- SQL.js for In-Browser SQLite/MySQL WASM -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.js" defer></script>
-<link rel="stylesheet" href="css/footer.css?v2.6.435">
+<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
+<link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body>
 	<div class="container">
@@ -35,7 +36,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
-						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html" aria-current="page">Code Runner &amp; Coach</a></li>
 						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
@@ -87,17 +88,17 @@
 			</ul>
 		</nav>
 
-		<main class="runner-container">
+		<main class="runner-container"><section class="explain-card"><h2>Where does my code run?</h2><p>Browser modes download a runtime and execute on your device. Remote modes submit code to a separate execution service and require authentication. “No installation” does not mean no download, and an MFA prompt by itself does not establish container or network isolation.</p><p>The public interface does not demonstrate an air gap. Detailed backend isolation and resource limits should be checked against the deployed service configuration before stronger assurances are made.</p></section>
 			<!-- Header / Hero -->
 			<header class="runner-hero">
 				<h1>Polyglot Code Runner &amp; Error Coach</h1>
 				<p class="runner-subtitle">
-					Instant zero-download browser execution across Python, JavaScript, SQL, Assembly, C, C++, Java, and C#. Built with a pedagogical <strong>Plain-English Error Coach</strong> that diagnoses real compiler errors, explains the underlying rookie misconception, and teaches language mechanics in plain English.
+					Instant no-install browser execution across Python, JavaScript, SQL, Assembly, C, C++, Java, and C#. Built with a pedagogical <strong>Plain-English Error Coach</strong> that diagnoses real compiler errors, explains the underlying rookie misconception, and teaches language mechanics in plain English.
 				</p>
 				<div class="runner-spec-ribbon">
 					<span class="spec-chip">⚡ <strong>Tier 1 (Browser WASM):</strong> <span class="spec-highlight">Python 3.12 &bull; JS Worker &bull; SQL/WASM &bull; x86 CPU &bull; C</span></span>
 					<span class="spec-sep">&bull;</span>
-					<span class="spec-chip">⭐ <strong>Tier 2 (Air-Gapped Sandbox):</strong> <span class="spec-highlight">Java 17 &bull; C++ 17 &bull; C# (.NET) [Linux HP Host &middot; MFA Guarded]</span></span>
+					<span class="spec-chip">⭐ <strong>Tier 2 (Remote Execution Service):</strong> <span class="spec-highlight">Java 17 &bull; C++ 17 &bull; C# (.NET) [Linux HP Host &middot; MFA Guarded]</span></span>
 					<span class="spec-sep">&bull;</span>
 					<span class="spec-chip">💡 <strong>Error Coach:</strong> <span class="spec-highlight">Dual-Pane Raw + Plain-English Remediation</span></span>
 					<span class="spec-sep">&bull;</span>
@@ -282,7 +283,7 @@
 				<div class="modal-icon" aria-hidden="true">🔒</div>
 				<h3 class="modal-title" id="modal-title">Homelab Sandbox Protection</h3>
 				<p class="modal-desc">
-					This language compiles and executes inside an isolated, air-gapped container on Andrew’s dedicated <strong>Linux HP host</strong>. Enter your 6-digit Duo Mobile or authenticator code to unlock backend execution.
+					This language compiles and executes inside an remote execution environment on Andrew’s dedicated <strong>Linux HP host</strong>. Enter your 6-digit Duo Mobile or authenticator code to unlock backend execution.
 				</p>
 				<form id="mfa-modal-form" class="modal-form">
 					<label for="mfa-code-input" class="modal-input-label">6-Digit Authenticator Code:</label>
@@ -301,13 +302,13 @@
 
 		<footer>
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
+	<script src="scripts/script.js?v=20261126-accuracy-436"></script>
 	<script src="scripts/code-runner.js?v=20261029-runner-2"></script>
 </body>
 </html>

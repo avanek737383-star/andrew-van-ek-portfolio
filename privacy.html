@@ -9,16 +9,16 @@
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<meta name="description" content="Privacy policy for Andrew Van Ek's portfolio: zero raw IP storage, coarse regional telemetry only, self-hosted AI, and client-side privacy controls.">
-		
+
+		<meta name="description" content="Verified gateway logging controls, browser-local storage, aggregate activity, and clearly identified provider checks.">
+
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://andrewtvanekportfolio.online/privacy.html">
 		<meta property="og:title" content="Privacy Policy | Andrew Van Ek Portfolio">
-		<meta property="og:description" content="Transparent privacy architecture: zero raw IP retention, coarse regional telemetry, on-premise local AI, and zero advertising trackers.">
+		<meta property="og:description" content="Verified gateway logging controls, browser-local storage, aggregate activity, and clearly identified provider checks.">
 		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
-		
+
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -32,9 +32,10 @@
 			.privacy-highlight { display: inline-block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; border-radius: 6px; padding: 2px 8px; font-weight: 600; font-size: 0.85rem; }
 			.privacy-hero-eyebrow { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #0056b3; margin-bottom: 6px; display: block; }
 		</style>
-	<link rel="stylesheet" href="css/footer.css?v2.6.435">
+	<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
+<link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
-	
+
 	<body>
 		<div class="container">
 							<nav class="tablet-desktop">
@@ -51,7 +52,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
-						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
 						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
@@ -103,64 +104,22 @@
 			</ul>
 		</nav>
 
-			<main class="privacy-main">
-				<header style="margin-bottom: 26px;">
-					<span class="privacy-hero-eyebrow">Data Ethics &amp; Transparency</span>
-					<h1 style="color: #002d5a; margin: 4px 0 10px;">Privacy Policy</h1>
-					<p style="color: #64748b; font-size: 1.05rem; margin: 0;">How this website and my homelab services handle network traffic, visitor telemetry, and AI conversations.</p>
-				</header>
+			<main class="privacy-main"><header><span class="privacy-hero-eyebrow">DATA HANDLING &amp; VERIFIED BOUNDARIES</span><h1>Privacy: what this site actually does.</h1><p>This page separates controls checked on the self-hosted gateway from provider settings that still need account-level verification. Last reviewed November 26, 2026.</p></header>
+<section class="explain-card"><h2>Raw visitor addresses on the self-hosted gateway</h2><p>The gateway must process connection addresses to serve requests and apply abuse controls. Its application-log formatters and process-output supervisor now redact IPv4 and IPv6 address literals before those diagnostics are written. Uvicorn access logging is disabled. Nginx request logging and persistent error logging are disabled on the inspected host.</p><p>Previously retained website log files were checked and address literals redacted during this review. Earlier claims that raw addresses had <em>never</em> been stored were incorrect and have been removed.</p><p><strong>Scope:</strong> this verifies the inspected host’s website logging controls. It does not establish zero storage in every provider, operating-system subsystem, device, or future configuration.</p></section>
+<section class="explain-card"><h2>What is retained for abuse control and aggregate activity?</h2><div class="privacy-facts"><article><h3>Pseudonymous rate-limit identifiers</h3><p>The local gateway derives keyed identifiers from client addresses. Its rate-limit database stores those identifiers and request times, rather than raw addresses. Entries older than the limit window are removed when new limit checks run. Pseudonymous is not the same as anonymous.</p></article><article><h3>Coarse regional counters</h3><p>The gateway persists regional totals and an update time. A separate, short-lived address hash can be used in memory to reduce repeated geolocation events. These counters reflect service activity and are not a reliable count of unique people. Regional hints can be imprecise.</p></article></div></section>
+<section class="explain-card"><h2>Chat and phone services are different systems</h2><h3>Nemo: local inference through the NUC</h3><p>Questions sent to Nemo pass through the self-hosted gateway to the configured private model host. The gateway keeps diagnostic logs and a separate size-rotated prompt audit, including redacted prompt text and pseudonymous client identifiers. Credential-pattern redaction is not a guarantee that every kind of personal information is removed. The audit logger rotates its files by size, with up to seven backups; this is not a fixed-age deletion promise.</p><p>The phone service uses a telephone provider and speech/voice services. Its diagnostic workflow can include caller metadata, transcripts, and response excerpts. It should not be described as a service that retains no personal data.</p><h3>Class &amp; Service Desk Bot: Google Cloud</h3><p>The bot on <a href="chat.html">chat.html</a> runs as a separate Google Cloud service. Questions submitted there are processed by that service. Its project-level log routing, retention, and downstream configuration have not yet been verified in this review.</p></section>
+<section class="explain-card"><h2>Cloudflare, network providers, and external assets</h2><p>The public site and connected services use hosting/network infrastructure and may load third-party fonts, libraries, maps, or other resources. Those providers receive connection metadata needed to handle requests. The owner’s Cloudflare and Google Cloud account settings still need a provider-side retention check.</p><p>This site therefore does not claim that no provider ever processes or stores an address. <a href="https://developers.cloudflare.com/logs/logpush/">Cloudflare log destinations</a> and <a href="https://cloud.google.com/logging/docs/routing/overview">Google Cloud log routing</a> can be configured separately. Security functionality can also set provider cookies; see <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/">Cloudflare’s cookie documentation</a>.</p></section>
+<section class="explain-card"><h2>What stays in your browser?</h2><ul><li><strong>Previous homepage visit:</strong> one timestamp for this browser/device. That feature sends no visit timestamp to a server and does not identify you across devices.</li><li><strong>Repair-shop progress:</strong> local game state when browser storage is available.</li><li><strong>Interface preferences and benchmarks:</strong> features such as weather units and page-speed records may use local storage.</li><li><strong>Chat display history:</strong> some interfaces remember visible messages locally; submitting a question still sends that question to the selected service.</li></ul><p>You can remove browser-local data using the browser’s site-data controls. Storage may be unavailable in some browser modes, in which case supported features continue without persistence.</p></section>
+<section class="explain-card"><h2>Questions and corrections</h2><p>Contact <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a> through the <a href="contact.html">Contact page</a> with a privacy question or a discrepancy. This description will be updated when provider settings or service behavior are verified or changed.</p></section></main>
 
-				<article class="privacy-card">
-					<h2>1. Zero Raw IP Address Storage</h2>
-					<p><span class="privacy-highlight">&check; Zero Raw IP Retention</span> In accordance with my privacy principles, <strong>zero raw IP addresses or personally identifiable coordinates are ever logged, stored in databases, or published</strong>.</p>
-					<p>When you visit the site, network edge requests pass through Cloudflare proxy nodes to protect my self-hosted homelab. The homepage displays coarse regional telemetry (such as approximate country, region, or city) purely to show aggregate global visitor trends. This data is derived dynamically on the edge without capturing or retaining your physical street address or exact location.</p>
-				</article>
-
-				<article class="privacy-card">
-					<h2>2. Local AI &amp; Data Sovereignty (Nemo)</h2>
-					<p>My on-premise AI assistant (<strong>Nemo</strong>) runs locally on a dedicated NVIDIA RTX GPU host connected via a private Tailscale mesh network through an Alpine Linux Intel NUC gateway:</p>
-					<ul>
-						<li><strong>No Third-Party Brokers:</strong> Prompts sent to Nemo are processed on my own private hardware. They are never sent to commercial data aggregators, advertising brokers, or public model training pipelines.</li>
-						<li><strong>Temporary Abuse Review:</strong> Transient rate-limiting checks (5 messages/minute) are enforced in memory to protect local hardware from automated denial-of-service loops.</li>
-						<li><strong>No Account Tracking:</strong> You do not need to sign in or provide an email to chat with Nemo.</li>
-					</ul>
-				</article>
-
-				<article class="privacy-card">
-					<h2>3. Dual-Brain Cloud Assistant (Google Cloud Run)</h2>
-					<p>The companion assistant at <a href="chat.html" style="color: #0056b3; font-weight: 500;">AI Assistant</a> runs on Google Cloud Run utilizing Vertex AI Agent Builder. Queries are strictly used to search my grounded knowledge repositories (649 GVSU IT service-desk articles and ~977 OneDrive CIS class documents). Zero personal search profiles are constructed from your inquiries.</p>
-				</article>
-
-				<article class="privacy-card">
-					<h2>4. Client-Side Browser Persistence (localStorage)</h2>
-					<p>To provide responsive interactive tools without server-side tracking, certain preferences and benchmarks are stored exclusively inside your own browser using standard <code>localStorage</code>:</p>
-					<ul>
-						<li><strong>Page Load Speed Tachometer:</strong> Your fastest page render record (milliseconds) and personal visit counter stay strictly in your browser.</li>
-						<li><strong>Nemo Chat History:</strong> Your active conversation is retained on your device so you can navigate across portfolio pages without losing answers. You can clear this anytime by clicking the <em>Clear</em> button in the chat header.</li>
-						<li><strong>Homepage Return Message:</strong> The previous homepage-visit timestamp is saved only in this browser. This feature sends no timestamp to a server and does not identify a person across browsers or devices. Clearing site data removes it. The repair-shop game also saves its progress locally.</li>
-						<li><strong>Weather Units:</strong> Temperature scale preferences (&deg;F vs. &deg;C) are remembered locally.</li>
-					</ul>
-					<p>None of this local data is ever transmitted back to an external tracking database.</p>
-				</article>
-
-				<article class="privacy-card">
-					<h2>5. Zero Third-Party Advertising Trackers</h2>
-					<p>This website contains <strong>zero marketing cookies, zero Facebook Pixels, and zero commercial tracking beacons</strong>. I do not run banner advertisements or monetize visitor data in any way.</p>
-				</article>
-
-				<article class="privacy-card">
-					<h2>6. Contact Information</h2>
-					<p>If you have any questions about this policy or would like to discuss homelab security and privacy practices, feel free to reach out directly via the <a href="contact.html" style="color: #0056b3; font-weight: 500;">Contact</a> page or email <a href="mailto:avanek737383@gmail.com" style="color: #0056b3; font-weight: 500;">avanek737383@gmail.com</a>.</p>
-				</article>
-			</main>
 
 			<footer>
 				<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-		<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
+		<script src="scripts/script.js?v=20261126-accuracy-436"></script>
 	</body>
 </html>

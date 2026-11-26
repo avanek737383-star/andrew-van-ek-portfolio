@@ -548,6 +548,8 @@
             return res.json();
         })
         .then(function (data) {
+            var stamp = document.getElementById("knowledge-data-date");
+            if (stamp) stamp.textContent = "Dataset generated " + new Date(data.generatedAt).toLocaleString();
             initGraph(data);
         })
         .catch(function (err) {

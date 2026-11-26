@@ -1,10 +1,12 @@
+from datetime import datetime, timezone
+from pathlib import Path
 # Build 3D Knowledge Graph Data from portfolio projects
 import os
 import re
 import json
 from html import unescape
 
-BASE_DIR = "/home/avanek/agy-work/portfolio"
+BASE_DIR = str(Path(__file__).resolve().parents[1])
 proj_path = os.path.join(BASE_DIR, "projects.html")
 out_path = os.path.join(BASE_DIR, "data", "knowledge-map.json")
 
@@ -271,7 +273,7 @@ for p in parsed_projects:
     })
 
     for idx, t in enumerate(p["tasks"]):
-        task_id = f"task-{p["id"]}-{idx}"
+        task_id = f"task-{p['id']}-{idx}"
         nodes.append({
             "id": task_id,
             "name": t["title"],
@@ -302,7 +304,7 @@ for p in parsed_projects:
             })
 
 graph_data = {
-    "generatedAt": "2026-11-19T10:36:00-05:00",
+    "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     "stats": {
         "totalProjects": len(parsed_projects),
         "totalNodes": len(nodes),

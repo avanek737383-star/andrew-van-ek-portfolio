@@ -263,10 +263,10 @@
     box-shadow: 0 4px 14px rgba(0, 112, 243, 0.45);
     transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.15s ease;
   }
-  .btn-circle:hover { 
-    transform: scale(1.08); 
+  .btn-circle:hover {
+    transform: scale(1.08);
     background: linear-gradient(135deg, #0070f3, #38bdf8);
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5); 
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
   }
   .btn-pill {
     padding: 8px 18px;
@@ -280,10 +280,10 @@
     cursor: pointer;
     transition: background 0.2s, transform 0.1s, border-color 0.2s;
   }
-  .btn-pill:hover { 
-    background: rgba(255, 255, 255, 0.18); 
+  .btn-pill:hover {
+    background: rgba(255, 255, 255, 0.18);
     border-color: rgba(147, 197, 253, 0.5);
-    transform: translateY(-1px); 
+    transform: translateY(-1px);
   }
   .progress-wrap {
     flex: 1;
@@ -308,7 +308,7 @@
     box-shadow: 0 0 10px #38bdf8;
   }
 </style>
-<link rel="stylesheet" href="css/footer.css?v2.6.435">
+<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
 </head>
 <body>
 
@@ -341,7 +341,7 @@
   <button class="btn-circle" id="playBtn">▶</button>
   <button class="btn-pill" id="sceneBtn">Scene: Auto Cycle 🔄</button>
   <button class="btn-pill" id="vhsBtn">CRT: ON 📺</button>
-  
+
   <div class="progress-wrap">
     <div class="progress-bar-bg" id="progressBarBg">
       <div class="progress-bar-fill" id="progressBarFill"></div>
@@ -608,7 +608,7 @@ function updateLyrics() {
       // Direct viewport coordinates because micBouncer is position: fixed
       const rect = activeWordSpan.getBoundingClientRect();
       const targetX = rect.left + (rect.width / 2);
-      
+
       // Placed directly UNDERNEATH the word with tempo-synced beat bounce
       const beat = (t * (172 / 60)) % 1;
       const hopY = Math.sin(beat * Math.PI) * 4;
@@ -692,8 +692,8 @@ window.addEventListener('keydown', (e) => {
   }
 });
 </script>
-<footer><p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+<footer><p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 </footer>
 </body>
 </html>

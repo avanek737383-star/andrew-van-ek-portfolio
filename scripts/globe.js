@@ -45,133 +45,133 @@
     var textureBtn = document.getElementById("hud-texture-btn");
     var filterPills = document.querySelectorAll(".filter-pill");
 
-    // Tier 1 Global Internet Exchange Points (IXPs)
+    // Interconnection reference locations
     var ixpNodes = [
         {
             id: "ixp-ashburn",
             name: "Equinix Ashburn (DC1 - DC15)",
             category: "ixp",
-            type: "Tier 1 Global Internet Exchange",
-            status: "70% World Internet Traffic",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: 39.0438,
             lng: -77.4874,
             color: "#ec4899",
             size: 0.85,
-            throughput: "70+ Tbps Interconnect",
+            throughput: "Not measured by this site",
             location: "Ashburn, Virginia, USA (Data Center Capital of the World)",
-            specs: "Northern Virginia hyperscale ecosystem interconnecting major subsea cable landings, AWS us-east-1, Azure East US, and transatlantic fiber trunks."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-frankfurt",
             name: "DE-CIX Frankfurt",
             category: "ixp",
-            type: "Tier 1 European Internet Exchange",
-            status: "17+ Tbps Peak Throughput",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: 50.1109,
             lng: 8.6821,
             color: "#ec4899",
             size: 0.85,
-            throughput: "17.4 Tbps Peak Traffic",
+            throughput: "Not measured by this site",
             location: "Frankfurt am Main, Germany",
-            specs: "Leading European interconnection platform connecting over 1,100 national and international carrier networks across Central Europe."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-amsterdam",
             name: "AMS-IX Amsterdam",
             category: "ixp",
-            type: "Tier 1 European Internet Exchange",
-            status: "11+ Tbps Peak Traffic",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: 52.3676,
             lng: 4.9041,
             color: "#ec4899",
             size: 0.8,
-            throughput: "11.6 Tbps Peak Traffic",
+            throughput: "Not measured by this site",
             location: "Amsterdam, Netherlands",
-            specs: "Crucial European digital gateway connecting Atlantic cable landings to Scandinavia, the Baltic, and continental Europe."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-london",
             name: "LINX London Internet Exchange",
             category: "ixp",
-            type: "Tier 1 UK Internet Exchange",
-            status: "8.5+ Tbps Peak Traffic",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: 51.5074,
             lng: -0.1278,
             color: "#ec4899",
             size: 0.8,
-            throughput: "8.5 Tbps Peak Traffic",
+            throughput: "Not measured by this site",
             location: "London, United Kingdom",
-            specs: "Core UK peering exchange terminating subsea routes from Bude, Cornwall and transatlantic coastal landings."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-tokyo",
             name: "JPNAP / BBIX Tokyo",
             category: "ixp",
-            type: "Tier 1 Asia-Pacific Internet Exchange",
-            status: "5+ Tbps Peak Traffic",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: 35.6762,
             lng: 139.6503,
             color: "#ec4899",
             size: 0.8,
-            throughput: "5.8 Tbps Peak Traffic",
+            throughput: "Not measured by this site",
             location: "Tokyo, Japan",
-            specs: "Primary Pacific gateway routing transpacific subsea links to East Asia, Korea, and Southeast Asian data corridors."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-singapore",
             name: "Equinix / SGIX Singapore",
             category: "ixp",
-            type: "Tier 1 Southeast Asia Hub",
-            status: "4+ Tbps Peak Traffic",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: 1.3521,
             lng: 103.8198,
             color: "#ec4899",
             size: 0.8,
-            throughput: "4.2 Tbps Peak Traffic",
+            throughput: "Not measured by this site",
             location: "Singapore",
-            specs: "Premier Southeast Asian maritime cable hub connecting 20+ international submarine cables traversing the Malacca Strait."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-sydney",
             name: "Mega-IX / Equinix Sydney",
             category: "ixp",
-            type: "Tier 1 Oceanic Internet Exchange",
-            status: "2+ Tbps Peak Traffic",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: -33.8688,
             lng: 151.2093,
             color: "#ec4899",
             size: 0.8,
-            throughput: "2.4 Tbps Peak Traffic",
+            throughput: "Not measured by this site",
             location: "Sydney, New South Wales, Australia",
-            specs: "Principal Oceania subsea landing terminal routing transpacific links to New Zealand, Hawaii, and US West Coast."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-saopaulo",
             name: "IX.br Sao Paulo",
             category: "ixp",
-            type: "Tier 1 Latin America Exchange",
-            status: "22+ Tbps Peak Traffic",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: -23.5505,
             lng: -46.6333,
             color: "#ec4899",
             size: 0.8,
-            throughput: "22.8 Tbps Peak Traffic",
+            throughput: "Not measured by this site",
             location: "Sao Paulo, Brazil",
-            specs: "Largest Internet Exchange in Latin America, aggregating South Atlantic and South American subsea cable routes."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         },
         {
             id: "ixp-miami",
             name: "NAP of the Americas (Equinix MI1)",
             category: "ixp",
-            type: "Tier 1 Pan-American Peering Gateway",
-            status: "Subsea Americas Gateway",
+            type: "Interconnection reference",
+            status: "Reference location · not live monitored",
             lat: 25.7617,
             lng: -80.1918,
             color: "#ec4899",
             size: 0.8,
-            throughput: "Major Gateway to 148+ Countries",
+            throughput: "Not measured by this site",
             location: "Miami, Florida, USA",
-            specs: "Massive 750,000 sq ft carrier-neutral data center routing over 90% of Latin American and Caribbean traffic to North America."
+            specs: "Illustrative interconnection location. Coordinates and corridor links are approximate; this page does not verify traffic share, capacity, or facility footprint."
         }
     ];
 
@@ -318,7 +318,7 @@
             .pointRadius(function (d) { return d.size; })
             .pointAltitude(function (d) { return d.alt || 0.008; })
             .pointLabel(function (d) {
-                var categoryTag = d.category === "ixp" ? "Tier 1 Peering Exchange" : "Coastal Cable Landing Station";
+                var categoryTag = d.category === "ixp" ? "Interconnection reference" : "Coastal Cable Landing Station";
                 var tagColor = d.category === "ixp" ? "#ec4899" : "#fbbf24";
                 return "<div style='background:rgba(15,23,42,0.92);padding:6px 10px;border-radius:6px;border:1px solid " + tagColor + ";font-family:Inter,sans-serif;'><strong style='color:#f8fafc;'>" +
                     escapeHtml(d.name) + "</strong><div style='font-size:0.78rem;color:" + tagColor + ";margin-top:2px;'>" + categoryTag + " &middot; Click for street view</div></div>";
@@ -461,7 +461,7 @@
             if (badgePill) {
                 badgePill.innerHTML = "<span class='pulse-dot'></span> " +
                     allCables.length + " Subsea Cable Segments &middot; " +
-                    allLandings.length + " Landing Points &middot; Tier 1 IXPs";
+                    allLandings.length + " Landing Points &middot; Reference locations";
             }
         }).catch(function (err) {
             console.error("Error loading planetary data:", err);
@@ -527,11 +527,11 @@
         drawerDomainDot.style.background = cable.color || "#00f0ff";
         drawerTypeBadge.textContent = "Optical Subsea Fiber";
         drawerStatusBadge.className = "drawer-status-badge completed";
-        drawerStatusBadge.innerHTML = "<span>&#10003;</span> Active Route";
+        drawerStatusBadge.innerHTML = "<span>&#10003;</span> Mapped route · status not monitored";
 
         var summaryHtml = "<div class='cable-spec-grid'>" +
             "<div class='cable-spec-box'><div class='cable-spec-label'>Cable System</div><div class='cable-spec-value'>" + escapeHtml(cable.name) + "</div></div>" +
-            "<div class='cable-spec-box'><div class='cable-spec-label'>Telemetry ID</div><div class='cable-spec-value'>" + escapeHtml(cable.id) + "</div></div>" +
+            "<div class='cable-spec-box'><div class='cable-spec-label'>Dataset ID</div><div class='cable-spec-value'>" + escapeHtml(cable.id) + "</div></div>" +
             "<div class='cable-spec-box'><div class='cable-spec-label'>Geometry Nodes</div><div class='cable-spec-value'>" + cable.coords.length + " Coordinates</div></div>" +
             "<div class='cable-spec-box'><div class='cable-spec-label'>Optical Shader</div><div class='cable-spec-value' style='color:" + cable.color + ";'>" + cable.color + "</div></div>" +
             "</div>" +
@@ -541,8 +541,8 @@
         drawerTasksSection.style.display = "block";
         var taskTitle = document.querySelector("#drawer-tasks-section h3");
         if (taskTitle) taskTitle.textContent = "Cable System Overview";
-        drawerTasksList.innerHTML = "<li><strong>Physical Seabed Route:</strong> Mapped via <span class='tech-term' data-term='telegeography'>TeleGeography</span> geospatial telemetry.</li>" +
-            "<li><strong>Kinetic Photon Simulation:</strong> Dashed optical pulses indicate light signal propagation across continental corridors powered by <span class='tech-term' data-term='subsea-repeater'>underwater optical repeaters</span>.</li>";
+        drawerTasksList.innerHTML = "<li><strong>Physical Seabed Route:</strong> Imported geographic reference data; exact route, source date, and operational status are not verified by this animation.</li>" +
+            "<li><strong>Schematic Animation:</strong> Animated dots illustrate connectivity; their timing is not a measurement of packets or light propagation. Real optical systems may use <span class='tech-term' data-term='subsea-repeater'>underwater optical repeaters</span>.</li>";
 
         drawerTechSection.style.display = "block";
         drawerTechTags.innerHTML = "<span class='drawer-tech-tag tech-term' data-term='dwdm'>DWDM Optical</span><span class='drawer-tech-tag tech-term' data-term='subsea-fiber'>Subsea Fiber</span><span class='drawer-tech-tag tech-term' data-term='telegeography'>TeleGeography</span><span class='drawer-tech-tag tech-term' data-term='subsea-repeater'>Subsea Repeaters</span><span class='drawer-tech-tag tech-term' data-term='dark-fiber'>Dark Fiber</span>";
@@ -572,7 +572,7 @@
 
         if (pt.category === "ixp") {
             drawerDomain.textContent = "Global Internet Exchange Point (IXP)";
-            drawerTypeBadge.textContent = "Tier 1 Peering Fabric";
+            drawerTypeBadge.textContent = "Interconnection reference";
             drawerStatusBadge.className = "drawer-status-badge completed";
             drawerStatusBadge.innerHTML = "<span>&#10003;</span> " + pt.status;
 
@@ -591,7 +591,7 @@
                 "<li><strong>Transit Interconnect:</strong> Direct <span class='tech-term' data-term='optical-transit-arc'>optical cross-connects</span> between subsea fiber terminals and continental backbones via <span class='tech-term' data-term='bgp-peering'>BGP peering</span>.</li>";
 
             drawerTechSection.style.display = "block";
-            drawerTechTags.innerHTML = "<span class='drawer-tech-tag tech-term' data-term='ixp'>Tier 1 IXP</span><span class='drawer-tech-tag tech-term' data-term='bgp-peering'>BGP Peering</span><span class='drawer-tech-tag tech-term' data-term='tier-1-carrier'>Tier 1 Transit</span><span class='drawer-tech-tag tech-term' data-term='dwdm'>DWDM Optical</span><span class='drawer-tech-tag tech-term' data-term='tbps'>Tbps Throughput</span>";
+            drawerTechTags.innerHTML = "<span class='drawer-tech-tag tech-term' data-term='ixp'>Interconnection reference</span><span class='drawer-tech-tag tech-term' data-term='bgp-peering'>BGP Peering</span><span class='drawer-tech-tag tech-term' data-term='tier-1-carrier'>Transit network concept</span><span class='drawer-tech-tag tech-term' data-term='dwdm'>DWDM Optical</span><span class='drawer-tech-tag tech-term' data-term='tbps'>Tbps Throughput</span>";
 
             drawerProjectLink.href = "projects.html#interactive-3d-planetary-backbone-title";
             drawerProjectLink.textContent = "Read 3D Planetary Radar Project Writeup in Projects \u2192";

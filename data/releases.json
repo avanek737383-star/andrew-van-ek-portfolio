@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "lastAttemptAt": "2026-11-26T15:26:55+00:00",
+  "platforms": {
+    "windows": {
+      "version": "26H2",
+      "label": "Windows 11 26H2",
+      "channel": "Newest feature version listed; hardware/channel eligibility varies",
+      "source": "https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information",
+      "checkedAt": "2026-11-26T15:26:55+00:00",
+      "lastAttemptAt": "2026-11-26T15:26:55+00:00",
+      "status": "ok"
+    },
+    "linux": {
+      "version": "7.3.6",
+      "label": "Linux 7.3.6",
+      "channel": "Latest stable listed by kernel.org",
+      "source": "https://www.kernel.org/releases.json",
+      "checkedAt": "2026-11-26T15:26:55+00:00",
+      "lastAttemptAt": "2026-11-26T15:26:55+00:00",
+      "status": "ok"
+    },
+    "macos": {
+      "version": "27.2.1",
+      "label": "macOS 27.2.1",
+      "channel": "Newest product version in Apple security releases; device support varies",
+      "releaseDateText": "09 Nov 2026",
+      "source": "https://support.apple.com/en-us/100100",
+      "checkedAt": "2026-11-26T15:26:55+00:00",
+      "lastAttemptAt": "2026-11-26T15:26:55+00:00",
+      "status": "ok"
+    },
+    "ios": {
+      "version": "27.2.1",
+      "label": "iOS 27.2.1",
+      "channel": "Newest product version in Apple security releases; device support varies",
+      "releaseDateText": "09 Nov 2026",
+      "source": "https://support.apple.com/en-us/100100",
+      "checkedAt": "2026-11-26T15:26:55+00:00",
+      "lastAttemptAt": "2026-11-26T15:26:55+00:00",
+      "status": "ok"
+    },
+    "android": {
+      "version": "17.0.0_r1",
+      "label": "Android 17.0.0 \u00b7 AOSP r1",
+      "channel": "Latest numbered AOSP platform tag; this is not a handset rollout tracker",
+      "source": "https://android.googlesource.com/platform/build/+refs/tags?format=JSON",
+      "checkedAt": "2026-11-26T15:26:55+00:00",
+      "lastAttemptAt": "2026-11-26T15:26:55+00:00",
+      "status": "ok"
+    },
+    "freebsd": {
+      "version": "15.1",
+      "label": "FreeBSD 15.1-RELEASE",
+      "channel": "Production release listed by FreeBSD",
+      "source": "https://www.freebsd.org/releases/",
+      "checkedAt": "2026-11-26T15:26:55+00:00",
+      "lastAttemptAt": "2026-11-26T15:26:55+00:00",
+      "status": "ok"
+    }
+  },
+  "scope": "Primary-source snapshots. checkedAt changes only after a successful fetch and parse. Source layout changes or network failures keep the last verified value visibly stale."
+}

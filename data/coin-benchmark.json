@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-26T15:58:25.400Z",
+  "modelSha256": "f77b7e8f47fd748f6460791849299515eb9b38d353d21458e91b5fbf533df37f",
+  "scope": "Re-evaluation of the existing browser weights on newly generated synthetic sequences; no retraining and no physical-coin validation.",
+  "generator": "next = random() < persistence ? previous : opposite",
+  "runs": {
+    "fair": {
+      "n": 20000,
+      "seed": 20261126,
+      "persistence": 0.5,
+      "accuracy": 0.50705,
+      "bce": 0.7495076774955567,
+      "confusion": {
+        "tp": 5759,
+        "tn": 4382,
+        "fp": 5694,
+        "fn": 4165
+      },
+      "observedPersistence": 0.50185,
+      "alwaysRepeatAccuracy": 0.50185,
+      "wilson95": [
+        0.500120353745124,
+        0.5139769384469917
+      ]
+    },
+    "persistent": {
+      "n": 20000,
+      "seed": 20261126,
+      "persistence": 0.515,
+      "accuracy": 0.4981,
+      "bce": 0.7545453858580581,
+      "confusion": {
+        "tp": 5656,
+        "tn": 4306,
+        "fp": 5697,
+        "fn": 4341
+      },
+      "observedPersistence": 0.5158,
+      "alwaysRepeatAccuracy": 0.5158,
+      "wilson95": [
+        0.49117143387148715,
+        0.5050292958923398
+      ]
+    }
+  },
+  "archivedTraining": {
+    "final_train_loss": 0.6301,
+    "final_val_loss": 0.7035,
+    "final_train_acc": 63.94,
+    "final_val_acc": 52.58,
+    "eval_accuracy": 52.58,
+    "random_baseline": 50,
+    "status": "Historical validation snapshot. A separate seed-42 reconstruction matches its final confusion counts; this continuous-sequence benchmark does not reconstruct the optimization trajectory."
+  }
+}

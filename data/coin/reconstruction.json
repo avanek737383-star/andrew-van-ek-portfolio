@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-11-26T15:50:46.704352+00:00",
+  "method": "Reconstruction from the recovered generator with NumPy seed 42; existing saved weights evaluated without retraining.",
+  "rows": 6000,
+  "trainRows": 4800,
+  "validationRows": 1200,
+  "seed": 42,
+  "mixture": {
+    "alternation_rule": 2400,
+    "persistence_53pct": 1800,
+    "independent_fair": 1800
+  },
+  "scope": "Invented sequence rules. Not collected human choices, physical coin measurements, or proof of the original optimization run.",
+  "datasetSha256": "335333a126dbe7d1eb297a723cc7a0804a41116a35b29769819c6f4815a1f521",
+  "sourceSha256": "2069dfde60e2f27dd5b92f3606fe13d66303902715f3f74ee714f4359dc6c4c5",
+  "versions": {
+    "numpy": "2.4.6",
+    "torch": "2.13.0+cpu"
+  },
+  "reproducedValidation": {
+    "n": 1200,
+    "confusion": {
+      "tp": 361,
+      "tn": 270,
+      "fp": 322,
+      "fn": 247
+    },
+    "accuracy": 0.5258333333333334
+  },
+  "validationUse": "This split was monitored during the original 120 epochs; it is validation data, not an untouched final test set. New synthetic test runs are separate."
+}

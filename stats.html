@@ -9,7 +9,8 @@
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261121-nav-fix-1">
-<link rel="stylesheet" href="css/footer.css?v2.6.435">
+<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
+<link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body>
 	<div class="container">
@@ -27,7 +28,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
-						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
 						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
@@ -87,18 +88,18 @@
 			</div>
 		</header>
 
-				<main>
+				<main><section class="explain-card"><h2>What is measured here?</h2><p>Browser request timings include network, connection setup, server work, and browser scheduling. They are not physical signal speeds or measurements of an entire continent. Decorative MPH gauges use illustrative scales and assumed distances; their needles and percentages are not scientific measurements. Live counters represent service activity, while the six OS cards show dated primary-source checks.</p></section>
 			<!-- Global Internet Velocity & Continental Radar -->
 			<section class="global-internet-radar" id="global-internet-radar" aria-labelledby="global-radar-title">
 				<div class="telemetry-header">
 					<div class="telemetry-title-group">
 						<span class="telemetry-eyebrow">Macroscopic Telemetry &amp; Edge Velocity</span>
 						<h3 id="global-radar-title">Global Internet Velocity &amp; Continental Radar</h3>
-						<p class="telemetry-desc">Real-time macroscopic broadband throughput, transoceanic fiber routing, and Anycast edge round-trip latency monitored across continental hubs. 100% privacy-preserving public aggregate telemetry with zero raw IP tracking.</p>
+						<p class="telemetry-desc">The map is an illustrative geography display. Continental broadband, IPv6, route, and peak-window values are not measured by this site. Only regional service-activity counters are fetched from the gateway; they do not count unique people. See the privacy page for verified logging controls and provider limits.</p>
 					</div>
 					<div class="telemetry-status-box">
 						<span class="telemetry-live-badge"><span class="telemetry-pulse"></span> <span class="tech-term" data-term="encrypted-mesh">Global Mesh</span> Nominal</span>
-						<span class="telemetry-refresh-tag" id="radar-global-sessions">Synchronizing Sessions...</span>
+						<span class="telemetry-refresh-tag" id="radar-global-sessions">Loading activity counters…</span>
 					</div>
 				</div>
 
@@ -286,8 +287,8 @@
 							<!-- Continental Meta Grid -->
 							<div class="inspector-stats-grid">
 								<div class="inspector-stat-pill">
-									<span class="pill-eyebrow">Signal Speed (MPH)</span>
-									<strong class="pill-value" id="pill-rtt-val">~415M MPH (16ms)</strong>
+									<span class="pill-eyebrow">Regional RTT</span>
+									<strong class="pill-value" id="pill-rtt-val">Not measured</strong>
 								</div>
 								<div class="inspector-stat-pill">
 									<span class="pill-eyebrow">IPv6 Adoption</span>
@@ -295,7 +296,7 @@
 								</div>
 								<div class="inspector-stat-pill">
 									<span class="pill-eyebrow">Portfolio Footprint</span>
-									<strong class="pill-value" id="pill-visits-val">249 Sessions</strong>
+									<strong class="pill-value" id="pill-visits-val">Loading…</strong>
 								</div>
 								<div class="inspector-stat-pill">
 									<span class="pill-eyebrow">Regional Activity</span>
@@ -306,11 +307,11 @@
 							<!-- Interactive Edge Ping Probe Instrument -->
 							<div class="radar-probe-instrument">
 								<div class="probe-header">
-									<span class="probe-title">⚡ In-Browser Speed of Light Probe</span>
-									<button type="button" class="probe-run-btn" id="radar-probe-btn">Run Edge Ping</button>
+									<span class="probe-title">⚡ Browser Request Timing</span>
+									<button type="button" class="probe-run-btn" id="radar-probe-btn">Time Edge Request</button>
 								</div>
 								<div class="probe-result-box" id="radar-probe-result">
-									<span class="probe-ready-hint">Click &ldquo;Run Edge Ping&rdquo; to measure client round-trip handshake time to this continent's Anycast edge.</span>
+									<span class="probe-ready-hint">Click &ldquo;Time Edge Request&rdquo; to measure client round-trip handshake time to this continent's Anycast edge.</span>
 								</div>
 							</div>
 						</div>
@@ -395,7 +396,7 @@
 										<!-- Mathematically Exact Smooth Circular Arc (R=75, Center 130,115) -->
 										<path class="tach-track-bg" d="M 59.5 140.7 A 75 75 0 1 1 200.5 140.7" fill="none" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round"/>
 										<path class="tach-arc-smooth" d="M 59.5 140.7 A 75 75 0 1 1 200.5 140.7" fill="none" stroke="url(#tach-smooth-grad)" stroke-width="12" stroke-linecap="round"/>
-										
+
 										<!-- Ticks: 0, 150M, 300M, 450M, 600M+ MPH -->
 										<line x1="66" y1="138" x2="53" y2="143" stroke="#64748b" stroke-width="2"/>
 										<line x1="74" y1="76" x2="63" y2="68" stroke="#64748b" stroke-width="2"/>
@@ -453,7 +454,7 @@
 										<path class="speedo-track-bg" d="M 59.5 140.7 A 75 75 0 1 1 200.5 140.7" fill="none" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round"/>
 										<!-- Active Blue Ray shares exact same d-attribute with stroke-dasharray alignment -->
 										<path class="speedo-arc-active" id="speedo-arc-active" d="M 59.5 140.7 A 75 75 0 1 1 200.5 140.7" fill="none" stroke="#0284c7" stroke-width="12" stroke-linecap="round" stroke-dasharray="288" stroke-dashoffset="100"/>
-										
+
 										<!-- Ticks: 0, 30, 60, 80, 100, 120 MPH -->
 										<line x1="66" y1="138" x2="53" y2="143" stroke="#64748b" stroke-width="2"/>
 										<line x1="74" y1="76" x2="63" y2="68" stroke="#64748b" stroke-width="2"/>
@@ -686,157 +687,26 @@
 					</div>
 				</section>
 
-			<section class="home-os-tracker" id="home-os-tracker" aria-labelledby="os-tracker-title">
-					<div class="os-tracker-header">
-						<div class="os-tracker-title-group">
-							<span class="os-tracker-eyebrow">Public Software Ecosystem</span>
-							<h3 id="os-tracker-title">Latest Operating System &amp; Kernel Releases</h3>
-							<p class="os-tracker-desc">Automated telemetry tracking current stable releases across primary desktop, mobile, and homelab server platforms. Updated daily from official public feeds.</p>
-						</div>
-						<div class="os-tracker-badge-box">
-							<span class="os-tracker-live-pill"><span class="os-pulse"></span> Daily Public Sync</span>
-							<span class="os-tracker-date-tag" id="os-tracker-timestamp">October 22, 2026</span>
-						</div>
-					</div>
+<section class="explain-card" id="home-os-tracker" aria-labelledby="os-tracker-title"><span class="explain-label">PRIMARY-SOURCE RELEASE CHECKS</span><h2 id="os-tracker-title">What versions are the publishers listing?</h2><p>These are source snapshots checked automatically by the portfolio host. Each card shows its own last successful check. An unsuccessful fetch or changed source layout keeps the old result visibly stale instead of changing its date to today.</p><p id="os-tracker-timestamp" role="status">Loading source checks…</p><div class="explain-grid">
+<article class="os-card"><h3>Windows 11</h3><strong id="os-ver-windows">Waiting for source data</strong><p><a href="https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information">Microsoft release information →</a></p></article>
+<article class="os-card"><h3>Linux kernel</h3><strong id="os-ver-linux">Waiting for source data</strong><p><a href="https://www.kernel.org/releases.json">kernel.org stable release data →</a></p></article>
+<article class="os-card"><h3>macOS</h3><strong id="os-ver-macos">Waiting for source data</strong><p><a href="https://support.apple.com/en-us/100100">Apple security releases →</a></p></article>
+<article class="os-card"><h3>iOS</h3><strong id="os-ver-ios">Waiting for source data</strong><p><a href="https://support.apple.com/en-us/100100">Apple security releases →</a></p></article>
+<article class="os-card"><h3>Android platform source</h3><strong id="os-ver-android">Waiting for source data</strong><p><a href="https://android.googlesource.com/platform/build/+refs/tags">Official AOSP release tags →</a></p></article>
+<article class="os-card"><h3>FreeBSD</h3><strong id="os-ver-freebsd">Waiting for source data</strong><p><a href="https://www.freebsd.org/releases/">FreeBSD production releases →</a></p></article>
+</div><details><summary>What does “current” mean here?</summary><p>A successful source check within the last 48 hours is labeled current. The host attempts a new release check daily. Vendor pages, device eligibility, staged rollouts, and AOSP source tags are different things; a listed version is not a recommendation to install it on every device.</p><a href="data/releases.json">Download the source URLs, values, and check timestamps →</a></details></section>
 
-					<div class="os-tracker-grid">
-						<!-- Windows -->
-						<div class="os-card">
-							<div class="os-card-header">
-								<div class="os-icon os-icon-windows" aria-hidden="true">
-									<svg width="22" height="22" viewBox="0 0 88 88" fill="currentColor"><path d="M0 0h41.7v41.7H0zm46.3 0H88v41.7H46.3zM0 46.3h41.7V88H0zm46.3 0H88V88H46.3z"/></svg>
-								</div>
-								<div>
-									<h4 class="os-name">Windows</h4>
-									<span class="os-distro">Microsoft</span>
-								</div>
-							</div>
-							<div class="os-version-wrap">
-								<strong class="os-version" id="os-ver-windows">11 26H2</strong>
-								<span class="os-channel">Current Stable (Build 27xxx / 26H2)</span>
-							</div>
-							<div class="os-footer-meta">
-								<span>Prior: 11 24H2 &bull; Legacy: 10 22H2</span>
-								<a href="https://learn.microsoft.com/en-us/windows/release-health/release-information" target="_blank" rel="noopener noreferrer" class="os-link">Changelog &rarr;</a>
-							</div>
-						</div>
-
-						<!-- Linux Kernel -->
-						<div class="os-card">
-							<div class="os-card-header">
-								<div class="os-icon os-icon-linux" aria-hidden="true">
-									<svg width="22" height="22" viewBox="0 0 448 512" fill="currentColor"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"/></svg>
-								</div>
-								<div>
-									<h4 class="os-name">Linux Kernel</h4>
-									<span class="os-distro">kernel.org</span>
-								</div>
-							</div>
-							<div class="os-version-wrap">
-								<strong class="os-version" id="os-ver-linux">v6.18.x</strong>
-								<span class="os-channel" id="os-linux-channel">Mainline / Active Stable</span>
-							</div>
-							<div class="os-footer-meta">
-								<span>LTS: 6.6.x / 6.1.x</span>
-								<a href="https://www.kernel.org" target="_blank" rel="noopener noreferrer" class="os-link">kernel.org &rarr;</a>
-							</div>
-						</div>
-
-						<!-- macOS -->
-						<div class="os-card">
-							<div class="os-card-header">
-								<div class="os-icon os-icon-apple" aria-hidden="true">
-									<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.15c.61-.74 1.03-1.77.91-2.8-.88.04-1.95.59-2.58 1.33-.55.64-1.03 1.69-.9 2.7.99.08 2-.51 2.57-1.23"/></svg>
-								</div>
-								<div>
-									<h4 class="os-name">macOS</h4>
-									<span class="os-distro">Apple Inc.</span>
-								</div>
-							</div>
-							<div class="os-version-wrap">
-								<strong class="os-version" id="os-ver-macos">macOS 27.x</strong>
-								<span class="os-channel">Current Production</span>
-							</div>
-							<div class="os-footer-meta">
-								<span>Prior: macOS 26.x &bull; Jumped from 15.x</span>
-								<a href="https://support.apple.com/en-us/HT201222" target="_blank" rel="noopener noreferrer" class="os-link">Apple Support &rarr;</a>
-							</div>
-						</div>
-
-						<!-- iOS / iPadOS -->
-						<div class="os-card">
-							<div class="os-card-header">
-								<div class="os-icon os-icon-ios" aria-hidden="true">
-									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-								</div>
-								<div>
-									<h4 class="os-name">iOS &amp; iPadOS</h4>
-									<span class="os-distro">Apple Mobile</span>
-								</div>
-							</div>
-							<div class="os-version-wrap">
-								<strong class="os-version" id="os-ver-ios">iOS 20.x</strong>
-								<span class="os-channel">Current Production</span>
-							</div>
-							<div class="os-footer-meta">
-								<span>Prior: iOS 19.x &bull; Legacy: iOS 18.x</span>
-								<a href="https://support.apple.com/en-us/HT201222" target="_blank" rel="noopener noreferrer" class="os-link">Release Notes &rarr;</a>
-							</div>
-						</div>
-
-						<!-- Android -->
-						<div class="os-card">
-							<div class="os-card-header">
-								<div class="os-icon os-icon-android" aria-hidden="true">
-									<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1-.449 1-1 1m-11.046 0c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1-.449 1-1 1m11.405-6.02l1.997-3.46a.416.416 0 00-.152-.567.416.416 0 00-.568.152l-2.022 3.503c-1.428-.65-3.045-1.01-4.767-1.01s-3.339.36-4.767 1.01l-2.022-3.503a.417.417 0 00-.568-.152.416.416 0 00-.152.567l1.997 3.46C3.255 10.74 1.5 13.68 1.5 17.1h21c0-3.42-1.755-6.36-4.618-7.779"/></svg>
-								</div>
-								<div>
-									<h4 class="os-name">Android</h4>
-									<span class="os-distro">Google / AOSP</span>
-								</div>
-							</div>
-							<div class="os-version-wrap">
-								<strong class="os-version" id="os-ver-android">Android 16 / 17</strong>
-								<span class="os-channel">Current Production (API 36 / 37)</span>
-							</div>
-							<div class="os-footer-meta">
-								<span>Prior: Android 15 (API 35)</span>
-								<a href="https://source.android.com/docs/setup/about/build-numbers" target="_blank" rel="noopener noreferrer" class="os-link">AOSP Builds &rarr;</a>
-							</div>
-						</div>
-
-						<!-- FreeBSD -->
-						<div class="os-card">
-							<div class="os-card-header">
-								<div class="os-icon os-icon-freebsd" aria-hidden="true">
-									<svg width="22" height="22" viewBox="0 0 448 512" fill="currentColor"><path d="M303.7 96.2c11.1-11.1 115.5-77 139.2-53.2 23.7 23.7-42.1 128.1-53.2 139.2-11.1 11.1-39.4.9-63.1-22.9-23.8-23.7-34.1-52-22.9-63.1zM109.9 68.1C73.6 47.5 22 24.6 5.6 41.1c-16.6 16.6 7.1 69.4 27.9 105.7 18.5-32.2 44.8-59.3 76.4-78.7zM406.7 174c3.3 11.3 2.7 20.7-2.7 26.1-20.3 20.3-87.5-27-109.3-70.1-18-32.3-11.1-53.4 14.9-48.7 5.7-3.6 12.3-7.6 19.6-11.6-29.8-15.5-63.6-24.3-99.5-24.3-119.1 0-215.6 96.5-215.6 215.6 0 119 96.5 215.6 215.6 215.6S445.3 380.1 445.3 261c0-38.4-10.1-74.5-27.7-105.8-3.9 7-7.6 13.3-10.9 18.8z"/></svg>
-								</div>
-								<div>
-									<h4 class="os-name">FreeBSD</h4>
-									<span class="os-distro">The FreeBSD Project</span>
-								</div>
-							</div>
-							<div class="os-version-wrap">
-								<strong class="os-version" id="os-ver-freebsd">14.3 / 15.0-RELEASE</strong>
-								<span class="os-channel">Production STABLE</span>
-							</div>
-							<div class="os-footer-meta">
-								<span>Legacy: 14.2-RELEASE</span>
-								<a href="https://www.freebsd.org/releases/" target="_blank" rel="noopener noreferrer" class="os-link">FreeBSD.org &rarr;</a>
-							</div>
-						</div>
-					</div>
-				</section>
 		</main>
 
 		<footer>
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/room-sensors.js" defer></script>
-	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
+	<script src="scripts/room-sensors.js?v=20261126-accuracy-436" defer></script>
+	<script src="scripts/release-panel.js?v=20261126-accuracy-436"></script>
+<script src="scripts/script.js?v=20261126-accuracy-436"></script>
 </body>
 </html>

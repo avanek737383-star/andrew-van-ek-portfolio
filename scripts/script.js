@@ -711,46 +711,14 @@
 	}
 
 	var TECH_ANALOGIES = {
-		"training-bias": {
-			title: "Training Bias (Skewed Practice Material)",
-			analogy: "Teaching an apprentice chef how to cook for a restaurant, but only ever giving them recipes for frosted birthday cakes—when a customer suddenly orders a steak and baked potato, the chef gets confused and pours sugar and vanilla frosting all over the beef.",
-			techFact: "When an AI model is trained mostly on examples from one specific demographic or background, it makes inaccurate, erratic predictions whenever it encounters anyone outside that group."
-		},
-		"word-embeddings": {
-			title: "Vector Embeddings (The Kitchen Spice Rack)",
-			analogy: "Organizing an enormous spice cabinet by flavor: sweet baking spices like cinnamon, nutmeg, and allspice live right next to each other on the top shelf, while garlic powder, dried oregano, and crushed red pepper sit together on the savory rack. If you reach for a random jar near cinnamon, you are almost guaranteed to pull out something sweet.",
-			techFact: "High-dimensional coordinate maps where computers convert words or tokens into numbers. Concepts used in similar contexts sit near each other in geometric vector space."
-		},
-		"disparate-impact": {
-			title: "Disparate Impact (Unfair Passing Rates / The 80% Rule)",
-			analogy: "A bowling alley requiring every single bowler to reach a hand-dryer mounted 7 feet high before they can step onto a lane. On paper, it sounds like one universal rule for everyone—in practice, it quietly locks out almost every child under age 12, even though height has zero connection to throwing a strike.",
-			techFact: "A legal and statistical benchmark: if the approval rate for a protected demographic group is less than 80% (four-fifths) of the highest-performing group's rate, the algorithm is flagged for systemic disparate impact."
-		},
-		"equal-opportunity-diff": {
-			title: "Equal Opportunity Difference",
-			analogy: "Two students who studied the exact same 20 hours for a driving exam driving the identical test route. One tester passes their student with flying colors, while the other tester fails theirs for taking an extra two seconds to parallel park.",
-			techFact: "Measures whether equally qualified candidates from different demographic groups have the exact same True Positive probability of being approved by the model."
-		},
-		"smote-resampling": {
-			title: "SMOTE (Balancing Empty Shelves)",
-			analogy: "A school history teacher noticing their textbook has 40 chapters about ancient Rome and only half a page about ancient Peru. To keep students from thinking Peru never existed, the teacher writes extra study guides and class handouts so students spend equal time learning both civilizations.",
-			techFact: "Synthetic Minority Over-sampling Technique: creates synthetic, realistic variations between existing underrepresented data points to prevent algorithms from ignoring minority groups."
-		},
-		"decision-threshold": {
-			title: "Decision Threshold (The Pass/Fail Line)",
-			analogy: "Setting the high jump crossbar at track tryouts: lower the bar to 2 feet and virtually everyone makes the team (including folks who cannot jump); raise the bar to 7 feet and you turn away championship athletes having a slightly windy day.",
-			techFact: "The numerical confidence cutoff (such as 0.50 or 0.65) where a model divides predictions into 'Approved' vs 'Rejected'. Shifting this line directly re-balances false alarms against missed opportunities."
-		},
-		"demographic-parity": {
-			title: "Demographic Parity (Equal Representation)",
-			analogy: "Handing out concert backstage passes equally across every row in the stadium, rather than letting the front row monopolize every single lanyard.",
-			techFact: "Requires that the overall approval percentage is equal across demographic groups, regardless of differences in historical qualification base rates."
-		},
-		"nullspace-debiasing": {
-			title: "Nullspace Debiasing (The Blind Audition Curtain)",
-			analogy: "Grading symphony orchestra tryouts from behind an opaque cloth curtain: judges can hear the musician's tempo, pitch, tone, and musicality with crystal clarity, but they cannot see their age, gender, clothing, or pedigree.",
-			techFact: "Mathematically projects embedding vectors into a subspace perpendicular to identified bias axes, erasing demographic associations without degrading the core semantic meaning of words."
-		},
+		"training-bias": {title: "Training-data bias", analogy: "An apprentice who practices only one type of repair may struggle when a different job arrives.", techFact: "Unrepresentative examples, problematic labels, objectives, or deployment choices can produce systematically different errors across groups. The effect must be measured; it is not inevitable for every unfamiliar example."},
+		"word-embeddings": {title: "Embeddings", analogy: "A catalog places related books near one another so they are easier to compare.", techFact: "Embeddings encode items as numeric vectors. Nearby vectors can reflect learned relationships, but similarity is not proof of truth, identity, or fairness."},
+		"disparate-impact": {title: "Selection-rate differences", analogy: "Two queues may use the same rule yet let very different proportions through. Count both proportions before drawing a conclusion.", techFact: "A selection-rate ratio compares group selection rates, not individual scores. A four-fifths screening rule is context-dependent and is not a universal legal or fairness verdict."},
+		"equal-opportunity-diff": {title: "Qualified-applicant selection gap", analogy: "Of the qualified people in each queue, what fraction was admitted? Compare those fractions.", techFact: "The gap compares true positive rates across groups. It does not compare individual qualifications or settle every fairness concern."},
+		"smote-resampling": {title: "SMOTE oversampling", analogy: "When one category has few practice examples, a method can interpolate additional examples between nearby existing records.", techFact: "SMOTE synthesizes minority-class training samples in feature space. A minority class is not necessarily a demographic group; synthetic examples can be poor and fairness is not guaranteed."},
+		"decision-threshold": {title: "Decision cutoff", analogy: "Lowering an exam pass mark passes more students; raising it passes fewer. You still need to check which decisions are wrong.", techFact: "A cutoff turns a score into a decision. Changing it can trade false positives against false negatives without improving the score model itself."},
+		"demographic-parity": {title: "Equal selection rates", analogy: "Compare the percentage admitted from each queue, rather than simply admitting the same number from queues of different sizes.", techFact: "Demographic parity concerns equal selection rates across groups. It is one fairness criterion and may conflict with other goals or ignore differences in error costs."},
+		"nullspace-debiasing": {title: "Representation projection", analogy: "Removing one visible clue from an application does not remove every other clue that might reveal the same information.", techFact: "Projection can reduce a specified linear association in an embedding. It does not guarantee removal of all demographic information or preservation of all useful meaning."},
 				"websocket-keepalive": {
 			title: "WebSocket Keepalive Ping-Pong Heartbeat",
 			analogy: "A busy bank teller shouting 'Are you still in line?' every 20 seconds while you are heads-down filling out a detailed deposit slip. If you are too focused on writing and do not shout back 'Yes, still here!' in time, the teller assumes you walked out, shreds your ticket, and calls the next customer. Having a dedicated listener thread is like having an assistant standing right next to you who instantly shouts 'Still here!' the moment the teller asks, so you never lose your place.",
@@ -761,16 +729,8 @@
 			analogy: "A student solving a math test where every single equation is answered 100% correctly, but the classroom clock runs 5 minutes fast. Even though every answer is mathematically flawless, the proctor marks 40% of the exam papers as disqualified simply because the bell rang before the paper hit the turn-in basket.",
 			techFact: "Mining pools only credit shares returned before the job expiration or socket timeout. Delayed submissions result in stale or rejected shares even if the computed mathematical nonce is completely valid."
 		},
-		"single-core-starvation": {
-			title: "Single-Core CPU UI Starvation",
-			analogy: "A one-person neighborhood bakery where the lone baker has to knead dough in the back kitchen and ring up customers at the cash register. If they start kneading a massive batch of bread and refuse to look up for 30 minutes, customers standing at the counter assume the shop is abandoned and walk out.",
-			techFact: "On single-core processors without hyperthreading, a CPU-bound compute loop starves the operating system event loop, freezing user interface rendering, touch inputs, and background network sockets."
-		},
-		"event-loop-yielding": {
-			title: "Event-Loop Yielding (Chunked setTimeout)",
-			analogy: "That same lone baker rolling exactly 5 dinner rolls, pausing for 2 seconds to smile and greet whoever just walked through the front door, and then rolling the next 5 rolls—getting all the bread baked without ignoring a single customer.",
-			techFact: "Breaking intense cryptographic computation into discrete batches and yielding control via setTimeout allows the browser's single thread to service rendering, garbage collection, and keepalive network packets."
-		},
+		"single-core-starvation": {title: "A blocked application thread", analogy: "A clerk who never pauses a long calculation cannot respond to the next customer in the same queue.", techFact: "A long task on a browser main thread can delay its UI and callbacks on any CPU. This is different from claiming that a single-core operating system cannot schedule other processes."},
+		"event-loop-yielding": {title: "Letting the browser handle other work", analogy: "A clerk handles a few items, then checks the next queue before continuing.", techFact: "Splitting long JavaScript work into scheduled chunks can give the browser chances to process UI tasks. Web Workers are another option; timer delays are not strict timing guarantees."},
 		"reverse-proxy-gateway": {
 			title: "Reverse Proxy Bridge",
 			analogy: "A multilingual hotel concierge standing between a vintage traveler who only writes letters with fountain pens in 19th-century Latin, and a modern airport check-in desk that only scans encrypted digital boarding passes on smartphones. The concierge takes the handwritten letter, stamps it with the hotel's certified seal, sends an official wire dispatch to the airline, and hands the traveler their confirmed paper boarding pass.",
@@ -786,11 +746,7 @@
 			analogy: "A group of friends earning tiny copper pennies by solving mini crossword puzzles on cheap pocket notepads, rather than needing an entire factory of industrial laser printers to print currency.",
 			techFact: "An accessible, low-power cryptocurrency designed to be mined on microcontrollers, vintage smartphones, and mobile devices using lightweight SHA-1 algorithms without heavy electrical draw."
 		},
-		"diskless-ram": {
-			title: "Diskless RAM Overlay (Running on Pure Memory)",
-			analogy: "Working entirely on a clean dry-erase whiteboard rather than carving words into a brittle stone slab: you can write, erase, and draw at lightning speed, and if the power cuts out, you just wipe the board clean without cracking any stone.",
-			techFact: "Operating system runtimes (like custom Slax Linux) that load entirely into physical RAM memory from a USB flash drive. The system operates completely without spinning mechanical hard drives, immune to disk wear or filesystem corruption."
-		},
+		"diskless-ram": {title: "A RAM-backed operating system", analogy: "Working on a whiteboard reduces notebook writes, but unsaved changes disappear when the board is wiped.", techFact: "A RAM overlay can reduce disk writes and keep volatile runtime data in memory. Boot media, saved persistence, power loss, and other storage can still fail."},
 
 		"cache-archive": {
 			title: "Cache Archives & Temporary Clutter",
@@ -826,76 +782,36 @@
 		"browser-session": {"title": "Keeping the browser independent", "analogy": "Putting the browser on its own power switch, so turning off the image generator does not switch off the browser too.", "techFact": "The launcher starts the browser with setsid in a separate process session. Ctrl+C reaches the terminal process group and stops the model server without signaling the detached browser."},
 		"homebrew": {"title": "Homebrew on Linux", "analogy": "Another app shelf with its own update button, alongside the apps managed by Debian.", "techFact": "Homebrew is a package manager. This Linux installation belongs to the brew account and is updated separately from Debian packages."},
 		"usb-persistence": {"title": "Saving Slax changes to USB", "analogy": "Saving the document and waiting for the USB activity to finish before walking away.", "techFact": "Slax stores these changes in its USB-backed persistent filesystem. Flushing asks the operating system to write pending data to storage; it does not replace a reboot verification."},
-		"gigabit-ethernet": {
-			title: "Gigabit Ethernet (1 Gbps)",
-			analogy: "A dedicated multi-lane private highway directly connecting two buildings with a 1,000 mph speed limit. Unlike Wi-Fi (which acts like shouting across a noisy, crowded cafeteria), Ethernet is a physical cord completely immune to walls, weather, or radio interference.",
-			techFact: "A physical wired standard delivering up to 1,000 Megabits (~125 MB) per second with continuous sub-millisecond local latency."
-		},
-				"encrypted-mesh": {
-			title: "Encrypted Mesh Network (Tailscale / WireGuard)",
-			analogy: "Think of an invisible, private underground tunnel connecting only your own personal devices. Even if your phone is in a coffee shop in Chicago, your laptop is in a hotel, and your server is in your home in Michigan, they whisper to each other through scrambled codes that no outsider, ISP, or hacker can intercept or eavesdrop on.",
-			techFact: "A peer-to-peer overlay network built on modern WireGuard cryptography (ChaCha20-Poly1305 authentication). Nodes establish direct, authenticated UDP links across NATs and firewalls without routing traffic through vulnerable public ports."
-		},
+		"gigabit-ethernet": {title: "Gigabit Ethernet", analogy: "A dedicated road avoids sharing the airwaves, but its actual speed still depends on the endpoints and traffic.", techFact: "Gigabit Ethernet has a nominal 1 Gbit/s link rate. Useful throughput and latency depend on hardware, protocol overhead, cabling, congestion, and the rest of the path."},
+				"encrypted-mesh": {title: "An encrypted device network", analogy: "A sealed delivery protects the contents in transit; it does not secure a compromised sender or recipient.", techFact: "Authenticated encrypted links protect traffic between configured devices. Access policies, endpoint security, and application trust still matter."},
 		"confusion-matrix": {
 			title: "Confusion Matrix (Decision Tally Sheet)",
 			analogy: "Like an automated optical quality-control scanner inspecting smartphones on an assembly line: it doesn't just grade whether the camera was 'right or wrong', it breaks down every single decision into four specific piles—catching real cracked screens before shipping (True Positives), waving through flawless phones to packaging (True Negatives), sounding false alarms on a harmless speck of dust (False Positives), and loose buttons that accidentally slipped past (False Negatives).",
 			techFact: "A 2x2 contingency table tabulating True Positives (TP), False Positives (FP), True Negatives (TN), and False Negatives (FN) to expose classification blindspots."
 		},
-		"precision-score": {
-			title: "Precision (The 'Wolf Cry / Trust' Score)",
-			analogy: "Like a spam filter: when it flags an email as Spam, how often is it truly junk versus accidentally throwing away an urgent note from your boss? High precision means when the AI sounds an alarm, you can bet money it's right.",
-			techFact: "TP / (TP + FP). Measures the ratio of true positive outcomes among all positive predictions made by the model."
-		},
-		"recall-score": {
-			title: "Recall / Sensitivity (The 'Safety Net / Catch' Score)",
-			analogy: "Like a smoke detector in your home: out of all the fires that could break out, how many does the detector successfully catch without sleeping through a single one? High recall means virtually nothing slips past.",
-			techFact: "TP / (TP + FN). Also known as the True Positive Rate (TPR), measuring the proportion of actual positives that were correctly discovered."
-		},
+		"precision-score": {title: "Precision", analogy: "Of the alarms raised, how many were real cases?", techFact: "Precision is TP/(TP+FP), when that denominator is nonzero. A high value is not a guarantee that an individual prediction is correct."},
+		"recall-score": {title: "Recall", analogy: "Of all the real cases, how many were found?", techFact: "Recall is TP/(TP+FN), when defined. It says nothing by itself about the number of false alarms."},
 		"specificity-score": {
 			title: "Specificity (The 'Calm Guard Dog' Score)",
 			analogy: "Like a well-trained guard dog: out of all the harmless neighborhood mail carriers who walk past the house, how good is the dog at staying calm and NOT barking? High specificity means low false alarms.",
 			techFact: "TN / (TN + FP). The True Negative Rate (TNR), evaluating how effectively a classifier avoids incorrectly flagging negative instances."
 		},
-		"f1-score": {
-			title: "F1-Score (The Balanced Gold Standard)",
-			analogy: "Like evaluating a baseball hitter by both home runs AND avoiding strikeouts: a player who only steps up to bat once a season and hits one home run has a 1.000 average, but is useless to the team. The F1-score prevents the AI from cheating by taking the harmonic mean of aggressive catching (Recall) and cautious accuracy (Precision).",
-			techFact: "Harmonic mean 2 * (Precision * Recall) / (Precision + Recall). Punishes extreme imbalances between false positives and false negatives."
-		},
-		"mcc-score": {
-			title: "Matthews Correlation Coefficient (The 'No-Cheating' Report Card)",
-			analogy: "Like a test grader that penalizes blind guessing: even if a true/false exam is 95% 'True' and a lazy student writes 'True' on every single answer, MCC gives them a 0. It runs on a scale from -1.0 to +1.0, where 0 is random guessing and +1.0 is a 100% genuine psychic.",
-			techFact: "Balanced correlation coefficient taking all four quadrants of the confusion matrix into account; robust against severe class imbalances."
-		},
-		"shannon-entropy": {
-			title: "Shannon Information Entropy (The 'Surprise / Chaos' Meter)",
-			analogy: "Like the weather forecast in the Sahara desert versus Michigan in April: predicting sunshine in the Sahara has zero surprise (0 bits entropy). But predicting Michigan weather has maximum chaos and high surprise (~1.0 bit entropy). High entropy means the coin flips are pure wild chaos; low entropy means there is an obvious pattern.",
-			techFact: "H(X) = - sum(p * log2(p)). Formulated by Claude Shannon in 1948 to quantify fundamental uncertainty in information theory, capped at 1.0 bit for fair coins."
-		},
+		"f1-score": {title: "Precision/recall harmonic mean", analogy: "A detector should both find real cases and avoid sounding too many false alarms. One score can summarize those two rates.", techFact: "F1 is 2PR/(P+R) when defined. It ignores true negatives, does not directly measure sample size or fairness, and is not universally the best metric."},
+		"mcc-score": {title: "Matthews correlation coefficient", analogy: "A report card can consider all four kinds of classification outcome instead of only the most common answer.", techFact: "MCC summarizes correlation between binary labels and predictions using the confusion matrix. Its range is -1 to 1 when defined; implementation conventions handle degenerate cases."},
+		"shannon-entropy": {title: "Binary outcome-balance entropy", analogy: "A bag with equal red and blue tokens has a balanced mix. An alternating red-blue arrangement can still be completely predictable.", techFact: "This page calculates H(p) from the proportion of heads and tails. It ranges from 0 to 1 bit and ignores order, so a value of 1 does not prove independence or randomness."},
 		"bce-loss": {
 			title: "Binary Cross-Entropy Loss (The 'Shock & Penalty' Score)",
 			analogy: "Like betting money with your friends: if you bet $100 with supreme confidence that a coin will land Heads, and it lands Tails, you lose your shirt (huge loss penalty). But if you say 'I think it might be Heads, but I'm only 52% sure', the penalty for missing is gentle. Loss measures how shocked and punished the AI is when its predictions miss reality.",
 			techFact: "L = - [y * log(yHat) + (1-y) * log(1 - yHat)]. The foundational logarithmic loss function for training binary classification neural networks."
 		},
-		"snr-db": {
-			title: "Signal-to-Noise Ratio (The 'Car Radio in a Tunnel' Test)",
-			analogy: "Like driving your car through a tunnel while listening to your favorite radio station: when the music is clear, SNR is high (clean signal). As static and fuzz creep in, you can still hum the melody until the static completely overpowers the music (0 dB). This test proves our AI still hears the coin pattern through 20% static!",
-			techFact: "Decibel ratio 10 * log10(Signal / Noise). Quantifies how much useful underlying pattern remains audible over corrupt random distortion."
-		},
+		"snr-db": {title: "Signal-to-noise power ratio", analogy: "Compare music power with static power. Equal powers correspond to 0 dB; that is not the point at which all music disappears.", techFact: "Power SNR is 10 log10(signal power / noise power). Binary label-flip percentages do not, by themselves, establish an audio power SNR."},
 		"empirical-win-rate": {
 			title: "Empirical Win-Rate (Actual Track Record)",
 			analogy: "Like a baseball hitter's batting average in real regular-season games versus their theoretical batting average in batting cages. Rather than guessing based on theory, empirical win-rate tallies the exact percentage of coin flips the AI actually predicted correctly during live interactive tosses.",
 			techFact: "The observed ratio of successful classifications to total trials: Win Rate = (True Positives + True Negatives) / Total Flips. Measures real-world model accuracy against the 50.0% null hypothesis baseline."
 		},
-		"noise-injected": {
-			title: "Noise Injected (Static / Distortion Rate)",
-			analogy: "Like turning up static on an old FM car radio or having someone whisper random wrong numbers while you're tallying bills. At 0%, the sequence is crystal-clear; at 50%, it becomes pure white noise where half the records have been scrambled into garbage.",
-			techFact: "The percentage rate (from 0% clean to 50% pure white noise) at which ground-truth binary trial labels in the sequence are randomly flipped or corrupted before feeding them into the neural classifier."
-		},
-		"noise-perturbation": {
-			title: "Noise Perturbation (The 'Stress-Test Shaking' Drill)",
-			analogy: "Like testing an airplane's wings in an extreme turbulence wind tunnel, or having a quarterback practice throwing while defenders bump into him. It deliberately shakes and distorts the input data to ensure the AI doesn't fall apart when conditions get messy.",
-			techFact: "The deliberate introduction of random errors, jitter, or label-flipping into input sequences to evaluate model robustness, generalization stability, and degradation thresholds under non-ideal conditions."
-		},
+		"noise-injected": {title: "Label corruption", analogy: "Some answer labels in a practice sheet are deliberately flipped, while the original questions remain unchanged.", techFact: "A label-flip rate describes a specified data corruption process. It is not a physical measurement of sensor or audio noise."},
+		"noise-perturbation": {title: "A defined noise experiment", analogy: "Stress-testing a bridge is useful only if you say which load was applied and what was measured.", techFact: "A noise experiment must state what changes, at what rate, and how performance is evaluated. It does not prove robustness outside that tested process."},
 		"tailscale": {
 			title: "Tailscale Mesh VPN",
 			analogy: "An encrypted walkie-talkie channel that lets all your personal devices talk directly to each other from anywhere in the world as if they were sitting in the same living room—without needing to leave your front door unlocked or open holes in your home router.",
@@ -927,14 +843,14 @@
 			techFact: "A proxy bridge translating Minecraft Bedrock UDP packets (RakNet gaming protocol) into Minecraft Java TCP packets on the fly."
 		},
 		"stft": {
-			title: "Short-Time Fourier Transform (STFT)",
-			analogy: "A high-speed digital camera that takes rapid snapshots of a complex song 60 times a second and instantly writes out the exact musical notes being played—separating the heavy kick bass, melodic piano chords, and vocal highs.",
-			techFact: "A digital signal processing algorithm that breaks continuous audio signals into overlapping time windows to calculate frequency spectrums over time."
+			title: "Short-time Fourier transform",
+			analogy: "Take overlapping snapshots of a changing sound to see which frequencies are present over time.",
+			techFact: "The STFT computes frequency content in overlapping time windows. Window size and overlap trade time resolution against frequency resolution; it does not directly identify exact instruments or musical notes."
 		},
 		"ram-disk": {
-			title: "RAM Disk",
-			analogy: "Laying all your active project folders out across a massive, spotless desk instead of walking to the filing cabinet in the basement every time you need to read a page. It is blindingly fast, but anything not put away is wiped clean when you go home.",
-			techFact: "A virtual storage volume mounted in high-speed system RAM, delivering read/write throughput exceeding 5,000 MB/s, but volatile upon system reboot."
+			title: "RAM disk",
+			analogy: "A work surface that is quick to reach, but must be copied to durable storage before power disappears.",
+			techFact: "A filesystem backed by RAM. Its speed depends on hardware and workload; contents are normally lost on shutdown or power loss."
 		},
 		"reverse-proxy": {
 			title: "Reverse Proxy Gateway",
@@ -956,11 +872,7 @@
 			analogy: "Having an expert technical assistant living locally in your own office who knows your entire resume by heart and answers immediately—without ever having to call an expensive outsourced call center that logs and records your conversations.",
 			techFact: "A 4-billion parameter language model running on local hardware (NVIDIA RTX GPU) using quantized neural network weights to perform private inference on-premise."
 		},
-		"quantization": {
-			title: "Model Quantization (4-Bit)",
-			analogy: "Converting an uncompressed, massive 100 GB movie file into a crisp, high-definition compressed file. It takes up 75% less storage on your hard drive, yet looks virtually identical to the human eye.",
-			techFact: "Reducing the mathematical precision of neural network weights from 16-bit floating point down to 4-bit integers, drastically lowering RAM usage while preserving reasoning capability."
-		},
+		"quantization": {title: "Reduced-precision model weights", analogy: "Packing measurements into fewer digits saves space, but can lose information.", techFact: "Quantization can reduce memory and sometimes improve execution speed. Its quality and speed effects must be measured for the model, format, hardware, and task."},
 		"openrc": {
 			title: "OpenRC Service Manager",
 			analogy: "The pre-flight checklist and flight control system on an airplane. The moment you turn the key, it boots up all engines and sensors in the exact correct sequence, and immediately restarts any system that ever hiccups.",
@@ -1037,19 +949,19 @@
 			techFact: "An LLVM-to-WebAssembly compiler toolchain that compiles C and C++ codebases into WebAssembly, WebGL, and JavaScript glue code."
 		},
 		"windows-sandbox": {
-			title: "Windows Sandbox (Ephemeral Hypervisor)",
-			analogy: "A disposable hazmat testing room made of unbreakable glass: you bring in volatile chemicals to observe their reactions, and the moment you close the door, the entire room incinerates itself clean without a single molecule leaking into your home.",
-			techFact: "A lightweight, ephemeral virtual machine built on Microsoft Hyper-V virtualization and kernel isolation. Every session boots from a clean Windows snapshot and completely discards all state, registry changes, and memory upon exit."
+			title: "Windows Sandbox",
+			analogy: "A disposable practice room. Its walls reduce exposure, but shared doors still matter.",
+			techFact: "A temporary virtualized Windows environment. State is normally discarded on close; networking, clipboard, mapped folders, vulnerabilities, and configuration affect isolation."
 		},
 		"ransomware": {
-			title: "Cryptographic Ransomware",
-			analogy: "A burglar who slips into your office library, puts unbreakable military-grade combination padlocks on every single filing cabinet and book, throws away the keys, and leaves a demand note for the combinations.",
-			techFact: "Malicious software that traverses local and network storage volumes, systematically encrypting user files, databases, and system binaries using asymmetric (RSA/AES) cryptography and deleting volume shadow copies."
+			title: "Ransomware",
+			analogy: "An intruder locks files and demands payment for access. Backups kept out of reach can help recovery.",
+			techFact: "Malware that can encrypt files, steal information, or block access to demand payment. Some variants use symmetric encryption such as AES and protect keys with asymmetric cryptography such as RSA; implementations vary."
 		},
 		"screen-locker": {
-			title: "Screen Locker & Winlocker",
-			analogy: "An aggressive intruder who chains your front doorway from the outside and refuses to unlock it until you pay a toll, even though your furniture and personal belongings inside are completely untouched.",
-			techFact: "A non-destructive class of malware that hooks low-level keyboard/mouse events, replaces the desktop shell (explorer.exe), or renders a topmost borderless window to prevent user interaction until an unlock key or fee is provided."
+			title: "Screen-locking malware",
+			analogy: "An intruder blocks the doorway; that alone does not tell you whether anything inside was also damaged.",
+			techFact: "Malware that blocks normal interaction, often with a full-screen demand. A screen lock does not establish that files are safe or unchanged."
 		},
 		"polymorphic-virus": {
 			title: "Polymorphic File Infector",
@@ -1277,21 +1189,13 @@
 			analogy: "Water flowing through a pipe so massive that an entire Olympic swimming pool's worth of water pours through every single second.",
 			techFact: "One Terabit per second (1 Tbps) equals 1,000 Gigabits per second, or 1,000,000,000,000 bits per second—enough capacity to stream hundreds of thousands of simultaneous 4K HDR movies concurrently."
 		},
-		"tier-1-carrier": {
-			title: "Tier 1 Transit Carrier",
-			analogy: "The global railroad owner that owns all the primary coast-to-coast transcontinental rail tracks: they never have to pay a toll to anyone else to run their trains, while every local commuter train must pay them for track access.",
-			techFact: "A Tier 1 network is an Internet Service Provider (ISP) with a global reach that can reach every other network on the internet entirely through settlement-free peering agreements without paying for upstream IP transit."
-		},
+		"tier-1-carrier": {title: "Tier-1 transit network", analogy: "Large networks can exchange traffic with peers without buying upstream transit; an exchange building is a place where networks connect.", techFact: "Tier-1 describes transit reachability through settlement-free peering. An Internet exchange point is not automatically a Tier-1 network."},
 		"subsea-repeater": {
 			title: "Subsea Optical Repeater (EDFA)",
 			analogy: "Relay runners stationed every few miles along a 100-mile mountain trail, grabbing the baton from an exhausted runner and sprinting forward at full speed so momentum is never lost.",
 			techFact: "Subsea optical repeaters use Erbium-Doped Fiber Amplifiers (EDFA) placed every 50 to 90 km along the seabed to re-amplify decaying laser signals optically without converting photons into electrical signals."
 		},
-		"optical-transit-arc": {
-			title: "Optical Transit Arc",
-			analogy: "A non-stop express bullet train shuttling between two major capitals on a dedicated elevated monorail without making a single intermediate stop.",
-			techFact: "High-capacity point-to-point optical wavelength circuits running between core Tier 1 data centers, routing tens of Terabits of intercontinental traffic over pre-provisioned photonic paths."
-		},
+		"optical-transit-arc": {title: "A schematic connectivity arc", analogy: "A route drawn on a map explains a connection without tracing every street used by a delivery truck.", techFact: "An animated arc on this page is an illustrative corridor. It does not show measured packets, an exact physical fiber route, or a live circuit."},
 		"webgl": {
 			title: "WebGL 3D Planetary Graphics",
 			analogy: "An architect spinning a glowing, physical miniature globe on a display pedestal in a showroom, letting you walk around and zoom into any corner with your own eyes.",
@@ -1302,7 +1206,7 @@
 			analogy: "An international oceanographic atlas that meticulously maps every underwater shipping lane, lighthouse, and port across all seven seas.",
 			techFact: "TeleGeography is the industry-standard telecommunications market research and cartography firm that tracks global submarine cables, landing stations, bandwidth pricing, and international fiber routes."
 		},
-	
+
 		"fast-pair-uuid": {
 			title: "Fast Pair UUID 0xFE2C (Bluetooth Handshake Badge)",
 			analogy: "Think of it like wearing a bright yellow backstage VIP wristband at a concert: the bouncers (your phone) immediately recognize the wristband from across the room and wave you right through the door without demanding your passport or making you fill out a 3-page visitor log.",
@@ -1378,11 +1282,7 @@
 			analogy: "Think of it like draining all the water out of a lake and driving a 4x4 truck across the dry mud: bathymetry is the map of all the underwater valleys, steep cliffs, flat plateaus, and deep trenches hidden beneath the waves.",
 			techFact: "The measurement and mapping of water depth in oceans, seas, and lakes. Depths are surveyed via echo sounders (sonar) or lidar to produce isobath depth contour vectors."
 		},
-		"screen-wake-lock": {
-			title: "Screen Wake Lock (The Constant Finger on the Glass)",
-			analogy: "Think of it like politely resting your index finger on your phone's power button while steering a boat at night, keeping the flashlight from turning off so you don't crash into a pier while your hands are busy.",
-			techFact: "A modern Web API (navigator.wakeLock) that prevents the host mobile device or desktop operating system from dimming the display, entering sleep mode, or locking the screen."
-		},
+		"screen-wake-lock": {title: "Requesting an awake display", analogy: "Ask the device not to dim while the page is in use. The device can still decline or revoke the request.", techFact: "Screen Wake Lock depends on browser support, visibility, device policy, and power conditions. It does not guarantee that a display stays on indefinitely."},
 		"dead-reckoning": {
 			title: "Dead Reckoning (Blindfolded Step Counting)",
 			analogy: "Think of it like closing your eyes in your bedroom, taking 10 steps forward, turning 90 degrees right, and taking 5 steps: even without seeing the room, you can calculate that you are standing right in front of your closet.",
@@ -1413,11 +1313,7 @@
 			analogy: "A group storytelling game around a campfire where each person is only allowed to speak three sentences at a time, but they must listen carefully to the last three words whispered by the person before them so the story stays on the exact same plot.",
 			techFact: "Generating audio piece-by-piece where each new second of sound uses the immediate preceding seconds as acoustic context, ensuring continuous key, tempo, and rhythm across boundaries."
 		},
-		"autoregressive-drift": {
-			title: "Autoregressive Drift (Compounding Token Degradation)",
-			analogy: "The children's game of 'Telephone' or photocopying a photocopy of a photocopy 20 times in a row. By the twentieth copy, tiny invisible specks of dust from the glass turn into huge dark smudges and the text becomes completely unreadable.",
-			techFact: "When a neural network repeatedly predicts future tokens based on its own past imperfect guesses, tiny mathematical rounding errors compound exponentially, eventually dissolving the music into chaotic metallic static."
-		},
+		"autoregressive-drift": {title: "Accumulating generation errors", analogy: "A story continued from earlier invented details can drift further from the intended plot.", techFact: "When generated outputs become later inputs, errors can propagate. The cause is not necessarily floating-point rounding, and growth is not universally exponential."},
 		"unified-memory-architecture": {
 			title: "Unified Memory Architecture (The Shared Kitchen Island)",
 			analogy: "A head chef (CPU) and a pastry decorator (GPU) working at the exact same giant wooden kitchen table. When the chef finishes rolling the dough, they don't pack it into a cooler, load it onto a delivery van, and ship it across town to the decorator's kitchen—the decorator simply reaches across the table and starts piping the icing immediately.",
@@ -1469,30 +1365,26 @@
 			techFact: "A 0.3-second linear volume ramp applied to the beginning of generated audio to prevent the loudspeaker cone from violently jumping from zero to high amplitude, eliminating initial pop clicks."
 		},
 		"true-peak-limiter": {
-			title: "True-Peak Limiter & Loudness Normalization",
-			analogy: "The low ceiling bar hanging over a parking garage entrance: any car under 7 feet passes right through untouched, but if a lifted truck comes barreling through, the bar gently pushes down on the truck's roof so it can never smash into the concrete beams above.",
-			techFact: "A mastering processor that caps audio peaks below 0 dBFS (-1.0 dB True-Peak) to prevent digital inter-sample clipping on smartphone speakers and DACs, while locking overall loudness to streaming standards (-14 LUFS)."
+			title: "True-peak limiting and loudness normalization",
+			analogy: "A peak ceiling limits sudden spikes; a separate volume target sets the average level.",
+			techFact: "A true-peak limiter estimates peaks between samples and limits them to a chosen ceiling. Loudness normalization is a separate operation measured in LUFS. Targets vary by platform; neither operation guarantees every playback chain will avoid clipping."
 		},
 		"shell-environment-isolation": {
-			title: "Shell Environment Isolation (.env Ingestion)",
-			analogy: "Entering a sterile medical cleanroom: you cannot bring the dust, lint, or sandwich wrappers from your pockets into the operating theater—the air shower blows everything away so you start completely clean. Loading a .env file is like having a designated locked medicine cabinet inside the cleanroom that holds exactly the sterile tools you need.",
-			techFact: "macOS launches .command desktop shortcuts in a fresh, isolated subshell that ignores variables exported in other open terminal windows. Sourcing a local .env file explicitly restores required environment variables."
+			title: "Shell environment and .env loading",
+			analogy: "Two desks can have different notes. A configuration file supplies chosen settings to one desk.",
+			techFact: "A new process inherits its parent environment. A desktop launcher may therefore receive different variables from an existing terminal. Explicit configuration loading can provide missing values; a .env file is not a security isolation boundary."
 		},
 		"safetensors": {
-			title: "Safetensors Format (The Transparent Storage Bin)",
-			analogy: "Storing screws, bolts, and washers in clear, transparent plastic organizer bins with labeled compartments, instead of baking all your hardware into a giant solid block of wax that you have to melt with a blowtorch every time you want to see what's inside.",
-			techFact: "A secure, modern tensor storage format designed by Hugging Face. Stores raw model weights in a simple contiguous memory layout that prevents malicious code execution and loads in seconds via memory-mapping."
+			title: "Safetensors",
+			analogy: "A labeled container for arrays rather than a program that must run to unpack them.",
+			techFact: "A tensor serialization format designed to avoid pickle-style arbitrary code execution during deserialization. It does not establish that model behavior, surrounding code, or every loader implementation is safe; load time depends on storage and tensor size."
 		},
 		"cas-chunking": {
 			title: "Content-Addressable Storage (CAS Chunking)",
 			analogy: "Ordering an encyclopedia where each individual volume has a unique fingerprint stamped on the spine: 10 mail trucks deliver different chapters at the exact same time to your porch, and you only slide the books onto your shelf once the delivery of every chapter is verified.",
 			techFact: "Splitting large model checkpoint files into independent content-hashed binary blocks downloaded concurrently via parallel HTTP range requests and assembled on disk."
 		},
-		"mmap-zero-copy": {
-			title: "Zero-Copy Memory Mapping (Reading Direct from the Shelf)",
-			analogy: "Opening a giant dictionary while it is still resting on the library shelf and reading the page with your own eyes, rather than photocopying the entire 2,000-page book onto loose paper and carrying the giant stack over to your desk before you can read a single definition.",
-			techFact: "An OS virtual memory mechanism that maps a file on disk directly into the application's virtual address space, allowing instant read access without copying gigabytes into RAM."
-		},
+		"mmap-zero-copy": {title: "Memory-mapped files", analogy: "A file can be accessed through an address map instead of copying the whole book before opening a page.", techFact: "Memory mapping exposes file-backed pages in virtual memory. Access can still require disk I/O and physical RAM; it is not instantaneous access to arbitrarily large models."},
 		"midi-delta-time": {
 			title: "MIDI Delta-Time (The Stopwatch Between Notes)",
 			analogy: "A musical conductor telling a drummer: 'Don't look at the clock on the wall—just count 3 heartbeats after the singer stops, and then hit the cymbal.' If you accidentally erase the 3 heartbeats of silence from the instructions, the drummer hits the cymbal while the singer is still mid-word.",
@@ -1528,11 +1420,7 @@
 			analogy: "A tire pressure gauge on a service station air pump with colored dial zones: green for safe highway driving, yellow for slightly over-inflated, and bright flashing red warning you that the tire is at dangerous risk of a blowout.",
 			techFact: "The American Heart Association (AHA) defines clinical blood pressure stages (Normal, Elevated, Stage 1, Stage 2, and Hypertensive Crisis) based on systolic and diastolic thresholds, enabling automated risk categorization."
 		},
-		"atomic-json-persistence": {
-			title: "Atomic File Storage Persistence (The Duplicate Ledger Swap)",
-			analogy: "An accountant writing an updated financial balance sheet onto a fresh notepad on their desk, verifying every sum and signature, and only then swapping the old ledger page into the locked fireproof safe in one swift motion, so a power outage or spilled coffee cup can never leave the books half-written.",
-			techFact: "Writing new data to a temporary file and atomically renaming it over the destination (via POSIX rename / os.replace) ensures the database file is never corrupted or left in a partial state if the server process terminates abruptly."
-		},
+		"atomic-json-persistence": {title: "Atomic file replacement", analogy: "Swap a completed page for the old page in one step, rather than overwriting half of it. You still need backups and durable storage.", techFact: "A successful same-filesystem rename can provide atomic replacement. Power-loss durability, flushes, directory syncing, filesystem behavior, backups, and accidental deletion are separate concerns."},
 		"decoupled-desktop-launcher": {
 			title: "Decoupled Architecture (The Car Keys vs. The Garage)",
 			analogy: "Carrying your lightweight metal car key around in your pocket on a keychain. If you accidentally misplace your keys or drop them in the grass, your actual 3,000-pound automobile is still parked completely safe and locked inside your brick garage.",
@@ -1603,11 +1491,7 @@
 			analogy: "Looking through a cabinet of drawers labeled strictly 1 to 50 for a document filed under drawer #0. Instead of stopping and saying 'that drawer doesn't exist,' an overzealous assistant keeps slicing drawer #1 into thinner and thinner half-inch slices over a thousand times until they collapse from total exhaustion.",
 			techFact: "When a stochastic SDE noise sampler is queried outside its allocated boundary [sigma_min, sigma_max], the Brownian interval tree recursively splits its left-child intervals in an infinite descent, rapidly exceeding Python's sys.getrecursionlimit() and throwing a fatal RecursionError."
 		},
-		"boundary-clamping": {
-			title: "Dynamic Interval Boundary Clamping (Expanding the Filing Cabinet)",
-			analogy: "Adding a dedicated '0' compartment and a slightly oversized top shelf to the filing cabinet before the workday begins, ensuring that any paperwork stamped with edge-case numbers drops cleanly into a labeled slot without sending staff on a wild goose chase.",
-			techFact: "Monkey-patching BrownianTreeNoiseSampler.__init__ to enforce [min(sigma_min, 0.0), max(sigma_max, 505.0)] encloses both the zero final timestep and hardware floating-point epsilon drifts on Apple Silicon Metal without altering the core noise distribution."
-		},
+		"boundary-clamping": {title: "Sampler interval adjustment", analogy: "A filing system needs a defined place for edge values, but widening the drawers changes the assumptions you should check.", techFact: "The project notes describe a sampler-boundary workaround. Altering interval bounds can affect stochastic behavior and needs validation for the exact library and model; it is not a general no-effect guarantee."},
 		"native-stereo-preservation": {
 			title: "Native Stereo Audio Preservation (Two Separate Studio Ears)",
 			analogy: "A music producer setting up two high-end binaural microphones on opposite sides of a drum kit to capture the wide left-and-right panning, but an assistant accidentally plugs them both into a single mono guitar cable before sending it to the speakers, squashing the entire panoramic stage into a narrow pinhole.",
@@ -1644,14 +1528,14 @@
 				'    <span class="tech-tooltip-icon" aria-hidden="true">&#128161;</span>',
 				'    <strong class="tech-tooltip-title"></strong>',
 				'  </div>',
-				'  <span class="tech-tooltip-pill">Analogy</span>',
+				'  <span class="tech-tooltip-pill">Explanation</span>',
 				'</div>',
 				'<div class="tech-tooltip-analogy-box">',
-				'  <span class="tech-tooltip-label">Think of it like:</span>',
+				'  <span class="tech-tooltip-label">What it does:</span>',
 				'  <p class="tech-tooltip-text"></p>',
 				'</div>',
 				'<div class="tech-tooltip-fact-box">',
-				'  <span class="tech-tooltip-fact-label">In tech terms:</span>',
+				'  <span class="tech-tooltip-fact-label">A comparison:</span>',
 				'  <p class="tech-tooltip-fact"></p>',
 				'</div>'
 			].join("");
@@ -1683,11 +1567,11 @@
 				'  </div>',
 				'  <div class="tech-modal-body">',
 				'    <div class="tech-modal-analogy-box">',
-				'      <strong class="tech-modal-label">Think of it like:</strong>',
+				'      <strong class="tech-modal-label">What it does:</strong>',
 				'      <p class="tech-modal-text"></p>',
 				'    </div>',
 				'    <div class="tech-modal-fact-box">',
-				'      <strong class="tech-modal-fact-label">In tech terms:</strong>',
+				'      <strong class="tech-modal-fact-label">A comparison:</strong>',
 				'      <p class="tech-modal-fact"></p>',
 				'    </div>',
 				'  </div>',
@@ -1731,8 +1615,8 @@
 			activeTarget = el;
 
 			tipTitle.textContent = entry.title;
-			tipText.textContent = entry.analogy;
-			tipFact.textContent = entry.techFact;
+			tipText.textContent = entry.techFact;
+			tipFact.textContent = entry.analogy;
 
 			tooltip.classList.add("visible");
 			tooltip.setAttribute("aria-hidden", "false");
@@ -1782,8 +1666,8 @@
 			tooltip.setAttribute("aria-hidden", "true");
 
 			modalTitle.textContent = entry.title;
-			modalText.textContent = entry.analogy;
-			modalFact.textContent = entry.techFact;
+			modalText.textContent = entry.techFact;
+			modalFact.textContent = entry.analogy;
 
 			modal.hidden = false;
 			modal.setAttribute("aria-hidden", "false");
@@ -2186,7 +2070,7 @@
 				if (!data || !data.regions || typeof data.total !== "number") return;
 
 				var total = data.total;
-				geoTotalEl.textContent = total.toLocaleString() + " Total Sessions";
+				geoTotalEl.textContent = total.toLocaleString() + " Recorded Events";
 
 				var regions = data.regions;
 				var naCount = regions["North America"] || 0;
@@ -2583,7 +2467,7 @@
 			});
 		}
 
-		
+
 		// Swipe and drag support for weather carousel
 		if (carousel) {
 			var touchStartX = 0;
@@ -2726,7 +2610,7 @@
 		window.setInterval(fetchWeather, 300000); // 5 min interval
 	}
 
-	
+
 	function initPageLoadTachometer() {
 		var cluster = document.getElementById("home-instrument-cluster") || document.getElementById("home-tachometer-cluster");
 		if (!cluster) return;
@@ -2903,34 +2787,13 @@
 		}
 	}
 
-	
+
 	function initOsTracker() {
-		var tracker = document.getElementById("home-os-tracker");
-		if (!tracker) return;
+        var panel = document.getElementById('home-os-tracker');
+        if (panel && window.PortfolioReleases) window.PortfolioReleases.mount(panel);
+    }
 
-		var dateEl = document.getElementById("os-tracker-timestamp");
-		if (dateEl) {
-			var now = new Date();
-			dateEl.textContent = now.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-		}
 
-		// Fetch live kernel releases from kernel.org API
-		try {
-			fetch("https://www.kernel.org/releases.json", { cache: "default" })
-				.then(function (res) { return res.json(); })
-				.then(function (data) {
-					if (data && data.latest_stable && data.latest_stable.version) {
-						var linuxVer = document.getElementById("os-ver-linux");
-						var channel = document.getElementById("os-linux-channel");
-						if (linuxVer) linuxVer.textContent = "v" + data.latest_stable.version;
-						if (channel) channel.textContent = "Latest Stable (kernel.org)";
-					}
-				})
-				.catch(function () {});
-		} catch (e) {}
-	}
-
-	
 	function initCockpitCluster() {
 		// 1. Tachometer Controller
 		initPageLoadTachometer();
@@ -2949,7 +2812,7 @@
 		// Total corpus count: 1,673 documents (649 GVSU KB + 1024 OneDrive class files)
 		var targetCount = 1673;
 		var str = String(targetCount).padStart(6, "0"); // "001673"
-		
+
 		// Animate rolling up each digit with mechanical delay
 		var digitIds = ["odo-d5", "odo-d4", "odo-d3", "odo-d2", "odo-d1", "odo-d0"];
 		digitIds.forEach(function (id, idx) {
@@ -3036,7 +2899,7 @@
 		function testMeshLatency() {
 			var start = performance.now();
 			var testUrl = "https://nucwol2-0--hdd.taile72a68.ts.net/website-chat/stats?t=" + Date.now();
-			
+
 			// Initial rev needle
 			if (needle) needle.style.transform = "rotate(-110deg)";
 
@@ -3092,7 +2955,7 @@
 		}
 	}
 
-	
+
 	// ==========================================================================
 	// Interactive Navbar: Fluid Plasma Wave Aura (Electric Glow)
 	// ==========================================================================
@@ -3297,7 +3160,7 @@
 		requestAnimationFrame(renderPlasma);
 	}
 
-	
+
 	/* ==========================================================================
 	   Precision Moving Analog Station Clock (EST / EDT)
 	   ========================================================================== */
@@ -3553,22 +3416,22 @@
 
 			if (flagEl) flagEl.textContent = data.flag;
 			if (titleEl) titleEl.textContent = reg;
-			if (subheadEl) subheadEl.textContent = data.subhead;
+			if (subheadEl) subheadEl.textContent = "Geographic reference · network statistics not measured";
 
-			if (dlValEl) dlValEl.textContent = data.dl.toFixed(1) + " Mbps";
+			if (dlValEl) dlValEl.textContent = "Not measured";
 			if (dlFillEl) dlFillEl.style.width = Math.min(100, Math.round((data.dl / 300) * 100)) + "%";
 
-			if (ulValEl) ulValEl.textContent = data.ul.toFixed(1) + " Mbps";
+			if (ulValEl) ulValEl.textContent = "Not measured";
 			if (ulFillEl) ulFillEl.style.width = Math.min(100, Math.round((data.ul / 100) * 100)) + "%";
 
 			if (rttValEl) {
 				var rtMiles = Math.round((data.distKm * 2) * 0.621371);
 				var estMph = Math.round(rtMiles / ((data.rtt / 1000) / 3600));
 				var mMph = (estMph / 1000000).toFixed(0);
-				rttValEl.textContent = "~" + mMph + "M MPH (" + data.rtt.toFixed(0) + "ms)";
+				rttValEl.textContent = "Not measured";
 			}
-			if (ipv6ValEl) ipv6ValEl.textContent = data.ipv6.toFixed(1) + "%";
-			if (peakValEl) peakValEl.textContent = data.peak;
+			if (ipv6ValEl) ipv6ValEl.textContent = "Not measured";
+			if (peakValEl) peakValEl.textContent = "Not measured";
 
 			// Check portfolio visits for this region
 			var visitsCount = 0;
@@ -3580,7 +3443,7 @@
 				else visitsCount = liveGeoData.regions["Other"] || 0;
 			}
 			if (visitsValEl) {
-				visitsValEl.textContent = visitsCount > 0 ? visitsCount + " Sessions" : "Syncing...";
+				visitsValEl.textContent = visitsCount > 0 ? visitsCount + " Events" : "Syncing...";
 			}
 
 			// Update tabs
@@ -3640,53 +3503,16 @@
 			});
 		});
 
-		// Live In-Browser Edge Ping Probe Handler
-		if (probeBtn) {
-			probeBtn.addEventListener("click", async function () {
-				probeBtn.disabled = true;
-				probeBtn.textContent = "Probing...";
-				if (probeResultEl) {
-					probeResultEl.innerHTML = '<span style="color:#38bdf8;">⚡ Dispatching TLS handshake packet to ' + activeRegion + ' edge...</span>';
-				}
-
-				var data = CONTINENTS_DATA[activeRegion] || CONTINENTS_DATA["North America"];
-				var beaconUrl = data.beaconHost;
-				var t0 = performance.now();
-				try {
-					await fetch(beaconUrl, {
-						cache: "no-store",
-						mode: "no-cors",
-						signal: AbortSignal.timeout ? AbortSignal.timeout(4000) : undefined
-					});
-				} catch (e) {}
-				var t1 = performance.now();
-				var elapsed = Math.round(t1 - t0);
-				if (elapsed <= 0) elapsed = 14;
-
-				// Signal velocity calculations in Miles Per Hour (MPH)
-				var distKm = data.distKm || 2000;
-				var roundTripMiles = Math.round((distKm * 2) * 0.621371);
-				var elapsedSeconds = Math.max(0.005, elapsed / 1000);
-				var speedMph = Math.round(roundTripMiles / (elapsedSeconds / 3600));
-				var millionMph = (speedMph / 1000000).toFixed(1);
-				var pctLight = Math.min(98, Math.max(35, Math.round((speedMph / 670616629) * 100)));
-
-				if (probeResultEl) {
-					probeResultEl.innerHTML =
-						'<div style="display:flex;flex-direction:column;gap:5px;">' +
-							'<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">' +
-								'<span class="probe-metric-highlight" style="font-size:1.05rem;color:#38bdf8;">🚀 Signal Speed: ' + millionMph + ' Million MPH</span>' +
-								'<span style="font-size:0.75rem;color:#10b981;font-weight:700;">(' + pctLight + '% the speed of light!)</span>' +
-							'</div>' +
-							'<span style="font-size:0.73rem;color:#cbd5e1;line-height:1.4;">' +
-								'Your connection beamed a data pulse across <strong>' + roundTripMiles.toLocaleString() + ' miles</strong> of glass fiber to ' + activeRegion + ' and back in <strong>' + elapsed + ' milliseconds</strong>.' +
-							'</span>' +
-						'</div>';
-				}
-				probeBtn.disabled = false;
-				probeBtn.textContent = "Re-Probe Edge";
-			});
-		}
+        // Time one request to an anycast endpoint; do not infer location or fiber speed.
+        if (probeBtn) probeBtn.addEventListener('click', async function(){
+            probeBtn.disabled=true;probeBtn.textContent='Timing request…';
+            var started=performance.now();
+            try {
+                await fetch('https://1.1.1.1/cdn-cgi/trace',{cache:'no-store',mode:'no-cors',signal:AbortSignal.timeout(4000)});
+                if(probeResultEl)probeResultEl.textContent=(performance.now()-started).toFixed(1)+' ms browser request duration to an anycast endpoint. An opaque response does not expose HTTP status. This does not locate the server in the selected continent or measure signal velocity.';
+            } catch(e){if(probeResultEl)probeResultEl.textContent='Request failed or timed out. No successful timing is reported.';}
+            finally {probeBtn.disabled=false;probeBtn.textContent='Time Edge Request';}
+        });
 
 		// Dynamically Sync Live Visitor Footprint from NUC Gateway
 		async function syncLiveVisitorStats() {
@@ -3697,7 +3523,7 @@
 				if (!json || typeof json.total !== "number") return;
 				liveGeoData = json;
 				if (sessionsEl) {
-					sessionsEl.textContent = json.total.toLocaleString() + " Global Sessions Logged";
+					sessionsEl.textContent = json.total.toLocaleString() + " Regional Activity Events";
 				}
 				renderRegion(activeRegion);
 			} catch (e) {}
@@ -3708,7 +3534,7 @@
 		window.setInterval(syncLiveVisitorStats, 45000);
 	}
 
-	
+
 	/* ==========================================================================
 	   Dedicated Desk Clock & Screen Wake Lock Controller (clock.html)
 	   ========================================================================== */
@@ -3779,7 +3605,7 @@
 				}
 				if (wakeIcon) wakeIcon.textContent = "🔆";
 				if (wakeLabel) wakeLabel.textContent = "Always Keep Screen Awake: ON";
-				if (wakeHint) wakeHint.innerHTML = '<span style="color:#059669;font-weight:700;">🔆 Screen Wake Lock is ACTIVE.</span> Display will remain fully illuminated without sleeping or timing out.';
+				if (wakeHint) wakeHint.innerHTML = '<span style="color:#059669;font-weight:700;">🔆 Screen Wake Lock is ACTIVE.</span> The browser currently holds a screen wake lock. The system may release it when page visibility, power, or policy changes.';
 			} else {
 				if (wakeBtn) {
 					wakeBtn.classList.remove("wake-active");

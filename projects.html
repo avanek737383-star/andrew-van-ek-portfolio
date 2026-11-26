@@ -23,7 +23,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/footer.css?v2.6.435">
+	<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
+<link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 	<body>
 		<div class="container">
@@ -41,7 +42,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
-						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
 						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
@@ -93,7 +94,7 @@
 			</ul>
 		</nav>
 			<h1>Projects</h1>
-			<main>
+			<main><section class="evidence-note" aria-labelledby="project-evidence-scope"><h2 id="project-evidence-scope">How to read these project notes</h2><p>Current interactive demos, reproduced measurements, historical observations, and proposed work are different kinds of evidence. A past project note records the setup and results reported for that session; it is not a product guarantee or an independently reproduced benchmark unless a method and artifact are linked.</p><p>The sequence experiment now links its data and calculations. Other precise timings, clinical interpretations, and lifetime/performance claims should be treated as reported observations when their underlying test evidence is not published. AI collaboration credit identifies assistance, not external validation.</p></section>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
 
@@ -253,7 +254,7 @@
       <h4 style="margin:0; font-size:1.12rem; color:#f8fafc; font-weight:700;">&#128736;&#65039; 5-Piece Modular Tech Desk &amp; Teardown Station Topology</h4>
       <span style="font-size:0.8rem; color:#94a3b8;">120&times;80mm Standardized Unit Grid &rarr; Parametric Manifold3D Booleans &rarr; Support-Free Production Plate</span>
     </div>
-    <span style="background:rgba(14,165,233,0.18); color:#38bdf8; border:1px solid rgba(14,165,233,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">100% Watertight CSG &bull; Zero-Support Overhangs</span>
+    <span style="background:rgba(14,165,233,0.18); color:#38bdf8; border:1px solid rgba(14,165,233,0.35); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">CSG Geometry &bull; Support-Conscious Design</span>
   </div>
 
   <svg viewBox="0 0 920 230" style="width:100%; height:auto; display:block; font-family:system-ui, -apple-system, sans-serif;" role="img" aria-label="Modular Tech Organizer Suite Architecture Diagram">
@@ -363,7 +364,7 @@
 <p>Rather than committing to an unmanageable monolithic chassis that would exceed printer build envelopes, risk warping, and introduce catastrophic single-point failure across a 24-hour print cycle, we architected a <strong>modular, standardized unit-grid organizer system</strong>. Every component is engineered to share an identical <strong>120.0&times;80.0 mm footprint</strong> with 3.0 mm filleted corners. This standardization allows the modules to arrange side-by-side across a 600 mm (2-foot) shelf ledge, stack inside standard shallow desk drawers (serving as rigid drawer insert bins), or sit in a compact 2&times;2 grid directly atop a tower PC workstation.</p>
 
 <h3>Constructive Solid Geometry (CSG) &amp; Ergonomic Topology</h3>
-<p>The entire geometry was procedurally generated using Python, <code>manifold3d</code>, and <code>trimesh</code>, guaranteeing 100% manifold, watertight polygonal boundaries with zero non-manifold edges or co-planar stitching errors:</p>
+<p>The entire geometry was procedurally generated using Python, <code>manifold3d</code>, and <code>trimesh</code>, with watertight manifold geometry as the design goal; a mesh validator and slicer preview should confirm each exported revision:</p>
 
 <ul>
   <li><strong>1. The Hardware Scoop Bin (Tangent Filleted Ramps):</strong> Traditional screw sorting boxes feature harsh 90&deg; right-angle floors where tiny laptop screws become trapped, forcing awkward tweezer pinching. We solved this by modeling a 2D profile extruded across the 34 mm bin cavities where the front wall transitions into a gentle cylindrical scoop ramp ($R = 18	ext{ mm}$). When a technician reaches in, their index finger slides forward, guiding microscopic M2 and M2.5 screws smoothly up the ramp directly onto the top lip.</li>
@@ -375,12 +376,12 @@
 </ul>
 
 <h3>Zero-Support Prototyping &amp; Lab Production Staging</h3>
-<p>All five organizer modules and snap lids were designed with strict overhang angle constraints (&le; 45&deg;) and self-supporting bridged spans (&le; 15 mm). As a result, the entire suite prints with <strong>zero support material</strong> and zero post-processing scrap. To streamline lab intake at the Atomic Object Technology Showcase, we concatenated all five discrete shells into a single build-plate file (<code>Modular_Tech_Organizers_ALL_5_PCS.stl</code>, 175 KB). The lab slicer automatically recognizes the five independent bodies on the bed, queuing a single 10.5-hour overnight production run across their large-format 3D printer.</p>
+<p>All five organizer modules and snap lids were designed with strict overhang angle constraints (&le; 45&deg;) and self-supporting bridged spans (&le; 15 mm). The design aims to reduce support material. Printer, orientation, material, slicer settings, and validation of each exported revision determine the actual result. To streamline lab intake at the Atomic Object Technology Showcase, we concatenated all five discrete shells into a single build-plate file (<code>Modular_Tech_Organizers_ALL_5_PCS.stl</code>, 175 KB). The lab slicer automatically recognizes the five independent bodies on the bed, queuing a single 10.5-hour overnight production run across their large-format 3D printer.</p>
 
 <div class="project-downloads-card" style="background: #f8f9fa; border: 1px solid #e1e4e8; border-left: 4px solid #0284c7; border-radius: 8px; padding: 20px; margin: 28px 0;">
   <h3 style="margin-top: 0; color: #0284c7; font-size: 1.2rem;">&#128229; Direct CAD &amp; 3D Print Downloads</h3>
   <p style="margin-bottom: 16px; font-size: 0.95rem; color: #495057;">Download production-ready, support-free 3D printing models engineered for campus makerspaces and homelab shelving. Hosted directly in the repository for high-speed delivery:</p>
-  
+
   <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
     <a href="downloads/tech-desk-organizer/Modular_Tech_Organizers_ALL_5_PCS.stl" download="Modular_Tech_Organizers_ALL_5_PCS.stl" class="btn" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; box-shadow: 0 2px 4px rgba(2,132,199,0.25); background: #0284c7; color: #fff;">
       <span>&#128424; Download 5-Piece Organizer Plate (STL &middot; 175 KB)</span>
@@ -410,7 +411,7 @@
       <span>&#128196; Slicer &amp; Print Specs Guide (TXT)</span>
     </a>
   </div>
-  <p style="margin-top: 12px; margin-bottom: 0; font-size: 0.85rem; color: #6c757d;"><em>Recommended production profile: 0.20 mm layer height, 2&ndash;3 perimeters, 15&ndash;20% gyroid infill, PLA/PETG, zero support structures required.</em></p>
+  <p style="margin-top: 12px; margin-bottom: 0; font-size: 0.85rem; color: #6c757d;"><em>Recommended production profile: 0.20 mm layer height, 2&ndash;3 perimeters, 15&ndash;20% gyroid infill, PLA/PETG, check supports in the slicer for the selected printer and material.</em></p>
 </div>
 
 <p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek established operational requirements from active laptop repair and homelab parts clutter, measured physical hardware footprints (including the Parker multitool driver, 2.5&Prime; archival drive, PTM7950 thermal pads, and optical media), navigated the GVSU Atomic Object Technology Showcase print policies and queue limits, and supervised lab submission; <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> conceptualized the standardized 120&times;80mm modular footprint, wrote the parametric Python <code>manifold3d</code> / <code>trimesh</code> constructive solid geometry generator, engineered the tangent filleted finger-scoop ramps ($R=18	ext{mm}$) and stepped tool sockets, designed the snap-fit friction lids, concatenated the multi-shell build-plate arrays, staged USB drive structures, rendered 3D isometric previews, and authored this comprehensive engineering entry.</p>
@@ -569,7 +570,7 @@
 </section>
 
 <section class="project-entry" aria-labelledby="macos-vision-blood-pressure-tracker-title">
-<h2 id="macos-vision-blood-pressure-tracker-title">Autonomous Local Blood Pressure &amp; Pulse Tracker for macOS — Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence</h2>
+<h2 id="macos-vision-blood-pressure-tracker-title">Autonomous Local Blood Pressure &amp; Pulse Tracker for macOS — Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Documents-Folder Persistence</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>macOS Sequoia &middot; Swift &amp; Vision Framework &middot; Apple Neural Engine &middot; Zero-Dependency Python HTTP &middot; EXIF Metadata &middot; HEIC/sips Transcoding &middot; AHA Clinical Guidelines &middot; Local-First Health &middot; Antigravity AI &middot; <time datetime="2026-11-24">November 24, 2026</time></span></p>
 <div class="project-architecture" aria-label="macOS Blood Pressure Tracker Architecture"><span>Desktop Shortcut (.command + Custom Retina Heart Icon)</span><span aria-hidden="true">&rarr;</span><span>Local Zero-Dependency Python Daemon (127.0.0.1:8421)</span><span aria-hidden="true">&rarr;</span><span>Drag &amp; Drop / Clipboard &#8984;V Ingestion</span><span aria-hidden="true">&rarr;</span><span>macOS Native Vision OCR (ocr_helper)</span><span aria-hidden="true">&rarr;</span><span>EXIF DateTimeOriginal Parser</span><span aria-hidden="true">&rarr;</span><span>macOS sips HEIC-to-JPEG Pipeline</span><span aria-hidden="true">&rarr;</span><span>AHA Clinical Classification Engine</span><span aria-hidden="true">&rarr;</span><span>Safe Persistence in ~/Documents/BloodPressureTracker/</span></div>
 
@@ -650,7 +651,7 @@
     <rect x="732" y="66" width="160" height="24" rx="4" fill="#06261a" stroke="#10b981" stroke-width="0.8"/>
     <text x="812" y="82" fill="#10b981" font-size="10.5" font-weight="600" text-anchor="middle">~/Documents Isolation</text>
     <text x="812" y="112" fill="#d1fae5" font-size="10" font-weight="600" text-anchor="middle">&bull; Atomic JSON Persistence</text>
-    <text x="812" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Deletion-Proof Separation</text>
+    <text x="812" y="130" fill="#94a3b8" font-size="9.5" text-anchor="middle">&bull; Separate from Downloads</text>
     <text x="812" y="148" fill="#34d399" font-size="9.5" font-weight="600" text-anchor="middle">&bull; 1-Click CSV &amp; Doctor Print</text>
     <text x="812" y="168" fill="#6ee7b7" font-size="9" text-anchor="middle">7/30-Day Moving Averages</text>
   </svg>
@@ -658,18 +659,18 @@
 
 <p>When a physician requests ongoing, regular blood pressure and pulse tracking, the biggest hurdle to clinical compliance is logging friction. Conventional consumer health apps require expensive recurring cloud subscriptions, mandate user registration, upload personal biometric telemetry to remote advertising networks, or force patients into tedious manual number-typing on touchscreen keypads. Inevitably, manual logging gets abandoned after a few days, leaving healthcare providers with fragmented, incomplete cardiovascular histories.</p>
 
-<p>To eliminate manual data entry while maintaining total biometric privacy, Andrew and <strong>Antigravity AI</strong> architected an autonomous, zero-cloud desktop application on macOS Sequoia. By marrying Apple's native machine-learning Vision framework with an ultra-lightweight local web service, the tracker enables the user to simply drag-and-drop or paste an iPhone photo of any digital sphygmomanometer display (such as Omron or Beurer). The system automatically harvests systolic, diastolic, and pulse readings alongside the exact photographic capture timestamp, verifies the data through an interactive confirmation interface, and writes persistent medical logs directly into an accidental-deletion-proof Documents vault.</p>
+<p>To eliminate manual data entry while maintaining total biometric privacy, Andrew and <strong>Antigravity AI</strong> architected an autonomous, zero-cloud desktop application on macOS Sequoia. By marrying Apple's native machine-learning Vision framework with an ultra-lightweight local web service, the tracker enables the user to simply drag-and-drop or paste an iPhone photo of any digital sphygmomanometer display (such as Omron or Beurer). The system automatically harvests systolic, diastolic, and pulse readings alongside the exact photographic capture timestamp, verifies the data through an interactive confirmation interface, and writes persistent medical logs directly into Documents-folder storage (not a backup or deletion guarantee).</p>
 
 <h3>Engineering Implementation &amp; Forensic Troubleshooting</h3>
 <ul>
-<li><strong>Zero-Cloud <span class="tech-term" data-term="vision-neural-ocr">Apple Vision Neural OCR</span>:</strong> Developed <code>ocr_helper.swift</code>, a compiled native CLI tool leveraging Apple's <code>Vision</code> framework (<code>VNRecognizeTextRequest</code>) and the on-device Apple Neural Engine. By tuning the recognition configuration to <code>VNRecognizeTextRequestRevision2</code> with disabled language correction, the parser eliminates linguistic hallucination on segmented LCD numbers, accurately isolating <strong>SYS</strong>, <strong>DIA</strong>, and <strong>PULSE</strong> values in sub-50ms execution cycles without internet connectivity or bulky Python OCR packages (like Tesseract).</li>
+<li><strong>Zero-Cloud <span class="tech-term" data-term="vision-neural-ocr">Apple Vision Neural OCR</span>:</strong> Developed <code>ocr_helper.swift</code>, a compiled native CLI tool leveraging Apple's <code>Vision</code> framework (<code>VNRecognizeTextRequest</code>) and the on-device Apple Neural Engine. By tuning the recognition configuration to <code>VNRecognizeTextRequestRevision2</code> with disabled language correction, the parser disables language-correction transformations; recognition errors still need review on segmented LCD numbers, accurately isolating <strong>SYS</strong>, <strong>DIA</strong>, and <strong>PULSE</strong> values in execution times that depend on the device and workload; no timing artifact is attached here without internet connectivity or bulky Python OCR packages (like Tesseract).</li>
 <li><strong>Automatic <span class="tech-term" data-term="exif-temporal-harvesting">EXIF Timestamp Harvesting</span>:</strong> Rather than logging the moment a photo happens to be uploaded to the computer, the helper queries <code>CGImageSourceCopyPropertiesAtIndex</code> and extracts the true photographic acquisition timestamp from the <code>kCGImagePropertyExifDateTimeOriginal</code> metadata tag. If a patient takes a morning reading at 8:15 AM but transfers the photo later in the evening, the system automatically reconstructs the precise physiological measurement time.</li>
 <li><strong>Forensic Diagnosis: Resolving Chrome's HEIC Broken Pipe Collision via <span class="tech-term" data-term="heic-sips-transcoding">SIPS Image Transcoding</span>:</strong> During live operational testing with authentic iPhone captures, the web UI displayed broken image icons for the reading preview and history thumbnails, triggering a severe <code>BrokenPipeError: [Errno 32]</code> (<span class="tech-term" data-term="http-broken-pipe">HTTP Broken Pipe Connection Reset</span>) in the server socket thread. Forensic review of the socket stream revealed that while iOS photographs are encoded as High-Efficiency Image Container (<code>.heic</code>) files, Google Chrome lacks native browser-level HEIC rendering engines. When Chrome rejected the binary payload and severed the TCP socket prematurely, the Python socket crashed. We resolved this by integrating macOS's native <code>sips</code> utility into the ingestion pipeline, automatically transcoding incoming HEIC/HEIF files into optimized JPEG assets on-the-fly and adding robust socket exception trapping.</li>
 <li><strong><span class="tech-term" data-term="aha-clinical-staging">AHA Clinical Hypertension Classification</span> &amp; Dynamic Feedback:</strong> Integrated real-time physiological classification based on formal American Heart Association clinical guidelines (Normal, Elevated, Stage 1 Hypertension, Stage 2 Hypertension, and Hypertensive Crisis). The web dashboard dynamically evaluates the ratio of systolic to diastolic measurements, applying color-coded status badges, real-time input glows upon auto-detection, and running 7-day and 30-day moving cardiovascular averages.</li>
 <li><strong>Accidental-Deletion-Proof <span class="tech-term" data-term="decoupled-desktop-launcher">Decoupled Architecture</span>:</strong> To prevent desktop cleanup scripts or accidental clicks from destroying critical medical history, the application is physically bifurcated:
   <ul>
     <li><strong>Desktop Access Point:</strong> A clean <code>Blood Pressure Tracker.command</code> launcher on <code>~/Desktop</code> featuring a custom Retina heart vector icon synthesized in Swift. Double-clicking executes port availability checks, spawns the local server daemon, and launches Google Chrome directly to <code>http://127.0.0.1:8421</code>.</li>
-    <li><strong>Protected Documents Vault with <span class="tech-term" data-term="atomic-json-persistence">Atomic File Storage Persistence</span>:</strong> All operational code, converted photo archives, and medical logs reside in <code>~/Documents/BloodPressureTracker/data/records.json</code>. Writes are executed through atomic temporary file swaps (<code>os.replace</code>) to ensure complete data integrity even if the terminal window is abruptly killed or terminated via <code>Ctrl + C</code>.</li>
+    <li><strong>Protected Documents Vault with <span class="tech-term" data-term="atomic-json-persistence">Atomic File Storage Persistence</span>:</strong> The application stores its files under <code>~/Documents/BloodPressureTracker/</code>, with records in <code>data/records.json</code>. Temporary-file replacement (<code>os.replace</code>) can prevent readers from seeing a partially replaced file on the same filesystem. It is not a backup, deletion safeguard, or guarantee of durability after power loss; durability also depends on flushing and filesystem behavior.</li>
   </ul>
 </li>
 <li><strong>Physician-Ready Export Engine:</strong> Features one-click <strong>CSV Export</strong> for spreadsheet ingestion into electronic health record (EHR) systems, as well as a dedicated, CSS print-media optimized <strong>Doctor Summary Report</strong> that strips navigation elements and dropzones to produce a formatted medical printout or PDF.</li>
@@ -796,7 +797,7 @@
 <h3>Engineering Implementation &amp; Forensic Troubleshooting</h3>
 <ul>
 <li><strong>Zero-Dependency macOS HTTP Server Daemon:</strong> Engineered <code>slide_remote.py</code> utilizing only Python standard libraries (<code>http.server</code>, <code>socketserver</code>, <code>subprocess</code>). The lightweight daemon listens on port <code>8765</code>, maps incoming RESTful endpoints (<code>/next</code>, <code>/prev</code>, <code>/blank</code>) directly to asynchronous macOS <span class="tech-term" data-term="applescript-system-events"><code>System Events</code> keyboard injections</span>, and features a one-click macOS <code>.command</code> launcher with a custom Retina vector app icon compiled in Swift.</li>
-<li><strong>Resolving <span class="tech-term" data-term="watch-chunking">watchOS URLSession Chunking &amp; Indefinite Spinner Hangs</span>:</strong> Initial requests also resolved a <span class="tech-term" data-term="tls-bad-request">TLS 400 Bad Request error</span> caused by iOS Shortcuts auto-prefixing <code>https://</code> against plaintext HTTP. Early testing from Apple Watch revealed that the Shortcut action would freeze indefinitely on the stop/play execution spinner without advancing the slide. Diagnostics confirmed that watchOS <code>URLSession</code> handles HTTP/1.1 differently than mobile Safari: when a server response omits explicit delimitation, watchOS keeps the connection open awaiting additional stream chunks until timing out. We modified the daemon handler to explicitly calculate and deliver <code>Content-Length: len(data)</code> and send <code>Connection: close</code>, dropping watch-to-macOS latency down to a crisp, sub-50ms execution cycle.</li>
+<li><strong>Resolving <span class="tech-term" data-term="watch-chunking">watchOS URLSession Chunking &amp; Indefinite Spinner Hangs</span>:</strong> Initial requests also resolved a <span class="tech-term" data-term="tls-bad-request">TLS 400 Bad Request error</span> caused by iOS Shortcuts auto-prefixing <code>https://</code> against plaintext HTTP. Early testing from Apple Watch revealed that the Shortcut action would freeze until stopped or interrupted on the stop/play execution spinner without advancing the slide. Diagnostics confirmed that watchOS <code>URLSession</code> handles HTTP/1.1 differently than mobile Safari: when a server response omits explicit delimitation, watchOS keeps the connection open awaiting additional stream chunks until timing out. We modified the daemon handler to explicitly calculate and deliver <code>Content-Length: len(data)</code> and send <code>Connection: close</code>, dropping watch-to-macOS latency down to a crisp, device-dependent execution time (a benchmark artifact is not attached here).</li>
 <li><strong>Mitigating <span class="tech-term" data-term="window-focus">macOS Window Focus Stealing (iPhone Mirroring Collision)</span>:</strong> While testing the wearable workflow via macOS Sequoia's iPhone Mirroring, keystrokes failed to reach the slideshow because the Mirroring client maintained keyboard focus. To make the clicker bulletproof against accidental window switching, we updated the AppleScript injection engine to proactively query active process trees (<code>ONLYOFFICE</code>, <code>Keynote</code>, <code>Microsoft PowerPoint</code>) and explicitly activate the presentation window before dispatching <code>key code 124</code> (Right Arrow).</li>
 <li><strong>Overcoming Campus Wi-Fi Isolation via <span class="tech-term" data-term="bonjour-mdns">Zero-Config Bonjour</span> &amp; Tailscale:</strong> Campus enterprise Wi-Fi blocks standard LAN broadcasts and prevents clients from communicating directly. We architected a dual-transport strategy:
   <ul>
@@ -1041,7 +1042,7 @@
   <li><strong>Phase 1: Cryptographic Audio Forensics &amp; Project M Non-Vanilla Isolation:</strong> Executed an exhaustive SHA-256 cryptographic hash audit comparing 314 tracks from the vanilla Brawl soundtrack against 314 tracks in Project M. The audit proved that 290 tracks were bit-for-bit byte duplicates. We pruned all 290 redundant files, mapped the internal sound codes to authentic game stage titles, isolated the 24 unique custom Project M compositions into a dedicated directory (<code>Project M Custom Tracks (Non-Vanilla)</code>), and generated a continuous 47:27 master soundtrack release (<code>Project M - Full Custom Soundtrack.mp3</code>, 108.64 MB) accompanied by a formatted YouTube chapter README.</li>
   <li><strong>Phase 2: Proprietary VGM Decompilation via vgmstream Tooling:</strong> When stock FFmpeg encountered <code>stream type; revision2=23 is not implemented</code> on EA Sports FIFA 09 <code>.aud</code> containers and multi-channel Wii <code>.brstm</code> files, we integrated the specialized <code>vgmstream-cli</code> engine. By pairing binary table parsing from internal game manifests with vgmstream decoding, all 42 licensed FIFA 09 tracks and 27 Deca Sports 3 streams were cleanly transcoded into uncompressed 44.1 kHz master waveforms.</li>
   <li><strong>Phase 3: Automated 1080p Video Production &amp; Concat Edge-Case Hardening:</strong> Built an automated FFmpeg production pipeline synthesizing 1080p MP4 video files combining lossless audio with high-definition album art: 42 standalone FIFA 09 music videos and 27 Deca Sports 3 music videos. Additionally, synthesized full-length continuous soundtrack releases (FIFA 09 at 02:47:35, 383.61 MB; Deca Sports 3 at 33:20, 76.31 MB). Diagnosed and resolved a subtle FFmpeg concat demuxer premature stop triggered by an unescaped single quote in Chromeo's <em>Bonafied Lovin' (Yuksek Remix)</em>, hardening the manifest generator to safely escape special characters.</li>
-  <li><strong>Phase 4: Multi-Drive Orchestration &amp; Cloud-to-Disk MP3 Extraction:</strong> When the synthesized video assets were staged into Google Drive (<code>G:\My Drive. Videos to Upload\</code>), we engineered a background audio demuxing engine. Operating non-destructively, the script processed all 69 videos in Google Drive without deleting or altering the source video assets, extracted 320 kbps MP3 streams with LAME encoding, embedded full ID3v2.3 tags (Artist, Title, Album, Genre), and populated the user's permanent local archive across <code>B: . All Music Playlists Revamped LOCAL\VGM - NOT FULL-20260504T151046Z-3-001\Disk Projects\</code>.</li>
+  <li><strong>Phase 4: Multi-Drive Orchestration &amp; Cloud-to-Disk MP3 Extraction:</strong> When the synthesized video assets were staged into Google Drive (<code>G:\My Drive. Videos to Upload\</code>), we engineered a background audio demuxing engine. Operating non-destructively, the script processed all 69 videos in Google Drive without deleting or altering the source video assets, extracted 320 kbps MP3 streams with LAME encoding, embedded full ID3v2.3 tags (Artist, Title, Album, Genre), and populated the user's permanent local archive across <code>B:. All Music Playlists Revamped LOCAL\VGM - NOT FULL-20260504T151046Z-3-001\Disk Projects\</code>.</li>
   <li><strong>Phase 5: Homelab Remote Integration &amp; Production Documentation:</strong> Closed the engineering loop by securely remoting over Tailscale into the headless Alpine Linux Intel NUC host (<code>avanek@100.87.81.52</code>). Reconciled the site-wide search index (912+ cataloged assets), bumped the monotonic production release to <code>v2.6.428</code>, and documented the entire project timeline directly on the production portfolio and GitHub repository.</li>
 </ul>
 
@@ -1340,7 +1341,7 @@
 <div class="project-downloads-card" style="background: #f8f9fa; border: 1px solid #e1e4e8; border-left: 4px solid #0056b3; border-radius: 8px; padding: 20px; margin: 28px 0;">
   <h3 style="margin-top: 0; color: #0056b3; font-size: 1.2rem;">Direct CAD &amp; 3D Print Downloads</h3>
   <p style="margin-bottom: 16px; font-size: 0.95rem; color: #495057;">Download production-ready, support-free 3D printing models engineered for the ELEGOO ESP-32 Dev Board. Hosted directly in the repository for high-speed static delivery:</p>
-  
+
   <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
     <a href="downloads/esp32-case/ESP32_Elegoo_Case_3X_Plate.stl" download="ESP32_Elegoo_Case_3X_Plate.stl" class="btn" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; box-shadow: 0 2px 4px rgba(0,86,179,0.2);">
       <span>&#128424; Download 3-Pack Build Plate (STL &middot; 68 KB)</span>
@@ -1847,7 +1848,7 @@
 <ul>
   <li><strong>Empirical Past to Present:</strong> Ingests 50 minutes of high-resolution base reflectivity tiles from Iowa Environmental Mesonet (IEM) NEXRAD composite radar.</li>
   <li><strong>Future Predictive Radar (+3 Hours):</strong> Integrates NOAA's High-Resolution Rapid Refresh (HRRR) 3-kilometer numerical atmospheric simulation model (<code>hrrr::REFP-F0015-0</code> through <code>hrrr::REFP-F0180-0</code>), computing predicted precipitation reflectivity forward into the future.</li>
-  <li><strong>Zero-Flicker Pre-Cached GPU Crossfade:</strong> Conventional radar apps re-create DOM tile layers during frame transitions, causing jarring visual blinks ("clunking"). ClearCast mounts all 18 past and future radar tile layers into Leaflet upfront with <code>opacity: 0</code>, executing silky smooth hardware-accelerated transitions via CSS GPU opacity transitions, looping indefinitely across the timeline.</li>
+  <li><strong>Zero-Flicker Pre-Cached GPU Crossfade:</strong> Conventional radar apps re-create DOM tile layers during frame transitions, causing jarring visual blinks ("clunking"). ClearCast mounts all 18 past and future radar tile layers into Leaflet upfront with <code>opacity: 0</code>, executing silky smooth hardware-accelerated transitions via CSS GPU opacity transitions, looping until stopped or interrupted across the timeline.</li>
   <li><strong>Meteorological Intelligence Stack:</strong> Features interactive layer switches for Wind Streamline vector particle flow and Isobaric Surface Pressure contours, alongside an Open-Meteo hyper-local forecast drawer displaying single-line high/low temperatures, UV index, and precipitation probabilities.</li>
 </ul>
 
@@ -2039,7 +2040,7 @@
     <!-- NUC Multi-Port Daemon Block -->
     <rect x="300" y="15" width="345" height="251" rx="10" fill="url(#vNucGrad)" stroke="#10b981" stroke-width="1.8"/>
     <text x="472" y="37" fill="#10b981" font-size="12" font-weight="700" text-anchor="middle">Alpine Linux Intel NUC (192.168.0.202)</text>
-    
+
     <!-- Sub-daemon 1: Port 8094 -->
     <rect x="312" y="48" width="320" height="58" rx="5" fill="#1e1b2e" stroke="#38bdf8" stroke-width="0.8"/>
     <text x="322" y="65" fill="#38bdf8" font-size="10" font-weight="700">Port 8094: duino-singlecore-miner (OpenRC)</text>
@@ -2180,7 +2181,7 @@
     <!-- Top Half: Flawed Synchronous Bridge -->
     <rect x="15" y="15" width="890" height="105" rx="8" fill="url(#vFlawedGrad)" stroke="#ef4444" stroke-width="1.3"/>
     <text x="30" y="36" fill="#f87171" font-size="11.5" font-weight="700">BEFORE: Naive Single-Threaded Bridge (57% &ndash; 68% Accuracy Rate)</text>
-    
+
     <!-- Timeline 1 Steps -->
     <rect x="30" y="48" width="165" height="60" rx="5" fill="#1e1b2e" stroke="#64748b" stroke-width="0.8"/>
     <text x="112" y="68" fill="#e2e8f0" font-size="9.5" font-weight="600" text-anchor="middle">1. Client Requests Job</text>
@@ -2342,7 +2343,7 @@
     <text x="327" y="76" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">Header Signature Scan</text>
     <text x="327" y="92" fill="#93c5fd" font-size="9" text-anchor="middle">JPEG: 0xFFD8FF &bull; PNG: 0x89504E</text>
     <text x="327" y="104" fill="#bae6fd" font-size="9" text-anchor="middle">&rarr; 135 Valid Media Candidates</text>
-    
+
     <rect x="247" y="125" width="160" height="42" rx="6" fill="#171e2e" stroke="#64748b" stroke-width="0.8"/>
     <text x="327" y="141" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="middle">Non-Media Filter</text>
     <text x="327" y="157" fill="#64748b" font-size="9" text-anchor="middle">233 Partial Blobs (Wii ISOs/Videos)</text>
@@ -2355,7 +2356,7 @@
     <!-- Stage 3: Low-Level Carving & EXIF -->
     <rect x="464" y="20" width="195" height="195" rx="10" fill="url(#carveGrad)" stroke="#a855f7" stroke-width="1.5"/>
     <text x="561" y="44" fill="#d8b4fe" font-size="12" font-weight="700" text-anchor="middle">3. Pillow Carve &amp; EXIF</text>
-    
+
     <rect x="477" y="58" width="169" height="34" rx="5" fill="#201138" stroke="#a855f7" stroke-width="0.8"/>
     <text x="561" y="73" fill="#c084fc" font-size="10" font-weight="700" text-anchor="middle">True EOF Slicing</text>
     <text x="561" y="86" fill="#e9d5ff" font-size="9" text-anchor="middle">Trim at ÿÙ &bull; Strip Garbage</text>
@@ -2543,46 +2544,7 @@
 <ul class="chips"><li>HTML5 Canvas</li><li>DeviceOrientationEvent</li><li>Gyroscope Sensor</li><li>Volumetric Sunbeams</li><li>Realistic Vision 5.1</li><li>Interactive Graphics</li><li>Antigravity AI (Google DeepMind)</li><li>Completed Project</li></ul>
 </section>
 
-<section class="project-entry" aria-labelledby="interactive-3d-planetary-backbone-title">
-<h2 id="interactive-3d-planetary-backbone-title">Interactive 3D Planetary Radar &amp; Global Internet Backbone: WebGL Submarine Fiber Optic Mesh, GeoJSON Landing Telemetry &amp; Tier 1 Peering Fabric</h2>
-<p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Three.js &middot; WebGL &middot; globe.gl &middot; TeleGeography GeoJSON &middot; Client-Side Static Architecture &middot; Kinetic Fly-To &middot; Street View &middot; Antigravity AI &middot; <time datetime="2026-11-20">November 20, 2026</time></span></p>
-<div class="project-architecture" aria-label="3D Planetary Radar Architecture"><span>TeleGeography Open GeoJSON (400+ Cables, 1,900+ Landings)</span><span aria-hidden="true">&rarr;</span><span>Vector Normalization &amp; Midpoint Calculus</span><span aria-hidden="true">&rarr;</span><span>globe.gl / Three.js WebGL Engine</span><span aria-hidden="true">&rarr;</span><span>Kinetic Photon Pulse Shaders &amp; High-Capacity Peering Arcs</span><span aria-hidden="true">&rarr;</span><span>Camera Quaternion Fly-To &amp; Coastal Ground View / Street View Drawer</span></div>
-
-<p>Following the successful deployment of the 3D Homelab Project Constellation, I engineered an interactive 3D WebGL planetary radar (<a href="globe.html">3D Planetary Backbone</a>) under the <em>Systems &amp; Stats</em> navigation menu. While the internet is frequently conceptualized as a weightless cloud, over 95% of international data bandwidth relies on physical, armored subsea fiber optic cables traversing abyssal ocean trenches. Collaborating with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, we transformed open telecommunications GIS data into a high-performance, hardware-accelerated 3D planetary observatory mapping international optical corridors, coastal landing terminals, and Tier 1 peering fabrics with real-time ground-level street view inspection.</p>
-
-<h3>Subsea Optical Cable Topologies &amp; Kinetic Photon Shaders</h3>
-<p>Using <strong>Three.js</strong> and <strong>globe.gl</strong>, the radar renders global vector geometries at 60 FPS directly within the browser, requiring zero backend server execution or authentication walls:</p>
-<ul>
-<li><strong>MultiLineString Geospatial Parsing:</strong> Ingested TeleGeography's global subsea cable geometries (<code>cable-geo.json</code>), developing an automated parser in <code>scripts/globe.js</code> to normalize complex nested coordinate segments into 3D orbital splines rendered atop high-resolution night Earth topologies.</li>
-<li><strong>Kinetic Photon Pulse Shaders:</strong> Implemented animated dash shaders across international optical corridors (Transatlantic, Transpacific, and Arctic routes) simulating physical light pulses traveling at ~200,000 km/s through silica glass cores.</li>
-<li><strong>Dynamic Palette Categorization:</strong> Key hyperscaler and high-capacity transatlantic arteries (such as Google Dunant, Grace Hopper, Firmina, Equiano, and MAREA) are accentuated with vibrant cyan and magenta luminescence against deep oceanic abyssal plates.</li>
-</ul>
-
-<h3>Coastal Landing Stations &amp; Ground-Level Reality Inspection</h3>
-<p>To bridge orbital planetary topologies with physical real-world infrastructure, the application maps over 1,900 coastal cable landing terminals worldwide:</p>
-<ul>
-<li><strong>Coordinate Fly-To Choreography:</strong> Clicking any coastal terminal or subsea cable triggers a smooth quaternion camera interpolation down to low-orbit altitude (<code>altitude: 0.45</code>), focusing the viewport directly above the landing coordinates.</li>
-<li><strong>Physical Ground &amp; Street View Integration:</strong> The slide-out telemetry drawer dynamically compiles direct, one-click exploratory portals into <strong>Google Street View</strong> panoramas and <strong>Mapillary</strong> open-source ground photography, allowing users to physically inspect the coastal beach manholes, landing huts, and terminal equipment buildings.</li>
-<li><strong>Tier 1 Global Peering Fabrics &amp; Continental Backhauls:</strong> Mapped principal internet exchange points—including Equinix Ashburn ("Data Center Capital of the World"), DE-CIX Frankfurt, AMS-IX Amsterdam, LINX London, JPNAP Tokyo, SGIX Singapore, and NAP of the Americas Miami—tracing high-capacity optical transit arcs between subsea landings and continental backbones.</li>
-</ul>
-
-<h3>Zero-Cloud Static WebGL Architecture</h3>
-<p>A central design priority was delivering complete client-side independence and instant responsiveness:</p>
-<ul>
-<li><strong>Zero-Backend Static Hosting:</strong> All cable vector geometries (<code>submarine-cables.json</code>), landing coordinates (<code>landing-points.json</code>), and earth textures are packaged statically on the Alpine NUC, eliminating third-party API rate limits and external downtime.</li>
-<li><strong>Instant Client-Side Filtering:</strong> Users can dynamically toggle between active layers (Subsea Fiber, Landing Stations, Tier 1 IXPs) and execute instant fuzzy searches across hundreds of international systems with zero network roundtrips.</li>
-</ul>
-
-<h3>Plain-English Real-World Analogy Engine &amp; Tech Term Tooltips</h3>
-<p>To make complex deep-sea telecommunications and optical networking immediately intuitive for non-technical visitors, we audited all terminology across the 3D globe and telemetry drawer, integrating with the site-wide <code>TECH_ANALOGIES</code> engine:</p>
-<ul>
-<li><strong>Interactive Hover Tooltips &amp; Touch Modals:</strong> Visitors can hover on desktop or tap on mobile to open plain-English analogies for complex mechanics—such as <span class="tech-term" data-term="dwdm">DWDM</span> (shining dozens of rainbow flashlights down a single glass pipe), <span class="tech-term" data-term="bgp-peering">BGP Peering</span> (two sorting warehouses cutting a shared doorway between their buildings), <span class="tech-term" data-term="subsea-repeater">Subsea Repeaters</span> (relay runners passing batons every 50 miles along a mountain trail), <span class="tech-term" data-term="cable-landing-station">Cable Landing Stations</span> (coastal ferry docks offloading ocean traffic onto highways), <span class="tech-term" data-term="beach-manhole">Beach Manholes</span> (underground tide hatches transitioning ocean armor into inland lines), and <span class="tech-term" data-term="power-feed-equipment">Power Feed Equipment</span> (thousands of constant volts energizing undersea amplifiers).</li>
-<li><strong>Accessible Touch Modals with Dismiss Actions:</strong> Mobile and keyboard users enjoy full ARIA accessibility with focus traps and one-tap &ldquo;Got it! Return to content&rdquo; dismiss buttons.</li>
-</ul>
-
-<p class="credit"><strong>AI collaboration credit:</strong> Andrew Van Ek conceived the 3D planetary radar concept, selected the physical submarine cable and coastal ground-view inspection angles, and directed the integration of real-world plain-English analogy tooltips for complex telecom jargon. <strong>Antigravity AI (Google DeepMind agentic assistant)</strong> architected the client-side WebGL engine using globe.gl, implemented the MultiLineString GeoJSON vector ingestion pipeline, developed the kinetic photon pulse shaders and continental transit arcs, engineered the Google Street View and Mapillary telemetry drawer actions, expanded TECH_ANALOGIES with deep-sea telecommunications definitions, updated site-wide navigation and search indices, and authored this case study.</p>
-<ul class="chips"><li>Three.js</li><li>WebGL</li><li>globe.gl</li><li>TeleGeography</li><li>GeoJSON</li><li>Submarine Fiber</li><li>Internet Backbone</li><li>Antigravity AI (Google DeepMind)</li><li>Completed Project</li></ul>
-</section>
+<section class="project-entry" aria-labelledby="interactive-3d-planetary-backbone-title"><h2 id="interactive-3d-planetary-backbone-title">Interactive Internet Geography: A Schematic Globe</h2><p class="project-status"><span class="status-badge project-completed">Interactive Reference</span> <span>Three.js · globe.gl · Imported geographic snapshots · November 26, 2026 clarification</span></p><p>The <a href="globe.html">globe</a> lets visitors rotate the Earth, search imported cable/landing-point references, and inspect illustrative interconnection locations. It explains geography and connectivity, rather than measuring live global Internet traffic.</p><p>Animated dots, elevated arcs, colors, and node sizes are presentation choices. They do not identify real packets, exact fiber circuits, live cable status, or measured throughput. Unsourced traffic percentages and capacity labels were removed. An exchange point is distinguished from a Tier-1 transit network.</p><p>Imported geometry remains a reference snapshot whose exact source date and operational currency are not verified by the animation. Related links can help a reader investigate, but a map location does not establish that street-level imagery shows a particular cable vault or facility.</p><p class="credit">Originally created with Antigravity AI; Andrew Van Ek directed the accuracy review, and ChatGPT / Codex (OpenAI) clarified the source boundaries and corrected the misleading telemetry claims.</p></section>
 
 <section class="project-entry" aria-labelledby="interactive-3d-knowledge-map-title">
 <h2 id="interactive-3d-knowledge-map-title">Interactive 3D Knowledge Map &amp; Homelab Project Constellation: Three.js WebGL Force Graph, Dynamic Node Clustering &amp; Task Orbiters</h2>
@@ -3343,7 +3305,7 @@
 <h3>Architecture &amp; Core Features</h3>
 <ul>
 <li><strong>FastAPI &amp; Uvicorn Backend:</strong> Built a lightweight asynchronous application in an isolated Python virtual environment on the NUC. The service manages an in-memory image pool with instant dynamic rescanning, serving non-repeating random images with caching headers. It starts paused by default, allowing each client to independently play, pause, change interval speeds (4s to 20s), and step back through browsing history.</li>
-<li><strong>Screen Wake Lock &amp; Ambient Frame Mode:</strong> Integrated the HTML5 Screen Wake Lock API (<code>navigator.wakeLock</code>) with automated re-acquisition on tab visibility changes, keeping propped-up tablets and phones awake indefinitely without system display sleep. Controls auto-hide after 3.5 seconds into a clean edge-to-edge frame with ambient blurred backdrops.</li>
+<li><strong>Screen Wake Lock &amp; Ambient Frame Mode:</strong> Integrated the HTML5 Screen Wake Lock API (<code>navigator.wakeLock</code>) with automated re-acquisition on tab visibility changes, keeping propped-up tablets and phones awake until stopped or interrupted without system display sleep. Controls auto-hide after 3.5 seconds into a clean edge-to-edge frame with ambient blurred backdrops.</li>
 <li><strong>Guest Upload Queue &amp; Master Review Dashboard:</strong> Created an upload endpoint enforcing strict 5 MB file size bounds and Pillow image integrity verification. Submissions are queued in a dedicated pending directory with metadata (timestamp, client IP, original filename). Built a password-protected master review dashboard at <code>/admin</code> allowing one-click approval into the active rotation or rejection.</li>
 <li><strong>mkcert Multi-SAN TLS &amp; Dual HTTP/HTTPS Proxy:</strong> Modern mobile browsers restrict HTML5 Screen Wake Lock to secure origins. We deployed <code>mkcert</code> to generate a local Certificate Authority (CA) and issued a multi-SAN SSL certificate covering <code>slideshow.local</code>, <code>slideshow.info</code>, and <code>192.168.0.201</code> (valid through 2029). Deployed Nginx with dual listeners: port 80 proxies plain HTTP for friction-free guest access, while port 443 provides genuine local TLS for green-padlock mobile display lock.</li>
 <li><strong>Bypassing iOS Private Relay with Multicast DNS (mDNS):</strong> Initial testing revealed that iPhones attempting to access <code>http://slideshow.info</code> were redirected to a public GoDaddy domain parking page. Apple's iOS enforces iCloud Private Relay / &ldquo;Limit IP Address Tracking&rdquo; by default, which encrypts DNS queries via Apple DoH relays and bypasses local AdGuard Home rewrites. Because Apple explicitly exempts the <code>.local</code> top-level domain from Private Relay, we installed <code>avahi-daemon</code> on Alpine Linux to broadcast <code>slideshow.local</code> across the physical subnet (<code>eth0</code>), guaranteeing zero-friction mobile camera scanning without DNS leaks.</li>
@@ -3735,7 +3697,7 @@
 	<li><strong>Lossless Direct Copy for Native MP3s:</strong> Directly mirrored all 1,427 pre-existing standard MP3 tracks without re-encoding, preserving exact acoustic fidelity and avoiding unnecessary generation loss.</li>
 	<li><strong>Targeted 320k MP3 Transcoding:</strong> Dynamically routed all 1,889 non-MP3 files (<code>.m4a</code>, <code>.flac</code>, <code>.wma</code>, <code>.opus</code>) through <code>ffmpeg</code> with <code>-c:a libmp3lame -b:a 320k -ar 44100 -id3v2_version 3 -write_id3v1 1</code>. This converted every track into Austin's gold-standard format while writing dual ID3v2.3 and legacy ID3v1 tags for 100% Gingerbread backwards compatibility.</li>
 	<li><strong>Cover Art Preservation &amp; Fallbacks:</strong> Extracted and passed through existing JPEG cover art streams (<code>-c:v copy</code>) directly into ID3v2 APIC frames, with an automatic fallback (<code>-vn</code>) to strip corrupt or incompatible image formats if muxing encountered errors.</li>
-	<li><strong>Crash-Resilient Atomic Writes:</strong> Wrote all transcoded and copied streams to temporary files (<code>*.tmp.mp3</code>) with explicit <code>-f mp3</code> container declarations before executing atomic file replacements (<code>os.replace</code>). This guaranteed zero half-written or corrupt files if network transfers fluctuated.</li>
+	<li><strong>Crash-Resilient Atomic Writes:</strong> Wrote all transcoded and copied streams to temporary files (<code>*.tmp.mp3</code>) with explicit <code>-f mp3</code> container declarations before executing atomic file replacements (<code>os.replace</code>). This reduces exposure to partially replaced destination files. It does not validate source content or guarantee durability after a crash.</li>
 	<li><strong>Directory Flattening &amp; Conflict Prioritization:</strong> Programmatically stripped redundant double-folder nesting and purged all Mac metadata forks. Resolved duplicate filename collisions using deterministic audio quality hierarchy rules (<code>FLAC &gt; M4A &gt; MP3 &gt; WMA</code>).</li>
 </ul>
 
@@ -3973,7 +3935,7 @@
 <p>With an active PyTorch fine-tuning workflow producing multi-epoch checkpoints, multiple VM disk images, and heavy developer caching, running below 35 GB of headroom created immediate risks of filesystem thrashing, aborted training epochs, and broken Windows virtual memory paging. I needed a systematic, zero-data-loss storage audit to pinpoint exactly what was eating the drive and safely reclaim tens of gigabytes without disrupting running environments.</p>
 
 <h3>Algorithmic Filesystem Forensics: Eliminating Recursion &amp; Junction Traps</h3>
-<p>Standard Windows tools like File Explorer and naive PowerShell recursive commands (<code>Get-ChildItem -Recurse</code>) quickly proved unusable for a drive this large: they either froze indefinitely, spawned millions of .NET object allocations that devoured system RAM, or got trapped in infinite recursion loops caused by Windows filesystem junctions (such as the legacy <code>Application Data</code> loop pointing back into <code>AppData\Local</code>).</p>
+<p>Standard Windows tools like File Explorer and naive PowerShell recursive commands (<code>Get-ChildItem -Recurse</code>) quickly proved unusable for a drive this large: they either froze until stopped or interrupted, spawned millions of .NET object allocations that devoured system RAM, or got trapped in infinite recursion loops caused by Windows filesystem junctions (such as the legacy <code>Application Data</code> loop pointing back into <code>AppData\Local</code>).</p>
 <p>To solve this, I paired up with <strong>Antigravity</strong>, Google DeepMind's agentic AI coding assistant. Operating directly in my workstation terminal through autonomous PowerShell and Python execution harnesses, Antigravity built a high-speed multi-threaded filesystem crawler that bypassed standard pitfalls:</p>
 <ul>
   <li><strong>Low-Level Reparse Point Detection:</strong> Inspected the Win32 file attribute bitmask (<code>st_file_attributes &amp; 0x400</code>) to identify and safely bypass directory junctions and cloud-reparse placeholders (preventing infinite loops and unwanted OneDrive file hydration).</li>
@@ -4471,7 +4433,7 @@
 <h3>Making both the VM and the folding client automatic</h3>
 <p>I configured a Compute Engine instance schedule to start the VM at 8 AM and stop it at 11 PM every day in <code>America/Detroit</code> time. The schedule follows local daylight-saving changes. Google's scheduler received a custom role containing only the permissions to start and stop this particular instance. An additional systemd timer inside Linux requests an 11 PM shutdown as a fallback.</p>
 <p>Starting the VM is only half the automation. The official Folding@home 8.5.6 client runs as an enabled systemd service, and the boot script configures all eight CPU threads and sends the client its fold command. It can resume a saved work unit or request new work when available without someone opening Firefox or pressing Fold. I corrected the initial seven-thread setting and verified that the running simulation used eight threads.</p>
-<p>I also planned for the credit balance. At the observed undiscounted rate, fifteen running hours used about $6.26 of compute credit per day, with disk, IP, and network costs additional. I configured a fixed November 23 cutoff to stop the VM and prevent the daily schedule from continuing indefinitely. That date is a time limit, not a dollar cap, and the credit is shared with any other projects using the same billing account. The account remains unupgraded.</p>
+<p>I also planned for the credit balance. At the observed undiscounted rate, fifteen running hours used about $6.26 of compute credit per day, with disk, IP, and network costs additional. I configured a fixed November 23 cutoff to stop the VM and prevent the daily schedule from continuing until stopped or interrupted. That date is a time limit, not a dollar cap, and the credit is shared with any other projects using the same billing account. The account remains unupgraded.</p>
 <h3>Providing a persistent desktop through Tailscale</h3>
 <p>I installed a lightweight XFCE desktop on an Xvfb virtual display and used x11vnc to share that display. Separate systemd services start the display, desktop, <span class="tech-term" data-term="vnc">VNC</span> server, and Tailscale at boot. The VM has a dedicated cloud network with no public inbound <span class="tech-term" data-term="vnc">VNC</span> rule and no Google service account attached.</p>
 <p>The <span class="tech-term" data-term="vnc">VNC</span> server listens only on loopback. Tailscale Serve forwards its desktop port to devices permitted by my tailnet's access rules, keeping the desktop off the public internet. I completed Tailscale enrollment myself, then verified the VNC protocol handshake and opened the desktop in TigerVNC on my Mac. A direct Tailscale connection measured about 18&ndash;19 milliseconds during the connection check. I also signed into Folding@home privately rather than putting credentials in the setup notes.</p>
@@ -4489,7 +4451,7 @@
 <h3>Working through Azure Student quota and regional availability</h3>
 <p>The first challenge came before Linux was installed. My Azure for Students subscription did not have quota for the two-core VM family I initially selected. Asking Azure to raise that family limit did not succeed, and other VM families that appeared to have quota were unavailable in the region. A displayed quota number was not enough: the size also had to be deployable for this subscription in the selected region.</p>
 <p>I kept the deployment draft and compared the available choices instead of creating a larger or more expensive machine by accident. I also found that an availability-zone selection was restricting the size picker. After removing the zone requirement, Azure showed a supported option: a Standard B2s_v2 with two virtual CPUs and 8 GB of memory in West US 2. The disk and network resources were reviewed as part of the same deployment, and I checked the estimate before creating anything.</p>
-<p>The B2s_v2 is a burstable size, not a sustained-performance compute size. It has a baseline CPU level and a credit balance that can support activity above that baseline for a time. That makes it a reasonable small starting point, but it also sets a real limit for continuous Folding@home: if the VM spends its CPU credits, sustained work can be throttled toward the baseline. I accepted that trade-off for this experiment and limited the Folding client to one CPU thread. I will watch how it behaves rather than assume a burstable VM can run flat out indefinitely.</p>
+<p>The B2s_v2 is a burstable size, not a sustained-performance compute size. It has a baseline CPU level and a credit balance that can support activity above that baseline for a time. That makes it a reasonable small starting point, but it also sets a real limit for continuous Folding@home: if the VM spends its CPU credits, sustained work can be throttled toward the baseline. I accepted that trade-off for this experiment and limited the Folding client to one CPU thread. I will watch how it behaves rather than assume a burstable VM can run flat out until stopped or interrupted.</p>
 <h3>Planning for cost and reducing exposed access</h3>
 <p>Cloud compute is billed while the VM is running, so I enabled Azure's automatic shutdown for 11 PM Eastern. The intended routine is to start the machine when I want to use it and let Azure deallocate it overnight. Deallocation stops the VM compute charge, while storage and the public IP can still have a small ongoing cost. After deployment, the Overview page initially appeared inconsistent with the shutdown setting, so I refreshed the VM properties and verified the saved 11 PM schedule instead of relying only on the earlier review screen.</p>
 <p>I also treated remote desktop access as a separate security problem. Azure's network security group permits SSH only from my current client address. I did not add an inbound rule for VNC. TigerVNC is configured to listen on the VM's loopback interface, and Tailscale Serve forwards its port to the private tailnet. That gives my authorized Tailscale devices a route to the desktop without making the VNC service reachable from the public internet. I tested the connection from my Mac and received the expected VNC protocol handshake.</p>
@@ -4927,392 +4889,10 @@
 <p>This project has taken patience and persistence through failed runs, memory constraints, long source-encoding stages, full-length generation, and repeated listening reviews. The trials help distinguish the effects of training, reference conditioning, and generation settings. Lower loss alone does not guarantee a better song, and a single trial cannot conclusively explain every artifact.</p>
 </section>
 
-<section class="project-entry" aria-labelledby="neural-coin-predictor-title">
-<h2 id="neural-coin-predictor-title">Custom AI: From-Scratch Neural Sequence &amp; Binary Predictor</h2>
-<p class="project-status"><span class="status-badge project-completed">Completed &amp; Live</span> <span>Trained on CPU with PyTorch 2.13 &middot; In-Browser Client-Side Engine &middot; Verified <time datetime="2026-10-24">October 24, 2026</time></span></p>
-
-<!-- 120-Epoch CPU Loss Convergence Curve -->
-<div class="ace-chart-container" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:16px; margin:20px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35);">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
-    <div>
-      <h4 style="margin:0; font-size:1.05rem; color:#f8fafc; font-weight:700;">From-Scratch CPU Neural Training Convergence</h4>
-      <span style="font-size:0.8rem; color:#94a3b8;">Binary Cross-Entropy Loss vs. 120 Epochs &bull; PyTorch 2.13 (CPU) &bull; Cosine Annealing Learning Rate Decay</span>
-    </div>
-    <div style="display:flex; gap:8px; align-items:center;">
-      <span style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 8px; border-radius:999px;">Final Loss: 0.6301</span>
-      <span style="background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); font-size:0.75rem; font-weight:700; padding:3px 8px; border-radius:999px;">Holdout F1: 55.93%</span>
-    </div>
-  </div>
-
-  <svg viewBox="0 0 800 240" style="width:100%; height:auto; display:block;" role="img" aria-label="From-scratch CPU neural network training loss curve across 120 epochs">
-    <defs>
-      <linearGradient id="coinLossGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.32"/>
-        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
-      </linearGradient>
-    </defs>
-
-    <!-- Horizontal Grid & Y-Ticks -->
-    <line x1="60" y1="30" x2="760" y2="30" stroke="#1e293b" stroke-width="1"/>
-    <text x="52" y="34" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">0.70</text>
-
-    <line x1="60" y1="72.5" x2="760" y2="72.5" stroke="#1e293b" stroke-width="1"/>
-    <text x="52" y="76.5" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">0.68</text>
-
-    <line x1="60" y1="115.0" x2="760" y2="115.0" stroke="#1e293b" stroke-width="1"/>
-    <text x="52" y="119.0" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">0.66</text>
-
-    <line x1="60" y1="157.5" x2="760" y2="157.5" stroke="#1e293b" stroke-width="1"/>
-    <text x="52" y="161.5" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">0.64</text>
-
-    <line x1="60" y1="200" x2="760" y2="200" stroke="#334155" stroke-width="1.2"/>
-    <text x="52" y="204" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">0.62</text>
-
-    <!-- Area Fill -->
-    <path d="M 60.0,51.7 L 65.9,58.3 L 71.8,65.3 L 77.6,69.9 L 83.5,72.1 L 89.4,72.5 L 95.3,78.2 L 101.2,78.2 L 107.1,79.3 L 112.9,81.6 L 118.8,82.3 L 124.7,84.6 L 130.6,86.7 L 136.5,89.1 L 142.4,90.3 L 148.2,92.7 L 154.1,91.6 L 160.0,96.5 L 165.9,98.6 L 171.8,95.7 L 177.6,97.6 L 183.5,102.2 L 189.4,100.6 L 195.3,102.2 L 201.2,102.2 L 207.1,103.7 L 212.9,107.6 L 218.8,108.6 L 224.7,110.1 L 230.6,111.4 L 236.5,109.9 L 242.4,109.5 L 248.2,115.4 L 254.1,114.6 L 260.0,114.6 L 265.9,115.2 L 271.8,117.8 L 277.6,120.1 L 283.5,121.2 L 289.4,121.4 L 295.3,121.4 L 301.2,123.7 L 307.1,126.5 L 312.9,125.4 L 318.8,129.2 L 324.7,129.7 L 330.6,126.7 L 336.5,127.5 L 342.4,133.1 L 348.2,133.7 L 354.1,134.5 L 360.0,133.3 L 365.9,134.3 L 371.8,137.7 L 377.6,139.4 L 383.5,139.9 L 389.4,136.5 L 395.3,138.6 L 401.2,141.8 L 407.1,142.0 L 412.9,143.9 L 418.8,144.7 L 424.7,147.5 L 430.6,145.6 L 436.5,148.2 L 442.4,150.5 L 448.2,147.7 L 454.1,152.2 L 460.0,150.5 L 465.9,152.6 L 471.8,154.9 L 477.6,154.3 L 483.5,153.0 L 489.4,156.9 L 495.3,156.2 L 501.2,157.1 L 507.1,157.5 L 512.9,158.8 L 518.8,160.5 L 524.7,161.3 L 530.6,162.4 L 536.5,163.2 L 542.4,164.1 L 548.2,164.7 L 554.1,164.5 L 560.0,166.2 L 565.9,165.6 L 571.8,166.6 L 577.6,167.9 L 583.5,168.1 L 589.4,167.9 L 595.3,170.0 L 601.2,170.5 L 607.1,170.5 L 612.9,170.7 L 618.8,171.7 L 624.7,172.2 L 630.6,172.8 L 636.5,173.0 L 642.4,172.8 L 648.2,173.9 L 654.1,173.9 L 660.0,174.3 L 665.9,174.3 L 671.8,174.9 L 677.6,174.9 L 683.5,175.1 L 689.4,176.2 L 695.3,177.0 L 701.2,176.4 L 707.1,176.8 L 712.9,177.5 L 718.8,176.8 L 724.7,177.9 L 730.6,177.0 L 736.5,177.9 L 742.4,177.9 L 748.2,178.5 L 754.1,177.7 L 760.0,178.5 L 760.0,200.0 L 60.0,200.0 Z" fill="url(#coinLossGrad)"/>
-
-    <!-- Loss Curve Stroke -->
-    <path d="M 60.0,51.7 L 65.9,58.3 L 71.8,65.3 L 77.6,69.9 L 83.5,72.1 L 89.4,72.5 L 95.3,78.2 L 101.2,78.2 L 107.1,79.3 L 112.9,81.6 L 118.8,82.3 L 124.7,84.6 L 130.6,86.7 L 136.5,89.1 L 142.4,90.3 L 148.2,92.7 L 154.1,91.6 L 160.0,96.5 L 165.9,98.6 L 171.8,95.7 L 177.6,97.6 L 183.5,102.2 L 189.4,100.6 L 195.3,102.2 L 201.2,102.2 L 207.1,103.7 L 212.9,107.6 L 218.8,108.6 L 224.7,110.1 L 230.6,111.4 L 236.5,109.9 L 242.4,109.5 L 248.2,115.4 L 254.1,114.6 L 260.0,114.6 L 265.9,115.2 L 271.8,117.8 L 277.6,120.1 L 283.5,121.2 L 289.4,121.4 L 295.3,121.4 L 301.2,123.7 L 307.1,126.5 L 312.9,125.4 L 318.8,129.2 L 324.7,129.7 L 330.6,126.7 L 336.5,127.5 L 342.4,133.1 L 348.2,133.7 L 354.1,134.5 L 360.0,133.3 L 365.9,134.3 L 371.8,137.7 L 377.6,139.4 L 383.5,139.9 L 389.4,136.5 L 395.3,138.6 L 401.2,141.8 L 407.1,142.0 L 412.9,143.9 L 418.8,144.7 L 424.7,147.5 L 430.6,145.6 L 436.5,148.2 L 442.4,150.5 L 448.2,147.7 L 454.1,152.2 L 460.0,150.5 L 465.9,152.6 L 471.8,154.9 L 477.6,154.3 L 483.5,153.0 L 489.4,156.9 L 495.3,156.2 L 501.2,157.1 L 507.1,157.5 L 512.9,158.8 L 518.8,160.5 L 524.7,161.3 L 530.6,162.4 L 536.5,163.2 L 542.4,164.1 L 548.2,164.7 L 554.1,164.5 L 560.0,166.2 L 565.9,165.6 L 571.8,166.6 L 577.6,167.9 L 583.5,168.1 L 589.4,167.9 L 595.3,170.0 L 601.2,170.5 L 607.1,170.5 L 612.9,170.7 L 618.8,171.7 L 624.7,172.2 L 630.6,172.8 L 636.5,173.0 L 642.4,172.8 L 648.2,173.9 L 654.1,173.9 L 660.0,174.3 L 665.9,174.3 L 671.8,174.9 L 677.6,174.9 L 683.5,175.1 L 689.4,176.2 L 695.3,177.0 L 701.2,176.4 L 707.1,176.8 L 712.9,177.5 L 718.8,176.8 L 724.7,177.9 L 730.6,177.0 L 736.5,177.9 L 742.4,177.9 L 748.2,178.5 L 754.1,177.7 L 760.0,178.5" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-
-    <!-- Dots & Annotations -->
-    <circle cx="60.0" cy="51.7" r="4" fill="#38bdf8" stroke="#0a0f1d" stroke-width="2"/>
-    <text x="60.0" y="42.7" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="start">Ep 1: 0.6898</text>
-
-    <circle cx="407.1" cy="142.0" r="4" fill="#38bdf8" stroke="#0a0f1d" stroke-width="2"/>
-    <text x="407.1" y="133.0" fill="#94a3b8" font-size="9.5" text-anchor="middle">Ep 60: 0.6473</text>
-
-    <circle cx="760.0" cy="178.5" r="4.5" fill="#10b981" stroke="#0a0f1d" stroke-width="2"/>
-    <text x="760.0" y="169.5" fill="#34d399" font-size="10" font-weight="700" text-anchor="end">Ep 120: 0.6301</text>
-
-    <!-- X-Axis Labels -->
-    <text x="60" y="228" fill="#94a3b8" font-size="10">Epoch 1</text>
-    <text x="410.0" y="228" fill="#94a3b8" font-size="10" text-anchor="middle">Epoch 60</text>
-    <text x="760" y="228" fill="#94a3b8" font-size="10" text-anchor="end">Epoch 120 (Final)</text>
-
-    <text x="60" y="18" fill="#94a3b8" font-size="10" font-weight="600">Binary Cross-Entropy Loss &darr;</text>
-    <text x="760" y="18" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="end">CPU Optimization Steps &rarr;</text>
-  </svg>
-</div>
-
-<!-- Neural Network Architecture Flow Diagram -->
-<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:20px 0; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
-    <div>
-      <h4 style="margin:0; font-size:1.15rem; color:#f8fafc; font-weight:700;">🧠 Neural Network Architecture &amp; Gradient Flow</h4>
-      <span style="font-size:0.8rem; color:#94a3b8;">14 Input Features &rarr; 32 Dense Units (ReLU) &rarr; 16 Dense Units (ReLU) &rarr; 1 Sigmoid Output &bull; 1,025 Trainable Parameters</span>
-    </div>
-    <span style="background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">PyTorch 2.13 (CPU)</span>
-  </div>
-
-  <svg viewBox="0 0 840 260" style="width:100%; height:auto; display:block;" role="img" aria-label="Neural Network Architecture and Flow Diagram">
-    <defs>
-      <linearGradient id="flowGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
-        <stop offset="100%" stop-color="#818cf8" stop-opacity="0.6"/>
-      </linearGradient>
-      <linearGradient id="flowGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#818cf8" stop-opacity="0.6"/>
-        <stop offset="100%" stop-color="#10b981" stop-opacity="0.8"/>
-      </linearGradient>
-      <linearGradient id="backpropGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-        <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.8"/>
-        <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.1"/>
-      </linearGradient>
-      <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L6,3 L0,6 Z" fill="#38bdf8"/>
-      </marker>
-      <marker id="arrowBack" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L6,3 L0,6 Z" fill="#f43f5e"/>
-      </marker>
-    </defs>
-
-    <!-- Synaptic Web Lines Layer 1 to Layer 2 -->
-    <path d="M 120 40 C 180 40, 200 35, 260 35" stroke="url(#flowGrad1)" stroke-width="1.2" fill="none"/>
-    <path d="M 120 70 C 180 70, 200 65, 260 65" stroke="url(#flowGrad1)" stroke-width="1.2" fill="none"/>
-    <path d="M 120 100 C 180 100, 200 95, 260 95" stroke="url(#flowGrad1)" stroke-width="1.2" fill="none"/>
-    <path d="M 120 130 C 180 130, 200 125, 260 125" stroke="url(#flowGrad1)" stroke-width="1.2" fill="none"/>
-    <path d="M 120 160 C 180 160, 200 155, 260 155" stroke="url(#flowGrad1)" stroke-width="1.2" fill="none"/>
-    <path d="M 120 190 C 180 190, 200 185, 260 185" stroke="url(#flowGrad1)" stroke-width="1.2" fill="none"/>
-
-    <!-- Synaptic Web Lines Layer 2 to Layer 3 -->
-    <path d="M 280 35 C 360 35, 380 55, 460 55" stroke="url(#flowGrad1)" stroke-width="1.4" fill="none"/>
-    <path d="M 280 95 C 360 95, 380 95, 460 95" stroke="url(#flowGrad1)" stroke-width="1.4" fill="none"/>
-    <path d="M 280 155 C 360 155, 380 135, 460 135" stroke="url(#flowGrad1)" stroke-width="1.4" fill="none"/>
-    <path d="M 280 185 C 360 185, 380 175, 460 175" stroke="url(#flowGrad1)" stroke-width="1.4" fill="none"/>
-
-    <!-- Synaptic Web Lines Layer 3 to Output -->
-    <path d="M 480 55 C 560 55, 580 115, 640 115" stroke="url(#flowGrad2)" stroke-width="2" fill="none" marker-end="url(#arrowHead)"/>
-    <path d="M 480 95 C 560 95, 580 115, 640 115" stroke="url(#flowGrad2)" stroke-width="2" fill="none" marker-end="url(#arrowHead)"/>
-    <path d="M 480 135 C 560 135, 580 115, 640 115" stroke="url(#flowGrad2)" stroke-width="2" fill="none" marker-end="url(#arrowHead)"/>
-    <path d="M 480 175 C 560 175, 580 115, 640 115" stroke="url(#flowGrad2)" stroke-width="2" fill="none" marker-end="url(#arrowHead)"/>
-
-    <!-- Output to Decision -->
-    <line x1="660" y1="115" x2="730" y2="115" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowHead)"/>
-
-    <!-- Backprop Gradient Loop -->
-    <path d="M 740 145 C 740 225, 270 235, 120 215" stroke="url(#backpropGrad)" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#arrowBack)"/>
-    <text x="430" y="240" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">&larr; Backpropagation: &part;&Lscr;/&part;W via Chain Rule (Adam Optimizer: &alpha; = 0.005 &rarr; 0.0005)</text>
-
-    <!-- COLUMN 1: Input Layer (14 Features) -->
-    <rect x="20" y="20" width="100" height="190" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
-    <text x="70" y="38" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle">Input (14-dim)</text>
-    <circle cx="45" cy="58" r="5" fill="#38bdf8"/> <text x="58" y="62" fill="#cbd5e1" font-size="9">x[t-10..-1]</text>
-    <circle cx="45" cy="82" r="5" fill="#38bdf8"/> <text x="58" y="86" fill="#cbd5e1" font-size="9">Window</text>
-    <circle cx="45" cy="106" r="5" fill="#38bdf8"/> <text x="58" y="110" fill="#cbd5e1" font-size="9">Streak Len</text>
-    <circle cx="45" cy="130" r="5" fill="#38bdf8"/> <text x="58" y="134" fill="#cbd5e1" font-size="9">Heads Ratio</text>
-    <circle cx="45" cy="154" r="5" fill="#38bdf8"/> <text x="58" y="158" fill="#cbd5e1" font-size="9">Alternation</text>
-    <circle cx="45" cy="178" r="5" fill="#38bdf8"/> <text x="58" y="182" fill="#cbd5e1" font-size="9">P(H | H)</text>
-    <text x="70" y="202" fill="#64748b" font-size="8.5" text-anchor="middle">Rolling Vector</text>
-
-    <!-- COLUMN 2: Hidden Layer 1 (32 Nodes) -->
-    <rect x="240" y="15" width="80" height="195" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
-    <text x="280" y="32" fill="#818cf8" font-size="11" font-weight="700" text-anchor="middle">Dense 1</text>
-    <text x="280" y="45" fill="#64748b" font-size="8.5" text-anchor="middle">32 Neurons</text>
-    <circle cx="280" cy="65" r="7" fill="#818cf8" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="280" cy="85" r="7" fill="#818cf8" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="280" cy="105" r="7" fill="#818cf8" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="280" cy="125" r="7" fill="#818cf8" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="280" cy="145" r="7" fill="#818cf8" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="280" cy="165" r="7" fill="#818cf8" stroke="#0a0f1d" stroke-width="2"/>
-    <text x="280" y="195" fill="#34d399" font-size="9" font-weight="700" text-anchor="middle">ReLU Act.</text>
-
-    <!-- COLUMN 3: Hidden Layer 2 (16 Nodes) -->
-    <rect x="440" y="25" width="80" height="180" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
-    <text x="480" y="42" fill="#a78bfa" font-size="11" font-weight="700" text-anchor="middle">Dense 2</text>
-    <text x="480" y="55" fill="#64748b" font-size="8.5" text-anchor="middle">16 Neurons</text>
-    <circle cx="480" cy="80" r="7" fill="#a78bfa" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="480" cy="105" r="7" fill="#a78bfa" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="480" cy="130" r="7" fill="#a78bfa" stroke="#0a0f1d" stroke-width="2"/>
-    <circle cx="480" cy="155" r="7" fill="#a78bfa" stroke="#0a0f1d" stroke-width="2"/>
-    <text x="480" y="190" fill="#34d399" font-size="9" font-weight="700" text-anchor="middle">ReLU Act.</text>
-
-    <!-- COLUMN 4: Output Layer (1 Sigmoid Node) -->
-    <rect x="620" y="75" width="80" height="90" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
-    <text x="660" y="94" fill="#10b981" font-size="11" font-weight="700" text-anchor="middle">Output</text>
-    <circle cx="660" cy="118" r="9" fill="#10b981" stroke="#0a0f1d" stroke-width="2"/>
-    <text x="660" y="146" fill="#f8fafc" font-size="9.5" font-weight="700" text-anchor="middle">&sigma;(z3)</text>
-    <text x="660" y="157" fill="#64748b" font-size="8" text-anchor="middle">Sigmoid &isin; (0,1)</text>
-
-    <!-- COLUMN 5: Decision Boundary -->
-    <rect x="730" y="80" width="95" height="80" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-    <text x="777" y="100" fill="#facc15" font-size="10.5" font-weight="800" text-anchor="middle">&tau; = 0.50 Threshold</text>
-    <text x="777" y="122" fill="#fef08a" font-size="11" font-weight="800" text-anchor="middle">&ge; 0.5: HEADS</text>
-    <text x="777" y="142" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">&lt; 0.5: TAILS</text>
-  </svg>
-</div>
-
-<h3>The Motivation &amp; Physical Dynamics</h3>
-<p>While fine-tuning massive generative models like ACE-Step with LoRA adapts pre-existing representations, building a deep neural network from scratch exercises the fundamental physics of machine learning: feature engineering, loss gradient propagation, activation non-linearities, and generalization boundaries. I designed and trained an end-to-end binary sequence classifier on CPU using PyTorch 2.13 to explore whether a neural network could discover patterns in sequential Bernoulli events such as coin flips.</p>
-
-<p>In pure probability theory, an ideal memoryless coin has maximum Shannon entropy (<em>H = 1.0 bit</em>) and an insurmountable 50.0% predictive ceiling. However, empirical physical processes and human decision-makers are not memoryless. Human coin tossers exhibit pronounced <em>Alternation Bias</em> and Gambler&rsquo;s Fallacy (excessive switching after streaks), while mechanical tosses precess in 3D flight&mdash;a phenomenon proven by Stanford mathematicians Persi Diaconis, Susan Holmes, and Richard Montgomery, where tumbling coins land on their starting face roughly 51%&ndash;53% of the time.</p>
-
-<!-- Statistical Diagnostics & Confusion Matrix Suite -->
-<div style="margin:24px 0 16px;">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
-    <div>
-      <h3 style="margin:0; font-size:1.2rem; color:#002d5a;">📊 Statistical Diagnostics &amp; Holdout Confusion Matrix</h3>
-      <span style="font-size:0.82rem; color:#475569;">1,200 Holdout Test Samples &bull; Authoritative 120-Epoch CPU Verification Suite</span>
-    </div>
-    <span style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Fixed Benchmark Data</span>
-  </div>
-
-  <div class="diag-grid">
-    <!-- Confusion Matrix Card -->
-    <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-      <h4 style="margin:0 0 12px; font-size:1.05rem; color:#002d5a;">
-        <span class="tech-term" data-term="confusion-matrix">Confusion Matrix</span> (1,200 Holdout Samples)
-      </h4>
-      <div style="display:grid; grid-template-columns:85px 1fr 1fr; gap:8px; text-align:center; font-size:0.85rem; margin-bottom:14px;">
-        <div></div>
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px;">Pred. Heads</div>
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px;">Pred. Tails</div>
-
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center;">Act. Heads</div>
-        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#047857;">361</div>
-          <strong style="font-size:0.75rem; color:#065f46; display:block;">True Positive (TP)</strong>
-          <span style="font-size:0.68rem; color:#047857; opacity:0.9;">Hit! (Called Heads &amp; was Heads)</span>
-        </div>
-        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#b91c1c;">247</div>
-          <strong style="font-size:0.75rem; color:#991b1b; display:block;">False Negative (FN)</strong>
-          <span style="font-size:0.68rem; color:#b91c1c; opacity:0.9;">Miss! (Called Tails, was Heads)</span>
-        </div>
-
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center;">Act. Tails</div>
-        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#b91c1c;">322</div>
-          <strong style="font-size:0.75rem; color:#991b1b; display:block;">False Positive (FP)</strong>
-          <span style="font-size:0.68rem; color:#b91c1c; opacity:0.9;">False Alarm! (Called Heads, was Tails)</span>
-        </div>
-        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#047857;">270</div>
-          <strong style="font-size:0.75rem; color:#065f46; display:block;">True Negative (TN)</strong>
-          <span style="font-size:0.68rem; color:#047857; opacity:0.9;">Clear! (Called Tails &amp; was Tails)</span>
-        </div>
-      </div>
-
-      <!-- Classification Metrics Table -->
-      <table style="width:100%; border-collapse:collapse; font-size:0.82rem;">
-        <tbody>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="precision-score"><strong>Precision</strong></span> (The &ldquo;Wolf Cry / Trust&rdquo; Score)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">52.86%</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="recall-score"><strong>Recall / Sensitivity</strong></span> (The &ldquo;Safety Net / Catch&rdquo; Score)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">59.38%</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="specificity-score"><strong>Specificity</strong></span> (The &ldquo;Calm Guard Dog&rdquo; Score)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">45.61%</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="f1-score"><strong>F1-Score</strong></span> (The Balanced Gold Standard)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#059669;">55.93%</td>
-          </tr>
-          <tr>
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="mcc-score"><strong>Matthews Correlation (MCC)</strong></span> (The &ldquo;No-Cheating&rdquo; Report Card)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0284c7;">+0.0503</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Noise Perturbation & SNR Sweep Card -->
-    <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-      <h4 style="margin:0 0 8px; font-size:1.05rem; color:#002d5a;">
-        Noise Perturbation &amp; <span class="tech-term" data-term="snr-db">Signal-to-Noise Ratio (SNR)</span>
-      </h4>
-      <p style="font-size:0.8rem; color:#475569; margin:0 0 12px; line-height:1.4;">
-        Synthetic label corruption simulates noisy sensor readings and accidental bit-flips to measure how gracefully the model resists background interference.
-      </p>
-
-      <div class="table-responsive-wrap">
-        <table style="width:100%; min-width:380px; border-collapse:collapse; font-size:0.82rem; text-align:left;">
-        <thead>
-          <tr style="border-bottom:2px solid #cbd5e1; color:#334155;">
-            <th style="padding:6px 0;">Noise Injected</th>
-            <th style="padding:6px 0;"><span class="tech-term" data-term="snr-db">SNR (dB)</span></th>
-            <th style="padding:6px 0;">Accuracy</th>
-            <th style="padding:6px 0;"><span class="tech-term" data-term="bce-loss">BCE Loss</span></th>
-            <th style="padding:6px 0;">Edge vs. 50%</th>
-          </tr>
-        </thead>
-        <tbody style="border-bottom:1px solid #e2e8f0;">
-          <tr><td><strong>0%</strong> (Pure Clean)</td><td><code>99.9 dB</code></td><td><strong>52.58%</strong></td><td><code>0.7035</code></td><td style="color:#10b981; font-weight:700;">+2.58%</td></tr>
-          <tr><td><strong>5%</strong> (Low Static)</td><td><code>12.8 dB</code></td><td><strong>51.42%</strong></td><td><code>0.7126</code></td><td style="color:#10b981; font-weight:700;">+1.42%</td></tr>
-          <tr><td><strong>10%</strong> (Moderate Fuzz)</td><td><code>9.5 dB</code></td><td><strong>52.25%</strong></td><td><code>0.7117</code></td><td style="color:#10b981; font-weight:700;">+2.25%</td></tr>
-          <tr><td><strong>15%</strong> (Heavy Static)</td><td><code>7.5 dB</code></td><td><strong>51.75%</strong></td><td><code>0.7151</code></td><td style="color:#10b981; font-weight:700;">+1.75%</td></tr>
-          <tr><td><strong>20%</strong> (High Distort)</td><td><code>6.0 dB</code></td><td><strong>51.83%</strong></td><td><code>0.7216</code></td><td style="color:#10b981; font-weight:700;">+1.83%</td></tr>
-          <tr><td><strong>30%</strong> (Extreme Noise)</td><td><code>3.7 dB</code></td><td><strong>52.00%</strong></td><td><code>0.7425</code></td><td style="color:#10b981; font-weight:700;">+2.00%</td></tr>
-          <tr><td><strong>50%</strong> (White Noise)</td><td><code>0.0 dB</code></td><td><strong>48.83%</strong></td><td><code>0.7502</code></td><td style="color:#ef4444; font-weight:700;">-1.17%</td></tr>
-        </tbody>
-      </table>
-      </div>
-      <p style="font-size:0.75rem; color:#64748b; margin:10px 0 0;">
-        <strong>Key Observation:</strong> The neural network maintains a positive predictive edge up to 30% sequence corruption, only dropping below 50% when exposed to 50% pure white noise ($SNR = 0.0	ext{ dB}$).
-      </p>
-    </div>
-  </div>
-
-  <!-- Real-World Analogy Guide Card -->
-  <div style="background:#f0f9ff; border:1px solid #bae6fd; border-left:4px solid #0284c7; border-radius:10px; padding:18px; box-shadow:0 2px 6px rgba(0,0,0,0.03); margin-top:16px;">
-    <h4 style="margin:0 0 10px; color:#0369a1; font-size:1.02rem; display:flex; align-items:center; gap:8px;">
-      <span>💡 Real-World Analogy Guide: Plain-English Translations</span>
-    </h4>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; font-size:0.84rem; color:#334155; line-height:1.5;">
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">1. Confusion Matrix &rarr; Factory Quality Control Tally</strong>
-        <p style="margin:4px 0 0;">Think of an automated optical scanner inspecting smartphones on an assembly line: True Positives are real defective screens caught before shipping; True Negatives are flawless phones passed to packaging; False Positives are perfect phones flagged because of a harmless speck of dust; False Negatives are loose buttons that accidentally slipped through.</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">2. F1-Score &rarr; The Two-Way Athlete</strong>
-        <p style="margin:4px 0 0;">Like evaluating an NBA basketball player: if a player only shoots one single layup all year and makes it, their shooting accuracy is 100%, but they're useless to the team! The F1-score prevents the AI from cheating by balancing aggressive catching (Recall) with cautious accuracy (Precision).</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">3. Shannon Entropy &rarr; Sahara vs. Michigan Weather</strong>
-        <p style="margin:4px 0 0;">Forecasting tomorrow's weather in the Sahara desert has 0 surprise (0.0 bits). But predicting spring weather in Michigan has high chaos and high surprise (~1.0 bit). High entropy means the coin sequence is wild noise; low entropy means there is a clear, predictable pattern.</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">4. SNR &rarr; Car Radio in a Tunnel</strong>
-        <p style="margin:4px 0 0;">Like driving into a highway tunnel while listening to FM radio: as static creeps in, you can still hear the melody until the static drowns out the music (0 dB). This sweep proves the AI detects the pattern even through 20% static.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h3>Technical Implementation</h3>
-<ul>
-  <li><strong>Feature Representation (14 Dimensions):</strong> Evaluates a sliding window of the last 10 binary outcomes alongside four higher-order statistical dynamics: normalized streak magnitude, rolling heads ratio, first-order alternation frequency, and empirical transition probabilities <em>P(H | H)</em>.</li>
-  <li><strong>Model Architecture:</strong> Multi-Layer Perceptron (MLP) consisting of a 14-dimensional input layer, Dense(32) with ReLU activation, Dense(16) with ReLU activation, and a single Sigmoid output unit (&ycirc; &isin; (0, 1)) parameterized by 1,025 trainable weights and biases.</li>
-  <li><strong>CPU Optimization &amp; 120-Epoch Loss:</strong> Trained across 120 extended epochs strictly on CPU using PyTorch 2.13 with Binary Cross-Entropy (BCE) loss and the Adam optimizer with Cosine Annealing learning rate decay (&alpha; = 0.005 &rarr; 0.0005, weight decay 10<sup>-4</sup>). Training loss dropped monotonically from 0.6898 down to a verified record of <strong>0.6301</strong>, driving holdout accuracy to <strong>63.94%</strong> and holdout F1-score to <strong>55.93%</strong> (+5.93% above theoretical 50/50 baseline).</li>
-  <li><strong>Zero-Dependency Client-Side Engine &amp; Human vs. AI Challenge:</strong> Exported the 1,025 fixed benchmark weights into a zero-dependency vanilla JavaScript tensor engine (<a href="ai-predictor.html"><code>ai-predictor.html</code></a>). Visitors can test their intuition against the 120-epoch PyTorch AI in an interactive mini-game (Best of 5, 10, 20, or Endless), inspect the live <strong>Neural Mind Stream HUD</strong> streaming cognitive deductions in real time, and verify rolling prediction tapes with zero visitor CPU retraining load.</li>
-</ul>
-
-<p><a href="ai-predictor.html" class="stats-teaser-btn" style="display:inline-flex; align-items:center; gap:8px; background:#0056b3; color:#ffffff; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:700; margin-top:8px;"><span>Play Human vs. AI Neural Coin Challenge Lab</span> <span aria-hidden="true">&rarr;</span></a></p>
-</section>
+<section class="project-entry" aria-labelledby="neural-coin-predictor-title"><h2 id="neural-coin-predictor-title">Neural Sequence Lab: Data, Baselines, and a Reproducible Model Comparison</h2><p class="project-status"><span class="status-badge project-completed">Interactive Experiment</span> <span>PyTorch CPU · JavaScript inference · Published synthetic data · Updated November 26, 2026</span></p><p>Can a neural network learn a deliberately constructed binary pattern, and does it improve on a simple rule? The <a href="ai-predictor.html">sequence lab</a> lets visitors compare fixed models while seeing exactly how the outcomes are generated. The page makes no claim to predict independent fair coins or measured human choices.</p><h3>Recovering the original experiment</h3><p>The original 120-epoch training script and telemetry were recovered locally. Saved weights match the original browser model. Reconstructing 6,000 seed-42 rows reproduces its 1,200-record validation confusion counts: 361 true positives, 270 true negatives, 322 false positives, and 247 false negatives. That is 631/1,200 = 52.58% validation accuracy, not the inconsistent 54.65% headline previously displayed.</p><h3>A controlled retraining comparison</h3><p>A new candidate uses 20,000 training rows, 5,000 separate validation rows, and 15,000 final test rows generated with independent seeds. Validation loss selected checkpoint 36; training stopped after 44 epochs. On the shared final synthetic mixture, the candidate scores 56.19% versus the original’s 54.47%. Always switching from the previous face scores 55.89%, showing why a stronger baseline matters.</p><p>Performance differs by rule: the candidate improves on the invented alternation subset but does not improve on the fair or mild-persistence subsets. These are observed results for this dataset, not a general or statistically established advantage on real-world outcomes. The browser switches between the two fixed models; gameplay does not retrain them.</p><ul><li><a href="data/coin/transparent-dataset.csv.gz">All 40,000 candidate-experiment rows</a>, with split labels and generating-rule labels.</li><li><a href="scripts/train-coin-transparent.py">Training code</a> and <a href="data/coin/transparent-training.json">weights, curves, seeds, final-test counts, and metadata</a>.</li><li><a href="data/coin/reconstruction.json">Original reconstruction evidence</a> and <a href="data/coin/reconstructed-seed42.csv">reconstructed original rows</a>.</li></ul><p>The audit also corrected the old generator’s 75.75% accidental persistence, separated balance entropy from unpredictability, and removed an unsupported physical-SNR interpretation of label corruption.</p><p class="credit"><strong>Collaboration:</strong> Andrew Van Ek directed the experiment and requested public data and transparent calculations. Antigravity AI created the original model and interface. ChatGPT / Codex (OpenAI) recovered the source, verified the original validation counts, ran the controlled candidate, corrected the simulation, and documented the evidence and limits.</p><ul class="chips"><li>PyTorch</li><li>Synthetic Data</li><li>Model Evaluation</li><li>Baselines</li><li>JavaScript</li><li>Reproducibility</li></ul></section>
 
 
-<section class="project-entry" aria-labelledby="polyglot-code-runner-title">
-<h2 id="polyglot-code-runner-title">Interactive Polyglot Code Runner &amp; Plain-English Error Coach: Zero-Download In-Browser Execution &amp; Isolated Host Sandbox</h2>
-<p class="project-status"><span class="status-badge project-completed">Live Production</span> <span>Interactive WebAssembly Suite &amp; MFA-Guarded Host Compiler</span></p>
-
-<p>A zero-download, in-browser code execution playground and intelligent error diagnostic coach designed to solve a ubiquitous barrier in software engineering education: the overhead of installing compilers, runtime environments, package managers, and toolchains just to experiment with a code snippet or understand an algorithmic concept. Deployed directly within this portfolio (<a href="code-runner.html"><code>code-runner.html</code></a>), visitors can write, execute, inspect, and debug code across eight diverse languages and paradigms with zero local setup.</p>
-
-<div class="project-metrics" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin:16px 0;">
-  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
-    <strong style="display:block; font-size:1.15rem; color:#0284c7;">100% In-Browser</strong>
-    <span style="font-size:0.8rem; color:#64748b;">Tier 1 WASM / Web Worker isolation</span>
-  </div>
-  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
-    <strong style="display:block; font-size:1.15rem; color:#059669;">8 Languages</strong>
-    <span style="font-size:0.8rem; color:#64748b;">Python, JS, SQL, x86, C, C++, Java, C#</span>
-  </div>
-  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
-    <strong style="display:block; font-size:1.15rem; color:#d97706;">TOTP MFA Guarded</strong>
-    <span style="font-size:0.8rem; color:#64748b;">Zero NUC load &middot; Isolated Linux HP host</span>
-  </div>
-  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; text-align:center;">
-    <strong style="display:block; font-size:1.15rem; color:#7c3aed;">Plain-English Coach</strong>
-    <span style="font-size:0.8rem; color:#64748b;">Rookie trap detection &amp; copy-paste fixes</span>
-  </div>
-</div>
-
-<h3>Multi-Tier Execution Architecture &amp; Sandboxing</h3>
-<ul>
-  <li><strong>Tier 1: Client-Side WebAssembly &amp; Web Workers (Zero Server Load):</strong>
-    <ul>
-      <li><strong>Python 3.12:</strong> Bootstrapped through Pyodide (WASM CPython 3.12 compilation) with virtualized standard library execution and real-time <code>stdout</code>/<code>stderr</code> stream redirection.</li>
-      <li><strong>JavaScript:</strong> Evaluated inside an isolated Web Worker sandbox with strict execution time guards and custom <code>console.log</code> intercepts.</li>
-      <li><strong>SQL &amp; Relational Persistence:</strong> Full SQLite relational database engine compiled to WASM via <code>sql.js</code>. Queries persist client-side within browser <code>sessionStorage</code> across page navigations, complete with visual table rendering, column headers, and a one-click <em>Reset Sample Database</em> action.</li>
-      <li><strong>x86 / 8086 Assembly CPU Simulator:</strong> Custom-built 32-bit register simulator featuring a live animated register bank (<code>EAX</code>, <code>EBX</code>, <code>ECX</code>, <code>EDX</code>, <code>ESI</code>, <code>EDI</code>, <code>ESP</code>, <code>EIP</code>, and status flags <code>ZF</code>, <code>CF</code>, <code>SF</code>), instruction stepping, memory inspections, and real-time operand state changes.</li>
-      <li><strong>C Simulation:</strong> Zero-dependency ANSI C pre-compilation parser executing formatted <code>printf</code>, variable scopes, mathematical calculations, and standard loops entirely in-memory.</li>
-    </ul>
-  </li>
-  <li><strong>Tier 2: Native Host Sandboxing &amp; NUC Decoupling:</strong>
-    To protect the primary production Alpine NUC (which hosts Samba file shares, Tailscale routing, and site ingress), untrusted compilation for resource-heavy compiled languages (Java, C++, C#) is strictly decoupled and delegated to the dedicated Linux HP workstation (<code>100.110.13.11</code>). The NUC acts solely as a static reverse proxy and will never execute foreign binaries.
-  </li>
-  <li><strong>Duo Mobile TOTP Multi-Factor Authentication:</strong>
-    Compiled backend languages require an administrator passkey. Borrowing from modern paywall UI patterns, selecting Java, C++, or C# presents an elegant, dismissible MFA overlay requiring Andrew's 6-digit Duo Mobile Authenticator code. Visitors can freely cancel or click <em>&ldquo;Return to In-Browser Mode&rdquo;</em> at any time to immediately continue experimenting with Tier 1 languages without friction.
-  </li>
-  <li><strong>Plain-English Error Coach:</strong>
-    Rather than dumping cryptic compiler stack traces or unhelpful hex fault codes, an integrated cognitive diagnostics engine intercepts runtime exceptions and parses common beginner traps (such as missing colons in Python, forgotten semicolons in C/C++/Java, <code>NullPointerException</code>, array index out of bounds, <code>Segmentation fault (core dumped)</code>, and missing SQL tables). It outputs a three-part diagnostic breakdown: the raw system error, a plain-English explanation of <em>why</em> the machine was confused, and a concrete copy-paste code snippet showing how to resolve it.
-  </li>
-</ul>
-
-<p><a href="code-runner.html" class="stats-teaser-btn" style="display:inline-flex; align-items:center; gap:8px; background:#0056b3; color:#ffffff; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:700; margin-top:8px;"><span>Launch Interactive Code Runner &amp; Error Coach</span> <span aria-hidden="true">&rarr;</span></a></p>
-</section>
+<section class="project-entry" aria-labelledby="polyglot-code-runner-title"><h2 id="polyglot-code-runner-title">Polyglot Code Runner &amp; Plain-English Error Coach</h2><p class="project-status"><span class="status-badge project-completed">Interactive Demonstration</span></p><p>The <a href="code-runner.html">code playground</a> combines browser execution modes with authenticated remote modes for selected compiled languages. Browser runtimes download assets before execution; visitors do not install a desktop compiler.</p><p>The error coach maps recognized error patterns to written explanations and examples. Those messages help explain common failures, but are not a guarantee of a complete diagnosis or a correct fix for arbitrary code.</p><p>Authentication and separation onto another host are described as interface and deployment features. This review did not establish backend container isolation, network isolation, an air gap, or resource-limit enforcement. Stronger security assurances require inspection of the deployed execution service.</p><p class="credit">Originally developed with Antigravity AI. Andrew Van Ek requested the accuracy review; ChatGPT / Codex (OpenAI) clarified runtime downloads, remote execution, and verification boundaries.</p></section>
 
 <section class="project-entry" aria-labelledby="custom-domain-email-title">
 <h2 id="custom-domain-email-title">Custom Domain Email: Comparing Hosted Inbox &amp; Forwarding Options</h2>
@@ -5514,77 +5094,10 @@
 <p><a href="lab.html">View the Live AI Lab</a> for read-only system activity.</p>
 </section>
 
-<section class="project-entry" aria-labelledby="nemo-sudoku-title">
-<h2 id="nemo-sudoku-title">Sudoku Vision &amp; Cognitive Reasoning Engine</h2>
-<p class="project-status"><span class="status-badge project-completed">Live &amp; Interactive</span> <span>Computer Vision &middot; Heuristic Deduction &middot; Zero-Idle Architecture &middot; <time datetime="2026-10-23">October 23, 2026</time></span></p>
-
-<h3>The Concept</h3>
-<p>Inspired by interactive browser-based portfolio demos, I wanted to showcase an active, visible problem-solving task operating client-side in the browser. With assistance from Antigravity CLI, I designed and engineered an event-driven computer vision and cognitive reasoning pipeline. While game bots like Connect 4 are typically driven by canned minimax tree searches, Sudoku provides a compelling stage for true cognitive reasoning: constraint propagation, candidate elimination, pedagogical rule explanation, and search-tree backtracking.</p>
-
-<h3>What Got Built</h3>
-<ul>
-  <li><strong>Optical Scan &amp; Grid Ingestion:</strong> A client-side drag-and-drop upload zone that accepts photos and screenshots of Sudoku puzzles (from morning newspapers, paperback puzzle books, or mobile screens) and renders an optical alignment grid overlay onto HTML5 Canvas. Includes four authentic pre-rendered styles (Newspaper, Modern Mobile App, Puzzle Book, and Diabolical Escargot).</li>
-  <li><strong>Interactive 9&times;9 Digital Verification Grid:</strong> A responsive, keyboard-navigable 9&times;9 board with 3&times;3 box demarcations, arrow-key navigation, candidate pencil marking, and manual digit override before initiating solving.</li>
-  <li><strong>Pedagogical Cognitive Engine:</strong> A human-like deduction engine that evaluates candidate numbers (1&ndash;9) per cell, prioritizes deterministic logical rules (Sole Candidates and Hidden Candidates across rows, columns, and 3&times;3 boxes), and falls back to Minimum Remaining Values (MRV) heuristic branching when pure deduction is exhausted.</li>
-  <li><strong>Live Cognitive Thought Stream:</strong> A dark terminal-style telemetry panel streaming Nemo&rsquo;s natural-language deductions in real time, with color-coded classification tags (<code>SOLE CANDIDATE</code>, <code>HIDDEN CANDIDATE</code>, <code>BRANCH CHOICE</code>, <code>BACKTRACK</code>), real-time deduction/backtrack counters, remaining cell tallies, and variable execution speeds ranging from pedagogical slow-step up to Turbo.</li>
-  <li><strong>Zero-Idle Compute Architecture:</strong> Because Sudoku extraction and heuristic solving are purely event-driven, the engine operates client-side with zero continuous GPU VRAM or CPU overhead on the backend infrastructure when idle.</li>
-</ul>
-
-<p><a href="sudoku.html">Try the Live Sudoku Vision Solver &rarr;</a></p>
-</section>
+<section class="project-entry" aria-labelledby="nemo-sudoku-title"><h2 id="nemo-sudoku-title">Sudoku Logic Solver &amp; Manual Photo Reference</h2><p class="project-status"><span class="status-badge project-completed">Interactive Demonstration</span> <span>JavaScript constraints and search · Editable givens · Narrated steps · Updated November 26, 2026</span></p><p>The <a href="sudoku.html">Sudoku solver</a> illustrates constraint checking and search using built-in examples or manually entered givens. Visitors can adjust playback speed, inspect candidate pencil marks, or advance one operation at a time.</p><p>Photo loading supplies a visual reference only. It clears the grid for manual transcription and does not claim OCR or digit recognition. Earlier wording incorrectly described a preset substitution as successful image recognition; that behavior and claim were removed. The on-screen commentary uses templates tied to solver operations rather than a language model’s private reasoning.</p><p class="credit">Originally implemented with Antigravity AI. Andrew Van Ek requested clearer explanations and accuracy; ChatGPT / Codex (OpenAI) corrected photo handling, labels, and empty-grid safeguards during the November 26 audit.</p></section>
 
 
-<section class="project-entry" aria-labelledby="mind-reader-ai-title">
-<h2 id="mind-reader-ai-title">Mind Reader AI: In-Browser Human Randomness &amp; Choice Predictor</h2>
-<p class="project-status"><span class="status-badge project-in-progress">In Active Development</span> <span>Custom ML Architecture &middot; ONNX Web &middot; Shannon Entropy Telemetry &middot; Launching Tomorrow &middot; <time datetime="2026-10-24">October 24, 2026</time></span></p>
-
-<h3>The Concept</h3>
-<p>Humans are notoriously incapable of producing true mathematical randomness. When asked to simulate a random sequence of coin flips (Heads vs. Tails) or rapid keystrokes, cognitive biases&mdash;such as alternation bias (over-switching between choices), clustering aversion (avoiding long streaks), and subconscious rhythmic cadences&mdash;leave distinct probabilistic fingerprints. Collaborating with <strong>Antigravity CLI</strong>, I am engineering a real-time machine learning prediction engine (&ldquo;Mind Reader&rdquo;) that analyzes human input patterns on the fly to predict the visitor's next choice with statistically significant advantage over 50/50 baseline chance.</p>
-
-<h3>Architecture &amp; Technical Specifications</h3>
-<p>To ensure high throughput and zero latency without exposing backend infrastructure to compute exhaustion, the engine executes entirely within the visitor&rsquo;s web browser. It combines higher-order Markov transition matrices with a compact neural sequence classifier exported directly to ONNX Web format.</p>
-
-<div style="overflow-x:auto; margin:18px 0;">
-  <table style="width:100%; border-collapse:collapse; font-size:0.88rem; background:#0f172a; border:1px solid #1e293b; border-radius:8px; overflow:hidden;">
-    <thead>
-      <tr style="background:#1e293b; color:#94a3b8; text-align:left;">
-        <th style="padding:10px 14px; border-bottom:1px solid #334155;">Component</th>
-        <th style="padding:10px 14px; border-bottom:1px solid #334155;">Implementation Spec</th>
-        <th style="padding:10px 14px; border-bottom:1px solid #334155;">Performance Metric / Target</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
-        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Inference Runtime</td>
-        <td style="padding:9px 14px;">ONNX Runtime Web (Wasm / SIMD edge execution)</td>
-        <td style="padding:9px 14px; color:#10b981;">&lt; 3.5 ms per choice (zero network hops)</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
-        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Model Architecture</td>
-        <td style="padding:9px 14px;">Higher-Order Markov (k=3 to 5) + Bi-LSTM / FFNN Sequence Head</td>
-        <td style="padding:9px 14px; color:#10b981;">Target 68%&ndash;78% accuracy vs. humans (50% chance)</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
-        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Information Theory</td>
-        <td style="padding:9px 14px;">Real-time Shannon Entropy: <code>H(X) = -&Sigma; P(x) log2 P(x)</code></td>
-        <td style="padding:9px 14px; color:#10b981;">Quantifies non-randomness deviation from 1.000 bit</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b; color:#f1f5f9;">
-        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Visual Telemetry</td>
-        <td style="padding:9px 14px;">Running Loss Curve, Confusion Matrix, and Confidence Bar</td>
-        <td style="padding:9px 14px; color:#10b981;">Dual-axis Loss vs. Rounds vector graph</td>
-      </tr>
-      <tr style="color:#f1f5f9;">
-        <td style="padding:9px 14px; font-weight:600; color:#38bdf8;">Server Resource Cost</td>
-        <td style="padding:9px 14px;">Zero-Idle / Client-Side WebAssembly sandbox</td>
-        <td style="padding:9px 14px; color:#10b981;">0 MB Server VRAM &bull; 0% Host CPU Utilization</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<p><em>Development is actively underway with Antigravity CLI. A dedicated interactive demonstration page with real-time prediction gameplay, running loss graphs, and interactive telemetry dials will deploy tomorrow.</em></p>
-</section>
+<section class="project-entry" aria-labelledby="mind-reader-ai-title"><h2 id="mind-reader-ai-title">Human Choice Prediction: A Proposed Extension</h2><p class="project-status"><span class="status-badge project-in-progress">Proposal · Not Validated on Human Choices</span></p><p>This earlier proposal explored whether a small sequence model could identify patterns in deliberately chosen binary sequences. No human-choice dataset, ONNX deployment, or claimed 68–78% human-prediction benchmark is established by the current demonstration.</p><p>The implemented <a href="ai-predictor.html">neural sequence lab</a> instead publishes invented generating rules, datasets, and measured model comparisons. Real human-choice research would require its own consent process, study design, baselines, and held-out evaluation before performance claims could be made.</p></section>
 
 <section class="project-entry" aria-labelledby="phone-ai-title">
 <h2 id="phone-ai-title">Phone AI Gateway: PIN-Free PSTN Bridge, Liquid LFM-2.5 &amp; Real-Time Voice Cloning</h2>
@@ -5793,11 +5306,11 @@
 			</main>
 			<footer>
 				<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-		<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
+		<script src="scripts/script.js?v=20261126-accuracy-436"></script>
 	</body>
 </html>

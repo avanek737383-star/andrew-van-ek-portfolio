@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Neural Coin Predictor | From-Scratch AI Binary Sequence Lab | Andrew Van Ek</title>
-	<meta name="description" content="Interactive from-scratch deep neural network trained on CPU to classify sequential Bernoulli trials, detect human cognitive alternation bias, and model Diaconis physical coin dynamics.">
+	<meta name="description" content="Compare two documented neural models on invented binary sequence rules, with public data, reproducible tests, and simple baselines.">
 	<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -13,7 +13,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/footer.css?v2.6.435">
+<link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
+<link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body>
 	<div class="container">
@@ -31,7 +32,7 @@
 						<li><a href="lab.html">Live AI Lab</a></li>
 						<li><a href="council.html">AI Chatroom</a></li>
 						<li><a href="moltbook.html">Moltbook Agent</a></li>
-						<li><a href="sudoku.html">Sudoku Vision Solver</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html" aria-current="page">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
 						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
@@ -88,21 +89,22 @@
 			<header class="predictor-hero">
 				<h1>Neural Sequence &amp; Coin Predictor</h1>
 				<p class="predictor-subtitle">
-					An end-to-end deep neural network trained on CPU using PyTorch 2.13 and executed client-side via a lightweight JavaScript tensor engine. Evaluates rolling sequence history, human alternation patterns, and Diaconis physical precession dynamics to predict the next binary outcome.
+					A browser demonstration of a fixed neural network making guesses about a synthetic binary sequence. Compare it with simple strategies, inspect the calculations, and see why a high-looking score needs a meaningful baseline.
 				</p>
 				<div class="model-spec-ribbon">
 					<span class="spec-chip">⚙️ <strong>Architecture:</strong> <span class="spec-chip-highlight">14-dim Input &rarr; Dense(32) &rarr; Dense(16) &rarr; Sigmoid(1)</span></span>
 					<span class="spec-sep">&bull;</span>
 					<span class="spec-chip">💻 <strong>Training Platform:</strong> <span class="spec-chip-highlight">PyTorch 2.13 (CPU)</span></span>
 					<span class="spec-sep">&bull;</span>
-					<span class="spec-chip">📉 <strong>Objective:</strong> <span class="spec-chip-highlight">Binary Cross-Entropy Loss (120 Epochs CPU)</span></span>
+					<span class="spec-chip">📉 <strong>Objective:</strong> <span class="spec-chip-highlight">Binary cross-entropy; recorded CPU training</span></span>
 					<span class="spec-sep">&bull;</span>
-					<span class="spec-chip">⚡ <strong>Inference:</strong> <span class="spec-chip-highlight">0ms Client-Side Tensor Math</span></span>
+					<span class="spec-chip">⚡ <strong>Inference:</strong> <span class="spec-chip-highlight">Browser tensor calculation; not zero latency</span></span>
 					<span class="spec-sep">&bull;</span>
-					<span class="spec-chip">🎯 <strong>Evaluation Accuracy:</strong> <span class="spec-chip-highlight">54.65% (+4.65% vs Random 50/50 Baseline)</span></span>
+					<span class="spec-chip">🎯 <strong>Evaluation Accuracy:</strong> <span class="spec-chip-highlight"><span id="current-eval-value">Loading the current evaluation…</span></span></span>
 				</div>
 			</header>
 
+<section class="explain-card" aria-labelledby="coin-question"><span class="explain-label">START HERE</span><h2 id="coin-question">Can a pattern make a coin easier to predict?</h2><p>This is a software experiment, not a simulation of tumbling coin physics. Select independent fair outcomes or a deliberately small repeating tendency. The neural network’s weights stay fixed; your choices do not train it.</p><label for="coin-process"><strong>Choose how the next outcome is generated</strong></label><select id="coin-process"><option value="alternation">Invented alternation rule</option><option value="persistent">Mild repetition rule</option><option value="fair">Independent fair outcomes</option></select><p id="coin-process-explanation"></p><label for="coin-model"><strong>Choose which fixed model makes guesses</strong></label><select id="coin-model"><option value="candidate">Controlled retraining candidate</option><option value="original">Recovered original model</option></select><p>Changing either setting resets the session so results from different generators are not mixed. For the persistent setting, “always predict the previous face” has 51.5% expected accuracy. That is a stronger comparison than a 50% fair guess.</p><p>The model score is an uncalibrated neural-network output, not a promise that its guess is correct. The gauge called balance entropy measures the mix of outcomes, not their unpredictability.</p></section>
 			<!-- Main Interactive Arena -->
 			<div class="predictor-grid">
 				<!-- Coin Toss Stage: Human vs. AI Challenge Arena -->
@@ -149,7 +151,7 @@
 								<span>Neural AI</span>
 							</div>
 							<div class="vs-player-score" id="vs-score-ai">0</div>
-							<div class="vs-player-sub">120-Epoch PyTorch CPU</div>
+							<div class="vs-player-sub">Fixed published weights</div>
 						</div>
 					</div>
 
@@ -214,16 +216,16 @@
 					</div>
 
 					<div class="hud-metrics-grid">
-						<!-- Model Confidence -->
+						<!-- Model Uncalibrated Model Score -->
 						<div class="metric-box">
 							<div class="metric-label">
-								<span><span class="tech-term" data-term="bce-loss">Model Confidence</span> (Probability)</span>
+								<span>Model score (uncalibrated)</span>
 								<span id="hud-conf-val">68.2%</span>
 							</div>
 							<div class="confidence-bar-bg">
 								<div class="confidence-bar-fill" id="hud-conf-bar" style="width: 36%;"></div>
 							</div>
-							<div class="metric-sub" style="margin-top:8px;">Sigmoid activation output y-hat on current feature vector</div>
+							<div class="metric-sub" style="margin-top:8px;">Network score for its chosen face; not a measured success rate</div>
 						</div>
 
 						<!-- Empirical Win-Rate -->
@@ -235,7 +237,7 @@
 
 						<!-- Sequence Entropy & Streaks -->
 						<div class="metric-box metric-box-span-2">
-							<div class="metric-label"><span class="tech-term" data-term="shannon-entropy">Shannon Entropy</span> (Chaos Meter)</div>
+							<div class="metric-label"><span class="tech-term" data-term="shannon-entropy">Outcome-Balance Entropy</span> (Ignores Order)</div>
 							<div class="metric-val-large" id="hud-entropy-val">0.974 bits</div>
 							<div class="metric-sub" id="hud-streak-val">Streak: 2 Heads (Best: 5)</div>
 						</div>
@@ -244,20 +246,20 @@
 					<!-- Forward-Pass Neural Reasoning & Decision Stream (Live HUD Panel) -->
 					<div class="hud-reasoning-panel">
 						<div class="hud-reasoning-header">
-							<span style="font-size:0.75rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.05em;">🧠 Live Inference Reasoning &amp; Decision Stream:</span>
-							<span style="font-size:0.70rem; color:#64748b; font-family:ui-monospace, monospace;">Zero-Latency Local Math</span>
+							<span style="font-size:0.75rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.05em;">🧠 Calculated Features &amp; Decision:</span>
+							<span style="font-size:0.70rem; color:#64748b; font-family:ui-monospace, monospace;">Local tensor calculation</span>
 						</div>
 						<div class="neural-mind-hud" id="neural-mind-hud">
 							<div class="thought-line">
 								<span class="thought-tag">[READY]</span>
-								<span class="thought-text">Neural Network initialized with 120-epoch PyTorch weights. Awaiting your first guess...</span>
+								<span class="thought-text">Fixed model loaded. Predictions use only prior outcomes.</span>
 							</div>
 						</div>
 					</div>
 
 					<div style="background:rgba(255,255,255,0.03); border:1px solid #1e293b; border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#94a3b8; display:flex; justify-content:space-between; align-items:center;">
 						<span>State Features: <code>Window: 10 flips</code> &bull; <code>Streak Length</code> &bull; <code>Alternation Rate</code> &bull; <code>P(H|H)</code></span>
-						<span style="color:#38bdf8; font-weight:600;">Zero-Latency Local Web Worker</span>
+						<span style="color:#38bdf8; font-weight:600;">JavaScript forward pass</span>
 					</div>
 				</section>
 			</div>
@@ -331,7 +333,7 @@
 
     <!-- Backprop Gradient Loop -->
     <path d="M 740 145 C 740 225, 270 235, 120 215" stroke="url(#backpropGrad)" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#arrowBack)"/>
-    <text x="430" y="240" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">&larr; Backpropagation: &part;&Lscr;/&part;W via Chain Rule (Adam Optimizer: &alpha; = 0.005 &rarr; 0.0005)</text>
+    <text x="430" y="240" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">&larr; Backpropagation: &part;&Lscr;/&part;W via Chain Rule (offline training; see the selected model metadata)</text>
 
     <!-- COLUMN 1: Input Layer (14 Features) -->
     <rect x="20" y="20" width="100" height="190" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
@@ -388,7 +390,7 @@
 					<div class="chart-header">
 						<div>
 							<h3 id="chart-loss-title" class="chart-title">CPU Training Loss Convergence Curve</h3>
-							<span class="chart-subtitle">Binary Cross-Entropy Loss (120 Epochs CPU) vs. 100 Training Epochs</span>
+							<span class="chart-subtitle">Recorded training loss; selected checkpoint is documented below</span>
 						</div>
 						<span style="font-size:0.75rem; background:rgba(56,189,248,0.15); color:#38bdf8; padding:3px 8px; border-radius:999px; font-weight:700;">PyTorch 2.13 (CPU)</span>
 					</div>
@@ -401,10 +403,10 @@
 				<section class="chart-card" aria-labelledby="chart-acc-title">
 					<div class="chart-header">
 						<div>
-							<h3 id="chart-acc-title" class="chart-title">Cumulative Predictive Edge vs. Baseline</h3>
-							<span class="chart-subtitle" id="chart-acc-subtitle">Training &amp; Holdout Validation Accuracy vs. Theoretical 50.0% Random Baseline</span>
+							<h3 id="chart-acc-title" class="chart-title">Accuracy: Recorded Training or Current Session</h3>
+							<span class="chart-subtitle" id="chart-acc-subtitle">Recorded training and validation accuracy; final test is separate</span>
 						</div>
-						<span id="chart-acc-badge" style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#34d399; padding:3px 8px; border-radius:999px; font-weight:700;">120-Epoch Benchmark</span>
+						<span id="chart-acc-badge" style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#34d399; padding:3px 8px; border-radius:999px; font-weight:700;">Archived Training Snapshot</span>
 					</div>
 					<div class="canvas-container">
 						<canvas id="canvas-accuracy"></canvas>
@@ -412,197 +414,24 @@
 				</section>
 			</div>
 
-			
 
-			<!-- Diagnostics, Confusion Matrix & Noise Telemetry -->
-<section class="theory-section" aria-labelledby="diagnostics-heading" style="margin-top:32px;">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px;">
-    <div>
-      <h3 id="diagnostics-heading" style="margin:0; font-size:1.3rem; color:#002d5a;">📊 Statistical Diagnostics &amp; <span class="tech-term" data-term="noise-perturbation">Noise Perturbation</span></h3>
-      <span style="font-size:0.85rem; color:#475569;">1,200 Holdout Test Samples &bull; Extended 120-Epoch CPU Verification Suite &bull; Hover or tap highlighted terms for analogies</span>
-    </div>
-    <span style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:999px;">Verified Benchmark Checkpoints</span>
-  </div>
 
-  <div class="diag-grid">
-    <!-- Confusion Matrix Card -->
-    <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-      <h4 style="margin:0 0 12px; font-size:1.05rem; color:#002d5a;">
-        <span class="tech-term" data-term="confusion-matrix">Confusion Matrix</span> (1,200 Holdout Samples)
-      </h4>
-      <div style="display:grid; grid-template-columns:85px 1fr 1fr; gap:8px; text-align:center; font-size:0.85rem; margin-bottom:14px;">
-        <div></div>
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px;">Pred. Heads</div>
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px;">Pred. Tails</div>
+<section class="explain-card" aria-labelledby="diagnostics-heading"><span class="explain-label">CHECK THE EVIDENCE</span><h2 id="diagnostics-heading">What does the current model actually achieve?</h2><p>Both fixed models are evaluated on the same fresh test rows. Compare them with repeat-last-face and always-switch strategies. Changing the play-session generator above is separate from selecting the recorded test subset here.</p><p id="coin-training-summary"></p><label for="coin-test-rule"><strong>Which held-out test subset should the table show?</strong></label><select id="coin-test-rule"><option value="all">Full test mixture</option><option value="alternation">Invented alternation rule</option><option value="persistent">Mild repetition rule</option><option value="fair">Independent fair outcomes</option></select><div id="coin-evaluation" aria-live="polite">Loading the reproducible evaluation artifact…</div><details><summary>Download the data and see how the experiment was run</summary><p>The recovered original generator reconstructs 6,000 seed-42 rows. Its 1,200-row validation counts match the saved weights’ 52.58% result. That validates the final evaluation on that split, not every claim in the original write-up.</p><p>The new candidate trained on 20,000 synthetic rows, used 5,000 separate validation rows for early stopping, and was compared with the original on 15,000 fresh test rows. Validation selected checkpoint 36; training stopped after 44 epochs. The test set did not select the checkpoint. The recorded curve includes all epochs, while inference uses the selected checkpoint.</p><ul><li><a href="data/coin/transparent-dataset.csv.gz">Download all 40,000 rows (compressed CSV)</a></li><li><a href="data/coin/reconstructed-seed42.csv">Download reconstructed original rows</a></li><li><a href="scripts/train-coin-transparent.py">New training script</a> · <a href="scripts/reconstruct-coin-data.py">original-data reconstruction</a></li><li><a href="documents/coin/recovered_train_120.py">Recovered, audit-adapted 120-epoch source</a></li><li><a href="data/coin/transparent-training.json">Candidate weights, curves, test counts, and metadata</a> · <a href="data/coin/reconstruction.json">original reconstruction proof</a></li></ul><p>All examples are invented stochastic rules, not collected human choices or physical coin measurements. Independent draws can share the same short binary context; that is expected in a finite input space. The splits use separate random seeds.</p></details></section>
+<section class="explain-card"><h2>What should you learn from this?</h2><div class="explain-grid"><article><h3>Balance is not randomness</h3><p>The balance-entropy gauge uses only the proportions of heads and tails. <code>01010101</code> scores 1 bit because half the entries are heads, even though the next entry is predictable. This gauge ignores order.</p></article><article><h3>A fair coin has no exploitable history</h3><p>For independent fair outcomes, any predictor based only on the past has 50% expected accuracy. Finite samples can finish above or below 50%; that alone proves no advantage.</p></article><article><h3>A constructed pattern needs its own baseline</h3><p>With 51.5% persistence, always repeating the previous face already has 51.5% expected accuracy. Compare the model with that strategy, not just with random guessing.</p></article><article><h3>Noise needs a definition</h3><p>Flipping a percentage of binary labels is not the same measurement as audio signal-to-noise power. For power SNR, <code>10 log10(signal/noise)</code>, 0 dB means equal powers. The old unsupported noise-sweep table has been removed.</p></article></div></section>
 
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center;">Act. Heads</div>
-        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#047857;">361</div>
-          <strong style="font-size:0.75rem; color:#065f46; display:block;">True Positive (TP)</strong>
-          <span style="font-size:0.68rem; color:#047857; opacity:0.9;">Hit! (Called Heads &amp; was Heads)</span>
-        </div>
-        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#b91c1c;">247</div>
-          <strong style="font-size:0.75rem; color:#991b1b; display:block;">False Negative (FN)</strong>
-          <span style="font-size:0.68rem; color:#b91c1c; opacity:0.9;">Miss! (Called Tails, was Heads)</span>
-        </div>
-
-        <div style="font-weight:700; color:#334155; background:#f1f5f9; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center;">Act. Tails</div>
-        <div style="background:rgba(239,68,68,0.08); border:1px solid #f87171; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#b91c1c;">322</div>
-          <strong style="font-size:0.75rem; color:#991b1b; display:block;">False Positive (FP)</strong>
-          <span style="font-size:0.68rem; color:#b91c1c; opacity:0.9;">False Alarm! (Called Heads, was Tails)</span>
-        </div>
-        <div style="background:rgba(16,185,129,0.12); border:1px solid #10b981; padding:10px 6px; border-radius:6px;">
-          <div style="font-size:1.25rem; font-weight:800; color:#047857;">270</div>
-          <strong style="font-size:0.75rem; color:#065f46; display:block;">True Negative (TN)</strong>
-          <span style="font-size:0.68rem; color:#047857; opacity:0.9;">Clear! (Called Tails &amp; was Tails)</span>
-        </div>
-      </div>
-
-      <!-- Classification Metrics Table -->
-      <table style="width:100%; border-collapse:collapse; font-size:0.82rem;">
-        <tbody>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="precision-score"><strong>Precision</strong></span> (The &ldquo;Wolf Cry / Trust&rdquo; Score)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">52.86%</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="recall-score"><strong>Recall / Sensitivity</strong></span> (The &ldquo;Safety Net / Catch&rdquo; Score)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">59.38%</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="specificity-score"><strong>Specificity</strong></span> (The &ldquo;Calm Guard Dog&rdquo; Score)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0f172a;">45.61%</td>
-          </tr>
-          <tr style="border-bottom:1px solid #e2e8f0;">
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="f1-score"><strong>F1-Score</strong></span> (The Balanced Gold Standard)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#059669;">55.93%</td>
-          </tr>
-          <tr>
-            <td style="padding:6px 0; color:#475569;">
-              <span class="tech-term" data-term="mcc-score"><strong>Matthews Correlation (MCC)</strong></span> (The &ldquo;No-Cheating&rdquo; Report Card)
-            </td>
-            <td style="padding:6px 0; font-weight:700; text-align:right; color:#0284c7;">+0.0503</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Noise Perturbation & SNR Sweep Card -->
-    <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-      <h4 style="margin:0 0 8px; font-size:1.05rem; color:#002d5a;">
-        <span class="tech-term" data-term="noise-perturbation">Noise Perturbation</span> &amp; <span class="tech-term" data-term="snr-db">Signal-to-Noise Ratio (SNR)</span>
-      </h4>
-      <p style="font-size:0.8rem; color:#475569; margin:0 0 12px; line-height:1.4;">
-        Synthetic label corruption simulates noisy sensor readings and accidental bit-flips to measure how gracefully the model resists background interference.
-      </p>
-
-      <div class="table-responsive-wrap">
-        <table style="width:100%; min-width:380px; border-collapse:collapse; font-size:0.82rem; text-align:left;">
-        <thead>
-          <tr style="border-bottom:2px solid #cbd5e1; color:#334155;">
-            <th style="padding:6px 0;"><span class="tech-term" data-term="noise-injected">Noise Injected</span></th>
-            <th style="padding:6px 0;"><span class="tech-term" data-term="snr-db">SNR (dB)</span></th>
-            <th style="padding:6px 0;">Accuracy</th>
-            <th style="padding:6px 0;"><span class="tech-term" data-term="bce-loss">BCE Loss</span></th>
-            <th style="padding:6px 0;">Edge vs. 50%</th>
-          </tr>
-        </thead>
-        <tbody style="border-bottom:1px solid #e2e8f0;">
-          <tr><td><strong>0%</strong> (Pure Clean)</td><td><code>99.9 dB</code></td><td><strong>52.58%</strong></td><td><code>0.7035</code></td><td style="color:#10b981; font-weight:700;">+2.58%</td></tr>
-          <tr><td><strong>5%</strong> (Low Static)</td><td><code>12.8 dB</code></td><td><strong>51.42%</strong></td><td><code>0.7126</code></td><td style="color:#10b981; font-weight:700;">+1.42%</td></tr>
-          <tr><td><strong>10%</strong> (Moderate Fuzz)</td><td><code>9.5 dB</code></td><td><strong>52.25%</strong></td><td><code>0.7117</code></td><td style="color:#10b981; font-weight:700;">+2.25%</td></tr>
-          <tr><td><strong>15%</strong> (Heavy Static)</td><td><code>7.5 dB</code></td><td><strong>51.75%</strong></td><td><code>0.7151</code></td><td style="color:#10b981; font-weight:700;">+1.75%</td></tr>
-          <tr><td><strong>20%</strong> (High Distort)</td><td><code>6.0 dB</code></td><td><strong>51.83%</strong></td><td><code>0.7216</code></td><td style="color:#10b981; font-weight:700;">+1.83%</td></tr>
-          <tr><td><strong>30%</strong> (Extreme Noise)</td><td><code>3.7 dB</code></td><td><strong>52.00%</strong></td><td><code>0.7425</code></td><td style="color:#10b981; font-weight:700;">+2.00%</td></tr>
-          <tr><td><strong>50%</strong> (White Noise)</td><td><code>0.0 dB</code></td><td><strong>48.83%</strong></td><td><code>0.7502</code></td><td style="color:#ef4444; font-weight:700;">-1.17%</td></tr>
-        </tbody>
-      </table>
-      </div>
-      <p style="font-size:0.75rem; color:#64748b; margin:10px 0 0;">
-        <strong>Key Observation:</strong> The neural network maintains a positive predictive edge up to 30% sequence corruption, only dropping below 50% when exposed to 50% pure white noise ($SNR = 0.0\text{ dB}$).
-      </p>
-    </div>
-  </div>
-
-  <!-- Real-World Analogy Guide Card -->
-  <div style="background:#f0f9ff; border:1px solid #bae6fd; border-left:4px solid #0284c7; border-radius:10px; padding:18px; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
-    <h4 style="margin:0 0 10px; color:#0369a1; font-size:1.05rem; display:flex; align-items:center; gap:8px;">
-      <span>💡 Real-World Analogy Guide: Plain-English Translations</span>
-    </h4>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; font-size:0.84rem; color:#334155; line-height:1.5;">
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">1. Confusion Matrix &rarr; Factory Quality Control Tally</strong>
-        <p style="margin:4px 0 0;">Think of an automated optical scanner inspecting smartphones on an assembly line: True Positives are real defective screens caught before shipping; True Negatives are flawless phones passed to packaging; False Positives are perfect phones flagged because of a harmless speck of dust; False Negatives are loose buttons that accidentally slipped through.</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">2. F1-Score &rarr; The Two-Way Athlete</strong>
-        <p style="margin:4px 0 0;">Like evaluating an NBA basketball player: if a player only shoots one single layup all year and makes it, their shooting accuracy is 100%, but they're useless to the team! The F1-score prevents the AI from cheating by balancing aggressive catching (Recall) with cautious accuracy (Precision).</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">3. Shannon Entropy &rarr; Sahara vs. Michigan Weather</strong>
-        <p style="margin:4px 0 0;">Forecasting tomorrow's weather in the Sahara desert has 0 surprise (0.0 bits). But predicting spring weather in Michigan has high chaos and high surprise (~1.0 bit). High entropy means the coin sequence is wild noise; low entropy means there is a clear, predictable pattern.</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">4. SNR &rarr; Car Radio in a Tunnel</strong>
-        <p style="margin:4px 0 0;">Like driving into a highway tunnel while listening to FM radio: as static creeps in, you can still hear the melody until the static drowns out the music (0 dB). This sweep proves the AI detects the pattern even through 20% static.</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">5. Noise Perturbation &rarr; The Turbulence Wind Tunnel</strong>
-        <p style="margin:4px 0 0;">Like stress-testing an aircraft wing in an extreme wind tunnel or having a quarterback practice while being tackled. It deliberately shakes the input sequence to prove the AI's pattern recognition remains steadfast even through noisy interference.</p>
-      </div>
-      <div>
-        <strong style="color:#0284c7; font-size:0.9rem;">6. Empirical Win-Rate &rarr; Real-World Batting Average</strong>
-        <p style="margin:4px 0 0;">Like evaluating a baseball hitter by their actual regular-season hits versus theoretical predictions in batting practice. Empirical win-rate tallies the exact percentage of live coin tosses the AI successfully predicted in real matches.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-			<!-- Mathematical Theory & Foundations -->
-			<section class="theory-section" aria-labelledby="theory-heading">
-				<h3 id="theory-heading">Mathematical Foundations &amp; Research Context</h3>
-				<div class="theory-grid">
-					<div class="theory-card">
-						<h4>1. The 50% Theoretical Ceiling</h4>
-						<p>
-							In pure probability theory, an ideal Bernoulli trial with <em>p = 0.50</em> is independent and memoryless. Its Shannon information entropy is exactly <em>H(X) = 1.0 bit</em>. Under pure mathematical randomness, no algorithm can achieve greater than 50% long-term predictive accuracy.
-						</p>
-					</div>
-					<div class="theory-card">
-						<h4>2. Human Cognitive Alternation Bias</h4>
-						<p>
-							Extensive psychological research demonstrates that humans are systematically poor random number generators. Subjects exhibit severe <em>Gambler's Fallacy</em>: after 2 or 3 identical choices, they switch outcomes with <em>p &gt; 0.70</em>. Neural networks exploit this multi-step autocorrelation to achieve 65%–72% accuracy.
-						</p>
-					</div>
-					<div class="theory-card">
-						<h4>3. Diaconis Physical Precession</h4>
-						<p>
-							In 2007, Stanford mathematicians Persi Diaconis, Susan Holmes, and Richard Montgomery proved that natural coin tosses precess in 3D space during flight. Due to tumbling physics, flipped coins spend more time with the starting face upward, landing on the same face roughly <strong>51%&ndash;53%</strong> of the time.
-						</p>
-					</div>
-				</div>
-			</section>
 		</main>
 
 		<footer>
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 
-	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
-	<script src="scripts/coin-predictor.js?v=20261102-coin-hud-2"></script>
+	<script src="scripts/script.js?v=20261126-accuracy-436"></script>
+	<script src="scripts/coin-math.js?v=20261126-accuracy-436"></script>
+<script src="scripts/coin-evaluation.js?v=20261126-accuracy-436" defer></script>
+<script src="scripts/coin-predictor.js?v=20261126-accuracy-436"></script>
 </body>
 </html>
