@@ -1,11 +1,17 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T21:14:56+00:00",
-  "sourceHead": "fc36fc71e5ff10e5102581435f21ea22d91d72d3",
-  "count": 698,
+  "generatedAt": "2026-11-26T21:17:01+00:00",
+  "sourceHead": "47210bc5356d7ac42b7072c2f9980cbb50cbde1b",
+  "count": 699,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "47210bc5356d7ac42b7072c2f9980cbb50cbde1b",
+      "date": "2026-11-26T16:14:57-05:00",
+      "subject": "[data] Refresh changelog snapshot after oceanscape static refactor",
+      "category": "Maintenance"
+    },
     {
       "sha": "fc36fc71e5ff10e5102581435f21ea22d91d72d3",
       "date": "2026-11-26T16:14:50-05:00",
