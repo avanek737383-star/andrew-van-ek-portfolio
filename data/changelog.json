@@ -1,11 +1,17 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T15:53:28+00:00",
-  "sourceHead": "efa13de6cc0c652d95decc73a78f879c27206826",
-  "count": 660,
-  "releaseLabel": "v2.6.435",
+  "generatedAt": "2026-11-26T16:02:35+00:00",
+  "sourceHead": "194798612ab0b9b2da2e0d90e3d2c6eff47f60b2",
+  "count": 661,
+  "releaseLabel": "v2.6.436",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "194798612ab0b9b2da2e0d90e3d2c6eff47f60b2",
+      "date": "2026-11-26T11:02:15-05:00",
+      "subject": "[audit] Publish evidence-backed corrections and reproducible sequence training",
+      "category": "Maintenance"
+    },
     {
       "sha": "efa13de6cc0c652d95decc73a78f879c27206826",
       "date": "2026-11-25T22:37:06-05:00",
