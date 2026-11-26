@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T20:39:41+00:00",
-  "sourceHead": "176c2074715bb028964cc7832400f5e127e8d5c9",
-  "count": 687,
+  "generatedAt": "2026-11-26T20:53:02+00:00",
+  "sourceHead": "80711871727606fdcc2db7839648610f1595224a",
+  "count": 689,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "80711871727606fdcc2db7839648610f1595224a",
+      "date": "2026-11-26T15:52:45-05:00",
+      "subject": "[projects] Document Robo-Karaoke mobile orientation hint and landscape close fallback",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "6629aa733aff4227a70b90e79999e92144238b09",
+      "date": "2026-11-26T15:39:44-05:00",
+      "subject": "[about] Target site footer for Secrets drawer and remove inline karaoke iframe (Andrew Van Ek, Muse, Codex, Antigravity AI)",
+      "category": "UI & UX"
+    },
     {
       "sha": "176c2074715bb028964cc7832400f5e127e8d5c9",
       "date": "2026-11-26T15:31:15-05:00",

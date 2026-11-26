@@ -307,6 +307,158 @@
     border-radius: 50px;
     box-shadow: 0 0 10px #38bdf8;
   }
+
+  .hud-top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* MOBILE PORTRAIT ROTATION HINT */
+  .rotate-portrait-hint {
+    display: none;
+    position: fixed;
+    top: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 28px);
+    max-width: 460px;
+    z-index: 40;
+    background: rgba(0, 30, 68, 0.94);
+    border: 1.5px solid rgba(56, 189, 248, 0.75);
+    border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow: 0 14px 36px rgba(0, 10, 30, 0.75);
+    backdrop-filter: blur(14px);
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+  }
+  .rotate-portrait-icon {
+    font-size: 26px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .rotate-portrait-copy strong {
+    display: block;
+    font-size: 14px;
+    color: #f8fafc;
+    margin-bottom: 3px;
+  }
+  .rotate-portrait-copy span {
+    display: block;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: #bae6fd;
+  }
+
+  /* MOBILE LANDSCAPE CLOSE (X) BUTTON */
+  .close-tab-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(147, 197, 253, 0.45);
+    background: rgba(0, 45, 90, 0.88);
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 15, 40, 0.55);
+    backdrop-filter: blur(12px);
+    flex-shrink: 0;
+    transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+  .close-tab-btn:hover,
+  .close-tab-btn:focus-visible {
+    background: #dc2626;
+    border-color: rgba(254, 202, 202, 0.85);
+    transform: scale(1.06);
+  }
+
+  @media (orientation: portrait) and (max-width: 768px) {
+    .rotate-portrait-hint {
+      display: flex;
+    }
+    .hud-top {
+      top: 12px;
+      left: 14px;
+      right: 14px;
+      gap: 8px;
+    }
+    .vcr-badge,
+    .track-meta {
+      padding: 6px 12px;
+    }
+    .track-title { font-size: 12px; }
+    .track-sub { font-size: 10px; }
+    .karaoke-stage {
+      top: 172px;
+      width: 94%;
+    }
+    .lyric-box {
+      padding: 18px 16px 24px;
+      min-height: 115px;
+    }
+    .line-active { font-size: 24px; }
+    .line-next { font-size: 15px; }
+    .controls-bar {
+      width: 94%;
+      padding: 8px 12px;
+      gap: 8px;
+      bottom: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-radius: 22px;
+    }
+  }
+
+  @media (orientation: landscape) and (max-height: 600px),
+         (orientation: landscape) and (pointer: coarse) and (max-width: 1024px) {
+    .close-tab-btn {
+      display: inline-flex;
+    }
+  }
+
+  @media (orientation: landscape) and (max-height: 540px) {
+    .hud-top {
+      top: 10px;
+      left: 16px;
+      right: 16px;
+    }
+    .vcr-badge,
+    .track-meta {
+      padding: 6px 14px;
+    }
+    .karaoke-stage {
+      top: 62px;
+      width: 92%;
+    }
+    .lyric-box {
+      padding: 14px 22px 20px;
+      min-height: 98px;
+      border-radius: 16px;
+    }
+    .line-active { font-size: 25px; }
+    .line-next { font-size: 15px; margin-top: 8px; }
+    .controls-bar {
+      bottom: 12px;
+      padding: 8px 16px;
+      gap: 10px;
+    }
+    .btn-circle {
+      width: 38px;
+      height: 38px;
+      font-size: 15px;
+    }
+    .btn-pill {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
 </style>
 <link rel="stylesheet" href="css/footer.css?v=20261126-accuracy-436">
 </head>
@@ -321,9 +473,20 @@
     <div class="vcr-play" id="vcrState"><span class="vcr-indicator-dot"></span><span id="vcrStateText">PAUSE ❚❚</span></div>
     <div class="vcr-time" id="vcrTimer">00:00.0</div>
   </div>
-  <div class="track-meta">
-    <div class="track-title">MIKE'S THEME (ROBO-KARAOKE)</div>
-    <div class="track-sub">Andrew Van Ek Portfolio • Audio Lab</div>
+  <div class="hud-top-right">
+    <div class="track-meta">
+      <div class="track-title">MIKE'S THEME (ROBO-KARAOKE)</div>
+      <div class="track-sub">Andrew Van Ek Portfolio • Audio Lab</div>
+    </div>
+    <button type="button" class="close-tab-btn" id="closeTabBtn" aria-label="Close video tab and return to website" title="Close video tab">&times;</button>
+  </div>
+</div>
+
+<div class="rotate-portrait-hint" id="rotatePortraitHint" role="status" aria-live="polite" aria-hidden="true">
+  <span class="rotate-portrait-icon" aria-hidden="true">📱↻</span>
+  <div class="rotate-portrait-copy">
+    <strong>Rotate your phone to landscape</strong>
+    <span>Turn your phone sideways so the video player and lyrics look right.</span>
   </div>
 </div>
 
@@ -691,6 +854,46 @@ window.addEventListener('keydown', (e) => {
     playBtn.click();
   }
 });
+
+// MOBILE PORTRAIT ROTATION HINT + LANDSCAPE CLOSE (X) BUTTON
+(function () {
+  const rotateHint = document.getElementById('rotatePortraitHint');
+  const closeTabBtn = document.getElementById('closeTabBtn');
+  const portraitMq = window.matchMedia('(orientation: portrait) and (max-width: 768px)');
+
+  function syncRotateHint() {
+    if (!rotateHint) return;
+    const isPortraitMobile = portraitMq.matches;
+    rotateHint.setAttribute('aria-hidden', isPortraitMobile ? 'false' : 'true');
+  }
+
+  syncRotateHint();
+  if (typeof portraitMq.addEventListener === 'function') {
+    portraitMq.addEventListener('change', syncRotateHint);
+  } else if (typeof portraitMq.addListener === 'function') {
+    portraitMq.addListener(syncRotateHint);
+  }
+  window.addEventListener('orientationchange', syncRotateHint);
+  window.addEventListener('resize', syncRotateHint);
+
+  if (closeTabBtn) {
+    closeTabBtn.addEventListener('click', () => {
+      if (!audio.paused) {
+        audio.pause();
+      }
+      try {
+        window.close();
+      } catch (_err) {
+        // Browser blocked script close; fallback executes below.
+      }
+      setTimeout(() => {
+        if (!window.closed) {
+          window.location.href = 'about.html';
+        }
+      }, 150);
+    });
+  }
+})();
 </script>
 <footer><p class="footer-pill">Website last modified: <time datetime="2026-11-26T13:32:10-05:00">November 26, 2026 at 01:32:10 PM EST</time></p>
 <p class="footer-version footer-pill">Version v2.6.442 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
