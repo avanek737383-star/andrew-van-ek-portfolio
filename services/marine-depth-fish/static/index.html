@@ -45,6 +45,7 @@
     #lake-query { flex:1; min-width:0; background:#071321; color:#f0f6fc; border:1px solid #49627c; border-radius:6px; padding:8px; user-select:text; }
     #search-results { max-height:24vh; overflow-y:auto; }
     #search-results button { display:block; width:100%; text-align:left; padding:10px; background:#10243b; color:#f0f6fc; border:1px solid #49627c; cursor:pointer; }
+    #coverage-gap { position:absolute; bottom:12px; left:12px; right:12px; z-index:1000; pointer-events:none; margin:0; padding:8px 12px; background:#3a2a0c; color:#ffe5a3; font-size:0.8rem; border-bottom:1px solid #ad873d; }
     #depth-info { background:#10243b; padding:5px 12px; font-size:0.75rem; z-index:900; }
     #depth-info p { margin-top:6px; max-width:80ch; }
     /* TOP HUD */
@@ -356,6 +357,7 @@
   <!-- MAP WRAPPER -->
   <main id="map-wrapper">
     <div id="map"></div>
+    <p id="coverage-gap" role="status" aria-live="polite" hidden></p>
 
     <!-- STACKED CONTROLS IN UPPER-LEFT CORNER -->
     <div class="upper-left-controls">
@@ -595,6 +597,7 @@
       });
 
       map.on('movestart', () => {
+        document.getElementById('coverage-gap').hidden = true;
         contourRequest++;
         if (contourController) contourController.abort();
       });
@@ -708,6 +711,7 @@
         boxes = east <= 180 ? [[west, south, east, north]] :
           [[west, south, 180, north], [-180, south, east - 360, north]];
       }
+      document.getElementById('coverage-gap').hidden = true;
       document.getElementById('depth-status').textContent = 'Loading depth surveys for this view…';
       try {
         const responses = await Promise.all(boxes.map(async box => {
@@ -730,6 +734,15 @@
           features.length ? `${features.length} surveyed contours loaded for this view.` :
           'No surveyed depth contours available for this view.';
         document.getElementById('depth-coverage').textContent = responses[0].coverage;
+        const focus = responses.map(data => data.focus_coverage).find(f =>
+          f && (f.status === 'coverage_gap' || f.status === 'unknown'));
+        const gapNotice = document.getElementById('coverage-gap');
+        const gapMessage = partial ? '' : focus ? focus.message : !features.length ?
+          'Coverage gap: no surveyed depth contours available in this view from the current source.' : '';
+        gapNotice.textContent = gapMessage;
+        gapNotice.hidden = !gapMessage;
+        if (gapMessage) document.getElementById('depth-status').textContent = gapMessage;
+
 
         // Create new layers in a temporary container before clearing the old ones
         const newLayerGroup = L.layerGroup();
