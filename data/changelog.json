@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T17:17:02+00:00",
-  "sourceHead": "b5104bbcd83f7aacbe2cc63ae138adeeddfd91a0",
-  "count": 678,
-  "releaseLabel": "v2.6.439",
+  "generatedAt": "2026-11-26T17:52:11+00:00",
+  "sourceHead": "9bef89697ac82d4611268c10fdb37b26607579ec",
+  "count": 680,
+  "releaseLabel": "v2.6.440",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "9bef89697ac82d4611268c10fdb37b26607579ec",
+      "date": "2026-11-26T12:52:05-05:00",
+      "subject": "[projects] Record GCP revision 2 provenance and proposed privacy remediation",
+      "category": "Feature"
+    },
+    {
+      "sha": "8b103fa72ca67c2bf08a1149cc317404d946b496",
+      "date": "2026-11-26T12:17:02-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "b5104bbcd83f7aacbe2cc63ae138adeeddfd91a0",
       "date": "2026-11-26T11:54:44-05:00",
