@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:44:34+00:00",
-  "sourceHead": "4ccbc9e5e019cf043d87a0ca1e188c8cdf25f3fe",
-  "count": 675,
+  "generatedAt": "2026-11-26T17:17:02+00:00",
+  "sourceHead": "b5104bbcd83f7aacbe2cc63ae138adeeddfd91a0",
+  "count": 678,
   "releaseLabel": "v2.6.439",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "b5104bbcd83f7aacbe2cc63ae138adeeddfd91a0",
+      "date": "2026-11-26T11:54:44-05:00",
+      "subject": "Document in-progress SMS AI assistant and opt-in website digests",
+      "category": "Local AI"
+    },
+    {
+      "sha": "7d001c7914c697b5c01514921c770e112134e4fb",
+      "date": "2026-11-26T11:45:52-05:00",
+      "subject": "Add explicit SMS update opt-in, privacy policy, and terms",
+      "category": "Feature"
+    },
+    {
+      "sha": "ecb48542f821da51c3bbc981ef811ef54e1c8ed9",
+      "date": "2026-11-26T11:44:35-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "4ccbc9e5e019cf043d87a0ca1e188c8cdf25f3fe",
       "date": "2026-11-26T11:44:28-05:00",
