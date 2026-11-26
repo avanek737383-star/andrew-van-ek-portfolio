@@ -1,11 +1,47 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T22:17:01+00:00",
-  "sourceHead": "bd894cf62223080f03bcc1a0d731b61e3d622b63",
-  "count": 709,
+  "generatedAt": "2026-11-26T23:17:11+00:00",
+  "sourceHead": "a15b7c310ccde9bf833f2779afb93a6b6be0ab06",
+  "count": 715,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "a15b7c310ccde9bf833f2779afb93a6b6be0ab06",
+      "date": "2026-11-26T17:47:44-05:00",
+      "subject": "Explain Muskegon Lake survey gap and show named coverage notices",
+      "category": "Feature"
+    },
+    {
+      "sha": "57eb390f73b925c42f71284cb87ad4d521b23358",
+      "date": "2026-11-26T17:41:29-05:00",
+      "subject": "Add FishDepth contour feet labels and responsive wake controls",
+      "category": "Feature"
+    },
+    {
+      "sha": "7d465cb83ff54eef28003b584cbeda43f0542033",
+      "date": "2026-11-26T17:29:48-05:00",
+      "subject": "Document FishDepth waterbody clipping and resolved lines clarification",
+      "category": "Feature"
+    },
+    {
+      "sha": "38eb6587b6a6638cb37ea0aee9a8dbe0cd7cc2b6",
+      "date": "2026-11-26T17:29:15-05:00",
+      "subject": "Document SkyTrack live selection tracking and compass arrow update",
+      "category": "Feature"
+    },
+    {
+      "sha": "1abd590af723fe919711f39bc5a8666449007b53",
+      "date": "2026-11-26T17:17:28-05:00",
+      "subject": "Document FishDepth viewport contours, lake search, coverage limits and validation",
+      "category": "Feature"
+    },
+    {
+      "sha": "80fa5e96491b95116a5e06b04e56641c07f8aa00",
+      "date": "2026-11-26T17:17:01-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "bd894cf62223080f03bcc1a0d731b61e3d622b63",
       "date": "2026-11-26T17:03:42-05:00",
