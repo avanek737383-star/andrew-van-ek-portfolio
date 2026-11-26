@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:14:36+00:00",
-  "sourceHead": "4890dde02e02c85dfabdcaf879b11192eb959899",
-  "count": 671,
-  "releaseLabel": "v2.6.437",
+  "generatedAt": "2026-11-26T16:22:37+00:00",
+  "sourceHead": "f7d403b170b3df1e2992ea3f3a40919fad5be545",
+  "count": 673,
+  "releaseLabel": "v2.6.438",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "f7d403b170b3df1e2992ea3f3a40919fad5be545",
+      "date": "2026-11-26T11:22:32-05:00",
+      "subject": "[projects] Record Cloudflare audit review and evidence-handling lessons",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "9f07defb8f58426e53cdd907045801e2fb44f732",
+      "date": "2026-11-26T11:14:36-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "4890dde02e02c85dfabdcaf879b11192eb959899",
       "date": "2026-11-26T11:14:31-05:00",
