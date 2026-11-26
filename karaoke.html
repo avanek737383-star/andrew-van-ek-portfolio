@@ -318,17 +318,19 @@
   .rotate-portrait-hint {
     display: none;
     position: fixed;
-    top: 78px;
+    top: 92px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
     width: calc(100% - 28px);
     max-width: 460px;
-    z-index: 40;
-    background: rgba(0, 30, 68, 0.94);
-    border: 1.5px solid rgba(56, 189, 248, 0.75);
+    z-index: 1000;
+    background: rgba(0, 30, 68, 0.96);
+    border: 1.5px solid rgba(56, 189, 248, 0.85);
     border-radius: 16px;
     padding: 14px 16px;
-    box-shadow: 0 14px 36px rgba(0, 10, 30, 0.75);
+    box-shadow: 0 14px 36px rgba(0, 10, 30, 0.8);
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     align-items: center;
     gap: 12px;
@@ -358,8 +360,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(147, 197, 253, 0.45);
-    background: rgba(0, 45, 90, 0.88);
+    border: 1.5px solid rgba(254, 202, 202, 0.85);
+    background: #dc2626;
     color: #ffffff;
     font-size: 22px;
     font-weight: 700;
@@ -367,19 +369,24 @@
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 18px rgba(0, 15, 40, 0.55);
-    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 18px rgba(127, 29, 29, 0.65);
     flex-shrink: 0;
     transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
   }
   .close-tab-btn:hover,
-  .close-tab-btn:focus-visible {
-    background: #dc2626;
-    border-color: rgba(254, 202, 202, 0.85);
+  .close-tab-btn:focus-visible,
+  .close-tab-btn:active {
+    background: #b91c1c;
+    border-color: #ffffff;
     transform: scale(1.06);
   }
 
-  @media (orientation: portrait) and (max-width: 768px) {
+  body.is-portrait-mobile .rotate-portrait-hint {
+    display: flex;
+  }
+
+  @media (orientation: portrait) and (max-width: 900px),
+         (orientation: portrait) and (pointer: coarse) {
     .rotate-portrait-hint {
       display: flex;
     }
@@ -388,6 +395,7 @@
       left: 14px;
       right: 14px;
       gap: 8px;
+      flex-wrap: wrap;
     }
     .vcr-badge,
     .track-meta {
@@ -396,7 +404,7 @@
     .track-title { font-size: 12px; }
     .track-sub { font-size: 10px; }
     .karaoke-stage {
-      top: 172px;
+      top: 196px;
       width: 94%;
     }
     .lyric-box {
@@ -416,8 +424,18 @@
     }
   }
 
+  body.is-landscape-mobile .rotate-portrait-hint {
+    display: none;
+  }
+  body.is-landscape-mobile .close-tab-btn {
+    display: inline-flex;
+  }
+
   @media (orientation: landscape) and (max-height: 600px),
          (orientation: landscape) and (pointer: coarse) and (max-width: 1024px) {
+    .rotate-portrait-hint {
+      display: none;
+    }
     .close-tab-btn {
       display: inline-flex;
     }
@@ -859,22 +877,63 @@ window.addEventListener('keydown', (e) => {
 (function () {
   const rotateHint = document.getElementById('rotatePortraitHint');
   const closeTabBtn = document.getElementById('closeTabBtn');
-  const portraitMq = window.matchMedia('(orientation: portrait) and (max-width: 768px)');
+  const orientationMq = window.matchMedia('(orientation: portrait)');
+  const coarseMq = window.matchMedia('(pointer: coarse)');
 
-  function syncRotateHint() {
-    if (!rotateHint) return;
-    const isPortraitMobile = portraitMq.matches;
-    rotateHint.setAttribute('aria-hidden', isPortraitMobile ? 'false' : 'true');
+  function isMobileDevice() {
+    const narrowViewport = Math.min(window.innerWidth, window.innerHeight) <= 900;
+    const hasTouch = (navigator.maxTouchPoints || 0) > 0;
+    return coarseMq.matches || hasTouch || narrowViewport;
   }
 
-  syncRotateHint();
-  if (typeof portraitMq.addEventListener === 'function') {
-    portraitMq.addEventListener('change', syncRotateHint);
-  } else if (typeof portraitMq.addListener === 'function') {
-    portraitMq.addListener(syncRotateHint);
+  function isPortraitOrientation() {
+    if (window.screen && window.screen.orientation && typeof window.screen.orientation.type === 'string') {
+      if (window.screen.orientation.type.indexOf('portrait') === 0) return true;
+      if (window.screen.orientation.type.indexOf('landscape') === 0) return false;
+    }
+    if (typeof window.orientation === 'number') {
+      if (window.orientation === 0 || window.orientation === 180) return true;
+      if (window.orientation === 90 || window.orientation === -90) return false;
+    }
+    if (window.innerWidth && window.innerHeight && window.innerWidth !== window.innerHeight) {
+      return window.innerHeight > window.innerWidth;
+    }
+    return orientationMq.matches;
   }
-  window.addEventListener('orientationchange', syncRotateHint);
-  window.addEventListener('resize', syncRotateHint);
+
+  function syncMobileOrientationUI() {
+    const mobile = isMobileDevice();
+    const portrait = isPortraitOrientation();
+    const showPortraitHint = mobile && portrait;
+    const showLandscapeClose = mobile && !portrait;
+
+    document.body.classList.toggle('is-portrait-mobile', showPortraitHint);
+    document.body.classList.toggle('is-landscape-mobile', showLandscapeClose);
+
+    if (rotateHint) {
+      rotateHint.style.display = showPortraitHint ? 'flex' : 'none';
+      rotateHint.setAttribute('aria-hidden', showPortraitHint ? 'false' : 'true');
+    }
+  }
+
+  function scheduleOrientationSync() {
+    syncMobileOrientationUI();
+    setTimeout(syncMobileOrientationUI, 120);
+    setTimeout(syncMobileOrientationUI, 350);
+  }
+
+  syncMobileOrientationUI();
+  if (typeof orientationMq.addEventListener === 'function') {
+    orientationMq.addEventListener('change', scheduleOrientationSync);
+  } else if (typeof orientationMq.addListener === 'function') {
+    orientationMq.addListener(scheduleOrientationSync);
+  }
+  if (window.screen && window.screen.orientation && typeof window.screen.orientation.addEventListener === 'function') {
+    window.screen.orientation.addEventListener('change', scheduleOrientationSync);
+  }
+  window.addEventListener('orientationchange', scheduleOrientationSync);
+  window.addEventListener('resize', syncMobileOrientationUI);
+  window.addEventListener('pageshow', scheduleOrientationSync);
 
   if (closeTabBtn) {
     closeTabBtn.addEventListener('click', () => {
