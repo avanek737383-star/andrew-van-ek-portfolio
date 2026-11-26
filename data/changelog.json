@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:08:22+00:00",
-  "sourceHead": "b44607f22e360419de023e9be8b3a7015a76f77b",
-  "count": 667,
-  "releaseLabel": "v2.6.436",
+  "generatedAt": "2026-11-26T16:13:53+00:00",
+  "sourceHead": "c623d0d809af80324d4dbc64c2a5cc74866606aa",
+  "count": 669,
+  "releaseLabel": "v2.6.437",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "c623d0d809af80324d4dbc64c2a5cc74866606aa",
+      "date": "2026-11-26T11:13:47-05:00",
+      "subject": "[projects] Document ongoing portfolio accuracy and privacy audit",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f5d9c313afb6881387f465d09f38716e440485db",
+      "date": "2026-11-26T11:08:22-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "b44607f22e360419de023e9be8b3a7015a76f77b",
       "date": "2026-11-26T11:08:19-05:00",
