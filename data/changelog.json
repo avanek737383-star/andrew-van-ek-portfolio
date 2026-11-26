@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T20:53:02+00:00",
-  "sourceHead": "80711871727606fdcc2db7839648610f1595224a",
-  "count": 689,
+  "generatedAt": "2026-11-26T21:03:09+00:00",
+  "sourceHead": "4ca0a4662eaaec864cb0bf89492e5bfd7a8d24b0",
+  "count": 692,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "4ca0a4662eaaec864cb0bf89492e5bfd7a8d24b0",
+      "date": "2026-11-26T16:03:05-05:00",
+      "subject": "[maintenance] Document Robo-Karaoke iOS portrait hint and red close button fix",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "3db9f52169b1786dd2617e2c2b355be90b27bef4",
+      "date": "2026-11-26T16:02:47-05:00",
+      "subject": "[karaoke] Fix iOS WebKit portrait rotation hint and make close X button red",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "c031f14184bfde0de0a6fae5b89adfd86c9e720b",
+      "date": "2026-11-26T15:53:04-05:00",
+      "subject": "[karaoke] Add mobile portrait rotate hint and landscape close-tab fallback",
+      "category": "UI & UX"
+    },
     {
       "sha": "80711871727606fdcc2db7839648610f1595224a",
       "date": "2026-11-26T15:52:45-05:00",
