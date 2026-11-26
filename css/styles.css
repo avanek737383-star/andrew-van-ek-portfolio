@@ -9141,3 +9141,525 @@ body.valentines-theme .project-downloads-card {
 body.valentines-theme .project-downloads-card h3 {
     color: #881337 !important;
 }
+
+/* === UNIFIED SEASONAL COMPONENT SYNC (2026-11-26) === */
+
+/* Base Styles for About Page Robo-Karaoke Standalone Card */
+.karaoke-experiment {
+    margin: 32px 0;
+    background: #001226;
+    border-radius: 16px;
+    border: 1.5px solid rgba(147, 197, 253, 0.35);
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgba(0, 18, 38, 0.35);
+}
+.karaoke-experiment-header {
+    padding: 18px 24px 14px;
+    background: linear-gradient(180deg, rgba(0, 45, 90, 0.9) 0%, rgba(0, 18, 38, 0.95) 100%);
+    border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+}
+.karaoke-experiment-headrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.karaoke-experiment-title {
+    margin: 0;
+    font-size: 1.15rem;
+    color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.karaoke-experiment-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(147, 197, 253, 0.15);
+    color: #93c5fd;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(147, 197, 253, 0.3);
+}
+.karaoke-experiment-desc {
+    margin: 8px 0 0;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+.karaoke-experiment-desc a {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+.karaoke-mobile-banner {
+    background: rgba(30, 58, 138, 0.45);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.karaoke-mobile-banner-text {
+    font-size: 0.85rem;
+    color: #93c5fd;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.karaoke-launch-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Seasonal Palette Tokens */
+body.thanksgiving-theme,
+html.thanksgiving-theme {
+    --s-dark: #200d02;
+    --s-dark-2: #3d1a04;
+    --s-dark-3: #2d1302;
+    --s-dark-grad: linear-gradient(135deg, #2b1103 0%, #431b05 55%, #200d02 100%);
+    --s-dark-banner: rgba(120, 53, 15, 0.45);
+    --s-primary: #b45309;
+    --s-primary-hover: #92400e;
+    --s-heading: #78350f;
+    --s-accent: #d97706;
+    --s-accent-bright: #fbbf24;
+    --s-accent-text-on-dark: #fde68a;
+    --s-tint: #fffbeb;
+    --s-tint-2: #fef3c7;
+    --s-border-light: #fde68a;
+    --s-border-accent: rgba(217, 119, 6, 0.45);
+    --s-shadow: rgba(180, 83, 9, 0.14);
+}
+body.christmas-theme,
+html.christmas-theme {
+    --s-dark: #031f17;
+    --s-dark-2: #064e3b;
+    --s-dark-3: #043326;
+    --s-dark-grad: linear-gradient(135deg, #042b20 0%, #064e3b 55%, #031f17 100%);
+    --s-dark-banner: rgba(6, 78, 59, 0.58);
+    --s-primary: #15803d;
+    --s-primary-hover: #166534;
+    --s-heading: #064e3b;
+    --s-accent: #ef4444;
+    --s-accent-bright: #4ade80;
+    --s-accent-text-on-dark: #bbf7d0;
+    --s-tint: #f0fdf4;
+    --s-tint-2: #dcfce7;
+    --s-border-light: #bbf7d0;
+    --s-border-accent: rgba(239, 68, 68, 0.45);
+    --s-shadow: rgba(21, 128, 61, 0.14);
+}
+body.valentines-theme,
+html.valentines-theme {
+    --s-dark: #2a030c;
+    --s-dark-2: #4c0519;
+    --s-dark-3: #3b0413;
+    --s-dark-grad: linear-gradient(135deg, #3b0413 0%, #5e0820 55%, #2a030c 100%);
+    --s-dark-banner: rgba(136, 19, 55, 0.5);
+    --s-primary: #e11d48;
+    --s-primary-hover: #be123c;
+    --s-heading: #881337;
+    --s-accent: #f43f5e;
+    --s-accent-bright: #fda4af;
+    --s-accent-text-on-dark: #fecdd3;
+    --s-tint: #fff1f2;
+    --s-tint-2: #ffe4e6;
+    --s-border-light: #fecdd3;
+    --s-border-accent: rgba(244, 63, 94, 0.45);
+    --s-shadow: rgba(225, 29, 72, 0.14);
+}
+
+/* Shared Seasonal Synchronization Across All Light, Dark & Interactive Components */
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .nav-arrow {
+    color: var(--s-accent-bright) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .nav-search-link[aria-current="page"],
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .nav-mobile-search-form:focus-within {
+    border-color: var(--s-accent-bright) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .hero-name,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .edu-school,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-hero-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-suggestions-box h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-no-results h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .quotes-page-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .predictor-hero h1,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sudoku-hero h1,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-hero h1,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .explain-card h2,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .explain-card h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .commendation-gist strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .commendation-client-role,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .computing-amount,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .fah-certificate-card__header h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-tracker-header h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-name,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-version,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .telemetry-header h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .telemetry-value,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .instrument-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .instrument-main-val,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gauge-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gauge-digital-val,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gauge-stat-pill strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .odometer-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .trip-number,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .trip-val,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tach-speed-num,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tach-stat-val,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .lab-offline strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .lab-card > strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .lab-chart-card header,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .duco-wallet-user,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-tutorial-section h4,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-tutorial-steps li strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-guardrails-box strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-card-val,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .inspector-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .meter-val,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .inspector-stat-pill .pill-value,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .subsea-corridor-card strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .corridor-text strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .digital-time-val,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .clock-digital-time,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .clock-homelab-ribbon strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .changelog-metric-value,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .room-sensors .room-sensor-value,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-modal-item-title {
+    color: var(--s-heading) !important;
+}
+
+/* Accent Labels, Eyebrows & Links */
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .hero-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .maintenance-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .contact-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .contact-card-label,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .contact-email,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .project-evidence,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .computing-usd,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .telemetry-sub,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-tracker-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-channel,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-link,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .instrument-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .cockpit-link,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gauge-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .odometer-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tach-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .lab-privacy,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .duco-wallet-tag,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .duco-subtle-link,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-card-unit,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-card-delta,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .clock-dial-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .big-dial-brand,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .digital-time-zone,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .changelog-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .changelog-metric-highlight,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-hero-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-modal-view-all,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-modal-empty code,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-no-results code,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-hero .gallery-tagline,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .explain-label,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .privacy-hero-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sudoku-hero-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .bias-eyebrow,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .chat-assistant .chat-sender,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .td-msg code,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .room-sensor-card h4 svg {
+    color: var(--s-primary) !important;
+    stroke: var(--s-primary) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .room-sensor-card h4 svg {
+    color: inherit !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) body .explain-card a,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .explain-card a,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .evidence-note a,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .computing-card > a,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .contact-link-list a,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .maintenance-index a,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .ipod-chapters a {
+    color: var(--s-primary) !important;
+}
+
+/* Primary Action Buttons & Active Filter Pills */
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .videolinkonly,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .resumelinkonly,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .portfolio-chat-form button,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .chat-user,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .telemetry-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .telemetry-btn-chat,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .cockpit-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .cockpit-action-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tach-rev-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .probe-run-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .wake-lock-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-action-call,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tech-modal-btn-dismiss,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .duco-total-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-tab-btn.active,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .filter-pill.active,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-filter-btn.active,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-mobile-cat-option.active,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-drawer-download-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .module-number,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .commendation-badge-ticket,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .chat-toggle-badge,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .easter-pill-launch-btn {
+    background: var(--s-primary) !important;
+    border-color: var(--s-primary) !important;
+    color: #ffffff !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .telemetry-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .cockpit-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .cockpit-action-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tach-rev-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .probe-run-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-action-call:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-drawer-download-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .easter-pill-card:hover .easter-pill-launch-btn {
+    background: var(--s-primary-hover) !important;
+    border-color: var(--s-primary-hover) !important;
+    color: #ffffff !important;
+}
+
+/* Soft Tinted Pills, Badges & Light Cards */
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .commendations-meta-pill,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-credit-pill,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-tag-chip,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .featured-proverb-badge,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .commit-version-pill,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tag-feat,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .speedo-badge,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .speedo-ms-chip,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-icon-windows,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .odometer-live-pill,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .explain-card button,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .footer-easter-egg-btn {
+    background: var(--s-tint-2) !important;
+    border-color: var(--s-border-light) !important;
+    color: var(--s-heading) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .footer-easter-egg-btn:hover {
+    background: var(--s-primary) !important;
+    border-color: var(--s-primary) !important;
+    color: #ffffff !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .featured-proverb-card {
+    background: linear-gradient(135deg, var(--s-tint) 0%, var(--s-tint-2) 100%) !important;
+    border-color: var(--s-border-accent) !important;
+    box-shadow: 0 4px 16px var(--s-shadow) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .hero-quote-dice-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-modal-item:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-modal-item.active {
+    background: var(--s-tint) !important;
+    border-color: var(--s-border-accent) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .commendation-card {
+    border-top-color: var(--s-accent) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .explain-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-hero,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .quote-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sudoku-hero,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sudoku-input-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .computing-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .fah-certificate-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .wallpaper-gallery-callout,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .room-sensors .room-sensor-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .os-card:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .instrument-card:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .cockpit-gauge-card:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .gallery-card:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .changelog-search-input:focus {
+    border-color: var(--s-border-accent) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .explain-card {
+    border-left-color: var(--s-primary) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .project-architecture span:nth-child(odd) {
+    color: var(--s-heading) !important;
+    border-color: var(--s-border-accent) !important;
+    background: var(--s-tint) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .speaking-points-card {
+    background: var(--s-tint) !important;
+    border-left-color: var(--s-primary) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .speaking-points-card strong {
+    color: var(--s-heading) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .chat-dot,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .tick-dot {
+    background: var(--s-primary) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .lab-chart-card polyline {
+    stroke: var(--s-primary) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .bar-ai,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .bar-chat,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .meter-fill-dl,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) #stat-edge-ram-bar {
+    background: linear-gradient(90deg, var(--s-primary), var(--s-accent-bright)) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-guardrails-box {
+    border-left-color: var(--s-accent) !important;
+    background: var(--s-tint) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .changelog-table thead {
+    background: var(--s-dark-2) !important;
+    color: #ffffff !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .commit-hex-badge {
+    background: var(--s-dark) !important;
+    color: var(--s-accent-bright) !important;
+    border-color: var(--s-border-accent) !important;
+}
+
+/* Mobile Phone Toggle (override @media max-width: 600px vivid blue) */
+@media (max-width: 600px) {
+    :is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .portfolio-phone-toggle {
+        background: var(--s-primary) !important;
+        border-color: var(--s-accent-bright) !important;
+        color: #ffffff !important;
+    }
+}
+
+/* Dark Cards & Containers: Synchronize Surfaces and Enforce Crisp High-Contrast Headings & Links */
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-experiment {
+    background: var(--s-dark) !important;
+    border-color: var(--s-border-accent) !important;
+    box-shadow: 0 12px 36px var(--s-shadow) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-experiment-header {
+    background: var(--s-dark-grad) !important;
+    border-bottom-color: var(--s-border-accent) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-experiment-title {
+    color: #f8fafc !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-experiment-badge {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: var(--s-accent-text-on-dark) !important;
+    border-color: var(--s-border-accent) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-experiment-desc {
+    color: #f1f5f9 !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-experiment-desc a {
+    color: var(--s-accent-bright) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-mobile-banner {
+    background: var(--s-dark-banner) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-mobile-banner-text {
+    color: var(--s-accent-text-on-dark) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-launch-btn {
+    background: var(--s-primary) !important;
+    border: 1px solid var(--s-accent-bright) !important;
+    color: #ffffff !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .karaoke-launch-btn:hover {
+    background: var(--s-primary-hover) !important;
+}
+
+/* Dark Showcase Cards Across Home, Lab, Projects, AI Predictor, Stats, Phone, Clock & Modals */
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .stats-teaser-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .arch-diagram-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-map-panel,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-probe-instrument,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .portfolio-phone-header,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-number-banner,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .easter-drawer-modal,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .search-easter-egg-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .runner-hero,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .quote-toast {
+    background: var(--s-dark-grad) !important;
+    border-color: var(--s-border-accent) !important;
+    color: #f8fafc !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .stats-teaser-card h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .arch-diagram-card h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .arch-diagram-card h4,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .easter-drawer-header h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .runner-hero h1,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .portfolio-phone-header strong,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .hud-card h2,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .hud-card h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-map-panel h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-probe-instrument h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .digital-time-val {
+    color: #ffffff !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .stats-teaser-badge,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .stats-teaser-pill .pill-sub,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-panel-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .probe-title,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .phone-banner-digits,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .easter-pill-card-code,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .big-dial-brand,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .digital-time-zone,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .map-page-body footer a,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sim-body h1,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sim-body h2,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sim-body h3,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .sim-eyebrow {
+    color: var(--s-accent-bright) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .stats-teaser-btn {
+    background: var(--s-primary) !important;
+    border-color: var(--s-accent-bright) !important;
+    color: #ffffff !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .stats-teaser-btn:hover {
+    background: var(--s-primary-hover) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .easter-pill-card,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .big-clock-bezel,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .digital-date-badge,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .clock-sync-pill,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .clock-tool-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .desk-clock-card.dimmer-active .clock-homelab-ribbon {
+    background: var(--s-dark-3) !important;
+    border-color: var(--s-border-accent) !important;
+    color: #f8fafc !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .easter-pill-card:hover {
+    background: var(--s-dark-2) !important;
+    border-color: var(--s-accent-bright) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-live-dot {
+    background: var(--s-accent-bright) !important;
+    box-shadow: 0 0 8px var(--s-accent-bright) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-map-reset-btn,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-map-overlay-reset {
+    border-color: var(--s-accent-bright) !important;
+    color: var(--s-accent-bright) !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-map-reset-btn:hover,
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .radar-map-overlay-reset:hover {
+    background: var(--s-primary) !important;
+    color: #ffffff !important;
+}
+:is(body.thanksgiving-theme, body.christmas-theme, body.valentines-theme) .portfolio-phone-header {
+    border-bottom-color: var(--s-accent-bright) !important;
+}
