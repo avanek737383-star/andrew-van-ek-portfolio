@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T21:17:49+00:00",
-  "sourceHead": "8168fa97d8d0a1deccdec696228ff9e70a3e709a",
-  "count": 700,
+  "generatedAt": "2026-11-26T21:20:57+00:00",
+  "sourceHead": "6f6c5e3df9598c1a611f0c24e1d8a8bb0245dc48",
+  "count": 703,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "6f6c5e3df9598c1a611f0c24e1d8a8bb0245dc48",
+      "date": "2026-11-26T16:20:52-05:00",
+      "subject": "[maintenance] Document pointer-following oceanscape lights refinement",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "36f0fb002b2178ca36ca187bb99ed1b61702bedb",
+      "date": "2026-11-26T16:20:46-05:00",
+      "subject": "[about] Rework oceanscape lights to pointer-following and remove Codex from theme-audit credit",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "85696b8837ff8db52ad0d9905eff605644ec390c",
+      "date": "2026-11-26T16:17:49-05:00",
+      "subject": "[maintenance] Remove Codex credit from static oceanscape log entry",
+      "category": "Maintenance"
+    },
     {
       "sha": "8168fa97d8d0a1deccdec696228ff9e70a3e709a",
       "date": "2026-11-26T16:17:01-05:00",
