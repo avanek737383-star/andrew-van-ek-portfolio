@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 99,
-    "totalNodes": 338,
-    "totalLinks": 689,
+    "totalProjects": 100,
+    "totalNodes": 343,
+    "totalLinks": 700,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,94 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "autonomous-portfolio-publisher-plugin-title",
+      "name": "Autonomous Portfolio Publisher Plugin for Google Antigravity \u2014 Global Skills, Strict Page-Separation Guardrails, Remote SSH AST/HTML Validation & Zero-Boilerplate GitHub Publishing",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 25, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Every time a new feature, hardware hack, or troubleshooting session wrapped up in Google Antigravity CLI (agy) or desktop sessions, documenting it on the portfolio previously required repeating the same boilerplate instructions: the SSH destination (avanek@100.87.81.52), repos...",
+      "tech": [
+        "Progressive-Disclosure Skills",
+        "Global Agent Rules",
+        "Python SSH Pipeline",
+        "HTMLParser Validation",
+        "Search & Knowledge Graph Rebuild",
+        "Antigravity AI (Google DeepMind)"
+      ],
+      "tasks": [
+        {
+          "title": "Strict Mutual-Exclusion Page Separation",
+          "desc": "Implemented Andrew\u2019s core architectural constraint directly in both rules and code: maintenance.html additions (handled by the log-maintenan..."
+        },
+        {
+          "title": "Automated Validation, Index Rebuilding & GitHub Sync",
+          "desc": "Every apply command validates the modified HTML using Python\u2019s HTMLParser, executes scripts/build-search-index.py and scripts/build-knowledg..."
+        },
+        {
+          "title": "Plugin Registration",
+          "desc": "Verified via GetAllPlugins that portfolio-publisher loads globally (disabled: false) with both log-maintenance and publish-project skills an..."
+        },
+        {
+          "title": "Live End-to-End Dry Run & Production Use",
+          "desc": "Verified py_compile and live read-only inspection (inspect-maintenance reporting 615 tasks across 7 categories and inspect-projects matching..."
+        }
+      ],
+      "url": "projects.html#autonomous-portfolio-publisher-plugin-title"
+    },
+    {
+      "id": "task-autonomous-portfolio-publisher-plugin-title-0",
+      "name": "Strict Mutual-Exclusion Page Separation",
+      "type": "task",
+      "parentProject": "Autonomous Portfolio Publisher Plugin for Google Antigravity \u2014 Global Skills, Strict Page-Separation Guardrails, Remote SSH AST/HTML Validation & Zero-Boilerplate GitHub Publishing",
+      "parentId": "autonomous-portfolio-publisher-plugin-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Implemented Andrew\u2019s core architectural constraint directly in both rules and code: maintenance.html additions (handled by the log-maintenan...",
+      "url": "projects.html#autonomous-portfolio-publisher-plugin-title"
+    },
+    {
+      "id": "task-autonomous-portfolio-publisher-plugin-title-1",
+      "name": "Automated Validation, Index Rebuilding & GitHub Sync",
+      "type": "task",
+      "parentProject": "Autonomous Portfolio Publisher Plugin for Google Antigravity \u2014 Global Skills, Strict Page-Separation Guardrails, Remote SSH AST/HTML Validation & Zero-Boilerplate GitHub Publishing",
+      "parentId": "autonomous-portfolio-publisher-plugin-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Every apply command validates the modified HTML using Python\u2019s HTMLParser, executes scripts/build-search-index.py and scripts/build-knowledg...",
+      "url": "projects.html#autonomous-portfolio-publisher-plugin-title"
+    },
+    {
+      "id": "task-autonomous-portfolio-publisher-plugin-title-2",
+      "name": "Plugin Registration",
+      "type": "task",
+      "parentProject": "Autonomous Portfolio Publisher Plugin for Google Antigravity \u2014 Global Skills, Strict Page-Separation Guardrails, Remote SSH AST/HTML Validation & Zero-Boilerplate GitHub Publishing",
+      "parentId": "autonomous-portfolio-publisher-plugin-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Verified via GetAllPlugins that portfolio-publisher loads globally (disabled: false) with both log-maintenance and publish-project skills an...",
+      "url": "projects.html#autonomous-portfolio-publisher-plugin-title"
+    },
+    {
+      "id": "task-autonomous-portfolio-publisher-plugin-title-3",
+      "name": "Live End-to-End Dry Run & Production Use",
+      "type": "task",
+      "parentProject": "Autonomous Portfolio Publisher Plugin for Google Antigravity \u2014 Global Skills, Strict Page-Separation Guardrails, Remote SSH AST/HTML Validation & Zero-Boilerplate GitHub Publishing",
+      "parentId": "autonomous-portfolio-publisher-plugin-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Verified py_compile and live read-only inspection (inspect-maintenance reporting 615 tasks across 7 categories and inspect-projects matching...",
+      "url": "projects.html#autonomous-portfolio-publisher-plugin-title"
     },
     {
       "id": "modular-tech-organizer-suite-title",
@@ -5969,6 +6057,72 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "autonomous-portfolio-publisher-plugin-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "task-autonomous-portfolio-publisher-plugin-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "task-autonomous-portfolio-publisher-plugin-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "task-autonomous-portfolio-publisher-plugin-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "task-autonomous-portfolio-publisher-plugin-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "autonomous-portfolio-publisher-plugin-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "modular-tech-organizer-suite-title",
