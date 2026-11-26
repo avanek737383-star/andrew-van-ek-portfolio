@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Please Hold — The Cursed Computer Repair Shop | Andrew Van Ek</title>
+  <meta name="description" content="Six cursed computers. One repair counter. A funny, playable troubleshooting game: collect evidence, repair the fault, and prove it works.">
+  <meta property="og:title" content="Please Hold — The Cursed Computer Repair Shop">
+  <meta property="og:description" content="The Wi-Fi has five bars. The printer has opinions. You have cold coffee. A playable IT repair shop by Andrew Van Ek.">
+  <meta property="og:url" content="https://andrewtvanekportfolio.online/repair-shop.html">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#101917">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/repair-shop.css?v=20261126-1">
+  <script type="module" src="scripts/repair-shop.js?v=20261126-1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workbench">Skip to workbench</a>
+  <header class="site-bar"><a href="index.html" class="portfolio-link"><span class="brand-mark" aria-hidden="true">AV</span> Andrew Van Ek <span class="bar-divider">/</span> Interactive projects</a><nav aria-label="Portfolio"><a href="projects.html">Projects ↗</a><a href="incident-sim.html">Incident simulator ↗</a></nav></header>
+  <main>
+    <section class="shop-header" aria-labelledby="game-title">
+      <div><p class="eyebrow"><span class="open-dot"></span> OPEN FOR QUESTIONABLE BUSINESS <span class="edition">VOL. 01 / SIX TICKETS</span></p><h1 id="game-title">PLEASE HOLD<span class="title-dot">.</span></h1><div class="tagline"><h2>The cursed computer repair shop.</h2><p>Nothing works. Nobody touched anything.<br>Somehow, it’s your ticket.</p></div></div>
+      <aside class="shop-sign"><span>COUNTER STATUS</span><strong>IT WORKED<br>YESTERDAY.</strong><span>— every customer, ever</span><div class="coffee">☕ <span>Coffee: emotionally necessary</span></div></aside>
+    </section>
+    <div class="shift-bar"><span><span class="status-dot"></span> YOUR FIRST SHIFT</span><div><span><strong id="closed-count">0/6</strong> tickets closed</span><span><strong id="total-score">0</strong> / 600 points</span><button id="reset-shift" class="text-button">New shift ↻</button></div></div>
+    <div class="shop-layout">
+      <aside class="ticket-rail" aria-labelledby="queue-title"><div class="rail-heading"><h2 id="queue-title">The waiting room</h2><span>06</span></div><p class="rail-note">Take any ticket. Confidence is optional.</p><div id="ticket-list"></div><div class="rail-foot"><span class="receipt-tear"></span><p>OUR PROMISE</p><strong>We will turn it off<br>with intention.</strong><span>EST. FIVE MINUTES AGO</span></div></aside>
+      <section class="workbench" id="workbench" tabindex="-1" aria-label="Repair workbench">
+        <article class="customer-card"><div class="customer-top"><span id="ticket-label" class="ticket-label"></span><span id="case-level" class="level-label"></span></div><h2 id="case-title"></h2><blockquote id="customer-quote"></blockquote><div class="customer-bottom"><div class="avatar" id="customer-avatar"></div><div><strong id="customer-name"></strong><span id="customer-device"></span></div><span class="ticket-state" id="ticket-state">OPEN</span></div></article>
+        <div class="desktop-shell"><div class="desktop-titlebar"><span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span> Unreasonably Personal Computer</span><span class="os-label">WIN-ISH 11</span></div>
+          <div class="desktop-wallpaper"><div class="desktop-file"><span class="file-art" aria-hidden="true"><i></i></span><span id="desktop-file-name"></span></div><div class="desktop-sticker"><span>EVERYTHING IS FINE*</span><small>*Terms and conditions pending.</small></div><div class="symptom-bubble" id="symptom"></div></div>
+          <div class="tool-tabs" role="tablist" aria-label="Diagnostic tools"><button type="button" role="tab" id="tab-files" data-tab="files" aria-controls="tool-panel" aria-selected="true">▧ <span>Files</span></button><button type="button" role="tab" id="tab-tasks" data-tab="tasks" aria-controls="tool-panel" aria-selected="false" tabindex="-1">▥ <span>Processes</span></button><button type="button" role="tab" id="tab-network" data-tab="network" aria-controls="tool-panel" aria-selected="false" tabindex="-1">⌁ <span>Network</span></button><button type="button" role="tab" id="tab-hardware" data-tab="hardware" aria-controls="tool-panel" aria-selected="false" tabindex="-1">▣ <span>Hardware</span></button><button type="button" role="tab" id="tab-settings" data-tab="settings" aria-controls="tool-panel" aria-selected="false" tabindex="-1">⚙ <span>Settings</span></button></div>
+          <section id="tool-panel" role="tabpanel" aria-labelledby="tab-files" tabindex="0"></section>
+          <div class="desktop-taskbar"><span class="tiny-grid" aria-hidden="true">▦</span><span id="desktop-status">1. Investigate → 2. Fix → 3. Verify</span><span>REBOOT PENDING SINCE TUESDAY</span></div>
+        </div>
+        <div class="bench-bottom"><section class="evidence-card"><div class="section-heading"><h3>Your evidence</h3><span id="evidence-count">0 found</span></div><ul id="evidence-list"></ul></section><section class="close-card"><p class="eyebrow">DON’T JUST SAY “SHOULD WORK NOW.”</p><button type="button" id="verify" class="verify-button">Retest the original problem <span>↗</span></button><div class="case-controls"><button type="button" id="hint" class="text-button">Ask the senior tech <span>−8 pts</span></button><button type="button" id="reset-case" class="text-button">Retry ticket ↻</button></div></section></div>
+        <section id="result-card" class="result-card" hidden aria-labelledby="result-title"></section>
+        <section class="activity-card" aria-labelledby="activity-title"><div class="section-heading"><h3 id="activity-title">Bench notes</h3><span>THE RECEIPTS</span></div><p class="case-summary" id="case-summary"></p><div id="activity-log" aria-label="Diagnostic results"></div></section>
+        <p id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+      </section>
+    </div>
+    <section class="how-to"><span class="how-number">THE HOUSE RULES</span><div><h2>Read the clues. Resist the reinstall.</h2><p>Open the tool tabs, run checks, and connect the evidence. Apply a fix, then retest the original problem. Each ticket starts at 100 points: an incorrect repair costs 15, a hint costs 8. There’s no timer. Your best tool is thinking.</p><p class="simulation-note">A fictional, browser-only game. Every reading, command, and repair is simulated. Your progress saves on this device when browser storage is available.</p></div></section>
+  </main>
+  <footer><p>A project by <a href="projects.html">Andrew Van Ek</a> · Built with ChatGPT / Codex (OpenAI).</p><p>Inspired by an actual image-viewer troubleshooting session. Unfortunately.</p></footer>
+  <dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Start over?</h2><p id="reset-description"></p><div><button type="button" id="cancel-reset">Keep troubleshooting</button><button type="button" id="confirm-reset" class="danger-button">Start over</button></div></dialog>
+  <noscript><p class="noscript">This game needs JavaScript. Enable it to open the repair counter.</p></noscript>
+</body>
+</html>

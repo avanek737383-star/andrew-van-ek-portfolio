@@ -141,6 +141,7 @@ def build_index():
 
     # 4. Static Pages
     static_pages = [
+        ("repair-shop.html", "Please Hold: The Cursed Computer Repair Shop", "Systems & Stats", "Playable browser IT troubleshooting game: six fictional repair tickets, diagnostic tools, evidence, hints, verification, and saved progress."),
         ("fleet.html", "Hardware Fleet & Salvage Architecture Hub", "Systems & Stats", "Interactive 3D-ready topology viewport, GLPI ITAM integration, and hardware longevity ROI calculator detailing Andrew's 7-node salvaged computing fleet."),
         ("incident-sim.html", "Homelab Incident Response & Chaos Simulator", "Systems & Stats", "Interactive browser terminal troubleshooting realistic homelab incidents: DNS blackholes, serial desyncs, SCSI shifts, and OOM killer terminations."),
         ("ai-bias.html", "AI Bias & Algorithmic Fairness Audit Lab", "AI Labs", "Interactive machine learning laboratory inspecting algorithmic fairness, vector embedding debiasing, and disparate impact calibration."),

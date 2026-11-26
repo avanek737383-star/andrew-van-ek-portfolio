@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 100,
-    "totalNodes": 343,
-    "totalLinks": 700,
+    "totalProjects": 101,
+    "totalNodes": 348,
+    "totalLinks": 706,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,92 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "please-hold-repair-shop-title",
+      "name": "Please Hold: The Cursed Computer Repair Shop",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Playable v1",
+      "date": "November 25, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "A frustrating image-viewer troubleshooting session became the idea for a playable IT comedy. I wanted something fellow technicians would recognize immediately: the customer insists nobody changed anything, the obvious fix is tempting, and the actual fault only becomes clear wh...",
+      "tech": [
+        "Playable v1 Browser Game",
+        "Six Troubleshooting Cases",
+        "JavaScript",
+        "Responsive CSS"
+      ],
+      "tasks": [
+        {
+          "title": "Six distinct faults",
+          "desc": "repair missing image-viewer registration, diagnose stale DNS settings, unpause a print queue, correct audio routing, resolve obstructed lapt..."
+        },
+        {
+          "title": "Evidence, repair, verification",
+          "desc": "inspect the relevant tools before applying a fix, read the results, and retest the original symptom before closing the ticket. Correctly cho..."
+        },
+        {
+          "title": "A complete shift",
+          "desc": "earn up to 600 points, ask the senior technician for hints, review the lesson after each fix, retry individual tickets, and resume saved pro..."
+        },
+        {
+          "title": "Mouse, touch, and keyboard",
+          "desc": "use the responsive waiting room and workbench on desktop or mobile, navigate diagnostic tabs with arrow keys, and receive diagnostic announc..."
+        }
+      ],
+      "url": "projects.html#please-hold-repair-shop-title"
+    },
+    {
+      "id": "task-please-hold-repair-shop-title-0",
+      "name": "Six distinct faults",
+      "type": "task",
+      "parentProject": "Please Hold: The Cursed Computer Repair Shop",
+      "parentId": "please-hold-repair-shop-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "repair missing image-viewer registration, diagnose stale DNS settings, unpause a print queue, correct audio routing, resolve obstructed lapt...",
+      "url": "projects.html#please-hold-repair-shop-title"
+    },
+    {
+      "id": "task-please-hold-repair-shop-title-1",
+      "name": "Evidence, repair, verification",
+      "type": "task",
+      "parentProject": "Please Hold: The Cursed Computer Repair Shop",
+      "parentId": "please-hold-repair-shop-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "inspect the relevant tools before applying a fix, read the results, and retest the original symptom before closing the ticket. Correctly cho...",
+      "url": "projects.html#please-hold-repair-shop-title"
+    },
+    {
+      "id": "task-please-hold-repair-shop-title-2",
+      "name": "A complete shift",
+      "type": "task",
+      "parentProject": "Please Hold: The Cursed Computer Repair Shop",
+      "parentId": "please-hold-repair-shop-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "earn up to 600 points, ask the senior technician for hints, review the lesson after each fix, retry individual tickets, and resume saved pro...",
+      "url": "projects.html#please-hold-repair-shop-title"
+    },
+    {
+      "id": "task-please-hold-repair-shop-title-3",
+      "name": "Mouse, touch, and keyboard",
+      "type": "task",
+      "parentProject": "Please Hold: The Cursed Computer Repair Shop",
+      "parentId": "please-hold-repair-shop-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "use the responsive waiting room and workbench on desktop or mobile, navigate diagnostic tabs with arrow keys, and receive diagnostic announc...",
+      "url": "projects.html#please-hold-repair-shop-title"
     },
     {
       "id": "autonomous-portfolio-publisher-plugin-title",
@@ -6057,6 +6143,42 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "please-hold-repair-shop-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "please-hold-repair-shop-title",
+      "target": "task-please-hold-repair-shop-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "please-hold-repair-shop-title",
+      "target": "task-please-hold-repair-shop-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "please-hold-repair-shop-title",
+      "target": "task-please-hold-repair-shop-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "please-hold-repair-shop-title",
+      "target": "task-please-hold-repair-shop-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "please-hold-repair-shop-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "autonomous-portfolio-publisher-plugin-title",

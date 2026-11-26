@@ -51,6 +51,7 @@
 						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
 					</button>
 					<ul class="nav-dropdown-menu">
+						<li><a href="repair-shop.html">Cursed Repair Shop</a></li>
 						<li><a href="map.html">3D Knowledge Map</a></li>
 						<li><a href="globe.html">3D Planetary Backbone</a></li>
 						<li><a href="stats.html">Stats for Nerds</a></li>
@@ -86,6 +87,32 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+
+
+<section class="project-entry" aria-labelledby="please-hold-repair-shop-title">
+<h2 id="please-hold-repair-shop-title">Please Hold: The Cursed Computer Repair Shop</h2>
+<p class="project-status"><span class="status-badge project-completed">Playable v1</span> <span>Browser Game &middot; Six Troubleshooting Cases &middot; JavaScript &middot; Responsive CSS &middot; <time datetime="2026-11-25">November 25, 2026</time></span></p>
+<div style="background:#101917;color:#f2eddc;border:1px solid #34443b;padding:clamp(20px,4vw,36px);margin:24px 0;">
+<p style="font:11px/1.8 monospace;letter-spacing:1px;color:#d5f47c;margin:0 0 12px;">OPEN FOR QUESTIONABLE BUSINESS / SIX TICKETS</p>
+<p style="font:bold clamp(36px,6vw,70px)/1.05 Impact,'Arial Narrow',sans-serif;letter-spacing:-1px;color:#f2eddc;margin:0 0 18px;">PLEASE HOLD<span style="color:#d5f47c;">.</span></p>
+<p style="color:#c4d1bd;max-width:650px;margin:0 0 22px;">The Wi-Fi has five bars. The printer has opinions. You have cold coffee. Work the repair counter, investigate fictional computer problems, and prove your fixes actually work.</p>
+<a href="repair-shop.html" style="display:inline-block;background:#d5f47c;color:#203015;padding:13px 20px;font-weight:700;text-decoration:none;">Play the repair shop &rarr;</a>
+</div>
+<p>A frustrating image-viewer troubleshooting session became the idea for a playable IT comedy. I wanted something fellow technicians would recognize immediately: the customer insists nobody changed anything, the obvious fix is tempting, and the actual fault only becomes clear when you test the right thing. Working with <strong>ChatGPT / Codex (OpenAI)</strong>, I turned that premise into a fictional repair counter with a simulated desktop, diagnostic tools, evidence notes, and six customer tickets.</p>
+<h3>What you can play</h3>
+<ul>
+<li><strong>Six distinct faults:</strong> repair missing image-viewer registration, diagnose stale DNS settings, unpause a print queue, correct audio routing, resolve obstructed laptop airflow, and retrieve a cloud-only photo. The final ticket deliberately resembles the first, rewarding fresh diagnosis instead of repeating a familiar fix.</li>
+<li><strong>Evidence, repair, verification:</strong> inspect the relevant tools before applying a fix, read the results, and retest the original symptom before closing the ticket. Correctly choosing a repair is only part of the job.</li>
+<li><strong>A complete shift:</strong> earn up to 600 points, ask the senior technician for hints, review the lesson after each fix, retry individual tickets, and resume saved progress on the same browser. No countdown timer punishes careful reading.</li>
+<li><strong>Mouse, touch, and keyboard:</strong> use the responsive waiting room and workbench on desktop or mobile, navigate diagnostic tabs with arrow keys, and receive diagnostic announcements through an accessible status region.</li>
+</ul>
+<h3>Implementation &amp; validation</h3>
+<p>The game uses static HTML, CSS, and JavaScript modules. Case definitions and repair rules live separately from the interface, making the diagnostic state machine testable. Local browser storage preserves progress when available, with an in-memory fallback when storage is blocked. Every reading, command, customer, and repair is part of the simulation; the game does not inspect or change a visitor&rsquo;s computer.</p>
+<p>Validation covered all six evidence-to-fix-to-retest paths, scoring and hint limits, saved progress, malformed storage, reset confirmation, keyboard focus, and a complete 600-point campaign. Automated browser checks also exercised mobile interaction and checked for horizontal page overflow at five widths from 360 to 1440 pixels. Desktop and mobile screenshots were visually reviewed.</p>
+<p>The first ticket draws on <a href="https://imageglass.org/docs/command-line-utilities">ImageGlass&rsquo;s official viewer-registration command</a>. The cloud-file ticket is a fictional contrasting scenario, rather than a claim about the cause of the original intermittent Explorer issue.</p>
+<p class="credit"><strong>Collaboration credit:</strong> Andrew Van Ek supplied the real troubleshooting experience, chose the repair-shop concept and comedic tone, and directed its addition to the portfolio. <strong>ChatGPT / Codex (OpenAI)</strong> designed and implemented the game, authored the fictional scenarios, added scoring and local progress, tested the gameplay and responsive layout, and prepared this project entry.</p>
+<ul class="chips"><li>Interactive Game</li><li>IT Troubleshooting</li><li>JavaScript Modules</li><li>Responsive Design</li><li>State Machine</li><li>Browser Storage</li><li>Keyboard Accessibility</li><li>Automated Testing</li></ul>
+</section>
 
 
 <section class="project-entry" aria-labelledby="autonomous-portfolio-publisher-plugin-title">
