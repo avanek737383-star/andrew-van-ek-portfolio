@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T21:03:09+00:00",
-  "sourceHead": "4ca0a4662eaaec864cb0bf89492e5bfd7a8d24b0",
-  "count": 692,
+  "generatedAt": "2026-11-26T21:11:14+00:00",
+  "sourceHead": "ed88263be2346c547dd43db3346e850a5a9a430c",
+  "count": 695,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "ed88263be2346c547dd43db3346e850a5a9a430c",
+      "date": "2026-11-26T16:11:12-05:00",
+      "subject": "[maintenance] Document site-wide seasonal theme audit and Robo-Karaoke card sync",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "d18a12f7b3411476b8deb64cbb61bdfc462987b9",
+      "date": "2026-11-26T16:10:53-05:00",
+      "subject": "[theme] Synchronize Thanksgiving, Christmas, and Valentines themes across all pages and cards",
+      "category": "Feature"
+    },
+    {
+      "sha": "0e989dc1c45f00742a2fbb68e1440c7c2f13324a",
+      "date": "2026-11-26T16:03:09-05:00",
+      "subject": "[data] Refresh changelog snapshot after maintenance update",
+      "category": "Maintenance"
+    },
     {
       "sha": "4ca0a4662eaaec864cb0bf89492e5bfd7a8d24b0",
       "date": "2026-11-26T16:03:05-05:00",
