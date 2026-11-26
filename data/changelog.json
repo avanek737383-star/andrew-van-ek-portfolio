@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:22:37+00:00",
-  "sourceHead": "f7d403b170b3df1e2992ea3f3a40919fad5be545",
-  "count": 673,
-  "releaseLabel": "v2.6.438",
+  "generatedAt": "2026-11-26T16:44:34+00:00",
+  "sourceHead": "4ccbc9e5e019cf043d87a0ca1e188c8cdf25f3fe",
+  "count": 675,
+  "releaseLabel": "v2.6.439",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "4ccbc9e5e019cf043d87a0ca1e188c8cdf25f3fe",
+      "date": "2026-11-26T11:44:28-05:00",
+      "subject": "[privacy] Publish scoped Cloudflare verification and audit milestone",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "2e6b816c9690befc9a286e458e8af4b02db2f0f6",
+      "date": "2026-11-26T11:22:38-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "f7d403b170b3df1e2992ea3f3a40919fad5be545",
       "date": "2026-11-26T11:22:32-05:00",
