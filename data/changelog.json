@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T21:11:14+00:00",
-  "sourceHead": "ed88263be2346c547dd43db3346e850a5a9a430c",
-  "count": 695,
+  "generatedAt": "2026-11-26T21:14:56+00:00",
+  "sourceHead": "fc36fc71e5ff10e5102581435f21ea22d91d72d3",
+  "count": 698,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "fc36fc71e5ff10e5102581435f21ea22d91d72d3",
+      "date": "2026-11-26T16:14:50-05:00",
+      "subject": "[maintenance] Document static 4K oceanscape sunbeam refactor",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "6292b62efd19e80218fc723ae66f73e13f288894",
+      "date": "2026-11-26T16:14:29-05:00",
+      "subject": "[about] Make 4K oceanscape sunbeam overlay static without oscillation or snap-back",
+      "category": "Feature"
+    },
+    {
+      "sha": "fe46db56838e0c71f4af67382d8026c028bca039",
+      "date": "2026-11-26T16:11:14-05:00",
+      "subject": "[data] Refresh changelog snapshot after seasonal theme sync",
+      "category": "Maintenance"
+    },
     {
       "sha": "ed88263be2346c547dd43db3346e850a5a9a430c",
       "date": "2026-11-26T16:11:12-05:00",
