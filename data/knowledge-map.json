@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-26T16:02:12+00:00",
+  "generatedAt": "2026-11-26T16:13:10+00:00",
   "stats": {
-    "totalProjects": 102,
-    "totalNodes": 333,
-    "totalLinks": 686,
+    "totalProjects": 103,
+    "totalNodes": 338,
+    "totalLinks": 696,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,91 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "portfolio-evidence-audit-title",
+      "name": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "in-progress",
+      "statusLabel": "In Progress",
+      "date": "",
+      "val": 24,
+      "color": "#f59e0b",
+      "summary": "A portfolio should make it possible to understand what I built, how it works, and what the evidence actually supports. While reviewing my interactive AI lessons, I noticed that useful demonstrations could still leave a newcomer lost: a percentage appeared without its calculati...",
+      "tech": [
+        "Privacy Controls",
+        "Educational Design",
+        "Reproducible Evaluation"
+      ],
+      "tasks": [
+        {
+          "title": "Explain the concept before the analogy",
+          "desc": "the AI bias lesson introduces its invented examples, shows how counts become percentages, explains what changing a control does, and connect..."
+        },
+        {
+          "title": "Make simulations describe what they actually do",
+          "desc": "the Sudoku page previously substituted a preset after image upload. It now treats the photo as a manual reference, clears the editable grid,..."
+        },
+        {
+          "title": "Rebuild the model evidence",
+          "desc": "recovered local training source and saved weights allowed the original coin model\u2019s validation result to be checked. Reconstructing its seed..."
+        },
+        {
+          "title": "Compare against simple strategies",
+          "desc": "a controlled retraining candidate uses 20,000 training rows, 5,000 validation rows, and 15,000 final test rows from invented generating rule..."
+        }
+      ],
+      "url": "projects.html#portfolio-evidence-audit-title"
+    },
+    {
+      "id": "task-portfolio-evidence-audit-title-0",
+      "name": "Explain the concept before the analogy",
+      "type": "task",
+      "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
+      "parentId": "portfolio-evidence-audit-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "the AI bias lesson introduces its invented examples, shows how counts become percentages, explains what changing a control does, and connect...",
+      "url": "projects.html#portfolio-evidence-audit-title"
+    },
+    {
+      "id": "task-portfolio-evidence-audit-title-1",
+      "name": "Make simulations describe what they actually do",
+      "type": "task",
+      "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
+      "parentId": "portfolio-evidence-audit-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "the Sudoku page previously substituted a preset after image upload. It now treats the photo as a manual reference, clears the editable grid,...",
+      "url": "projects.html#portfolio-evidence-audit-title"
+    },
+    {
+      "id": "task-portfolio-evidence-audit-title-2",
+      "name": "Rebuild the model evidence",
+      "type": "task",
+      "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
+      "parentId": "portfolio-evidence-audit-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "recovered local training source and saved weights allowed the original coin model\u2019s validation result to be checked. Reconstructing its seed...",
+      "url": "projects.html#portfolio-evidence-audit-title"
+    },
+    {
+      "id": "task-portfolio-evidence-audit-title-3",
+      "name": "Compare against simple strategies",
+      "type": "task",
+      "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
+      "parentId": "portfolio-evidence-audit-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "a controlled retraining candidate uses 20,000 training rows, 5,000 validation rows, and 15,000 final test rows from invented generating rule...",
+      "url": "projects.html#portfolio-evidence-audit-title"
     },
     {
       "id": "homepage-visit-memory-title",
@@ -5898,6 +5983,66 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "portfolio-evidence-audit-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "task-portfolio-evidence-audit-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "task-portfolio-evidence-audit-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "task-portfolio-evidence-audit-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "task-portfolio-evidence-audit-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "tech-threejs-webgl",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "tech-gcp-cloud",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-homelab-infra",
       "target": "homepage-visit-memory-title",

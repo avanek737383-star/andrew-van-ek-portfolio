@@ -98,6 +98,32 @@
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
 
 
+<section class="project-entry" aria-labelledby="portfolio-evidence-audit-title">
+<h2 id="portfolio-evidence-audit-title">Auditing My Own Portfolio: Accuracy, Privacy &amp; Reproducible AI Experiments</h2>
+<p class="project-status"><span class="status-badge project-in-progress">In Progress</span> <span>Source Review &middot; Privacy Controls &middot; Educational Design &middot; Reproducible Evaluation &middot; Started November 2026</span></p>
+<p>A portfolio should make it possible to understand what I built, how it works, and what the evidence actually supports. While reviewing my interactive AI lessons, I noticed that useful demonstrations could still leave a newcomer lost: a percentage appeared without its calculation, an analogy arrived before the concept, or a polished description made a stronger claim than the implementation justified. I asked <strong>ChatGPT / Codex (OpenAI)</strong> to help investigate the code and artifacts behind those claims, correct the problems we could verify, and clearly identify what still needed checking.</p>
+<h3>From impressive-looking results to inspectable evidence</h3>
+<p>The initial review identified sixteen findings across simulations, model evaluation, explanations, privacy language, security assurances, and generated metadata. The <a href="documents/accuracy-review-2026-11-26.html">published audit report</a> records their disposition and verification boundaries. This is an ongoing review of my own work, rather than an independent certification of every historical portfolio entry.</p>
+<ul>
+<li><strong>Explain the concept before the analogy:</strong> the <a href="ai-bias.html">AI bias lesson</a> introduces its invented examples, shows how counts become percentages, explains what changing a control does, and connects one module to the next. Shared term explanations now put the technical meaning before the optional comparison.</li>
+<li><strong>Make simulations describe what they actually do:</strong> the Sudoku page previously substituted a preset after image upload. It now treats the photo as a manual reference, clears the editable grid, and explicitly states that it does not recognize digits. Its commentary is labeled as template narration tied to solver operations.</li>
+<li><strong>Rebuild the model evidence:</strong> recovered local training source and saved weights allowed the original coin model’s validation result to be checked. Reconstructing its seed-42 dataset reproduces 631 correct predictions out of 1,200, or 52.58%. That monitored validation split is distinguished from an untouched final test.</li>
+<li><strong>Compare against simple strategies:</strong> a controlled retraining candidate uses 20,000 training rows, 5,000 validation rows, and 15,000 final test rows from invented generating rules. On the shared test mixture it scores 56.19%, versus 54.47% for the original model and 55.89% for always switching from the previous face. Its fair-outcome score is 49.82%; these results do not establish a real-coin prediction advantage or a statistically significant improvement. The <a href="ai-predictor.html">sequence lab</a> publishes model choices, counts, baselines, and calculation details.</li>
+<li><strong>Separate reference graphics from measurements:</strong> Internet-globe animations and interconnection locations are labeled schematic. Unsupported throughput and traffic-share claims were removed. Stats labels distinguish browser request timing, illustrative gauges, service activity, and dated source checks.</li>
+<li><strong>Keep metadata traceable:</strong> all six OS cards use dated primary-source checks with stale/unavailable states. The <a href="changelog.html">changelog</a> is generated from actual Git history with an explicit source revision, while the <a href="map.html">knowledge map</a> displays its dataset’s real build time. Host jobs check release sources daily and source history hourly.</li>
+</ul>
+<h3>Privacy claims checked against the controlled host</h3>
+<p>The review found that the earlier blanket claim that raw addresses had never been stored was incorrect. The inspected gateway now redacts IPv4 and IPv6 address literals in application diagnostics and process output; Uvicorn access logging and inspected Nginx request/persistent error logging are disabled. Known retained website logs were redacted. The rate-limit database uses keyed identifiers rather than raw addresses, and the <a href="privacy.html">Privacy Policy</a> separately describes prompt audits, phone-service diagnostics, and browser-local storage.</p>
+<p>These are bounded controls on an inspected system. They do not establish zero retention by every provider or operating-system service. Privacy improvements are documented with their limits rather than presented as a universal guarantee.</p>
+<h3>Artifacts and verification so far</h3>
+<p>The training work publishes <a href="data/coin/transparent-dataset.csv.gz">all 40,000 synthetic rows</a>, <a href="scripts/train-coin-transparent.py">training code</a>, <a href="data/coin/transparent-training.json">weights, curves, seeds, and test results</a>, and <a href="data/coin/reconstruction.json">original reconstruction evidence</a>. Artifact hashes tie the recorded results to their files. JavaScript inference checks recompute both models’ final-test confusion counts directly from the public CSV.</p>
+<p>Verification so far includes 18 passing unit checks, automated Edge interactions, unavailable-data handling, and mobile overflow checks at 320, 390, 768, and 1280 pixels. Those checks cover the specified behaviors; they do not independently validate every older benchmark or every deployment property.</p>
+<h3>Why this remains in progress</h3>
+<p>The Cloudflare account has been identified, and a separate read-only review through Muse AI is underway; its findings have not yet been incorporated. Google Cloud service-level retention and the remote code runner’s isolation configuration also need further verification before stronger assurances can be published. I will continue reviewing explanations and historical claims, attaching evidence where available and qualifying or correcting statements where it is not.</p>
+<p class="credit"><strong>Collaboration credit:</strong> Andrew Van Ek initiated and authorized the audit, identified confusing explanations, set the transparency requirements, and is coordinating provider-account review. <strong>ChatGPT / Codex (OpenAI)</strong> performed source and artifact inspection, recovered the original training evidence, ran the controlled retraining comparison, implemented corrections and controlled-host logging changes, added verification, and published the report. Credits for Antigravity AI’s earlier implementations remain with those projects. Muse AI’s Cloudflare review is pending and is not represented here as a completed verification.</p>
+<ul class="chips"><li>Technical Auditing</li><li>Evidence &amp; Reproducibility</li><li>Privacy Engineering</li><li>Model Evaluation</li><li>Plain-English Explanations</li><li>Ongoing Review</li></ul>
+</section>
+
 <section class="project-entry" aria-labelledby="homepage-visit-memory-title">
 <h2 id="homepage-visit-memory-title">A Homepage That Remembers Your Previous Visit</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Feature</span> <span>Browser Local Storage &middot; Accessible Footer &middot; Responsive Design &middot; November 25, 2026</span></p>
@@ -5306,8 +5332,8 @@
 			</main>
 			<footer>
 				<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p class="footer-pill">Website last modified: <time datetime="2026-11-26T10:58:01-05:00">November 26, 2026 at 10:58:01 AM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.436 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p class="footer-pill">Website last modified: <time datetime="2026-11-26T11:13:07-05:00">November 26, 2026 at 11:13:07 AM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.437 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
