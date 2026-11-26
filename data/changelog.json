@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:02:35+00:00",
-  "sourceHead": "194798612ab0b9b2da2e0d90e3d2c6eff47f60b2",
-  "count": 661,
+  "generatedAt": "2026-11-26T16:06:29+00:00",
+  "sourceHead": "4e0d0800ea720d2942bbf6acecb954b6b94b5491",
+  "count": 663,
   "releaseLabel": "v2.6.436",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "4e0d0800ea720d2942bbf6acecb954b6b94b5491",
+      "date": "2026-11-26T11:06:26-05:00",
+      "subject": "[fix] Include generated changelog browser renderer",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "dde0d117cfd1407ccff395aeeefa1eb231cdf6a6",
+      "date": "2026-11-26T11:02:36-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "194798612ab0b9b2da2e0d90e3d2c6eff47f60b2",
       "date": "2026-11-26T11:02:15-05:00",
