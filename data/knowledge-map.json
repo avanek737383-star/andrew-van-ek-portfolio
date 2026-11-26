@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-26T18:32:13+00:00",
+  "generatedAt": "2026-11-26T20:29:28+00:00",
   "stats": {
     "totalProjects": 104,
     "totalNodes": 343,
-    "totalLinks": 703,
+    "totalLinks": 704,
     "domains": 6,
     "techBridges": 10
   },
@@ -506,11 +506,11 @@
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
-      "status": "in-progress",
-      "statusLabel": "In Progress",
-      "date": "",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "Completed November 26, 2026",
       "val": 24,
-      "color": "#f59e0b",
+      "color": "#c084fc",
       "summary": "A portfolio should make it possible to understand what I built, how it works, and what the evidence actually supports. While reviewing my interactive AI lessons, I noticed that useful demonstrations could still leave a newcomer lost: a percentage appeared without its calculati...",
       "tech": [
         "Privacy Controls",
@@ -543,9 +543,9 @@
       "type": "task",
       "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
       "parentId": "portfolio-evidence-audit-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
+      "color": "#10b981",
       "summary": "the AI bias lesson introduces its invented examples, shows how counts become percentages, explains what changing a control does, and connect...",
       "url": "projects.html#portfolio-evidence-audit-title"
     },
@@ -555,9 +555,9 @@
       "type": "task",
       "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
       "parentId": "portfolio-evidence-audit-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
+      "color": "#10b981",
       "summary": "the Sudoku page previously substituted a preset after image upload. It now treats the photo as a manual reference, clears the editable grid,...",
       "url": "projects.html#portfolio-evidence-audit-title"
     },
@@ -567,9 +567,9 @@
       "type": "task",
       "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
       "parentId": "portfolio-evidence-audit-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
+      "color": "#10b981",
       "summary": "recovered local training source and saved weights allowed the original coin model\u2019s validation result to be checked. Reconstructing its seed...",
       "url": "projects.html#portfolio-evidence-audit-title"
     },
@@ -579,9 +579,9 @@
       "type": "task",
       "parentProject": "Auditing My Own Portfolio: Accuracy, Privacy & Reproducible AI Experiments",
       "parentId": "portfolio-evidence-audit-title",
-      "status": "in-progress",
+      "status": "completed",
       "val": 5,
-      "color": "#facc15",
+      "color": "#10b981",
       "summary": "a controlled retraining candidate uses 20,000 training rows, 5,000 validation rows, and 15,000 final test rows from invented generating rule...",
       "url": "projects.html#portfolio-evidence-audit-title"
     },
@@ -6162,6 +6162,12 @@
     {
       "source": "portfolio-evidence-audit-title",
       "target": "tech-gcp-cloud",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "tech-antigravity",
       "type": "project-tech",
       "distance": 85
     },
