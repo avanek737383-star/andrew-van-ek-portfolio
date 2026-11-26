@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-26T16:54:33+00:00",
+  "generatedAt": "2026-11-26T17:51:36+00:00",
   "stats": {
     "totalProjects": 104,
     "totalNodes": 343,
-    "totalLinks": 703,
+    "totalLinks": 704,
     "domains": 6,
     "techBridges": 10
   },
@@ -6150,6 +6150,12 @@
     {
       "source": "portfolio-evidence-audit-title",
       "target": "tech-threejs-webgl",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "portfolio-evidence-audit-title",
+      "target": "tech-docker-containers",
       "type": "project-tech",
       "distance": 85
     },
