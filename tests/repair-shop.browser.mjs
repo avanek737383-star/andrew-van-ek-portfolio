@@ -59,6 +59,10 @@ for (const width of [360, 390, 768, 1024, 1440]) {
   assert.equal(overflow, false, `Horizontal overflow at ${width}px`);
 }
 await page.setViewportSize({ width: 390, height: 844 });
+await page.locator('.interactive-menu summary').click();
+assert.equal(await page.locator('.interactive-menu a[href="fleet.html"]').isVisible(), true);
+assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+await page.locator('.interactive-menu summary').click();
 await page.screenshot({ path: new URL('../qa/mobile.png', import.meta.url).pathname.slice(1), fullPage: true });
 await page.locator('[data-case="5"]').click();
 await page.locator('#tab-network').click();
