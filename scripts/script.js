@@ -4841,7 +4841,8 @@
 
 		// 9. Footer Secrets & Easter Eggs Discovery Drawer
 		function initFooterEasterEggDiscovery() {
-			var footer = document.querySelector("footer");
+			var pageFooters = document.querySelectorAll("footer:not(.commendation-footer):not(.search-card-footer)");
+			var footer = pageFooters.length ? pageFooters[pageFooters.length - 1] : null;
 			if (!footer || document.getElementById("footer-easter-egg-btn")) return;
 
 			var btn = document.createElement("button");

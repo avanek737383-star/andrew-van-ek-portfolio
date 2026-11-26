@@ -1,11 +1,17 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T20:30:51+00:00",
-  "sourceHead": "8f2db3fbc10752c099e2b607c5523d235a55f09b",
-  "count": 686,
+  "generatedAt": "2026-11-26T20:39:41+00:00",
+  "sourceHead": "176c2074715bb028964cc7832400f5e127e8d5c9",
+  "count": 687,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "176c2074715bb028964cc7832400f5e127e8d5c9",
+      "date": "2026-11-26T15:31:15-05:00",
+      "subject": "[gallery] Add Muse and Codex relayed AI collaboration story and update GCP privacy bounds",
+      "category": "Local AI"
+    },
     {
       "sha": "8f2db3fbc10752c099e2b607c5523d235a55f09b",
       "date": "2026-11-26T15:29:28-05:00",

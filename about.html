@@ -353,7 +353,7 @@
                         <div style="padding: 18px 24px 14px; background: linear-gradient(180deg, rgba(0, 45, 90, 0.9) 0%, rgba(0, 18, 38, 0.95) 100%); border-bottom: 1px solid rgba(147, 197, 253, 0.2);">
                             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
                                 <h3 style="margin: 0; font-size: 1.15rem; color: #f8f9fa; display: flex; align-items: center; gap: 8px;">
-                                    <span>🎤</span> Robo-Karaoke Studio (Interactive Player)
+                                    <span>🎤</span> Robo-Karaoke Studio (Standalone Player)
                                 </h3>
                                 <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(147, 197, 253, 0.15); color: #93c5fd; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(147, 197, 253, 0.3);">Live Audio &middot; 172 BPM Sync</span>
                             </div>
@@ -361,22 +361,14 @@
                                 A retro Japanese arcade-style karaoke experience built for the upbeat rockabilly remix of <em>Mike's Theme</em> (Super Smash Bros. Brawl). Instead of heavy generative AI video diffusion that risks visual hallucinations and lip desynchronization, this player pairs Whisper-CPP RMS audio transient slicing with a fixed-coordinate bouncing mic and a 60 FPS HTML5 Canvas B-roll engine. See the <a href="projects.html#robo-karaoke-title" style="color: #93c5fd; text-decoration: underline;">full project writeup</a> for details.
                             </p>
                         </div>
-                        <!-- Mobile Landscape Indicator & Direct Fullscreen Launch Link -->
-                        <div class="karaoke-mobile-banner" style="background: rgba(30, 58, 138, 0.45); border-bottom: 1px solid rgba(147, 197, 253, 0.25); padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                        <div class="karaoke-mobile-banner" style="background: rgba(30, 58, 138, 0.45); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
                             <span style="font-size: 0.85rem; color: #93c5fd; display: inline-flex; align-items: center; gap: 6px;">
-                                <span style="font-size: 1.1rem;">📱 ↻</span> <strong>Mobile Notice:</strong> Rotate phone to landscape or open in new tab for optimal arcade view
+                                Opens in a new tab for full-screen arcade playback, audio sync, and B-roll themes.
                             </span>
-                            <a href="karaoke.html" target="_blank" rel="noopener" class="btn" style="padding: 6px 14px; font-size: 0.82rem; background: #2563eb; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+                            <a href="karaoke.html" target="_blank" rel="noopener" class="btn" style="padding: 8px 16px; font-size: 0.85rem; background: #2563eb; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
                                 🚀 Open Video in New Tab (Fullscreen) &rarr;
                             </a>
                         </div>
-                        <div style="position: relative; width: 100%; height: 580px; background: #001226;">
-                            <iframe src="karaoke.html" style="width: 100%; height: 100%; border: none; display: block;" title="Robo-Karaoke Studio - Mike's Theme" loading="lazy"></iframe>
-                        </div>
-                        <figcaption style="padding: 12px 20px; font-size: 0.85rem; color: #94a3b8; background: #000c1a; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                            <span>Hit <strong>PLAY</strong> above to test audio sync, switch B-roll themes, or open the standalone view.</span>
-                            <a href="karaoke.html" target="_blank" rel="noopener" style="color: #93c5fd; text-decoration: underline; font-weight: 500;">Launch Fullscreen Player &rarr;</a>
-                        </figcaption>
                     </figure>
 
 					<section class="computing-experiments" aria-labelledby="computing-title">
@@ -441,7 +433,7 @@
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-		<script src="scripts/script.js?v=20261126-accuracy-436"></script>
+		<script src="scripts/script.js?v=20261126-about-fix-1"></script>
 		<script src="scripts/computing.js?v=20261013-computing-1" defer></script>
 		<script src="scripts/oceanscape-lightbeams.js?v=20261120-5"></script>
 </body>
