@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T22:03:41+00:00",
+  "generatedAt": "2026-11-26T22:17:28+00:00",
   "stats": {
     "totalProjects": 104,
     "totalNodes": 343,
@@ -1788,70 +1788,70 @@
       ],
       "tasks": [
         {
-          "title": "DNR Layer 1 (Great Lakes Basins)",
-          "desc": "Full bathymetric contours spanning Lake Michigan, Lake Huron, and Lake Superior with depth intervals calibrated to international feet."
+          "title": "Great Lakes survey layers",
+          "desc": "Lake Michigan, Lake Erie, Lake St. Clair, and Saginaw Bay (Lake Huron), using the existing provider's elevation layers 0\u20133."
         },
         {
-          "title": "DNR Layer 4 (Major Inland Lakes)",
-          "desc": "Detailed 5-foot and 10-foot depth gradients for hundreds of Michigan recreational inland lakes, including Reeds Lake, Gun Lake, and Houghton..."
+          "title": "Inland lake surveys",
+          "desc": "Michigan hydro layer 4, loaded dynamically for any viewport, including lakes never previously visited."
         },
         {
-          "title": "DNR Layer 17 (Ponds, Reservoirs & Gravel Pits)",
-          "desc": "Micro-topography for local impoundments and university campus waterbodies such as Grand Valley State University (GVSU) Zumberge Pond."
+          "title": "Lake search",
+          "desc": "Searches Michigan lake polygons by name and county, recognizes Upper Crooked Lake near Delton as the Barry County lake listed by the state a..."
         },
         {
-          "title": "Grand River Navigability Soundings",
-          "desc": "Channel depth markers and hazard shoals along western Michigan navigable waterways."
+          "title": "Coverage limits",
+          "desc": "These are regional surveys with gaps, not worldwide bathymetry. Views outside survey coverage show an explicit no-coverage message; provider..."
         }
       ],
       "url": "projects.html#fishdepth-marine-chartplotter-title"
     },
     {
       "id": "task-fishdepth-marine-chartplotter-title-0",
-      "name": "DNR Layer 1 (Great Lakes Basins)",
+      "name": "Great Lakes survey layers",
       "type": "task",
       "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
       "parentId": "fishdepth-marine-chartplotter-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Full bathymetric contours spanning Lake Michigan, Lake Huron, and Lake Superior with depth intervals calibrated to international feet.",
+      "summary": "Lake Michigan, Lake Erie, Lake St. Clair, and Saginaw Bay (Lake Huron), using the existing provider's elevation layers 0\u20133.",
       "url": "projects.html#fishdepth-marine-chartplotter-title"
     },
     {
       "id": "task-fishdepth-marine-chartplotter-title-1",
-      "name": "DNR Layer 4 (Major Inland Lakes)",
+      "name": "Inland lake surveys",
       "type": "task",
       "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
       "parentId": "fishdepth-marine-chartplotter-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Detailed 5-foot and 10-foot depth gradients for hundreds of Michigan recreational inland lakes, including Reeds Lake, Gun Lake, and Houghton...",
+      "summary": "Michigan hydro layer 4, loaded dynamically for any viewport, including lakes never previously visited.",
       "url": "projects.html#fishdepth-marine-chartplotter-title"
     },
     {
       "id": "task-fishdepth-marine-chartplotter-title-2",
-      "name": "DNR Layer 17 (Ponds, Reservoirs & Gravel Pits)",
+      "name": "Lake search",
       "type": "task",
       "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
       "parentId": "fishdepth-marine-chartplotter-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Micro-topography for local impoundments and university campus waterbodies such as Grand Valley State University (GVSU) Zumberge Pond.",
+      "summary": "Searches Michigan lake polygons by name and county, recognizes Upper Crooked Lake near Delton as the Barry County lake listed by the state a...",
       "url": "projects.html#fishdepth-marine-chartplotter-title"
     },
     {
       "id": "task-fishdepth-marine-chartplotter-title-3",
-      "name": "Grand River Navigability Soundings",
+      "name": "Coverage limits",
       "type": "task",
       "parentProject": "FishDepth: Marine Chartplotter, Michigan DNR Vector Bathymetry, Inland Lake & Nav Channel Depths with Dead-Reckoning Compass Engine",
       "parentId": "fishdepth-marine-chartplotter-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Channel depth markers and hazard shoals along western Michigan navigable waterways.",
+      "summary": "These are regional surveys with gaps, not worldwide bathymetry. Views outside survey coverage show an explicit no-coverage message; provider...",
       "url": "projects.html#fishdepth-marine-chartplotter-title"
     },
     {
