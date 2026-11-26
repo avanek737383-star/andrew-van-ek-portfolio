@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-26T16:43:49+00:00",
+  "generatedAt": "2026-11-26T16:54:33+00:00",
   "stats": {
-    "totalProjects": 103,
-    "totalNodes": 338,
-    "totalLinks": 696,
+    "totalProjects": 104,
+    "totalNodes": 343,
+    "totalLinks": 703,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,92 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "sms-local-ai-digests-title",
+      "name": "Texting My Local AI: Private SMS Chat & Opt-In Website Digests",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "in-progress",
+      "statusLabel": "In Progress",
+      "date": "Started November 26, 2026",
+      "val": 24,
+      "color": "#f59e0b",
+      "summary": "I wanted to ask my local AI a question by sending a normal text from my iPhone, without opening a chat app. I already had a Twilio number connected to my homelab for voice conversations, so I asked ChatGPT / Codex (OpenAI) to inspect that setup over SSH and extend it with SMS....",
+      "tech": [
+        "Local AI",
+        "FastAPI",
+        "SQLite",
+        "Consent-Based Notifications"
+      ],
+      "tasks": [
+        {
+          "title": "One number for voice and text",
+          "desc": "the existing number supports SMS and MMS, but its SMS webhook was still a demo response. Codex connected SMS to the Alpine Linux gateway whi..."
+        },
+        {
+          "title": "Private AI conversations",
+          "desc": "an exact phone-number allowlist limits general AI chat to my approved number. The assistant keeps separate SMS context, supports RESET, iden..."
+        },
+        {
+          "title": "Durable message handling",
+          "desc": "signed requests are checked before the sender is trusted. Incoming messages are acknowledged promptly and saved to a private SQLite queue; a..."
+        },
+        {
+          "title": "Explicit website-update enrollment",
+          "desc": "visitors review the SMS update disclosures and send UPDATES from their own phone. Opening the Messages link alone does not subscribe them. S..."
+        }
+      ],
+      "url": "projects.html#sms-local-ai-digests-title"
+    },
+    {
+      "id": "task-sms-local-ai-digests-title-0",
+      "name": "One number for voice and text",
+      "type": "task",
+      "parentProject": "Texting My Local AI: Private SMS Chat & Opt-In Website Digests",
+      "parentId": "sms-local-ai-digests-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "the existing number supports SMS and MMS, but its SMS webhook was still a demo response. Codex connected SMS to the Alpine Linux gateway whi...",
+      "url": "projects.html#sms-local-ai-digests-title"
+    },
+    {
+      "id": "task-sms-local-ai-digests-title-1",
+      "name": "Private AI conversations",
+      "type": "task",
+      "parentProject": "Texting My Local AI: Private SMS Chat & Opt-In Website Digests",
+      "parentId": "sms-local-ai-digests-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "an exact phone-number allowlist limits general AI chat to my approved number. The assistant keeps separate SMS context, supports RESET, iden...",
+      "url": "projects.html#sms-local-ai-digests-title"
+    },
+    {
+      "id": "task-sms-local-ai-digests-title-2",
+      "name": "Durable message handling",
+      "type": "task",
+      "parentProject": "Texting My Local AI: Private SMS Chat & Opt-In Website Digests",
+      "parentId": "sms-local-ai-digests-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "signed requests are checked before the sender is trusted. Incoming messages are acknowledged promptly and saved to a private SQLite queue; a...",
+      "url": "projects.html#sms-local-ai-digests-title"
+    },
+    {
+      "id": "task-sms-local-ai-digests-title-3",
+      "name": "Explicit website-update enrollment",
+      "type": "task",
+      "parentProject": "Texting My Local AI: Private SMS Chat & Opt-In Website Digests",
+      "parentId": "sms-local-ai-digests-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "visitors review the SMS update disclosures and send UPDATES from their own phone. Opening the Messages link alone does not subscribe them. S...",
+      "url": "projects.html#sms-local-ai-digests-title"
     },
     {
       "id": "portfolio-evidence-audit-title",
@@ -5983,6 +6069,48 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "sms-local-ai-digests-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "sms-local-ai-digests-title",
+      "target": "task-sms-local-ai-digests-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sms-local-ai-digests-title",
+      "target": "task-sms-local-ai-digests-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sms-local-ai-digests-title",
+      "target": "task-sms-local-ai-digests-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sms-local-ai-digests-title",
+      "target": "task-sms-local-ai-digests-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "sms-local-ai-digests-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "sms-local-ai-digests-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "portfolio-evidence-audit-title",
