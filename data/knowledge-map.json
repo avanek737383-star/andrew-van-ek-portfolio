@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-26T18:23:23+00:00",
+  "generatedAt": "2026-11-26T18:32:13+00:00",
   "stats": {
     "totalProjects": 104,
     "totalNodes": 343,
-    "totalLinks": 704,
+    "totalLinks": 703,
     "domains": 6,
     "techBridges": 10
   },
@@ -6162,12 +6162,6 @@
     {
       "source": "portfolio-evidence-audit-title",
       "target": "tech-gcp-cloud",
-      "type": "project-tech",
-      "distance": 85
-    },
-    {
-      "source": "portfolio-evidence-audit-title",
-      "target": "tech-antigravity",
       "type": "project-tech",
       "distance": 85
     },
