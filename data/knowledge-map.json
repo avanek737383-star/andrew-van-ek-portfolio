@@ -2,8 +2,8 @@
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
     "totalProjects": 99,
-    "totalNodes": 334,
-    "totalLinks": 685,
+    "totalNodes": 338,
+    "totalLinks": 689,
     "domains": 6,
     "techBridges": 10
   },
@@ -619,12 +619,12 @@
           "desc": "Features one-click CSV Export for spreadsheet ingestion into electronic health record (EHR) systems, as well as a dedicated, CSS print-media..."
         },
         {
-          "title": "Direct BLE Sphygmomanometer Telemetry",
-          "desc": "Engineering a background CoreBluetooth bridge to subscribe directly to standardized Bluetooth GATT Blood Pressure Profile (UUID 0x1810) broa..."
+          "title": "Photo and browser validation",
+          "desc": "Codex exercised the local Apple Vision and LCD-decoding pipeline against four existing JPEG monitor photos, checked a result against its vis..."
         },
         {
-          "title": "Cardiovascular Anomaly Alerts",
-          "desc": "Integrating macOS user notification center alerts if consecutive readings trigger Stage 2 or Hypertensive Crisis thresholds across a rolling..."
+          "title": "Browser and home-screen icons",
+          "desc": "Codex inspected the heart/ECG artwork and confirmed HTTP 200 responses, correct image content types, and valid dimensions for the 64-pixel P..."
         }
       ],
       "url": "projects.html#macos-vision-blood-pressure-tracker-title"
@@ -655,26 +655,26 @@
     },
     {
       "id": "task-macos-vision-blood-pressure-tracker-title-2",
-      "name": "Direct BLE Sphygmomanometer Telemetry",
+      "name": "Photo and browser validation",
       "type": "task",
       "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
       "parentId": "macos-vision-blood-pressure-tracker-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Engineering a background CoreBluetooth bridge to subscribe directly to standardized Bluetooth GATT Blood Pressure Profile (UUID 0x1810) broa...",
+      "summary": "Codex exercised the local Apple Vision and LCD-decoding pipeline against four existing JPEG monitor photos, checked a result against its vis...",
       "url": "projects.html#macos-vision-blood-pressure-tracker-title"
     },
     {
       "id": "task-macos-vision-blood-pressure-tracker-title-3",
-      "name": "Cardiovascular Anomaly Alerts",
+      "name": "Browser and home-screen icons",
       "type": "task",
       "parentProject": "Autonomous Local Blood Pressure & Pulse Tracker for macOS \u2014 Zero-Cloud Apple Vision OCR, EXIF Metadata Timestamp Harvesting, Automated HEIC-to-JPEG Image Pipeline, AHA Clinical Staging, and Accidental-Deletion-Proof Persistence",
       "parentId": "macos-vision-blood-pressure-tracker-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Integrating macOS user notification center alerts if consecutive readings trigger Stage 2 or Hypertensive Crisis thresholds across a rolling...",
+      "summary": "Codex inspected the heart/ECG artwork and confirmed HTTP 200 responses, correct image content types, and valid dimensions for the 64-pixel P...",
       "url": "projects.html#macos-vision-blood-pressure-tracker-title"
     },
     {
@@ -5002,11 +5002,76 @@
       "status": "in-progress",
       "statusLabel": "In Progress",
       "date": "November 25, 2026",
-      "val": 16,
+      "val": 24,
       "color": "#f59e0b",
       "summary": "I am building a private phone dashboard to explore how an AI character responds to simulated scam calls. I worked with Antigravity CLI to recover an earlier prototype, consolidate the project files, restore desktop launch controls, and connect Twilio telephone audio to a local...",
       "tech": [],
-      "tasks": [],
+      "tasks": [
+        {
+          "title": "Automated validation",
+          "desc": "All 69 core unit and integration tests passed, including an HTTP upload test that runs OCR on a generated screenshot. JavaScript syntax chec..."
+        },
+        {
+          "title": "Targeted Chrome validation",
+          "desc": "Codex checked mobile field visibility, image selection, extracted previews, Reddit source assignment, the save payload, stale-response cance..."
+        },
+        {
+          "title": "Remaining test limitation",
+          "desc": "The older general browser suite did not pass: its live-monitor check failed a transcript assertion, and its carousel check ended after Chrom..."
+        },
+        {
+          "title": "Handoff",
+          "desc": "Test servers were stopped after verification. No real calls were placed during these checks."
+        }
+      ],
+      "url": "projects.html#scam-defense-title"
+    },
+    {
+      "id": "task-scam-defense-title-0",
+      "name": "Automated validation",
+      "type": "task",
+      "parentProject": "Scam Defense Dashboard: Local AI Phone Conversations",
+      "parentId": "scam-defense-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "All 69 core unit and integration tests passed, including an HTTP upload test that runs OCR on a generated screenshot. JavaScript syntax chec...",
+      "url": "projects.html#scam-defense-title"
+    },
+    {
+      "id": "task-scam-defense-title-1",
+      "name": "Targeted Chrome validation",
+      "type": "task",
+      "parentProject": "Scam Defense Dashboard: Local AI Phone Conversations",
+      "parentId": "scam-defense-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Codex checked mobile field visibility, image selection, extracted previews, Reddit source assignment, the save payload, stale-response cance...",
+      "url": "projects.html#scam-defense-title"
+    },
+    {
+      "id": "task-scam-defense-title-2",
+      "name": "Remaining test limitation",
+      "type": "task",
+      "parentProject": "Scam Defense Dashboard: Local AI Phone Conversations",
+      "parentId": "scam-defense-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "The older general browser suite did not pass: its live-monitor check failed a transcript assertion, and its carousel check ended after Chrom...",
+      "url": "projects.html#scam-defense-title"
+    },
+    {
+      "id": "task-scam-defense-title-3",
+      "name": "Handoff",
+      "type": "task",
+      "parentProject": "Scam Defense Dashboard: Local AI Phone Conversations",
+      "parentId": "scam-defense-title",
+      "status": "in-progress",
+      "val": 5,
+      "color": "#facc15",
+      "summary": "Test servers were stopped after verification. No real calls were placed during these checks.",
       "url": "projects.html#scam-defense-title"
     },
     {
@@ -9311,6 +9376,30 @@
       "target": "scam-defense-title",
       "type": "domain-project",
       "distance": 65
+    },
+    {
+      "source": "scam-defense-title",
+      "target": "task-scam-defense-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "scam-defense-title",
+      "target": "task-scam-defense-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "scam-defense-title",
+      "target": "task-scam-defense-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "scam-defense-title",
+      "target": "task-scam-defense-title-3",
+      "type": "project-task",
+      "distance": 26
     },
     {
       "source": "scam-defense-title",
