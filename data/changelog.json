@@ -1,11 +1,47 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T21:20:57+00:00",
-  "sourceHead": "6f6c5e3df9598c1a611f0c24e1d8a8bb0245dc48",
-  "count": 703,
+  "generatedAt": "2026-11-26T22:17:01+00:00",
+  "sourceHead": "bd894cf62223080f03bcc1a0d731b61e3d622b63",
+  "count": 709,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "bd894cf62223080f03bcc1a0d731b61e3d622b63",
+      "date": "2026-11-26T17:03:42-05:00",
+      "subject": "Document SkyTrack viewport bbox flight loading and zoom limits",
+      "category": "Feature"
+    },
+    {
+      "sha": "8766e3681db3280639a1a2e0a7d617c716d7e781",
+      "date": "2026-11-26T16:59:57-05:00",
+      "subject": "Document SkyTrack mobile header title stacking fix",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "3be4aac4d1c00dfbc249be83b139ef25073e10ba",
+      "date": "2026-11-26T16:56:23-05:00",
+      "subject": "Document CellRadar compass default, persistent overlay, directional arrow, and viewport clustering",
+      "category": "Feature"
+    },
+    {
+      "sha": "dad95b53efba14fdff55b58d55ddc308a2f7d3f1",
+      "date": "2026-11-26T16:33:24-05:00",
+      "subject": "[projects] Document CellRadar mobile compass and reload fixes",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "7d484e398574bddc20cdbc57a94b125446bdb452",
+      "date": "2026-11-26T16:33:18-05:00",
+      "subject": "[projects] Document ClearCast persistent localStorage location decision",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "6fdc5b650ee398c95f4cf394144c6a3c3a433f3f",
+      "date": "2026-11-26T16:20:57-05:00",
+      "subject": "[data] Refresh changelog snapshot after pointer-following lights update",
+      "category": "Maintenance"
+    },
     {
       "sha": "6f6c5e3df9598c1a611f0c24e1d8a8bb0245dc48",
       "date": "2026-11-26T16:20:52-05:00",
