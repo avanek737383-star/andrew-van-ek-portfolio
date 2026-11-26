@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T16:06:29+00:00",
-  "sourceHead": "4e0d0800ea720d2942bbf6acecb954b6b94b5491",
-  "count": 663,
+  "generatedAt": "2026-11-26T16:07:02+00:00",
+  "sourceHead": "6e0b6547d36c78a924121b6d2dad0a1cf5af703e",
+  "count": 665,
   "releaseLabel": "v2.6.436",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "6e0b6547d36c78a924121b6d2dad0a1cf5af703e",
+      "date": "2026-11-26T11:06:57-05:00",
+      "subject": "[fix] Refresh changelog renderer cache key",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "3245f8059c4e712956ebf39e6c471593cd8241b6",
+      "date": "2026-11-26T11:06:29-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "4e0d0800ea720d2942bbf6acecb954b6b94b5491",
       "date": "2026-11-26T11:06:26-05:00",
