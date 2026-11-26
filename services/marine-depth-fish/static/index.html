@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FishDepth | Marine & Lake Depth Charts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#071321">
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    :root {
+      --bg: #071321;
+      --card-bg: rgba(11, 23, 44, 0.94);
+      --card-border: rgba(0, 229, 255, 0.35);
+      --accent: #00e5ff;
+      --text: #f0f6fc;
+      --text-muted: #8b9bb4;
+      --gold: #ffd166;
+      --danger: #ef476f;
+      --success: #06d6a0;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; user-select: none; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+    #lake-search { display:flex; gap:8px; }
+    #lake-query { flex:1; min-width:0; background:#071321; color:#f0f6fc; border:1px solid #49627c; border-radius:6px; padding:8px; user-select:text; }
+    #search-results { max-height:24vh; overflow-y:auto; }
+    #search-results button { display:block; width:100%; text-align:left; padding:10px; background:#10243b; color:#f0f6fc; border:1px solid #49627c; cursor:pointer; }
+    #depth-info { background:#10243b; padding:5px 12px; font-size:0.75rem; z-index:900; }
+    #depth-info p { margin-top:6px; max-width:80ch; }
+    /* TOP HUD */
+    #top-hud {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--card-border);
+      padding: calc(var(--safe-top) + 8px) 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .hud-row-primary { display: flex; align-items: center; justify-content: space-between; }
+    .brand-title { font-weight: 800; font-size: 1.15rem; color: #ffffff; display: flex; align-items: center; gap: 6px; }
+    .brand-badge {
+      background: rgba(0, 229, 255, 0.15); color: var(--accent); border: 1px solid var(--accent);
+      border-radius: 4px; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; text-transform: uppercase;
+    }
+
+    .hud-actions { display: flex; align-items: center; gap: 8px; }
+
+    .hud-btn {
+      background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text); padding: 6px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+    }
+    .hud-btn.wake-active {
+      background: rgba(6, 214, 160, 0.2); border-color: var(--success); color: var(--success);
+      box-shadow: 0 0 10px rgba(6, 214, 160, 0.3);
+    }
+
+    .hud-row-primary { gap:8px; flex-wrap:wrap; }
+    .brand-title, .hud-actions { flex-shrink:0; }
+    @media (max-width: 480px) {
+      .hud-row-primary { justify-content:center; }
+      .brand-title { font-size:1rem; }
+      .hud-actions { gap:5px; }
+      .hud-btn { padding:6px 8px; }
+    }
+    /* TELEMETRY BAR */
+    .telemetry-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+      background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 6px 8px; border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .telem-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .telem-label { font-size: 0.62rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); }
+    .telem-value { font-family: ui-monospace, monospace; font-size: 0.86rem; font-weight: 700; color: var(--accent); }
+
+    /* TARGET HUD STRIP */
+    #target-hud {
+      display: none; background: rgba(255, 209, 102, 0.15); border: 1px solid var(--gold);
+      border-radius: 8px; padding: 6px 10px; align-items: center; justify-content: space-between;
+    }
+
+    .target-title { font-size: 0.8rem; font-weight: 700; color: var(--gold); }
+    .target-stats { font-size: 0.72rem; color: #fff; font-family: monospace; display: flex; gap: 8px; }
+    .target-stats span { color: var(--gold); font-weight: 700; }
+
+    /* MAP WRAPPER */
+    #map-wrapper { flex: 1; position: relative; width: 100%; height: 100%; }
+    #map { width: 100%; height: 100%; background: #050e18; }
+
+    /* STACKED BUTTONS IN UPPER-LEFT HAND CORNER */
+    .upper-left-controls {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 990;
+    }
+
+    .ctrl-btn {
+      width: 44px;
+      height: 44px;
+      background: rgba(7, 19, 33, 0.92);
+      border: 1.5px solid var(--accent);
+      border-radius: 12px;
+      color: var(--accent);
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+
+    /* FLOATING COMPASS WITH FLIP 180 BUTTON */
+    .floating-compass-box {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 990;
+    }
+
+    .floating-compass {
+      width: 54px;
+      height: 54px;
+      background: rgba(7, 19, 33, 0.9);
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+
+    .compass-dial { width: 100%; height: 100%; position: relative; border-radius: 50%; will-change: transform; }
+    .compass-needle-n {
+      position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 18px solid #ff3366;
+    }
+    .compass-needle-s {
+      position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 18px solid #8b9bb4;
+    }
+    .compass-center-dot {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 8px; height: 8px; background: #fff; border-radius: 50%;
+    }
+
+    .btn-compass-flip {
+      background: rgba(7, 19, 33, 0.9);
+      border: 1px solid var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 3px 6px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* VESSEL MARKER */
+    .vessel-icon-wrapper { width: 48px; height: 48px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .vessel-svg-rotator {
+      width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+      transform-origin: 50% 50%; will-change: transform;
+      filter: drop-shadow(0 0 8px #00e5ff) drop-shadow(0 2px 6px rgba(0,0,0,0.9));
+    }
+
+    /* BOTTOM BAR */
+    #bottom-bar {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--card-border);
+      padding: 8px 14px calc(var(--safe-bottom) + 8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .btn-action-primary {
+      flex: 1;
+      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      border: none;
+      color: white;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    /* LAYER MODAL */
+    #layer-modal {
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);
+      z-index: 9995; display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+
+    .layer-card {
+      background: #0d1e33; border: 1.5px solid var(--accent); border-radius: 18px;
+      padding: 20px; max-width: 380px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+
+    .layer-choice-btn {
+      background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white; padding: 10px 12px; border-radius: 10px; font-size: 0.88rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+    }
+
+    .layer-choice-btn.selected { background: rgba(0, 229, 255, 0.2); border-color: var(--accent); color: var(--accent); }
+
+    .checkbox-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255, 255, 255, 0.05); padding: 10px 12px; border-radius: 10px; font-size: 0.85rem; font-weight: 600;
+    }
+
+    /* DYNAMIC SLIDING DEPTH BADGES (HIGH-VISIBILITY WHITE ON SOLID BLACK OUTLINE) */
+    .clean-depth-tooltip {
+      background: #ffffff !important;
+      border: 1.5px solid #000000 !important;
+      color: #000000 !important;
+      font-size: 0.76rem !important;
+      font-weight: 900 !important;
+      padding: 1px 6px !important;
+      border-radius: 4px !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6) !important;
+      font-family: ui-monospace, monospace !important;
+      white-space: nowrap !important;
+      pointer-events: none !important;
+      text-align: center !important;
+      line-height: 18px !important;
+    }
+    .clean-depth-tooltip::before { display: none !important; }
+
+    /* SPOT LOGGING MODAL */
+    #spot-modal {
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
+      z-index: 9996; display: none; align-items: center; justify-content: center; padding: 16px;
+    }
+    .modal-card {
+      background: #0d1e33; border: 1.5px solid var(--accent); border-radius: 16px;
+      padding: 18px; max-width: 400px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      display: flex; flex-direction: column; gap: 12px; max-height: 90vh; overflow-y: auto;
+    }
+    .form-input {
+      background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white; border-radius: 8px; padding: 8px 10px; font-size: 0.85rem; width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HUD -->
+  <header id="top-hud">
+    <div class="hud-row-primary">
+      <div class="brand-title">
+        <span>⚓ FishDepth</span>
+      </div>
+      <div class="hud-actions">
+        <button id="btn-force-reload" class="hud-btn" title="Clear Cache & Hard Reload Page" style="background:rgba(239,68,68,0.15);border-color:#ef4444;color:#fca5a5;">
+          <span>🔄</span>
+          <span>RELOAD</span>
+        </button>
+        <button id="btn-quick-recalib" class="hud-btn" title="Recalibrate Compass Sensor" style="background:rgba(56,189,248,0.15);border-color:#38bdf8;color:#38bdf8;">
+          <span>🎯</span>
+          <span>CALIB</span>
+        </button>
+        <button id="wake-toggle" class="hud-btn wake-active" title="Keep Screen Awake">
+          <span id="wake-icon">⚡</span>
+          <span id="wake-text">WAKE ON</span>
+        </button>
+      </div>
+    </div>
+
+    <form id="lake-search" role="search">
+      <label class="sr-only" for="lake-query">Search for a lake</label>
+      <input id="lake-query" type="search" placeholder="Search lakes (e.g. Upper Crooked Lake)" required maxlength="160" autocomplete="off">
+      <button class="hud-btn" type="submit">SEARCH</button>
+    </form>
+    <div id="search-results" aria-live="polite" hidden></div>
+    <!-- TELEMETRY -->
+    <div class="telemetry-row">
+      <div class="telem-box">
+        <span class="telem-label">Boat Hdg</span>
+        <span id="telem-hdg" class="telem-value">---°</span>
+      </div>
+      <div class="telem-box">
+        <span class="telem-label">Speed</span>
+        <span id="telem-spd" class="telem-value">0.0 kt</span>
+      </div>
+      <div class="telem-box">
+        <span class="telem-label">Map Range</span>
+        <span id="telem-range" class="telem-value">-- mi</span>
+      </div>
+      <div class="telem-box">
+        <span class="telem-label">Contours</span>
+        <span id="telem-contours" class="telem-value">0 Lines</span>
+      </div>
+    </div>
+
+    <!-- TARGET HUD STRIP -->
+    <div id="target-hud">
+      <div>
+        <div id="target-name" class="target-title">Target: Hotspot</div>
+        <div class="target-stats">
+          <div>BRG: <span id="target-bearing">---°</span></div>
+          <div>DIST: <span id="target-dist">--- YDS</span></div>
+          <div>DEPTH: <span id="target-depth">-- FT</span></div>
+        </div>
+      </div>
+      <button id="btn-clear-target" style="background:rgba(239,71,111,0.2);border:1px solid var(--danger);color:var(--danger);border-radius:10px;padding:4px 8px;font-size:0.7rem;font-weight:700;">✕ CLEAR</button>
+    </div>
+  </header>
+
+  <details id="depth-info">
+    <summary id="depth-status" role="status">Loading depth surveys…</summary>
+    <p id="depth-coverage">Coverage: Lake Michigan, Lake Erie, Lake St. Clair, Saginaw Bay and surveyed Michigan inland lakes. Worldwide bathymetry is unavailable from this source.</p>
+    <p>Bathymetry: Michigan GIS. Basemap: © OpenStreetMap contributors / OpenTopoMap / Esri. Seamarks: OpenSeaMap. Depth surveys may be incomplete or outdated.</p>
+  </details>
+  <!-- MAP WRAPPER -->
+  <main id="map-wrapper">
+    <div id="map"></div>
+
+    <!-- STACKED CONTROLS IN UPPER-LEFT CORNER -->
+    <div class="upper-left-controls">
+      <button id="btn-recenter" class="ctrl-btn" title="Center on Vessel">🎯</button>
+      <button id="btn-open-layers" class="ctrl-btn" title="Depth Maps & Layers">🗺️</button>
+    </div>
+
+    <!-- FLOATING COMPASS WITH INVERT / FLIP 180 BUTTON -->
+    <div class="floating-compass-box">
+      <div id="compass-container" class="floating-compass">
+        <div id="compass-dial" class="compass-dial">
+          <div class="compass-needle-n"></div>
+          <div class="compass-needle-s"></div>
+          <div class="compass-center-dot"></div>
+        </div>
+      </div>
+      <button id="btn-compass-flip" class="btn-compass-flip" title="Flip if North is South">🔃 Flip 180°</button>
+    </div>
+  </main>
+
+  <!-- BOTTOM BAR -->
+  <footer id="bottom-bar">
+    <button id="btn-log-spot" class="btn-action-primary">
+      <span>➕ Drop Spot / Catch</span>
+    </button>
+  </footer>
+
+  <!-- LAYER MODAL -->
+  <div id="layer-modal">
+    <div class="layer-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h3 style="font-size:1.1rem;font-weight:800;color:#fff;">Depth Charts & Layers</h3>
+        <button id="btn-close-layers" style="background:none;border:none;color:#aaa;font-size:1.4rem;cursor:pointer;">✕</button>
+      </div>
+
+      <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;">Base Map</div>
+      <div class="layer-choice-btn selected" data-base="osm">
+        <span>🗺️ Standard Marine & Shorelines (OSM)</span>
+        <span class="check-icon">✓</span>
+      </div>
+      <div class="layer-choice-btn" data-base="topo">
+        <span>⛰️ Topographic Elevation & Relief</span>
+        <span class="check-icon"></span>
+      </div>
+      <div class="layer-choice-btn" data-base="sat">
+        <span>🛰️ High-Res Satellite Imagery</span>
+        <span class="check-icon"></span>
+      </div>
+
+      <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-top:4px;">Vector Depth Overlays</div>
+      <label class="checkbox-row">
+        <span>⚫ Black Contour Lines (All Depths)</span>
+        <input type="checkbox" id="chk-vector-contours" checked>
+      </label>
+      <label class="checkbox-row">
+        <span>⚓ OpenSeaMap Marine Aids & Buoys</span>
+        <input type="checkbox" id="chk-seamarks" checked>
+      </label>
+
+      <button id="btn-apply-layers" class="btn-action-primary" style="margin-top:6px;">Close & Apply</button>
+    </div>
+  </div>
+
+  <!-- SPOT MODAL -->
+  <div id="spot-modal">
+    <div class="modal-card">
+      <h3 style="color:var(--accent);">Record Hotspot</h3>
+      <input type="text" id="spot-name" class="form-input" placeholder="Spot Name (e.g. Reef Drop-Off)">
+      <input type="text" id="spot-species" class="form-input" placeholder="Target Species (e.g. Walleye, Bass)">
+      <input type="number" id="spot-depth" class="form-input" placeholder="Depth in FT (e.g. 24)">
+      <textarea id="spot-notes" class="form-input" placeholder="Bait, structure, temperature, notes..." rows="3"></textarea>
+      <div style="display:flex;gap:10px;">
+        <button id="btn-save-spot" class="btn-action-primary">Save Spot</button>
+        <button id="btn-cancel-spot" class="hud-btn" style="flex:1;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let userPos = { lat: 43.230, lon: -86.300 }; // Centered near Muskegon Lake / Lake Michigan channel
+    let wakeLock = null;
+    let wakeLockEnabled = true;
+    let map, vesselMarker;
+
+    let osmLayer, topoLayer, satLayer, openSeaMapLayer;
+    let contoursLayerGroup;
+    let labelsLayerGroup;
+
+    // Track active contours for dynamic sliding labels
+    // Each item: { depth: number, latlngs: Array<L.LatLng> }
+    let activeContourLines = [];
+    let contourLabelsZooming = false;
+
+    let rawHeading = 0, compassTrim = 0;
+    let currentCompassHeading = 0, currentVesselHeading = 0;
+    let contourDebounceTimer = null;
+    let contourRequest = 0;
+    let contourController = null;
+
+    let searchController = null;
+    document.getElementById('lake-search').addEventListener('submit', async event => {
+      event.preventDefault();
+      if (searchController) searchController.abort();
+      searchController = new AbortController();
+      const signal = searchController.signal;
+      const container = document.getElementById('search-results');
+      container.hidden = false;
+      container.textContent = 'Searching lake names…';
+      try {
+        const query = document.getElementById('lake-query').value.trim();
+        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {signal});
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Search unavailable');
+        if (signal.aborted) return;
+        container.replaceChildren();
+        if (!data.results.length) container.textContent = 'No matching Michigan lakes found. Try the lake name or county.';
+        data.results.forEach(result => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.textContent = result.name;
+          button.addEventListener('click', () => {
+            const [w, s, e, n] = result.bbox;
+            map.fitBounds([[s, w], [n, e]], {padding: [25, 25], maxZoom: 15});
+            container.hidden = true;
+          });
+          container.appendChild(button);
+        });
+        if (data.results.length === 1) container.firstElementChild.click();
+      } catch (err) {
+        if (err.name !== 'AbortError') container.textContent = 'Lake search unavailable. Please retry.';
+      }
+    });
+
+    // Wake Lock
+    async function requestWakeLock() {
+      if ('wakeLock' in navigator) {
+        try { wakeLock = await navigator.wakeLock.request('screen'); updateWakeUI(true); }
+        catch (e) { updateWakeUI(false); }
+      }
+    }
+    function releaseWakeLock() { if (wakeLock) { wakeLock.release(); wakeLock = null; } updateWakeUI(false); }
+    function updateWakeUI(active) {
+      const btn = document.getElementById('wake-toggle');
+      const text = document.getElementById('wake-text');
+      if (active) { btn.classList.add('wake-active'); text.innerText = 'WAKE ON'; }
+      else { btn.classList.remove('wake-active'); text.innerText = 'WAKE OFF'; }
+    }
+    document.getElementById('wake-toggle').addEventListener('click', () => {
+      wakeLockEnabled = !wakeLockEnabled;
+      if (wakeLockEnabled) requestWakeLock(); else releaseWakeLock();
+    });
+
+    // Compass Inversion Button
+    document.getElementById('btn-compass-flip').addEventListener('click', () => {
+      compassTrim = (compassTrim + 180) % 360;
+    });
+
+    // Orientation
+    function setupOrientation() {
+      if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        window.addEventListener('touchstart', async () => {
+          try {
+            const resp = await DeviceOrientationEvent.requestPermission();
+            if (resp === 'granted') window.addEventListener('deviceorientation', handleOrientation, true);
+          } catch (e) {}
+        }, { once: true });
+      } else {
+        window.addEventListener('deviceorientationabsolute', handleOrientation, true);
+        window.addEventListener('deviceorientation', handleOrientation, true);
+      }
+    }
+
+    function handleOrientation(e) {
+      let compass = 0;
+      if (e.webkitCompassHeading !== undefined && e.webkitCompassHeading !== null) compass = e.webkitCompassHeading;
+      else if (e.alpha !== null) compass = (360 - e.alpha) % 360;
+      rawHeading = Math.round(compass);
+    }
+
+    function shortestDelta(target, current) { return ((target - current) % 360 + 540) % 360 - 180; }
+
+    function runAnimationLoop() {
+      const calibratedHeading = (rawHeading + compassTrim) % 360;
+      document.getElementById('telem-hdg').innerText = `${calibratedHeading.toString().padStart(3, '0')}°`;
+
+      const compDelta = shortestDelta(calibratedHeading, currentCompassHeading);
+      currentCompassHeading += compDelta * 0.18;
+      const dial = document.getElementById('compass-dial');
+      if (dial) dial.style.transform = `rotate(${-currentCompassHeading}deg)`;
+
+      const vesDelta = shortestDelta(calibratedHeading, currentVesselHeading);
+      currentVesselHeading += vesDelta * 0.18;
+      const vesselSvg = document.getElementById('vessel-rotator-svg');
+      if (vesselSvg) vesselSvg.style.transform = `rotate(${currentVesselHeading}deg)`;
+
+      requestAnimationFrame(runAnimationLoop);
+    }
+
+    // Leaflet Map Initialization
+    function initMap() {
+      map = L.map('map', { zoomControl: false, attributionControl: false }).setView([userPos.lat, userPos.lon], 13);
+      L.control.scale({ imperial: true, metric: false, position: 'bottomleft', maxWidth: 140 }).addTo(map);
+
+      // Base layers
+      osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+      topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17 });
+      satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18 });
+
+      // Seamarks Overlay
+      openSeaMapLayer = L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', { maxZoom: 18, opacity: 0.95 }).addTo(map);
+
+      // Vector Contours & Labels Layer Groups
+      contoursLayerGroup = L.layerGroup().addTo(map);
+      labelsLayerGroup = L.layerGroup().addTo(map);
+
+      // Prominent Vessel Icon
+      const vesselIcon = L.divIcon({
+        className: 'custom-vessel-icon',
+        html: `
+          <div class="vessel-icon-wrapper">
+            <svg id="vessel-rotator-svg" class="vessel-svg-rotator" viewBox="0 0 48 48">
+              <path d="M 24 4 L 40 40 L 24 33 L 8 40 Z" fill="#ffffff" stroke="#00e5ff" stroke-width="3" stroke-linejoin="round" />
+              <circle cx="24" cy="26" r="4.5" fill="#00e5ff" stroke="#071321" stroke-width="1.5" />
+            </svg>
+          </div>
+        `,
+        iconSize: [48, 48],
+        iconAnchor: [24, 26]
+      });
+
+      vesselMarker = L.marker([userPos.lat, userPos.lon], { icon: vesselIcon, zIndexOffset: 3000 }).addTo(map);
+
+      // Map navigation listeners: update sliding labels live during pan
+      map.on('move', () => {
+        updateSlidingLabels();
+      });
+
+      map.on('movestart', () => {
+        contourRequest++;
+        if (contourController) contourController.abort();
+      });
+      map.on('resize', () => loadVectorContours());
+      map.on('moveend', () => {
+        updateMapRange();
+        updateSlidingLabels();
+        // Debounce contour fetch so fast navigation doesn't hammer or wipe lines
+        clearTimeout(contourDebounceTimer);
+        contourDebounceTimer = setTimeout(() => {
+          loadVectorContours();
+        }, 220);
+      });
+
+      map.on('zoomstart', () => { contourLabelsZooming = true; labelsLayerGroup.clearLayers(); });
+      map.on('zoomend', () => {
+        contourLabelsZooming = false;
+        updateSlidingLabels();
+      });
+
+      updateMapRange();
+      loadVectorContours();
+    }
+
+    // Keep disconnected parts separate: labels must never bridge clipped shorelines.
+    function extractContourParts(geometry) {
+      if (!geometry) return [];
+      let parts = geometry.type === 'LineString' ? [geometry.coordinates] :
+        geometry.type === 'MultiLineString' ? geometry.coordinates :
+        geometry.type === 'Polygon' ? geometry.coordinates.slice(0, 1) : [];
+      return parts.map(line => line.filter(c => c && c.length >= 2)
+        .map(c => L.latLng(c[1], c[0]))).filter(line => line.length > 1);
+    }
+
+    // Clip sparse segments too, so lines crossing the view get labels even when
+    // both survey vertices lie outside it (Liang-Barsky screen-space clipping).
+    function clipLabelSegment(a, b, width, height) {
+      const dx=b.x-a.x, dy=b.y-a.y;
+      let lo=0, hi=1;
+      const ps=[-dx,dx,-dy,dy], qs=[a.x,width-a.x,a.y,height-a.y];
+      for (let i=0;i<4;i++) {
+        if (ps[i] === 0) { if (qs[i]<0) return null; continue; }
+        const t=qs[i]/ps[i];
+        if (ps[i]<0) lo=Math.max(lo,t); else hi=Math.min(hi,t);
+        if (lo>hi) return null;
+      }
+      return [{x:a.x+lo*dx,y:a.y+lo*dy},{x:a.x+hi*dx,y:a.y+hi*dy}];
+    }
+
+    // Muse's black contours; Codex's repeated feet labels and collision layout.
+    function updateSlidingLabels() {
+      if (!map) return;
+      labelsLayerGroup.clearLayers();
+      if (contourLabelsZooming) return;
+      const zoom=map.getZoom(), size=map.getSize();
+      // More labels per screen at higher zoom, with a readable minimum gap.
+      const spacing=Math.max(100, 380 - (zoom-8)*40);
+      const occupied=[];
+      for (const item of activeContourLines) {
+        const text=`${Number(item.depth.toFixed(1))} FT`;
+        const width=text.length*8+16, height=22, gap=10;
+        const points=item.latlngs.map(p => map.latLngToContainerPoint(p));
+        let until=spacing/2;
+        for (let i=1;i<points.length;i++) {
+          const segment=clipLabelSegment(points[i-1],points[i],size.x,size.y);
+          if (!segment) { until=spacing/2; continue; }
+          const [a,b]=segment, length=Math.hypot(b.x-a.x,b.y-a.y);
+          if (!length) continue;
+          while (until<=length) {
+            const t=until/length, x=a.x+t*(b.x-a.x), y=a.y+t*(b.y-a.y);
+            const box={left:x-width/2-gap,right:x+width/2+gap,
+              top:y-height/2-gap,bottom:y+height/2+gap};
+            if (box.left>=0 && box.top>=0 && box.right<=size.x && box.bottom<=size.y &&
+                !occupied.some(o => box.left<o.right && box.right>o.left && box.top<o.bottom && box.bottom>o.top)) {
+              occupied.push(box);
+              L.marker(map.containerPointToLatLng([x,y]), {
+                icon:L.divIcon({className:'clean-depth-tooltip',html:text,
+                  iconSize:[width,height],iconAnchor:[width/2,height/2]}),
+                interactive:false,keyboard:false,zIndexOffset:1200
+              }).addTo(labelsLayerGroup);
+            }
+            until+=spacing;
+          }
+          until-=length;
+        }
+      }
+    }
+
+    // Load Real Vector Depth Contours via NUC proxy with ATOMIC replacement (no blank flashes)
+    async function loadVectorContours() {
+      if (!map) return;
+      if (contourController) contourController.abort();
+      contourController = new AbortController();
+      const signal = contourController.signal;
+      const requestId = ++contourRequest;
+
+      const b = map.getBounds();
+      // Expand bbox slightly (15%) to preload adjacent lines while navigating
+      const latSpan = b.getNorth() - b.getSouth();
+      const lonSpan = b.getEast() - b.getWest();
+      let west = b.getWest() - lonSpan * 0.15;
+      let east = b.getEast() + lonSpan * 0.15;
+      const south = Math.max(-90, b.getSouth() - latSpan * 0.15);
+      const north = Math.min(90, b.getNorth() + latSpan * 0.15);
+      let boxes;
+      if (east - west >= 360) boxes = [[-180, south, 180, north]];
+      else {
+        const span = east - west;
+        west = ((west + 180) % 360 + 360) % 360 - 180;
+        east = west + span;
+        boxes = east <= 180 ? [[west, south, east, north]] :
+          [[west, south, 180, north], [-180, south, east - 360, north]];
+      }
+      document.getElementById('depth-status').textContent = 'Loading depth surveys for this view…';
+      try {
+        const responses = await Promise.all(boxes.map(async box => {
+          const res = await fetch(`/api/contours?bbox=${box.map(v => v.toFixed(5)).join(',')}`, {signal});
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Depth provider unavailable');
+          return data;
+        }));
+        if (signal.aborted || requestId !== contourRequest) return;
+        const seen = new Set();
+        const features = responses.flatMap(data => data.features || []).filter(f => {
+          const key = `${f.properties.source}:${f.id ?? f.properties.OBJECTID}`;
+          if (seen.has(key)) return false;
+          seen.add(key); return true;
+        });
+        document.getElementById('telem-contours').innerText = `${features.length} Lines`;
+        const partial = responses.some(data => !data.complete);
+        document.getElementById('depth-status').textContent = partial ?
+          'Some depth sources failed. Available surveys shown; pan or reload to retry.' :
+          features.length ? `${features.length} surveyed contours loaded for this view.` :
+          'No surveyed depth contours available for this view.';
+        document.getElementById('depth-coverage').textContent = responses[0].coverage;
+
+        // Create new layers in a temporary container before clearing the old ones
+        const newLayerGroup = L.layerGroup();
+        const newActiveContourLines = [];
+
+        features.forEach(f => {
+          const props = f.properties || {};
+          const depthFt = props.DEPTH_FT !== undefined ? props.DEPTH_FT : (props.DEPTH !== undefined ? props.DEPTH : Math.round((props.DEPTH_M || 0) * 3.28));
+          const waterName = props.water || 'Waterway';
+
+          // ALL CONTOUR LINES ARE SOLID BLACK REGARDLESS OF DEPTH
+          const lineColor = '#000000';
+
+          const geoLayer = L.geoJSON(f, {
+            smoothFactor: 0, // Preserve shoreline clipping at every zoom level.
+            style: {
+              color: lineColor,
+              weight: depthFt <= 15 ? 2.6 : 2.0,
+              opacity: 0.90,
+              dashArray: null
+            }
+          });
+
+          geoLayer.bindPopup(`
+            <div style="font-size:0.85rem;line-height:1.4;color:#f0f6fc;">
+              <b style="color:#00e5ff;font-size:0.95rem;">${waterName} Depth Contour</b><br>
+              <b>Water Depth:</b> <span style="color:#ffd166;font-weight:900;font-size:1.1rem;">${depthFt} FT</span><br>
+              <button onclick="window.targetContour(${depthFt})" style="background:#00e5ff;color:#071321;border:none;padding:6px 10px;border-radius:6px;font-weight:800;margin-top:6px;width:100%;cursor:pointer;">
+                🎯 SET BEARING TO THIS DEPTH
+              </button>
+            </div>
+          `);
+
+          newLayerGroup.addLayer(geoLayer);
+
+          const numericDepth = Number(depthFt);
+          if (Number.isFinite(numericDepth) && numericDepth > 0) {
+            extractContourParts(f.geometry).forEach(latlngs => {
+              newActiveContourLines.push({depth:numericDepth,latlngs});
+            });
+          }
+        });
+
+        // ATOMIC SWAP: Clear old layers only after new features are ready (prevents lines disappearing)
+        contoursLayerGroup.clearLayers();
+        labelsLayerGroup.clearLayers();
+
+        newLayerGroup.eachLayer(layer => {
+          contoursLayerGroup.addLayer(layer);
+        });
+
+        activeContourLines = newActiveContourLines;
+        updateSlidingLabels();
+
+      } catch (err) {
+        if (err.name === 'AbortError' || requestId !== contourRequest) return;
+        contoursLayerGroup.clearLayers();
+        labelsLayerGroup.clearLayers();
+        activeContourLines = [];
+        document.getElementById('telem-contours').textContent = 'Unavailable';
+        document.getElementById('depth-status').textContent = 'Depth provider unavailable. Pan or reload to retry.';
+        console.error('Failed to load vector contours:', err);
+      }
+    }
+
+    window.targetContour = function(depth) {
+      document.getElementById('target-hud').style.display = 'flex';
+      document.getElementById('target-name').innerText = `Contour Line (${depth} FT)`;
+      document.getElementById('target-depth').innerText = `${depth} FT`;
+      map.closePopup();
+    };
+
+    document.getElementById('btn-clear-target').addEventListener('click', () => {
+      document.getElementById('target-hud').style.display = 'none';
+    });
+
+    function updateMapRange() {
+      if (!map) return;
+      const b = map.getBounds();
+      const R = 3958.8;
+      const dLat = (b.getNorth() - b.getSouth()) * Math.PI / 180;
+      const dLon = (b.getEast() - b.getWest()) * Math.PI / 180;
+      const a = Math.sin(dLat/2)**2 + Math.cos(b.getSouth()*Math.PI/180)*Math.cos(b.getNorth()*Math.PI/180)*Math.sin(dLon/2)**2;
+      const span = (R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) / 2).toFixed(1);
+      document.getElementById('telem-range').innerText = `${span} mi`;
+    }
+
+    // Geolocation
+    function startGeolocation() {
+      if (!('geolocation' in navigator)) return;
+      navigator.geolocation.getCurrentPosition(
+        (pos) => updatePos(pos),
+        (err) => console.warn(err),
+        { enableHighAccuracy: false, timeout: 4000 }
+      );
+      navigator.geolocation.watchPosition(
+        (pos) => updatePos(pos),
+        (err) => console.warn(err),
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
+      );
+    }
+
+    function updatePos(pos) {
+      userPos.lat = pos.coords.latitude;
+      userPos.lon = pos.coords.longitude;
+      const spdKts = pos.coords.speed ? (pos.coords.speed * 1.94384).toFixed(1) : '0.0';
+      document.getElementById('telem-spd').innerText = `${spdKts} kt`;
+      if (vesselMarker) vesselMarker.setLatLng([userPos.lat, userPos.lon]);
+    }
+
+    // Layer Controls
+    document.getElementById('btn-open-layers').addEventListener('click', () => { document.getElementById('layer-modal').style.display = 'flex'; });
+    document.getElementById('btn-close-layers').addEventListener('click', () => { document.getElementById('layer-modal').style.display = 'none'; });
+    document.getElementById('btn-apply-layers').addEventListener('click', () => { document.getElementById('layer-modal').style.display = 'none'; });
+
+    document.querySelectorAll('.layer-choice-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.layer-choice-btn').forEach(b => { b.classList.remove('selected'); b.querySelector('.check-icon').innerText = ''; });
+        const target = e.currentTarget;
+        target.classList.add('selected');
+        target.querySelector('.check-icon').innerText = '✓';
+        const base = target.getAttribute('data-base');
+
+        if (map.hasLayer(osmLayer)) map.removeLayer(osmLayer);
+        if (map.hasLayer(topoLayer)) map.removeLayer(topoLayer);
+        if (map.hasLayer(satLayer)) map.removeLayer(satLayer);
+
+        if (base === 'osm') { map.addLayer(osmLayer); osmLayer.bringToBack(); }
+        else if (base === 'topo') { map.addLayer(topoLayer); topoLayer.bringToBack(); }
+        else { map.addLayer(satLayer); satLayer.bringToBack(); }
+      });
+    });
+
+    document.getElementById('chk-vector-contours').addEventListener('change', (e) => {
+      if (e.target.checked) {
+        if (!map.hasLayer(contoursLayerGroup)) map.addLayer(contoursLayerGroup);
+        if (!map.hasLayer(labelsLayerGroup)) map.addLayer(labelsLayerGroup);
+      } else {
+        if (map.hasLayer(contoursLayerGroup)) map.removeLayer(contoursLayerGroup);
+        if (map.hasLayer(labelsLayerGroup)) map.removeLayer(labelsLayerGroup);
+      }
+    });
+
+    document.getElementById('chk-seamarks').addEventListener('change', (e) => {
+      if (e.target.checked) { if (!map.hasLayer(openSeaMapLayer)) map.addLayer(openSeaMapLayer); }
+      else { if (map.hasLayer(openSeaMapLayer)) map.removeLayer(openSeaMapLayer); }
+    });
+
+    document.getElementById('btn-recenter').addEventListener('click', () => {
+      map.setView([userPos.lat, userPos.lon], 14, { animate: true });
+    });
+
+    // Clear Cache and Hard Reload
+    function forceClearCacheAndReload() {
+      const btn = document.getElementById('btn-force-reload');
+      if (btn) {
+        btn.style.background = '#eab308';
+        btn.style.color = '#000';
+        btn.style.borderColor = '#eab308';
+        btn.innerHTML = '<span>⏳</span> <span>RELOADING...</span>';
+      }
+      try {
+        if ('caches' in window) caches.keys().then(names => names.forEach(name => caches.delete(name)));
+        localStorage.clear(); sessionStorage.clear();
+      } catch (e) {}
+      setTimeout(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('nocache', Date.now().toString());
+        window.location.href = url.toString();
+      }, 350);
+    }
+    const reloadBtn = document.getElementById('btn-force-reload');
+    if (reloadBtn) reloadBtn.addEventListener('click', forceClearCacheAndReload);
+
+    // Compass Calibration
+    const quickCalibBtn = document.getElementById('btn-quick-recalib');
+    if (quickCalibBtn) {
+      quickCalibBtn.addEventListener('click', () => {
+        compassTrim = 0;
+        alert('Compass Calibrated to Device Heading: ' + Math.round(rawHeading) + '°');
+      });
+    }
+
+    // Spot logging dialog
+    document.getElementById('btn-log-spot').addEventListener('click', () => {
+      document.getElementById('spot-modal').style.display = 'flex';
+    });
+    document.getElementById('btn-cancel-spot').addEventListener('click', () => {
+      document.getElementById('spot-modal').style.display = 'none';
+    });
+    document.getElementById('btn-save-spot').addEventListener('click', async () => {
+      const name = document.getElementById('spot-name').value || 'Saved Spot';
+      const species = document.getElementById('spot-species').value || 'Target Catch';
+      const depth_ft = parseFloat(document.getElementById('spot-depth').value) || 15;
+      const notes = document.getElementById('spot-notes').value || '';
+
+      try {
+        await fetch('/api/spots', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name, species, depth_ft, notes,
+            lat: userPos.lat, lon: userPos.lon,
+            water_type: 'Freshwater', structure: 'Drop-Off'
+          })
+        });
+        document.getElementById('spot-modal').style.display = 'none';
+        alert('Spot saved successfully!');
+      } catch (e) {
+        alert('Failed to save spot: ' + e);
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && wakeLockEnabled) {
+        requestWakeLock();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initMap();
+      setupOrientation();
+      startGeolocation();
+      requestWakeLock();
+      runAnimationLoop();
+    });
+  </script>
+</body>
+</html>
