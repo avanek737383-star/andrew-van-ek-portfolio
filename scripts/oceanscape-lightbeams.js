@@ -1,5 +1,5 @@
-// Andrew Van Ek Portfolio | 19-Hour Oceanscape Static Sunbeams Overlay
-// Renders static surface sunlight hotspots, refracted underwater light rays, and submerged caustic glow points without oscillation or snap-back.
+// Andrew Van Ek Portfolio | 19-Hour Oceanscape Pointer-Following Sunbeams Overlay
+// Light rays follow the visitor's mouse or touch position over the image and hold their last detected position on leave without sweeping or snapping back to center.
 
 (function () {
     "use strict";
@@ -16,6 +16,7 @@
         previewContainer.style.overflow = "hidden";
         previewContainer.style.borderRadius = "12px";
         previewContainer.style.boxShadow = "0 14px 36px rgba(0, 20, 40, 0.55)";
+        previewContainer.style.touchAction = "pan-y";
 
         var canvas = document.getElementById("oceanscape-canvas");
         if (!canvas) {
@@ -28,7 +29,8 @@
         canvas.style.left = "0";
         canvas.style.width = "100%";
         canvas.style.height = "100%";
-        canvas.style.pointerEvents = "none";
+        canvas.style.pointerEvents = "auto";
+        canvas.style.touchAction = "pan-y";
         canvas.style.mixBlendMode = "screen";
         canvas.style.zIndex = "2";
 
@@ -57,20 +59,37 @@
             { rx: 0.640, ry: 0.580, baseSpread: 85, maxAlpha: 0.48, tint: "224, 250, 255", orbRadius: 9 }
         ];
 
-        function drawStaticBeams() {
+        var width = 0;
+        var height = 0;
+        var targetNormX = 0.5;
+        var targetNormY = 0.85;
+        var currentNormX = 0.5;
+        var currentNormY = 0.85;
+        var rafId = null;
+
+        function syncCanvasSize() {
             var rect = previewContainer.getBoundingClientRect();
-            var width = rect.width;
-            var height = rect.height;
-            if (width <= 0 || height <= 0) return;
+            width = rect.width;
+            height = rect.height;
+            if (width <= 0 || height <= 0) return false;
 
             var dpr = Math.min(window.devicePixelRatio || 1, 2);
-            canvas.width = Math.floor(width * dpr);
-            canvas.height = Math.floor(height * dpr);
+            var targetW = Math.floor(width * dpr);
+            var targetH = Math.floor(height * dpr);
+            if (canvas.width !== targetW || canvas.height !== targetH) {
+                canvas.width = targetW;
+                canvas.height = targetH;
+            }
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            return true;
+        }
+
+        function drawBeams() {
+            if (!syncCanvasSize()) return;
             ctx.clearRect(0, 0, width, height);
 
-            var focalX = width * 0.5;
-            var focalY = height * 0.85;
+            var focalX = currentNormX * width;
+            var focalY = currentNormY * height;
 
             ctx.save();
             ctx.globalCompositeOperation = "screen";
@@ -159,12 +178,66 @@
             ctx.restore();
         }
 
-        window.addEventListener("resize", drawStaticBeams, { passive: true });
+        function stepTowardTarget() {
+            rafId = null;
+            var dx = targetNormX - currentNormX;
+            var dy = targetNormY - currentNormY;
+            if (Math.hypot(dx, dy) < 0.001) {
+                currentNormX = targetNormX;
+                currentNormY = targetNormY;
+                drawBeams();
+                return;
+            }
+            currentNormX += dx * 0.16;
+            currentNormY += dy * 0.16;
+            drawBeams();
+            rafId = requestAnimationFrame(stepTowardTarget);
+        }
+
+        function scheduleStep() {
+            if (rafId === null) {
+                rafId = requestAnimationFrame(stepTowardTarget);
+            }
+        }
+
+        function updateFromClientXY(clientX, clientY) {
+            var rect = canvas.getBoundingClientRect();
+            if (rect.width <= 0 || rect.height <= 0) return;
+            var nx = (clientX - rect.left) / rect.width;
+            var ny = (clientY - rect.top) / rect.height;
+            targetNormX = Math.max(0, Math.min(1, nx));
+            targetNormY = Math.max(0.2, Math.min(1, ny));
+            scheduleStep();
+        }
+
+        canvas.addEventListener("pointermove", function (e) {
+            updateFromClientXY(e.clientX, e.clientY);
+        }, { passive: true });
+
+        canvas.addEventListener("pointerdown", function (e) {
+            updateFromClientXY(e.clientX, e.clientY);
+        }, { passive: true });
+
+        canvas.addEventListener("touchstart", function (e) {
+            if (e.touches && e.touches[0]) {
+                updateFromClientXY(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        canvas.addEventListener("touchmove", function (e) {
+            if (e.touches && e.touches[0]) {
+                updateFromClientXY(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        // Note: intentionally no pointerleave/touchend reset—the lights remain at their last detected pointer position.
+
+        window.addEventListener("resize", drawBeams, { passive: true });
         var img = previewContainer.querySelector("img");
         if (img && !img.complete) {
-            img.addEventListener("load", drawStaticBeams);
+            img.addEventListener("load", drawBeams);
         }
-        drawStaticBeams();
+        drawBeams();
     }
 
     if (document.readyState === "loading") {
