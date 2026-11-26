@@ -1,0 +1,12 @@
+/* Opaque footer pills keep seasonal particles behind readable text. */
+body{--footer-pill-bg:#fff;--footer-pill-ink:#415568;--footer-pill-border:#dce5ed;--footer-link:#155b97}
+body.christmas-theme{--footer-pill-bg:#103c2a;--footer-pill-ink:#f1f7ed;--footer-pill-border:#38644a;--footer-link:#c9e9a6}
+body.thanksgiving-theme{--footer-pill-bg:#fff5e8;--footer-pill-ink:#693a1a;--footer-pill-border:#ddc6a7;--footer-link:#864411}
+body.valentines-theme{--footer-pill-bg:#fff0f5;--footer-pill-ink:#702a45;--footer-pill-border:#e5b7ca;--footer-link:#9b2453}
+body.repair-shop-body{--footer-pill-bg:#202e28;--footer-pill-ink:#e0e8d7;--footer-pill-border:#445544;--footer-link:#d5f47c}
+body footer{position:relative;z-index:2;isolation:isolate}
+body footer p.footer-pill{position:relative;z-index:2;display:table;max-width:min(100%,960px);margin:8px auto;padding:9px 17px;border:1px solid var(--footer-pill-border);border-radius:999px;background:var(--footer-pill-bg)!important;color:var(--footer-pill-ink)!important;text-align:center!important;line-height:1.8;overflow-wrap:anywhere;box-shadow:0 2px 8px #00000006}
+body footer p.footer-pill a{color:var(--footer-link)!important;text-decoration:underline;text-underline-offset:3px}
+body footer p.footer-pill time{color:inherit!important}
+body.repair-shop-body footer{display:block}
+@media(max-width:600px){body footer p.footer-pill{padding:10px 14px;border-radius:18px;font-size:11px;max-width:100%}}

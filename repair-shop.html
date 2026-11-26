@@ -13,8 +13,9 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/repair-shop.css?v=20261126-1">
   <script type="module" src="scripts/repair-shop.js?v=20261126-1"></script>
+<link rel="stylesheet" href="css/footer.css?v2.6.435">
 </head>
-<body>
+<body class="repair-shop-body">
   <a class="skip-link" href="#workbench">Skip to workbench</a>
   <header class="site-bar"><a href="index.html" class="portfolio-link"><span class="brand-mark" aria-hidden="true">AV</span> Andrew Van Ek <span class="bar-divider">/</span> Interactive projects</a><nav aria-label="Portfolio"><a href="projects.html">Projects ↗</a><details class="interactive-menu"><summary>Sims &amp; 3D ▾</summary><div><a href="repair-shop.html" aria-current="page">Cursed Repair Shop</a><a href="incident-sim.html">Homelab Incident Simulator</a><a href="fleet.html">Hardware Fleet &amp; 3D Setup</a><a href="map.html">3D Knowledge Map</a><a href="globe.html">3D Planetary Backbone</a></div></details></nav></header>
   <main>
@@ -41,7 +42,9 @@
     </div>
     <section class="how-to"><span class="how-number">THE HOUSE RULES</span><div><h2>Read the clues. Resist the reinstall.</h2><p>Open the tool tabs, run checks, and connect the evidence. Apply a fix, then retest the original problem. Each ticket starts at 100 points: an incorrect repair costs 15, a hint costs 8. There’s no timer. Your best tool is thinking.</p><p class="simulation-note">A fictional, browser-only game. Every reading, command, and repair is simulated. Your progress saves on this device when browser storage is available.</p></div></section>
   </main>
-  <footer><p>A project by <a href="projects.html">Andrew Van Ek</a> · Built with ChatGPT / Codex (OpenAI).</p><p>Inspired by an actual image-viewer troubleshooting session. Unfortunately.</p></footer>
+  <footer><p class="footer-pill">A project by <a href="projects.html">Andrew Van Ek</a> · Built with ChatGPT / Codex (OpenAI).</p><p class="footer-pill">Inspired by an actual image-viewer troubleshooting session. Unfortunately.</p><p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
+<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+</footer>
   <dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Start over?</h2><p id="reset-description"></p><div><button type="button" id="cancel-reset">Keep troubleshooting</button><button type="button" id="confirm-reset" class="danger-button">Start over</button></div></dialog>
   <noscript><p class="noscript">This game needs JavaScript. Enable it to open the repair counter.</p></noscript>
 </body>

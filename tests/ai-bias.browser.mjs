@@ -1,0 +1,33 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+const browser=await chromium.launch({channel:'msedge',headless:true});
+const page=await browser.newPage({viewport:{width:1280,height:1000},reducedMotion:'reduce'});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:8766/ai-bias.html');
+await page.locator('#stat-accuracy').filter({hasText:'95.5%'}).waitFor();
+assert.equal(await page.locator('#applicant-b-score').innerText(),'53');
+await page.locator('#ignore-clue').check();
+assert.equal(await page.locator('#applicant-b-score').innerText(),'78');
+await page.locator('[data-bias-preset="cutoff"]').click();
+assert.match(await page.locator('#imbalance-takeaway').innerText(),/unqualified/);
+await page.locator('[data-bias-preset="start"]').click();
+assert.match(await page.locator('#accuracy-calculation').innerText(),/955 correct decisions/);
+await page.locator('[data-answer="no"]').click();
+assert.match(await page.locator('#check-feedback').innerText(),/Exactly/);
+await page.locator('#prompt-preset').selectOption('balanced');
+assert.match(await page.locator('#prob-bars').innerText(),/33%/);
+for(const word of ['he','she','they'])await page.locator('#count-'+word).fill('0');
+assert.match(await page.locator('#llm-insight-content').innerText(),/no examples/);
+await page.locator('#prompt-preset').selectOption('skewed');
+await page.screenshot({path:'qa/bias-desktop.png',fullPage:true});
+for(const width of [320,360,390,768,1280]){
+ await page.setViewportSize({width,height:900});
+ const sizes=await page.locator('#prompt-preset').evaluate(el=>({left:el.getBoundingClientRect().left,right:el.getBoundingClientRect().right,width:innerWidth}));
+ assert.ok(sizes.left>=0&&sizes.right<=sizes.width,`Select overflow at ${width}`);
+ const overflow=await page.locator('#bias-main').evaluate(el=>el.scrollWidth>el.clientWidth);
+ assert.equal(overflow,false,`Main overflow at ${width}`);
+}
+await page.setViewportSize({width:390,height:844});
+await page.screenshot({path:'qa/bias-mobile.png',fullPage:true});
+assert.deepEqual(errors,[]);
+await browser.close();console.log('PASS: guided bias calculations, presets, shared penalty control, knowledge check, zero-count handling, and mobile dropdown at five widths.');

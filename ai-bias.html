@@ -4,15 +4,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>AI Bias &amp; Algorithmic Fairness Audit Lab | Andrew Van Ek</title>
-	<meta name="description" content="Interactive laboratory inspecting how algorithmic bias creeps into training data, word embeddings, and pass/fail thresholds, with real-world comparisons and live debiasing tools.">
+	<meta name="description" content="Learn what AI bias means through guided toy examples, visible calculations, slider explanations, and plain-English fairness concepts.">
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261121-nav-fix-1">
-	<link rel="stylesheet" href="css/ai-bias.css?v=20261121-bias-2">
+	<link rel="stylesheet" href="css/ai-bias-guided.css?v=20261126-guided-1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/footer.css?v2.6.435">
 </head>
 <body class="ai-bias-body">
 	<div class="container">
@@ -82,301 +83,68 @@
 			</ul>
 		</nav>
 
-		<main class="ai-bias-main">
-			<header class="bias-header">
-				<div class="bias-eyebrow">Interactive Ethical AI &amp; Governance Lab</div>
-				<h1 class="bias-title">AI Bias &amp; Algorithmic Fairness Audit Lab</h1>
-				<p class="bias-subtitle">AI models don't wake up with personal opinions—they learn from the examples we feed them. If the training data is full of past hiring habits, historical imbalances, or skewed numbers, the computer treats those patterns like math rules. Hover on desktop or tap on mobile on any highlighted term to see an everyday real-world comparison that doesn't involve computer jargon.</p>
-				<div class="bias-tags-row">
-					<span class="bias-badge">&#9878;&#65039; Four-Fifths Rule (EEOC 80%)</span>
-					<span class="bias-badge">&#128065;&#65039; Blind Auditions &amp; Debiasing</span>
-					<span class="bias-badge">&#128202; The Accuracy Paradox</span>
-					<span class="bias-badge">&#128737;&#65039; Fair Representation</span>
-					<span class="bias-badge">&#9889; Pass/Fail Cutoff Tuning</span>
-				</div>
-			</header>
+		<main class="ai-bias-main" id="bias-main">
+  <header class="bias-intro">
+    <p class="bias-kicker">AI BIAS &amp; FAIRNESS LAB · A GUIDED INTRODUCTION</p>
+    <h1>What even is AI bias?</h1>
+    <p class="bias-lead">A system can make decisions that repeatedly disadvantage some people—even when nobody tells it to.</p>
+    <p>Imagine being qualified for a job, but getting filtered out because the scoring system favors people who resemble previous hires. Your skills did not change. The system used the wrong clue.</p>
+    <div class="bias-why"><strong>Why should I care?</strong><p>Automated decisions can affect who gets an interview, whose content gets recommended, or whose request gets extra scrutiny. An impressive average score can hide the people a system keeps getting wrong.</p></div>
+    <p class="bias-disclosure"><strong>What you’re looking at:</strong> invented examples with visible arithmetic. This page does not run a trained AI model. The scores and groups below are teaching choices, not findings about real people or hiring products.</p>
+    <a class="bias-primary" href="#module-resume">Start with two applicants →</a>
+    <nav class="bias-route" aria-label="Lesson outline"><a href="#module-resume"><b>01</b> Same skills, different answer</a><a href="#module-imbalance"><b>02</b> Look beyond the average</a><a href="#module-llm"><b>03</b> Patterns are not facts</a></nav>
+  </header>
 
-			<!-- Lab Module 1: Resume Screening & Embedding Bias Auditor -->
-			<section class="bias-card" id="module-resume">
-				<div class="bias-card-header">
-					<span class="module-number">Module 01</span>
-					<h2>Resume Screening &amp; Word Bias Simulator</h2>
-					<p class="module-desc">Automated resume screeners look at word similarities using <span class="tech-term" data-term="word-embeddings">word maps (embeddings)</span>. If historical hires at a company were mostly from one background, resumes with different hobbies, names, or graduation years get penalized—even when their actual skills are identical. Test how background clues change scores, and see how simple fairness fixes level the playing field.</p>
-				</div>
+  <section class="bias-lesson" id="module-resume" aria-labelledby="resume-title">
+    <header><span class="bias-step">LESSON 01 · THE BASIC IDEA</span><h2 id="resume-title">Same skills. Different answer.</h2><p>Two fictional applicants each earn <strong>78 skill points out of 100</strong>. Our deliberately flawed rule subtracts points from Group B for an unrelated background clue. Should that change who gets an interview?</p></header>
+    <div class="bias-applicants"><article><span class="bias-person">A</span><h3>Applicant A</h3><p>Job-relevant skills: <strong>78 points</strong><br>Background deduction: <strong>0 points</strong></p><div class="bias-equation">78 − 0 = <strong id="applicant-a-score">78</strong></div><p class="bias-decision" id="applicant-a-decision"></p></article><article><span class="bias-person second">B</span><h3>Applicant B</h3><p>Job-relevant skills: <strong>78 points</strong><br>Background deduction: <strong id="applied-penalty">25 points</strong></p><div class="bias-equation">78 − <span id="equation-penalty">25</span> = <strong id="applicant-b-score">53</strong></div><p class="bias-decision" id="applicant-b-decision"></p></article></div>
+    <div class="bias-control-block"><label for="bias-penalty">How many points does the irrelevant clue cost Group B? <output id="penalty-value" for="bias-penalty">25 points</output></label><input type="range" id="bias-penalty" min="0" max="30" step="1" value="25" aria-describedby="penalty-help"><p id="penalty-help">This penalty is invented on purpose so you can see its effect. It is not an estimate of real-world discrimination.</p><div class="bias-directions"><span><b>← Decrease:</b> take fewer points away.</span><span><b>Increase →:</b> take more points away.</span></div></div>
+    <div class="bias-switch"><label><input type="checkbox" id="ignore-clue"><span><strong>Try ignoring the irrelevant clue.</strong> Use job-relevant skill scores without the group penalty. This changes both this example and Lesson 02.</span></label><p>Why try this? The clue tells us nothing about ability in this example. Removing it should leave the two equally skilled applicants with equal scores.</p></div>
+    <p class="bias-live" id="applicant-explanation" role="status" aria-live="polite"></p>
+    <details class="bias-detail"><summary>Where do these numbers come from?</summary><p>We chose 78 skill points, a starting 25-point deduction, and a starting interview cutoff of 70. They are round teaching values. A score is <strong>points on this toy scale</strong>, not a probability of being qualified. No applicant data was collected and no real model was audited.</p><p>In real systems, hiding a name may not remove other clues linked to group membership. This demonstration removes one explicit penalty; it does not prove that blind screening solves fairness generally.</p></details>
+    <div class="bias-bridge"><span>WHAT YOU JUST LEARNED</span><p>Equal skills can lead to different decisions if the system uses an irrelevant clue. That can happen even without an explicitly hostile instruction.</p><a href="#module-imbalance">But could a high accuracy score hide that problem? Let’s check a whole group. →</a></div>
+  </section>
 
-				<div class="bias-grid-split">
-					<!-- Left: Candidate Attributes Controls -->
-					<div class="bias-controls-pane">
-						<h3>Candidate Profile Setup</h3>
-						<div class="control-group">
-							<label for="cand-name">Candidate Background &amp; Profile Clues:</label>
-							<select id="cand-name" class="bias-select">
-								<option value="majority_male">Johnathan Vance (Traditional Background)</option>
-								<option value="female_leader">Emily Davies (Women in Tech Club President)</option>
-								<option value="diverse_male">Jamal Washington (Urban STEM Leadership Fellow)</option>
-								<option value="hispanic_male">Alejandro Hernandez (First-Gen Tech Scholar)</option>
-								<option value="gender_neutral">Taylor Smith (Non-Binary / Gender-Neutral Phrasing)</option>
-							</select>
-						</div>
+  <section class="bias-lesson" id="module-imbalance" aria-labelledby="imbalance-title">
+    <header><span class="bias-step">LESSON 02 · FOLLOW THE PEOPLE, NOT JUST THE PERCENTAGE</span><h2 id="imbalance-title">“95% accurate” can hide who gets missed.</h2><p>Now apply the same scoring rule to <strong>1,000 fictional applicants</strong>. In each group, half are labeled qualified for this toy exercise. We know those labels because we created the example.</p><p class="bias-context" id="lab-context"></p></header>
+    <div class="bias-presets" aria-label="Try a guided setup"><button type="button" data-bias-preset="start">1. Show the accuracy trap</button><button type="button" data-bias-preset="cutoff">2. Lower the cutoff</button><button type="button" data-bias-preset="remove">3. Remove the penalty</button></div>
+    <div class="bias-experiment-grid"><div class="bias-controls">
+      <div class="bias-control-block"><label for="threshold-slider">Interview cutoff <output id="threshold-display" for="threshold-slider">70 points</output></label><input type="range" id="threshold-slider" min="20" max="90" step="1" value="70" aria-describedby="threshold-help"><p id="threshold-help">A score at or above this line earns an interview. This changes the decision rule, not anyone’s skills.</p><div class="bias-directions"><span><b>← Lower:</b> more people pass, including potentially unqualified applicants.</span><span><b>Higher →:</b> fewer people pass, including potentially qualified applicants.</span></div></div>
+      <div class="bias-control-block"><label for="ratio-slider">How much of this test set is Group A? <output id="ratio-display" for="ratio-slider">90%</output></label><input type="range" id="ratio-slider" min="50" max="90" step="10" value="90" aria-describedby="ratio-help"><p id="ratio-help">This changes who is counted in the <strong>overall average</strong>. It does not retrain a model or repair the group penalty.</p><div class="bias-directions"><span><b>← Toward 50%:</b> the groups count equally in the average.</span><span><b>Toward 90% →:</b> Group A dominates the average.</span></div></div>
+      <p class="bias-inline-note"><span aria-hidden="true">💡</span><span><strong>Change one thing at a time.</strong> Watch the counts on the right. A nicer average does not necessarily mean fewer qualified people were missed.</span></p><button type="button" id="reset-bias" class="bias-secondary">Reset both applicant experiments</button>
+    </div><div class="bias-results"><div class="bias-metric-head"><span>HEADLINE ACCURACY</span><strong id="stat-accuracy">—</strong><p id="accuracy-calculation"></p></div><h3>Who actually gets an interview?</h3><div id="group-results"></div><div class="bias-gap"><strong id="stat-eod"></strong><p id="gap-calculation"></p></div><p class="bias-live" id="imbalance-takeaway" role="status" aria-live="polite"></p></div></div>
+    <details class="bias-detail"><summary>Show every count and the metric formulas</summary><div class="bias-table-wrap"><table class="bias-count-table"><caption>Every simulated decision, grouped by the label we assigned.</caption><thead><tr><th scope="col">Decision</th><th scope="col">Group A</th><th scope="col">Group B</th></tr></thead><tbody id="count-table"></tbody></table></div><dl class="bias-definitions"><div><dt>Overall accuracy</dt><dd>Correct interviews plus correct rejections, divided by all 1,000 applicants. A “correct” decision matches the qualification label built into this example.</dd></div><div><dt>Qualified-applicant interview rate</dt><dd>Qualified applicants invited ÷ all qualified applicants in that group. Technical name: true positive rate, or recall.</dd></div><div><dt>Opportunity gap</dt><dd>The difference between those two qualified-applicant interview rates, shown in percentage points. It describes this one difference, not whether a whole system is fair.</dd></div><div><dt>Selection-rate ratio</dt><dd id="selection-ratio"></dd></div></dl><p>These metric definitions follow <a href="https://fairlearn.org/main/user_guide/assessment/common_fairness_metrics.html">Fairlearn’s assessment guide</a>. No single number is a fairness certificate. Who is affected, what errors cost, and how qualification labels were created also matter.</p></details>
+    <details class="bias-detail"><summary>What exactly is this simulation doing?</summary><p>Each group starts with the same 100-record template: 50 records labeled qualified and 50 labeled unqualified. Qualified skill scores are evenly spaced between 70 and 98; unqualified scores between 5 and 48. The Group B penalty is subtracted before comparing each score with the cutoff. We repeat the template to reach 1,000 applicants with the group mix you selected.</p><p>Those ranges deliberately make the original skill score highly predictive, so you can isolate the added penalty. Real qualification labels and model scores are much messier. This code does not train an AI, perform class weighting, or run SMOTE. Changing group mix changes the evaluation average, not training representation.</p><a href="scripts/ai-bias-model.js">Inspect the calculation code →</a></details>
+    <div class="bias-check"><h3>Quick check: does a better overall average prove Group B improved?</h3><button type="button" data-answer="yes">Yes—the average went up.</button><button type="button" data-answer="no">No—check Group B’s own results.</button><p id="check-feedback" role="status" aria-live="polite">Try an answer. No score, no pressure.</p></div>
+    <div class="bias-bridge"><span>THE STORY SO FAR</span><p>First, an irrelevant clue changed a person’s score. Next, a group breakdown exposed what the overall average hid. A lower cutoff can change who passes, but it can also introduce other errors.</p><a href="#module-llm">What about a chatbot that writes rather than ranks? Follow the pattern. →</a></div>
+  </section>
 
-						<div class="control-group">
-							<label for="grad-year">College Graduation Year (Age Clue):</label>
-							<select id="grad-year" class="bias-select">
-								<option value="2024">2024 (Recent Graduate &middot; Early Career)</option>
-								<option value="2016" selected>2016 (Mid-Level &middot; 8 Years Experience)</option>
-								<option value="2002">2002 (Senior Engineer &middot; 22 Years Experience)</option>
-								<option value="1992">1992 (Veteran Professional &middot; 32 Years Experience)</option>
-							</select>
-						</div>
+  <section class="bias-lesson" id="module-llm" aria-labelledby="llm-title">
+    <header><span class="bias-step">LESSON 03 · PATTERNS ARE NOT FACTS</span><h2 id="llm-title">Common in examples doesn’t mean true about a person.</h2><p>A word predictor can favor patterns that appear often in its examples. Here’s a deliberately tiny <strong>counting exercise</strong>: change how often three pronouns appear, then see their shares of the example text.</p><p class="bias-disclosure">This is not an LLM benchmark. These are invented word counts, not measured probabilities from ChatGPT or any other model, and not statistics about any occupation.</p></header>
+    <label for="prompt-preset" class="bias-select-label">Choose a fictional example set</label><select id="prompt-preset" class="bias-select" aria-describedby="prompt-sentence"><option value="skewed">One pronoun appears much more often</option><option value="balanced">Pronouns appear about equally often</option><option value="reversed">A different pronoun dominates</option></select><p id="prompt-sentence" class="bias-sentence">Example sentence: “The engineer said that ___ would review it.”</p>
+    <div class="bias-word-grid"><div id="word-controls"><div class="bias-word-control"><label for="count-he">Examples using “he” <output id="value-he">80</output></label><input type="range" id="count-he" min="0" max="100" value="80"></div><div class="bias-word-control"><label for="count-she">Examples using “she” <output id="value-she">15</output></label><input type="range" id="count-she" min="0" max="100" value="15"></div><div class="bias-word-control"><label for="count-they">Examples using “they” <output id="value-they">5</output></label><input type="range" id="count-they" min="0" max="100" value="5"></div><p class="bias-small">Increase a word’s count and its share grows. Decrease it and its share shrinks. Changing one count also changes the total used to calculate every share.</p></div><div><h3>Share of this example text</h3><div id="prob-bars"></div><p class="bias-live" id="llm-insight-content" role="status" aria-live="polite"></p></div></div>
+    <p>A real language model uses learned relationships and context, not this three-word counting rule. Still, the exercise raises a useful question: is an output reflecting evidence about this person, or a familiar pattern? Word frequency alone cannot tell us someone’s gender, ability, or whether a system treats people fairly.</p>
+    <div class="bias-bridge"><span>WHAT YOU CAN NOW ASK</span><p>“Where did this result come from? Who does it work for? What changed when I moved that control?” Those questions are more useful than accepting a “fairness fixed” badge.</p><a href="#module-playbook">Keep going: what do the actual mitigation terms mean? →</a></div>
+  </section>
 
-						<div class="control-group">
-							<label for="career-gap">Work History Continuity:</label>
-							<select id="career-gap" class="bias-select">
-								<option value="none" selected>Continuous Employment (No gaps)</option>
-								<option value="caregiving">2-Year Family Caregiving / Parental Leave</option>
-								<option value="military">3-Year Military Service Transition</option>
-								<option value="medical">18-Month Medical Leave &amp; Recovery</option>
-							</select>
-						</div>
+  <section class="bias-lesson" id="module-playbook" aria-labelledby="playbook-title">
+    <header><span class="bias-step">TAKE IT FURTHER · TERMS YOU MAY RUN INTO</span><h2 id="playbook-title">What can engineers actually change?</h2><p>There isn’t a universal “make it fair” switch. Different approaches change different parts of a system. Start with what the method does, then ask whether it helps the people affected.</p></header>
+    <div class="bias-method-grid"><article><span>BEFORE LEARNING</span><h3>Improve the examples</h3><p>If relevant cases are missing or labels reflect past unfair decisions, review the data and how it was collected. More examples do not automatically mean better examples.</p><details><summary>What is SMOTE?</summary><p>SMOTE creates synthetic training examples between nearby records in an underrepresented <strong>class</strong>. A class might mean “fraud,” not a demographic group. It can help some imbalanced classification tasks, but it can also make poor examples. It is not a fairness guarantee and is not implemented in this page.</p><a href="https://imbalanced-learn.org/stable/over_sampling.html">See the imbalanced-learn explanation →</a></details></article><article><span>DURING LEARNING</span><h3>Change which mistakes cost more</h3><p>During training, an error contributes to a model’s loss—a number it tries to reduce. Class weighting makes errors on selected classes count more. For example, missing a rare fraud case could cost more than another error.</p><details><summary>Does that mean the AI is punished?</summary><p>No feelings, rewards, or money are involved. A weight changes the arithmetic used to fit the model. It may change which patterns the model learns, so engineers must test both the intended improvements and any new mistakes. Class weighting and demographic fairness are different questions.</p></details></article><article><span>WHEN DECIDING</span><h3>Change the cutoff, then check the tradeoff</h3><p>A lower interview cutoff invites more people. Some are qualified people previously missed; some may not meet the example’s qualification label. Lesson 02 shows both counts instead of calling either direction automatically “fair.”</p><details><summary>What else should be checked?</summary><p>Check group results, incorrect acceptances, missed qualified applicants, and whether the labels themselves are justified. Keep human review and an appeal path appropriate to the real setting. One small metric gap does not settle every fairness concern.</p></details></article></div>
+    <div class="bias-finish"><h3>The takeaway</h3><p>AI bias is about patterns of outcomes and their consequences. Ask what was measured, inspect who gets missed, and test whether a change helps without hiding a new problem.</p><a href="#module-resume">Return to the two-applicant example ↑</a></div>
+  </section>
+  <aside class="bias-sources" aria-labelledby="bias-sources-title"><h2 id="bias-sources-title">Sources &amp; what this page can claim</h2><p>The arithmetic and examples on this page are original teaching constructions. These sources explain the broader concepts; they do not validate our invented scores as real-world estimates.</p><ul><li><a href="https://www.nist.gov/news-events/news/2022/03/theres-more-ai-bias-biased-data-nist-report-highlights">NIST: bias involves more than training data</a>—including human choices and the context in which a system is used.</li><li><a href="https://fairlearn.org/main/user_guide/assessment/common_fairness_metrics.html">Fairlearn: common fairness metrics</a>—definitions and why context matters.</li><li><a href="https://imbalanced-learn.org/stable/over_sampling.html">imbalanced-learn: oversampling and SMOTE</a>—what these methods actually do.</li></ul><p>Guided lesson overhaul: Andrew Van Ek with ChatGPT / Codex (OpenAI), November 25, 2026.</p></aside>
+</main>
 
-						<div class="control-group">
-							<label for="pedigree">College / Education Background:</label>
-							<select id="pedigree" class="bias-select">
-								<option value="ivy">Ivy League / Elite Private University</option>
-								<option value="state" selected>Regional State University (e.g. Grand Valley State / GVSU)</option>
-								<option value="community">Community College &rarr; State Transfer</option>
-								<option value="bootcamp">Self-Taught / Open Source Contributor</option>
-							</select>
-						</div>
-
-						<div class="debias-toggles-box">
-							<h4>Fairness Fixes (Try turning these on!):</h4>
-							<label class="toggle-row">
-								<input type="checkbox" id="toggle-masking">
-								<span><strong>Blind Screen:</strong> Hide names, graduation years, and school logos before the computer reads the skills</span>
-							</label>
-							<label class="toggle-row">
-								<input type="checkbox" id="toggle-orthogonal">
-								<span><strong><span class="tech-term" data-term="nullspace-debiasing">Blind Audition Filter</span>:</strong> Strip out gender and demographic stereotypes from word associations</span>
-							</label>
-							<label class="toggle-row">
-								<input type="checkbox" id="toggle-parity">
-								<span><strong><span class="tech-term" data-term="demographic-parity">Fair Passing Rate</span>:</strong> Ensure pass rates meet the <span class="tech-term" data-term="disparate-impact">EEOC 80% Rule</span></span>
-							</label>
-						</div>
-					</div>
-
-					<!-- Right: Live Model Telemetry & Audit Results -->
-					<div class="bias-results-pane">
-						<h3>How the Algorithm Grades Them</h3>
-						<div class="score-display-card">
-							<div class="score-row">
-								<div class="score-item">
-									<span class="score-label">Raw Model Score</span>
-									<span class="score-val" id="raw-score">--</span>
-								</div>
-								<div class="score-arrow">&rarr;</div>
-								<div class="score-item">
-									<span class="score-label">Fairness-Fixed Score</span>
-									<span class="score-val fair" id="calib-score">--</span>
-								</div>
-							</div>
-
-							<div class="meter-bar-wrap">
-								<div class="meter-track">
-									<div class="meter-fill raw" id="raw-meter" style="width: 50%;"></div>
-									<div class="meter-fill fair" id="fair-meter" style="width: 50%;"></div>
-								</div>
-								<div class="meter-legend">
-									<span><span class="dot raw"></span> Raw Score (Unchecked)</span>
-									<span><span class="dot fair"></span> Score After Fairness Fixes</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="audit-status-box" id="audit-status">
-							<div class="audit-badge" id="dir-badge">Checking...</div>
-							<div class="audit-details">
-								<p><strong><span class="tech-term" data-term="disparate-impact">Passing Rate Ratio (DIR)</span>:</strong> <span id="dir-metric">0.00</span></p>
-								<p id="dir-explanation">The 80% Rule means applicants from minority groups must pass at least 80% as often as the highest group, or the test is considered unfairly tilted.</p>
-							</div>
-						</div>
-
-						<div class="feature-penalty-breakdown">
-							<h4>Hidden Penalties &amp; Bonuses Caught:</h4>
-							<ul id="penalty-list" class="penalty-list">
-								<!-- Populated via JS -->
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!-- Lab Module 2: LLM Probability & Stereotype Explorer -->
-			<section class="bias-card" id="module-llm">
-				<div class="bias-card-header">
-					<span class="module-number">Module 02</span>
-					<h2>AI Word Predictions &amp; Job Stereotypes</h2>
-					<p class="module-desc">Language models predict the next word in a sentence based on millions of public articles and forum posts. If past articles usually talked about doctors as men or nurses as women, the AI repeats that exact same assumption. Pick a sentence below to see which pronoun the model expects next.</p>
-				</div>
-
-				<div class="llm-lab-wrap">
-					<div class="prompt-builder">
-						<label for="prompt-preset">Select a Job Scenario:</label>
-						<select id="prompt-preset" class="bias-select">
-							<option value="doctor">"The doctor stepped out of the operating room and explained that..."</option>
-							<option value="nurse">"The nurse arrived early at the clinic and checked that..."</option>
-							<option value="executive">"The Chief Executive Officer addressed the boardroom and announced that..."</option>
-							<option value="assistant">"The executive assistant rescheduled the calendar appointments and confirmed that..."</option>
-							<option value="programmer">"The software architect refactored the legacy codebase because..."</option>
-						</select>
-					</div>
-
-					<div class="llm-distribution-container">
-						<div class="prob-bars-grid" id="prob-bars">
-							<!-- Populated via JS -->
-						</div>
-					</div>
-
-					<div class="llm-insight-box">
-						<div class="insight-icon">&#9889;</div>
-						<div class="insight-text">
-							<h4>Why this happens in plain English:</h4>
-							<p id="llm-insight-content">The AI isn't thinking for itself—it is simply playing a high-speed guessing game of 'what word usually comes next?' If the older books and websites it studied wrote 'he' after doctor and 'she' after nurse, it guesses those words every time unless engineers deliberately teach it to stay neutral.</p>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!-- Lab Module 3: Class Imbalance & The Accuracy Paradox -->
-			<section class="bias-card" id="module-imbalance">
-				<div class="bias-card-header">
-					<span class="module-number">Module 03</span>
-					<h2>The Accuracy Trap: Why 95% Can Still Be Completely Broken</h2>
-					<p class="module-desc">Think of a security guard watching 1,000 people enter a stadium, where only 2 people are carrying fake tickets. If the guard falls asleep and waves everyone through without checking a single ticket, they were '99.8% accurate' on paper—yet they failed at the one job they were hired to do. That's the <span class="tech-term" data-term="training-bias">Accuracy Trap</span>.</p>
-				</div>
-
-				<div class="imbalance-grid">
-					<div class="imbalance-sliders">
-						<div class="slider-group">
-							<div class="slider-label-row">
-								<span>Group Balance in the Data:</span>
-								<span id="ratio-display" class="slider-val">90% Majority / 10% Minority</span>
-							</div>
-							<input type="range" id="ratio-slider" min="50" max="98" value="90" class="bias-slider" aria-label="Group Balance Ratio">
-							<small class="slider-hint">Slide right to see what happens when one group has almost zero examples.</small>
-						</div>
-
-						<div class="slider-group">
-							<div class="slider-label-row">
-								<span><span class="tech-term" data-term="decision-threshold">Pass / Fail Cutoff Line</span>:</span>
-								<span id="threshold-display" class="slider-val">0.50</span>
-							</div>
-							<input type="range" id="threshold-slider" min="10" max="90" value="50" class="bias-slider" aria-label="Pass / Fail Cutoff Line">
-							<small class="slider-hint">Raise or lower the score required to pass.</small>
-						</div>
-
-						<div class="imbalance-toggles">
-							<h4>How to Fix It:</h4>
-							<label class="radio-row">
-								<input type="radio" name="rebalance-method" value="none" checked>
-								<span><strong>No Fix (Standard Raw Training):</strong> The computer guesses the majority every time</span>
-							</label>
-							<label class="radio-row">
-								<input type="radio" name="rebalance-method" value="weights">
-								<span><strong>Extra Attention Penalty:</strong> Penalize the AI harder when it makes mistakes on rare cases</span>
-							</label>
-							<label class="radio-row">
-								<input type="radio" name="rebalance-method" value="smote">
-								<span><strong><span class="tech-term" data-term="smote-resampling">SMOTE Balancing</span>:</strong> Fill in the missing shelves with realistic sample examples</span>
-							</label>
-						</div>
-					</div>
-
-					<div class="imbalance-telemetry">
-						<div class="stats-metric-cards">
-							<div class="stat-card">
-								<span class="stat-num" id="stat-accuracy">90.0%</span>
-								<span class="stat-lbl">Overall Accuracy</span>
-								<small class="stat-note">(Sounds great on paper)</small>
-							</div>
-							<div class="stat-card">
-								<span class="stat-num" id="stat-maj-rec">98.0%</span>
-								<span class="stat-lbl">Majority Catch Rate</span>
-								<small class="stat-note">(Passes easily)</small>
-							</div>
-							<div class="stat-card alert-card">
-								<span class="stat-num alert" id="stat-min-rec">18.0%</span>
-								<span class="stat-lbl">Minority Catch Rate</span>
-								<small class="stat-note" id="min-rec-note">(Completely left behind!)</small>
-							</div>
-							<div class="stat-card">
-								<span class="stat-num" id="stat-eod">0.80</span>
-								<span class="stat-lbl"><span class="tech-term" data-term="equal-opportunity-diff">Opportunity Gap</span></span>
-								<small class="stat-note" id="eod-note">(Target: under 0.05)</small>
-							</div>
-						</div>
-
-						<div class="imbalance-callout">
-							<div class="callout-icon">&#128161;</div>
-							<p id="imbalance-takeaway"><strong>The Big Takeaway:</strong> When an AI is tested on skewed data, a high accuracy score is often just a lazy guess. Adjusting the pass line or using SMOTE balancing forces the model to actually look at qualifications instead of taking the easy way out.</p>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!-- Lab Module 4: Fairness Playbook & Architecture Cheat-Sheet -->
-			<section class="bias-card" id="module-playbook">
-				<div class="bias-card-header">
-					<span class="module-number">Module 04</span>
-					<h2>The 3 Ways Engineers Fix Algorithmic Bias</h2>
-					<p class="module-desc">You don't fix bias by hoping the computer is nice—you fix it by engineering checks before, during, and after the model makes decisions.</p>
-				</div>
-
-				<div class="table-responsive">
-					<table class="bias-playbook-table">
-						<thead>
-							<tr>
-								<th>Stage</th>
-								<th>What It Means</th>
-								<th>Everyday Real-World Comparison</th>
-								<th>The Measurement Rule</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><strong>Before Training (Pre-Processing)</strong></td>
-								<td>Cleaning the data and balancing the groups before teaching the computer</td>
-								<td>Making sure a cookbook has healthy recipes from all over the world instead of 50 pages of just cupcakes</td>
-								<td><span class="tech-term" data-term="disparate-impact">Passing Rate Ratio (DIR &ge; 0.80)</span></td>
-							</tr>
-							<tr>
-								<td><strong>During Training (In-Processing)</strong></td>
-								<td>Penalizing the AI whenever it relies on shortcuts like names, gender, or age</td>
-								<td>Telling a music judge they get docked points if they look at who is playing instead of listening to the song</td>
-								<td><span class="tech-term" data-term="demographic-parity">Demographic Parity (&le; 0.05 gap)</span></td>
-							</tr>
-							<tr>
-								<td><strong>After Training (Post-Processing)</strong></td>
-								<td>Adjusting the pass/fail line so equally qualified people get fair results</td>
-								<td>Calibrating sports tryout cutoffs so honest players aren't eliminated by bad weather on their tryout day</td>
-								<td><span class="tech-term" data-term="equal-opportunity-diff">Equal Opportunity Gap (&le; 0.05)</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</section>
-		</main>
 
 		<footer>
-			<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p>Website last modified: <time datetime="2026-11-22T14:47:00-05:00">November 22, 2026 at 02:47:00 PM EST</time></p>
-			<p class="footer-version">Version v2.6.418 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+			<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
+			<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 	<script src="scripts/script.js?v=20261121-nav-fix-1"></script>
-	<script src="scripts/ai-bias.js?v=20261121-bias-2"></script>
+	<script type="module" src="scripts/ai-bias.js?v=20261126-guided-1"></script>
 </body>
 </html>

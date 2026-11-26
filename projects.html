@@ -23,7 +23,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-	</head>
+	<link rel="stylesheet" href="css/footer.css?v2.6.435">
+</head>
 	<body>
 		<div class="container">
 							<nav class="tablet-desktop">
@@ -94,6 +95,17 @@
 			<h1>Projects</h1>
 			<main>
 <p>I learn by trying things, working through problems, and testing what changed. These are projects from my internships and my own experiments. Where I used AI, I describe how it helped me along the way.</p>
+
+
+<section class="project-entry" aria-labelledby="homepage-visit-memory-title">
+<h2 id="homepage-visit-memory-title">A Homepage That Remembers Your Previous Visit</h2>
+<p class="project-status"><span class="status-badge project-completed">Completed Feature</span> <span>Browser Local Storage &middot; Accessible Footer &middot; Responsive Design &middot; November 25, 2026</span></p>
+<p>I wanted the portfolio to feel a little more personal when someone returns. The <a href="index.html">homepage footer</a> now shows the previous homepage visit recorded in that browser. A first-time visitor sees a welcome message instead. The timestamp is displayed in the visitor&rsquo;s local date and time format, then the current visit is saved for their next return.</p>
+<p>The feature uses browser-local storage without creating an account, setting a tracking cookie, or sending its visit timestamp to a server. It remembers a browser on a device, rather than identifying a unique person across devices. Blocked storage, invalid saved values, and restored back/forward-cache pages are handled. Clearing site data clears this memory.</p>
+<p>The footer also received opaque rounded backgrounds so seasonal leaves and precipitation remain behind the text. Release labels and update timestamps were synchronized across the root portfolio pages.</p>
+<p class="credit"><strong>Collaboration credit:</strong> Andrew Van Ek proposed the per-visitor return message and footer readability improvements. <strong>ChatGPT / Codex (OpenAI)</strong> implemented browser-local visit memory, storage fallbacks, footer styling, and verification.</p>
+<ul class="chips"><li>Browser Storage</li><li>Returning Visitors</li><li>Responsive Design</li><li>Accessible UI</li><li>Progressive Enhancement</li></ul>
+</section>
 
 
 <section class="project-entry" aria-labelledby="please-hold-repair-shop-title">
@@ -2424,7 +2436,7 @@
 <section class="project-entry" aria-labelledby="hardware-fleet-salvage-and-interactive-labs-title">
 <h2 id="hardware-fleet-salvage-and-interactive-labs-title">Heterogeneous 9-Node Hardware Fleet Hub, Homelab Incident Simulator &amp; AI Bias Audit Lab: E-Waste Reclamation, ITAM Telemetry &amp; Algorithmic Auditing</h2>
 <p class="project-status"><span class="status-badge project-completed">Completed Project</span> <span>Hardware Salvage &middot; ITAM / GLPI &middot; Chaos Engineering &middot; Algorithmic Fairness &middot; E-Waste ROI &middot; Antigravity AI &middot; <time datetime="2026-11-21">November 21, 2026</time></span></p>
-<div class="project-architecture" aria-label="Hardware Fleet &amp; Interactive Labs Architecture"><span>Heterogeneous 9-Node Salvaged Homelab Fleet &amp; 3-Tier Rack</span><span aria-hidden="true">&rarr;</span><span>3D-Ready SVG Workbench Topology (Bottom-Shelf USB Host Tethering)</span><span aria-hidden="true">&rarr;</span><span>Hardware Longevity &amp; Salvage ROI Calculator ($11,850+ Reclaimed)</span><span aria-hidden="true">&rarr;</span><span>Interactive Homelab Incident Response &amp; Chaos Simulator</span><span aria-hidden="true">&rarr;</span><span>Algorithmic Bias &amp; Fairness Audit Lab (Real-World Analogies &amp; EEOC 80% Rule)</span></div>
+<div class="project-architecture" aria-label="Hardware Fleet &amp; Interactive Labs Architecture"><span>Heterogeneous 9-Node Salvaged Homelab Fleet &amp; 3-Tier Rack</span><span aria-hidden="true">&rarr;</span><span>3D-Ready SVG Workbench Topology (Bottom-Shelf USB Host Tethering)</span><span aria-hidden="true">&rarr;</span><span>Hardware Longevity &amp; Salvage ROI Calculator ($11,850+ Reclaimed)</span><span aria-hidden="true">&rarr;</span><span>Interactive Homelab Incident Response &amp; Chaos Simulator</span><span aria-hidden="true">&rarr;</span><span>AI Bias &amp; Fairness Lab (Guided Synthetic Examples &amp; Counted Decisions)</span></div>
 
 <p>Across homelab engineering, enterprise IT administration, and machine learning, true technical expertise does not come from observing sanitized environments—it is forged through direct ownership, unexpected system dependencies, thermal troubleshooting, and resolving failures under pressure. In a deep pair programming collaboration with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, I architected, engineered, and deployed three standalone production-grade laboratories directly into this portfolio: the <a href="fleet.html">Hardware Fleet &amp; Salvage Architecture Hub</a>, the <a href="incident-sim.html">Homelab Incident Response &amp; Chaos Simulator</a>, and the <a href="ai-bias.html">AI Bias &amp; Algorithmic Fairness Audit Lab</a>.</p>
 
@@ -2471,13 +2483,16 @@
 </ul>
 <p>Engineered with an authentic scrollable terminal body, inline interactive prompt, command history buffer navigated via <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrow keys, click-to-focus window ergonomics, and built-in diagnostic help commands.</p>
 
-<h3>AI Bias &amp; Algorithmic Fairness Audit Lab with Everyday Real-World Comparisons</h3>
-<p>Bridging systems administration and artificial intelligence ethics, the <a href="ai-bias.html">AI Bias &amp; Fairness Lab</a> provides an interactive auditing workbench exploring how training imbalances and feature correlations introduce bias in downstream classifiers. Conceived in accessible, conversational language with interactive desktop hover tooltips and mobile tap explainer dialogs that translate every technical concept into everyday, non-computer comparisons:</p>
+<h3>AI Bias &amp; Fairness Lab: A Guided Introduction with Visible Calculations</h3>
+<p>The <a href="ai-bias.html">AI Bias &amp; Fairness Lab</a> was overhauled with <strong>ChatGPT / Codex (OpenAI)</strong> on November 25, 2026 after Andrew identified that visitors were being asked to operate jargon-heavy controls before understanding the subject. The page now starts with what bias means and why someone might care, then follows three connected lessons with recaps and invitations to continue.</p>
 <ul>
-<li><strong>Resume Screening &amp; Keyword Bias:</strong> Adjusting applicant backgrounds, graduation years, and career gaps to see how algorithms penalize non-traditional candidates. Explains concepts using relatable analogies (like a bowling alley rule requiring bowlers to touch a 7-foot dryer, quietly locking out kids under age 12) and tests fixes like blind screening, demographic debiasing, and the EEOC 80% Rule.</li>
-<li><strong>AI Word Predictions &amp; Job Stereotypes:</strong> Exploring how large language models predict next words based on historical web texts (like an assistant playing a high-speed guessing game based on 20th-century books where doctors were usually men and nurses were women).</li>
-<li><strong>The Accuracy Trap Simulator:</strong> Demonstrating why an AI can be '95% accurate' on paper while failing completely on rare or minority cases (like a stadium security guard waving through 1,000 people and catching 0 fake tickets). Tests <span class="tech-term" data-term="smote-resampling">SMOTE balancing</span> and cost weighting to level the playing field.</li>
+<li><strong>Same skills, different treatment:</strong> two fictional applicants make the arithmetic visible. An explicitly invented group penalty can be changed or removed, with the interview decision explained alongside the result.</li>
+<li><strong>Counted decisions instead of unexplained metrics:</strong> a 1,000-record toy evaluation shows who was invited, who was missed, and which decisions were incorrect. Accuracy, qualified-applicant interview rates, opportunity gap, and selection-rate ratio are calculated from those counts. Each slider explains both directions and what it changes.</li>
+<li><strong>Honest word-pattern illustration:</strong> a small word-count exercise replaces unsupported pronoun probabilities previously presented as model results. Counts and denominators are visible, and the page states that this exercise is not a trained language model.</li>
+<li><strong>Mitigation terms explained:</strong> data quality, class weighting, cutoff changes, and optional SMOTE background are introduced in plain language. The page does not claim to implement SMOTE or certify fairness. Sources from NIST, Fairlearn, and imbalanced-learn support the broader definitions.</li>
+<li><strong>Beginner and mobile usability:</strong> visible explanations replace dependence on hover analogies, the scenario dropdown stays within phone widths, and compact explanation cards replace the cramped measurement-rule table.</li>
 </ul>
+<p><strong>Validation:</strong> automated model checks cover counted decisions and their formulas, unchanged within-group rates when the group mix changes, cutoff tradeoffs, penalty removal, and zero word counts. Browser checks exercise the controls, guided presets, knowledge check, and layout from 320 to 1280 pixels. The examples are deliberately synthetic teaching constructions, not real hiring data, deployed-model audits, or legal assessments.</p>
 
 <h3>Shelf 4 Overhead Blower Fan Realignment: Downward &amp; Outward Thermal Calibration (November 23, 2026)</h3>
 <p>Following thermal airflow verification on the physical workbench, the cooling topology for the bare-board Lenovo Yoga 2 11 rig was realigned across both digital representations (<a href="fleet.html">Hardware Fleet &amp; Salvage Hub</a> interactive 3D digital twin and 2D SVG workbench elevation):</p>
@@ -5777,9 +5792,9 @@
 </section>
 			</main>
 			<footer>
-				<p>&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p>Website last modified: <time datetime="2026-11-25T16:45:00-05:00">November 25, 2026 at 04:45:00 PM EST</time></p>
-				<p class="footer-version">Version v2.6.434 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
+				<p class="footer-pill">Website last modified: <time datetime="2026-11-25T22:33:32-05:00">November 25, 2026 at 10:33:32 PM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.435 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>

@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-11-19T10:36:00-05:00",
   "stats": {
-    "totalProjects": 101,
-    "totalNodes": 348,
-    "totalLinks": 706,
+    "totalProjects": 102,
+    "totalNodes": 349,
+    "totalLinks": 708,
     "domains": 6,
     "techBridges": 10
   },
@@ -413,6 +413,25 @@
         "flashing"
       ],
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
+    },
+    {
+      "id": "homepage-visit-memory-title",
+      "name": "A Homepage That Remembers Your Previous Visit",
+      "type": "project",
+      "domain": "homelab-infra",
+      "domainName": "Homelab & Networking",
+      "status": "completed",
+      "statusLabel": "Completed Feature",
+      "date": "",
+      "val": 16,
+      "color": "#38bdf8",
+      "summary": "I wanted the portfolio to feel a little more personal when someone returns. The homepage footer now shows the previous homepage visit recorded in that browser. A first-time visitor sees a welcome message instead. The timestamp is displayed in the visitor\u2019s local date and time ...",
+      "tech": [
+        "Accessible Footer",
+        "Responsive Design"
+      ],
+      "tasks": [],
+      "url": "projects.html#homepage-visit-memory-title"
     },
     {
       "id": "please-hold-repair-shop-title",
@@ -6143,6 +6162,18 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-homelab-infra",
+      "target": "homepage-visit-memory-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "homepage-visit-memory-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "please-hold-repair-shop-title",
