@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 227 Workbench Captures across 6 Curated Categories
+ * - 248 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,630 @@
     "use strict";
 
     var galleryItems = [
+{
+        id: "galaxy-note10-5g-speedtest",
+        title: "Galaxy Note 10+ 5G: Speedtest Snapshot",
+        category: "homelab",
+        categoryLabel: "Mobile Connectivity",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/galaxy-note10-5g-speedtest.jpg",
+        thumb: "images/gallery/additions-2026-11-26/galaxy-note10-5g-speedtest-thumb.jpg",
+        downloadFilename: "5g_Galaxy_Note_10+_5G.jpg",
+        tags: [
+            "Galaxy Note 10+ 5G",
+            "Speedtest",
+            "Mobile Networking"
+        ],
+        summary: "A Speedtest screen records 177 Mbps download and 17.1 Mbps upload on a T-Mobile US 5G connection.",
+        sandboxObservation: "A Speedtest screen records 177 Mbps download and 17.1 Mbps upload on a T-Mobile US 5G connection.",
+        technicalBreakdown: "The displayed result also shows 48 ms ping and 10 ms jitter. The filename identifies the handset as a Galaxy Note 10+ 5G.",
+        defensePlaybook: [
+            "Original file: 5g_Galaxy_Note_10+_5G.jpg",
+            "Original dimensions: 720 × 1520 pixels.",
+            "Embedded capture date: 2023:02:20 17:42:50 (UTC-05:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A recorded speed-test result from this handset and connection.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "fifa09-audio-exploration-disc-root",
+        title: "FIFA 09 Audio Exploration: Where to Start",
+        category: "media",
+        categoryLabel: "Game Audio Exploration",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/fifa09-audio-exploration-disc-root.png",
+        thumb: "images/gallery/additions-2026-11-26/fifa09-audio-exploration-disc-root-thumb.jpg",
+        downloadFilename: "FIFA09 Music Extraction 1 - where to start.png",
+        tags: [
+            "FIFA 09 All-Play",
+            "Dolphin",
+            "Disc Filesystem"
+        ],
+        summary: "Dolphin’s Filesystem tab is open for FIFA 09 All-Play, showing the disc’s data partition and its top-level folders and files.",
+        sandboxObservation: "Dolphin’s Filesystem tab is open for FIFA 09 All-Play, showing the disc’s data partition and its top-level folders and files.",
+        technicalBreakdown: "The visible tree includes alocale, data, gui_netcore and ini, alongside build.txt, disc.ini and several game modules. This is the initial inspection stage identified by the filename.",
+        defensePlaybook: [
+            "Original file: FIFA09 Music Extraction 1 - where to start.png",
+            "Original dimensions: 1180 × 1206 pixels."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A starting point for locating game audio assets.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "fifa09-audio-exploration-eatrax",
+        title: "FIFA 09 Audio Exploration: Finding eatrax",
+        category: "media",
+        categoryLabel: "Game Audio Exploration",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/fifa09-audio-exploration-eatrax.png",
+        thumb: "images/gallery/additions-2026-11-26/fifa09-audio-exploration-eatrax-thumb.jpg",
+        downloadFilename: "FIFA09 Music Extraction 2 - eatrax finding.png",
+        tags: [
+            "FIFA 09 All-Play",
+            "Audio Assets",
+            "eatrax"
+        ],
+        summary: "The expanded FIFA 09 data folder shows an audio directory and an eatrax folder in Dolphin’s disc filesystem view.",
+        sandboxObservation: "The expanded FIFA 09 data folder shows an audio directory and an eatrax folder in Dolphin’s disc filesystem view.",
+        technicalBreakdown: "Visible audio filenames include aemsbank.big, aemsstrm.big and chants.big. The eatrax folder is listed at 213.92 MiB; its presence is the finding captured here.",
+        defensePlaybook: [
+            "Original file: FIFA09 Music Extraction 2 - eatrax finding.png",
+            "Original dimensions: 885 × 1017 pixels."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "Audio-related folders located during exploration; no extracted tracks are shown.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "hp-gpu-existing-thermal-paste",
+        title: "HP Cooling Refresh: Existing GPU Paste",
+        category: "hardware",
+        categoryLabel: "Hardware Repair & Maintenance",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/hp-gpu-existing-thermal-paste.png",
+        thumb: "images/gallery/additions-2026-11-26/hp-gpu-existing-thermal-paste-thumb.jpg",
+        downloadFilename: "GPU old paste.PNG",
+        tags: [
+            "GPU",
+            "Thermal Paste",
+            "HP Laptop"
+        ],
+        summary: "A phone image viewer shows the exposed GPU package on a laptop motherboard with old thermal paste remaining on its center.",
+        sandboxObservation: "A phone image viewer shows the exposed GPU package on a laptop motherboard with old thermal paste remaining on its center.",
+        technicalBreakdown: "Surrounding chips, mounting points and a light-colored pad are visible with the cooling assembly removed.",
+        defensePlaybook: [
+            "Original file: GPU old paste.PNG",
+            "Original dimensions: 1170 × 2532 pixels.",
+            "Embedded capture date: 2026:11:23 19:38:32."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "The GPU contact surface before paste cleanup.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "hp-gpu-vram-pad-layout",
+        title: "HP Cooling Refresh: GPU and Nearby Pad Layout",
+        category: "hardware",
+        categoryLabel: "Hardware Repair & Maintenance",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/hp-gpu-vram-pad-layout.png",
+        thumb: "images/gallery/additions-2026-11-26/hp-gpu-vram-pad-layout-thumb.jpg",
+        downloadFilename: "GPUVRAMyPADZ.PNG",
+        tags: [
+            "GPU",
+            "VRAM",
+            "Thermal Pads"
+        ],
+        summary: "A wider view of the exposed GPU area shows old paste on the center package, nearby memory chips and a rectangular light-colored pad.",
+        sandboxObservation: "A wider view of the exposed GPU area shows old paste on the center package, nearby memory chips and a rectangular light-colored pad.",
+        technicalBreakdown: "The filename calls attention to GPU VRAM and pads. This view records their visible arrangement during disassembly.",
+        defensePlaybook: [
+            "Original file: GPUVRAMyPADZ.PNG",
+            "Original dimensions: 1170 × 2532 pixels.",
+            "Embedded capture date: 2026:11:23 19:40:03."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A reference view of the GPU area and adjacent components.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "tablet-resale-setup-screen",
+        title: "Preparing a Tablet for Sale: Data-Wiping Reminder",
+        category: "hardware",
+        categoryLabel: "Device Resale Preparation",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/tablet-resale-setup-screen.jpg",
+        thumb: "images/gallery/additions-2026-11-26/tablet-resale-setup-screen-thumb.jpg",
+        downloadFilename: "Preparing_Tablet_For_Selling_Underscores_Importance_of_Data_Wiping.jpg",
+        tags: [
+            "Tablet",
+            "Resale",
+            "Data Wiping"
+        ],
+        summary: "A tablet on a countertop displays its initial Start screen with language and accessibility controls.",
+        sandboxObservation: "A tablet on a countertop displays its initial Start screen with language and accessibility controls.",
+        technicalBreakdown: "The filename identifies preparation for selling and emphasizes data wiping. The setup screen records the visible handoff state; it does not by itself verify a wipe method or its completeness.",
+        defensePlaybook: [
+            "Original file: Preparing_Tablet_For_Selling_Underscores_Importance_of_Data_Wiping.jpg",
+            "Original dimensions: 4000 × 3000 pixels.",
+            "Embedded capture date: 2022:06:09 21:43:54 (UTC-04:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A reminder to check personal-data removal when preparing a device for resale.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "triple-screen-memory-snapshot",
+        title: "Three-Screen Workload: High Memory Usage",
+        category: "homelab",
+        categoryLabel: "Desktop & Remote Workflows",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/triple-screen-memory-snapshot.png",
+        thumb: "images/gallery/additions-2026-11-26/triple-screen-memory-snapshot-thumb.jpg",
+        downloadFilename: "Triple_Screen_Same_for_WIndows_App_large_Ram_usage.png",
+        tags: [
+            "Task Manager",
+            "Multiple Displays",
+            "Memory Usage"
+        ],
+        summary: "A wide desktop capture spans three screens, with File Explorer and Task Manager at left, a macOS virtual-machine window in the middle, and BlueStacks App Player at right.",
+        sandboxObservation: "A wide desktop capture spans three screens, with File Explorer and Task Manager at left, a macOS virtual-machine window in the middle, and BlueStacks App Player at right.",
+        technicalBreakdown: "Task Manager shows 42.6/47.7 GB memory in use (89%) and an Intel Core i7-11800H. The filename relates this to Windows App workflows; the capture does not isolate one application as the cause of the memory usage.",
+        defensePlaybook: [
+            "Original file: Triple_Screen_Same_for_WIndows_App_large_Ram_usage.png",
+            "Original dimensions: 5092 × 1197 pixels."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A workload snapshot showing high total memory use across a busy desktop.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "windows-usb-eject-troubleshooting",
+        title: "Windows USB Eject Error During Troubleshooting",
+        category: "homelab",
+        categoryLabel: "Windows Troubleshooting",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/windows-usb-eject-troubleshooting.png",
+        thumb: "images/gallery/additions-2026-11-26/windows-usb-eject-troubleshooting-thumb.jpg",
+        downloadFilename: "Troubleshooting_This.png",
+        tags: [
+            "USB",
+            "Safe Removal",
+            "Troubleshooting"
+        ],
+        summary: "A Windows USB-removal dialog appears over a ChatGPT discussion of Task Manager’s Minimize on Use setting.",
+        sandboxObservation: "A Windows USB-removal dialog appears over a ChatGPT discussion of Task Manager’s Minimize on Use setting.",
+        technicalBreakdown: "The dialog says Windows cannot stop the WMS Volume Sideband 8 device because a program is still using it and asks for those programs to be closed.",
+        defensePlaybook: [
+            "Original file: Troubleshooting_This.png",
+            "Original dimensions: 1028 × 1262 pixels."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "The captured error documents an eject attempt blocked by an in-use device.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "galaxy-s7-battery-research-20230212",
+        title: "Galaxy S7 Battery Research: February 12, 2023",
+        category: "hardware",
+        categoryLabel: "Repair Research & Right to Repair",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/galaxy-s7-battery-research-20230212.jpg",
+        thumb: "images/gallery/additions-2026-11-26/galaxy-s7-battery-research-20230212-thumb.jpg",
+        downloadFilename: "battery_troubleshooting_include_date_of_pic_righttorepair.jpg",
+        tags: [
+            "Galaxy S7",
+            "Battery Research",
+            "Right to Repair"
+        ],
+        summary: "A mobile search page shows a Samsung support result about removing the Galaxy S7 battery, followed by battery-replacement questions and a repair-service result.",
+        sandboxObservation: "A mobile search page shows a Samsung support result about removing the Galaxy S7 battery, followed by battery-replacement questions and a repair-service result.",
+        technicalBreakdown: "Embedded capture metadata dates this screenshot to February 12, 2023 at 10:46:24 PM, UTC−05:00. The October 27, 2022 date visible in the page belongs to the search result. The filename frames this as battery troubleshooting and right-to-repair research.",
+        defensePlaybook: [
+            "Original file: battery_troubleshooting_include_date_of_pic_righttorepair.jpg",
+            "Original dimensions: 720 × 1520 pixels.",
+            "Embedded capture date: 2023:02:12 22:46:24 (UTC-05:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A dated record of researching repair access and battery-service options.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "hp-cpu-cleaned-contact-surface",
+        title: "HP Cooling Refresh: Cleaned CPU Surface",
+        category: "hardware",
+        categoryLabel: "Hardware Repair & Maintenance",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/hp-cpu-cleaned-contact-surface.jpeg",
+        thumb: "images/gallery/additions-2026-11-26/hp-cpu-cleaned-contact-surface-thumb.jpg",
+        downloadFilename: "cleaned cpu no old paste.jpeg",
+        tags: [
+            "CPU",
+            "Thermal Paste",
+            "Cooling Maintenance"
+        ],
+        summary: "The exposed CPU package has a reflective center surface, with the lifted heatsink assembly and fan visible nearby.",
+        sandboxObservation: "The exposed CPU package has a reflective center surface, with the lifted heatsink assembly and fan visible nearby.",
+        technicalBreakdown: "The filename identifies this as the cleaned CPU after removing old paste. Paste residue remains visible on the raised heatsink contact plate.",
+        defensePlaybook: [
+            "Original file: cleaned cpu no old paste.jpeg",
+            "Original dimensions: 5712 × 4284 pixels.",
+            "Embedded capture date: 2026:11:23 19:44:00 (UTC-05:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "The CPU-side contact surface after cleanup, before reassembly.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "hp-cooling-dust-blocked-fin-stack",
+        title: "HP Cooling Refresh: Dust in the Exhaust Fins",
+        category: "hardware",
+        categoryLabel: "Hardware Repair & Maintenance",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/hp-cooling-dust-blocked-fin-stack.jpeg",
+        thumb: "images/gallery/additions-2026-11-26/hp-cooling-dust-blocked-fin-stack-thumb.jpg",
+        downloadFilename: "grossventduringfreehpgamercpuandgputhermalswap.jpeg",
+        tags: [
+            "HP Laptop",
+            "Dust Buildup",
+            "Cooling Fins"
+        ],
+        summary: "A close-up of an opened laptop shows a dense band of dust along the heatsink fins next to the blower fan.",
+        sandboxObservation: "A close-up of an opened laptop shows a dense band of dust along the heatsink fins next to the blower fan.",
+        technicalBreakdown: "The filename places this in the CPU and GPU thermal refresh of a free HP gaming laptop. Dust is visible on the fin stack, fan blades and surrounding housing.",
+        defensePlaybook: [
+            "Original file: grossventduringfreehpgamercpuandgputhermalswap.jpeg",
+            "Original dimensions: 5712 × 4284 pixels.",
+            "Embedded capture date: 2026:11:23 19:43:58 (UTC-05:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "The buildup exposed during cooling-system disassembly.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "hp-heatsink-assembly-underside",
+        title: "HP Cooling Refresh: Heatsink Assembly Underside",
+        category: "hardware",
+        categoryLabel: "Hardware Repair & Maintenance",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/hp-heatsink-assembly-underside.png",
+        thumb: "images/gallery/additions-2026-11-26/hp-heatsink-assembly-underside-thumb.jpg",
+        downloadFilename: "heatsink assy.PNG",
+        tags: [
+            "Heatsink",
+            "Heat Pipes",
+            "Thermal Pads"
+        ],
+        summary: "A hand holds the removed cooling assembly, exposing copper heat pipes, a paste-marked contact plate and several light-colored pads.",
+        sandboxObservation: "A hand holds the removed cooling assembly, exposing copper heat pipes, a paste-marked contact plate and several light-colored pads.",
+        technicalBreakdown: "The photograph records the underside of the assembly while the laptop remains open beneath it.",
+        defensePlaybook: [
+            "Original file: heatsink assy.PNG",
+            "Original dimensions: 1170 × 2532 pixels.",
+            "Embedded capture date: 2026:11:23 19:39:57."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A view of the cooling contact surfaces and pad placement during disassembly.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "textnow-sim-eligibility-exploration",
+        title: "Exploring TextNow SIM Eligibility",
+        category: "homelab",
+        categoryLabel: "Mobile Connectivity Exploration",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/textnow-sim-eligibility-exploration.jpg",
+        thumb: "images/gallery/additions-2026-11-26/textnow-sim-eligibility-exploration-thumb.jpg",
+        downloadFilename: "looking into textnow freesim a while back ago always curious and exploring.jpg",
+        tags: [
+            "TextNow",
+            "SIM",
+            "Device Eligibility"
+        ],
+        summary: "TextNow’s device-eligibility page displays an activation-eligible message and a Buy a SIM Card button.",
+        sandboxObservation: "TextNow’s device-eligibility page displays an activation-eligible message and a Buy a SIM Card button.",
+        technicalBreakdown: "The filename describes curiosity about TextNow’s SIM service. The page advertises its talk-and-text offering as it appeared in this historical capture.",
+        defensePlaybook: [
+            "Original file: looking into textnow freesim a while back ago always curious and exploring.jpg",
+            "Original dimensions: 1080 × 2340 pixels.",
+            "Embedded capture date: 2022:10:23 21:34:46 (UTC-04:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "An eligibility-page exploration; a purchase or activation is not shown.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "copilot-questionable-hardware-drawer",
+        title: "The Drawer of Questionable Hardware",
+        category: "hardware",
+        categoryLabel: "Repair Chat & Workshop Humor",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/copilot-questionable-hardware-drawer.png",
+        thumb: "images/gallery/additions-2026-11-26/copilot-questionable-hardware-drawer-thumb.jpg",
+        downloadFilename: "maybe more funny tho.PNG",
+        tags: [
+            "Copilot",
+            "Fury G8",
+            "Workshop Humor"
+        ],
+        summary: "A Copilot reply mixes a pre-reassembly checklist with a joke about parts recovered from the Drawer of Questionable Hardware.",
+        sandboxObservation: "A Copilot reply mixes a pre-reassembly checklist with a joke about parts recovered from the Drawer of Questionable Hardware.",
+        technicalBreakdown: "The reply discusses checking the touchpad, keyboard and added RAM, then imagines a Fury G8 showing 48 GB and becoming a local LLM box. These are the assistant’s proposed checks and conditional remarks.",
+        defensePlaybook: [
+            "Original file: maybe more funny tho.PNG",
+            "Original dimensions: 1170 × 2532 pixels.",
+            "Embedded capture date: 2026:11:23 19:25:15."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "Workshop humor captured during a hardware discussion.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "task-manager-minimize-on-use-exploration",
+        title: "Curiosity in Task Manager: Minimize on Use",
+        category: "homelab",
+        categoryLabel: "Windows Interface Exploration",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/task-manager-minimize-on-use-exploration.png",
+        thumb: "images/gallery/additions-2026-11-26/task-manager-minimize-on-use-exploration-thumb.jpg",
+        downloadFilename: "minimize_on_use_TASKMANAGER_what_we_learned_curiosity.png",
+        tags: [
+            "Task Manager",
+            "Minimize on Use",
+            "Learning"
+        ],
+        summary: "A ChatGPT exchange asks what Task Manager’s Minimize on Use setting means and displays an explanation centered on switching to another application.",
+        sandboxObservation: "A ChatGPT exchange asks what Task Manager’s Minimize on Use setting means and displays an explanation centered on switching to another application.",
+        technicalBreakdown: "The response contrasts the checked and unchecked settings and describes the Switch to action. This capture records the explanation being explored rather than a live before-and-after test.",
+        defensePlaybook: [
+            "Original file: minimize_on_use_TASKMANAGER_what_we_learned_curiosity.png",
+            "Original dimensions: 1652 × 1146 pixels."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A small interface option investigated through a question-and-answer exchange.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "hp-cpu-old-paste-heatsink-lift",
+        title: "HP Cooling Refresh: CPU Paste Before Cleanup",
+        category: "hardware",
+        categoryLabel: "Hardware Repair & Maintenance",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/hp-cpu-old-paste-heatsink-lift.png",
+        thumb: "images/gallery/additions-2026-11-26/hp-cpu-old-paste-heatsink-lift-thumb.jpg",
+        downloadFilename: "oldthermalpaste.PNG",
+        tags: [
+            "CPU",
+            "Old Thermal Paste",
+            "Disassembly"
+        ],
+        summary: "A phone image viewer shows the heatsink raised above a laptop CPU, revealing the old paste at the contact area.",
+        sandboxObservation: "A phone image viewer shows the heatsink raised above a laptop CPU, revealing the old paste at the contact area.",
+        technicalBreakdown: "The motherboard and memory modules remain visible underneath the lifted cooling assembly.",
+        defensePlaybook: [
+            "Original file: oldthermalpaste.PNG",
+            "Original dimensions: 1170 × 2532 pixels.",
+            "Embedded capture date: 2026:11:23 19:35:05."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "The paste condition recorded before CPU-surface cleanup.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "apple-watch-presentation-shortcut-complication",
+        title: "Apple Watch Presentation Shortcut: Complication Setup",
+        category: "media",
+        categoryLabel: "Apple Watch Automation",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/apple-watch-presentation-shortcut-complication.png",
+        thumb: "images/gallery/additions-2026-11-26/apple-watch-presentation-shortcut-complication-thumb.jpg",
+        downloadFilename: "setting up rather adding shortcut of presentation to apple watch (post iphone addition and creation).png",
+        tags: [
+            "Apple Watch",
+            "Shortcuts",
+            "Presentations"
+        ],
+        summary: "The iPhone Watch app’s Complications picker shows Shortcuts selected, with Run Shortcut listed beneath it.",
+        sandboxObservation: "The iPhone Watch app’s Complications picker shows Shortcuts selected, with Run Shortcut listed beneath it.",
+        technicalBreakdown: "The filename identifies this as adding access to an existing presentation shortcut after its creation on iPhone. The screenshot shows the complication selection stage.",
+        defensePlaybook: [
+            "Original file: setting up rather adding shortcut of presentation to apple watch (post iphone addition and creation).png",
+            "Original dimensions: 700 × 1332 pixels."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "Shortcut access being added to a watch face; a running presentation is not shown.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "galaxy-a50s-apple-style-customization",
+        title: "Galaxy A50s: Apple-Style Customization",
+        category: "media",
+        categoryLabel: "Mobile Interface Creativity",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/galaxy-a50s-apple-style-customization.jpg",
+        thumb: "images/gallery/additions-2026-11-26/galaxy-a50s-apple-style-customization-thumb.jpg",
+        downloadFilename: "shows customization making galaxy a50s look like apple creativity.jpg",
+        tags: [
+            "Galaxy A50s",
+            "Customization",
+            "Lock Screen"
+        ],
+        summary: "A customized lock screen uses a large centered clock, lock icon, bottom gesture bar, flashlight and camera icons over a coastal wallpaper.",
+        sandboxObservation: "A customized lock screen uses a large centered clock, lock icon, bottom gesture bar, flashlight and camera icons over a coastal wallpaper.",
+        technicalBreakdown: "The filename identifies a Galaxy A50s styled to resemble an Apple interface. The visible date reads Friday, 7 October.",
+        defensePlaybook: [
+            "Original file: shows customization making galaxy a50s look like apple creativity.jpg",
+            "Original dimensions: 1080 × 2340 pixels.",
+            "Embedded capture date: 2022:10:07 15:17:44 (UTC-04:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A mobile personalization experiment in interface appearance.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "laptop-trackpad-cable-inspection",
+        title: "Trackpad Cable Inspection for Headless Use",
+        category: "hardware",
+        categoryLabel: "Hardware Repair & Maintenance",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/laptop-trackpad-cable-inspection.png",
+        thumb: "images/gallery/additions-2026-11-26/laptop-trackpad-cable-inspection-thumb.jpg",
+        downloadFilename: "trackpad cables what to disconnect for headless.PNG",
+        tags: [
+            "Trackpad",
+            "Ribbon Cables",
+            "Headless Repurposing"
+        ],
+        summary: "A hand points toward ribbon-cable connectors beside the trackpad inside an opened laptop.",
+        sandboxObservation: "A hand points toward ribbon-cable connectors beside the trackpad inside an opened laptop.",
+        technicalBreakdown: "The filename identifies the question as which trackpad cable to disconnect for headless use. The photograph shows the connector area being inspected, without documenting a completed disconnection.",
+        defensePlaybook: [
+            "Original file: trackpad cables what to disconnect for headless.PNG",
+            "Original dimensions: 1170 × 2532 pixels.",
+            "Embedded capture date: 2026:11:23 19:28:29."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A physical reference for a laptop-repurposing discussion.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "wii-u-resale-presentation",
+        title: "Wii U Sale Preparation: Neatness and Presentation",
+        category: "hardware",
+        categoryLabel: "Device Resale Preparation",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/wii-u-resale-presentation.jpg",
+        thumb: "images/gallery/additions-2026-11-26/wii-u-resale-presentation-thumb.jpg",
+        downloadFilename: "wiiu_sale_underscores_importance_of_neatness_and_presentability.jpg",
+        tags: [
+            "Wii U",
+            "Resale",
+            "Presentation"
+        ],
+        summary: "A Wii U console, GamePad, controllers, power adapters, cables, sensor bar and retail box are arranged on a bordered white surface.",
+        sandboxObservation: "A Wii U console, GamePad, controllers, power adapters, cables, sensor bar and retail box are arranged on a bordered white surface.",
+        technicalBreakdown: "The filename emphasizes neatness and presentability when preparing the system for sale. The photograph lays out the included hardware and accessories for inspection.",
+        defensePlaybook: [
+            "Original file: wiiu_sale_underscores_importance_of_neatness_and_presentability.jpg",
+            "Original dimensions: 4000 × 3000 pixels.",
+            "Embedded capture date: 2022:06:22 20:02:04 (UTC-04:00)."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "A deliberately arranged resale photograph; a completed sale is not shown.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+    {
+        id: "windows-app-rdp-certificate-prompt",
+        title: "Windows App RDP: Investigating the Certificate Prompt",
+        category: "homelab",
+        categoryLabel: "Remote Connection Troubleshooting",
+        badgeClass: "badge-info",
+        image: "images/gallery/additions-2026-11-26/windows-app-rdp-certificate-prompt.png",
+        thumb: "images/gallery/additions-2026-11-26/windows-app-rdp-certificate-prompt-thumb.jpg",
+        downloadFilename: "winapp - troubleshooting hiding this for more effective connections (Faster).png",
+        tags: [
+            "Windows App",
+            "RDP",
+            "Certificate Trust"
+        ],
+        summary: "A macOS remote-desktop connection dialog reports that the RDP host’s certificate cannot be verified back to a root certificate.",
+        sandboxObservation: "A macOS remote-desktop connection dialog reports that the RDP host’s certificate cannot be verified back to a root certificate.",
+        technicalBreakdown: "The filename describes investigating the repeated prompt to make connections faster. Show Certificate, Cancel and Continue controls are visible; no changed trust setting or completed fix is shown.",
+        defensePlaybook: [
+            "Original file: winapp - troubleshooting hiding this for more effective connections (Faster).png",
+            "Original dimensions: 1628 × 660 pixels."
+        ],
+        playbookHeading: "Capture Details",
+        outcomeHeading: "What This Capture Shows",
+        containment: "The certificate prompt captured as the starting point for troubleshooting.",
+        actionText: "View Capture &amp; Details &rarr;",
+        observationHeading: "Visible in the Capture",
+        technicalHeading: "Details & Context",
+        credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+    },
+
         {
             id: "watchmouseremote-xcode-signing-codex",
             title: "WatchMouseRemote: Xcode Signing Setup with Codex",
