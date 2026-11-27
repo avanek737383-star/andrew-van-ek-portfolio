@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T02:34:46+00:00",
-  "sourceHead": "dcb9e3c0d419c72e3a0e427d42e1d18634ad328c",
-  "count": 732,
-  "releaseLabel": "v2.6.445",
+  "generatedAt": "2026-11-27T03:06:21+00:00",
+  "sourceHead": "7eed5bf90b3f4d60c3a29281ea6a2ba3a3c83747",
+  "count": 735,
+  "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "7eed5bf90b3f4d60c3a29281ea6a2ba3a3c83747",
+      "date": "2026-11-26T22:06:18-05:00",
+      "subject": "Unify navigation, add country sunlight map and finish portfolio layout audit",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "e1a000300a3e38225ddb74f4408deb17588eb43b",
+      "date": "2026-11-26T22:03:56-05:00",
+      "subject": "Document MusicGen Stereo restoration and live generation section progress",
+      "category": "Local AI"
+    },
+    {
+      "sha": "38a214c8f07d69fe8b495e46cf66f5eb2715afba",
+      "date": "2026-11-26T21:34:46-05:00",
+      "subject": "Refresh release history for v2.6.445 shared page frames",
+      "category": "Maintenance"
+    },
     {
       "sha": "dcb9e3c0d419c72e3a0e427d42e1d18634ad328c",
       "date": "2026-11-26T21:34:43-05:00",
