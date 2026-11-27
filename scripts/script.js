@@ -290,6 +290,7 @@
 			'<div class="chat-toggle-container">',
 			'  <button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel" title="Chat with Nemo AI" aria-label="Chat with Nemo, Andrew\'s Local AI">',
 			'    <span class="chat-toggle-icon" aria-hidden="true">🤖</span>',
+			'    <span class="chat-toggle-text" aria-hidden="true">Ask Nemo</span>',
 			'  </button>',
 			'</div>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',

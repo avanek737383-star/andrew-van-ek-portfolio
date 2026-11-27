@@ -1401,3 +1401,11 @@ body.valentines-theme .playbook-card {
 body.valentines-theme .playbook-num {
 	color: #e11d48 !important;
 }
+
+body .fleet-header { position: relative; z-index: 2; background: #fff; border: 1px solid #d5e0eb; border-top: 3px solid var(--s-primary,#155b97); border-radius: 12px; padding: 24px 28px; margin: 24px 0; }
+body .fleet-header .subtitle { max-width: none; color: #475569; line-height: 1.65; }
+.fleet-overview { margin: 24px 0; }
+body .fleet-overview > h2 { color: var(--s-primary,#155b97); margin: 0 0 16px; }
+.fleet-overview .fleet-badge-group { justify-content: flex-start; }
+@media(max-width:600px){body .fleet-header{padding:20px 16px}}
+.fleet-viewport-container { grid-template-columns: minmax(0,1fr); align-items: start; }

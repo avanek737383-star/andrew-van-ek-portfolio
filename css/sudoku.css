@@ -889,3 +889,27 @@
     line-height: 1.6;
     font-style: italic;
 }
+/* Seasonal controls and a full-width introduction. */
+.sudoku-container { max-width: none; --sdk-accent: var(--s-primary,#0056b3); --sdk-tint: var(--s-tint,#f0f4f9); --sdk-border: var(--s-border-accent,#d5e0eb); --sdk-dark: var(--s-dark,#0f172a); --sdk-panel: var(--s-dark-2,#1e293b); --sdk-bright: var(--s-accent-bright,#38bdf8); }
+.sudoku-hero-desc { max-width: none; }
+.sudoku-container :is(.sudoku-hero-eyebrow,.sudoku-samples-label,.sudoku-speed-control label,.sudoku-drop-text) { color: var(--sdk-accent); }
+.sudoku-container .sudoku-pill { background: var(--sdk-tint); border-color: var(--sdk-border); color: #18334d; }
+.sudoku-container .sudoku-pill-dot { background: var(--sdk-accent); flex-shrink: 0; }
+.sudoku-container .sudoku-dropzone { border-color: var(--sdk-accent); background: var(--sdk-tint); }
+.sudoku-container .sudoku-dropzone:hover { border-color: var(--sdk-accent); background: var(--sdk-tint); }
+.sudoku-container .sudoku-sample-btn:hover { border-color: var(--sdk-accent); color: var(--sdk-accent); background: var(--sdk-tint); }
+.sudoku-container :is(.sudoku-sample-btn.active,.sudoku-tab-btn.active,.sudoku-btn-primary) { background: var(--sdk-accent); border-color: var(--sdk-accent); color: #fff; }
+.sudoku-container .sudoku-slider { accent-color: var(--sdk-accent); }
+.sudoku-container :is(.nemo-mind-bubble,.sudoku-terminal-card) { background: var(--s-dark-grad,#0f172a); border-color: var(--sdk-border); }
+.sudoku-container .nemo-mind-bubble { border-left-color: var(--sdk-bright); }
+.sudoku-container .nemo-avatar { background: var(--sdk-accent); }
+.sudoku-container .nemo-mind-name { color: var(--sdk-bright); }
+.sudoku-container :is(.nemo-mind-state,.nemo-mind-text,.terminal-header-title,.log-text,.spotlight-quote) { color: #f1f5f9; }
+.sudoku-container :is(.terminal-header,.terminal-metrics,.terminal-badge,.terminal-spotlight,.log-entry) { background: var(--sdk-panel); border-color: var(--sdk-border); }
+.sudoku-container .terminal-spotlight { border-left-color: var(--sdk-bright); }
+.sudoku-container :is(.spotlight-badge,.mobile-collapse-btn) { color: var(--sdk-bright); background: rgba(255,255,255,.1); border-color: var(--sdk-border); }
+.sudoku-container .log-entry.active-latest { border-color: var(--sdk-bright); }
+.sudoku-container :is(.log-tag.hidden_candidate,.log-tag.hidden_single) { background: var(--sdk-accent); color: #fff; }
+.sudoku-container .sudoku-cell:hover { background: var(--sdk-tint); }
+.sudoku-container .sudoku-cell.focused { background: var(--sdk-tint) !important; outline-color: var(--sdk-accent); }
+.sudoku-container .sudoku-cell.ai-placed { color: var(--sdk-accent); }

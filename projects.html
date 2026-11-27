@@ -4,7 +4,7 @@
 		<title>Andrew Van Ek Portfolio | Projects</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/coin-predictor.css?v=20261103-clock-weather-fix-1">
-	<link rel="stylesheet" href="css/styles.css?v=20261121-nav-fix-1">
+	<link rel="stylesheet" href="css/styles.css?v=20261126-shared-frame-445">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -23,7 +23,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/footer.css?v=20261126-footer-444-spacing-2">
+	<link rel="stylesheet" href="css/footer.css?v=20261126-shared-frame-445">
 <link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 	<body>
@@ -2551,6 +2551,7 @@
 
 <p>Across homelab engineering, enterprise IT administration, and machine learning, true technical expertise does not come from observing sanitized environments—it is forged through direct ownership, unexpected system dependencies, thermal troubleshooting, and resolving failures under pressure. In a deep pair programming collaboration with <strong>Antigravity AI (Google DeepMind agentic assistant)</strong>, I architected, engineered, and deployed three standalone production-grade laboratories directly into this portfolio: the <a href="fleet.html">Hardware Fleet &amp; Salvage Architecture Hub</a>, the <a href="incident-sim.html">Homelab Incident Response &amp; Chaos Simulator</a>, and the <a href="ai-bias.html">AI Bias &amp; Algorithmic Fairness Audit Lab</a>.</p>
 
+<p id="fleet-header-and-overview-20261126"><strong>November 26, 2026 overview-layout update:</strong> Andrew flagged badges floating above the Fleet Hub heading and the title sitting directly over the page background. <strong>OpenAI Codex</strong> added an opaque white header card and grouped the four badges with the overview metrics below. The device inspector now sits below the model on desktop as well as mobile, so a tall detail panel does not leave blank space under a narrower viewer. The device badge now describes inventory membership rather than claiming continuous online detection, consistent with the page's existing inventory explanation. Browser checks cover card placement, badge grouping, responsive widths and the three seasonal themes.</p>
 <h3>Interactive 3D Digital Twin, 4-Tier Rack Kinematics &amp; Sub-Component Telemetry</h3>
 <p>To eliminate physical abstraction and provide true visual grounding for remote administration, I engineered an interactive 3D WebGL digital twin of my homelab workbench built on Three.js (r128) and OrbitControls. Photogrammetrically aligned to the physical room layout, the model features:</p>
 <ul>
@@ -4264,6 +4265,7 @@
 </div>
 
 <p class="credit"><strong>AI collaboration credit:</strong> Conceived and built with Muse, Meta&rsquo;s AI assistant, as a pair-programming and infrastructure partner across October 2026. On November 14, 2026, Muse and Andrew executed a major rescue and architectural rebuild: resolving the Google Cloud billing lock, authoring the multi-threaded <code>kb-sync-drive</code> Google Drive pipeline, debugging thread concurrency and library drift, repairing Cloud Scheduler OAuth automation, and safely cutting over to <code>classes-v2</code>.</p>
+<p id="chat-page-header-layout-20261126"><strong>November 26, 2026 page-layout update:</strong> Andrew requested a simpler header and consistent page width. <strong>OpenAI Codex</strong> removed the redundant Fullscreen App link, retained the Project Story link, made the header description use the available width and replaced the eyebrow's fixed blue with the active seasonal accent. The shared portfolio frame now controls the page's outer width; the embedded chat remains a separate app. Browser checks cover header layout and theme colors without submitting messages.</p>
 </section>
 
 <section class="project-entry" aria-labelledby="gvsu-chatbot-testing-title">
@@ -5216,10 +5218,11 @@
 <p>The gateway retains five requests per rolling minute per visitor IP, request and answer size limits, one website inference at a time, and screening for unrelated or instruction-changing requests. Client-supplied conversation history is rejected, so each question should stand on its own. Private, rotated prompt logs use pseudonymous client identifiers and redact common credential patterns; the chat interface discloses logging.</p>
 <p>I tested distinct generated answers to portfolio questions and checked that unrelated and instruction-changing requests were refused. The separate phone assistant shares the same Windows model but has its own general-purpose prompt and spoken-response pipeline. Both request a thirty-minute idle unload timer; the gateway allows additional time for loading and generation. I will continue checking answer quality and portfolio coverage as projects change.</p>
 <p><a href="lab.html">View the Live AI Lab</a> for read-only system activity.</p>
-<p id="nemo-icon-only-launcher-20261126"><strong>November 26, 2026 interface update:</strong> At Andrew's request, <strong>OpenAI Codex</strong> simplified the floating chatbot launcher to a robot icon. Removed the visible hint bubble, AI badge and launcher text, while preserving the accessible button name, open/close controls and seasonal styling. Browser checks with a stubbed availability response covered desktop and mobile sizes in the default, Thanksgiving, Christmas and Valentine's themes; no messages were sent during these interface checks.</p>
+<p id="nemo-icon-only-launcher-20261126"><strong>November 26, 2026 interface update:</strong> At Andrew's request, <strong>OpenAI Codex</strong> simplified the floating chatbot launcher to a robot icon on mobile, with the robot followed by “Ask Nemo” on desktop. Removed the visible hint bubble and AI badge, while preserving the accessible button name, open/close controls and seasonal styling. Browser checks with a stubbed availability response covered desktop and mobile sizes in the default, Thanksgiving, Christmas and Valentine's themes; no messages were sent during these interface checks.</p>
 </section>
 
-<section class="project-entry" aria-labelledby="nemo-sudoku-title"><h2 id="nemo-sudoku-title">Sudoku Logic Solver &amp; Manual Photo Reference</h2><p class="project-status"><span class="status-badge project-completed">Interactive Demonstration</span> <span>JavaScript constraints and search · Editable givens · Narrated steps · Updated November 26, 2026</span></p><p>The <a href="sudoku.html">Sudoku solver</a> illustrates constraint checking and search using built-in examples or manually entered givens. Visitors can adjust playback speed, inspect candidate pencil marks, or advance one operation at a time.</p><p>Photo loading supplies a visual reference only. It clears the grid for manual transcription and does not claim OCR or digit recognition. Earlier wording incorrectly described a preset substitution as successful image recognition; that behavior and claim were removed. The on-screen commentary uses templates tied to solver operations rather than a language model’s private reasoning.</p><p class="credit">Originally implemented with Antigravity AI. Andrew Van Ek requested clearer explanations and accuracy; ChatGPT / Codex (OpenAI) corrected photo handling, labels, and empty-grid safeguards during the November 26 audit.</p></section>
+<section class="project-entry" aria-labelledby="nemo-sudoku-title"><h2 id="nemo-sudoku-title">Sudoku Logic Solver &amp; Manual Photo Reference</h2><p class="project-status"><span class="status-badge project-completed">Interactive Demonstration</span> <span>JavaScript constraints and search · Editable givens · Narrated steps · Updated November 26, 2026</span></p><p>The <a href="sudoku.html">Sudoku solver</a> illustrates constraint checking and search using built-in examples or manually entered givens. Visitors can adjust playback speed, inspect candidate pencil marks, or advance one operation at a time.</p><p>Photo loading supplies a visual reference only. It clears the grid for manual transcription and does not claim OCR or digit recognition. Earlier wording incorrectly described a preset substitution as successful image recognition; that behavior and claim were removed. The on-screen commentary uses templates tied to solver operations rather than a language model’s private reasoning.</p><p class="credit">Originally implemented with Antigravity AI. Andrew Van Ek requested clearer explanations and accuracy; ChatGPT / Codex (OpenAI) corrected photo handling, labels, and empty-grid safeguards during the November 26 audit.</p><p id="sudoku-seasonal-layout-20261126"><strong>November 26, 2026 presentation update:</strong> Andrew identified blue controls and navy panels left over from the original theme, a narrow introduction and wrapped feature badges. <strong>OpenAI Codex</strong> connected sample labels, selected sample buttons, tabs, upload borders, the narration bubble, log surfaces and solver controls to the active seasonal palette. Removed the introduction and inner-container width caps so the text uses the available card width and badges fit together on wide desktops while retaining responsive wrapping. Browser checks cover the default, Thanksgiving, Christmas and Valentine's themes, preset changes, grid/reference tabs, solver stepping and reset, plus desktop/mobile layout. This update changes presentation; photo loading remains a manual reference feature.</p>
+</section>
 
 
 <section class="project-entry" aria-labelledby="mind-reader-ai-title"><h2 id="mind-reader-ai-title">Human Choice Prediction: A Proposed Extension</h2><p class="project-status"><span class="status-badge project-in-progress">Proposal · Not Validated on Human Choices</span></p><p>This earlier proposal explored whether a small sequence model could identify patterns in deliberately chosen binary sequences. No human-choice dataset, ONNX deployment, or claimed 68–78% human-prediction benchmark is established by the current demonstration.</p><p>The implemented <a href="ai-predictor.html">neural sequence lab</a> instead publishes invented generating rules, datasets, and measured model comparisons. Real human-choice research would require its own consent process, study design, baselines, and held-out evaluation before performance claims could be made.</p></section>
@@ -5431,11 +5434,11 @@
 			</main>
 			<footer>
 				<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:23:00-05:00" title="November 26, 2026 at 09:23:00 PM EST">Nov 26, 2026, 9:23 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.444 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:34:41-05:00" title="November 26, 2026 at 09:34:41 PM EST">Nov 26, 2026, 9:34 PM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.445 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-		<script src="scripts/script.js?v=20261126-icon-launcher-444"></script>
+		<script src="scripts/script.js?v=20261126-shared-frame-445"></script>
 	</body>
 </html>

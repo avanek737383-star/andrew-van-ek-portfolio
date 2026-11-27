@@ -8,12 +8,12 @@
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<link rel="stylesheet" href="css/styles.css?v=20261126-icon-launcher-444">
-	<link rel="stylesheet" href="css/fleet.css?v=20261125-fleet-4">
+	<link rel="stylesheet" href="css/styles.css?v=20261126-shared-frame-445">
+	<link rel="stylesheet" href="css/fleet.css?v=20261126-header-overview-2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/footer.css?v=20261126-footer-444-spacing-2">
+<link rel="stylesheet" href="css/footer.css?v=20261126-shared-frame-445">
 <link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body>
@@ -85,17 +85,19 @@
 		</nav>
 
 		<header class="page-header fleet-header">
-			<div class="fleet-badge-group">
-				<span class="fleet-badge live-badge"><span class="pulse-dot"></span> 9 Active Devices Online</span>
-				<span class="fleet-badge">Exact Workbench Shelf Layout</span>
-				<span class="fleet-badge ewaste-badge">24.2 kg E-Waste Diverted</span>
-				<span class="fleet-badge roi-badge">$11,850+ Reclaimed Value</span>
-			</div>
+
 			<h1>Hardware Fleet &amp; Salvage Architecture Hub</h1>
 			<p class="subtitle">Where discarded silicon gets a second tour of duty. Explore interactive 3D-ready shelf topologies based on Andrew's actual workbench layout: from the bottom shelf 2011 Mac powering the S4 Mini and USB fan, to the open-bench Yoga rig and wall-powered mobile miners.</p>
 		</header>
 
 		<main class="fleet-main"><section class="explain-card"><h2>What am I looking at?</h2><p>This is an owner-maintained inventory and interactive schematic of my setup. The 3D positions illustrate the physical arrangement; device descriptions and status labels come from the inventory, not continuous discovery of every device. Use the controls to inspect equipment, and treat the playbook as configuration notes rather than hardware guarantees.</p></section>
+            <section class="fleet-overview" aria-labelledby="fleet-overview-title"><h2 id="fleet-overview-title">Fleet overview</h2>
+			<div class="fleet-badge-group">
+				<span class="fleet-badge live-badge"><span class="pulse-dot"></span> 9 devices in the inventory</span>
+				<span class="fleet-badge">Workbench shelf layout</span>
+				<span class="fleet-badge ewaste-badge">24.2 kg E-Waste Diverted</span>
+				<span class="fleet-badge roi-badge">$11,850+ Reclaimed Value</span>
+			</div>
 			<!-- Section 1: Fleet Overview & Metrics -->
 			<section class="fleet-hero-stats">
 				<div class="stat-card">
@@ -119,6 +121,8 @@
 					<div class="stat-sub">Cloud + replacement hardware avoidance</div>
 				</div>
 			</section>
+
+            </section>
 
 			<!-- Section 2: Visual Fleet Schematic (Exact Shelf Outline) -->
 			<section class="fleet-section">
@@ -443,13 +447,13 @@
 
 		<footer>
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:23:00-05:00" title="November 26, 2026 at 09:23:00 PM EST">Nov 26, 2026, 9:23 PM EST</time></p>
-			<p class="footer-version footer-pill">Version v2.6.444 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:34:41-05:00" title="November 26, 2026 at 09:34:41 PM EST">Nov 26, 2026, 9:34 PM EST</time></p>
+			<p class="footer-version footer-pill">Version v2.6.445 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261126-icon-launcher-444"></script>
+	<script src="scripts/script.js?v=20261126-shared-frame-445"></script>
 	<script src="scripts/vendor/three.min.js"></script>
 	<script src="scripts/vendor/OrbitControls.js"></script>
 	<script src="scripts/fleet-3d.js?v=20261125-ledge-outlet-1"></script>
