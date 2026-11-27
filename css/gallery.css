@@ -1038,3 +1038,47 @@
     transform: translateY(-1px);
     outline: none;
 }
+
+/* Numbered gallery pages share the existing blue filter treatment. */
+.gallery-page-status {
+    color: #475569;
+    font-size: 0.95rem;
+    margin: 0 0 18px;
+    scroll-margin-top: 110px;
+}
+.gallery-pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 28px 0 36px;
+}
+.gallery-pagination[hidden] { display: none; }
+.gallery-page-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #0369a1;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.gallery-page-btn:hover:not(:disabled),
+.gallery-page-btn[aria-current="page"] {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+}
+.gallery-page-btn:focus-visible,
+.gallery-page-status:focus-visible {
+    outline: 3px solid #0284c7;
+    outline-offset: 3px;
+}
+.gallery-page-btn:disabled { opacity: 0.45; cursor: default; }
+@media (max-width: 600px) {
+    .gallery-pagination { gap: 6px; }
+    .gallery-page-btn { padding: 8px 10px; }
+}

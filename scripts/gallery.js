@@ -3,7 +3,7 @@
  * Author: Andrew Van Ek (with Google DeepMind Antigravity AI pair programming)
  *
  * Features:
- * - 169 Workbench Captures across 6 Curated Categories
+ * - 227 Workbench Captures across 6 Curated Categories
  * - Desktop/Tablet Filter Pill Bar
  * - Dedicated Mobile Category Selection Modal Overlay (Tap -> Select -> Auto-Dismiss)
  * - Fullscreen Interactive Lightbox Modal with Deep Linking (#id)
@@ -16,6 +16,726 @@
     "use strict";
 
     var galleryItems = [
+        {
+            id: "watchmouseremote-xcode-signing-codex",
+            title: "WatchMouseRemote: Xcode Signing Setup with Codex",
+            category: "homelab",
+            categoryLabel: "Apple Watch Development",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/watchmouseremote-xcode-signing-codex.png",
+            thumb: "images/gallery/homelab-tour-2026-11-26/watchmouseremote-xcode-signing-codex-thumb.jpg",
+            downloadFilename: "codex xcode setup stuf.png",
+            tags: [
+                "Xcode",
+                "watchOS",
+                "Codex"
+            ],
+            summary: "Xcode shows the WatchMouseRemote project with Build Settings open, a Personal Team selected under Development Team, and watchOS and iOS simulator downloads at the upper right. A Codex session is visible behind Xcode.",
+            sandboxObservation: "Xcode shows the WatchMouseRemote project with Build Settings open, a Personal Team selected under Development Team, and watchOS and iOS simulator downloads at the upper right. A Codex session is visible behind Xcode.",
+            technicalBreakdown: "The project navigator includes Swift source files named WatchMouseRemoteApp, ContentView, UDPClient and SettingsView. The selected run destination is Any watchOS Device.",
+            defensePlaybook: [
+                "Source file: codex xcode setup stuf.png",
+                "Screenshot of the WatchMouseRemote project setup in Xcode.",
+                "Original dimensions: 1915 × 1080 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "Development setup in progress: Xcode signing settings and simulator downloads are visible.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "Development Setup",
+            technicalHeading: "Visible Project Details",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-005s-desk-fan",
+            title: "Homelab Tour: Desk Fan Close-Up",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-005s-desk-fan.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-005s-desk-fan-thumb.jpg",
+            downloadFilename: "frame_005s.jpg",
+            tags: [
+                "Room Tour",
+                "Desk Setup",
+                "Fan"
+            ],
+            summary: "A small circular desk fan sits on a light-colored surface against the wall. A cable and a dark rectangular device are visible alongside it.",
+            sandboxObservation: "A small circular desk fan sits on a light-colored surface against the wall. A cable and a dark rectangular device are visible alongside it.",
+            technicalBreakdown: "A close-up of the everyday desk setup at the start of the room tour.",
+            defensePlaybook: [
+                "Source file: frame_005s.jpg",
+                "Video timestamp: 5 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A close-up of the everyday desk setup at the start of the room tour.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-020s-display-keyboard",
+            title: "Homelab Tour: Display and Keyboard Corner",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-020s-display-keyboard.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-020s-display-keyboard-thumb.jpg",
+            downloadFilename: "frame_020s.jpg",
+            tags: [
+                "Room Tour",
+                "Display",
+                "Keyboard"
+            ],
+            summary: "A dark display and a keyboard on a wooden surface fill this vertical frame. Cables and part of the surrounding furniture are visible at the edge.",
+            sandboxObservation: "A dark display and a keyboard on a wooden surface fill this vertical frame. Cables and part of the surrounding furniture are visible at the edge.",
+            technicalBreakdown: "This angle records the display and input-device corner of the room.",
+            defensePlaybook: [
+                "Source file: frame_020s.jpg",
+                "Video timestamp: 20 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "This angle records the display and input-device corner of the room.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-045s-behind-shelf",
+            title: "Homelab Tour: Cabling Behind the Shelf",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-045s-behind-shelf.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-045s-behind-shelf-thumb.jpg",
+            downloadFilename: "frame_045s.jpg",
+            tags: [
+                "Room Tour",
+                "Cabling",
+                "Shelving"
+            ],
+            summary: "A narrow view behind the shelving shows hanging cables, power connections and adapters alongside the wooden support.",
+            sandboxObservation: "A narrow view behind the shelving shows hanging cables, power connections and adapters alongside the wooden support.",
+            technicalBreakdown: "The camera looks into the gap between the shelving and wall.",
+            defensePlaybook: [
+                "Source file: frame_045s.jpg",
+                "Video timestamp: 45 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "The camera looks into the gap between the shelving and wall.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-095s-shelf-laptop",
+            title: "Homelab Tour: Laptop Shelf and Cable Run",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-095s-shelf-laptop.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-095s-shelf-laptop-thumb.jpg",
+            downloadFilename: "frame_095s.jpg",
+            tags: [
+                "Room Tour",
+                "Laptop",
+                "Cabling"
+            ],
+            summary: "An open laptop sits on a shelf beside a vertical wooden support. White and yellow cables run through the front and side of the frame.",
+            sandboxObservation: "An open laptop sits on a shelf beside a vertical wooden support. White and yellow cables run through the front and side of the frame.",
+            technicalBreakdown: "A shelf-level view of the laptop and the cables around it.",
+            defensePlaybook: [
+                "Source file: frame_095s.jpg",
+                "Video timestamp: 95 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A shelf-level view of the laptop and the cables around it.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-120s-laptop-keyboards",
+            title: "Homelab Tour: Laptop Keyboards from Above",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-120s-laptop-keyboards.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-120s-laptop-keyboards-thumb.jpg",
+            downloadFilename: "frame_120s.jpg",
+            tags: [
+                "Room Tour",
+                "Laptops",
+                "Shelving"
+            ],
+            summary: "Two laptop keyboard areas appear in a downward-looking view beside a crowded shelf of cables and equipment.",
+            sandboxObservation: "Two laptop keyboard areas appear in a downward-looking view beside a crowded shelf of cables and equipment.",
+            technicalBreakdown: "This angle shows how the laptops sit alongside the rest of the shelving.",
+            defensePlaybook: [
+                "Source file: frame_120s.jpg",
+                "Video timestamp: 120 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "This angle shows how the laptops sit alongside the rest of the shelving.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-145s-open-frame-rig",
+            title: "Homelab Tour: Open Frame Hardware, Side Angle",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-145s-open-frame-rig.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-145s-open-frame-rig-thumb.jpg",
+            downloadFilename: "frame_145s.jpg",
+            tags: [
+                "Room Tour",
+                "Open Hardware",
+                "Cabling"
+            ],
+            summary: "A tall assembly with red and blue supports stands beside a wooden shelf. Exposed hardware, a fan and cabling are visible along its side.",
+            sandboxObservation: "A tall assembly with red and blue supports stands beside a wooden shelf. Exposed hardware, a fan and cabling are visible along its side.",
+            technicalBreakdown: "A side angle of the open hardware arrangement already featured elsewhere in the gallery.",
+            defensePlaybook: [
+                "Source file: frame_145s.jpg",
+                "Video timestamp: 145 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A side angle of the open hardware arrangement already featured elsewhere in the gallery.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-170s-motion-transition",
+            title: "Homelab Tour: Motion-Blurred Shelf Transition",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-170s-motion-transition.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-170s-motion-transition-thumb.jpg",
+            downloadFilename: "frame_170s.jpg",
+            tags: [
+                "Room Tour",
+                "Video Frame",
+                "Shelving"
+            ],
+            summary: "This motion-blurred frame catches dark equipment, shelving and cables as the camera moves through the room.",
+            sandboxObservation: "This motion-blurred frame catches dark equipment, shelving and cables as the camera moves through the room.",
+            technicalBreakdown: "Preserved as a transition frame from the tour, with the movement visible in the image.",
+            defensePlaybook: [
+                "Source file: frame_170s.jpg",
+                "Video timestamp: 170 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "Preserved as a transition frame from the tour, with the movement visible in the image.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-190s-window-table",
+            title: "Homelab Tour: Small Device on the Window Table",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-190s-window-table.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-190s-window-table-thumb.jpg",
+            downloadFilename: "frame_190s.jpg",
+            tags: [
+                "Room Tour",
+                "Tabletop",
+                "Cabling"
+            ],
+            summary: "A small rectangular device rests on a wooden table near a window, with several cables running across the surface. Yellow accents are visible on the device.",
+            sandboxObservation: "A small rectangular device rests on a wooden table near a window, with several cables running across the surface. Yellow accents are visible on the device.",
+            technicalBreakdown: "A closing room-tour angle of the window-side tabletop.",
+            defensePlaybook: [
+                "Source file: frame_190s.jpg",
+                "Video timestamp: 190 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A closing room-tour angle of the window-side tabletop.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-002s-wall-display-fan",
+            title: "Homelab Tour: Wall Display beside the Fan",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-002s-wall-display-fan.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-002s-wall-display-fan-thumb.jpg",
+            downloadFilename: "homelab_t002s.jpg",
+            tags: [
+                "Room Tour",
+                "Wall Display",
+                "Desk Setup"
+            ],
+            summary: "A small wall-mounted digital display is visible above a light-colored surface, with the edge of a circular fan beside it.",
+            sandboxObservation: "A small wall-mounted digital display is visible above a light-colored surface, with the edge of a circular fan beside it.",
+            technicalBreakdown: "An opening view of the wall display and fan corner.",
+            defensePlaybook: [
+                "Source file: homelab_t002s.jpg",
+                "Video timestamp: 2 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "An opening view of the wall display and fan corner.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-010s-controller-surface",
+            title: "Homelab Tour: Controller on the Side Surface",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-010s-controller-surface.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-010s-controller-surface-thumb.jpg",
+            downloadFilename: "homelab_t010s.jpg",
+            tags: [
+                "Room Tour",
+                "Controller",
+                "Accessories"
+            ],
+            summary: "A game controller and a small dark device sit on a light-colored surface beside the wall. Cables trail away from the devices.",
+            sandboxObservation: "A game controller and a small dark device sit on a light-colored surface beside the wall. Cables trail away from the devices.",
+            technicalBreakdown: "A casual detail of the controller and nearby accessories in the room.",
+            defensePlaybook: [
+                "Source file: homelab_t010s.jpg",
+                "Video timestamp: 10 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A casual detail of the controller and nearby accessories in the room.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-022s-display-keyboard-wide",
+            title: "Homelab Tour: Display and Keyboard, Wider View",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-022s-display-keyboard-wide.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-022s-display-keyboard-wide-thumb.jpg",
+            downloadFilename: "homelab_t022s.jpg",
+            tags: [
+                "Room Tour",
+                "Display",
+                "Keyboard"
+            ],
+            summary: "A large dark display sits above a keyboard on a wooden work surface. The frame includes the cabinet or support below.",
+            sandboxObservation: "A large dark display sits above a keyboard on a wooden work surface. The frame includes the cabinet or support below.",
+            technicalBreakdown: "A wider view of the display corner than the earlier 20-second capture.",
+            defensePlaybook: [
+                "Source file: homelab_t022s.jpg",
+                "Video timestamp: 22 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A wider view of the display corner than the earlier 20-second capture.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-026s-side-display",
+            title: "Homelab Tour: Display Corner from the Side",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-026s-side-display.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-026s-side-display-thumb.jpg",
+            downloadFilename: "homelab_t026s.jpg",
+            tags: [
+                "Room Tour",
+                "Display",
+                "Shelving"
+            ],
+            summary: "The side of a display and the keyboard surface appear beside pale shelving. A green item rests above and cables hang along the side.",
+            sandboxObservation: "The side of a display and the keyboard surface appear beside pale shelving. A green item rests above and cables hang along the side.",
+            technicalBreakdown: "This angle shows the furniture and cable routing around the display corner.",
+            defensePlaybook: [
+                "Source file: homelab_t026s.jpg",
+                "Video timestamp: 26 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "This angle shows the furniture and cable routing around the display corner.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-050s-lower-cable-view",
+            title: "Homelab Tour: Lower Shelf and Cable Detail",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-050s-lower-cable-view.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-050s-lower-cable-view-thumb.jpg",
+            downloadFilename: "homelab_t050s.jpg",
+            tags: [
+                "Room Tour",
+                "Cabling",
+                "Video Frame"
+            ],
+            summary: "A downward-looking frame captures a patterned dark surface, the edge of shelving, and a small cluster of cables near the lower corner.",
+            sandboxObservation: "A downward-looking frame captures a patterned dark surface, the edge of shelving, and a small cluster of cables near the lower corner.",
+            technicalBreakdown: "A close angle from the lower part of the room-tour camera sweep.",
+            defensePlaybook: [
+                "Source file: homelab_t050s.jpg",
+                "Video timestamp: 50 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A close angle from the lower part of the room-tour camera sweep.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-062s-front-laptop",
+            title: "Homelab Tour: Front View of the Shelf Laptop",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-062s-front-laptop.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-062s-front-laptop-thumb.jpg",
+            downloadFilename: "homelab_t062s.jpg",
+            tags: [
+                "Room Tour",
+                "Laptop",
+                "Shelving"
+            ],
+            summary: "An open silver-colored laptop faces the camera from a wooden shelf, with a dark display reflecting warm light. Cabling hangs below.",
+            sandboxObservation: "An open silver-colored laptop faces the camera from a wooden shelf, with a dark display reflecting warm light. Cabling hangs below.",
+            technicalBreakdown: "A direct front view of the laptop in the shelving arrangement.",
+            defensePlaybook: [
+                "Source file: homelab_t062s.jpg",
+                "Video timestamp: 62 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A direct front view of the laptop in the shelving arrangement.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-074s-wall-ledge-phone",
+            title: "Homelab Tour: Phone on the Wall Ledge",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-074s-wall-ledge-phone.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-074s-wall-ledge-phone-thumb.jpg",
+            downloadFilename: "homelab_t074s.jpg",
+            tags: [
+                "Room Tour",
+                "Phone",
+                "Wall Ledge"
+            ],
+            summary: "A dark smartphone lies on a narrow light-colored ledge beside the wall, with the display edge and cables visible to the left.",
+            sandboxObservation: "A dark smartphone lies on a narrow light-colored ledge beside the wall, with the display edge and cables visible to the left.",
+            technicalBreakdown: "A close look at the ledge and one of the phones positioned around the setup.",
+            defensePlaybook: [
+                "Source file: homelab_t074s.jpg",
+                "Video timestamp: 74 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A close look at the ledge and one of the phones positioned around the setup.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-086s-controller-wall",
+            title: "Homelab Tour: Controller and Wall Cable",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-086s-controller-wall.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-086s-controller-wall-thumb.jpg",
+            downloadFilename: "homelab_t086s.jpg",
+            tags: [
+                "Room Tour",
+                "Controller",
+                "Cabling"
+            ],
+            summary: "A controller rests on a light-colored surface below a mostly bare wall. A pale cable runs upward toward a small dark fitting.",
+            sandboxObservation: "A controller rests on a light-colored surface below a mostly bare wall. A pale cable runs upward toward a small dark fitting.",
+            technicalBreakdown: "A wider angle on the controller corner and the cable above it.",
+            defensePlaybook: [
+                "Source file: homelab_t086s.jpg",
+                "Video timestamp: 86 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A wider angle on the controller corner and the cable above it.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-094s-laptop-side-cables",
+            title: "Homelab Tour: Laptop Shelf from the Side",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-094s-laptop-side-cables.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-094s-laptop-side-cables-thumb.jpg",
+            downloadFilename: "homelab_t094s.jpg",
+            tags: [
+                "Room Tour",
+                "Laptop",
+                "Shelving"
+            ],
+            summary: "An open dark laptop sits beside the wooden shelf upright. Cables cross the view and additional equipment is visible on the shelf below.",
+            sandboxObservation: "An open dark laptop sits beside the wooden shelf upright. Cables cross the view and additional equipment is visible on the shelf below.",
+            technicalBreakdown: "This side angle records the spacing between the laptop, upright and lower equipment.",
+            defensePlaybook: [
+                "Source file: homelab_t094s.jpg",
+                "Video timestamp: 94 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "This side angle records the spacing between the laptop, upright and lower equipment.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-114s-shelf-support-cables",
+            title: "Homelab Tour: Shelf Support and Hanging Cables",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-114s-shelf-support-cables.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-114s-shelf-support-cables-thumb.jpg",
+            downloadFilename: "homelab_t114s.jpg",
+            tags: [
+                "Room Tour",
+                "Shelving",
+                "Cabling"
+            ],
+            summary: "A wooden upright divides the frame, with hanging white cables, a yellow cable and a small light-colored device on the shelf below.",
+            sandboxObservation: "A wooden upright divides the frame, with hanging white cables, a yellow cable and a small light-colored device on the shelf below.",
+            technicalBreakdown: "A close view of the support and cable paths between shelf levels.",
+            defensePlaybook: [
+                "Source file: homelab_t114s.jpg",
+                "Video timestamp: 114 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A close view of the support and cable paths between shelf levels.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-138s-red-support-closeup",
+            title: "Homelab Tour: Red Support and Exposed Hardware",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-138s-red-support-closeup.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-138s-red-support-closeup-thumb.jpg",
+            downloadFilename: "homelab_t138s.jpg",
+            tags: [
+                "Room Tour",
+                "Open Hardware",
+                "Close-Up"
+            ],
+            summary: "A close-up shows a red vertical support beside exposed boards and wiring. Part of a hand is visible near the hardware.",
+            sandboxObservation: "A close-up shows a red vertical support beside exposed boards and wiring. Part of a hand is visible near the hardware.",
+            technicalBreakdown: "This frame captures a closer camera pass beside the open hardware assembly.",
+            defensePlaybook: [
+                "Source file: homelab_t138s.jpg",
+                "Video timestamp: 138 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "This frame captures a closer camera pass beside the open hardware assembly.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-154s-cables-laptop-edge",
+            title: "Homelab Tour: Cable Bundle beside a Laptop",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-154s-cables-laptop-edge.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-154s-cables-laptop-edge-thumb.jpg",
+            downloadFilename: "homelab_t154s.jpg",
+            tags: [
+                "Room Tour",
+                "Cabling",
+                "Laptop"
+            ],
+            summary: "A bundle of cables fills the space beside the wooden shelf, with the edge of a silver-colored laptop keyboard at the lower right.",
+            sandboxObservation: "A bundle of cables fills the space beside the wooden shelf, with the edge of a silver-colored laptop keyboard at the lower right.",
+            technicalBreakdown: "A close angle on the cable routing between the shelf equipment and laptop.",
+            defensePlaybook: [
+                "Source file: homelab_t154s.jpg",
+                "Video timestamp: 154 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A close angle on the cable routing between the shelf equipment and laptop.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-166s-two-laptops",
+            title: "Homelab Tour: Two Laptops beside the Rack",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-166s-two-laptops.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-166s-two-laptops-thumb.jpg",
+            downloadFilename: "homelab_t166s.jpg",
+            tags: [
+                "Room Tour",
+                "Laptops",
+                "Shelving"
+            ],
+            summary: "Two silver-colored laptop keyboard areas are visible one above the other beside a wooden shelf. Equipment and cables occupy the neighboring space.",
+            sandboxObservation: "Two silver-colored laptop keyboard areas are visible one above the other beside a wooden shelf. Equipment and cables occupy the neighboring space.",
+            technicalBreakdown: "A later downward-looking angle of the laptops alongside the rack.",
+            defensePlaybook: [
+                "Source file: homelab_t166s.jpg",
+                "Video timestamp: 166 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A later downward-looking angle of the laptops alongside the rack.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-182s-floor-cable-loop",
+            title: "Homelab Tour: Floor-Level Yellow Cable",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-182s-floor-cable-loop.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-182s-floor-cable-loop-thumb.jpg",
+            downloadFilename: "homelab_t182s.jpg",
+            tags: [
+                "Room Tour",
+                "Cabling",
+                "Floor View"
+            ],
+            summary: "A bright yellow cable loops near the floor beneath a light-colored panel, alongside darker leads and the edge of the shelving.",
+            sandboxObservation: "A bright yellow cable loops near the floor beneath a light-colored panel, alongside darker leads and the edge of the shelving.",
+            technicalBreakdown: "A floor-level detail from the camera tour.",
+            defensePlaybook: [
+                "Source file: homelab_t182s.jpg",
+                "Video timestamp: 182 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A floor-level detail from the camera tour.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
+        {
+            id: "homelab-tour-194s-colorful-frame",
+            title: "Homelab Tour: Colorful Frame Close-Up",
+            category: "homelab",
+            categoryLabel: "Homelab Room Tour",
+            badgeClass: "badge-info",
+            image: "images/gallery/homelab-tour-2026-11-26/homelab-tour-194s-colorful-frame.jpg",
+            thumb: "images/gallery/homelab-tour-2026-11-26/homelab-tour-194s-colorful-frame-thumb.jpg",
+            downloadFilename: "homelab_t194s.jpg",
+            tags: [
+                "Room Tour",
+                "Open Hardware",
+                "Close-Up"
+            ],
+            summary: "Colorful yellow, blue, green and black structural pieces surround exposed electronics in a close-up at the end of the tour.",
+            sandboxObservation: "Colorful yellow, blue, green and black structural pieces surround exposed electronics in a close-up at the end of the tour.",
+            technicalBreakdown: "A final detail of the colorful open hardware frame, viewed from above and to the side.",
+            defensePlaybook: [
+                "Source file: homelab_t194s.jpg",
+                "Video timestamp: 194 seconds.",
+                "Original dimensions: 2160 × 3840 pixels."
+            ],
+            playbookHeading: "Capture Details",
+            outcomeHeading: "What This Capture Shows",
+            containment: "A final detail of the colorful open hardware frame, viewed from above and to the side.",
+            actionText: "View Capture &amp; Details &rarr;",
+            observationHeading: "A Look Around the Homelab",
+            technicalHeading: "Tour Detail",
+            credit: "Original capture by Andrew Van Ek. Captioning and gallery integration with OpenAI Codex."
+        },
         {
             id: "muse-codex-credit-correction-verified",
             title: "Muse & Codex Relayed Collaboration (Part 1): Credit Correction, On-Screen Keyboard & Live v2.6.442",
@@ -1548,77 +2268,77 @@
             credit: "Original capture by Andrew Van Ek. Captions and gallery integration by OpenAI Codex; based on the image and original filename. General security background is linked where used."
 },
         {
-            "id": "pixel-buds-firmware-chrome-app",
-            "title": "Pixel Buds: firmware maintenance through a Chrome app",
-            "category": "hardware",
-            "categoryLabel": "Device Updates & Chrome Apps",
-            "badgeClass": "badge-info",
-            "image": "images/gallery/pixel-buds-firmware-chrome-app.png",
-            "tags": [
+            id: "pixel-buds-firmware-chrome-app",
+            title: "Pixel Buds: firmware maintenance through a Chrome app",
+            category: "hardware",
+            categoryLabel: "Device Updates & Chrome Apps",
+            badgeClass: "badge-info",
+            image: "images/gallery/pixel-buds-firmware-chrome-app.png",
+            tags: [
                 "Pixel Buds",
                 "Firmware Update",
                 "Chrome App",
                 "macOS"
             ],
-            "summary": "Updating Pixel Buds from my Mac through an installed Chrome app—one example of my hands-on work keeping a wide variety of devices up to date.",
-            "sandboxObservation": "The Pixel Buds firmware-update window is open on macOS and displays “Checking the update…” while reconnecting to the earbuds. The app window also shows an Uninstall control.",
-            "technicalBreakdown": "This capture brings together device firmware maintenance and Chrome app installation: the Pixel Buds update interface is running in its own app window on the Mac.",
-            "defensePlaybook": [
+            summary: "Updating Pixel Buds from my Mac through an installed Chrome app—one example of my hands-on work keeping a wide variety of devices up to date.",
+            sandboxObservation: "The Pixel Buds firmware-update window is open on macOS and displays “Checking the update…” while reconnecting to the earbuds. The app window also shows an Uninstall control.",
+            technicalBreakdown: "This capture brings together device firmware maintenance and Chrome app installation: the Pixel Buds update interface is running in its own app window on the Mac.",
+            defensePlaybook: [
                 "Keep a wide variety of devices current, including accessories such as earbuds.",
                 "Use the Pixel Buds interface as an installed Chrome app."
             ],
-            "containment": "Captured November 6, 2026. The screenshot records an update check and reconnection in progress; it does not show a completed firmware update.",
-            "credit": "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex.",
-            "thumb": "images/gallery/pixel-buds-firmware-chrome-app.png"
+            containment: "Captured November 6, 2026. The screenshot records an update check and reconnection in progress; it does not show a completed firmware update.",
+            thumb: "images/gallery/pixel-buds-firmware-chrome-app.png",
+            credit: "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex."
         },
         {
-            "id": "blueai-side-hustle-workflow",
-            "title": "BlueAI: exploring a side-hustle workflow",
-            "category": "media",
-            "categoryLabel": "BlueAI & Everyday Automation",
-            "badgeClass": "badge-info",
-            "image": "images/gallery/blueai-side-hustle-workflow.png",
-            "tags": [
+            id: "blueai-side-hustle-workflow",
+            title: "BlueAI: exploring a side-hustle workflow",
+            category: "media",
+            categoryLabel: "BlueAI & Everyday Automation",
+            badgeClass: "badge-info",
+            image: "images/gallery/blueai-side-hustle-workflow.png",
+            tags: [
                 "BlueAI",
                 "BlueStacks Air",
                 "AI Agent",
                 "Side Hustle"
             ],
-            "summary": "I work with BlueAI on a side-hustle project. This capture shows the BlueStacks Air environment with AI Agent mode activated.",
-            "sandboxObservation": "BlueStacks Air is open on the Mac with the banner “BlueStacks Air AI Agent mode activated.” The home screen shows the app search field and installed app shortcuts.",
-            "technicalBreakdown": "The screenshot documents the Android app environment used for my BlueAI work. The activated agent-mode banner is visible, while the specific task and its results are not shown.",
-            "defensePlaybook": [
+            summary: "I work with BlueAI on a side-hustle project. This capture shows the BlueStacks Air environment with AI Agent mode activated.",
+            sandboxObservation: "BlueStacks Air is open on the Mac with the banner “BlueStacks Air AI Agent mode activated.” The home screen shows the app search field and installed app shortcuts.",
+            technicalBreakdown: "The screenshot documents the Android app environment used for my BlueAI work. The activated agent-mode banner is visible, while the specific task and its results are not shown.",
+            defensePlaybook: [
                 "Explore a side-hustle workflow with BlueAI."
             ],
-            "containment": "Captured November 6, 2026. This is a view of the working environment; no earnings or completed business outcome are documented in the image.",
-            "playbookHeading": "What I Am Working On",
-            "outcomeHeading": "Progress &amp; Documented Outcome",
-            "credit": "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex.",
-            "thumb": "images/gallery/blueai-side-hustle-workflow.png"
+            containment: "Captured November 6, 2026. This is a view of the working environment; no earnings or completed business outcome are documented in the image.",
+            playbookHeading: "What I Am Working On",
+            outcomeHeading: "Progress &amp; Documented Outcome",
+            thumb: "images/gallery/blueai-side-hustle-workflow.png",
+            credit: "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex."
         },
         {
-            "id": "codex-windows-xp-vm-setup",
-            "title": "Codex on Windows: setting up an XP malware-testing VM",
-            "category": "vms",
-            "categoryLabel": "AI-Assisted Retro VM Setup",
-            "badgeClass": "badge-info",
-            "image": "images/gallery/codex-windows-xp-vm-setup.png",
-            "tags": [
+            id: "codex-windows-xp-vm-setup",
+            title: "Codex on Windows: setting up an XP malware-testing VM",
+            category: "vms",
+            categoryLabel: "AI-Assisted Retro VM Setup",
+            badgeClass: "badge-info",
+            image: "images/gallery/codex-windows-xp-vm-setup.png",
+            tags: [
                 "Codex CLI",
                 "Windows XP",
                 "VirtualBox",
                 "Malware Lab"
             ],
-            "summary": "Using ChatGPT’s Codex CLI on my Windows machine to help install and set up a Windows XP virtual machine for malware detonation and testing.",
-            "sandboxObservation": "Windows XP Professional Setup is running in Oracle VirtualBox behind a Codex CLI terminal. Codex reports restarting the saved VM and shows a successful VM-start message.",
-            "technicalBreakdown": "Codex is assisting with the VM setup from the Windows host. The visible terminal uses VirtualBox’s VBoxManage command-line interface to inspect and start the Windows XP VM while installation continues.",
-            "defensePlaybook": [
+            summary: "Using ChatGPT’s Codex CLI on my Windows machine to help install and set up a Windows XP virtual machine for malware detonation and testing.",
+            sandboxObservation: "Windows XP Professional Setup is running in Oracle VirtualBox behind a Codex CLI terminal. Codex reports restarting the saved VM and shows a successful VM-start message.",
+            technicalBreakdown: "Codex is assisting with the VM setup from the Windows host. The visible terminal uses VirtualBox’s VBoxManage command-line interface to inspect and start the Windows XP VM while installation continues.",
+            defensePlaybook: [
                 "Prepare a separate Windows XP VM for malware detonation and testing.",
                 "Complete and verify isolation checks before using the VM for that purpose."
             ],
-            "containment": "Captured November 5, 2026, during setup. The visible Codex message says desktop setup and final isolation checks are still pending. This image documents preparation, not a malware detonation or verification that containment is complete.",
-            "credit": "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex.",
-            "thumb": "images/gallery/codex-windows-xp-vm-setup.png"
+            containment: "Captured November 5, 2026, during setup. The visible Codex message says desktop setup and final isolation checks are still pending. This image documents preparation, not a malware detonation or verification that containment is complete.",
+            thumb: "images/gallery/codex-windows-xp-vm-setup.png",
+            credit: "Original screenshot and project context by Andrew Van Ek. Captions and gallery integration by OpenAI Codex."
         },
         // Hardware repair photographs and documentation: Andrew Van Ek, Microsoft Copilot, and OpenAI Codex.
         {
@@ -4048,6 +4768,8 @@
     var state = {
         currentIndex: 0,
         activeCategory: "all",
+        page: 1,
+        pageSize: 24,
         scale: 1.0,
         panX: 0,
         panY: 0,
@@ -4064,11 +4786,14 @@
         vms: "Virtual Machines & Retro OS",
         homelab: "Homelab, Cloud & Linux Fleet",
         media: "Creative Lab & Everyday Automation",
-        hardware: "Hardware Repair & Maintenance"
+        hardware: "Hardware Repair & Maintenance",
+        "xp-wallpapers": "Windows XP Wallpapers"
     };
 
     var dom = {
         grid: document.getElementById("gallery-grid"),
+        pagination: document.getElementById("gallery-pagination"),
+        pageStatus: document.getElementById("gallery-page-status"),
         filterBtns: document.querySelectorAll(".gallery-filter-btn"),
         mobileFilterBtn: document.getElementById("gallery-mobile-filter-btn"),
         mobileFilterModal: document.getElementById("gallery-mobile-category-modal"),
@@ -4092,15 +4817,75 @@
         xpBundleBar: document.getElementById("gallery-xp-bundle-bar")
     };
 
+    function updateCategoryCounts() {
+        var counts = { all: galleryItems.length };
+        galleryItems.forEach(function (item) {
+            counts[item.category] = (counts[item.category] || 0) + 1;
+        });
+        dom.filterBtns.forEach(function (button) {
+            var category = button.getAttribute("data-category");
+            button.textContent = categoryLabels[category] + " (" + (counts[category] || 0) + ")";
+        });
+        dom.mobileCategoryOptions.forEach(function (button) {
+            var count = button.querySelector(".cat-count");
+            if (count) count.textContent = counts[button.getAttribute("data-category")] || 0;
+        });
+    }
+
+    function filteredItems() {
+        return galleryItems.filter(function (item) {
+            return state.activeCategory === "all" || item.category === state.activeCategory;
+        });
+    }
+
+    function renderPagination(total, pageCount, start) {
+        if (dom.pageStatus) {
+            dom.pageStatus.textContent = "Showing " + (total ? start + 1 : 0) + "–" +
+                Math.min(start + state.pageSize, total) + " of " + total + " captures · Page " +
+                state.page + " of " + pageCount;
+        }
+        if (!dom.pagination) return;
+        dom.pagination.innerHTML = "";
+        dom.pagination.hidden = pageCount <= 1;
+        if (pageCount <= 1) return;
+
+        function addButton(label, page, disabled, current) {
+            var button = document.createElement("button");
+            button.type = "button";
+            button.className = "gallery-page-btn";
+            button.textContent = label;
+            button.disabled = disabled;
+            button.setAttribute("aria-label", /^\d+$/.test(label) ? "Page " + page : label + " page");
+            if (current) button.setAttribute("aria-current", "page");
+            button.addEventListener("click", function () {
+                state.page = page;
+                renderGrid();
+                if (dom.pageStatus) {
+                    dom.pageStatus.focus({ preventScroll: true });
+                    dom.pageStatus.scrollIntoView({ block: "start" });
+                }
+            });
+            dom.pagination.appendChild(button);
+        }
+        addButton("Previous", state.page - 1, state.page === 1, false);
+        for (var page = 1; page <= pageCount; page++) {
+            addButton(String(page), page, false, page === state.page);
+        }
+        addButton("Next", state.page + 1, state.page === pageCount, false);
+    }
+
     function renderGrid() {
         if (!dom.grid) return;
         dom.grid.innerHTML = "";
 
-        var filtered = galleryItems.filter(function (item) {
-            return state.activeCategory === "all" || item.category === state.activeCategory;
-        });
+        var filtered = filteredItems();
+        var pageCount = Math.max(1, Math.ceil(filtered.length / state.pageSize));
+        state.page = Math.max(1, Math.min(state.page, pageCount));
+        var start = (state.page - 1) * state.pageSize;
+        var pageItems = filtered.slice(start, start + state.pageSize);
+        renderPagination(filtered.length, pageCount, start);
 
-        filtered.forEach(function (item) {
+        pageItems.forEach(function (item) {
             var card = document.createElement("article");
             card.className = "gallery-card";
             card.id = "card-" + item.id;
@@ -4160,6 +4945,7 @@
     }
 
     function updateCategoryUI() {
+        state.page = 1;
         // Desktop buttons
         if (dom.filterBtns) {
             dom.filterBtns.forEach(function (btn) {
@@ -4307,11 +5093,11 @@
                 '  <a class="gallery-drawer-download-btn" href="' + drawerDlUrl + '" download="' + drawerDlName + '">&#8681; Download Original (' + drawerDlName + drawerDlSuffix + ')</a>',
                 '</div>',
                 '<div class="gallery-drawer-section section-sandbox">',
-                '  <h3><span class="section-icon">&#128300;</span> What Happened on the Workbench</h3>',
+                '  <h3><span class="section-icon">&#128300;</span> ' + (item.observationHeading || "What Happened on the Workbench") + '</h3>',
                 '  <p>' + item.sandboxObservation + '</p>',
                 '</div>',
                 '<div class="gallery-drawer-section">',
-                '  <h3><span class="section-icon">&#9881;</span> ' + (item.category === "hardware" ? "What I Learned" : "Technical Mechanics &amp; Architecture") + '</h3>',
+                '  <h3><span class="section-icon">&#9881;</span> ' + (item.technicalHeading || (item.category === "hardware" ? "What I Learned" : "Technical Mechanics &amp; Architecture")) + '</h3>',
                 '  <p>' + item.technicalBreakdown + '</p>',
                 '</div>',
                 '<div class="gallery-drawer-section section-defense">',
@@ -4354,6 +5140,9 @@
                         state.activeCategory = "all";
                         updateCategoryUI();
                     }
+                    var filtered = filteredItems();
+                    state.page = Math.floor(filtered.indexOf(galleryItems[i]) / state.pageSize) + 1;
+                    renderGrid();
                     openLightbox(i);
                     break;
                 }
@@ -4580,6 +5369,7 @@
     }
 
     function init() {
+        updateCategoryCounts();
         updateCategoryUI();
         initEvents();
         checkInitialHash();
