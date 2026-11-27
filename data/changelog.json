@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-26T23:17:11+00:00",
-  "sourceHead": "a15b7c310ccde9bf833f2779afb93a6b6be0ab06",
-  "count": 715,
+  "generatedAt": "2026-11-27T01:17:03+00:00",
+  "sourceHead": "bf63d44e3e584b6377b979049e95fe5007456ad8",
+  "count": 718,
   "releaseLabel": "v2.6.442",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "bf63d44e3e584b6377b979049e95fe5007456ad8",
+      "date": "2026-11-26T20:16:41-05:00",
+      "subject": "Add 44 selected quotes from PDF and keyboard collection",
+      "category": "Feature"
+    },
+    {
+      "sha": "04be285f3289ce4a61ef6661b9328f6531ff406a",
+      "date": "2026-11-26T19:47:43-05:00",
+      "subject": "Update Instrumentify and Stable Audio project listings",
+      "category": "Feature"
+    },
+    {
+      "sha": "2653aa7d7999ff29df9d5be453279ea5ecd1e7b2",
+      "date": "2026-11-26T18:17:12-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "a15b7c310ccde9bf833f2779afb93a6b6be0ab06",
       "date": "2026-11-26T17:47:44-05:00",
