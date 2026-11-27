@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T02:23:04+00:00",
-  "sourceHead": "7ada49fed3667be76bb84f57fff287e5b57ad92c",
-  "count": 730,
-  "releaseLabel": "v2.6.444",
+  "generatedAt": "2026-11-27T02:34:46+00:00",
+  "sourceHead": "dcb9e3c0d419c72e3a0e427d42e1d18634ad328c",
+  "count": 732,
+  "releaseLabel": "v2.6.445",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "dcb9e3c0d419c72e3a0e427d42e1d18634ad328c",
+      "date": "2026-11-26T21:34:43-05:00",
+      "subject": "Unify page frames, seasonal Sudoku controls and Fleet overview layout",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "700fda23d55281dbb14e671f12ebc4132314db91",
+      "date": "2026-11-26T21:23:04-05:00",
+      "subject": "Refresh release history after footer spacing refinement",
+      "category": "UI & UX"
+    },
     {
       "sha": "7ada49fed3667be76bb84f57fff287e5b57ad92c",
       "date": "2026-11-26T21:23:01-05:00",
