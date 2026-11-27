@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T02:01:58+00:00",
-  "sourceHead": "44926f165cffe5b24f7e3aecdc9ff59483b47adc",
-  "count": 726,
-  "releaseLabel": "v2.6.443",
+  "generatedAt": "2026-11-27T02:21:30+00:00",
+  "sourceHead": "47bd41008ce118b9d7c13a9b000df8f79ef43b29",
+  "count": 728,
+  "releaseLabel": "v2.6.444",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "47bd41008ce118b9d7c13a9b000df8f79ef43b29",
+      "date": "2026-11-26T21:21:27-05:00",
+      "subject": "Improve guided learning, seasonal contrast and responsive page layouts",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "9c76bf1ddec7fae1f4f8b1b50e5e96d6cc275d99",
+      "date": "2026-11-26T21:01:58-05:00",
+      "subject": "Refresh release history for v2.6.443 interface improvements",
+      "category": "Maintenance"
+    },
     {
       "sha": "44926f165cffe5b24f7e3aecdc9ff59483b47adc",
       "date": "2026-11-26T21:01:55-05:00",
