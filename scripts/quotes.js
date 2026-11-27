@@ -930,6 +930,358 @@
 			context: 'Dedicated to elusive Heisenbugs that vanish the moment an executive looks at the screen but strike reliably during technician observation.',
 			projectTitle: 'Homelab Diagnostics & Systems Administration',
 			projectHref: 'maintenance.html'
+		},
+		{
+			"id": "may-your-wi-fi-disconnect-only-after-the-file-upload-finishes",
+			"quote": "May your Wi-Fi disconnect only after the file upload finishes.",
+			"category": "Networking & DNS",
+			"context": "A small blessing for long uploads over unreliable wireless connections.",
+			"projectTitle": "Networking & DNS",
+			"projectHref": "projects.html"
+		},
+		{
+			"id": "may-your-dns-issues-be-diagnosed-before-three-hours-of-blaming-the-firewall",
+			"quote": "May your DNS issues be diagnosed before three hours of blaming the firewall.",
+			"category": "Networking & DNS",
+			"context": "For troubleshooting sessions that take the scenic route through the wrong network layer.",
+			"projectTitle": "Networking & DNS",
+			"projectHref": "projects.html"
+		},
+		{
+			"id": "every-cable-is-labeled-the-labels-are-wrong",
+			"quote": "Every cable is labeled. The labels are wrong.",
+			"category": "Networking & DNS",
+			"context": "A reminder to verify the physical connection before trusting the cable label.",
+			"projectTitle": "Networking & DNS",
+			"projectHref": "projects.html"
+		},
+		{
+			"id": "may-your-professor-use-the-same-grading-rubric-they-posted",
+			"quote": "May your professor use the same grading rubric they posted.",
+			"category": "College & Computing",
+			"context": "For assignments whose expectations stay consistent from submission to grading.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-the-professor-remember-the-assignment-exists-before-grading-it",
+			"quote": "May the professor remember the assignment exists before grading it.",
+			"category": "College & Computing",
+			"context": "A blessing for the less predictable corners of academic administration.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-your-classmates-read-the-discussion-prompt-before-discussing-something-else-entir",
+			"quote": "May your classmates read the discussion prompt before discussing something else entirely.",
+			"category": "College & Computing",
+			"context": "For discussion boards that stay within sight of the original question.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "the-probability-of-understanding-lecture-material-increases-dramatically-two-minutes",
+			"quote": "The probability of understanding lecture material increases dramatically two minutes after the exam ends.",
+			"category": "College & Computing",
+			"context": "For the sudden clarity that arrives just after handing in the exam.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-your-group-members-contribute-more-than-inspirational-messages",
+			"quote": "May your group members contribute more than inspirational messages.",
+			"category": "College & Computing",
+			"context": "For group chats that produce finished work as well as encouragement.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-the-dropped-student-announce-their-departure-before-the-final-presentation",
+			"quote": "May the dropped student announce their departure before the final presentation.",
+			"category": "College & Computing",
+			"context": "For discovering changes to the project team while there is still time to adapt.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-your-submission-portal-distinguish-between-submit-and-delete-everything",
+			"quote": "May your submission portal distinguish between \"Submit\" and \"Delete Everything.\"",
+			"category": "College & Computing",
+			"context": "A blessing for clear controls when the deadline is seconds away.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-your-snacks-outlast-your-homework",
+			"quote": "May your snacks outlast your homework.",
+			"category": "College & Computing",
+			"context": "For study sessions whose fuel supply lasts through the final problem.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-your-group-project-have-fewer-surprises-than-a-windows-update",
+			"quote": "May your group project have fewer surprises than a Windows Update.",
+			"category": "College & Computing",
+			"context": "For predictable teamwork and fewer last-minute changes.",
+			"projectTitle": "College & Computing Field Notes",
+			"projectHref": "about.html"
+		},
+		{
+			"id": "may-your-laptop-update-on-its-own-time-not-yours",
+			"quote": "May your laptop update on its own time, not yours.",
+			"category": "Philosophy & Mindset",
+			"context": "For operating-system updates that respect the work already in progress.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-your-temporary-fix-remain-temporary",
+			"quote": "May your \"temporary fix\" remain temporary.",
+			"category": "Philosophy & Mindset",
+			"context": "A reminder to return to the workaround before it becomes permanent infrastructure.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-the-printer-accept-your-pdf-without-interpreting-it-as-a-personal-challenge",
+			"quote": "May the printer accept your PDF without interpreting it as a personal challenge.",
+			"category": "Philosophy & Mindset",
+			"context": "For print jobs that reach paper without a negotiation.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-your-battery-percentage-and-your-confidence-percentage-never-reach-zero-simultane",
+			"quote": "May your battery percentage and your confidence percentage never reach zero simultaneously.",
+			"category": "Philosophy & Mindset",
+			"context": "A blessing for enough charge and resolve to finish the task.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-your-browser-tabs-one-day-experience-closure",
+			"quote": "May your browser tabs one day experience closure.",
+			"category": "Philosophy & Mindset",
+			"context": "For the research tabs that have quietly become long-term residents.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-your-docker-containers-stop-reproducing-while-you-re-asleep",
+			"quote": "May your Docker containers stop reproducing while you're asleep.",
+			"category": "Philosophy & Mindset",
+			"context": "For homelabs where the container inventory grows faster than the documentation.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "if-it-s-working-documentation-is-optional-if-it-breaks-documentation-never-existed",
+			"quote": "If it's working, documentation is optional. If it breaks, documentation never existed.",
+			"category": "Philosophy & Mindset",
+			"context": "A cautionary joke about the notes everyone wishes they had written.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-your-five-minute-task-inhabit-the-same-universe-as-five-actual-minutes",
+			"quote": "May your \"five-minute task\" inhabit the same universe as five actual minutes.",
+			"category": "Philosophy & Mindset",
+			"context": "For quick jobs that finish within the time originally promised.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-the-autocorrect-fear-you",
+			"quote": "May the autocorrect fear you.",
+			"category": "Philosophy & Mindset",
+			"context": "For keeping your intended words through the final keystroke.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-your-ctrl-key-remain-under-control",
+			"quote": "May your Ctrl key remain under control.",
+			"category": "Philosophy & Mindset",
+			"context": "A keyboard blessing for shortcuts that behave as expected.",
+			"projectTitle": "Systems & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-the-bug-reveal-itself-before-you-begin-rewriting-the-entire-application",
+			"quote": "May the bug reveal itself before you begin rewriting the entire application.",
+			"category": "The \"That's Weird...\" Collection",
+			"context": "For finding the actual fault before replacing code that was working.",
+			"projectTitle": "Troubleshooting Field Notes",
+			"projectHref": "maintenance.html"
+		},
+		{
+			"id": "may-your-backup-actually-contain-the-file-you-re-looking-for",
+			"quote": "May your backup actually contain the file you're looking for.",
+			"category": "Storage & Recovery",
+			"context": "For recoveries supported by complete, verified backups.",
+			"projectTitle": "Homelab Storage & Recovery",
+			"projectHref": "projects.html"
+		},
+		{
+			"id": "may-your-storage-space-exceed-your-collection-of-linux-isos",
+			"quote": "May your storage space exceed your collection of Linux ISOs.",
+			"category": "Storage & Recovery",
+			"context": "For keeping a little free space beyond the installation-image archive.",
+			"projectTitle": "Homelab Storage & Recovery",
+			"projectHref": "projects.html"
+		},
+		{
+			"id": "every-homelab-contains-one-machine-surviving-entirely-on-optimism-and-dust",
+			"quote": "Every homelab contains one machine surviving entirely on optimism and dust.",
+			"category": "Thermals & Hardware",
+			"context": "For the aging hardware that continues serving against the odds.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-the-server-you-forgot-exists-continue-to-do-its-job",
+			"quote": "May the server you forgot exists continue to do its job.",
+			"category": "Thermals & Hardware",
+			"context": "For the quiet node whose importance becomes apparent only when it stops.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-your-ups-discover-the-outage-before-your-servers-do",
+			"quote": "May your UPS discover the outage before your servers do.",
+			"category": "Thermals & Hardware",
+			"context": "A blessing for backup power that bridges the interruption.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-the-machine-carrying-responsibilities-it-never-agreed-to-continue-carrying-them-u",
+			"quote": "May the machine carrying responsibilities it never agreed to continue carrying them until fiscal year-end.",
+			"category": "Thermals & Hardware",
+			"context": "For overcommitted hardware keeping its unplanned services running.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-all-your-usb-plugs-work-on-the-first-attempt-violating-centuries-of-tradition",
+			"quote": "May all your USB plugs work on the first attempt, violating centuries of tradition.",
+			"category": "Thermals & Hardware",
+			"context": "For connectors that fit without the customary repeated rotation.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-all-the-keys-on-your-computer-actually-work",
+			"quote": "May all the keys on your computer actually work.",
+			"category": "Thermals & Hardware",
+			"context": "A simple blessing for a fully functioning keyboard.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-your-keyboard-never-choose-a-random-letter-to-retire",
+			"quote": "May your keyboard never choose a random letter to retire.",
+			"category": "Thermals & Hardware",
+			"context": "For keys that keep registering when the sentence needs them.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-caps-lock-activate-only-when-invited",
+			"quote": "May Caps Lock activate only when invited.",
+			"category": "Thermals & Hardware",
+			"context": "For messages that keep their intended capitalization.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-the-space-bar-register-every-space-and-no-additional-spaces",
+			"quote": "May the space bar register every space and no additional spaces.",
+			"category": "Thermals & Hardware",
+			"context": "For reliable word boundaries and no surprise double spaces.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-your-usb-device-connect-correctly-on-the-first-attempt",
+			"quote": "May your USB device connect correctly on the first attempt.",
+			"category": "Thermals & Hardware",
+			"context": "For peripherals that enumerate as soon as they are plugged in.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-your-firmware-updates-finish-before-your-patience-does",
+			"quote": "May your firmware updates finish before your patience does.",
+			"category": "Thermals & Hardware",
+			"context": "For progress bars that complete before your resolve runs out.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-your-laptop-charger-always-be-where-you-last-remember-seeing-it",
+			"quote": "May your laptop charger always be where you last remember seeing it.",
+			"category": "Thermals & Hardware",
+			"context": "For finding the power adapter before the low-battery warning.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-the-one-key-you-need-not-become-the-one-key-that-stops-working",
+			"quote": "May the one key you need not become the one key that stops working.",
+			"category": "Thermals & Hardware",
+			"context": "For the crucial keystroke arriving when it matters.",
+			"projectTitle": "Homelab Hardware & Reliability",
+			"projectHref": "fleet.html"
+		},
+		{
+			"id": "may-your-password-be-remembered-by-both-you-and-the-website",
+			"quote": "May your password be remembered by both you and the website.",
+			"category": "Security & Forensics",
+			"context": "For sign-ins where the remembered credential and stored account agree.",
+			"projectTitle": "Security & Everyday Computing",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "murphy-s-homelab-law-the-importance-of-a-backup-is-directly-proportional-to-how-recen",
+			"quote": "Murphy's Homelab Law: The importance of a backup is directly proportional to how recently you verified it.",
+			"category": "Laws & Axioms",
+			"context": "A homelab maxim about giving backup verification the attention recovery depends on.",
+			"projectTitle": "Homelab Laws & Axioms",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "vanek-s-law-of-infrastructure-the-device-with-the-strangest-hostname-will-become-miss",
+			"quote": "Vanek's Law of Infrastructure: The device with the strangest hostname will become mission critical.",
+			"category": "Laws & Axioms",
+			"context": "For oddly named machines that acquire indispensable services.",
+			"projectTitle": "Homelab Laws & Axioms",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "the-odds-of-finding-a-solution-online-are-inversely-proportional-to-the-urgency-of-th",
+			"quote": "The odds of finding a solution online are inversely proportional to the urgency of the problem.",
+			"category": "Laws & Axioms",
+			"context": "For urgent faults that seem to leave the fewest useful search results.",
+			"projectTitle": "Homelab Laws & Axioms",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "the-law-of-last-minute-stability-a-system-may-operate-flawlessly-for-months-but-only",
+			"quote": "The Law of Last-Minute Stability: A system may operate flawlessly for months, but only becomes truly confident in itself once a manager schedules a demo. At that exact moment, it crashes.",
+			"category": "Laws & Axioms",
+			"context": "For demonstrations that coincide with the first failure in months.",
+			"projectTitle": "Homelab Laws & Axioms",
+			"projectHref": "quotes.html"
+		},
+		{
+			"id": "may-your-telemetry-contain-data-instead-of-increasingly-creative-error-messages",
+			"quote": "May your telemetry contain data instead of increasingly creative error messages.",
+			"category": "Space & Telemetry",
+			"context": "A blessing for clear, useful measurements from remote systems.",
+			"projectTitle": "Space & Telemetry",
+			"projectHref": "quotes.html"
 		}
 	];
 
