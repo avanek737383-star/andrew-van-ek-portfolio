@@ -19,6 +19,8 @@
     var highlightNodes = new Set();
     var highlightLinks = new Set();
     var hoverNode = null;
+    var hoverEnterTimer = null;
+    var hoverLeaveTimer = null;
 
     // Smooth hover transition state
     var hoverFactor = 0; // 0.0 (no hover) to 1.0 (fully highlighted)
@@ -73,7 +75,7 @@
 
         var rgb = getRgb(baseColor);
         // Smoothly fade alpha from 1.0 down to 0.18 based on cubic hover factor
-        var alpha = 1.0 - (0.82 * hoverFactor);
+        var alpha = 1.0 - (0.55 * hoverFactor);
         return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + alpha.toFixed(3) + ")";
     }
 
@@ -110,14 +112,14 @@
             hoverAnimId = null;
         }
 
-        var target = (hoverNode !== null || highlightNodes.size > 0) ? 1.0 : 0.0;
+        var target = hoverNode !== null ? 1.0 : 0.0;
         var startVal = hoverFactor;
         var startTime = performance.now();
-        var duration = 260; // ms transition
+        var duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 420;
 
         function animate(now) {
             var elapsed = now - startTime;
-            var p = Math.min(1.0, elapsed / duration);
+            var p = duration === 0 ? 1 : Math.min(1.0, elapsed / duration);
             // Smooth cubic ease out
             var ease = 1 - Math.pow(1 - p, 3);
             hoverFactor = startVal + (target - startVal) * ease;
@@ -134,6 +136,7 @@
             } else {
                 hoverFactor = target;
                 hoverAnimId = null;
+                if (target === 0) { highlightNodes.clear(); highlightLinks.clear(); }
             }
         }
 
@@ -159,13 +162,34 @@
         }
     }
 
+    function cancelHoverTimers() {
+        clearTimeout(hoverEnterTimer);
+        clearTimeout(hoverLeaveTimer);
+        hoverEnterTimer = null;
+        hoverLeaveTimer = null;
+    }
+
     function clearHoverState() {
+        cancelHoverTimers();
         if (!hoverNode && highlightNodes.size === 0) return;
         hoverNode = null;
-        highlightNodes.clear();
-        highlightLinks.clear();
         container.style.cursor = "default";
+        // Preserve the selected neighborhood during the fade so it does not blink.
         startHoverTransition();
+    }
+
+    function handleNodeHover(node) {
+        cancelHoverTimers();
+        if (node === hoverNode && node !== null) return;
+        if (!node) {
+            hoverLeaveTimer = setTimeout(clearHoverState, 380);
+            return;
+        }
+        // Passing over a node while navigating should not immediately dim the map.
+        hoverEnterTimer = setTimeout(function () {
+            hoverEnterTimer = null;
+            applyNodeHover(node);
+        }, 220);
     }
 
     function initGraph(data) {
@@ -177,6 +201,8 @@
         }
 
         Graph = ForceGraph3D()(container)
+            .width(container.clientWidth)
+            .height(container.clientHeight)
             .graphData(filterGraphData(data))
             .backgroundColor("#040711")
             .showNavInfo(false)
@@ -226,8 +252,13 @@
 
             controls.addEventListener("start", function () {
                 stopAutoRotationPermanently();
+                clearHoverState();
             });
         }
+
+        new ResizeObserver(function () {
+            Graph.width(container.clientWidth).height(container.clientHeight);
+        }).observe(container);
 
         setupInteractionListeners();
         setupSearch();
@@ -263,7 +294,7 @@
         return { nodes: validNodes, links: validLinks };
     }
 
-    function handleNodeHover(node) {
+    function applyNodeHover(node) {
         if ((!node && !highlightNodes.size) || (node && hoverNode === node)) return;
 
         highlightNodes.clear();
@@ -519,16 +550,16 @@
         container.addEventListener("wheel", stopAutoRotationPermanently, { passive: true });
         container.addEventListener("touchstart", stopAutoRotationPermanently, { passive: true });
 
-        // Unstick hover immediately when cursor leaves canvas or enters any HUD overlay or drawer
-        container.addEventListener("mouseleave", clearHoverState);
+        // Give the pointer a short grace period when leaving the canvas or entering an overlay.
+        container.addEventListener("mouseleave", function () { handleNodeHover(null); });
 
         if (drawer) {
-            drawer.addEventListener("mouseenter", clearHoverState);
+            drawer.addEventListener("mouseenter", function () { handleNodeHover(null); });
         }
 
         var hudOverlays = document.querySelectorAll(".hud-top-bar, .hud-filter-bar, .hud-actions-toolbar, .hud-legend, .hud-search-box");
         hudOverlays.forEach(function (el) {
-            el.addEventListener("mouseenter", clearHoverState);
+            el.addEventListener("mouseenter", function () { handleNodeHover(null); });
         });
     }
 

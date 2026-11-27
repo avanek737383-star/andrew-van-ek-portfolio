@@ -19,3 +19,7 @@ body.repair-shop-body footer{display:block}
  body footer:has(>p.footer-pill)>p.footer-pill:last-child{padding-right:0}
  body footer:has(>p.footer-pill)>p.footer-pill+p.footer-pill{border-left:1px solid var(--footer-pill-border)}
 }
+@media(min-width:769px){
+ body footer:has(>p.footer-pill)>p.footer-pill:has(time){flex-grow:1.45}
+ body footer:has(>p.footer-pill)>p.footer-version{flex-grow:.8}
+}

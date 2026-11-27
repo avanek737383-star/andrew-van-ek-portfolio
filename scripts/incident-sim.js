@@ -6,10 +6,10 @@
 	var scenarios = {
 		dns_blackhole: {
 			id: 'dns_blackhole',
-			title: 'Incident 01: DNS Blackhole & Tailscale Conflict',
-			host: 'avanek@macbook-pro:~',
-			prompt: 'avanek@macbook-pro:~$',
-			brief: '<p><strong>Incident Summary:</strong> Browsing suddenly failed across your Mac workstation (<code>DNS_PROBE_FINISHED_BAD_CONFIG</code>). Tailscale mesh peers are reachable by IP, but standard website URLs return <code>SERVFAIL</code>.</p><p><strong>Target Setup:</strong> macOS machine running an encrypted AdGuard DNS profile alongside an active Tailscale WireGuard client.</p>',
+			title: 'Websites will not load on my M1 MacBook Air',
+			host: 'avanek@macbook-air-m1:~',
+			prompt: 'avanek@macbook-air-m1:~$',
+			brief: '<p><strong>Incident Summary:</strong> Browsing suddenly failed across your M1 MacBook Air (<code>DNS_PROBE_FINISHED_BAD_CONFIG</code>). Tailscale mesh peers are reachable by IP, but standard website URLs return <code>SERVFAIL</code>.</p><p><strong>Target Setup:</strong> M1 MacBook Air running an encrypted AdGuard DNS profile alongside an active Tailscale WireGuard client.</p>',
 			actions: [
 				{
 					cmd: 'scutil --dns',
@@ -38,7 +38,7 @@
 				{
 					cmd: 'reorder-dns-priority',
 					label: 'reorder-dns-priority',
-					desc: 'Permanent Fix: Promote AdGuard profile order above VPN tunnel',
+					desc: 'Simulated settings workflow: adjust the competing DNS configurations',
 					type: 'fix_correct'
 				}
 			],
@@ -52,8 +52,8 @@
 					explanation: '💡 WHAT THIS COMMAND DID & WHAT IT FOUND:\n`dig` queried your local router (192.168.0.201) directly on port 53. It returned IP addresses in 12ms! This proves your AdGuard Home server is 100% HEALTHY and working fine. The bug is inside your Mac\'s internal priority list, not your home server.'
 				},
 				'tailscale status': {
-					output: '100.87.81.52   nucwol2-0--hdd  avanek@  linux   active; direct 192.168.0.202:41641\n100.101.40.12  macbook-pro     avanek@  macOS   active; self',
-					explanation: '💡 WHAT THIS COMMAND DID & WHAT IT FOUND:\n`tailscale status` checked the WireGuard mesh tunnel. It shows the NUC and MacBook Pro are happily connected. The VPN tunnel itself is healthy; it just grabbed DNS priority without asking.'
+					output: '100.87.81.52   nucwol2-0--hdd  avanek@  linux   active; direct 192.168.0.202:41641\n100.101.40.12  macbook-air-m1  avanek@  macOS   active; self',
+					explanation: '💡 WHAT THIS COMMAND DID & WHAT IT FOUND:\n`tailscale status` checked the WireGuard mesh tunnel. It shows the NUC and M1 MacBook Air are happily connected. The VPN tunnel itself is healthy; it just grabbed DNS priority without asking.'
 				},
 				'sudo networksetup -setdnsservers Wi-Fi 192.168.0.201': {
 					output: '[WARN] Wi-Fi DNS adjusted to 192.168.0.201, but scutil reveals macOS configuration profiles override standard Wi-Fi network settings. Symptom persists.',
@@ -69,7 +69,7 @@
 		},
 		code10_desync: {
 			id: 'code10_desync',
-			title: 'Incident 02: Qualcomm Baseband Serial Hang (Code 10)',
+			title: 'A phone USB connection stopped working',
 			host: 'Owner@WINDOWS10-DESKTOP:C:\\Users\\Owner',
 			prompt: 'PS C:\\Users\\Owner> ',
 			brief: '<p><strong>Incident Summary:</strong> During non-volatile RAM diagnostics on an LG Accolade (VX5600) via <code>WriteProgram</code>, serial port COM2 became unresponsive mid-write. Device Manager flags the USB controller with a yellow exclamation point: <em>Code 10: This device cannot start</em>.</p><p><strong>Target Architecture:</strong> Windows 10 host communicating via virtualized USB-to-UART COM port with Qualcomm AMSS baseband.</p>',
@@ -95,7 +95,7 @@
 				{
 					cmd: 'Cycle-ComPort-DeviceManager',
 					label: 'Cycle-ComPort-DeviceManager',
-					desc: 'Permanent Fix: Disable & re-enable COM2 in Device Manager',
+					desc: 'Simulated Device Manager workflow: disable and re-enable COM2',
 					type: 'fix_correct'
 				}
 			],
@@ -109,7 +109,7 @@
 					explanation: '💡 WHAT THIS COMMAND DID & WHAT IT FOUND:\nPython attempted to open COM2 with PySerial. Windows returned "Access is denied" because a dead zombie thread is still clinging to the old serial handle.'
 				},
 				'Restart-Computer -Force': {
-					output: '[FAIL] Host reboot cleared RAM, but unsaved ESN write buffer was corrupted and phone was left in a hanging diagnostic state. SLA heavily penalized!',
+					output: '[FAIL] Host reboot cleared RAM, but unsaved ESN write buffer was corrupted and phone was left in a hanging diagnostic state. Practice score reduced!',
 					explanation: '💡 WHY THIS WAS DANGEROUS:\nRebooting your whole computer while a phone is in diagnostic flash mode interrupts cellular memory writes and can brick the phone\'s firmware. Always try soft-restarting the specific driver first!'
 				},
 				'Cycle-ComPort-DeviceManager': {
@@ -122,7 +122,7 @@
 		},
 		scsi_shift: {
 			id: 'scsi_shift',
-			title: 'Incident 03: The Ghost Drive: Sabrent SATA Bus Shift',
+			title: 'A drive disappeared after reconnecting',
 			host: 'avanek@alpinestorage:~',
 			prompt: 'alpinestorage:~$ ',
 			brief: '<p><strong>Incident Summary:</strong> The intranet gathering slideshow service suddenly dropped with error 500. Logs indicate directory <code>/media/onefive</code> is unreadable. Guests are arriving in 15 minutes.</p><p><strong>Target Architecture:</strong> Alpine Linux Intel NUC gateway with external Sabrent USB 3.0 SATA enclosure.</p>',
@@ -148,7 +148,7 @@
 				{
 					cmd: 'fix-fstab-uuid',
 					label: 'fix-fstab-uuid',
-					desc: 'Permanent Fix: Bind mount to persistent UUID in /etc/fstab',
+					desc: 'Simulated configuration workflow: use a stable drive identifier',
 					type: 'fix_correct'
 				}
 			],
@@ -175,7 +175,7 @@
 		},
 		thermal_runaway: {
 			id: 'thermal_runaway',
-			title: 'Incident 04: 100°C Thermal Runaway on Diffusion Batch',
+			title: 'A compute laptop is overheating',
 			host: 'avanek@debian-mac:~',
 			prompt: 'avanek@debian-mac:~$ ',
 			brief: '<p><strong>Incident Summary:</strong> Mid-2011 MacBook Pro Debian node locked up during a 500-image batch render. CPU fan is howling at maximum 6,200 RPM, core temperature pegged at 99&deg;C, and thermal throttling dropped frequency to 800 MHz.</p><p><strong>Target Architecture:</strong> Headless 2011 Apple aluminum unibody compute node with Intel Core i5 Sandy Bridge.</p>',
@@ -201,7 +201,7 @@
 				{
 					cmd: 'apply-ptm7950-repaste',
 					label: 'apply-ptm7950-repaste',
-					desc: 'Hardware Fix: Repaste CPU die with Honeywell PTM7950 pad',
+					desc: 'Simulated physical repair: replace the CPU thermal interface',
 					type: 'fix_correct'
 				}
 			],
@@ -228,7 +228,7 @@
 		},
 		monero_filter: {
 			id: 'monero_filter',
-			title: 'Incident 05: Cryptojacking False-Positive: Stratum Pool Down',
+			title: 'A DNS filter blocked the mining pool',
 			host: 'root@alpinestorage:~# ',
 			prompt: 'alpinestorage:~# ',
 			brief: '<p><strong>Incident Summary:</strong> The Lenovo Yoga bare-board rig and Samsung S4 Mini miners suddenly stopped reporting shares. Mining client outputs: <code>Socket error: connection timed out to pool.moneroocean.stream:10128</code>.</p><p><strong>Target Architecture:</strong> Centralized AdGuard Home DNS sinkhole protecting local home network.</p>',
@@ -254,7 +254,7 @@
 				{
 					cmd: 'adguard-unblock-moneroocean',
 					label: 'adguard-unblock-moneroocean',
-					desc: 'Permanent Fix: Add custom whitelist rule in AdGuard Home',
+					desc: 'Simulated settings workflow: add an exception for this pool',
 					type: 'fix_correct'
 				}
 			],
@@ -300,6 +300,8 @@
 	var briefTitleEl = document.getElementById('brief-title');
 	var briefBodyEl = document.getElementById('brief-body');
 	var actionButtonsEl = document.getElementById('action-buttons');
+	var fixButtonsEl = document.getElementById('fix-buttons');
+	var fixStepsEl = document.getElementById('fix-steps');
 	var postmortemCardEl = document.getElementById('postmortem-card');
 	var postmortemContentEl = document.getElementById('postmortem-content');
 
@@ -351,7 +353,7 @@
 
 		updateSlaDisplay();
 		hudStatusEl.className = 'hud-status-badge';
-		hudStatusEl.textContent = 'ACTIVE INCIDENT';
+		hudStatusEl.textContent = 'INVESTIGATING';
 
 		briefTitleEl.textContent = currentScenario.title;
 		briefBodyEl.innerHTML = currentScenario.brief;
@@ -361,21 +363,24 @@
 
 		termHistoryLogEl.innerHTML = '';
 		appendOutput('*** INCIDENT COMMAND INITIALIZED: ' + currentScenario.title.toUpperCase() + ' ***', 'term-warn');
-		appendOutput('Type a command below or click any of the suggested diagnostic buttons to inspect system state.\nEvery command will explain what it found in plain English!', 'term-dim');
+		appendOutput('Start with a check under Investigate. Read its result here, then open the repair steps when you have a theory.\nType help for commands supported by this problem. This is a scripted practice terminal.', 'term-dim');
 		appendOutput('', '');
 
 		postmortemCardEl.style.display = 'none';
 
 		// Render action buttons with subtitles
 		actionButtonsEl.innerHTML = '';
+		fixButtonsEl.innerHTML = '';
+		fixStepsEl.open = false;
 		currentScenario.actions.forEach(function (act) {
 			var btn = document.createElement('button');
 			btn.type = 'button';
 			btn.className = 'action-btn';
-			var badgeText = act.type === 'diag' ? 'DIAGNOSTIC' : (act.type === 'fix_correct' ? 'RESOLUTION' : 'ACTION');
+			var workflow = ['reorder-dns-priority', 'Cycle-ComPort-DeviceManager', 'fix-fstab-uuid', 'apply-ptm7950-repaste', 'adguard-unblock-moneroocean'].indexOf(act.cmd) !== -1;
+			var badgeText = workflow ? 'SIM STEP' : (act.type === 'diag' ? 'CHECK' : 'TRY');
 			
 			btn.innerHTML = '<div>' +
-				'<div class="btn-cmd-title">' + act.label + '</div>' +
+				'<code class="btn-cmd-title">' + act.cmd + '</code>' +
 				'<div class="btn-cmd-desc">' + act.desc + '</div>' +
 				'</div>' +
 				'<span class="btn-badge">' + badgeText + '</span>';
@@ -383,7 +388,7 @@
 			btn.addEventListener('click', function () {
 				executeCommand(act.cmd);
 			});
-			actionButtonsEl.appendChild(btn);
+			(act.type === 'diag' ? actionButtonsEl : fixButtonsEl).appendChild(btn);
 		});
 
 		termInputEl.value = '';
@@ -393,7 +398,7 @@
 	function updateSlaDisplay() {
 		sla = Math.max(0, sla);
 		slaFillEl.style.width = sla + '%';
-		slaTextEl.textContent = sla + '% Health';
+		slaTextEl.textContent = sla + ' / 100 points';
 		if (sla > 65) {
 			slaFillEl.style.backgroundColor = '#3fb950';
 		} else if (sla > 35) {
@@ -403,14 +408,14 @@
 		}
 
 		if (sla <= 0 && !isSolved) {
-			hudStatusEl.textContent = 'SLA BREACHED';
+			hudStatusEl.textContent = 'KEEP PRACTICING';
 			hudStatusEl.className = 'hud-status-badge';
-			appendOutput('\n[FATAL] SLA DEGRADED TO 0%. Incident escalated to engineering management.', 'term-err');
+			appendOutput('\nYour practice score reached zero. You can still investigate and finish, or restart for a fresh attempt.', 'term-warn');
 		}
 	}
 
 	function executeCommand(rawCmd) {
-		var cmd = rawCmd.trim();
+		var cmd = rawCmd.trim().replace(/\s+/g, ' ');
 		if (!cmd) return;
 
 		// Add to history
@@ -425,7 +430,12 @@
 		var lower = cmd.toLowerCase();
 
 		if (lower === 'help') {
-			appendOutput('\nAvailable System Commands:\n  help        - Show this reference manual\n  clear       - Wipe terminal scrollback\n  history     - Display command history for this session\n  status      - Display current SLA and incident state\n  lsblk       - View block storage topology\n  dmesg       - Dump kernel ring buffer\n  sensors     - Read hardware temperature monitors\n  dig <host>  - Execute DNS lookup\n  tailscale   - Query Tailscale mesh status\n', 'term-dim');
+            var reference = 'This is a scripted simulator, not a full shell.\n\nAlways available:\n  help     Show commands for this problem\n  clear    Clear terminal output\n  history  Show your typed and clicked commands\n  status   Show practice score and progress\n\nChecks for this problem:\n';
+            currentScenario.actions.forEach(function (act) { if (act.type === 'diag') reference += '  ' + act.cmd + '\n    ' + act.desc + '\n'; });
+            reference += '\nRepair attempts for this problem:\n';
+            currentScenario.actions.forEach(function (act) { if (act.type !== 'diag') reference += '  ' + act.cmd + '\n'; });
+            reference += '\nSIM STEP buttons represent a settings workflow or physical repair. Their names are simulator shortcuts, not installed shell commands.\nUnsupported commands do not cost points. Risky repair attempts cost 25 points.';
+            appendOutput(reference, 'term-dim');
 			return;
 		}
 
@@ -444,7 +454,12 @@
 		}
 
 		if (lower === 'status') {
-			appendOutput('SLA Health: ' + sla + '% | Incident: ' + currentScenario.title + ' | State: ' + (isSolved ? 'RESOLVED' : 'UNRESOLVED'), 'term-dim');
+			appendOutput('Practice score: ' + sla + '/100 | Incident: ' + currentScenario.title + ' | State: ' + (isSolved ? 'RESOLVED' : 'UNRESOLVED'), 'term-dim');
+			return;
+		}
+
+		if (isSolved && currentScenario.actions.some(function (a) { return a.cmd === cmd; })) {
+			appendOutput('This practice incident is already resolved. Restart it to explore the original failure again.', 'term-succ');
 			return;
 		}
 
@@ -459,25 +474,23 @@
 				appendOutput('\n' + explanation, 'term-explanation');
 			}
 
-			if (cmd === currentScenario.solutionCmd) {
+			if (cmd === currentScenario.solutionCmd && !isSolved) {
 				isSolved = true;
 				hudStatusEl.className = 'hud-status-badge ok';
 				hudStatusEl.textContent = 'RESOLVED';
-				appendOutput('\n>>> INCIDENT SUCCESSFULLY REMEDIATED! Final SLA: ' + sla + '% <<<', 'term-succ');
+				appendOutput('\n>>> PROBLEM SOLVED! Practice score: ' + sla + '/100 <<<' , 'term-succ');
 				postmortemCardEl.style.display = 'block';
 				postmortemContentEl.innerHTML = currentScenario.postmortem;
 			} else {
 				var act = currentScenario.actions.find(function (a) { return a.cmd === cmd; });
-				if (act && act.type === 'fix_bad') {
+				if (act && act.type === 'fix_bad' && !isSolved) {
 					sla -= 25;
 					updateSlaDisplay();
 				}
 			}
 		} else {
 			// Unknown command
-			sla -= 5;
-			updateSlaDisplay();
-			appendOutput('bash: ' + cmd + ': command not found or invalid diagnostic query. (-5% SLA penalty)\n💡 Tip: Type "help" or click one of the suggested buttons on the left!', 'term-err');
+			appendOutput('This simulator has no scripted response for: ' + cmd + '\nType help for the exact commands supported by this problem, or choose a check. No points lost.', 'term-warn');
 		}
 	}
 

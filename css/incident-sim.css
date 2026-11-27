@@ -492,3 +492,60 @@
 	font-family: 'Inter', sans-serif;
 	margin-top: 0.15rem;
 }
+/* Match the portfolio's light cards; keep the terminal as its own dark surface. */
+body.sim-body {
+    --sim-bg: #f8fafc;
+    --sim-panel-bg: #ffffff;
+    --sim-border: #d5e0eb;
+    --sim-text: #334155;
+    --sim-text-bright: #18334d;
+    --sim-accent: #155b97;
+    --sim-green: #18723b;
+    --sim-red: #b42318;
+    --sim-ui-accent: var(--s-primary, #155b97);
+    --sim-ui-tint: var(--s-tint, #eef5fb);
+    background: #ffffff;
+}
+body.sim-body .sim-subtitle { max-width: none; margin: 0 0 18px; color: #475569; }
+body.sim-body .sim-eyebrow { color: var(--sim-ui-accent) !important; }
+.sim-start-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; padding: 0; margin: 20px 0; list-style: none; counter-reset: sim-step; }
+.sim-start-steps li { counter-increment: sim-step; background: var(--sim-ui-tint); border: 1px solid var(--sim-border); border-top: 3px solid var(--sim-ui-accent); border-radius: 8px; padding: 14px 16px; font-size: .9rem; color: #334155; }
+.sim-start-steps strong { display: block; margin-bottom: 5px; color: #18334d; }
+.sim-start-steps strong::before { content: counter(sim-step) '. '; }
+.sim-practice-note { color: #526375; font-size: .85rem; line-height: 1.65; }
+.sim-hud { grid-template-columns: 1fr 1fr minmax(0,1.6fr) auto; box-shadow: 0 3px 14px #152f4910; }
+.hud-col, .sim-brief-col, .sim-terminal-col { min-width: 0; }
+body.sim-body .hud-label, body.sim-body .actions-hint, body.sim-body .brief-timestamp, body.sim-body .btn-cmd-desc { color: #526375; }
+body.sim-body .sim-scenario-select { width: 100%; min-width: 0; background: var(--sim-ui-tint); color: #18334d; border: 1px solid var(--sim-ui-accent); line-height: 1.5; }
+body.sim-body .sim-btn.reset { background: var(--sim-ui-accent); color: #fff; border-color: var(--sim-ui-accent); }
+body.sim-body .sim-btn.reset:hover { filter: brightness(.92); }
+body.sim-body .brief-header { border-color: var(--sim-border); }
+body.sim-body .brief-header h3, body.sim-body .suggested-actions-card h4 { background: var(--sim-ui-accent); color: #fff !important; padding: 9px 12px; border: 0; border-radius: 6px; line-height: 1.5; }
+body.sim-body .brief-body code, body.sim-body .postmortem-content code { background: var(--sim-ui-tint); color: #234660; border-color: var(--sim-border); overflow-wrap: anywhere; }
+body.sim-body .action-btn { background: #fff; color: #334155; border-color: var(--sim-border); gap: 10px; min-width: 0; }
+body.sim-body .action-btn > div { min-width: 0; }
+body.sim-body .action-btn:hover { background: var(--sim-ui-tint); border-color: var(--sim-ui-accent); }
+body.sim-body .btn-cmd-title { display: block; color: #18334d; font-family: 'Fira Code', monospace; overflow-wrap: anywhere; font-size: .82rem; }
+body.sim-body .btn-badge { flex-shrink: 0; color: #fff; background: var(--sim-ui-accent); }
+.sim-fix-steps { border-top: 1px solid var(--sim-border); padding-top: 15px; margin-top: 18px; }
+.sim-fix-steps summary { cursor: pointer; font-weight: 700; color: #18334d; padding: 6px 0; }
+body.sim-body .postmortem-card h4 { color: #18334d !important; }
+body.sim-body :is(button, select, summary, input):focus-visible { outline: 3px solid var(--sim-ui-accent); outline-offset: 3px; }
+body.sim-body .terminal-window { --sim-text: #c9d1d9; --sim-text-bright: #f0f6fc; --sim-border: #30363d; --sim-accent: #79c0ff; --sim-green: #6bd883; --sim-red: #ff8b82; --sim-amber: #eac15b; color: var(--sim-text); box-shadow: 0 6px 20px #152f4925; }
+body.sim-body .terminal-window input { color: #f0f6fc; background: transparent; min-width: 0; width: 100%; }
+.terminal-titlebar { gap: 10px; }
+.terminal-host { overflow-wrap: anywhere; text-align: center; }
+.terminal-dots { flex-shrink: 0; }
+.term-entry { flex-wrap: wrap; }
+.term-cmd-text { overflow-wrap: anywhere; min-width: 0; }
+@media(max-width:1100px) { .sim-hud { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) {
+    .sim-start-steps, .sim-hud { grid-template-columns: minmax(0,1fr); }
+    .sim-start-steps { gap: 8px; }
+    .brief-card, .suggested-actions-card, .sim-hud { padding: 16px; }
+    .terminal-screen { padding: 14px; }
+    .terminal-active-line { flex-wrap: wrap; }
+    .terminal-active-line .terminal-input { flex-basis: 100%; min-height: 36px; }
+    .terminal-titlebar { padding: 10px; }
+    .sim-title { font-size: 1.75rem; }
+}

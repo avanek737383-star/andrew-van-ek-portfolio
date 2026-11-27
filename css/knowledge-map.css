@@ -528,3 +528,29 @@
         transform: translateY(0);
     }
 }
+/* Controls have their own surface, outside the interactive canvas. */
+.map-controls { position: relative; z-index: 12; display: grid; gap: 12px; padding: 16px; margin-top: 15px; border: 1px solid #334155; border-radius: 12px; background: #0f172a; color: #e2e8f0; }
+.map-controls .hud-overlay { position: static; inset: auto; pointer-events: auto; max-width: 100%; }
+.map-controls .hud-top-bar { width: 100%; }
+.map-controls .hud-filter-bar { display: flex; }
+.map-controls .hud-actions-toolbar { flex-wrap: wrap; }
+.map-controls .hud-legend { display: flex; flex-wrap: wrap; width: fit-content; background: #111e32; }
+.map-controls .hud-search-box { width: 320px; max-width: 100%; }
+.map-controls .hud-search-input:focus { width: 100%; }
+.map-controls .hud-search-results { width: 100%; min-width: 0; }
+.map-viewport-wrapper { margin-top: 12px; }
+@media(max-width:768px) {
+    .map-controls { padding: 12px; }
+    .map-controls .hud-search-box { width: 100%; }
+    .map-controls .hud-badge-group { max-width: 100%; font-size: .72rem; }
+    .map-controls .hud-legend { gap: 8px; }
+    .map-controls .filter-pill, .map-controls .hud-btn { min-height: 36px; }
+}
+/* The page follows the light portfolio shell in every season. */
+body.map-page-body { background: #ffffff; color: #334155; }
+body.map-page-body > .container > header h1 { color: #18334d !important; }
+body.map-page-body > .container > header p { color: #475569 !important; max-width: none !important; }
+body.map-page-body .map-navigation-guide { background: #fff; border: 1px solid #d5e0eb; border-left: 4px solid var(--s-primary,#155b97); border-radius: 10px; padding: 20px; margin-bottom: 30px; color: #334155; }
+body.map-page-body .map-navigation-guide h3 { color: #18334d !important; font-size: 1.1rem; margin: 0 0 8px; }
+body.map-page-body > .container > header { position: relative; z-index: 2; isolation: isolate; background: #fff; border: 1px solid #d5e0eb; border-top: 3px solid var(--s-primary,#155b97); border-radius: 12px; padding: 24px 28px; margin: 24px 0 20px; box-shadow: 0 3px 14px #152f4910; }
+@media(max-width:600px){ body.map-page-body > .container > header { padding: 20px 16px; } }

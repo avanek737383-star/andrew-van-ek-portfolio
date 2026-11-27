@@ -14,11 +14,11 @@
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.css?v=20261126-seasonal-sync-1">
-	<link rel="stylesheet" href="css/knowledge-map.css?v=20261119-map-1">
+	<link rel="stylesheet" href="css/knowledge-map.css?v=20261126-control-shelf-1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/footer.css?v=20261126-horizontal-pill-1">
+<link rel="stylesheet" href="css/footer.css?v=20261126-footer-443">
 <link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body class="map-page-body">
@@ -97,9 +97,7 @@
 		</header>
 
 		<main><section class="explain-card"><h2>A map of project write-ups, not live device telemetry.</h2><p>Each node is generated from this portfolio’s project descriptions. Explore related topics and follow the links to their source entries. Node size and layout are presentation choices, not measured importance or hardware performance.</p><p id="knowledge-data-date">Loading the dataset’s generation time…</p></section>
-			<div class="map-viewport-wrapper">
-				<div id="knowledge-graph-container" tabindex="0" role="region" aria-label="3D Knowledge Graph Canvas"></div>
-
+			<section class="map-controls" aria-label="Knowledge map controls">
 				<!-- Top HUD Controls -->
 				<div class="hud-overlay hud-top-bar">
 					<div class="hud-badge-group">
@@ -140,6 +138,10 @@
 					<span class="legend-item"><span class="legend-dot" style="background:#94a3b8;"></span> Tech Bridge</span>
 				</div>
 
+			</section>
+			<div class="map-viewport-wrapper">
+				<div id="knowledge-graph-container" tabindex="0" role="region" aria-label="3D Knowledge Graph Canvas"></div>
+
 				<!-- Slide-Out Telemetry Drawer -->
 				<aside id="telemetry-drawer" class="hud-drawer" aria-label="Selected system details">
 					<div class="drawer-header">
@@ -176,8 +178,8 @@
 				</aside>
 			</div>
 
-			<section style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px; margin-bottom: 30px; color: #cbd5e1;">
-				<h3 style="font-size: 1.1rem; color: #f8fafc; margin-bottom: 8px;">How to Navigate the 3D Constellation</h3>
+			<section class="map-navigation-guide" aria-labelledby="map-navigation-title">
+				<h3 id="map-navigation-title">How to Navigate the 3D Constellation</h3>
 				<ul style="padding-left: 20px; line-height: 1.7; font-size: 0.9rem;">
 					<li><strong>Orbit &amp; Rotate:</strong> Click and drag anywhere in open space to rotate the camera around the 3D universe.</li>
 					<li><strong>Zoom &amp; Pan:</strong> Scroll your mouse wheel or pinch on touchscreens to zoom. Right-click and drag (or two-finger drag) to pan across clusters.</li>
@@ -190,8 +192,8 @@
 
 		<footer style="color: #94a3b8; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px;">
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html" style="color: #38bdf8;">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com" style="color: #38bdf8;">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Website last modified: <time datetime="2026-11-26T13:32:10-05:00">November 26, 2026 at 01:32:10 PM EST</time></p>
-			<p class="footer-version footer-pill">Version v2.6.442 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:01:40-05:00" title="November 26, 2026 at 09:01:40 PM EST">Nov 26, 2026, 9:01 PM EST</time></p>
+			<p class="footer-version footer-pill">Version v2.6.443 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
@@ -206,6 +208,6 @@
 	</script>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 	<script src="scripts/script.js?v=20261126-accuracy-436"></script>
-	<script src="scripts/knowledge-map.js?v=20261126-accuracy-436"></script>
+	<script src="scripts/knowledge-map.js?v=20261126-hover-intent-1"></script>
 </body>
 </html>
