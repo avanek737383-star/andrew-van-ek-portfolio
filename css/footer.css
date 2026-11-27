@@ -10,3 +10,12 @@ body footer p.footer-pill a{color:var(--footer-link)!important;text-decoration:u
 body footer p.footer-pill time{color:inherit!important}
 body.repair-shop-body footer{display:block}
 @media(max-width:600px){body footer p.footer-pill{padding:10px 14px;border-radius:18px;font-size:11px;max-width:100%}}
+
+/* Desktop metadata shares one opaque pill; mobile keeps the stacked pills. */
+@media(min-width:769px){
+ body footer:has(>p.footer-pill){display:flex;align-items:center;gap:0;margin:20px auto;padding:16px 20px;border:1px solid var(--footer-pill-border);border-radius:999px;background:var(--footer-pill-bg)!important;color:var(--footer-pill-ink);box-shadow:0 2px 8px #00000006}
+ body footer:has(>p.footer-pill)>p.footer-pill{display:block;flex:1 1 0;min-width:0;max-width:none;margin:0;padding:0 16px;border:0;border-radius:0;background:transparent!important;box-shadow:none;font-size:12px;line-height:1.65}
+ body footer:has(>p.footer-pill)>p.footer-pill:first-child{flex-grow:1.6;padding-left:0}
+ body footer:has(>p.footer-pill)>p.footer-pill:last-child{padding-right:0}
+ body footer:has(>p.footer-pill)>p.footer-pill+p.footer-pill{border-left:1px solid var(--footer-pill-border)}
+}
