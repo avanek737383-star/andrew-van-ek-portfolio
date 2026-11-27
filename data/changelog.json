@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T18:17:17+00:00",
-  "sourceHead": "6a1186e3cfc1777398747be33ef8ef2a69252ca7",
-  "count": 756,
+  "generatedAt": "2026-11-27T19:17:13+00:00",
+  "sourceHead": "facfd2eef33dc1bc1b8a6aa86e223a6996a0cb70",
+  "count": 758,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "facfd2eef33dc1bc1b8a6aa86e223a6996a0cb70",
+      "date": "2026-11-27T13:20:51-05:00",
+      "subject": "Update live Scam Defense telemetry: 358 calls, 221m airtime",
+      "category": "Feature"
+    },
+    {
+      "sha": "b3ba9fd2a5ca047a86b846951f9f9908a55e7f05",
+      "date": "2026-11-27T13:17:19-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "6a1186e3cfc1777398747be33ef8ef2a69252ca7",
       "date": "2026-11-27T13:11:20-05:00",
