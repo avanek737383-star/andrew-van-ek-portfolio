@@ -10,13 +10,13 @@
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<meta name="description" content="Gateway logging controls, reviewed Cloudflare configuration, provider retention limits, and browser-local storage.">
+		<meta name="description" content="What this website and its services receive and save, what stays in your browser, and the limits of the privacy checks.">
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://andrewtvanekportfolio.online/privacy.html">
 		<meta property="og:title" content="Privacy Policy | Andrew Van Ek Portfolio">
-		<meta property="og:description" content="Gateway logging controls, reviewed Cloudflare configuration, provider retention limits, and browser-local storage.">
+		<meta property="og:description" content="What this website and its services receive and save, what stays in your browser, and the limits of the privacy checks.">
 		<meta property="og:image" content="https://andrewtvanekportfolio.online/images/andrewvanek.jpg">
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +31,9 @@
 			.privacy-card li { margin-bottom: 8px; color: #334155; }
 			.privacy-highlight { display: inline-block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; border-radius: 6px; padding: 2px 8px; font-weight: 600; font-size: 0.85rem; }
 			.privacy-hero-eyebrow { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #0056b3; margin-bottom: 6px; display: block; }
+			.privacy-main code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .88em; padding: .1em .3em; border: 1px solid #c9d9e7; border-radius: 4px; background: #eef4f8; color: #234660; overflow-wrap: anywhere; }
+			.privacy-main details summary { padding: 6px 0; }
+			.privacy-main summary:focus-visible { outline: 2px solid #24659a; outline-offset: 4px; }
 		</style>
 	<link rel="stylesheet" href="css/footer.css?v=20261126-horizontal-pill-1">
 <link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
@@ -104,18 +107,103 @@
 			</ul>
 		</nav>
 
-			<main class="privacy-main"><header><span class="privacy-hero-eyebrow">DATA HANDLING &amp; VERIFIED BOUNDARIES</span><h1>Privacy: what this site actually does.</h1><p>This page distinguishes inspected gateway controls, reviewed Cloudflare account findings, documented provider behavior, and checks still in progress. Last reviewed November 26, 2026.</p></header>
-<section class="explain-card"><h2>Raw visitor addresses on the self-hosted gateway</h2><p>The gateway must process connection addresses to serve requests and apply abuse controls. Its application-log formatters and process-output supervisor now redact IPv4 and IPv6 address literals before those diagnostics are written. Uvicorn access logging is disabled. Nginx request logging and persistent error logging are disabled on the inspected host.</p><p>Previously retained website log files were checked and address literals redacted during this review. Earlier claims that raw addresses had <em>never</em> been stored were incorrect and have been removed.</p><p><strong>Scope:</strong> this verifies the inspected host’s website logging controls. It does not establish zero storage in every provider, operating-system subsystem, device, or future configuration.</p></section>
-<section class="explain-card"><h2>What is retained for abuse control and aggregate activity?</h2><div class="privacy-facts"><article><h3>Pseudonymous rate-limit identifiers</h3><p>The local gateway derives keyed identifiers from client addresses. Its rate-limit database stores those identifiers and request times, rather than raw addresses. Entries older than the limit window are removed when new limit checks run. Pseudonymous is not the same as anonymous.</p></article><article><h3>Coarse regional counters</h3><p>The gateway persists regional totals and an update time. A separate, short-lived address hash can be used in memory to reduce repeated geolocation events. These counters reflect service activity and are not a reliable count of unique people. Regional hints can be imprecise.</p></article></div></section>
-<section class="explain-card"><h2>Chat and phone services are different systems</h2><h3>Nemo: local inference through the NUC</h3><p>Questions sent to Nemo pass through the self-hosted gateway to the configured private model host. The gateway keeps diagnostic logs and a separate size-rotated prompt audit, including redacted prompt text and pseudonymous client identifiers. Credential-pattern redaction is not a guarantee that every kind of personal information is removed. The audit logger rotates its files by size, with up to seven backups; this is not a fixed-age deletion promise.</p><p>The phone service uses a telephone provider and speech/voice services. Its diagnostic workflow can include caller metadata, transcripts, and response excerpts. It should not be described as a service that retains no personal data.</p><h3>Class &amp; Service Desk Bot: Google Cloud</h3><p>The bot on <a href="chat.html">chat.html</a> runs as a separate Google Cloud service (Cloud Run revision <code>personal-chat-00028-8c6</code>). Questions submitted there are processed by that service; query-bearing debug prints were removed from application logs and error paths log only exception types. Cloud Run request logs route via <code>cloud-run-requests-to-short-bucket</code> to the 7-day <code>cloud-run-requests-short</code> bucket and are excluded from <code>_Default</code>, while Vertex AI Search user event collection is turned off on <code>personal-assistant-all</code>. Parent folder/organization routing and provider-internal retention remain outside project-level verification.</p></section>
-<section class="explain-card" id="cloudflare-verification" aria-labelledby="cloudflare-verification-title" style="scroll-margin-top:9rem"><span class="explain-label">CLOUDFLARE REVIEW &middot; NOVEMBER 26, 2026</span><h2 id="cloudflare-verification-title">What was checked for this website?</h2><p>The portfolio is hosted on Cloudflare Pages and delivered through Cloudflare&rsquo;s network. Andrew coordinated a read-only account inspection through Muse AI. ChatGPT / Codex reviewed its third report against the portfolio source and current official documentation. The account results below are reported by that inspection; Codex did not independently repeat the authenticated API calls.</p><ul><li><strong>No configured Logpush jobs were found</strong> at either account or zone level during the inspection.</li><li><strong>No configured Log Explorer datasets were found</strong> using the account list with <code>include_zones=true</code>. Cloudflare documents that this option includes datasets belonging to the account&rsquo;s zones, resolving the coverage question left by a denied direct zone request. <a href="https://developers.cloudflare.com/api/typescript/resources/logs/subresources/log_explorer/subresources/datasets/methods/list/">Dataset-list API documentation</a>.</li><li><strong>The Pages Functions log feature provides live debugging logs rather than a stored history.</strong> Cloudflare&rsquo;s Pages documentation states that these logs are not stored. The inspected room-sensor relay has no explicit visitor-IP logging or console logging. This product behavior does not establish what Cloudflare retains in other security or internal systems. <a href="https://developers.cloudflare.com/pages/functions/debugging-and-logging/">Pages logging documentation</a>.</li></ul><p>No Cloudflare settings were changed, visitor records exported, or live logging session started for this review. These findings describe the inspected configuration at that time; later changes require another check. The <a href="projects.html#cloudflare-verification-milestone">audit project notes</a> explain the review and corrections.</p></section>
-<section class="explain-card" aria-labelledby="cloudflare-retention-title"><h2 id="cloudflare-retention-title">What can Cloudflare still retain?</h2><p>Cloudflare processes visitor addresses and request metadata to deliver and protect the site. Its Security Events and Security Analytics products can contain source addresses and individual request information, including sampled request logs. Current documentation describes up to 31 days of history for these products on this site&rsquo;s Free plan. This is separate from the absence of configured Logpush exports or Log Explorer datasets. <a href="https://developers.cloudflare.com/waf/analytics/security-events/">Security Events</a> &middot; <a href="https://developers.cloudflare.com/waf/analytics/security-analytics/">Security Analytics</a>.</p><p>This review did not establish a current fixed retention period covering all Cloudflare-internal processing. It therefore does not establish zero provider IP retention. Minor checks remain for Web Analytics hostname/beacon association, Zaraz script injection, and the unreadable Logpull retention flag; these are not presented as verified settings. The account report found Web Analytics enabled and no configured Zaraz tools, but those observations do not close the remaining checks.</p></section>
-<section class="explain-card"><h2>Other providers and external assets</h2><p>Connected services and third-party fonts, libraries, maps, or other assets may use separate providers. Those providers receive connection metadata needed to handle requests. The Google Cloud chat backend&rsquo;s verified project-level logging, 7-day request-log routing, and Vertex AI Search event-collection controls are documented in the <a href="projects.html#gcp-audit-remediation-applied">audit project record</a>; the Cloudflare findings do not govern Google Cloud&rsquo;s provider-internal processing.</p><p>Security functionality can also set provider cookies; see <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/">Cloudflare&rsquo;s cookie documentation</a>. Neither the browser-local features below nor the reviewed logging controls establish that every service on this site is cookie-free or retains no personal data.</p></section>
-<section class="explain-card"><h2>What stays in your browser?</h2><ul><li><strong>Previous homepage visit:</strong> one timestamp for this browser/device. That feature sends no visit timestamp to a server and does not identify you across devices.</li><li><strong>Repair-shop progress:</strong> local game state when browser storage is available.</li><li><strong>Interface preferences and benchmarks:</strong> features such as weather units and page-speed records may use local storage.</li><li><strong>Chat display history:</strong> some interfaces remember visible messages locally; submitting a question still sends that question to the selected service.</li></ul><p>You can remove browser-local data using the browser’s site-data controls. Storage may be unavailable in some browser modes, in which case supported features continue without persistence.</p></section>
-<section class="explain-card"><h2>Questions and corrections</h2><p>Contact <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a> through the <a href="contact.html">Contact page</a> with a privacy question or a discrepancy. This description will be updated when provider settings or service behavior are verified or changed.</p></section><section class="contact-card" id="sms-privacy">
-<h2>SMS assistant and optional website updates</h2>
-<p>SMS uses Twilio and telecommunications carriers, with separate message and consent records. See the <a href="sms-privacy.html">SMS Privacy Policy</a>, <a href="sms-terms.html">SMS Terms &amp; Conditions</a>, and <a href="sms-updates.html">optional website-update enrollment</a> for details.</p>
+			<main class="privacy-main">
+<header>
+<span class="privacy-hero-eyebrow">YOUR DATA, EXPLAINED</span>
+<h1>Privacy: what happens to your data?</h1>
+<p>This page explains what the website and its services receive, what they save, and what you can clear yourself. It is based on checks completed on November 26, 2026. Some provider systems could not be fully checked.</p>
+</header>
+<section class="explain-card" aria-labelledby="privacy-summary-title">
+<h2 id="privacy-summary-title">The main things to know</h2>
+<ul>
+<li><strong>Your connection has an IP address:</strong> a network address used to send information back to your device. The services that deliver this website receive it.</li>
+<li><strong>Some records are saved:</strong> the website's hosting provider can keep security records containing IP addresses. Chat and phone services have their own records, explained below.</li>
+<li><strong>Chat messages leave your browser:</strong> sending a question sends it to the service answering it. Some services save message text.</li>
+<li><strong>Some features save data on your device:</strong> these include your previous homepage visit, game progress, and preferences. You can clear them in your browser.</li>
+</ul>
 </section>
+<section class="explain-card">
+<h2>What does Andrew's own server save?</h2>
+<p>Some website features use a server Andrew runs himself. This server, called the gateway, receives your IP address so it can reply and limit excessive requests.</p>
+<p>The checked website logs now hide IP addresses before saving diagnostic messages (records used to troubleshoot problems). Request logging is also turned off in the server software described below.</p>
+<p><strong>A correction:</strong> some older website logs did contain IP addresses. Those files were checked and the addresses hidden during the review. Earlier statements that addresses had <em>never</em> been saved were wrong.</p>
+<p><strong>What this check covers:</strong> the website logging controls on the inspected server. It does not prove that no address is saved by a hosting provider, the operating system, another device, or a later configuration.</p>
+<details><summary>Technical details: server logging</summary>
+<p>The application-log formatters and process-output supervisor redact <code>IPv4</code> and <code>IPv6</code> addresses (the two common IP address formats) before writing diagnostics. Access logging is disabled in <code>Uvicorn</code>. Request logging and persistent error logging are disabled in <code>nginx</code>.</p>
+</details>
+</section>
+<section class="explain-card">
+<h2>How does the server limit abuse and count activity?</h2>
+<div class="privacy-facts">
+<article><h3>Limiting repeated requests</h3><p>The gateway creates a coded identifier from your IP address and stores it with request times to check for excessive use. It stores this identifier rather than the address itself. This still allows requests to be linked; it does not make them fully anonymous.</p><p>Entries outside the time window used for these limits are removed when new checks run.</p></article>
+<article><h3>Counting activity by region</h3><p>The gateway saves broad regional totals and when they were updated. A temporary coded address value may also be held in memory to reduce repeated location lookups.</p><p>These totals measure service activity, not unique people. The estimated region can be wrong.</p></article>
+</div>
+<details><summary>Technical details: coded identifiers</summary><p>Abuse controls use keyed identifiers derived from client addresses in a rate-limit database. These are <em>pseudonymous</em>: the address is replaced, but activity can still be linked. The separate, short-lived value used for location lookups is an address hash held in memory.</p></details>
+</section>
+<section class="explain-card">
+<h2>What happens when you use chat or phone services?</h2>
+<h3>Nemo: Andrew's privately hosted AI assistant</h3>
+<p>Your question passes through the gateway to the private computer running the AI model. The gateway saves troubleshooting records and a separate record of prompts, meaning the text sent to the AI, with coded client identifiers.</p>
+<p>Some sensitive patterns, such as credentials, are hidden before prompts are saved. <strong>That does not remove every kind of personal information.</strong> Files are replaced as they reach a size limit, with up to seven backup files. There is no fixed promise to delete them after a certain number of days.</p>
+<h3>Phone service</h3>
+<p>Calls use a telephone provider and speech or voice services. Troubleshooting records can include caller details, written versions of speech, and parts of the assistant's replies. This service can retain personal information.</p>
+<h3>Class &amp; Service Desk Bot: a separate Google-hosted service</h3>
+<p>The bot on the <a href="chat.html">chat page</a> sends your questions to <code>Google Cloud</code>. Debug messages that wrote questions into application logs were removed. Error logs now record only the type of error.</p>
+<p>New technical request records, which can include your IP address, are sent to a separate log store set to keep them for seven days. The search service's user-event collection setting was also turned off. These changes do not prove that older question-bearing logs were immediately deleted, or that Google keeps no other records.</p>
+<details><summary>Technical details: Google-hosted chat</summary>
+<p>The checked <code>Cloud Run</code> revision is <code>personal-chat-00028-8c6</code>. The route <code>cloud-run-requests-to-short-bucket</code> sends request logs to <code>cloud-run-requests-short</code>, a log bucket (storage area) with seven-day retention. New request logs are excluded from the <code>_Default</code> bucket to avoid a second copy there.</p>
+<p><code>Vertex AI Search</code> user-event collection is off for <code>personal-assistant-all</code>. The audit's later addendum records these fixes as applied and verified on November 26, 2026. Rules that could copy logs at a parent folder or organization level, and Google's own internal storage, remain outside the project-level check. See the <a href="projects.html#gcp-audit-remediation-applied">audit project record</a>.</p>
+</details>
+</section>
+<section class="explain-card" id="cloudflare-verification" aria-labelledby="cloudflare-verification-title" style="scroll-margin-top:9rem">
+<span class="explain-label">HOSTING REVIEW &middot; NOVEMBER 26, 2026</span>
+<h2 id="cloudflare-verification-title">What did the hosting-provider review find?</h2>
+<p>This website is hosted on <code>Cloudflare Pages</code>. <code>Cloudflare</code> receives connection details to deliver pages and protect the site.</p>
+<p>The account review found no configured jobs exporting request logs and no separate request-log archives set up in the tools checked. <strong>This does not mean Cloudflare keeps no IP addresses.</strong> Its own security records are separate, as explained next.</p>
+<p>Andrew coordinated the account inspection through Muse AI. ChatGPT / Codex compared the third report with the website source and official documentation; it did not independently repeat the signed-in account checks. The inspection did not change settings, export visitor records, or start a live log stream.</p>
+<details><summary>Technical details: what was checked</summary>
+<ul>
+<li>No <code>Logpush</code> jobs (configured log exports) were found at account or zone level.</li>
+<li>No <code>Log Explorer</code> datasets (configured log archives) were found. The account listing used <code>include_zones=true</code> to include the account's zones, meaning the websites managed under it. This covered the question left by a denied direct zone request. <a href="https://developers.cloudflare.com/api/typescript/resources/logs/subresources/log_explorer/subresources/datasets/methods/list/">Dataset-list documentation</a>.</li>
+<li><code>Pages Functions</code> provides live debugging logs rather than saved log history, according to its <a href="https://developers.cloudflare.com/pages/functions/debugging-and-logging/">logging documentation</a>. The inspected room-sensor relay contains no explicit visitor-IP or console logging. This says nothing about storage in other provider systems.</li>
+</ul>
+<p>These findings describe the configuration inspected that day. Later changes need another check. See the <a href="projects.html#cloudflare-verification-milestone">audit project notes</a>.</p>
+</details>
+</section>
+<section class="explain-card" aria-labelledby="cloudflare-retention-title">
+<h2 id="cloudflare-retention-title">What can the hosting provider still save?</h2>
+<p><code>Cloudflare</code> can keep security records containing your IP address and details of individual requests. Some records cover only a sample of requests. The documentation used for the November 26 review described up to <strong>31 days of history</strong> for these security tools on this site's Free plan.</p>
+<p>The review could not establish one deletion deadline covering all of the provider's internal systems. It therefore cannot promise that every copy of an IP address is deleted after 31 days.</p>
+<details><summary>Technical details: security records and remaining questions</summary>
+<p>The documented history applies to <code>Security Events</code> and <code>Security Analytics</code>. It is separate from configured exports and archives. See <a href="https://developers.cloudflare.com/waf/analytics/security-events/">Security Events documentation</a> and <a href="https://developers.cloudflare.com/waf/analytics/security-analytics/">Security Analytics documentation</a>.</p>
+<p>The account report found <code>Web Analytics</code> enabled and no configured <code>Zaraz</code> tools. Checks remained for which hostname the analytics tracking script belongs to, whether the <code>Zaraz</code> script is automatically added to pages, and the unreadable <code>Logpull</code> retention setting (a separate log-access feature). These are still unverified; the earlier findings do not settle them.</p>
+</details>
+</section>
+<section class="explain-card">
+<h2>What about other providers and cookies?</h2>
+<p>Some features load fonts, code libraries, maps, or other content from outside services. Those providers receive connection details needed to answer your browser's requests. Each service has its own data practices.</p>
+<p>Security features can also set cookies, small pieces of data stored in your browser. See <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/"><code>Cloudflare</code>'s cookie documentation</a>. The checks above do not establish that every feature is cookie-free or saves no personal data.</p>
+<p>The checks of the Google-hosted chat do not cover all of Google's internal processing. Likewise, the hosting-provider review does not cover the separate chat or phone providers.</p>
+</section>
+<section class="explain-card">
+<h2>What can you clear in your browser?</h2>
+<ul>
+<li><strong>Previous homepage visit:</strong> one saved date and time for this browser and device. This feature does not send that time to a server or identify you across devices.</li>
+<li><strong>Repair-shop progress:</strong> game progress saved on your device when browser storage is available.</li>
+<li><strong>Preferences and speed results:</strong> settings such as weather units and saved page-speed measurements.</li>
+<li><strong>Displayed chat history:</strong> some chat screens remember messages in your browser. Sending a question also sends it to the answering service.</li>
+</ul>
+<p>To remove this data, use your browser's settings to clear site data for this website. <strong>Clearing your browser does not delete records already held by a server or provider.</strong> Some browser modes block local storage; supported features then continue without saving their state.</p>
+</section>
+<section class="explain-card" id="sms-privacy">
+<h2>Text messages and optional website updates</h2>
+<p>Text messages use <code>Twilio</code> and phone carriers, which have separate message records and records of your permission to receive messages. See the <a href="sms-privacy.html">SMS Privacy Policy</a>, <a href="sms-terms.html">SMS Terms &amp; Conditions</a>, and <a href="sms-updates.html">optional website-update signup</a>.</p>
+</section>
+<section class="explain-card">
+<h2>Questions or corrections?</h2>
+<p>Email <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a> or use the <a href="contact.html">Contact page</a>. This page will be updated as service behavior or provider settings are checked or changed.</p>
+</section>
+
 </main>
 
 
