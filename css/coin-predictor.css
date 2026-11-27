@@ -473,7 +473,7 @@
 }
 
 .tape-chip-correct::after {
-    content:  ✓;
+    content: "✓";
     position: absolute;
     top: -4px;
     right: -4px;
@@ -490,7 +490,7 @@
 }
 
 .tape-chip-missed::after {
-    content: ✕;
+    content: "✕";
     position: absolute;
     top: -4px;
     right: -4px;
@@ -1168,3 +1168,69 @@
         font-size: 0.85rem;
     }
 }
+/* Explanations stay readable while chart surfaces follow the active season. */
+.coin-advanced { margin: 16px 0; color: #334155; }
+.coin-advanced summary { cursor: pointer; font-weight: 700; padding: 8px 0; }
+.coin-learning-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; list-style: none; padding: 0 !important; margin: 18px 0; }
+.coin-learning-steps li { border: 1px solid #d5e0eb; border-top: 3px solid var(--s-primary,#155b97); background: var(--s-tint,#f1f7fc); border-radius: 8px; padding: 14px; }
+.coin-learning-steps strong { display: block; color: #18334d; }
+.coin-rule-guide { border-left: 4px solid var(--s-primary,#155b97); background: var(--s-tint,#f1f7fc); border-radius: 6px; margin: 16px 0; padding: 16px 18px; }
+body .coin-rule-guide h3 { color: #18334d !important; }
+.coin-start-guide label { display: block; margin: 12px 0 8px; }
+.coin-training-explanation { font-size: .9rem; line-height: 1.7; color: #e2e8f0; margin: 12px 0 0; }
+.coin-training-explanation code { font-family: ui-monospace,Consolas,monospace; white-space: nowrap; }
+.chart-card {
+ --coin-chart-primary: var(--s-accent-bright,#38bdf8);
+ --coin-chart-secondary: #6ee7b7;
+ --coin-chart-grid: rgba(255,255,255,.14);
+ background: var(--s-dark-grad,#0a0f1d);
+ border-color: var(--s-border-accent,#334155);
+ min-width: 0;
+}
+body .chart-card .chart-title { color: #f8fafc !important; line-height: 1.4; }
+body .chart-card .chart-subtitle { color: #d5deea; display: block; margin-top: 5px; line-height: 1.55; }
+.chart-header { align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+.chart-header > div { flex: 1 1 210px; min-width: 0; }
+body .chart-header > span { background: rgba(255,255,255,.12) !important; color: #f8fafc !important; border: 1px solid var(--s-border-accent,#475569); font-size: .75rem; border-radius: 999px; padding: 4px 9px; }
+body.christmas-theme .chart-card { --coin-chart-secondary: #fda4af; }
+body.valentines-theme .chart-card { --coin-chart-secondary: #a5d8ff; }
+@media(max-width:600px){ .coin-learning-steps { grid-template-columns: minmax(0,1fr); gap: 8px; } .chart-card { padding: 14px; } .model-spec-ribbon { overflow-wrap: anywhere; } }
+.coin-hud-details { color: #dbe5ef; border-top: 1px solid #475569; padding-top: 12px; }
+.coin-hud-details summary { cursor: pointer; padding: 8px 0; font-size: .85rem; }
+body .coin-stage-card #stage-title { font-size: 1.25rem; color: #18334d !important; margin: 0 0 16px; }
+.coin-control-note { width: 100%; font-size: .85rem; line-height: 1.7; color: #526375; margin: 10px 0; text-align: left; }
+.coin-diagram-glossary { color: #e2e8f0; margin-top: 16px; font-size: .9rem; line-height: 1.7; }
+.coin-diagram-glossary summary { cursor: pointer; font-weight: 700; }
+.coin-diagram-glossary dt { font-weight: 700; margin-top: 10px; }
+.coin-diagram-glossary dd { margin-left: 0; }
+.coin-inline-help { width: 100%; margin: 10px 0; font-size: .85rem; line-height: 1.7; color: #334155; border-top: 1px solid #d5e0eb; }
+.coin-inline-help summary { cursor: pointer; display: list-item; padding: 11px 0; font-weight: 700; min-height: 44px; }
+.coin-inline-help summary:focus-visible, .coin-advanced summary:focus-visible { outline: 2px solid var(--s-primary,#155b97); outline-offset: 3px; }
+.hud-card .coin-inline-help { color: #e2e8f0; border-color: #475569; }
+/* Keep the learning controls light, including when the browser prefers dark mode. */
+body .predictor-container .coin-stage-card,
+body .predictor-container .sequence-tape-card { background: #fff; color: #334155; border-color: var(--s-border-accent,#d5e0eb); }
+body .predictor-container .tape-title { color: #18334d !important; }
+body .predictor-container .match-setup-bar,
+body .predictor-container .match-round-tag { background: var(--s-tint,#f1f5f9); border-color: var(--s-primary,#cbd5e1); color: #18334d; }
+body .predictor-container .match-pill-btn { background: #fff; color: #334155; border-color: #cbd5e1; }
+body .predictor-container .match-pill-btn.active { background: var(--s-primary,#155b97); color: #fff; border-color: var(--s-primary,#155b97); }
+body .predictor-container .vs-player-card { background: var(--s-tint,#f8fafc); border-color: var(--s-primary,#cbd5e1); }
+body .predictor-container .vs-player-header { color: #334155; }
+body .predictor-container .vs-player-sub { color: #526375; }
+body .predictor-container .vs-player-score { color: var(--s-primary,#155b97); }
+body .predictor-container .vs-divider { background: #e2e8f0; color: #526375; }
+body .predictor-container .btn-sim-secondary { background: #fff; border-color: var(--s-primary,#cbd5e1); color: #334155; }
+body .predictor-container .btn-auto-stream { background: var(--s-primary,#155b97); color: #fff; border-color: var(--s-primary,#155b97); }
+body .predictor-container .btn-auto-stream.streaming { background: #b42318; border-color: #b42318; }
+body .predictor-container .hud-card { background: var(--s-dark-grad,#0a0f1d); border-color: var(--s-border-accent,#334155); color: #f8fafc; }
+body .predictor-container .hud-title { color: #f8fafc !important; }
+body .predictor-container :is(.metric-box,.hud-reasoning-panel,.neural-mind-hud) { background: var(--s-dark-2,#111827); border-color: var(--s-border-accent,#334155); }
+body .predictor-container .metric-label, body .predictor-container .metric-sub { color: #dbe5ef !important; }
+body .predictor-container .hud-live-badge { background: rgba(255,255,255,.12); border-color: var(--s-border-accent,#475569); color: #f8fafc; }
+body .predictor-container .confidence-bar-fill { background: linear-gradient(90deg,var(--s-accent-bright,#38bdf8),#6ee7b7); }
+body .predictor-container .predictor-subtitle { color: #475569; }
+body .predictor-container .model-spec-ribbon { background: var(--s-dark-grad,#0f172a); border-color: var(--s-border-accent,#334155); }
+body .predictor-container .spec-chip-highlight { color: var(--s-accent-bright,#38bdf8); }
+.predictor-grid { align-items: start; }
+body .predictor-container .hud-card { justify-content: flex-start; gap: 16px; }

@@ -4,7 +4,7 @@
 	<head>
 		<title>Maintenance &amp; Experiments | Andrew Van Ek Portfolio</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/styles.css?v=20261126-seasonal-sync-1">
+		<link rel="stylesheet" href="css/styles.css?v=20261126-icon-launcher-444">
 		<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -29,7 +29,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/footer.css?v=20261126-footer-443">
+	<link rel="stylesheet" href="css/footer.css?v=20261126-footer-444">
 <link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 
@@ -906,7 +906,7 @@ The registration process exited with code <code>0</code>. Verified the new <code
 <br><br>
 <em>Audit Findings Across Pages &amp; Stylesheets:</em> Inspected inline styles across all HTML pages and 18 CSS stylesheets against the Thanksgiving Harvest (<code>thanksgiving-theme</code>), Christmas (<code>christmas-theme</code>), and Valentine&rsquo;s Day (<code>valentines-theme</code>) rules in <code>css/styles.css</code>. Found hardcoded main-theme navy/blue inline styles on the Robo-Karaoke card (<code>about.html</code>), Sudoku teaser card (<code>lab.html</code>), hero headings/eyebrows/links (<code>index.html</code>, <code>stats.html</code>, <code>project-assistant.html</code>), and 188 main-theme selectors in <code>css/styles.css</code> plus separate page stylesheets (<code>gallery.css</code>, <code>quotes.css</code>, <code>learning.css</code>, <code>room-sensors.css</code>, <code>sudoku.css</code>, <code>ai-bias.css</code>, <code>coin-predictor.css</code>, <code>code-runner.css</code>, <code>incident-sim.css</code>) that lacked seasonal overrides&mdash;including dark cards where global seasonal heading rules risked dark-on-dark contrast.
 <br><br>
-<em>Fix &amp; Verification:</em> Refactored the inline Robo-Karaoke styles on <code>about.html</code> into semantic classes (<code>.karaoke-experiment</code>, <code>.karaoke-experiment-header</code>, <code>.karaoke-experiment-badge</code>, <code>.karaoke-mobile-banner</code>, <code>.karaoke-launch-btn</code>), cleaned inline blue overrides on <code>lab.html</code>, <code>index.html</code>, <code>stats.html</code>, and <code>project-assistant.html</code>, bumped the <code>css/styles.css?v=20261126-seasonal-sync-1</code> cache-buster, and added a unified CSS custom-property seasonal layer in <code>css/styles.css</code> synchronizing Thanksgiving, Christmas, and Valentine&rsquo;s Day across dark cards (<code>.karaoke-experiment</code>, <code>.stats-teaser-card</code>, <code>.arch-diagram-card</code>, <code>.radar-map-panel</code>, <code>.radar-probe-instrument</code>, <code>.portfolio-phone-header</code>, <code>.easter-drawer-modal</code>, <code>.runner-hero</code>, <code>.desk-clock-card.dimmer-active</code>), commendation cards, computing/Folding@Home cards, homepage cockpit/telemetry/OS tracker/room sensors, gallery, quotes, privacy/explain cards, changelog, and AI lab pages with crisp heading/link contrast. Verified CSS brace balance, passed <code>HTMLParser</code> checks across all modified HTML pages, passed all 7 Python and 16 Node unit tests, and confirmed the updated CSS and pages live on <code>andrewtvanekportfolio.online</code>.
+<em>Fix &amp; Verification:</em> Refactored the inline Robo-Karaoke styles on <code>about.html</code> into semantic classes (<code>.karaoke-experiment</code>, <code>.karaoke-experiment-header</code>, <code>.karaoke-experiment-badge</code>, <code>.karaoke-mobile-banner</code>, <code>.karaoke-launch-btn</code>), cleaned inline blue overrides on <code>lab.html</code>, <code>index.html</code>, <code>stats.html</code>, and <code>project-assistant.html</code>, bumped the <code>css/styles.css?v=20261126-icon-launcher-444</code> cache-buster, and added a unified CSS custom-property seasonal layer in <code>css/styles.css</code> synchronizing Thanksgiving, Christmas, and Valentine&rsquo;s Day across dark cards (<code>.karaoke-experiment</code>, <code>.stats-teaser-card</code>, <code>.arch-diagram-card</code>, <code>.radar-map-panel</code>, <code>.radar-probe-instrument</code>, <code>.portfolio-phone-header</code>, <code>.easter-drawer-modal</code>, <code>.runner-hero</code>, <code>.desk-clock-card.dimmer-active</code>), commendation cards, computing/Folding@Home cards, homepage cockpit/telemetry/OS tracker/room sensors, gallery, quotes, privacy/explain cards, changelog, and AI lab pages with crisp heading/link contrast. Verified CSS brace balance, passed <code>HTMLParser</code> checks across all modified HTML pages, passed all 7 Python and 16 Node unit tests, and confirmed the updated CSS and pages live on <code>andrewtvanekportfolio.online</code>.
 <br><br>
 <em>Credit:</em> Andrew Van Ek spotted the half-themed Thanksgiving rendering on iPhone and directed the site-wide theme consistency audit; Muse relayed feedback and testing details; Antigravity AI (Google DeepMind agentic assistant, Gemini 4 Hydrogen (High)) audited the inline styles and stylesheets, refactored the components into CSS-variable seasonal themes, ran validation, and logged this entry.</li>
 <li id="karaoke-ios-portrait-hint-and-red-close-button"><strong>Robo-Karaoke Studio iOS Safari Portrait Rotation Hint &amp; Red Landscape Close Button (November 26, 2026):</strong> In pair programming with <strong>Antigravity AI (Google DeepMind agentic assistant, Gemini 4 Hydrogen (High))</strong> alongside <strong>Muse</strong> and <strong>ChatGPT / Codex (OpenAI)</strong>, diagnosed and resolved a mobile WebKit bug on <a href="karaoke.html">karaoke.html</a> where the landscape close button appeared on iPhone Safari/Chrome while the portrait rotation hint did not display or update reliably across rotations:
@@ -2042,11 +2042,11 @@ Credit: Andrew Van Ek provided the personal Hugging Face access token, accepted 
 
 			<footer>
 				<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-				<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:01:40-05:00" title="November 26, 2026 at 09:01:40 PM EST">Nov 26, 2026, 9:01 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.443 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+				<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:21:24-05:00" title="November 26, 2026 at 09:21:24 PM EST">Nov 26, 2026, 9:21 PM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.444 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 			</footer>
 		</div>
 		<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-		<script src="scripts/script.js?v=20261126-accuracy-436"></script>
+		<script src="scripts/script.js?v=20261126-icon-launcher-444"></script>
 	</body>
 </html>

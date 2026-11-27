@@ -10,3 +10,33 @@
 @media(prefers-reduced-motion:reduce){.ai-bias-main *{scroll-behavior:auto!important;transition:none!important}}
 @media(max-width:380px){.bias-applicants{grid-template-columns:1fr}.bias-applicants article{padding:18px}.bias-applicants article p{font-size:12px}}
 body .ai-bias-main a{color:#165ca8!important}body .ai-bias-main a.bias-primary{color:#fff!important}
+/* Let the introductory explanations fill their own responsive card. */
+.bias-intro > p:not(.bias-kicker) { max-width: none; }
+
+.bias-lesson > header > p { max-width: none; }
+/* Use the site's active seasonal accents throughout the guided lessons. */
+.ai-bias-main { --bias-accent: var(--s-primary,#1b588e); --bias-tint: var(--s-tint,#edf4fb); --bias-border: var(--s-border-accent,#c9d9e7); }
+.ai-bias-main :is(.bias-kicker,.bias-step,.bias-why > strong,.bias-bridge > span,.bias-method-grid > article > span) { color: var(--bias-accent); }
+.ai-bias-main .bias-intro { border-top-color: var(--bias-accent); }
+.ai-bias-main .bias-primary { background: var(--bias-accent); border-color: var(--bias-accent); }
+.ai-bias-main .bias-primary:hover { filter: brightness(.9); }
+.ai-bias-main a:not(.bias-primary) { color: var(--bias-accent) !important; }
+.ai-bias-main :is(.bias-why,.bias-control-block,.bias-word-control,.bias-context,.bias-sentence,.bias-check,.bias-method-grid > article) { background: var(--bias-tint); border-color: var(--bias-border); }
+.ai-bias-main .bias-why { border-left-color: var(--bias-accent); }
+.ai-bias-main .bias-route b { background: var(--bias-tint); color: var(--bias-accent); }
+.ai-bias-main .bias-person:not(.second) { background: var(--bias-accent); }
+.ai-bias-main :is(.bias-control-block > label,.bias-word-control > label) { align-items: center; }
+.ai-bias-main :is(.bias-control-block output,.bias-word-control output) { background: #fff; border: 1px solid var(--bias-border); color: var(--bias-accent); line-height: 1.4; padding: 5px 8px; }
+.ai-bias-main input[type=range] { accent-color: var(--bias-accent); }
+.ai-bias-main .bias-controls .bias-control-block > label { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; }
+.ai-bias-main .bias-controls .bias-control-block output { margin: 0; }
+.ai-bias-main :is(.bias-metric-head > strong,.bias-group-result > div > strong,.bias-definitions dt,.bias-detail > summary,.bias-method-grid summary) { color: var(--bias-accent); }
+.ai-bias-main .bias-rate-track > span { background: var(--bias-accent); }
+.ai-bias-main .bias-group-result:nth-child(2) .bias-rate-track > span { background: var(--s-accent,#a27433); }
+.ai-bias-main :is(.bias-presets button,.bias-secondary,.bias-check button) { color: var(--bias-accent); border-color: var(--bias-accent); }
+.ai-bias-main :is(.bias-presets button,.bias-secondary,.bias-check button):hover { background: var(--bias-tint); }
+.ai-bias-main .bias-count-table thead { background: var(--bias-tint); color: #253349; }
+@media(max-width:600px) {
+ .ai-bias-main .bias-controls .bias-control-block > label { display: block; }
+ .ai-bias-main .bias-controls .bias-control-block output { display: table; margin-top: 8px; }
+}

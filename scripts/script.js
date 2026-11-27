@@ -288,11 +288,8 @@
 		chatWrapper.hidden = true;
 		chatWrapper.innerHTML = [
 			'<div class="chat-toggle-container">',
-			'  <div class="chat-toggle-hint" aria-hidden="true">Ask Nemo AI</div>',
 			'  <button class="portfolio-chat-toggle" type="button" aria-expanded="false" aria-controls="portfolio-chat-panel" title="Chat with Nemo AI" aria-label="Chat with Nemo, Andrew\'s Local AI">',
-			'    <span class="chat-toggle-text">Ask Nemo</span>',
 			'    <span class="chat-toggle-icon" aria-hidden="true">🤖</span>',
-			'    <span class="chat-toggle-badge" aria-hidden="true">AI</span>',
 			'  </button>',
 			'</div>',
 			'<section id="portfolio-chat-panel" class="portfolio-chat-panel" aria-label="Portfolio AI assistant" hidden>',
@@ -317,7 +314,6 @@
 		var chatToggle = chatWrapper.querySelector(".portfolio-chat-toggle");
 		var chatPanel = chatWrapper.querySelector(".portfolio-chat-panel");
 		var chatClose = chatWrapper.querySelector(".portfolio-chat-close");
-		var chatHint = chatWrapper.querySelector(".chat-toggle-hint");
 		var clear = chatWrapper.querySelector(".portfolio-chat-clear");
 		var form = chatWrapper.querySelector(".portfolio-chat-form");
 		var input = chatWrapper.querySelector("#portfolio-chat-input");
@@ -344,7 +340,6 @@
 			if (!chatPanel) return;
 			chatPanel.hidden = !open;
 			chatToggle.hidden = open;
-			if (chatHint && open) chatHint.style.display = "none";
 			chatToggle.setAttribute("aria-expanded", String(open));
 			try {
 				localStorage.setItem(STORAGE_OPEN_KEY, String(open));
@@ -375,16 +370,6 @@
 		chatClose.addEventListener("click", function () {
 			setChatOpen(false, false);
 		});
-
-		// Auto-fade mobile hint after 7 seconds
-		if (chatHint) {
-			setTimeout(function () {
-				chatHint.classList.add("fade-out");
-				setTimeout(function () {
-					if (chatHint.parentNode) chatHint.style.display = "none";
-				}, 600);
-			}, 7000);
-		}
 
 		if (phoneCopyBtn) {
 			phoneCopyBtn.addEventListener("click", function () {

@@ -24,9 +24,9 @@ function update() {
     el.classList.toggle('not-invited', !pass);
   });
   $('applicant-explanation').textContent = pair.penalty === 0
-    ? `Both applicants keep their 78 skill points. The irrelevant clue has no effect. ${pair.aPass ? 'Both get an interview.' : 'Both are rejected because the cutoff is above 78.'} This removes the one penalty built into our example; it is not a general fairness certificate.`
+    ? `Both applicants keep their 78 skill points. The group label no longer changes the score. ${pair.aPass ? 'Both get an interview.' : 'Both are rejected because the cutoff is above 78.'} This removes the one penalty built into our example; it is not a general fairness certificate.`
     : `Applicant B loses ${pair.penalty} points despite having the same job-relevant skills as A. ${pair.aPass && !pair.bPass ? 'That changes the interview decision.' : 'Their scores differ even though this cutoff currently gives them the same interview outcome.'} Neither applicant’s ability changed.`;
-  $('lab-context').textContent = `Current setup: Group B loses ${result.penalty} points ${settings.ignore ? '(the clue is being ignored)' : 'for the irrelevant clue'}; the interview cutoff is ${result.cutoff}. Group A has ${result.a.total} applicants and Group B has ${result.b.total}.`;
+  $('lab-context').textContent = `Current setup: Group B loses ${result.penalty} points ${settings.ignore ? '(the group label is being ignored)' : 'just for the group label'}; the interview cutoff is ${result.cutoff}. Group A has ${result.a.total} applicants and Group B has ${result.b.total}.`;
   $('stat-accuracy').textContent = pct(result.accuracy);
   const correct = result.a.tp + result.a.tn + result.b.tp + result.b.tn;
   $('accuracy-calculation').textContent = `${correct} correct decisions ÷ 1,000 applicants = ${pct(result.accuracy)}. “Correct” means matching the label we assigned.`;

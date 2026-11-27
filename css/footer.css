@@ -23,3 +23,4 @@ body.repair-shop-body footer{display:block}
  body footer:has(>p.footer-pill)>p.footer-pill:has(time){flex-grow:1.45}
  body footer:has(>p.footer-pill)>p.footer-version{flex-grow:.8}
 }
+@media(min-width:1200px){body footer:has(>p.footer-pill)>p.footer-version{flex:0 0 auto;white-space:nowrap}}

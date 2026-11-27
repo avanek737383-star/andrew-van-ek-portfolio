@@ -372,14 +372,14 @@
             if (userScore > aiScore) {
                 banner.classList.add("match-victory-user");
                 titleEl.textContent = "🏆 HUMAN VICTORY! YOU DEFEATED THE NEURAL NETWORK!";
-                subEl.innerHTML = `Final Score: <strong>${userScore} - ${aiScore}</strong>. Your human intuition outmaneuvered 1,025 trained synaptic weights over ${matchRounds} rounds!`;
+                subEl.innerHTML = `Final Score: <strong>${userScore} - ${aiScore}</strong>. You made more correct guesses in this match. A short match does not establish a reliable prediction advantage.`;
             } else if (aiScore > userScore) {
                 banner.classList.add("match-victory-ai");
                 titleEl.textContent = "🤖 MACHINE VICTORY! THE NEURAL NETWORK PREVAILED!";
-                subEl.innerHTML = `Final Score: <strong>${aiScore} - ${userScore}</strong>. The AI's sequence pattern recognition caught your choices!`;
+                subEl.innerHTML = `Final Score: <strong>${aiScore} - ${userScore}</strong>. The AI made more correct guesses about the generated outcomes. It did not choose or predict your button presses.`;
             } else {
                 titleEl.textContent = "🤝 TIED MATCH! A PERFECT DEADLOCK!";
-                subEl.innerHTML = `Final Score: <strong>${userScore} - ${aiScore}</strong>. Total equilibrium between human intuition and machine intelligence!`;
+                subEl.innerHTML = `Final Score: <strong>${userScore} - ${aiScore}</strong>. You and the AI made the same number of correct guesses. Another short match can finish differently.`;
             }
         }
     }
@@ -455,12 +455,12 @@
             autoStreamInterval = null;
             if (btn) {
                 btn.classList.remove("streaming");
-                btn.innerHTML = '<span>⚡ Auto-Stream (5/sec)</span>';
+                btn.innerHTML = '<span>⚡ Auto-run (5/sec)</span>';
             }
         } else {
             if (btn) {
                 btn.classList.add("streaming");
-                btn.innerHTML = '<span>⏹ Stop Stream</span>';
+                btn.innerHTML = '<span>⏹ Stop auto-run</span>';
             }
             autoStreamInterval = setInterval(() => {
                 runSimBatch(1);
@@ -527,11 +527,26 @@
         ctx.restore();
     }
 
+    function chartPalette(canvas) {
+        const css = getComputedStyle(canvas.closest('.chart-card'));
+        return {
+            primary: css.getPropertyValue('--coin-chart-primary').trim() || '#38bdf8',
+            secondary: css.getPropertyValue('--coin-chart-secondary').trim() || '#6ee7b7',
+            grid: css.getPropertyValue('--coin-chart-grid').trim() || 'rgba(255,255,255,.14)'
+        };
+    }
+    function chartAlpha(hex, alpha) {
+        const value = hex.replace('#','');
+        const full = value.length === 3 ? value.split('').map(c=>c+c).join('') : value;
+        return 'rgba(' + [0,2,4].map(i=>parseInt(full.slice(i,i+2),16)).join(',') + ',' + alpha + ')';
+    }
+
     // High-DPI Canvas Chart: Recorded training and validation loss
     function drawLossChart() {
         const canvas = document.getElementById("canvas-loss");
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
+        const palette = chartPalette(canvas);
         const rect = canvas.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
 
@@ -557,7 +572,7 @@
         const plotW = w - padL - padR;
         const plotH = h - padT - padB;
 
-        ctx.strokeStyle = "#1e293b";
+        ctx.strokeStyle = palette.grid;
         ctx.lineWidth = 1;
         const yTicks = 4;
         for (let i = 0; i <= yTicks; i++) {
@@ -571,7 +586,7 @@
             ctx.fillStyle = "#64748b";
             ctx.font = "10px ui-monospace, SFMono-Regular, monospace";
             ctx.textAlign = "right";
-            ctx.fillText(yVal.toFixed(2), padL - 8, yPos + 3);
+            ctx.fillText(yVal.toFixed(3), padL - 8, yPos + 3);
         }
 
         ctx.beginPath();
@@ -582,7 +597,7 @@
             else ctx.lineTo(x, y);
         });
 
-        ctx.strokeStyle = "#38bdf8";
+        ctx.strokeStyle = palette.primary;
         ctx.lineWidth = 2.5;
         ctx.stroke();
 
@@ -591,8 +606,8 @@
         ctx.lineTo(padL, padT + plotH);
         ctx.closePath();
         const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
-        grad.addColorStop(0, "rgba(56, 189, 248, 0.28)");
-        grad.addColorStop(1, "rgba(56, 189, 248, 0.0)");
+        grad.addColorStop(0, chartAlpha(palette.primary, 0.28));
+        grad.addColorStop(1, chartAlpha(palette.primary, 0.0));
         ctx.fillStyle = grad;
         ctx.fill();
 
@@ -605,7 +620,7 @@
             // Vertical crosshair guide line
             ctx.save();
             ctx.setLineDash([3, 3]);
-            ctx.strokeStyle = "rgba(56, 189, 248, 0.75)";
+            ctx.strokeStyle = chartAlpha(palette.primary, 0.75);
             ctx.lineWidth = 1.3;
             ctx.beginPath();
             ctx.moveTo(hx, padT);
@@ -616,7 +631,7 @@
             // Highlight point on the line
             ctx.beginPath();
             ctx.arc(hx, hy, 5, 0, Math.PI * 2);
-            ctx.fillStyle = "#38bdf8";
+            ctx.fillStyle = palette.primary;
             ctx.fill();
             ctx.strokeStyle = "#ffffff";
             ctx.lineWidth = 2;
@@ -624,11 +639,11 @@
 
             // Draw tooltip badge above hover point
             const tipLines = [
-                { text: `Epoch ${pt.epoch} of ${data.length}`, color: "#38bdf8", bold: true },
+                { text: `Epoch ${pt.epoch} of ${data.length}`, color: palette.primary, bold: true },
                 { text: `Training Loss: ${pt.train_loss.toFixed(4)}`, color: "#f8fafc", bold: false },
                 { text: `Validation Loss: ${pt.val_loss.toFixed(4)}`, color: "#94a3b8", bold: false }
             ];
-            drawCanvasTooltip(ctx, hx, hy, tipLines, "#38bdf8", w, h, padL, padR, padT, padB);
+            drawCanvasTooltip(ctx, hx, hy, tipLines, palette.primary, w, h, padL, padR, padT, padB);
         }
 
         ctx.fillStyle = "#94a3b8";
@@ -644,6 +659,7 @@
         const canvas = document.getElementById("canvas-accuracy");
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
+        const palette = chartPalette(canvas);
         const rect = canvas.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
 
@@ -655,7 +671,8 @@
         const h = rect.height;
         const padL = 45;
         const padR = 20;
-        const padT = 28;
+        const narrowLegend = w < 420;
+        const padT = narrowLegend ? 48 : 28;
         const padB = 30;
 
         ctx.clearRect(0, 0, w, h);
@@ -663,11 +680,11 @@
         const plotW = w - padL - padR;
         const plotH = h - padT - padB;
 
-        const minAcc = 35;
-        const maxAcc = 75;
+        const minAcc = accuracyHistory.length ? 0 : 35;
+        const maxAcc = accuracyHistory.length ? 100 : 75;
 
         // Grid lines & Y percentage ticks
-        ctx.strokeStyle = "#1e293b";
+        ctx.strokeStyle = palette.grid;
         ctx.lineWidth = 1;
         const yTicks = 4;
         for (let i = 0; i <= yTicks; i++) {
@@ -702,12 +719,12 @@
         if (accuracyHistory.length >= 1) {
             // Live Session Mode (User has played or initiated simulation batch)
             if (badgeEl) {
-                badgeEl.textContent = "Live Match Telemetry";
-                badgeEl.style.color = "#34d399";
-                badgeEl.style.background = "rgba(16,185,129,0.15)";
+                badgeEl.textContent = "Current play session";
+                badgeEl.style.color = palette.secondary;
+                badgeEl.style.background = chartAlpha(palette.secondary, 0.15);
             }
             if (subEl) {
-                subEl.innerHTML = "Session accuracy; compare with the selected process and its repeat-last-face baseline";
+                subEl.innerHTML = "Your current session: the share of guesses each player got right. Short runs can vary by luck.";
             }
 
             // Legend on canvas
@@ -716,7 +733,7 @@
 
             // AI Hit Rate legend indicator
             const latestAi = accuracyHistory[accuracyHistory.length - 1].aiAcc ?? accuracyHistory[accuracyHistory.length - 1].acc ?? 50.0;
-            ctx.fillStyle = "#10b981";
+            ctx.fillStyle = palette.secondary;
             ctx.fillRect(padL, 8, 10, 10);
             ctx.fillStyle = "#cbd5e1";
             ctx.fillText(`AI Hit Rate: ${latestAi.toFixed(1)}%`, padL + 14, 16);
@@ -725,10 +742,10 @@
             const hasUserFlips = accuracyHistory.some(pt => pt.userAcc !== null && pt.userAcc !== undefined);
             if (hasUserFlips) {
                 const latestUser = accuracyHistory.filter(pt => pt.userAcc !== null && pt.userAcc !== undefined).slice(-1)[0]?.userAcc ?? 50.0;
-                ctx.fillStyle = "#38bdf8";
-                ctx.fillRect(padL + 130, 8, 10, 10);
+                ctx.fillStyle = palette.primary;
+                ctx.fillRect(narrowLegend ? padL : padL + 130, narrowLegend ? 26 : 8, 10, 10);
                 ctx.fillStyle = "#cbd5e1";
-                ctx.fillText(`Your Hit Rate: ${latestUser.toFixed(1)}%`, padL + 144, 16);
+                ctx.fillText(`Your Hit Rate: ${latestUser.toFixed(1)}%`, narrowLegend ? padL + 14 : padL + 144, narrowLegend ? 34 : 16);
             }
 
             // Baseline label
@@ -748,7 +765,7 @@
                         if (i === 0) ctx.moveTo(x, y);
                         else ctx.lineTo(x, y);
                     });
-                    ctx.strokeStyle = "#38bdf8";
+                    ctx.strokeStyle = palette.primary;
                     ctx.lineWidth = 2;
                     ctx.stroke();
 
@@ -757,14 +774,14 @@
                     const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastUserPt.userAcc)) - minAcc) / (maxAcc - minAcc)));
                     ctx.beginPath();
                     ctx.arc(lx, ly, 3.5, 0, Math.PI * 2);
-                    ctx.fillStyle = "#38bdf8";
+                    ctx.fillStyle = palette.primary;
                     ctx.fill();
                 } else if (userPts.length === 1) {
                     const clamped = Math.max(minAcc, Math.min(maxAcc, userPts[0].userAcc));
                     const y = padT + plotH - (plotH * ((clamped - minAcc) / (maxAcc - minAcc)));
                     ctx.beginPath();
                     ctx.arc(padL + plotW / 2, y, 4, 0, Math.PI * 2);
-                    ctx.fillStyle = "#38bdf8";
+                    ctx.fillStyle = palette.primary;
                     ctx.fill();
                 }
             }
@@ -780,7 +797,7 @@
                     if (i === 0) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
                 });
-                ctx.strokeStyle = "#10b981";
+                ctx.strokeStyle = palette.secondary;
                 ctx.lineWidth = 2.5;
                 ctx.stroke();
 
@@ -790,7 +807,7 @@
                 const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastVal)) - minAcc) / (maxAcc - minAcc)));
                 ctx.beginPath();
                 ctx.arc(lx, ly, 4, 0, Math.PI * 2);
-                ctx.fillStyle = "#10b981";
+                ctx.fillStyle = palette.secondary;
                 ctx.fill();
                 ctx.strokeStyle = "#ffffff";
                 ctx.lineWidth = 1.5;
@@ -800,7 +817,7 @@
                 const y = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, firstVal)) - minAcc) / (maxAcc - minAcc)));
                 ctx.beginPath();
                 ctx.arc(padL + plotW / 2, y, 5, 0, Math.PI * 2);
-                ctx.fillStyle = "#10b981";
+                ctx.fillStyle = palette.secondary;
                 ctx.fill();
                 ctx.strokeStyle = "#ffffff";
                 ctx.lineWidth = 1.5;
@@ -818,7 +835,7 @@
                 // Vertical Guide Line
                 ctx.save();
                 ctx.setLineDash([3, 3]);
-                ctx.strokeStyle = "rgba(16, 185, 129, 0.75)";
+                ctx.strokeStyle = chartAlpha(palette.secondary, 0.75);
                 ctx.lineWidth = 1.3;
                 ctx.beginPath();
                 ctx.moveTo(hx, padT);
@@ -829,7 +846,7 @@
                 // Highlight dot on AI Accuracy
                 ctx.beginPath();
                 ctx.arc(hx, hyAi, 5, 0, Math.PI * 2);
-                ctx.fillStyle = "#10b981";
+                ctx.fillStyle = palette.secondary;
                 ctx.fill();
                 ctx.strokeStyle = "#ffffff";
                 ctx.lineWidth = 2;
@@ -838,8 +855,8 @@
                 const edge = (aiVal - 50.0).toFixed(1);
                 const prefix = parseFloat(edge) >= 0 ? "+" : "";
                 const tipLines = [
-                    { text: `Flip #${pt.count || (hoverAccIndex + 1)}`, color: "#34d399", bold: true },
-                    { text: `AI Hit Rate: ${aiVal.toFixed(1)}% (${prefix}${edge}% edge)`, color: "#10b981", bold: true }
+                    { text: `Flip #${pt.count || (hoverAccIndex + 1)}`, color: palette.secondary, bold: true },
+                    { text: `AI Hit Rate: ${aiVal.toFixed(1)}% (${prefix}${edge}% edge)`, color: palette.secondary, bold: true }
                 ];
 
                 if (pt.userAcc !== null && pt.userAcc !== undefined) {
@@ -847,16 +864,16 @@
                     const hyUser = padT + plotH - (plotH * ((clampedUser - minAcc) / (maxAcc - minAcc)));
                     ctx.beginPath();
                     ctx.arc(hx, hyUser, 4.5, 0, Math.PI * 2);
-                    ctx.fillStyle = "#38bdf8";
+                    ctx.fillStyle = palette.primary;
                     ctx.fill();
                     ctx.strokeStyle = "#ffffff";
                     ctx.lineWidth = 1.8;
                     ctx.stroke();
 
-                    tipLines.push({ text: `Your Hit Rate: ${pt.userAcc.toFixed(1)}%`, color: "#38bdf8", bold: false });
+                    tipLines.push({ text: `Your Hit Rate: ${pt.userAcc.toFixed(1)}%`, color: palette.primary, bold: false });
                 }
 
-                drawCanvasTooltip(ctx, hx, hyAi, tipLines, "#10b981", w, h, padL, padR, padT, padB);
+                drawCanvasTooltip(ctx, hx, hyAi, tipLines, palette.secondary, w, h, padL, padR, padT, padB);
             }
 
             // Bottom X-axis labels
@@ -868,14 +885,14 @@
             ctx.fillText(`${totalFlips} Cumulative Flips`, w - padR, h - 8);
 
         } else {
-            // Default Selected Model Training History Mode (Displays immediately on Page Load so graph is never empty!)
+            // Default Saved training record Mode (Displays immediately on Page Load so graph is never empty!)
             if (badgeEl) {
-                badgeEl.textContent = "Selected Model Training History";
-                badgeEl.style.color = "#34d399";
-                badgeEl.style.background = "rgba(16,185,129,0.15)";
+                badgeEl.textContent = "Saved training record";
+                badgeEl.style.color = palette.secondary;
+                badgeEl.style.background = chartAlpha(palette.secondary, 0.15);
             }
             if (subEl) {
-                subEl.innerHTML = "Recorded training/validation curves; checkpoint selection and final test are explained below";
+                subEl.innerHTML = "Saved practice and validation results. The separate final test is below.";
             }
 
             const data = TRAINING_HISTORY;
@@ -885,16 +902,16 @@
                 ctx.textAlign = "left";
 
                 // Validation Holdout Legend
-                ctx.fillStyle = "#10b981";
+                ctx.fillStyle = palette.secondary;
                 ctx.fillRect(padL, 8, 10, 10);
                 ctx.fillStyle = "#cbd5e1";
                 ctx.fillText(`Validation: ${Number(data[data.length-1].val_acc).toFixed(2)}%`, padL + 14, 16);
 
                 // Training Accuracy Legend
-                ctx.fillStyle = "#38bdf8";
-                ctx.fillRect(padL + 145, 8, 10, 10);
+                ctx.fillStyle = palette.primary;
+                ctx.fillRect(narrowLegend ? padL : padL + 145, narrowLegend ? 26 : 8, 10, 10);
                 ctx.fillStyle = "#cbd5e1";
-                ctx.fillText(`Training Set: ${Number(data[data.length-1].train_acc).toFixed(2)}%`, padL + 159, 16);
+                ctx.fillText(`Training Set: ${Number(data[data.length-1].train_acc).toFixed(2)}%`, narrowLegend ? padL + 14 : padL + 159, narrowLegend ? 34 : 16);
 
                 // Baseline label
                 ctx.fillStyle = "#94a3b8";
@@ -910,7 +927,7 @@
                     if (i === 0) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
                 });
-                ctx.strokeStyle = "#38bdf8";
+                ctx.strokeStyle = palette.primary;
                 ctx.lineWidth = 1.8;
                 ctx.stroke();
 
@@ -923,7 +940,7 @@
                     if (i === 0) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
                 });
-                ctx.strokeStyle = "#10b981";
+                ctx.strokeStyle = palette.secondary;
                 ctx.lineWidth = 2.5;
                 ctx.stroke();
 
@@ -933,8 +950,8 @@
                 ctx.lineTo(padL, base50Y);
                 ctx.closePath();
                 const grad = ctx.createLinearGradient(0, padT, 0, base50Y);
-                grad.addColorStop(0, "rgba(16, 185, 129, 0.22)");
-                grad.addColorStop(1, "rgba(16, 185, 129, 0.0)");
+                grad.addColorStop(0, chartAlpha(palette.secondary, 0.22));
+                grad.addColorStop(1, chartAlpha(palette.secondary, 0.0));
                 ctx.fillStyle = grad;
                 ctx.fill();
 
@@ -943,7 +960,7 @@
                 const ly = padT + plotH - (plotH * ((Math.max(minAcc, Math.min(maxAcc, lastVal)) - minAcc) / (maxAcc - minAcc)));
                 ctx.beginPath();
                 ctx.arc(lastX, ly, 4, 0, Math.PI * 2);
-                ctx.fillStyle = "#10b981";
+                ctx.fillStyle = palette.secondary;
                 ctx.fill();
                 ctx.strokeStyle = "#ffffff";
                 ctx.lineWidth = 1.5;
@@ -962,7 +979,7 @@
                     // Vertical Guide Line
                     ctx.save();
                     ctx.setLineDash([3, 3]);
-                    ctx.strokeStyle = "rgba(16, 185, 129, 0.75)";
+                    ctx.strokeStyle = chartAlpha(palette.secondary, 0.75);
                     ctx.lineWidth = 1.3;
                     ctx.beginPath();
                     ctx.moveTo(hx, padT);
@@ -973,7 +990,7 @@
                     // Highlight dot Validation
                     ctx.beginPath();
                     ctx.arc(hx, hyVal, 5, 0, Math.PI * 2);
-                    ctx.fillStyle = "#10b981";
+                    ctx.fillStyle = palette.secondary;
                     ctx.fill();
                     ctx.strokeStyle = "#ffffff";
                     ctx.lineWidth = 2;
@@ -982,7 +999,7 @@
                     // Highlight dot Training
                     ctx.beginPath();
                     ctx.arc(hx, hyTrain, 4, 0, Math.PI * 2);
-                    ctx.fillStyle = "#38bdf8";
+                    ctx.fillStyle = palette.primary;
                     ctx.fill();
                     ctx.strokeStyle = "#ffffff";
                     ctx.lineWidth = 1.5;
@@ -990,11 +1007,11 @@
 
                     const edge = (pt.val_acc - 50.0).toFixed(2);
                     const tipLines = [
-                        { text: `Epoch ${pt.epoch} of ${data.length}`, color: "#34d399", bold: true },
-                        { text: `Validation accuracy: ${Number(pt.val_acc).toFixed(2)}% (${edge} points above 50%)`, color: "#10b981", bold: true },
-                        { text: `Training Set Acc: ${Number(pt.train_acc).toFixed(2)}%`, color: "#38bdf8", bold: false }
+                        { text: `Epoch ${pt.epoch} of ${data.length}`, color: palette.secondary, bold: true },
+                        { text: `Validation accuracy: ${Number(pt.val_acc).toFixed(2)}% (${edge} points above 50%)`, color: palette.secondary, bold: true },
+                        { text: `Training Set Acc: ${Number(pt.train_acc).toFixed(2)}%`, color: palette.primary, bold: false }
                     ];
-                    drawCanvasTooltip(ctx, hx, hyVal, tipLines, "#10b981", w, h, padL, padR, padT, padB);
+                    drawCanvasTooltip(ctx, hx, hyVal, tipLines, palette.secondary, w, h, padL, padR, padT, padB);
                 }
 
                 // Bottom X-axis labels
@@ -1129,6 +1146,8 @@
             hoverLossIndex = null; hoverAccIndex = null;
             resetExperiment();
         });
+
+        new MutationObserver(function () { drawLossChart(); drawAccuracyChart(); }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
         // Draw Initial Charts
         drawLossChart();

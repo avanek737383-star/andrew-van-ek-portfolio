@@ -8,12 +8,12 @@
 	<link rel="icon" href="favicon.ico" sizes="any">
 		<link rel="icon" href="favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<link rel="stylesheet" href="css/styles.css?v=20261126-seasonal-sync-1">
-	<link rel="stylesheet" href="css/coin-predictor.css?v=20261103-clock-weather-fix-1">
+	<link rel="stylesheet" href="css/styles.css?v=20261126-icon-launcher-444">
+	<link rel="stylesheet" href="css/coin-predictor.css?v=20261126-guided-themes-1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/footer.css?v=20261126-footer-443">
+<link rel="stylesheet" href="css/footer.css?v=20261126-footer-444">
 <link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body>
@@ -89,9 +89,9 @@
 			<header class="predictor-hero">
 				<h1>Neural Sequence &amp; Coin Predictor</h1>
 				<p class="predictor-subtitle">
-					A browser demonstration of a fixed neural network making guesses about a synthetic binary sequence. Compare it with simple strategies, inspect the calculations, and see why a high-looking score needs a meaningful baseline.
+					Can an AI guess heads or tails better than you? Start with a fair virtual coin, then try a deliberately added pattern. The lesson is learning when there is something to predict—and when there is not.
 				</p>
-				<div class="model-spec-ribbon">
+<details class="coin-advanced"><summary>Optional: model specifications and recorded test score</summary>				<div class="model-spec-ribbon">
 					<span class="spec-chip">⚙️ <strong>Architecture:</strong> <span class="spec-chip-highlight">14-dim Input &rarr; Dense(32) &rarr; Dense(16) &rarr; Sigmoid(1)</span></span>
 					<span class="spec-sep">&bull;</span>
 					<span class="spec-chip">💻 <strong>Training Platform:</strong> <span class="spec-chip-highlight">PyTorch 2.13 (CPU)</span></span>
@@ -101,14 +101,25 @@
 					<span class="spec-chip">⚡ <strong>Inference:</strong> <span class="spec-chip-highlight">Browser tensor calculation; not zero latency</span></span>
 					<span class="spec-sep">&bull;</span>
 					<span class="spec-chip">🎯 <strong>Evaluation Accuracy:</strong> <span class="spec-chip-highlight"><span id="current-eval-value">Loading the current evaluation…</span></span></span>
-				</div>
+				</div></details>
 			</header>
 
-<section class="explain-card" aria-labelledby="coin-question"><span class="explain-label">START HERE</span><h2 id="coin-question">Can a pattern make a coin easier to predict?</h2><p>This is a software experiment, not a simulation of tumbling coin physics. Select independent fair outcomes or a deliberately small repeating tendency. The neural network’s weights stay fixed; your choices do not train it.</p><label for="coin-process"><strong>Choose how the next outcome is generated</strong></label><select id="coin-process"><option value="alternation">Invented alternation rule</option><option value="persistent">Mild repetition rule</option><option value="fair">Independent fair outcomes</option></select><p id="coin-process-explanation"></p><label for="coin-model"><strong>Choose which fixed model makes guesses</strong></label><select id="coin-model"><option value="candidate">Controlled retraining candidate</option><option value="original">Recovered original model</option></select><p>Changing either setting resets the session so results from different generators are not mixed. For the persistent setting, “always predict the previous face” has 51.5% expected accuracy. That is a stronger comparison than a 50% fair guess.</p><p>The model score is an uncalibrated neural-network output, not a promise that its guess is correct. The gauge called balance entropy measures the mix of outcomes, not their unpredictability.</p></section>
+<section class="explain-card coin-start-guide" aria-labelledby="coin-question">
+<span class="explain-label">A THREE-STEP EXPERIMENT</span><h2 id="coin-question">First, meet the three kinds of virtual coin</h2>
+<p>The computer picks heads or tails using a rule. You choose the rule; you and the AI then guess the next result. These are made-up software outcomes, not a model of a coin tumbling through the air.</p>
+<ol class="coin-learning-steps"><li><strong>Start fair.</strong> Choose heads or tails below. Each result has an equal chance.</li><li><strong>Look at the result.</strong> You and the AI each earn a point for a correct guess. Both can score, or both can miss.</li><li><strong>Try a pattern.</strong> Change the rule and play again. Ask whether a simple guessing strategy could do just as well.</li></ol>
+<label for="coin-process"><strong>1. Which rule should this virtual coin follow?</strong></label>
+<select id="coin-process" aria-describedby="coin-process-explanation coin-process-example"><option value="fair" selected>Fair coin — start here: no pattern to learn</option><option value="persistent">A tiny repeating tendency — the last face has a slight edge</option><option value="alternation">A switching tendency — the coin often changes sides</option></select>
+<div class="coin-rule-guide"><h3 id="coin-rule-title">Fair coin: every toss starts fresh</h3><p id="coin-process-explanation" aria-live="polite">Heads and tails each have a 50% chance, whatever happened before. Past results do not give the AI a predictive advantage.</p><p id="coin-process-example">Example: even after H H H, the next outcome is still equally likely to be H or T. H means heads; T means tails.</p><details class="coin-inline-help"><summary>What should I compare with this rule?</summary><p id="coin-process-takeaway"><strong>Watch for:</strong> short runs can favor either player by luck. More flips do not create a pattern in a fair process.</p></details></div>
+<p><strong>2. Make your first guess below.</strong> Leave the AI model on its recommended setting for now. Changing the coin rule or model clears the session so scores from different setups are not mixed.</p>
+<p><a href="#stage-title" class="coin-start-link">Go to the coin and make a guess &rarr;</a></p>
+<details class="coin-advanced"><summary>Optional: compare the two saved AI models</summary><p>A model is the saved set of numerical settings the AI uses to make guesses. Both models were trained before this page loaded. Playing here does not retrain either one.</p><label for="coin-model"><strong>Which saved model should make the AI's guesses?</strong></label><select id="coin-model"><option value="candidate">Newer model — recommended starting point</option><option value="original">Original model — compare after trying the basics</option></select><p>The newer model was trained in a controlled follow-up experiment. “Newer” does not guarantee a better score on every rule or short play session. The recorded comparison is below.</p></details>
+</section>
 			<!-- Main Interactive Arena -->
 			<div class="predictor-grid">
 				<!-- Coin Toss Stage: Human vs. AI Challenge Arena -->
 				<section class="coin-stage-card" aria-labelledby="stage-title">
+                    <h2 id="stage-title" style="scroll-margin-top:6rem">Your turn: guess the next face</h2>
 					<!-- Victory / Match Over Banner -->
 					<div class="match-victory-banner" id="match-victory-banner">
 						<div class="match-victory-title" id="match-victory-title">🏆 HUMAN VICTORY!</div>
@@ -116,21 +127,23 @@
 						<button type="button" class="btn-rematch" id="btn-rematch">🔄 Play Rematch</button>
 					</div>
 
-					<!-- Match Rounds Selector -->
+					<p class="coin-control-note">One round means one generated result. Guess heads or tails; the AI makes its own guess from earlier results. A correct guess earns one point, so ties are possible.</p>
+                    <!-- Match Rounds Selector -->
 					<div class="match-setup-bar" style="width:100%;">
 						<div style="display:flex; align-items:center; gap:8px;">
 							<span style="font-size:0.78rem; font-weight:700; color:#475569;">Match Format:</span>
 							<div class="match-pills">
-								<button type="button" class="match-pill-btn" data-rounds="5">Best of 5</button>
-								<button type="button" class="match-pill-btn active" data-rounds="10">Best of 10</button>
-								<button type="button" class="match-pill-btn" data-rounds="20">Best of 20</button>
+								<button type="button" class="match-pill-btn" data-rounds="5">5 rounds</button>
+								<button type="button" class="match-pill-btn active" data-rounds="10">10 rounds</button>
+								<button type="button" class="match-pill-btn" data-rounds="20">20 rounds</button>
 								<button type="button" class="match-pill-btn" data-rounds="infinity">Endless</button>
 							</div>
 						</div>
 						<span class="match-round-tag" id="match-round-tag">Round 1 of 10</span>
 					</div>
 
-					<!-- Versus Scoreboard -->
+					<details class="coin-inline-help"><summary>How rounds, scores and rematches work</summary><p class="coin-control-note">Choose 5, 10 or 20 rounds, or Endless to keep playing. Changing the round count or choosing Rematch resets the match scores; the session's flip history and overall AI accuracy continue until you change the coin rule or model.</p></details>
+                    <!-- Versus Scoreboard -->
 					<div class="vs-scoreboard">
 						<!-- User -->
 						<div class="vs-player-card vs-player-user">
@@ -155,7 +168,7 @@
 						</div>
 					</div>
 
-					<div id="vs-round-status" style="font-size:0.84rem; min-height:22px; margin-bottom:12px; font-weight:600; color:#334155;">
+					<div id="vs-round-status" role="status" aria-live="polite" style="font-size:0.84rem; min-height:22px; margin-bottom:12px; font-weight:600; color:#334155;">
 						Select your guess to begin Round 1!
 					</div>
 
@@ -190,15 +203,17 @@
 						</div>
 					</div>
 
-					<!-- Rapid Simulation Secondary Bar -->
+					<p class="coin-control-note">The coin animation is decoration. The selected software rule determines each result; button timing does not control it.</p>
+                    <!-- Rapid Simulation Secondary Bar -->
 					<div style="width:100%; margin-top:16px; border-top:1px dashed #cbd5e1; padding-top:12px;">
 						<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-							<span style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase;">High-Speed AI Simulators:</span>
+							<span style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase;">Try more flips (optional):</span>
 							<button type="button" class="btn-auto-stream" id="btn-auto-stream" style="padding:4px 10px; font-size:0.75rem;">
-								<span>⚡ Auto-Stream (5/sec)</span>
+								<span>⚡ Auto-run (5/sec)</span>
 							</button>
 						</div>
-						<div class="sim-btn-row">
+						<details class="coin-inline-help"><summary>What do Simulate and Auto-run do?</summary><p class="coin-control-note">Simulate 10, 50 or 100 generates that many extra results and checks the AI, without asking for your guesses or changing the match scoreboard. Auto-run adds about five per second; click it again to stop. These results do count toward the session's AI accuracy and history.</p></details>
+                        <div class="sim-btn-row">
 							<button type="button" class="btn-sim-secondary" id="btn-sim-10">Simulate 10</button>
 							<button type="button" class="btn-sim-secondary" id="btn-sim-50">Simulate 50</button>
 							<button type="button" class="btn-sim-secondary" id="btn-sim-100">Simulate 100</button>
@@ -210,41 +225,43 @@
 				<section class="hud-card" aria-labelledby="hud-title">
 					<div class="hud-top-bar">
 						<h2 id="hud-title" class="hud-title">
-							<span>🧠 Live Neural Inference HUD</span>
+							<span>AI guess &amp; results</span>
 						</h2>
-						<span class="hud-live-badge"><span class="hud-pulse-dot"></span> Active Inference</span>
+						<span class="hud-live-badge"><span class="hud-pulse-dot"></span> Saved model running</span>
 					</div>
 
-					<div class="hud-metrics-grid">
+					<div class="hud-metrics-grid"><div class="metric-box"><div class="metric-label">AI's next guess</div><div class="metric-val-large" id="hud-next-pred">Loading…</div><div class="metric-sub">Based on the previous ten results, not your button choice.</div></div>
 						<!-- Model Uncalibrated Model Score -->
 						<div class="metric-box">
 							<div class="metric-label">
-								<span>Model score (uncalibrated)</span>
+								<span>How strongly the AI favors its guess</span>
 								<span id="hud-conf-val">68.2%</span>
 							</div>
 							<div class="confidence-bar-bg">
 								<div class="confidence-bar-fill" id="hud-conf-bar" style="width: 36%;"></div>
 							</div>
-							<div class="metric-sub" style="margin-top:8px;">Network score for its chosen face; not a measured success rate</div>
+							<div class="metric-sub" style="margin-top:8px;">A model preference, not the measured chance of being right.</div>
 						</div>
 
 						<!-- Empirical Win-Rate -->
 						<div class="metric-box">
-							<div class="metric-label"><span class="tech-term" data-term="empirical-win-rate">Empirical Win-Rate</span></div>
+							<div class="metric-label">AI guesses correct so far</div>
 							<div class="metric-val-large" id="hud-acc-val">54.8%</div>
 							<div class="metric-sub" id="hud-acc-sub"><strong>+4.8%</strong> vs 50.0% random chance baseline</div>
 						</div>
 
 						<!-- Sequence Entropy & Streaks -->
 						<div class="metric-box metric-box-span-2">
-							<div class="metric-label"><span class="tech-term" data-term="shannon-entropy">Outcome-Balance Entropy</span> (Ignores Order)</div>
+							<div class="metric-label">How evenly heads and tails are mixed</div>
 							<div class="metric-val-large" id="hud-entropy-val">0.974 bits</div>
-							<div class="metric-sub" id="hud-streak-val">Streak: 2 Heads (Best: 5)</div>
+							<div class="metric-sub" id="hud-streak-val">Streak: 2 Heads (Best: 5)</div><details class="coin-inline-help"><summary>What does this balance number mean?</summary><p class="metric-sub">A value near 1 bit means a fairly even mix of heads and tails. It does not mean the order is unpredictable: H T H T is evenly mixed but follows a pattern. A streak is a run of the same face; Best is the longest run this session.</p></details>
 						</div>
 					</div>
 
+<details class="coin-hud-details"><summary>Optional: inspect the AI inputs and calculations</summary>
 					<!-- Forward-Pass Neural Reasoning & Decision Stream (Live HUD Panel) -->
-					<div class="hud-reasoning-panel">
+					<p class="metric-sub">The model starts with the same ten example outcomes each time the coin rule or model changes. They give it initial inputs and are not scored rounds. The calculation below reads those inputs and the saved model settings; it is not a written thought process.</p>
+<div class="hud-reasoning-panel">
 						<div class="hud-reasoning-header">
 							<span style="font-size:0.75rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.05em;">🧠 Calculated Features &amp; Decision:</span>
 							<span style="font-size:0.70rem; color:#64748b; font-family:ui-monospace, monospace;">Local tensor calculation</span>
@@ -261,6 +278,7 @@
 						<span>State Features: <code>Window: 10 flips</code> &bull; <code>Streak Length</code> &bull; <code>Alternation Rate</code> &bull; <code>P(H|H)</code></span>
 						<span style="color:#38bdf8; font-weight:600;">JavaScript forward pass</span>
 					</div>
+</details>
 				</section>
 			</div>
 
@@ -268,15 +286,16 @@
 			<section class="sequence-tape-card" aria-labelledby="tape-heading">
 				<div class="tape-header">
 					<h3 id="tape-heading" class="tape-title">
-						<span>📜 Sequence Tape &amp; Prediction Verification</span>
+						<span>Recent flips: what the AI got right</span>
 					</h3>
 					<span style="font-size:0.75rem; color:#64748b;">(Last 30 flips &bull; Green check = AI predicted correctly)</span>
 				</div>
-				<div class="tape-stream" id="sequence-tape-stream">
+				<p class="coin-control-note">H means heads; T means tails. Each tile is an actual result from this session. A green check means the AI guessed that result correctly; a miss means it did not. The strip keeps the most recent 30 results.</p><div class="tape-stream" id="sequence-tape-stream">
 					<!-- Filled dynamically by JavaScript -->
 				</div>
 			</section>
 
+<details class="coin-advanced coin-network-details"><summary>Optional: see the neural network and training diagram</summary>
 			<div class="arch-diagram-card" style="background:#0a0f1d; border:1px solid #1e293b; border-radius:12px; padding:20px; margin-bottom:32px; box-shadow:0 8px 24px rgba(0,0,0,0.35); color:#f8fafc;">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
     <div>
@@ -333,7 +352,7 @@
 
     <!-- Backprop Gradient Loop -->
     <path d="M 740 145 C 740 225, 270 235, 120 215" stroke="url(#backpropGrad)" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#arrowBack)"/>
-    <text x="430" y="240" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">&larr; Backpropagation: &part;&Lscr;/&part;W via Chain Rule (offline training; see the selected model metadata)</text>
+    <text x="430" y="240" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">&larr; Offline training: backpropagation</text>
 
     <!-- COLUMN 1: Input Layer (14 Features) -->
     <rect x="20" y="20" width="100" height="190" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.5"/>
@@ -381,16 +400,19 @@
     <text x="777" y="122" fill="#fef08a" font-size="11" font-weight="800" text-anchor="middle">&ge; 0.5: HEADS</text>
     <text x="777" y="142" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">&lt; 0.5: TAILS</text>
   </svg>
+<p class="coin-training-explanation"><strong>What is backpropagation?</strong> During training, the model works backward from its prediction errors to calculate how its weights (saved numerical settings) should change. The notation <code>∂L/∂W</code> describes how the error, L, changes with the weights, W. That training happened offline; this page uses the saved weights to make guesses.</p><details class="coin-diagram-glossary"><summary>Diagram and training terms, explained</summary><dl><dt>Input features</dt><dd>Fourteen numbers describing the previous ten flips and their recent patterns. “Dim” means the number of inputs.</dd><dt>Dense layers</dt><dd>Groups of calculations connected to the previous group. The two hidden groups here have 32 and 16 units.</dd><dt>ReLU</dt><dd>A calculation that keeps positive values and replaces negative ones with zero.</dd><dt>Sigmoid and threshold</dt><dd>The final calculation produces a score between 0 and 1. At 0.5 or above, the model chooses heads; below that, tails. This score is not a verified success probability.</dd><dt>Weights and parameters</dt><dd>The saved numerical settings used in those calculations. This network has 1,025 of them.</dd><dt>PyTorch and CPU</dt><dd>PyTorch is software used to train the model. CPU means the computer's main processor.</dd><dt>Loss and binary cross-entropy</dt><dd>A penalty for prediction errors on two possible outcomes. Lower loss is better on the same examples, but does not prove good performance on new examples.</dd><dt>Epoch and checkpoint</dt><dd>An epoch is one pass through the training examples. A checkpoint is a saved version of the model. The validation results help choose which checkpoint to keep.</dd></dl></details>
 </div>
 
-			<!-- Interactive Telemetry Charts -->
+            </details>
+<section class="explain-card"><h2>How to read the charts</h2><p>Loss measures prediction error; lower is better on the same examples. Accuracy is the share of guesses that were correct. These charts show saved training until you play, when the accuracy chart switches to your session.</p><details class="coin-inline-help"><summary>Training, validation, epochs and final tests explained</summary><p><strong>Training</strong> is practice on examples used to adjust the model. <strong>Validation</strong> is a separate set used to choose which saved version to keep. A final <strong>test</strong> uses another set after that choice. These are different checks.</p><p>Move the pointer across a chart, or touch it, to inspect recorded values. The legend names each colored line. An epoch along the bottom is one pass through the training examples. The charts initially show saved training records. Once you play, the accuracy chart switches to your current session. A high score on an invented pattern does not show an advantage on a real fair coin.</p></details></section>
+            <!-- Interactive Telemetry Charts -->
 			<div class="charts-grid">
 				<!-- Training Loss Convergence Curve -->
 				<section class="chart-card" aria-labelledby="chart-loss-title">
 					<div class="chart-header">
 						<div>
-							<h3 id="chart-loss-title" class="chart-title">CPU Training Loss Convergence Curve</h3>
-							<span class="chart-subtitle">Recorded training loss; selected checkpoint is documented below</span>
+							<h3 id="chart-loss-title" class="chart-title">Training: did prediction error go down?</h3>
+							<span class="chart-subtitle">Lower loss means less prediction error on the training examples.</span>
 						</div>
 						<span style="font-size:0.75rem; background:rgba(56,189,248,0.15); color:#38bdf8; padding:3px 8px; border-radius:999px; font-weight:700;">PyTorch 2.13 (CPU)</span>
 					</div>
@@ -403,7 +425,7 @@
 				<section class="chart-card" aria-labelledby="chart-acc-title">
 					<div class="chart-header">
 						<div>
-							<h3 id="chart-acc-title" class="chart-title">Accuracy: Recorded Training or Current Session</h3>
+							<h3 id="chart-acc-title" class="chart-title">Accuracy: saved training or this session</h3>
 							<span class="chart-subtitle" id="chart-acc-subtitle">Recorded training and validation accuracy; final test is separate</span>
 						</div>
 						<span id="chart-acc-badge" style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#34d399; padding:3px 8px; border-radius:999px; font-weight:700;">Archived Training Snapshot</span>
@@ -416,22 +438,22 @@
 
 
 
-<section class="explain-card" aria-labelledby="diagnostics-heading"><span class="explain-label">CHECK THE EVIDENCE</span><h2 id="diagnostics-heading">What does the current model actually achieve?</h2><p>Both fixed models are evaluated on the same fresh test rows. Compare them with repeat-last-face and always-switch strategies. Changing the play-session generator above is separate from selecting the recorded test subset here.</p><p id="coin-training-summary"></p><label for="coin-test-rule"><strong>Which held-out test subset should the table show?</strong></label><select id="coin-test-rule"><option value="all">Full test mixture</option><option value="alternation">Invented alternation rule</option><option value="persistent">Mild repetition rule</option><option value="fair">Independent fair outcomes</option></select><div id="coin-evaluation" aria-live="polite">Loading the reproducible evaluation artifact…</div><details><summary>Download the data and see how the experiment was run</summary><p>The recovered original generator reconstructs 6,000 seed-42 rows. Its 1,200-row validation counts match the saved weights’ 52.58% result. That validates the final evaluation on that split, not every claim in the original write-up.</p><p>The new candidate trained on 20,000 synthetic rows, used 5,000 separate validation rows for early stopping, and was compared with the original on 15,000 fresh test rows. Validation selected checkpoint 36; training stopped after 44 epochs. The test set did not select the checkpoint. The recorded curve includes all epochs, while inference uses the selected checkpoint.</p><ul><li><a href="data/coin/transparent-dataset.csv.gz">Download all 40,000 rows (compressed CSV)</a></li><li><a href="data/coin/reconstructed-seed42.csv">Download reconstructed original rows</a></li><li><a href="scripts/train-coin-transparent.py">New training script</a> · <a href="scripts/reconstruct-coin-data.py">original-data reconstruction</a></li><li><a href="documents/coin/recovered_train_120.py">Recovered, audit-adapted 120-epoch source</a></li><li><a href="data/coin/transparent-training.json">Candidate weights, curves, test counts, and metadata</a> · <a href="data/coin/reconstruction.json">original reconstruction proof</a></li></ul><p>All examples are invented stochastic rules, not collected human choices or physical coin measurements. Independent draws can share the same short binary context; that is expected in a finite input space. The splits use separate random seeds.</p></details></section>
+<section class="explain-card" aria-labelledby="diagnostics-heading"><span class="explain-label">CHECK THE EVIDENCE</span><h2 id="diagnostics-heading">What does the current model actually achieve?</h2><p>Both fixed models are evaluated on the same fresh test rows. Compare them with repeat-last-face and always-switch strategies. Changing the play-session generator above is separate from selecting the recorded test subset here.</p><p id="coin-training-summary"></p><label for="coin-test-rule"><strong>Which held-out test subset should the table show?</strong></label><select id="coin-test-rule"><option value="all">All three rules together</option><option value="alternation">Switching tendency only</option><option value="persistent">Tiny repeating tendency only</option><option value="fair">Fair coin only</option></select><div id="coin-evaluation" aria-live="polite">Loading the reproducible evaluation artifact…</div><details><summary>Download the data and see how the experiment was run</summary><p>The recovered original generator reconstructs 6,000 seed-42 rows. Its 1,200-row validation counts match the saved weights’ 52.58% result. That validates the final evaluation on that split, not every claim in the original write-up.</p><p>The new candidate trained on 20,000 synthetic rows, used 5,000 separate validation rows for early stopping, and was compared with the original on 15,000 fresh test rows. Validation selected checkpoint 36; training stopped after 44 epochs. The test set did not select the checkpoint. The recorded curve includes all epochs, while inference uses the selected checkpoint.</p><ul><li><a href="data/coin/transparent-dataset.csv.gz">Download all 40,000 rows (compressed CSV)</a></li><li><a href="data/coin/reconstructed-seed42.csv">Download reconstructed original rows</a></li><li><a href="scripts/train-coin-transparent.py">New training script</a> · <a href="scripts/reconstruct-coin-data.py">original-data reconstruction</a></li><li><a href="documents/coin/recovered_train_120.py">Recovered, audit-adapted 120-epoch source</a></li><li><a href="data/coin/transparent-training.json">Candidate weights, curves, test counts, and metadata</a> · <a href="data/coin/reconstruction.json">original reconstruction proof</a></li></ul><p>All examples are invented stochastic rules, not collected human choices or physical coin measurements. Independent draws can share the same short binary context; that is expected in a finite input space. The splits use separate random seeds.</p></details></section>
 <section class="explain-card"><h2>What should you learn from this?</h2><div class="explain-grid"><article><h3>Balance is not randomness</h3><p>The balance-entropy gauge uses only the proportions of heads and tails. <code>01010101</code> scores 1 bit because half the entries are heads, even though the next entry is predictable. This gauge ignores order.</p></article><article><h3>A fair coin has no exploitable history</h3><p>For independent fair outcomes, any predictor based only on the past has 50% expected accuracy. Finite samples can finish above or below 50%; that alone proves no advantage.</p></article><article><h3>A constructed pattern needs its own baseline</h3><p>With 51.5% persistence, always repeating the previous face already has 51.5% expected accuracy. Compare the model with that strategy, not just with random guessing.</p></article><article><h3>Noise needs a definition</h3><p>Flipping a percentage of binary labels is not the same measurement as audio signal-to-noise power. For power SNR, <code>10 log10(signal/noise)</code>, 0 dB means equal powers. The old unsupported noise-sweep table has been removed.</p></article></div></section>
 
 		</main>
 
 		<footer>
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:01:40-05:00" title="November 26, 2026 at 09:01:40 PM EST">Nov 26, 2026, 9:01 PM EST</time></p>
-				<p class="footer-version footer-pill">Version v2.6.443 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:21:24-05:00" title="November 26, 2026 at 09:21:24 PM EST">Nov 26, 2026, 9:21 PM EST</time></p>
+				<p class="footer-version footer-pill">Version v2.6.444 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
 
-	<script src="scripts/script.js?v=20261126-accuracy-436"></script>
+	<script src="scripts/script.js?v=20261126-icon-launcher-444"></script>
 	<script src="scripts/coin-math.js?v=20261126-accuracy-436"></script>
-<script src="scripts/coin-evaluation.js?v=20261126-accuracy-436" defer></script>
-<script src="scripts/coin-predictor.js?v=20261126-accuracy-436"></script>
+<script src="scripts/coin-evaluation.js?v=20261126-guided-themes-1" defer></script>
+<script src="scripts/coin-predictor.js?v=20261126-guided-themes-1"></script>
 </body>
 </html>
