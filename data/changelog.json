@@ -1,11 +1,17 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T17:01:25+00:00",
-  "sourceHead": "573ebc8bede6988d63a6b68235a15bb65cc348d9",
-  "count": 751,
+  "generatedAt": "2026-11-27T17:17:05+00:00",
+  "sourceHead": "580617db5e9cb47dd612c7f4447c0600fbb94716",
+  "count": 752,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "580617db5e9cb47dd612c7f4447c0600fbb94716",
+      "date": "2026-11-27T12:01:25-05:00",
+      "subject": "[data] Publish SMS completion snapshot",
+      "category": "Feature"
+    },
     {
       "sha": "573ebc8bede6988d63a6b68235a15bb65cc348d9",
       "date": "2026-11-27T12:01:08-05:00",
