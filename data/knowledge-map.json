@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-27T16:56:36+00:00",
+  "generatedAt": "2026-11-27T17:58:50+00:00",
   "stats": {
-    "totalProjects": 105,
-    "totalNodes": 348,
-    "totalLinks": 719,
+    "totalProjects": 106,
+    "totalNodes": 353,
+    "totalLinks": 730,
     "domains": 6,
     "techBridges": 10
   },
@@ -415,19 +415,104 @@
       "summary": "Binary protocol extraction, diagnostic mode firmware manipulation, and non-destructive storage recovery."
     },
     {
+      "id": "ipad-ios12-glpi-netclock-title",
+      "name": "iPad Air (iOS 12.5.8) Always-On Desk Clock & GLPI-Only Home Network Dashboard \u2014 Legacy Safari ES5 Appliance, Multi-OS Roaming Telemetry Fleet & Guided Access Persistence",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 27, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Repurposed a 1st-generation iPad Air stuck on iOS 12.5.8 from a grainy front-door camera into a dedicated, always-on 50/50 split-screen desk appliance. The left half renders an SVG analog clock and date readout that automatically transitions between Light Mode (07:00\u201318:59) an...",
+      "tech": [
+        "Alpine Linux",
+        "GLPI",
+        "iOS 12.5.8",
+        "Antigravity AI"
+      ],
+      "tasks": [
+        {
+          "title": "Legacy iOS 12.5.8 Safari Compatibility & Fullscreen Web Clip",
+          "desc": "Because Tailscale does not run on iOS 12.5.8 and Safari 12 lacks modern ES6+ operators, Flexbox gap, and the Screen Wake Lock API (added in ..."
+        },
+        {
+          "title": "iPad Factory-Reset Persistence Checklist (What to Turn On & Off)",
+          "desc": "Settings \u2192 Display & Brightness \u2192 Auto-Lock \u2192 Never: Required on iOS 12 because web-based wake-lock APIs are unavailable."
+        },
+        {
+          "title": "Clearing Stale Home Screen Web Clip Cache",
+          "desc": "iOS 12 Web Clips aggressively cache initial HTML. If an older layout persists, exit Guided Access, force-close or delete the Home Screen ico..."
+        },
+        {
+          "title": "Pivot from Whole-Home UPnP to Strictly GLPI-Only Aggregation",
+          "desc": "Initially verified live WAN counters from the TP-Link Archer AX3000 via UPnP IGD (http://192.168.0.1:1900/ctl/CmnIfCfg, GetTotalBytesReceive..."
+        }
+      ],
+      "url": "projects.html#ipad-ios12-glpi-netclock-title"
+    },
+    {
+      "id": "task-ipad-ios12-glpi-netclock-title-0",
+      "name": "Legacy iOS 12.5.8 Safari Compatibility & Fullscreen Web Clip",
+      "type": "task",
+      "parentProject": "iPad Air (iOS 12.5.8) Always-On Desk Clock & GLPI-Only Home Network Dashboard \u2014 Legacy Safari ES5 Appliance, Multi-OS Roaming Telemetry Fleet & Guided Access Persistence",
+      "parentId": "ipad-ios12-glpi-netclock-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Because Tailscale does not run on iOS 12.5.8 and Safari 12 lacks modern ES6+ operators, Flexbox gap, and the Screen Wake Lock API (added in ...",
+      "url": "projects.html#ipad-ios12-glpi-netclock-title"
+    },
+    {
+      "id": "task-ipad-ios12-glpi-netclock-title-1",
+      "name": "iPad Factory-Reset Persistence Checklist (What to Turn On & Off)",
+      "type": "task",
+      "parentProject": "iPad Air (iOS 12.5.8) Always-On Desk Clock & GLPI-Only Home Network Dashboard \u2014 Legacy Safari ES5 Appliance, Multi-OS Roaming Telemetry Fleet & Guided Access Persistence",
+      "parentId": "ipad-ios12-glpi-netclock-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Settings \u2192 Display & Brightness \u2192 Auto-Lock \u2192 Never: Required on iOS 12 because web-based wake-lock APIs are unavailable.",
+      "url": "projects.html#ipad-ios12-glpi-netclock-title"
+    },
+    {
+      "id": "task-ipad-ios12-glpi-netclock-title-2",
+      "name": "Clearing Stale Home Screen Web Clip Cache",
+      "type": "task",
+      "parentProject": "iPad Air (iOS 12.5.8) Always-On Desk Clock & GLPI-Only Home Network Dashboard \u2014 Legacy Safari ES5 Appliance, Multi-OS Roaming Telemetry Fleet & Guided Access Persistence",
+      "parentId": "ipad-ios12-glpi-netclock-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "iOS 12 Web Clips aggressively cache initial HTML. If an older layout persists, exit Guided Access, force-close or delete the Home Screen ico...",
+      "url": "projects.html#ipad-ios12-glpi-netclock-title"
+    },
+    {
+      "id": "task-ipad-ios12-glpi-netclock-title-3",
+      "name": "Pivot from Whole-Home UPnP to Strictly GLPI-Only Aggregation",
+      "type": "task",
+      "parentProject": "iPad Air (iOS 12.5.8) Always-On Desk Clock & GLPI-Only Home Network Dashboard \u2014 Legacy Safari ES5 Appliance, Multi-OS Roaming Telemetry Fleet & Guided Access Persistence",
+      "parentId": "ipad-ios12-glpi-netclock-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Initially verified live WAN counters from the TP-Link Archer AX3000 via UPnP IGD (http://192.168.0.1:1900/ctl/CmnIfCfg, GetTotalBytesReceive...",
+      "url": "projects.html#ipad-ios12-glpi-netclock-title"
+    },
+    {
       "id": "sms-local-ai-digests-title",
       "name": "Texting My Local AI: Private SMS Chat & Opt-In Website Digests",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
-      "statusLabel": "Live & Verified",
-      "date": "Live November 27, 2026",
+      "statusLabel": "Completed Project",
+      "date": "Completed November 27, 2026",
       "val": 24,
       "color": "#c084fc",
       "summary": "I wanted to ask my local AI a question by sending a normal text from my iPhone, without opening a chat app. I already had a Twilio number connected to my homelab for voice conversations, so I asked ChatGPT / Codex (OpenAI) to inspect that setup over SSH and extend it with SMS....",
       "tech": [
-        "Live & Verified Twilio",
         "Local AI",
         "FastAPI",
         "SQLite",
@@ -6158,6 +6243,72 @@
     }
   ],
   "links": [
+    {
+      "source": "domain-ai-agents",
+      "target": "ipad-ios12-glpi-netclock-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "task-ipad-ios12-glpi-netclock-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "task-ipad-ios12-glpi-netclock-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "task-ipad-ios12-glpi-netclock-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "task-ipad-ios12-glpi-netclock-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "tech-alpine",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "ipad-ios12-glpi-netclock-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
     {
       "source": "domain-ai-agents",
       "target": "sms-local-ai-digests-title",
