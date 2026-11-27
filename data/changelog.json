@@ -1,11 +1,59 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T03:17:01+00:00",
-  "sourceHead": "ae74bddf9ef93eff655f4297136b648a4c14cef0",
-  "count": 736,
+  "generatedAt": "2026-11-27T04:17:23+00:00",
+  "sourceHead": "1dfa7f35fd7e8e88436d29ff1ce5c92dbaeea011",
+  "count": 744,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "1dfa7f35fd7e8e88436d29ff1ce5c92dbaeea011",
+      "date": "2026-11-26T22:46:46-05:00",
+      "subject": "Document macOS Folding@home BTM fix, background audit, and Amphetamine cleanup",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "a468361a7a276120ebe19f0f79c7e2f54eed2251",
+      "date": "2026-11-26T22:39:57-05:00",
+      "subject": "Document Local AI Music Studio output-directory trash validation",
+      "category": "Local AI"
+    },
+    {
+      "sha": "df6b9c88e0cfd5bbd52be9c2e68943ef42b9582b",
+      "date": "2026-11-26T22:39:50-05:00",
+      "subject": "Document Instrument-ify output-directory Recent Tracks pruning",
+      "category": "Feature"
+    },
+    {
+      "sha": "2080eb73b557f6da27693e4f86f9bf62c4ca072b",
+      "date": "2026-11-26T22:30:53-05:00",
+      "subject": "Document Windows 11 winget 0xC0000005 crash, Epic MSI mismatch, and WinX pinning",
+      "category": "Feature"
+    },
+    {
+      "sha": "59f63ee9bbee1d7fe622c2d2d77d060406babc24",
+      "date": "2026-11-26T22:25:06-05:00",
+      "subject": "Document HP ZBook Fury XMRig 1GB pages check, VBS MSR block, and UAC revert",
+      "category": "Feature"
+    },
+    {
+      "sha": "7d70c9ebc8b34fd23629b7110955ed39f0b343b2",
+      "date": "2026-11-26T22:21:43-05:00",
+      "subject": "Document continuous Phone AI hold music and Codex collaboration",
+      "category": "Local AI"
+    },
+    {
+      "sha": "013957f4765f33e64c3309740a1bd2596f0ae7f5",
+      "date": "2026-11-26T22:17:52-05:00",
+      "subject": "Document Codex CLI @oai/sky stale app-server-daemon triage and cleanup",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "0707545352db4a49f560794ac632b31f80a8f3f1",
+      "date": "2026-11-26T22:17:01-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "ae74bddf9ef93eff655f4297136b648a4c14cef0",
       "date": "2026-11-26T22:06:21-05:00",
