@@ -208,3 +208,17 @@
     border-bottom-style: solid;
     color: #ffffff;
 }
+.globe-controls .hud-filter-bar { flex-direction: row; max-width: 100%; }
+.globe-map-caption { color: #dbe5ef; font-size: .8rem; line-height: 1.7; margin: 0; }
+body .globe-map-caption a { color: #bae6fd!important; text-decoration: underline; }
+.globe-explainer { margin: 30px 0; padding: 24px; background: #fff; border: 1px solid #d5e0eb; border-radius: 12px; color: #334155; }
+body .globe-explainer :is(h2,h3) { color: #18334d!important; }
+.globe-explainer > p { color: #475569; line-height: 1.7; }
+.globe-explainer-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin: 20px 0; }
+.globe-explainer-grid article { min-width: 0; background: var(--s-tint,#f4f8fc); border: 1px solid #d5e0eb; border-top: 3px solid var(--s-primary,#155b97); border-radius: 8px; padding: 18px; }
+.globe-explainer-grid h3 { font-size: 1.05rem; line-height: 1.5; }
+.globe-explainer-grid p { color: #334155; font-size: .9rem; line-height: 1.7; }
+.globe-explainer details { border-top: 1px solid #d5e0eb; padding-top: 14px; font-size: .9rem; line-height: 1.7; }
+.globe-explainer summary { cursor: pointer; font-weight: 700; min-height: 40px; }
+@media(max-width:900px){.globe-explainer-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.globe-explainer{padding:18px}}

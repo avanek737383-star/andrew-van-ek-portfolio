@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Robo-Karaoke Studio | Andrew Van Ek Portfolio</title>
+<link rel="stylesheet" href="css/styles.css?v=20261126-site-audit-446">
+<script>if(window.self!==window.top)document.documentElement.classList.add("karaoke-embedded");</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Chakra+Petch:wght@600;700&display=swap');
 
@@ -478,9 +480,90 @@
     }
   }
 </style>
-<link rel="stylesheet" href="css/footer.css?v=20261126-shared-frame-445">
+<link rel="stylesheet" href="css/footer.css?v=20261126-site-audit-446">
+
+<style>
+html { --karaoke-nav-offset: 64px; }
+html.karaoke-embedded { --karaoke-nav-offset: 0px; }
+html.karaoke-embedded nav.tablet-desktop, html.karaoke-embedded .portfolio-chat, html.karaoke-embedded .portfolio-phone, html.karaoke-embedded footer { display:none!important; }
+html.karaoke-embedded body { padding-top:0!important; }
+body > .hud-top { top:calc(20px + var(--karaoke-nav-offset)); }
+body > .karaoke-stage { top:calc(85px + var(--karaoke-nav-offset)); }
+@media(orientation:portrait) and (max-width:900px),(orientation:portrait) and (pointer:coarse){body>.hud-top{top:calc(12px + var(--karaoke-nav-offset))}body>.karaoke-stage{top:calc(196px + var(--karaoke-nav-offset))}body>.rotate-portrait-hint{top:calc(92px + var(--karaoke-nav-offset))}}
+@media(orientation:landscape) and (max-height:540px){body>.hud-top{top:calc(10px + var(--karaoke-nav-offset))}body>.karaoke-stage{top:calc(62px + var(--karaoke-nav-offset))}}
+</style>
 </head>
 <body>
+<nav class="tablet-desktop">
+			<ul id="site-navigation">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li><a href="gallery.html">Gallery</a></li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						AI Labs <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="chat.html">Class &amp; Service Desk Bot</a></li>
+						<li><a href="lab.html">Live AI Lab</a></li>
+						<li><a href="council.html">AI Chatroom</a></li>
+						<li><a href="moltbook.html">Moltbook Agent</a></li>
+						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
+						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
+						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
+						<li><a href="project-assistant.html">Project Assistant</a></li>
+<li><a href="karaoke.html" aria-current="page">Robo-Karaoke Studio</a></li>
+<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
+					</ul>
+				</li>
+				<li class="nav-item-dropdown">
+                    <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+                        Sims &amp; 3D <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+						<li><a href="repair-shop.html">Cursed Repair Shop</a></li>
+						<li><a href="incident-sim.html">Homelab Incident Simulator</a></li>
+						<li><a href="fleet.html">Hardware Fleet &amp; 3D Setup</a></li>
+						<li><a href="map.html">3D Knowledge Map</a></li>
+						<li><a href="globe.html">3D Planetary Backbone</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Systems &amp; Stats <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="stats.html">Stats for Nerds</a></li>
+						<li><a href="maintenance.html">Maintenance Log</a></li>
+						<li><a href="changelog.html">Changelog &amp; Releases</a></li>
+						<li><a href="clock.html">Homelab Desk Clock</a></li>
+						<li><a href="quotes.html">Quotes</a></li>
+						</ul>
+				</li>
+				<li class="nav-item-dropdown">
+					<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+						Career &amp; About <span class="nav-arrow" aria-hidden="true">&#9662;</span>
+					</button>
+					<ul class="nav-dropdown-menu">
+						<li><a href="job.html">Skills &amp; Toolkit</a></li>
+						<li><a href="resume.html">Resume</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="sms-updates.html">SMS Assistant &amp; Updates</a></li>
+<li><a href="sms-privacy.html">SMS Privacy</a></li>
+<li><a href="sms-terms.html">SMS Terms</a></li>
+<li><a href="privacy.html">Privacy Policy</a></li>
+					</ul>
+				</li>
+			<li class="nav-item-search">
+				<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+					<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+					<span>Search</span>
+					<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+				</a>
+			</li>
+			</ul>
+		</nav>
 
 <canvas id="brollCanvas"></canvas>
 <div class="vignette"></div>
@@ -954,8 +1037,10 @@ window.addEventListener('keydown', (e) => {
   }
 })();
 </script>
-<footer><p class="footer-pill">Last modified: <time datetime="2026-11-26T21:34:41-05:00" title="November 26, 2026 at 09:34:41 PM EST">Nov 26, 2026, 9:34 PM EST</time></p>
-<p class="footer-version footer-pill">Version v2.6.445 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+<footer><p class="footer-pill">Last modified: <time datetime="2026-11-26T22:06:04-05:00" title="November 26, 2026 at 10:06:04 PM EST">Nov 26, 2026, 10:06 PM EST</time></p>
+<p class="footer-version footer-pill">Version v2.6.446 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 </footer>
+<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
+<script src="scripts/script.js?v=20261126-site-audit-446"></script>
 </body>
 </html>

@@ -20,7 +20,8 @@
     var activeFilter = "all";
     var autoRotateActive = true;
     var atmosphereOn = true;
-    var nightMode = true;
+    var mapMode = 0;
+    var countryMap = null;
 
     // DOM Elements
     var drawer = document.getElementById("telemetry-drawer");
@@ -290,9 +291,10 @@
 
     function initGlobe() {
         world = Globe()(container)
-            .globeImageUrl("images/globe/earth-night.jpg")
-            .bumpImageUrl("images/globe/earth-topology.png")
-            .backgroundImageUrl("images/globe/night-sky.png")
+            .globeImageUrl("images/globe/map-base.svg")
+            .backgroundColor("rgba(0,0,0,0)")
+            .width(container.clientWidth)
+            .height(container.clientHeight)
             .showAtmosphere(true)
             .atmosphereColor("#38bdf8")
             .atmosphereAltitude(0.18)
@@ -349,6 +351,12 @@
                     escapeHtml(d.name) + "</strong><div style='font-size:0.78rem;color:#94a3b8;margin-top:2px;'>" + d.type + "</div></div>";
             });
 
+        if (textureBtn) textureBtn.disabled = true;
+        PortfolioCountryMap.install(world).then(function (map) {countryMap=map;if(textureBtn)textureBtn.disabled=false;}).catch(function(error){
+            console.error('Country map could not load:',error);
+            var status=document.getElementById('country-map-status');if(status)status.textContent='Country map unavailable. Cable and reference layers can still be explored.';
+        });
+        new ResizeObserver(function(){world.width(container.clientWidth).height(container.clientHeight);}).observe(container);
         world.pointOfView({ lat: 20, lng: -20, altitude: 2.1 }, 1200);
 
         var controls = world.controls();
@@ -467,7 +475,7 @@
             console.error("Error loading planetary data:", err);
             var badgePill = document.querySelector(".hud-badge-pill");
             if (badgePill) {
-                badgePill.innerHTML = "<span style='color:#f87171;'>&#9888;</span> Planetary Telemetry Loaded";
+                badgePill.innerHTML = "<span style='color:#f87171;'>&#9888;</span> Cable data unavailable";
             }
         });
 
@@ -696,14 +704,10 @@
     if (textureBtn) {
         textureBtn.addEventListener("click", function () {
             if (!world) return;
-            nightMode = !nightMode;
-            if (nightMode) {
-                world.globeImageUrl("images/globe/earth-night.jpg");
-                textureBtn.textContent = "\ud83c\udf03 Night Lights";
-            } else {
-                world.globeImageUrl("//unpkg.com/three-globe/example/img/earth-blue-marble.jpg");
-                textureBtn.textContent = "\u2600\ufe0f Day Marble";
-            }
+            if (!countryMap) return;
+            mapMode=(mapMode+1)%3;countryMap.setMode(mapMode);
+            textureBtn.textContent=['☀ Live sunlight','☀ Light map','☾ Dark map'][mapMode];
+            textureBtn.title='Map shading: '+['current sunlight','always light','always dark'][mapMode]+'. Click to change.';
         });
     }
 

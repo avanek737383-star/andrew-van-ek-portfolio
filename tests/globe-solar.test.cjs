@@ -1,0 +1,4 @@
+const test=require('node:test'),assert=require('node:assert/strict');const {sunPosition}=require('../scripts/globe-solar.js');
+test('seasonal subsolar latitude follows equinoxes and solstices',()=>{assert.ok(Math.abs(sunPosition(new Date('2026-03-20T12:00:00Z')).lat)<1);assert.ok(Math.abs(sunPosition(new Date('2026-06-21T12:00:00Z')).lat-23.44)<1);assert.ok(Math.abs(sunPosition(new Date('2026-12-21T12:00:00Z')).lat+23.44)<1)});
+test('UTC noon is near Greenwich; midnight is near the date line',()=>{assert.ok(Math.abs(sunPosition(new Date('2026-03-20T12:00:00Z')).lng)<5);assert.ok(Math.abs(sunPosition(new Date('2026-03-20T00:00:00Z')).lng)>175)});
+test('leap day is finite and longitude remains normalized',()=>{for(const d of ['2024-02-29T12:00:00Z','2026-11-26T23:59:59Z']){const p=sunPosition(new Date(d));assert.ok(Number.isFinite(p.lat)&&p.lat>=-24&&p.lat<=24);assert.ok(p.lng>=-180&&p.lng<180)}});

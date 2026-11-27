@@ -3285,12 +3285,14 @@
 			animateRadarViewBox(RADAR_DEFAULT_VIEWBOX, 400);
 			if (radarResetBtn) radarResetBtn.style.display = "none";
 			if (radarOverlayResetBtn) radarOverlayResetBtn.style.display = "none";
+            renderRegion("World");
 		}
 
 		if (radarResetBtn) radarResetBtn.addEventListener("click", resetRadarView);
 		if (radarOverlayResetBtn) radarOverlayResetBtn.addEventListener("click", resetRadarView);
 
 		var CONTINENTS_DATA = {
+            "World": {flag: "🌐", dl:0, ul:0, distKm:0, rtt:0},
 			"North America": {
 				flag: "🇺🇸 🇨🇦",
 				subhead: "UTC-4 to UTC-8 • 580M Population",
@@ -3371,7 +3373,8 @@
 			}
 		};
 
-		var activeRegion = "North America";
+		var activeRegion = "World";
+        var hoveredRegion = null, hoverEnter = null, hoverLeave = null;
 		var liveGeoData = null;
 
 		var flagEl = document.getElementById("inspector-flag");
@@ -3389,48 +3392,38 @@
 		var probeBtn = document.getElementById("radar-probe-btn");
 		var probeResultEl = document.getElementById("radar-probe-result");
 
-		function renderRegion(reg, optZoom) {
-			activeRegion = reg;
-			if (optZoom) {
+		function renderRegion(reg, optZoom, preview) {
+            if (!preview) { clearTimeout(hoverEnter); clearTimeout(hoverLeave); hoveredRegion = null; activeRegion = reg; }
+			if (optZoom && reg !== "World") {
 				var targetVb = RADAR_REGION_VIEWBOXES[reg] || RADAR_DEFAULT_VIEWBOX;
 				isZoomed = true;
 				animateRadarViewBox(targetVb, 450);
 				if (radarResetBtn) radarResetBtn.style.display = "inline-flex";
 				if (radarOverlayResetBtn) radarOverlayResetBtn.style.display = "inline-flex";
 			}
-			var data = CONTINENTS_DATA[reg] || CONTINENTS_DATA["North America"];
+			var data = CONTINENTS_DATA[reg] || CONTINENTS_DATA["World"];
 
 			if (flagEl) flagEl.textContent = data.flag;
 			if (titleEl) titleEl.textContent = reg;
 			if (subheadEl) subheadEl.textContent = "Geographic reference · network statistics not measured";
 
 			if (dlValEl) dlValEl.textContent = "Not measured";
-			if (dlFillEl) dlFillEl.style.width = Math.min(100, Math.round((data.dl / 300) * 100)) + "%";
+			if (dlFillEl) dlFillEl.style.width = "0%";
 
 			if (ulValEl) ulValEl.textContent = "Not measured";
-			if (ulFillEl) ulFillEl.style.width = Math.min(100, Math.round((data.ul / 100) * 100)) + "%";
+			if (ulFillEl) ulFillEl.style.width = "0%";
 
-			if (rttValEl) {
-				var rtMiles = Math.round((data.distKm * 2) * 0.621371);
-				var estMph = Math.round(rtMiles / ((data.rtt / 1000) / 3600));
-				var mMph = (estMph / 1000000).toFixed(0);
-				rttValEl.textContent = "Not measured";
-			}
+            if (rttValEl) rttValEl.textContent = "Not measured";
 			if (ipv6ValEl) ipv6ValEl.textContent = "Not measured";
 			if (peakValEl) peakValEl.textContent = "Not measured";
 
 			// Check portfolio visits for this region
-			var visitsCount = 0;
-			if (liveGeoData && liveGeoData.regions) {
-				if (reg === "North America") visitsCount = liveGeoData.regions["North America"] || 0;
-				else if (reg === "Europe") visitsCount = liveGeoData.regions["Europe"] || 0;
-				else if (reg === "Asia-Pacific") visitsCount = liveGeoData.regions["Asia-Pacific"] || 0;
-				else if (reg === "Latin America") visitsCount = liveGeoData.regions["Latin America"] || 0;
-				else visitsCount = liveGeoData.regions["Other"] || 0;
-			}
-			if (visitsValEl) {
-				visitsValEl.textContent = visitsCount > 0 ? visitsCount + " Events" : "Syncing...";
-			}
+            var visitsCount = null;
+            if (liveGeoData && liveGeoData.regions) {
+                if (reg === "World") visitsCount = liveGeoData.total;
+                else if (Object.prototype.hasOwnProperty.call(liveGeoData.regions, reg)) visitsCount = liveGeoData.regions[reg];
+            }
+            if (visitsValEl) visitsValEl.textContent = visitsCount === null ? "Not separately available" : visitsCount.toLocaleString() + " activity events";
 
 			// Update tabs
 			var tabs = radarSection.querySelectorAll(".radar-tab-btn");
@@ -3458,7 +3451,7 @@
 
 			// Reset probe result hint
 			if (probeResultEl) {
-				probeResultEl.innerHTML = '<span class="probe-ready-hint">Ready to probe ' + reg + ' Anycast edge. Click &ldquo;Run Edge Ping&rdquo;.</span>';
+				probeResultEl.textContent = 'Time a browser request to an anycast endpoint. This does not measure a route to the selected region.';
 			}
 		}
 
@@ -3467,7 +3460,7 @@
 		tabs.forEach(function (tab) {
 			tab.addEventListener("click", function () {
 				var targetReg = tab.getAttribute("data-tab");
-				if (targetReg) renderRegion(targetReg, true);
+				if (targetReg === "World") resetRadarView(); else if (targetReg) renderRegion(targetReg, true);
 			});
 		});
 
@@ -3476,16 +3469,28 @@
 		lands.forEach(function (land) {
 			land.addEventListener("click", function () {
 				var targetReg = land.getAttribute("data-region");
-				if (targetReg) renderRegion(targetReg, true);
+				if (targetReg === "World") resetRadarView(); else if (targetReg) renderRegion(targetReg, true);
 			});
 		});
 
+        function attachRegionPreview(element) {
+            element.addEventListener('mouseenter', function () {
+                clearTimeout(hoverEnter); clearTimeout(hoverLeave);
+                var reg = element.getAttribute('data-region');
+                hoverEnter = setTimeout(function () { hoveredRegion = reg; renderRegion(reg, false, true); }, 180);
+            });
+            element.addEventListener('mouseleave', function () {
+                clearTimeout(hoverEnter); clearTimeout(hoverLeave);
+                hoverLeave = setTimeout(function () { hoveredRegion = null; renderRegion(activeRegion, false, true); }, 220);
+            });
+        }
+        lands.forEach(attachRegionPreview);
 		// Wire up IXP Node Clicks (with smooth zoom)
 		var ixpNodes = radarSection.querySelectorAll(".ixp-node");
 		ixpNodes.forEach(function (node) {
 			node.addEventListener("click", function () {
 				var targetReg = node.getAttribute("data-region");
-				if (targetReg) renderRegion(targetReg, true);
+				if (targetReg === "World") resetRadarView(); else if (targetReg) renderRegion(targetReg, true);
 			});
 		});
 
@@ -3511,11 +3516,11 @@
 				if (sessionsEl) {
 					sessionsEl.textContent = json.total.toLocaleString() + " Regional Activity Events";
 				}
-				renderRegion(activeRegion);
+				renderRegion(hoveredRegion || activeRegion, false, Boolean(hoveredRegion));
 			} catch (e) {}
 		}
 
-		renderRegion("North America");
+		renderRegion("World");
 		syncLiveVisitorStats();
 		window.setInterval(syncLiveVisitorStats, 45000);
 	}

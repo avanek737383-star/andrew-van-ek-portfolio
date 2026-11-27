@@ -9673,3 +9673,20 @@ body > .container > main { width: 100%; max-width: none; box-sizing: border-box;
 
 /* Desktop keeps the robot and name; mobile keeps the compact robot button. */
 @media(min-width:601px){body .portfolio-chat-toggle { width: auto; padding: 12px 18px; border-radius: 999px; gap: 8px; }}
+/* Align certificate separators and status badges to the tallest heading in each row. */
+.certification-list .experience-item { display: grid; grid-template-rows: subgrid; grid-row: span 2; row-gap: 0; margin-bottom: 0; }
+.certification-list .experience-item h3 { align-self: stretch; }
+.certification-list .experience-item > p { align-self: start; margin: 0; }
+#global-internet-radar .telemetry-desc { max-width: none; }
+#global-internet-radar .telemetry-header > div:first-child { min-width: 0; flex: 1; }
+.os-check-summary { text-align: center; margin: 20px 0 12px; padding: 12px 16px; border: 1px solid #d5e0eb; border-radius: 8px; background: var(--s-tint,#f4f8fc); color: #475569; }
+#home-os-tracker .os-card-header h3 { margin: 0; border: 0; padding: 0; }
+.computing-market-status { margin: 18px 0; padding: 12px 16px; border: 1px solid #d5e0eb; border-left: 4px solid var(--s-primary,#155b97); border-radius: 7px; background: var(--s-tint,#f4f8fc); color: #475569; font-size: .85rem; }
+.computing-resource-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+.computing-resource-actions a { display: flex; align-items: center; justify-content: center; flex: 1 1 280px; min-height: 48px; padding: 12px 16px; border: 1px solid var(--s-primary,#155b97); border-radius: 7px; background: var(--s-tint,#f4f8fc); color: #18334d !important; font-weight: 600; text-align: center; text-decoration: none; }
+.karaoke-desktop-player { display: block; width: 100%; height: 680px; border: 0; background: #001226; }
+@media(min-width:1025px){.karaoke-experiment .karaoke-mobile-banner{display:none!important}}
+@media(max-width:1024px){.karaoke-desktop-player{display:none}.karaoke-experiment .karaoke-mobile-banner{display:flex}}
+/* Keep larger menus reachable within the viewport. */
+@media(min-width:1025px){nav.tablet-desktop .nav-dropdown-menu{max-height:calc(100dvh - 85px);overflow-y:auto;overscroll-behavior:contain}}
+.certification-list { grid-template-columns: repeat(auto-fit,minmax(min(100%,260px),1fr)); }

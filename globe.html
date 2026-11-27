@@ -13,12 +13,12 @@
 	<link rel="icon" href="favicon.ico" sizes="any">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<link rel="stylesheet" href="css/styles.css?v=20261126-shared-frame-445">
-	<link rel="stylesheet" href="css/globe.css?v=20261120-globe-4">
+	<link rel="stylesheet" href="css/styles.css?v=20261126-site-audit-446">
+	<link rel="stylesheet" href="css/globe.css?v=20261126-country-sun-5">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/footer.css?v=20261126-shared-frame-445">
+<link rel="stylesheet" href="css/footer.css?v=20261126-site-audit-446">
 <link rel="stylesheet" href="css/learning.css?v=20261126-accuracy-436">
 </head>
 <body class="map-page-body">
@@ -40,7 +40,9 @@
 						<li><a href="sudoku.html">Sudoku Logic Solver</a></li>
 						<li><a href="ai-predictor.html">Neural Coin Predictor</a></li>
 						<li><a href="code-runner.html">Code Runner &amp; Coach</a></li>
-						<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
+						<li><a href="project-assistant.html">Project Assistant</a></li>
+<li><a href="karaoke.html">Robo-Karaoke Studio</a></li>
+<li><a href="ai-bias.html">AI Bias &amp; Fairness Lab</a></li>
 					</ul>
 				</li>
 				<li class="nav-item-dropdown">
@@ -76,34 +78,35 @@
 						<li><a href="resume.html">Resume</a></li>
 						<li><a href="about.html">About</a></li>
 						<li><a href="contact.html">Contact</a></li>
-						<li><a href="privacy.html">Privacy Policy</a></li>
+						<li><a href="sms-updates.html">SMS Assistant &amp; Updates</a></li>
+<li><a href="sms-privacy.html">SMS Privacy</a></li>
+<li><a href="sms-terms.html">SMS Terms</a></li>
+<li><a href="privacy.html">Privacy Policy</a></li>
 					</ul>
 				</li>
-				<li class="nav-item-search">
-					<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
-						<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-						<span>Search</span>
-						<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
-					</a>
-				</li>
+			<li class="nav-item-search">
+				<a href="search.html" class="nav-search-link" id="nav-search-trigger" title="Search entire website (Ctrl+K or /)" aria-label="Search website">
+					<svg class="nav-search-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+					<span>Search</span>
+					<kbd class="nav-search-badge" aria-hidden="true">Ctrl+K</kbd>
+				</a>
+			</li>
 			</ul>
 		</nav>
 
 		<header style="margin: 25px 0 10px 0; color: #f8fafc;">
 			<h1 style="font-size: 1.85rem; font-weight: 700; margin-bottom: 6px; color: #f8fafc;">3D Planetary Radar &amp; Global Internet Backbone</h1>
 			<p style="color: #94a3b8; font-size: 0.95rem; max-width: 860px; line-height: 1.5;">
-				An interactive <span class="tech-term" data-term="webgl">WebGL</span> 3D planetary radar mapping the physical underpinnings of the global internet: 400+ international <span class="tech-term" data-term="subsea-fiber">subsea fiber optic cables</span>, 1,900+ coastal <span class="tech-term" data-term="cable-landing-station">landing stations</span>, and <span class="tech-term" data-term="ixp">interconnection reference locations</span> with ground-level street exploration.
+				An interactive <span class="tech-term" data-term="webgl">WebGL</span> 3D planetary radar mapping the physical underpinnings of the global internet: imported <span class="tech-term" data-term="subsea-fiber">subsea cable paths</span>, coastal <span class="tech-term" data-term="cable-landing-station">landing points</span>, and <span class="tech-term" data-term="ixp">interconnection reference locations</span> with ground-level street exploration.
 			</p>
 		</header>
 
 		<main><section class="explain-card"><h2>A schematic of Internet connectivity—not a live traffic radar.</h2><p>Rotate the globe and select a cable or reference location to explore the geography. Animated dots, elevated arcs, colors, and sizes are illustrative. They are not measured packets, current throughput, exact physical circuits, or a claim that a particular share of world traffic passes through one node.</p><p>An Internet exchange is a place where networks interconnect; it is not automatically a Tier-1 transit network. The imported cable geometry is a reference snapshot, not a live cable-status feed.</p></section>
-			<div class="map-viewport-wrapper">
-				<div id="globe-container" tabindex="0" role="region" aria-label="3D Interactive Earth Canvas"></div>
-
+<section class="map-controls globe-controls" aria-label="Globe controls">
 				<!-- Top HUD Controls -->
 				<div class="hud-overlay hud-top-bar">
 					<div class="hud-badge-group">
-						<span class="hud-badge-pill"><span class="pulse-dot"></span> Loading Global Telemetry...</span>
+						<span class="hud-badge-pill"><span class="pulse-dot"></span> Loading cable reference data…</span>
 					</div>
 
 					<div class="hud-search-box">
@@ -126,7 +129,7 @@
 					<button id="hud-rotate-btn" class="hud-btn active" type="button" aria-pressed="true" title="Toggle continuous planetary rotation">&#8635; Orbit</button>
 					<button id="hud-reset-btn" class="hud-btn" type="button" title="Reset camera to global Atlantic view">&#9678; Reset View</button>
 					<button id="hud-atmos-btn" class="hud-btn active" type="button" title="Toggle atmospheric scattering glow">&#127757; Atmosphere</button>
-					<button id="hud-texture-btn" class="hud-btn" type="button" title="Toggle between Night Lights and Day Topography">&#127747; Night Lights</button>
+					<button id="hud-texture-btn" class="hud-btn" type="button" title="Map shading: current sunlight. Click to change.">☀ Live sunlight</button>
 				</div>
 
 				<!-- Legend (Bottom Right) -->
@@ -136,6 +139,11 @@
 					<span class="legend-item"><span class="legend-dot" style="background:#ec4899;"></span> <span class="tech-term" data-term="ixp">Interconnection reference</span></span>
 					<span class="legend-item"><span class="legend-dot" style="background:#38bdf8;"></span> <span class="tech-term" data-term="optical-transit-arc">Optical Transit Arc</span></span>
 				</div>
+
+<p class="globe-map-caption"><span id="country-map-status" role="status">Loading country outlines and names…</span><br>Sunlight shading: current UTC, updated <time id="globe-sun-time"></time>. <a href="https://www.naturalearthdata.com/">Country map: Natural Earth</a>. Light and dark styles blend at the day/night boundary.</p>
+</section>
+			<div class="map-viewport-wrapper">
+				<div id="globe-container" tabindex="0" role="region" aria-label="3D Interactive Earth Canvas"></div>
 
 				<!-- Slide-Out Telemetry Drawer -->
 				<aside id="telemetry-drawer" class="hud-drawer" aria-label="Selected telemetry details">
@@ -154,7 +162,7 @@
 							<span id="drawer-domain">Global Internet Backbone</span>
 						</div>
 
-						<div id="drawer-summary" class="drawer-summary">Click any subsea optical fiber, coastal landing station, or peering exchange on the globe to inspect real-time specs, vector geometry, and ground-level street views.</div>
+						<div id="drawer-summary" class="drawer-summary">Click any subsea optical fiber, coastal landing station, or peering exchange on the globe to inspect the imported reference data and links to nearby street imagery.</div>
 
 						<div id="drawer-tasks-section">
 							<h3 class="drawer-section-title">Reference Data &amp; Inspection</h3>
@@ -173,44 +181,17 @@
 				</aside>
 			</div>
 
-			<!-- Systems Architecture & Deep Dive Section -->
-			<section class="maintenance-category" aria-labelledby="backbone-architecture-title" style="margin-top: 35px;">
-				<h2 id="backbone-architecture-title" style="color: #f8fafc; font-size: 1.45rem; font-weight: 700; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 8px;">
-					3D Planetary Radar Architecture &amp; Illustrative Internet Geography
-				</h2>
-				<p style="color: #cbd5e1; line-height: 1.6; margin: 12px 0 16px 0;">
-					While the internet is often abstracted as an ephemeral "cloud", in physical reality over 95% of international data transit relies on dense glass fibers traversing extreme ocean trenches. This planetary radar maps the physical layer of the global web:
-				</p>
-
-				<div class="tech-stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0;">
-					<div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
-						<h3 style="color: #00f0ff; font-size: 1.05rem; margin-top: 0;">Subsea Optical Fiber Topologies</h3>
-						<p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5;">
-							Ingests TeleGeography's geospatial datasets, rendering multi-line vector paths for over 400 active international subsea cable systems. Dashed particle shaders animate kinetic photon pulses simulating light propagation across Transatlantic, Transpacific, and Arctic seabed corridors.
-						</p>
-					</div>
-
-					<div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
-						<h3 style="color: #fbbf24; font-size: 1.05rem; margin-top: 0;">Coastal Landing Stations &amp; Street View</h3>
-						<p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5;">
-							Pinpoints 1,900+ coastal cable landing stations where armored wet marine cables transition into terrestrial beach manholes. Selecting any station executes a smooth camera swoop and surfaces direct one-click links to Google Street View and Mapillary panoramas.
-						</p>
-					</div>
-
-					<div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
-						<h3 style="color: #ec4899; font-size: 1.05rem; margin-top: 0;">Interconnection geography</h3>
-						<p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5;">
-							Maps core international Internet Exchange Points (including Equinix Ashburn, DE-CIX Frankfurt, AMS-IX Amsterdam, and LINX London), tracing high-capacity optical transit arcs between subsea landings and continental backbones.
-						</p>
-					</div>
-				</div>
-			</section>
+<section class="globe-explainer" aria-labelledby="backbone-architecture-title"><h2 id="backbone-architecture-title">What do the lines and locations mean?</h2><p>Internet links run through physical cables and network sites. This globe combines saved cable geometry and landing-point coordinates with a small set of interconnection reference locations.</p><div class="globe-explainer-grid">
+<article><h3>Subsea cable paths</h3><p>The saved TeleGeography geometry shows cable routes as a geographic reference. Moving dashes help you follow a line; they do not show real photons, packets, traffic volume or exact seabed cable positions.</p></article>
+<article><h3>Coastal landing points and street imagery</h3><p>Select a landing point to inspect the imported coordinates and open links to nearby street imagery. Available imagery may not show the actual cable landing facility.</p></article>
+<article><h3>Interconnection geography</h3><p>The marked reference locations include Ashburn, Frankfurt, Amsterdam and London. Elevated arcs illustrate connections between places; they are not measured circuits or live capacity readings.</p></article>
+</div><details><summary>How the country map and sunlight shading work</summary><p>Country outlines and names use a bundled <a href="data/countries.json">Natural Earth 1:110m snapshot</a>. Zoom in for smaller labels or hover a country to read its name. The current UTC time feeds an approximate solar-position calculation, with a soft blend between the light and dark map styles. The map-style button also lets you choose an entirely light or dark map.</p><p>Sources: <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth map data</a> and <a href="https://gml.noaa.gov/grad/solcalc/solareqns.PDF">NOAA solar-position equations</a>. Country shading is a presentation of daylight, separate from the site’s seasonal theme.</p></details></section>
 		</main>
 
 		<footer style="color: #94a3b8; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: 30px;">
 			<p class="footer-pill">&copy; 2026 Andrew Van Ek. All Rights Reserved. | <a href="privacy.html" style="color: #38bdf8;">Privacy Policy</a> | <a href="mailto:avanek737383@gmail.com" style="color: #38bdf8;">avanek737383@gmail.com</a></p>
-			<p class="footer-pill">Last modified: <time datetime="2026-11-26T21:34:41-05:00" title="November 26, 2026 at 09:34:41 PM EST">Nov 26, 2026, 9:34 PM EST</time></p>
-			<p class="footer-version footer-pill">Version v2.6.445 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
+			<p class="footer-pill">Last modified: <time datetime="2026-11-26T22:06:04-05:00" title="November 26, 2026 at 10:06:04 PM EST">Nov 26, 2026, 10:06 PM EST</time></p>
+			<p class="footer-version footer-pill">Version v2.6.446 &middot; <a href="changelog.html">Read what's new &rarr;</a></p>
 		</footer>
 	</div>
 
@@ -224,7 +205,9 @@
 		}
 	</script>
 	<script src="scripts/site-search.js?v=20261026-nav-search-2"></script>
-	<script src="scripts/script.js?v=20261126-shared-frame-445"></script>
-	<script src="scripts/globe.js?v=20261120-globe-4"></script>
+	<script src="scripts/script.js?v=20261126-site-audit-446"></script>
+	<script src="scripts/globe-solar.js?v=20261126-country-sun-1"></script>
+<script src="scripts/globe-country-map.js?v=20261126-country-sun-1"></script>
+<script src="scripts/globe.js?v=20261126-country-sun-5"></script>
 </body>
 </html>
