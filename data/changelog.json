@@ -1,11 +1,59 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T01:17:03+00:00",
-  "sourceHead": "bf63d44e3e584b6377b979049e95fe5007456ad8",
-  "count": 718,
-  "releaseLabel": "v2.6.442",
+  "generatedAt": "2026-11-27T02:01:58+00:00",
+  "sourceHead": "44926f165cffe5b24f7e3aecdc9ff59483b47adc",
+  "count": 726,
+  "releaseLabel": "v2.6.443",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "44926f165cffe5b24f7e3aecdc9ff59483b47adc",
+      "date": "2026-11-26T21:01:55-05:00",
+      "subject": "Make simulator and map easier to use across seasonal themes",
+      "category": "Feature"
+    },
+    {
+      "sha": "51a2f23404eba269230f336cd16e1248558119a6",
+      "date": "2026-11-26T20:50:02-05:00",
+      "subject": "Explain privacy practices in plain language with expandable technical details",
+      "category": "Feature"
+    },
+    {
+      "sha": "58a40f6e120afdf7f76d88cb8957c82d75debbf7",
+      "date": "2026-11-26T20:45:31-05:00",
+      "subject": "Align desktop footer metadata inside one shared pill",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "5d4997884ac54051bf7ba2dc394a517379343a4f",
+      "date": "2026-11-26T20:45:06-05:00",
+      "subject": "Document Windows 11 ISO audit and SentinelReject vs SentinelOne note",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "30099320cc8cffb2e2ca0d5fb8f34cc5d76b3cbe",
+      "date": "2026-11-26T20:29:01-05:00",
+      "subject": "Add 21 gallery captures with evidence-based captions and original downloads",
+      "category": "Feature"
+    },
+    {
+      "sha": "cb37422e706a7b06e92c08d1bbe7676624a93049",
+      "date": "2026-11-26T20:29:23-05:00",
+      "subject": "Document LG Accolade game additions and Pac-Man removal",
+      "category": "Feature"
+    },
+    {
+      "sha": "7a36eba2fee73f31f7a6b0c657dbe29acb4324cf",
+      "date": "2026-11-26T20:18:16-05:00",
+      "subject": "Add homelab gallery captures, numbered pages and accurate counts",
+      "category": "Feature"
+    },
+    {
+      "sha": "2db71084f3077285569a89e57bb02ddce20f2c34",
+      "date": "2026-11-26T20:17:03-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "bf63d44e3e584b6377b979049e95fe5007456ad8",
       "date": "2026-11-26T20:16:41-05:00",
