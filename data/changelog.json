@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T02:21:30+00:00",
-  "sourceHead": "47bd41008ce118b9d7c13a9b000df8f79ef43b29",
-  "count": 728,
+  "generatedAt": "2026-11-27T02:23:04+00:00",
+  "sourceHead": "7ada49fed3667be76bb84f57fff287e5b57ad92c",
+  "count": 730,
   "releaseLabel": "v2.6.444",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "7ada49fed3667be76bb84f57fff287e5b57ad92c",
+      "date": "2026-11-26T21:23:01-05:00",
+      "subject": "Give copyright and email more room in the desktop footer",
+      "category": "UI & UX"
+    },
+    {
+      "sha": "8130e50453c4ba4269a6b3a1da6b4878134a6c6f",
+      "date": "2026-11-26T21:21:30-05:00",
+      "subject": "Refresh release history for v2.6.444 guided learning updates",
+      "category": "Maintenance"
+    },
     {
       "sha": "47bd41008ce118b9d7c13a9b000df8f79ef43b29",
       "date": "2026-11-26T21:21:27-05:00",
