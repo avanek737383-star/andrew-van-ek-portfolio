@@ -1,11 +1,29 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T16:38:29+00:00",
-  "sourceHead": "7091105071ba9df277cb99c0874cafd46260ddf5",
-  "count": 748,
+  "generatedAt": "2026-11-27T17:01:25+00:00",
+  "sourceHead": "573ebc8bede6988d63a6b68235a15bb65cc348d9",
+  "count": 751,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "573ebc8bede6988d63a6b68235a15bb65cc348d9",
+      "date": "2026-11-27T12:01:08-05:00",
+      "subject": "Mark SMS project completed and document live-test polish",
+      "category": "Feature"
+    },
+    {
+      "sha": "b200fdb33c7808dd2c193f2b3e7c6c49abcfab15",
+      "date": "2026-11-27T11:56:36-05:00",
+      "subject": "Document iPod Touch 1G Duino-Coin miner Wi-Fi/ARP recovery",
+      "category": "Local AI"
+    },
+    {
+      "sha": "8a2fff3565b588adac8a5a7826fc50a3781292b4",
+      "date": "2026-11-27T11:38:29-05:00",
+      "subject": "[data] Refresh deployed snapshot for SMS digest baseline",
+      "category": "Maintenance"
+    },
     {
       "sha": "7091105071ba9df277cb99c0874cafd46260ddf5",
       "date": "2026-11-27T11:38:06-05:00",
