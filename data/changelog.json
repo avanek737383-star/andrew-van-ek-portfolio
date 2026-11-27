@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T16:36:22+00:00",
-  "sourceHead": "f609a7da13708bf69526297ddf94c267be862612",
-  "count": 746,
+  "generatedAt": "2026-11-27T16:38:29+00:00",
+  "sourceHead": "7091105071ba9df277cb99c0874cafd46260ddf5",
+  "count": 748,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "7091105071ba9df277cb99c0874cafd46260ddf5",
+      "date": "2026-11-27T11:38:06-05:00",
+      "subject": "Deploy verified SMS digest launch to production",
+      "category": "Feature"
+    },
+    {
+      "sha": "fa10801c50891424cd470fcecea75119f8bb8e1a",
+      "date": "2026-11-27T11:36:23-05:00",
+      "subject": "[data] Refresh Git snapshot after SMS digest launch [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "f609a7da13708bf69526297ddf94c267be862612",
       "date": "2026-11-27T11:36:14-05:00",
