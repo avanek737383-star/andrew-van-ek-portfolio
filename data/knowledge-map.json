@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T03:17:51+00:00",
+  "generatedAt": "2026-11-27T03:21:27+00:00",
   "stats": {
     "totalProjects": 105,
     "totalNodes": 348,
@@ -5939,7 +5939,7 @@
       "domainName": "AI & Agentic Systems",
       "status": "completed",
       "statusLabel": "Live Prototype Hotline",
-      "date": "November 16, 2026",
+      "date": "November 26, 2026",
       "val": 24,
       "color": "#c084fc",
       "summary": "I built a dedicated personal telephone gateway that connects real cellular and landline telephone calls directly to local artificial intelligence models running inside my homelab. Originally conceived as a multi-tier menu requiring PIN authentication to route calls to either G...",
