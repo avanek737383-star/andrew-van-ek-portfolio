@@ -1,11 +1,35 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T17:17:05+00:00",
-  "sourceHead": "580617db5e9cb47dd612c7f4447c0600fbb94716",
-  "count": 752,
+  "generatedAt": "2026-11-27T18:17:17+00:00",
+  "sourceHead": "6a1186e3cfc1777398747be33ef8ef2a69252ca7",
+  "count": 756,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "6a1186e3cfc1777398747be33ef8ef2a69252ca7",
+      "date": "2026-11-27T13:11:20-05:00",
+      "subject": "Document Windows 11 OOBE start ms-cxh:localonly and Build 26220 removal",
+      "category": "Feature"
+    },
+    {
+      "sha": "557a4384dd2caad4b08a7e9f65befb5681c8d875",
+      "date": "2026-11-27T13:09:34-05:00",
+      "subject": "Document Muse virtual display and MNN mirroring workaround",
+      "category": "Feature"
+    },
+    {
+      "sha": "04d81e28da306a9c6e8d315363f517e8ae8073ae",
+      "date": "2026-11-27T12:58:51-05:00",
+      "subject": "Add iPad Air iOS 12 NetClock GLPI Network Dashboard to projects page",
+      "category": "Feature"
+    },
+    {
+      "sha": "bc25e6cbb339c724928a16e6e660b5e3e60a72ef",
+      "date": "2026-11-27T12:17:05-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "580617db5e9cb47dd612c7f4447c0600fbb94716",
       "date": "2026-11-27T12:01:25-05:00",
