@@ -1,11 +1,17 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T03:06:21+00:00",
-  "sourceHead": "7eed5bf90b3f4d60c3a29281ea6a2ba3a3c83747",
-  "count": 735,
+  "generatedAt": "2026-11-27T03:17:01+00:00",
+  "sourceHead": "ae74bddf9ef93eff655f4297136b648a4c14cef0",
+  "count": 736,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "ae74bddf9ef93eff655f4297136b648a4c14cef0",
+      "date": "2026-11-26T22:06:21-05:00",
+      "subject": "Refresh published history for portfolio audit v2.6.446",
+      "category": "Maintenance"
+    },
     {
       "sha": "7eed5bf90b3f4d60c3a29281ea6a2ba3a3c83747",
       "date": "2026-11-26T22:06:18-05:00",
