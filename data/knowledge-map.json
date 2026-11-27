@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T03:03:38+00:00",
+  "generatedAt": "2026-11-27T03:17:51+00:00",
   "stats": {
     "totalProjects": 105,
     "totalNodes": 348,
@@ -3017,89 +3017,90 @@
     },
     {
       "id": "local-ai-music-studio-title",
-      "name": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
+      "name": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 26, 2026",
+      "date": "November 25, 2026",
       "val": 24,
       "color": "#c084fc",
-      "summary": "Andrew requested restoring Meta\u2019s stereo model alongside Stable Audio Open, preparing the download ahead of the next launch, and simplifying the studio for a narrower browser view. OpenAI Codex updated the local application files while leaving the existing generation running.",
+      "summary": "Andrew reported an unexpected quiet gap near 0:35 in a finalized track and clarified that the active generator was Stable Audio Open, distinct from the separate ACE-Step project. OpenAI Codex traced AI Music Generator.command to the Gradio application and confirmed that the ex...",
       "tech": [
-        "MusicGen Stereo Small",
         "Apple Silicon Metal (MPS)",
-        "Live Section Progress",
-        "Local Model Loading",
+        "Gradio Web Studio",
+        "Quiet-Edge Trimming",
+        "Equal-Power Crossfades",
+        "Stereo Mastering",
         "OpenAI Codex"
       ],
       "tasks": [
         {
-          "title": "Restored native stereo generation",
-          "desc": "Added facebook/musicgen-stereo-small to the dropdown and implemented its generation backend. Downloaded all 1,215,815,916 bytes of model wei..."
+          "title": "Quiet-edge trimming and retained-sample accounting",
+          "desc": "Added trim_segment_edges() to trim near-silent openings and endings while retaining interior musical pauses. The generation loop now counts ..."
         },
         {
-          "title": "Generation progress that identifies the section",
-          "desc": "Added a live, right-aligned label above the player showing the current section number and arrangement name: Intro, Main groove, Breakdown / ..."
+          "title": "Stable Audio as the sole installed generator",
+          "desc": "Removed the MusicGen backend and both small-model choices, made stabilityai/stable-audio-open-1.0 the default, and corrected the Gradio mode..."
         },
         {
-          "title": "Simpler player and duration controls",
-          "desc": "Replaced the duration slider with a seconds input while retaining the one-, three- and five-minute presets. Grouped the player and track det..."
+          "title": "Verification and limits",
+          "desc": "Three model-free regression tests passed for edge trimming, retained interior pauses, silent-input rejection, stereo crossfade length and en..."
         },
         {
-          "title": "Local loading and targeted warning cleanup",
-          "desc": "Resolve Stable Audio\u2019s existing cached snapshot before attempting a Hub connection, avoiding the online version check when the required file..."
+          "title": "Arrangement boundary",
+          "desc": "These are independently generated clips with timeline prompts and crossfades, rather than autoregressive audio continuation. Musical key, be..."
         }
       ],
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-0",
-      "name": "Restored native stereo generation",
+      "name": "Quiet-edge trimming and retained-sample accounting",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Added facebook/musicgen-stereo-small to the dropdown and implemented its generation backend. Downloaded all 1,215,815,916 bytes of model wei...",
+      "summary": "Added trim_segment_edges() to trim near-silent openings and endings while retaining interior musical pauses. The generation loop now counts ...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-1",
-      "name": "Generation progress that identifies the section",
+      "name": "Stable Audio as the sole installed generator",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Added a live, right-aligned label above the player showing the current section number and arrangement name: Intro, Main groove, Breakdown / ...",
+      "summary": "Removed the MusicGen backend and both small-model choices, made stabilityai/stable-audio-open-1.0 the default, and corrected the Gradio mode...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-2",
-      "name": "Simpler player and duration controls",
+      "name": "Verification and limits",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Replaced the duration slider with a seconds input while retaining the one-, three- and five-minute presets. Grouped the player and track det...",
+      "summary": "Three model-free regression tests passed for edge trimming, retained interior pauses, silent-input rejection, stereo crossfade length and en...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-3",
-      "name": "Local loading and targeted warning cleanup",
+      "name": "Arrangement boundary",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Resolve Stable Audio\u2019s existing cached snapshot before attempting a Hub connection, avoiding the online version check when the required file...",
+      "summary": "These are independently generated clips with timeline prompts and crossfades, rather than autoregressive audio continuation. Musical key, be...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
