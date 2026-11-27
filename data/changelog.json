@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T04:17:23+00:00",
-  "sourceHead": "1dfa7f35fd7e8e88436d29ff1ce5c92dbaeea011",
-  "count": 744,
+  "generatedAt": "2026-11-27T16:36:22+00:00",
+  "sourceHead": "f609a7da13708bf69526297ddf94c267be862612",
+  "count": 746,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "f609a7da13708bf69526297ddf94c267be862612",
+      "date": "2026-11-27T11:36:14-05:00",
+      "subject": "Launch verified SMS website digests and update live enrollment notices",
+      "category": "Feature"
+    },
+    {
+      "sha": "9d8c57da69b3e70c1db004682d026bc5942da1a9",
+      "date": "2026-11-26T23:17:25-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "1dfa7f35fd7e8e88436d29ff1ce5c92dbaeea011",
       "date": "2026-11-26T22:46:46-05:00",
