@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-26T22:47:43+00:00",
+  "generatedAt": "2026-11-27T00:47:23+00:00",
   "stats": {
-    "totalProjects": 104,
-    "totalNodes": 343,
-    "totalLinks": 704,
+    "totalProjects": 105,
+    "totalNodes": 348,
+    "totalLinks": 715,
     "domains": 6,
     "techBridges": 10
   },
@@ -1313,7 +1313,7 @@
       "domainName": "Audio, Video & Creative",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 24, 2026",
+      "date": "November 25, 2026",
       "val": 24,
       "color": "#2dd4bf",
       "summary": "Traditional AI vocal isolators (such as basic Demucs or Spleeter interfaces) function strictly as passive stem subtractors: by carving out the singer\u2019s vocals, they leave an empty, hollow sonic vacuum in the mix where the human lead melody once carried the song. To transform p...",
@@ -1321,8 +1321,8 @@
         "Apple Silicon Metal (MPS)",
         "Spotify Basic Pitch (Neural Audio-to-MIDI)",
         "Anti-Stutter Debouncing",
-        "Audio Noise Gating",
-        "Zero-Ducking Mix",
+        "Residual Vocal Cleanup",
+        "Lead-Aware Backing Reduction",
         "FluidSynth (FluidR3 GM)"
       ],
       "tasks": [
@@ -3014,6 +3014,94 @@
       "color": "#10b981",
       "summary": "Added an optional toggle (\ud83d\udd18 Add rounded corners (50%)) for all image formats. The engine synthesizes a 2x supersampled anti-aliased alpha ma...",
       "url": "projects.html#local-media-converter-title"
+    },
+    {
+      "id": "local-ai-music-studio-title",
+      "name": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "type": "project",
+      "domain": "ai-agents",
+      "domainName": "AI & Agentic Systems",
+      "status": "completed",
+      "statusLabel": "Completed Project",
+      "date": "November 25, 2026",
+      "val": 24,
+      "color": "#c084fc",
+      "summary": "Andrew reported an unexpected quiet gap near 0:35 in a finalized track and clarified that the active generator was Stable Audio Open, distinct from the separate ACE-Step project. OpenAI Codex traced AI Music Generator.command to the Gradio application and confirmed that the ex...",
+      "tech": [
+        "Apple Silicon Metal (MPS)",
+        "Gradio Web Studio",
+        "Quiet-Edge Trimming",
+        "Equal-Power Crossfades",
+        "Stereo Mastering",
+        "OpenAI Codex"
+      ],
+      "tasks": [
+        {
+          "title": "Quiet-edge trimming and retained-sample accounting",
+          "desc": "Added trim_segment_edges() to trim near-silent openings and endings while retaining interior musical pauses. The generation loop now counts ..."
+        },
+        {
+          "title": "Stable Audio as the sole installed generator",
+          "desc": "Removed the MusicGen backend and both small-model choices, made stabilityai/stable-audio-open-1.0 the default, and corrected the Gradio mode..."
+        },
+        {
+          "title": "Verification and limits",
+          "desc": "Three model-free regression tests passed for edge trimming, retained interior pauses, silent-input rejection, stereo crossfade length and en..."
+        },
+        {
+          "title": "Arrangement boundary",
+          "desc": "These are independently generated clips with timeline prompts and crossfades, rather than autoregressive audio continuation. Musical key, be..."
+        }
+      ],
+      "url": "projects.html#local-ai-music-studio-title"
+    },
+    {
+      "id": "task-local-ai-music-studio-title-0",
+      "name": "Quiet-edge trimming and retained-sample accounting",
+      "type": "task",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentId": "local-ai-music-studio-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Added trim_segment_edges() to trim near-silent openings and endings while retaining interior musical pauses. The generation loop now counts ...",
+      "url": "projects.html#local-ai-music-studio-title"
+    },
+    {
+      "id": "task-local-ai-music-studio-title-1",
+      "name": "Stable Audio as the sole installed generator",
+      "type": "task",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentId": "local-ai-music-studio-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Removed the MusicGen backend and both small-model choices, made stabilityai/stable-audio-open-1.0 the default, and corrected the Gradio mode...",
+      "url": "projects.html#local-ai-music-studio-title"
+    },
+    {
+      "id": "task-local-ai-music-studio-title-2",
+      "name": "Verification and limits",
+      "type": "task",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentId": "local-ai-music-studio-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "Three model-free regression tests passed for edge trimming, retained interior pauses, silent-input rejection, stereo crossfade length and en...",
+      "url": "projects.html#local-ai-music-studio-title"
+    },
+    {
+      "id": "task-local-ai-music-studio-title-3",
+      "name": "Arrangement boundary",
+      "type": "task",
+      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentId": "local-ai-music-studio-title",
+      "status": "completed",
+      "val": 5,
+      "color": "#10b981",
+      "summary": "These are independently generated clips with timeline prompts and crossfades, rather than autoregressive audio continuation. Musical key, be...",
+      "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "cross-platform-spacedesk-tailscale-mesh-title",
@@ -7913,6 +8001,72 @@
     },
     {
       "source": "local-media-converter-title",
+      "target": "tech-forensics-reversing",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "domain-ai-agents",
+      "target": "local-ai-music-studio-title",
+      "type": "domain-project",
+      "distance": 65
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "task-local-ai-music-studio-title-0",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "task-local-ai-music-studio-title-1",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "task-local-ai-music-studio-title-2",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "task-local-ai-music-studio-title-3",
+      "type": "project-task",
+      "distance": 26
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "tech-tailscale",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "tech-apple-metal",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "tech-openrc-daemons",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "local-ai-music-studio-title",
+      "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "local-ai-music-studio-title",
       "target": "tech-forensics-reversing",
       "type": "project-tech",
       "distance": 85
