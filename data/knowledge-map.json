@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-27T01:18:02+00:00",
+  "generatedAt": "2026-11-27T03:03:38+00:00",
   "stats": {
     "totalProjects": 105,
     "totalNodes": 348,
-    "totalLinks": 715,
+    "totalLinks": 719,
     "domains": 6,
     "techBridges": 10
   },
@@ -3017,90 +3017,89 @@
     },
     {
       "id": "local-ai-music-studio-title",
-      "name": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "name": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
       "type": "project",
       "domain": "ai-agents",
       "domainName": "AI & Agentic Systems",
       "status": "completed",
       "statusLabel": "Completed Project",
-      "date": "November 25, 2026",
+      "date": "November 26, 2026",
       "val": 24,
       "color": "#c084fc",
-      "summary": "Andrew reported an unexpected quiet gap near 0:35 in a finalized track and clarified that the active generator was Stable Audio Open, distinct from the separate ACE-Step project. OpenAI Codex traced AI Music Generator.command to the Gradio application and confirmed that the ex...",
+      "summary": "Andrew requested restoring Meta\u2019s stereo model alongside Stable Audio Open, preparing the download ahead of the next launch, and simplifying the studio for a narrower browser view. OpenAI Codex updated the local application files while leaving the existing generation running.",
       "tech": [
+        "MusicGen Stereo Small",
         "Apple Silicon Metal (MPS)",
-        "Gradio Web Studio",
-        "Quiet-Edge Trimming",
-        "Equal-Power Crossfades",
-        "Stereo Mastering",
+        "Live Section Progress",
+        "Local Model Loading",
         "OpenAI Codex"
       ],
       "tasks": [
         {
-          "title": "Quiet-edge trimming and retained-sample accounting",
-          "desc": "Added trim_segment_edges() to trim near-silent openings and endings while retaining interior musical pauses. The generation loop now counts ..."
+          "title": "Restored native stereo generation",
+          "desc": "Added facebook/musicgen-stereo-small to the dropdown and implemented its generation backend. Downloaded all 1,215,815,916 bytes of model wei..."
         },
         {
-          "title": "Stable Audio as the sole installed generator",
-          "desc": "Removed the MusicGen backend and both small-model choices, made stabilityai/stable-audio-open-1.0 the default, and corrected the Gradio mode..."
+          "title": "Generation progress that identifies the section",
+          "desc": "Added a live, right-aligned label above the player showing the current section number and arrangement name: Intro, Main groove, Breakdown / ..."
         },
         {
-          "title": "Verification and limits",
-          "desc": "Three model-free regression tests passed for edge trimming, retained interior pauses, silent-input rejection, stereo crossfade length and en..."
+          "title": "Simpler player and duration controls",
+          "desc": "Replaced the duration slider with a seconds input while retaining the one-, three- and five-minute presets. Grouped the player and track det..."
         },
         {
-          "title": "Arrangement boundary",
-          "desc": "These are independently generated clips with timeline prompts and crossfades, rather than autoregressive audio continuation. Musical key, be..."
+          "title": "Local loading and targeted warning cleanup",
+          "desc": "Resolve Stable Audio\u2019s existing cached snapshot before attempting a Hub connection, avoiding the online version check when the required file..."
         }
       ],
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-0",
-      "name": "Quiet-edge trimming and retained-sample accounting",
+      "name": "Restored native stereo generation",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Added trim_segment_edges() to trim near-silent openings and endings while retaining interior musical pauses. The generation loop now counts ...",
+      "summary": "Added facebook/musicgen-stereo-small to the dropdown and implemented its generation backend. Downloaded all 1,215,815,916 bytes of model wei...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-1",
-      "name": "Stable Audio as the sole installed generator",
+      "name": "Generation progress that identifies the section",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Removed the MusicGen backend and both small-model choices, made stabilityai/stable-audio-open-1.0 the default, and corrected the Gradio mode...",
+      "summary": "Added a live, right-aligned label above the player showing the current section number and arrangement name: Intro, Main groove, Breakdown / ...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-2",
-      "name": "Verification and limits",
+      "name": "Simpler player and duration controls",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "Three model-free regression tests passed for edge trimming, retained interior pauses, silent-input rejection, stereo crossfade length and en...",
+      "summary": "Replaced the duration slider with a seconds input while retaining the one-, three- and five-minute presets. Grouped the player and track det...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
       "id": "task-local-ai-music-studio-title-3",
-      "name": "Arrangement boundary",
+      "name": "Local loading and targeted warning cleanup",
       "type": "task",
-      "parentProject": "Local AI Music Studio: Stable Audio Open 1.0 on Apple Silicon Metal (MPS), Section-Guided Clip Stitching & Stereo Mastering",
+      "parentProject": "Local AI Music Studio: Stable Audio Open & Meta MusicGen Stereo on Apple Silicon, Section Progress & Stereo Mastering",
       "parentId": "local-ai-music-studio-title",
       "status": "completed",
       "val": 5,
       "color": "#10b981",
-      "summary": "These are independently generated clips with timeline prompts and crossfades, rather than autoregressive audio continuation. Musical key, be...",
+      "summary": "Resolve Stable Audio\u2019s existing cached snapshot before attempting a Hub connection, avoiding the online version check when the required file...",
       "url": "projects.html#local-ai-music-studio-title"
     },
     {
@@ -9921,7 +9920,19 @@
     },
     {
       "source": "neural-coin-predictor-title",
+      "target": "tech-python-fastapi",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "neural-coin-predictor-title",
       "target": "tech-antigravity",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
+      "source": "neural-coin-predictor-title",
+      "target": "tech-forensics-reversing",
       "type": "project-tech",
       "distance": 85
     },
@@ -10124,6 +10135,12 @@
       "distance": 85
     },
     {
+      "source": "grandmaapproved-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
+    },
+    {
       "source": "domain-homelab-infra",
       "target": "portable-compute-title",
       "type": "domain-project",
@@ -10272,6 +10289,12 @@
       "target": "nemo-sudoku-title",
       "type": "domain-project",
       "distance": 65
+    },
+    {
+      "source": "nemo-sudoku-title",
+      "target": "tech-docker-containers",
+      "type": "project-tech",
+      "distance": 85
     },
     {
       "source": "nemo-sudoku-title",
