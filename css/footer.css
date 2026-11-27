@@ -24,3 +24,12 @@ body.repair-shop-body footer{display:block}
  body footer:has(>p.footer-pill)>p.footer-version{flex-grow:.8}
 }
 @media(min-width:1200px){body footer:has(>p.footer-pill)>p.footer-version{flex:0 0 auto;white-space:nowrap}}
+@media(min-width:1200px){
+ body footer:has(>p.footer-pill){justify-content:center}
+ body footer:has(>p.footer-pill)>p.footer-pill:first-child,
+ body footer:has(>p.footer-pill)>p.footer-pill:has(time){flex:0 0 auto;white-space:nowrap}
+}
+@media(min-width:1200px) and (max-width:1399px){
+ body footer:has(>#homepage-last-visit)>p.footer-pill:first-child{flex:1.8 1 0;white-space:normal}
+ body footer:has(>#homepage-last-visit)>p.footer-pill:has(time){flex:1.1 1 0;white-space:normal}
+}
