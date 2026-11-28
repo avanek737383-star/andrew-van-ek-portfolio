@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-27T19:17:13+00:00",
-  "sourceHead": "facfd2eef33dc1bc1b8a6aa86e223a6996a0cb70",
-  "count": 758,
+  "generatedAt": "2026-11-28T00:17:10+00:00",
+  "sourceHead": "b689257a9d54fa1d315a6438d6aaae38c23fce0f",
+  "count": 760,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "b689257a9d54fa1d315a6438d6aaae38c23fce0f",
+      "date": "2026-11-27T19:12:08-05:00",
+      "subject": "Document Slideshow Party Tailscale IP/port overhaul and YuNet+SFace face filtering upgrade",
+      "category": "Fleet & Infra"
+    },
+    {
+      "sha": "7a634ffe440ca396e2d3196023461daba2c9ad7f",
+      "date": "2026-11-27T14:17:13-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "facfd2eef33dc1bc1b8a6aa86e223a6996a0cb70",
       "date": "2026-11-27T13:20:51-05:00",
