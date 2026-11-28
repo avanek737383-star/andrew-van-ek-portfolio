@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-28T01:21:08+00:00",
-  "sourceHead": "16ca96b4558adbb037515d9495931d14630e937e",
-  "count": 762,
+  "generatedAt": "2026-11-28T02:17:08+00:00",
+  "sourceHead": "8791f773c4794232b127e4a641602b5e3872823c",
+  "count": 764,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "8791f773c4794232b127e4a641602b5e3872823c",
+      "date": "2026-11-27T21:10:53-05:00",
+      "subject": "Document 24-track video batch, timing checks, lyrics fixes and cleanup",
+      "category": "Maintenance"
+    },
+    {
+      "sha": "f5098a44e3897c426592cee3d368f76c036593e0",
+      "date": "2026-11-27T20:21:09-05:00",
+      "subject": "Refresh changelog snapshot for SMS project journey",
+      "category": "Maintenance"
+    },
     {
       "sha": "16ca96b4558adbb037515d9495931d14630e937e",
       "date": "2026-11-27T20:20:55-05:00",
