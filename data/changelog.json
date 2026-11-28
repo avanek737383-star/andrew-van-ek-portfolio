@@ -1,11 +1,23 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-28T00:17:10+00:00",
-  "sourceHead": "b689257a9d54fa1d315a6438d6aaae38c23fce0f",
-  "count": 760,
+  "generatedAt": "2026-11-28T01:21:08+00:00",
+  "sourceHead": "16ca96b4558adbb037515d9495931d14630e937e",
+  "count": 762,
   "releaseLabel": "v2.6.446",
   "scope": "All Git commits reachable from sourceHead. This is a generated snapshot; a later metadata-only commit may follow it. Author dates are not deployment dates.",
   "commits": [
+    {
+      "sha": "16ca96b4558adbb037515d9495931d14630e937e",
+      "date": "2026-11-27T20:20:55-05:00",
+      "subject": "Document SMS/MMS research assistant journey and closed RCS exploration",
+      "category": "Feature"
+    },
+    {
+      "sha": "ea13d658baa310cb19f1837be0ee3252a43e9dc2",
+      "date": "2026-11-27T19:17:11-05:00",
+      "subject": "[data] Refresh primary-source release checks and Git snapshot [skip ci]",
+      "category": "Maintenance"
+    },
     {
       "sha": "b689257a9d54fa1d315a6438d6aaae38c23fce0f",
       "date": "2026-11-27T19:12:08-05:00",
